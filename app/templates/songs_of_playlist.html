@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Spotify Playlist Analyzer</title>
+
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Songs of Playlist</h1>
+
+    <ol>
+        {% for song in songs %}
+            <li>{{ song.artist }} - {{ song.title }}</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>
