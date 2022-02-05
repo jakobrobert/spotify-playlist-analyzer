@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 
 import configparser
 
@@ -11,4 +12,4 @@ app = Flask(__name__)
 
 @app.route(URL_PREFIX, methods=["GET"])
 def index():
-    return "<p>Hello, World!</p>"
+    return render_template("index.html")
