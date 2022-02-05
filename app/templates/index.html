@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Spotify Playlist Analyzer</title>
+
+    <meta charset="UTF-8">
 </head>
 <body>
-    <p>Hello, World!</p>
+    <h1>Spotify Playlist Analyzer</h1>
+
+    <form action="{{ url_for('get_songs_of_playlist') }}" method="GET">
+        <label for="playlist_url">Enter the URL of the playlist:</label><br>
+        <input type="text" id="playlist_url" name="playlist_url"><br>
+        <input type="submit" value="Confirm">
+    </form>
 </body>
 </html>
