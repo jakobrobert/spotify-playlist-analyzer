@@ -14,10 +14,16 @@ def index():
     return render_template("index.html")
 
 
-@app.route(URL_PREFIX + "get-songs-of-playlist", methods=["GET"])
+@app.route(URL_PREFIX + "songs-of-playlist", methods=["GET"])
 def get_songs_of_playlist():
     playlist_url = request.args.get("playlist_url")
     print(f"playlist_url: {playlist_url}")
 
     # TODO get data of this playlist using Spotify Web API
-    return "TODO"
+
+    songs = []
+    for i in range(0, 10):
+        song = {"artist": f"Artist {i}", "title": f"Title {i}"}
+        songs.append(song)
+
+    return render_template("songs_of_playlist.html", songs=songs)
