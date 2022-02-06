@@ -8,6 +8,7 @@
 <body>
     <h1>Songs of Playlist</h1>
 
+    <p># Songs: {{ num_songs }}</p>
     <ol>
         {% for song in songs %}
             <li>{{ song.artist }} - {{ song.title }}</li>

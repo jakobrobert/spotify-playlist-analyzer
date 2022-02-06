@@ -26,4 +26,4 @@ def get_songs_of_playlist():
         song = {"artist": f"Artist {i}", "title": f"Title {i}"}
         songs.append(song)
 
-    return render_template("songs_of_playlist.html", songs=songs)
+    return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs))
