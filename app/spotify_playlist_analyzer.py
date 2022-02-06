@@ -18,11 +18,13 @@ def index():
 @app.route(URL_PREFIX + "songs-of-playlist", methods=["GET"])
 def get_songs_of_playlist():
     playlist_url = request.args.get("playlist_url")
-    #print(f"playlist_url: {playlist_url}")
 
-    # TODO this is just a test token, replace by proper Authentication flow
+    playlist_id_start_index = playlist_url.find("playlist/") + len("playlist/")
+    playlist_id_end_index = playlist_url.find("?")
+    playlist_id = playlist_url[playlist_id_start_index:playlist_id_end_index]
+
+    # TODO this is just a test token, use proper Authentication flow
     access_token = "BQBPTOQbOcNgbylEde97_eMLX4AilcQxnEMP0WuaDvmex_5CeGUW3IwCECcQ4xCtze3xsgdh9UPyEMzu5u9XxXkweHTTm1wjBTd97IGQBJa8zIBdEpbU3N7hVU2ZQ2Z8Mha0JSCu40YRUrveFb-ScFXn17KeWyjbgnI "
-    playlist_id = "2cE4QPx8FAtUIOsZpHwAQM"  # TODO currently hardcoded, get playlist id based on the playlist url
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
 
     response = requests.get(url,
