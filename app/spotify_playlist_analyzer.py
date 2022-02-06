@@ -23,7 +23,6 @@ def get_songs_of_playlist():
     playlist_id_end_index = playlist_url.find("?")
     playlist_id = playlist_url[playlist_id_start_index:playlist_id_end_index]
 
-    # TODO this is just a test token, use proper Authentication flow
     access_token = "BQBPTOQbOcNgbylEde97_eMLX4AilcQxnEMP0WuaDvmex_5CeGUW3IwCECcQ4xCtze3xsgdh9UPyEMzu5u9XxXkweHTTm1wjBTd97IGQBJa8zIBdEpbU3N7hVU2ZQ2Z8Mha0JSCu40YRUrveFb-ScFXn17KeWyjbgnI "
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
 
@@ -38,7 +37,6 @@ def get_songs_of_playlist():
 
     songs = []
 
-    # TODO this contains only 100 songs, even though playlist has more songs. need to set limit param or send several requests?
     for track in tracks:
         track_item = track["track"]
 
