@@ -20,22 +20,13 @@ def index():
 @app.route(URL_PREFIX + "songs-of-playlist", methods=["GET"])
 def get_songs_of_playlist():
     playlist_url = request.args.get("playlist_url")
-
-    playlist_id_start_index = playlist_url.find("playlist/") + len("playlist/")
-    playlist_id_end_index = playlist_url.find("?")
-    playlist_id = playlist_url[playlist_id_start_index:playlist_id_end_index]
-
+    playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
     access_token = __get_spotify_access_token()
-
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
-
-    response = requests.get(url,
-        headers={
-            "Authorization": f"Bearer {access_token}"
-        }
-    )
-
+    headers = {"Authorization": f"Bearer {access_token}"}
+    response = requests.get(url, headers=headers)
     response_data = response.json()
+
     tracks = response_data["tracks"]["items"]
 
     songs = []
@@ -64,10 +55,16 @@ def __get_spotify_access_token():
     grant_type = "client_credentials"
     data = {"grant_type": grant_type}
     auth = (SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
+
     response = requests.post(url, data=data, auth=auth)
     response_data = response.json()
 
     return response_data["access_token"]
 
 
+def __get_playlist_id_from_playlist_url(playlist_url):
+    start_index = playlist_url.find("playlist/") + len("playlist/")
+    end_index = playlist_url.find("?")
+
+    return playlist_url[start_index:end_index]
 
