@@ -6,6 +6,8 @@ import requests
 config = configparser.ConfigParser()
 config.read("../server.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
+SPOTIFY_CLIENT_ID = config["DEFAULT"]["SPOTIFY_CLIENT_ID"]
+SPOTIFY_CLIENT_SECRET = config["DEFAULT"]["SPOTIFY_CLIENT_SECRET"]
 
 app = Flask(__name__)
 
@@ -23,7 +25,8 @@ def get_songs_of_playlist():
     playlist_id_end_index = playlist_url.find("?")
     playlist_id = playlist_url[playlist_id_start_index:playlist_id_end_index]
 
-    access_token = "BQBPTOQbOcNgbylEde97_eMLX4AilcQxnEMP0WuaDvmex_5CeGUW3IwCECcQ4xCtze3xsgdh9UPyEMzu5u9XxXkweHTTm1wjBTd97IGQBJa8zIBdEpbU3N7hVU2ZQ2Z8Mha0JSCu40YRUrveFb-ScFXn17KeWyjbgnI "
+    access_token = __get_spotify_access_token()
+
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
 
     response = requests.get(url,
@@ -54,3 +57,17 @@ def get_songs_of_playlist():
         songs.append(song)
 
     return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs))
+
+
+def __get_spotify_access_token():
+    url = "https://accounts.spotify.com/api/token"
+    grant_type = "client_credentials"
+    data = {"grant_type": grant_type}
+    auth = (SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
+    response = requests.post(url, data=data, auth=auth)
+    response_data = response.json()
+
+    return response_data["access_token"]
+
+
+
