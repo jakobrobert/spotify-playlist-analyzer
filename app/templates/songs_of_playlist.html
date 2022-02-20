@@ -20,12 +20,16 @@
                 <th>#</th>
                 <th>Artists</th>
                 <th>Title</th>
+                <th>Duration</th>
+                <th>Release Date</th>
             </tr>
             {% for i in range(0, num_songs) %}
             <tr>
                 <td>{{ i + 1 }}</td>
                 <td>{{ songs[i].artists }}</td>
                 <td>{{ songs[i].title }}</td>
+                <td>{{ songs[i].duration }}</td>
+                <td>{{ songs[i].release_date }}</td>
             </tr>
             {% endfor %}
         </table>
