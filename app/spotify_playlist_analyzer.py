@@ -38,8 +38,9 @@ def get_songs_of_playlist():
         title = track_item["name"]
         artists = __get_artists_of_track(track_item)
         duration = __get_duration_of_track(track_item)
+        release_date = __get_release_date_of_track(track_item)
 
-        song = {"artists": artists, "title": title, "duration": duration}
+        song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date}
         songs.append(song)
 
     return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs))
@@ -84,4 +85,11 @@ def __get_duration_of_track(track):
     remaining_seconds = total_seconds % 60
 
     return f"{total_minutes:02d}:{remaining_seconds:02d}"
+
+
+def __get_release_date_of_track(track):
+    album = track["album"]
+    release_date = album["release_date"]
+
+    return release_date
 
