@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 
 import configparser
 import requests
+import datetime
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
@@ -36,12 +37,9 @@ def get_songs_of_playlist():
 
         title = track_item["name"]
         artists = __get_artists_of_track(track_item)
+        duration = __get_duration_of_track(track_item)
 
-        duration_ms = track_item["duration_ms"]
-        print(f"duration_ms: {duration_ms}")
-        # TODO format as minutes and seconds
-
-        song = {"artists": artists, "title": title, "duration": duration_ms}
+        song = {"artists": artists, "title": title, "duration": duration}
         songs.append(song)
 
     return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs))
@@ -77,4 +75,13 @@ def __get_artists_of_track(track):
         artists_string += artist_name
 
     return artists_string
+
+
+def __get_duration_of_track(track):
+    milliseconds = track["duration_ms"]
+    total_seconds = milliseconds // 1000
+    total_minutes = total_seconds // 60
+    remaining_seconds = total_seconds % 60
+
+    return f"{total_minutes:02d}:{remaining_seconds:02d}"
 
