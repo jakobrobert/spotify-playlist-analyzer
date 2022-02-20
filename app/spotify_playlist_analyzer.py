@@ -35,19 +35,23 @@ def get_songs_of_playlist():
         track_item = track["track"]
 
         title = track_item["name"]
+        artists = __get_artists_of_track(track_item)
 
-        artists = track_item["artists"]
-        artists_string = ""
-        for i in range(len(artists)):
-            artist_name = artists[i]["name"]
-            if i != 0:
-                artists_string += ", "
-            artists_string += artist_name
+        duration_ms = track_item["duration_ms"]
+        print(f"duration_ms: {duration_ms}")
+        # TODO format as minutes and seconds
 
-        song = {"artists": artists_string, "title": title}
+        song = {"artists": artists, "title": title, "duration": duration_ms}
         songs.append(song)
 
     return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs))
+
+
+def __get_playlist_id_from_playlist_url(playlist_url):
+    start_index = playlist_url.find("playlist/") + len("playlist/")
+    end_index = playlist_url.find("?")
+
+    return playlist_url[start_index:end_index]
 
 
 def __get_spotify_access_token():
@@ -62,9 +66,15 @@ def __get_spotify_access_token():
     return response_data["access_token"]
 
 
-def __get_playlist_id_from_playlist_url(playlist_url):
-    start_index = playlist_url.find("playlist/") + len("playlist/")
-    end_index = playlist_url.find("?")
+def __get_artists_of_track(track):
+    artists_string = ""
+    artists = track["artists"]
 
-    return playlist_url[start_index:end_index]
+    for i in range(len(artists)):
+        artist_name = artists[i]["name"]
+        if i != 0:
+            artists_string += ", "
+        artists_string += artist_name
+
+    return artists_string
 
