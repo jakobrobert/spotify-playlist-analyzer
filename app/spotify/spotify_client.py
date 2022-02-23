@@ -24,8 +24,10 @@ class SpotifyClient:
             artists = SpotifyClient.__get_artists_of_track(track_item)
             duration = SpotifyClient.__get_duration_of_track(track_item)
             release_date = SpotifyClient.__get_release_date_of_track(track_item)
+            genres = SpotifyClient.__get_genres_of_track(track_item, access_token)
 
-            song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date}
+            song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
+                    "genres": genres}
             songs.append(song)
 
         return songs
@@ -67,3 +69,20 @@ class SpotifyClient:
         release_date = album["release_date"]
 
         return release_date
+
+    @staticmethod
+    def __get_genres_of_track(track, access_token):
+        genres = []
+        artists = track["artists"]
+
+        for artist in artists:
+            artist_url = artist["href"]
+
+            headers = {"Authorization": f"Bearer {access_token}"}
+            response = requests.get(artist_url, headers=headers)
+            response_data = response.json()
+
+            genres_of_artist = response_data["genres"]
+            genres.extend(genres_of_artist)
+
+        return ", ".join(genres)
