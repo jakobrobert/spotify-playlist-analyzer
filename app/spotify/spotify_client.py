@@ -24,8 +24,11 @@ class SpotifyClient:
             artists = SpotifyClient.__get_artists_of_track(track_item)
             duration = SpotifyClient.__get_duration_of_track(track_item)
             release_date = SpotifyClient.__get_release_date_of_track(track_item)
+            genres = self.__get_genres_of_track(track_item)
+            print(genres)   # TODO remove
 
-            song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date}
+            song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
+                    "genres": genres}
             songs.append(song)
 
         return songs
@@ -67,3 +70,21 @@ class SpotifyClient:
         release_date = album["release_date"]
 
         return release_date
+
+    def __get_genres_of_track(self, track):
+        genres = []
+
+        artists = track["artists"]
+        access_token = self.__get_access_token() # TODO maybe this is the cause why it takes much time now? can move out, should not be called for each track?
+
+        for artist in artists:
+            artist_url = artist["href"]
+
+            headers = {"Authorization": f"Bearer {access_token}"}
+            response = requests.get(artist_url, headers=headers)
+            response_data = response.json()
+
+            genres_of_artist = response_data["genres"]
+            genres.extend(genres_of_artist)
+
+        return genres
