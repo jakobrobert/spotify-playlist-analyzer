@@ -25,7 +25,6 @@ class SpotifyClient:
             duration = SpotifyClient.__get_duration_of_track(track_item)
             release_date = SpotifyClient.__get_release_date_of_track(track_item)
             genres = self.__get_genres_of_track(track_item)
-            print(genres)   # TODO remove
 
             song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
                     "genres": genres}
@@ -73,7 +72,6 @@ class SpotifyClient:
 
     def __get_genres_of_track(self, track):
         genres = []
-
         artists = track["artists"]
         access_token = self.__get_access_token() # TODO maybe this is the cause why it takes much time now? can move out, should not be called for each track?
 
@@ -87,4 +85,4 @@ class SpotifyClient:
             genres_of_artist = response_data["genres"]
             genres.extend(genres_of_artist)
 
-        return genres
+        return ", ".join(genres)
