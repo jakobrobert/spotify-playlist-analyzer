@@ -4,11 +4,15 @@ import configparser
 import requests
 import datetime
 
+from spotify.spotify_client import SpotifyClient
+
 config = configparser.ConfigParser()
 config.read("../server.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 SPOTIFY_CLIENT_ID = config["DEFAULT"]["SPOTIFY_CLIENT_ID"]
 SPOTIFY_CLIENT_SECRET = config["DEFAULT"]["SPOTIFY_CLIENT_SECRET"]
+
+spotify_client = SpotifyClient(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
 
 app = Flask(__name__)
 
@@ -22,6 +26,10 @@ def index():
 def get_songs_of_playlist():
     playlist_url = request.args.get("playlist_url")
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
+
+    songs = spotify_client.get_songs_of_playlist(playlist_id)
+
+    """
     access_token = __get_spotify_access_token()
     url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
     headers = {"Authorization": f"Bearer {access_token}"}
@@ -42,6 +50,7 @@ def get_songs_of_playlist():
 
         song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date}
         songs.append(song)
+    """
 
     return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs))
 
