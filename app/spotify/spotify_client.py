@@ -24,7 +24,7 @@ class SpotifyClient:
             artists = SpotifyClient.__get_artists_of_track(track_item)
             duration = SpotifyClient.__get_duration_of_track(track_item)
             release_date = SpotifyClient.__get_release_date_of_track(track_item)
-            genres = self.__get_genres_of_track(track_item)
+            genres = SpotifyClient.__get_genres_of_track(track_item, access_token)
 
             song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
                     "genres": genres}
@@ -70,10 +70,10 @@ class SpotifyClient:
 
         return release_date
 
-    def __get_genres_of_track(self, track):
+    @staticmethod
+    def __get_genres_of_track(track, access_token):
         genres = []
         artists = track["artists"]
-        access_token = self.__get_access_token() # TODO maybe this is the cause why it takes much time now? can move out, should not be called for each track?
 
         for artist in artists:
             artist_url = artist["href"]
