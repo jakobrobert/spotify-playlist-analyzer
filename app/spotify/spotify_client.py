@@ -16,6 +16,7 @@ class SpotifyClient:
         track_item = response_data["tracks"]["items"]
 
         songs = []
+        all_artist_ids = []
 
         for track_item in track_item:
             track = track_item["track"]
@@ -24,11 +25,19 @@ class SpotifyClient:
             artists = SpotifyClient.__get_artists_of_track(track)
             duration = SpotifyClient.__get_duration_of_track(track)
             release_date = SpotifyClient.__get_release_date_of_track(track)
-            genres = SpotifyClient.__get_genres_of_track(track, access_token)
+
+            artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track)
+            all_artist_ids.extend(artist_ids_of_track)
+            # TODO optimize: only get unique artist ids, there might be multiple tracks with the same artist
 
             song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
-                    "genres": genres}
+                    "genres": [], "artist_ids": artist_ids_of_track}
             songs.append(song)
+
+        # TODO get genres for each artist. do as few requests as possible.
+        print(f"all_artist_ids: {all_artist_ids}")
+
+        # TODO get genres for each track based on its artist ids
 
         return songs
 
@@ -46,6 +55,7 @@ class SpotifyClient:
         artists_string = ""
         artists = track["artists"]
 
+        # TODO clean up: use join() as for genres string
         for i in range(len(artists)):
             artist_name = artists[i]["name"]
             if i != 0:
@@ -70,6 +80,8 @@ class SpotifyClient:
 
         return release_date
 
+    # TODO clean up: remove
+    """
     @staticmethod
     def __get_genres_of_track(track, access_token):
         genres = []
@@ -88,3 +100,15 @@ class SpotifyClient:
             genres.extend(genres_of_artist)
 
         return ", ".join(genres)
+    """
+
+    @staticmethod
+    def __get_artist_ids_of_track(track):
+        artist_ids = []
+        artists = track["artists"]
+
+        for artist in artists:
+            artist_id = artist["id"]
+            artist_ids.append(artist_id)
+
+        return artist_ids
