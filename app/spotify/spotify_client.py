@@ -38,7 +38,17 @@ class SpotifyClient:
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
         print(f"artist_id_to_genres: {artist_id_to_genres}")
 
-        # TODO get genres for each song based on its artist ids
+        # TODO clean up: extract into method?
+        for song in songs:
+            genres = []
+            artist_ids = song["artist_ids"]
+
+            for artist_id in artist_ids:
+                genres_of_artist = artist_id_to_genres[artist_id]
+                genres.extend(genres_of_artist)
+
+            genres_string = ", ".join(genres)
+            song["genres"] = genres_string
 
         return songs
 
