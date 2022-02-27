@@ -13,18 +13,18 @@ class SpotifyClient:
         response = requests.get(url, headers=headers)
         response_data = response.json()
 
-        tracks = response_data["tracks"]["items"]
+        track_item = response_data["tracks"]["items"]
 
         songs = []
 
-        for track in tracks:
-            track_item = track["track"]
+        for track_item in track_item:
+            track = track_item["track"]
 
-            title = track_item["name"]
-            artists = SpotifyClient.__get_artists_of_track(track_item)
-            duration = SpotifyClient.__get_duration_of_track(track_item)
-            release_date = SpotifyClient.__get_release_date_of_track(track_item)
-            genres = SpotifyClient.__get_genres_of_track(track_item, access_token)
+            title = track["name"]
+            artists = SpotifyClient.__get_artists_of_track(track)
+            duration = SpotifyClient.__get_duration_of_track(track)
+            release_date = SpotifyClient.__get_release_date_of_track(track)
+            genres = SpotifyClient.__get_genres_of_track(track, access_token)
 
             song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
                     "genres": genres}
@@ -78,6 +78,8 @@ class SpotifyClient:
         for artist in artists:
             artist_url = artist["href"]
 
+            # TODO should not do separate requests for each track.
+            # instead, collect artist ids, then do big request in the end.
             headers = {"Authorization": f"Bearer {access_token}"}
             response = requests.get(artist_url, headers=headers)
             response_data = response.json()
