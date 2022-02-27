@@ -109,6 +109,28 @@ class SpotifyClient:
         # FIXME request only supports up to 50 artist ids, need to split for more
         url = "https://api.spotify.com/v1/artists"
         headers = {"Authorization": f"Bearer {access_token}"}
+        """
+        artist_ids_string = ",".join(artist_ids)
+        params = {"ids": artist_ids_string}
+        response = requests.get(url, headers=headers, params=params)
+        response_data = response.json()
+
+        if not "artists" in response_data:
+            print(response_data)
+            return artist_id_to_genres
+
+        artists = response_data["artists"]
+        for artist in artists:
+            artist_id = artist["id"]
+            artist_genres = artist["genres"]
+            artist_id_to_genres[artist_id] = artist_genres
+        """
+        SpotifyClient.__get_artist_id_to_genres_for_one_request(artist_ids, url, headers, artist_id_to_genres)
+
+        return artist_id_to_genres
+
+    @staticmethod
+    def __get_artist_id_to_genres_for_one_request(artist_ids, url, headers, artist_id_to_genres):
         artist_ids_string = ",".join(artist_ids)
         params = {"ids": artist_ids_string}
         response = requests.get(url, headers=headers, params=params)
@@ -119,5 +141,3 @@ class SpotifyClient:
             artist_id = artist["id"]
             artist_genres = artist["genres"]
             artist_id_to_genres[artist_id] = artist_genres
-
-        return artist_id_to_genres
