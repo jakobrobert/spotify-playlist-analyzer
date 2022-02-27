@@ -36,8 +36,7 @@ class SpotifyClient:
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
         for song in songs:
-            artist_ids = song["artist_ids"]
-            song["genres"] = SpotifyClient.__get_genres_of_artists(artist_ids, artist_id_to_genres)
+            song["genres"] = SpotifyClient.__get_genres_of_artists(song["artist_ids"], artist_id_to_genres)
 
         return songs
 
@@ -52,17 +51,13 @@ class SpotifyClient:
 
     @staticmethod
     def __get_artists_of_track(track):
-        artists_string = ""
+        artist_names = []
         artists = track["artists"]
 
-        # TODO clean up: use join() as for genres string
-        for i in range(len(artists)):
-            artist_name = artists[i]["name"]
-            if i != 0:
-                artists_string += ", "
-            artists_string += artist_name
+        for artist in artists:
+            artist_names.append(artist["name"])
 
-        return artists_string
+        return ", ".join(artist_names)
 
     @staticmethod
     def __get_duration_of_track(track):
