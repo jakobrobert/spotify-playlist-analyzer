@@ -34,9 +34,7 @@ class SpotifyClient:
                     "artist_ids": artist_ids_of_track}
             songs.append(song)
 
-        print(f"all_artist_ids: {all_artist_ids}")
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
-        print(f"artist_id_to_genres: {artist_id_to_genres}")
 
         # TODO clean up: extract into method?
         for song in songs:
@@ -125,7 +123,13 @@ class SpotifyClient:
             artist_genres = artist["genres"]
             artist_id_to_genres[artist_id] = artist_genres
         """
-        SpotifyClient.__get_artist_id_to_genres_for_one_request(artist_ids, url, headers, artist_id_to_genres)
+        max_ids_per_request = 50
+        for i in range(0, len(artist_ids), max_ids_per_request):
+            end_index = min(i + max_ids_per_request, len(artist_ids))
+            curr_artist_ids = artist_ids[i:end_index]
+            SpotifyClient.__get_artist_id_to_genres_for_one_request(curr_artist_ids, url, headers, artist_id_to_genres)
+
+        #SpotifyClient.__get_artist_id_to_genres_for_one_request(artist_ids, url, headers, artist_id_to_genres)
 
         return artist_id_to_genres
 
