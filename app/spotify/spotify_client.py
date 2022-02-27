@@ -91,28 +91,6 @@ class SpotifyClient:
 
         return release_date
 
-    # TODO clean up: remove
-    """
-    @staticmethod
-    def __get_genres_of_track(track, access_token):
-        genres = []
-        artists = track["artists"]
-
-        for artist in artists:
-            artist_url = artist["href"]
-
-            # TODO should not do separate requests for each track.
-            # instead, collect artist ids, then do big request in the end.
-            headers = {"Authorization": f"Bearer {access_token}"}
-            response = requests.get(artist_url, headers=headers)
-            response_data = response.json()
-
-            genres_of_artist = response_data["genres"]
-            genres.extend(genres_of_artist)
-
-        return ", ".join(genres)
-    """
-
     @staticmethod
     def __get_artist_ids_of_track(track):
         artist_ids = []
