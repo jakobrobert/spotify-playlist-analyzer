@@ -28,7 +28,6 @@ class SpotifyClient:
 
             artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track)
             all_artist_ids.extend(artist_ids_of_track)
-            # TODO optimize: only get unique artist ids, there might be multiple tracks with the same artist
 
             song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
                     "artist_ids": artist_ids_of_track}
@@ -104,32 +103,14 @@ class SpotifyClient:
     def __get_artist_id_to_genres(artist_ids, access_token):
         artist_id_to_genres = {}
 
-        # FIXME request only supports up to 50 artist ids, need to split for more
         url = "https://api.spotify.com/v1/artists"
         headers = {"Authorization": f"Bearer {access_token}"}
-        """
-        artist_ids_string = ",".join(artist_ids)
-        params = {"ids": artist_ids_string}
-        response = requests.get(url, headers=headers, params=params)
-        response_data = response.json()
 
-        if not "artists" in response_data:
-            print(response_data)
-            return artist_id_to_genres
-
-        artists = response_data["artists"]
-        for artist in artists:
-            artist_id = artist["id"]
-            artist_genres = artist["genres"]
-            artist_id_to_genres[artist_id] = artist_genres
-        """
         max_ids_per_request = 50
         for i in range(0, len(artist_ids), max_ids_per_request):
             end_index = min(i + max_ids_per_request, len(artist_ids))
             curr_artist_ids = artist_ids[i:end_index]
             SpotifyClient.__get_artist_id_to_genres_for_one_request(curr_artist_ids, url, headers, artist_id_to_genres)
-
-        #SpotifyClient.__get_artist_id_to_genres_for_one_request(artist_ids, url, headers, artist_id_to_genres)
 
         return artist_id_to_genres
 
