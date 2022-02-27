@@ -13,22 +13,30 @@ class SpotifyClient:
         response = requests.get(url, headers=headers)
         response_data = response.json()
 
-        tracks = response_data["tracks"]["items"]
+        track_item = response_data["tracks"]["items"]
 
         songs = []
+        all_artist_ids = []
 
-        for track in tracks:
-            track_item = track["track"]
+        for track_item in track_item:
+            track = track_item["track"]
 
-            title = track_item["name"]
-            artists = SpotifyClient.__get_artists_of_track(track_item)
-            duration = SpotifyClient.__get_duration_of_track(track_item)
-            release_date = SpotifyClient.__get_release_date_of_track(track_item)
-            genres = SpotifyClient.__get_genres_of_track(track_item, access_token)
+            title = track["name"]
+            artists = SpotifyClient.__get_artists_of_track(track)
+            duration = SpotifyClient.__get_duration_of_track(track)
+            release_date = SpotifyClient.__get_release_date_of_track(track)
+
+            artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track)
+            all_artist_ids.extend(artist_ids_of_track)
 
             song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
-                    "genres": genres}
+                    "artist_ids": artist_ids_of_track}
             songs.append(song)
+
+        artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
+
+        for song in songs:
+            song["genres"] = SpotifyClient.__get_genres_of_artists(song["artist_ids"], artist_id_to_genres)
 
         return songs
 
@@ -43,16 +51,13 @@ class SpotifyClient:
 
     @staticmethod
     def __get_artists_of_track(track):
-        artists_string = ""
+        artist_names = []
         artists = track["artists"]
 
-        for i in range(len(artists)):
-            artist_name = artists[i]["name"]
-            if i != 0:
-                artists_string += ", "
-            artists_string += artist_name
+        for artist in artists:
+            artist_names.append(artist["name"])
 
-        return artists_string
+        return ", ".join(artist_names)
 
     @staticmethod
     def __get_duration_of_track(track):
@@ -71,18 +76,50 @@ class SpotifyClient:
         return release_date
 
     @staticmethod
-    def __get_genres_of_track(track, access_token):
-        genres = []
+    def __get_artist_ids_of_track(track):
+        artist_ids = []
         artists = track["artists"]
 
         for artist in artists:
-            artist_url = artist["href"]
+            artist_id = artist["id"]
+            artist_ids.append(artist_id)
 
-            headers = {"Authorization": f"Bearer {access_token}"}
-            response = requests.get(artist_url, headers=headers)
-            response_data = response.json()
+        return artist_ids
 
-            genres_of_artist = response_data["genres"]
+    @staticmethod
+    def __get_artist_id_to_genres(artist_ids, access_token):
+        artist_id_to_genres = {}
+
+        url = "https://api.spotify.com/v1/artists"
+        headers = {"Authorization": f"Bearer {access_token}"}
+
+        max_ids_per_request = 50
+        for i in range(0, len(artist_ids), max_ids_per_request):
+            end_index = min(i + max_ids_per_request, len(artist_ids))
+            curr_artist_ids = artist_ids[i:end_index]
+            SpotifyClient.__get_artist_id_to_genres_for_one_request(curr_artist_ids, url, headers, artist_id_to_genres)
+
+        return artist_id_to_genres
+
+    @staticmethod
+    def __get_artist_id_to_genres_for_one_request(artist_ids, url, headers, artist_id_to_genres):
+        artist_ids_string = ",".join(artist_ids)
+        params = {"ids": artist_ids_string}
+        response = requests.get(url, headers=headers, params=params)
+        response_data = response.json()
+
+        artists = response_data["artists"]
+        for artist in artists:
+            artist_id = artist["id"]
+            artist_genres = artist["genres"]
+            artist_id_to_genres[artist_id] = artist_genres
+
+    @staticmethod
+    def __get_genres_of_artists(artist_ids, artist_id_to_genres):
+        genres = []
+
+        for artist_id in artist_ids:
+            genres_of_artist = artist_id_to_genres[artist_id]
             genres.extend(genres_of_artist)
 
         return ", ".join(genres)
