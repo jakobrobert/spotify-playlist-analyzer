@@ -35,17 +35,9 @@ class SpotifyClient:
 
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
-        # TODO clean up: extract into method?
         for song in songs:
-            genres = []
             artist_ids = song["artist_ids"]
-
-            for artist_id in artist_ids:
-                genres_of_artist = artist_id_to_genres[artist_id]
-                genres.extend(genres_of_artist)
-
-            genres_string = ", ".join(genres)
-            song["genres"] = genres_string
+            song["genres"] = SpotifyClient.__get_genres_of_artists(artist_ids, artist_id_to_genres)
 
         return songs
 
@@ -126,3 +118,13 @@ class SpotifyClient:
             artist_id = artist["id"]
             artist_genres = artist["genres"]
             artist_id_to_genres[artist_id] = artist_genres
+
+    @staticmethod
+    def __get_genres_of_artists(artist_ids, artist_id_to_genres):
+        genres = []
+
+        for artist_id in artist_ids:
+            genres_of_artist = artist_id_to_genres[artist_id]
+            genres.extend(genres_of_artist)
+
+        return ", ".join(genres)
