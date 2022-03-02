@@ -131,12 +131,8 @@ class SpotifyClient:
     def __set_tempo_of_songs(songs, access_token):
         track_ids = []
 
-        # TODO for debugging, only adding one song
-        track_ids.append(songs[0]["track_id"])
-        """
         for song in songs:
             track_ids.append(song["track_id"])
-        """
 
         url = "https://api.spotify.com/v1/audio-features"
         headers = {"Authorization": f"Bearer {access_token}"}
@@ -147,4 +143,10 @@ class SpotifyClient:
         response_data = response.json()
 
         audio_features = response_data["audio_features"]
-        songs[0]["tempo"] = audio_features[0]["tempo"]
+
+        assert len(audio_features) == len(songs)
+
+        for i in range(0, len(audio_features)):
+            tempo = audio_features[i]["tempo"]
+            songs[i]["tempo"] = tempo
+
