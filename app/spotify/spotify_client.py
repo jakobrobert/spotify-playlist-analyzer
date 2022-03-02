@@ -21,6 +21,7 @@ class SpotifyClient:
         for track_item in track_item:
             track = track_item["track"]
 
+            track_id = track["id"]
             title = track["name"]
             artists = SpotifyClient.__get_artists_of_track(track)
             duration = SpotifyClient.__get_duration_of_track(track)
@@ -29,14 +30,16 @@ class SpotifyClient:
             artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track)
             all_artist_ids.extend(artist_ids_of_track)
 
-            song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
-                    "artist_ids": artist_ids_of_track}
+            song = {"track_id": track_id, "title": title, "artists": artists, "duration": duration,
+                    "release_date": release_date, "artist_ids": artist_ids_of_track}
             songs.append(song)
 
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
         for song in songs:
             song["genres"] = SpotifyClient.__get_genres_of_artists(song["artist_ids"], artist_id_to_genres)
+
+        SpotifyClient.__set_tempo_of_songs(songs, access_token)
 
         return songs
 
@@ -123,3 +126,27 @@ class SpotifyClient:
             genres.extend(genres_of_artist)
 
         return ", ".join(genres)
+
+    @staticmethod
+    def __set_tempo_of_songs(songs, access_token):
+        track_ids = []
+
+        for song in songs:
+            track_ids.append(song["track_id"])
+
+        url = "https://api.spotify.com/v1/audio-features"
+        headers = {"Authorization": f"Bearer {access_token}"}
+        # TODO #5 once more than 100 songs are supported, separate into several requests as done for genres
+        track_ids_string = ','.join(track_ids)
+        params = {"ids": track_ids_string}
+        response = requests.get(url, headers=headers, params=params)
+        response_data = response.json()
+
+        audio_features = response_data["audio_features"]
+
+        assert len(audio_features) == len(songs)
+
+        for i in range(0, len(audio_features)):
+            tempo = audio_features[i]["tempo"]
+            songs[i]["tempo"] = tempo
+
