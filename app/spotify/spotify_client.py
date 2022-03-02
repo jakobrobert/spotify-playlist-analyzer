@@ -30,7 +30,7 @@ class SpotifyClient:
             all_artist_ids.extend(artist_ids_of_track)
 
             song = {"artists": artists, "title": title, "duration": duration, "release_date": release_date,
-                    "artist_ids": artist_ids_of_track}
+                    "artist_ids": artist_ids_of_track, "tempo": 42}
             songs.append(song)
 
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
