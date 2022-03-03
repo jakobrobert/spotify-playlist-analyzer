@@ -39,7 +39,7 @@ class SpotifyClient:
         for song in songs:
             song["genres"] = SpotifyClient.__get_genres_of_artists(song["artist_ids"], artist_id_to_genres)
 
-        SpotifyClient.__set_tempo_of_songs(songs, access_token)
+        SpotifyClient.__set_audio_features_of_songs(songs, access_token)
 
         return songs
 
@@ -128,7 +128,7 @@ class SpotifyClient:
         return ", ".join(genres)
 
     @staticmethod
-    def __set_tempo_of_songs(songs, access_token):
+    def __set_audio_features_of_songs(songs, access_token):
         track_ids = []
 
         for song in songs:
@@ -147,6 +147,11 @@ class SpotifyClient:
         assert len(audio_features) == len(songs)
 
         for i in range(0, len(audio_features)):
+            # TODO temp vars are overkill?
             tempo = audio_features[i]["tempo"]
             songs[i]["tempo"] = tempo
+            key = audio_features[i]["key"]
+            songs[i]["key"] = key
+            mode = audio_features[i]["mode"]
+            songs[i]["mode"] = mode
 
