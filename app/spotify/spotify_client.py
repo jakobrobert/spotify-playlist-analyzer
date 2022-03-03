@@ -151,7 +151,15 @@ class SpotifyClient:
             tempo = audio_features[i]["tempo"]
             songs[i]["tempo"] = tempo
             key = audio_features[i]["key"]
-            songs[i]["key"] = key
+            songs[i]["key"] = SpotifyClient.__get_key_name(key)
             mode = audio_features[i]["mode"]
             songs[i]["mode"] = mode
 
+    @staticmethod
+    def __get_key_name(key):
+        if key == -1:
+            return "n/a"
+
+        # TODO replace by static const, no need to re-define in function
+        key_names = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/G♭", "A", "A♯/B♭", "B"]
+        return key_names[key]
