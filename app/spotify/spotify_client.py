@@ -2,6 +2,8 @@ import requests
 
 
 class SpotifyClient:
+    KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/G♭", "A", "A♯/B♭", "B"]
+
     def __init__(self, client_id, client_secret):
         self.CLIENT_ID = client_id
         self.CLIENT_SECRET = client_secret
@@ -39,7 +41,7 @@ class SpotifyClient:
         for song in songs:
             song["genres"] = SpotifyClient.__get_genres_of_artists(song["artist_ids"], artist_id_to_genres)
 
-        SpotifyClient.__set_tempo_of_songs(songs, access_token)
+        SpotifyClient.__set_audio_features_of_songs(songs, access_token)
 
         return songs
 
@@ -128,7 +130,7 @@ class SpotifyClient:
         return ", ".join(genres)
 
     @staticmethod
-    def __set_tempo_of_songs(songs, access_token):
+    def __set_audio_features_of_songs(songs, access_token):
         track_ids = []
 
         for song in songs:
@@ -147,6 +149,25 @@ class SpotifyClient:
         assert len(audio_features) == len(songs)
 
         for i in range(0, len(audio_features)):
-            tempo = audio_features[i]["tempo"]
-            songs[i]["tempo"] = tempo
+            curr_audio_features = audio_features[i]
+            curr_song = songs[i]
+            curr_song["tempo"] = curr_audio_features["tempo"]
+            curr_song["key"] = SpotifyClient.__get_key_name(curr_audio_features["key"])
+            curr_song["mode"] = SpotifyClient.__get_mode_name(curr_audio_features["mode"])
 
+    @staticmethod
+    def __get_key_name(key):
+        if key == -1:
+            return "n/a"
+
+        return SpotifyClient.KEY_NAMES[key]
+
+    @staticmethod
+    def __get_mode_name(mode):
+        if mode == 0:
+            return "Minor"
+
+        if mode == 1:
+            return "Major"
+
+        return "n/a"
