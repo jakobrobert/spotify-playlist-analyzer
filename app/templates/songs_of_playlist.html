@@ -23,9 +23,9 @@
                 <th>Duration</th>
                 <th>Release Date</th>
                 <th>Tempo<br>(BPM)</th>
-                <th>Genres</th>
                 <th>Key</th>
                 <th>Mode</th>
+                <th>Genres</th>
             </tr>
             {% for i in range(0, num_songs) %}
             <tr>
@@ -35,9 +35,9 @@
                 <td>{{ songs[i].duration }}</td>
                 <td>{{ songs[i].release_date }}</td>
                 <td>{{ songs[i].tempo }}</td>
-                <td>{{ songs[i].genres }}</td>
                 <td>{{ songs[i].key }}</td>
                 <td>{{ songs[i].mode }}</td>
+                <td>{{ songs[i].genres }}</td>
             </tr>
             {% endfor %}
         </table>
