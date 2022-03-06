@@ -2,7 +2,7 @@ import requests
 
 
 class SpotifyClient:
-    KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/G♭", "A", "A♯/B♭", "B"]
+    KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
 
     def __init__(self, client_id, client_secret):
         self.CLIENT_ID = client_id
