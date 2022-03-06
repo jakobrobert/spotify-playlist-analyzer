@@ -34,8 +34,7 @@ def get_songs_of_playlist():
 
     __sort_songs(songs, sort_by, ascending_or_descending)
 
-    # TODO clean up: num_songs is obsolete, can use len(songs) in jinja code?
-    return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs), playlist_url=playlist_url,
+    return render_template("songs_of_playlist.html", songs=songs, playlist_url=playlist_url,
                            sort_by=sort_by, ascending_or_descending=ascending_or_descending)
 
 
