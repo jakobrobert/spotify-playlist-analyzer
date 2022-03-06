@@ -22,18 +22,12 @@ def index():
 
 @app.route(URL_PREFIX + "songs-of-playlist", methods=["GET"])
 def get_songs_of_playlist():
-    print(f"request.args: {request.args}")
-
     playlist_url = request.args.get("playlist_url")
+    sort_by = request.args.get("sort_by")
+    ascending_or_descending = request.args.get("ascending_or_descending")
+
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
     songs = spotify_client.get_songs_of_playlist(playlist_id)
-
-    # TODO sort if params defined and not value "none"
-    sort_by = request.args.get("sort_by")
-    print(f"sort_by: {sort_by}")
-    ascending_or_descending = request.args.get("ascending_or_descending")
-    print(f"ascending_or_descending: {ascending_or_descending}")
-
     __sort_songs(songs, sort_by, ascending_or_descending)
 
     # TODO clean up: num_songs is obsolete, can use len(songs) in jinja code?
@@ -55,5 +49,4 @@ def __sort_songs(songs, sort_by, ascending_or_descending):
         return
 
     reverse = (ascending_or_descending == "descending")
-    print(f"songs[0][sort_by]: {songs[0][sort_by]}")
     songs.sort(key=lambda song: song[sort_by], reverse=reverse)
