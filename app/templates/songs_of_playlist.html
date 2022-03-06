@@ -15,6 +15,51 @@
 
         <p># Songs: {{ num_songs }}</p>
 
+        <form>
+            <label for="sort_by">Sort by</label>
+            <select class="form-control" id="sort_by" name="sort_by">
+                <option value="none" selected>
+                    None
+                </option>
+                <option value="artists">
+                    Artists
+                </option>
+                <option value="title">
+                    Artists
+                </option>
+                <option value="duration">
+                    Duration
+                </option>
+                <option value="year_of_release">
+                    Year of Release
+                </option>
+                <option value="tempo">
+                    Tempo
+                </option>
+                <option value="key">
+                    Key
+                </option>
+                <option value="mode">
+                    Mode
+                </option>
+                <option value="genres">
+                    Genres
+                </option>
+            </select>
+            <select class="form-control" id="ascending_or_descending" name="ascending_or_descending">
+                <option value="none" selected>
+                    None
+                </option>
+                <option value="ascending">
+                    Ascending
+                </option>
+                <option value="descending">
+                    Descending
+                </option>
+            </select>
+        </form>
+        <br>
+
         <table class="table table-bordered">
             <tr>
                 <th>#</th>
