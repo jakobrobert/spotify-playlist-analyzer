@@ -27,13 +27,13 @@ class SpotifyClient:
             title = track["name"]
             artists = SpotifyClient.__get_artists_of_track(track)
             duration = SpotifyClient.__get_duration_of_track(track)
-            release_date = SpotifyClient.__get_release_date_of_track(track)
+            year_of_release = SpotifyClient.__get_year_of_release_of_track(track)
 
             artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track)
             all_artist_ids.extend(artist_ids_of_track)
 
             song = {"track_id": track_id, "title": title, "artists": artists, "duration": duration,
-                    "release_date": release_date, "artist_ids": artist_ids_of_track}
+                    "year_of_release": year_of_release, "artist_ids": artist_ids_of_track}
             songs.append(song)
 
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
@@ -74,11 +74,16 @@ class SpotifyClient:
         return f"{total_minutes:02d}:{remaining_seconds:02d}"
 
     @staticmethod
-    def __get_release_date_of_track(track):
+    def __get_year_of_release_of_track(track):
         album = track["album"]
         release_date = album["release_date"]
 
-        return release_date
+        year_end_index = release_date.find("-")
+
+        if year_end_index == -1:
+            return release_date
+
+        return release_date[:year_end_index]
 
     @staticmethod
     def __get_artist_ids_of_track(track):
