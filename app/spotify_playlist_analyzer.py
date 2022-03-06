@@ -23,10 +23,19 @@ def index():
 @app.route(URL_PREFIX + "songs-of-playlist", methods=["GET"])
 def get_songs_of_playlist():
     playlist_url = request.args.get("playlist_url")
+    sort_by = request.args.get("sort_by")
+    ascending_or_descending = request.args.get("ascending_or_descending")
+
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
     songs = spotify_client.get_songs_of_playlist(playlist_id)
 
-    return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs))
+    sort_by = sort_by or "none"
+    ascending_or_descending = ascending_or_descending or "none"
+
+    __sort_songs(songs, sort_by, ascending_or_descending)
+
+    return render_template("songs_of_playlist.html", songs=songs, playlist_url=playlist_url,
+                           sort_by=sort_by, ascending_or_descending=ascending_or_descending)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
@@ -34,3 +43,14 @@ def __get_playlist_id_from_playlist_url(playlist_url):
     end_index = playlist_url.find("?")
 
     return playlist_url[start_index:end_index]
+
+
+def __sort_songs(songs, sort_by, ascending_or_descending):
+    if sort_by == "none":
+        return
+
+    if ascending_or_descending == "none":
+        return
+
+    reverse = (ascending_or_descending == "descending")
+    songs.sort(key=lambda song: song[sort_by], reverse=reverse)
