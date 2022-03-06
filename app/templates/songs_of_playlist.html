@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Songs of Playlist</h1>
 
-        <p># Songs: {{ num_songs }}</p>
+        <p># Songs: {{ songs | length }}</p>
 
         <form action="{{ url_for('get_songs_of_playlist') }}" method="GET">
             <input type="hidden" name="playlist_url" value="{{ playlist_url }}">
@@ -75,7 +75,7 @@
                 <th>Mode</th>
                 <th>Genres</th>
             </tr>
-            {% for i in range(0, num_songs) %}
+            {% for i in range(0, songs | length) %}
             <tr>
                 <td>{{ i + 1 }}</td>
                 <td>{{ songs[i].artists }}</td>
