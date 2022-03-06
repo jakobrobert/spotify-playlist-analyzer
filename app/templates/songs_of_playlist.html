@@ -15,6 +15,9 @@
 
         <p># Songs: {{ num_songs }}</p>
 
+        <p>DEBUG sort_by: {{ sort_by }}</p>
+        <p>DEBUG ascending_or_descending: {{ ascending_or_descending }}</p>
+
         <form action="{{ url_for('get_songs_of_playlist') }}" method="GET">
             <input type="hidden" name="playlist_url" value="{{ playlist_url }}">
             <label for="sort_by">Sort by</label>
