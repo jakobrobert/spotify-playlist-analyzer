@@ -28,10 +28,15 @@ def get_songs_of_playlist():
 
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
     songs = spotify_client.get_songs_of_playlist(playlist_id)
+
+    sort_by = sort_by or "none"
+    ascending_or_descending = ascending_or_descending or "none"
+
     __sort_songs(songs, sort_by, ascending_or_descending)
 
     # TODO clean up: num_songs is obsolete, can use len(songs) in jinja code?
-    return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs), playlist_url=playlist_url)
+    return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs), playlist_url=playlist_url,
+                           sort_by=sort_by, ascending_or_descending=ascending_or_descending)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
@@ -42,10 +47,10 @@ def __get_playlist_id_from_playlist_url(playlist_url):
 
 
 def __sort_songs(songs, sort_by, ascending_or_descending):
-    if sort_by is None or sort_by == "none":
+    if sort_by == "none":
         return
 
-    if ascending_or_descending is None or ascending_or_descending == "none":
+    if ascending_or_descending == "none":
         return
 
     reverse = (ascending_or_descending == "descending")
