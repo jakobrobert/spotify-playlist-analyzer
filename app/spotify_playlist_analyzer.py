@@ -22,18 +22,16 @@ def index():
 
 @app.route(URL_PREFIX + "songs-of-playlist", methods=["GET"])
 def get_songs_of_playlist():
+    print(f"request.args: {request.args}")
+
     playlist_url = request.args.get("playlist_url")
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
     songs = spotify_client.get_songs_of_playlist(playlist_id)
 
+    # TODO sort if params defined and not value "none"
+
     # TODO clean up: num_songs is obsolete, can use len(songs) in jinja code?
-    return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs))
-
-
-@app.route(URL_PREFIX + "sort-songs", methods=["GET"])
-def sort_songs():
-    print(f"request data: {request.args}")
-    #print(f"len(songs): {len(songs)}")
+    return render_template("songs_of_playlist.html", songs=songs, num_songs=len(songs), playlist_url=playlist_url)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
