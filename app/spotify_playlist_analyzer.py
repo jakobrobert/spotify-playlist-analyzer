@@ -20,20 +20,19 @@ def index():
     return render_template("index.html")
 
 
-# TODO clean up: rename routes? e.g. playlist-by-url, playlist-by-id
-@app.route(URL_PREFIX + "songs-of-playlist", methods=["GET"])
-def get_songs_of_playlist():
+@app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
+def get_playlist_by_url():
     playlist_url = request.args.get("playlist_url")
 
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
-    redirect_url = url_for("get_songs_of_playlist_by_id",
+    redirect_url = url_for("get_sorted_playlist_by_id",
                            playlist_id=playlist_id, sort_by="none", ascending_or_descending="none")
 
     return redirect(redirect_url)
 
 
-@app.route(URL_PREFIX + "songs-of-playlist-by-id", methods=["GET"])
-def get_songs_of_playlist_by_id():
+@app.route(URL_PREFIX + "sorted-playlist-by-id", methods=["GET"])
+def get_sorted_playlist_by_id():
     playlist_id = request.args.get("playlist_id")
     sort_by = request.args.get("sort_by")
     ascending_or_descending = request.args.get("ascending_or_descending")
