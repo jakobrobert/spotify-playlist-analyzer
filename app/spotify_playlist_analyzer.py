@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
 
@@ -21,23 +21,15 @@ def index():
 
 
 # TODO clean up: rename routes? e.g. playlist-by-url, playlist-by-id
-# TODO clean up: avoid duplicated code, redirect from this url to the one taking playlist_id
 @app.route(URL_PREFIX + "songs-of-playlist", methods=["GET"])
 def get_songs_of_playlist():
     playlist_url = request.args.get("playlist_url")
-    sort_by = request.args.get("sort_by")
-    ascending_or_descending = request.args.get("ascending_or_descending")
 
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
-    songs = spotify_client.get_songs_of_playlist(playlist_id)
+    redirect_url = url_for("get_songs_of_playlist_by_id",
+                           playlist_id=playlist_id, sort_by="none", ascending_or_descending="none")
 
-    sort_by = sort_by or "none"
-    ascending_or_descending = ascending_or_descending or "none"
-
-    __sort_songs(songs, sort_by, ascending_or_descending)
-
-    return render_template("songs_of_playlist.html", songs=songs, playlist_id=playlist_id,
-                           sort_by=sort_by, ascending_or_descending=ascending_or_descending)
+    return redirect(redirect_url)
 
 
 @app.route(URL_PREFIX + "songs-of-playlist-by-id", methods=["GET"])
@@ -47,14 +39,10 @@ def get_songs_of_playlist_by_id():
     ascending_or_descending = request.args.get("ascending_or_descending")
 
     songs = spotify_client.get_songs_of_playlist(playlist_id)
-
-    # TODO remove: can assume for this route, that these params are always defined
-    #sort_by = sort_by or "none"
-    #ascending_or_descending = ascending_or_descending or "none"
-
     __sort_songs(songs, sort_by, ascending_or_descending)
 
-    return render_template("songs_of_playlist.html", songs=songs, playlist_id=playlist_id,
+    return render_template("songs_of_playlist.html",
+                           songs=songs, playlist_id=playlist_id,
                            sort_by=sort_by, ascending_or_descending=ascending_or_descending)
 
 
