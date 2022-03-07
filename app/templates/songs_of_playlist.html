@@ -15,8 +15,8 @@
 
         <p># Songs: {{ songs | length }}</p>
 
-        <form action="{{ url_for('get_songs_of_playlist') }}" method="GET">
-            <input type="hidden" name="playlist_url" value="{{ playlist_url }}">
+        <form action="{{ url_for('get_songs_of_playlist_by_id') }}" method="GET">
+            <input type="hidden" name="playlist_id" value="{{ playlist_id }}">
             <label for="sort_by">Sort by</label>
             <select class="form-control" id="sort_by" name="sort_by">
                 <option value="none" {% if sort_by == "none" %} selected {% endif %}>
