@@ -41,7 +41,7 @@ def get_songs_of_playlist_by_id():
     songs = spotify_client.get_songs_of_playlist(playlist_id)
     __sort_songs(songs, sort_by, ascending_or_descending)
 
-    return render_template("songs_of_playlist.html",
+    return render_template("playlist.html",
                            songs=songs, playlist_id=playlist_id,
                            sort_by=sort_by, ascending_or_descending=ascending_or_descending)
 
