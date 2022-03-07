@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
 
@@ -20,21 +20,28 @@ def index():
     return render_template("index.html")
 
 
-@app.route(URL_PREFIX + "songs-of-playlist", methods=["GET"])
-def get_songs_of_playlist():
+@app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
+def get_playlist_by_url():
     playlist_url = request.args.get("playlist_url")
+
+    playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
+    redirect_url = url_for("get_sorted_playlist_by_id",
+                           playlist_id=playlist_id, sort_by="none", ascending_or_descending="none")
+
+    return redirect(redirect_url)
+
+
+@app.route(URL_PREFIX + "sorted-playlist-by-id", methods=["GET"])
+def get_sorted_playlist_by_id():
+    playlist_id = request.args.get("playlist_id")
     sort_by = request.args.get("sort_by")
     ascending_or_descending = request.args.get("ascending_or_descending")
 
-    playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
     songs = spotify_client.get_songs_of_playlist(playlist_id)
-
-    sort_by = sort_by or "none"
-    ascending_or_descending = ascending_or_descending or "none"
-
     __sort_songs(songs, sort_by, ascending_or_descending)
 
-    return render_template("songs_of_playlist.html", songs=songs, playlist_url=playlist_url,
+    return render_template("playlist.html",
+                           songs=songs, playlist_id=playlist_id,
                            sort_by=sort_by, ascending_or_descending=ascending_or_descending)
 
 
