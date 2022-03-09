@@ -26,7 +26,7 @@ def get_playlist_by_url():
 
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
     redirect_url = url_for("get_sorted_playlist_by_id",
-                           playlist_id=playlist_id, sort_by="none", ascending_or_descending="none")
+                           playlist_id=playlist_id, sort_by="none", ascending_or_descending="ascending")
 
     return redirect(redirect_url)
 
@@ -54,9 +54,6 @@ def __get_playlist_id_from_playlist_url(playlist_url):
 
 def __sort_songs(songs, sort_by, ascending_or_descending):
     if sort_by == "none":
-        return
-
-    if ascending_or_descending == "none":
         return
 
     reverse = (ascending_or_descending == "descending")
