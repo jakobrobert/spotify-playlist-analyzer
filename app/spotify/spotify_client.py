@@ -23,18 +23,18 @@ class SpotifyClient:
         for track_item in track_item:
             track = track_item["track"]
 
-            track_id = track["id"]
-            title = track["name"]
-            artists = SpotifyClient.__get_artists_of_track(track)
-            duration = SpotifyClient.__get_duration_of_track(track)
-            year_of_release = SpotifyClient.__get_year_of_release_of_track(track)
+            song = {
+                "track_id": track["id"],
+                "title": track["name"],
+                "artists": SpotifyClient.__get_artists_of_track(track),
+                "duration": SpotifyClient.__get_duration_of_track(track),
+                "year_of_release": SpotifyClient.__get_year_of_release_of_track(track)
+            }
 
             artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track)
+            song["artist_ids"] = artist_ids_of_track
             all_artist_ids.extend(artist_ids_of_track)
 
-            # TODO refactor: define song as empty {}, then define each attribute, e.g. song["title"] = ...
-            song = {"track_id": track_id, "title": title, "artists": artists, "duration": duration,
-                    "year_of_release": year_of_release, "artist_ids": artist_ids_of_track}
             songs.append(song)
 
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
