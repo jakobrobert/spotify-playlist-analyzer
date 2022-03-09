@@ -23,17 +23,18 @@ class SpotifyClient:
         for track_item in track_item:
             track = track_item["track"]
 
-            track_id = track["id"]
-            title = track["name"]
-            artists = SpotifyClient.__get_artists_of_track(track)
-            duration = SpotifyClient.__get_duration_of_track(track)
-            year_of_release = SpotifyClient.__get_year_of_release_of_track(track)
+            song = {
+                "track_id": track["id"],
+                "title": track["name"],
+                "artists": SpotifyClient.__get_artists_of_track(track),
+                "duration": SpotifyClient.__get_duration_of_track(track),
+                "year_of_release": SpotifyClient.__get_year_of_release_of_track(track)
+            }
 
             artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track)
+            song["artist_ids"] = artist_ids_of_track
             all_artist_ids.extend(artist_ids_of_track)
 
-            song = {"track_id": track_id, "title": title, "artists": artists, "duration": duration,
-                    "year_of_release": year_of_release, "artist_ids": artist_ids_of_track}
             songs.append(song)
 
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
@@ -149,26 +150,37 @@ class SpotifyClient:
         response = requests.get(url, headers=headers, params=params)
         response_data = response.json()
 
-        audio_features = response_data["audio_features"]
+        all_audio_features = response_data["audio_features"]
 
-        assert len(audio_features) == len(songs)
+        assert len(all_audio_features) == len(songs)
 
-        for i in range(0, len(audio_features)):
-            curr_audio_features = audio_features[i]
-            curr_song = songs[i]
-            curr_song["tempo"] = curr_audio_features["tempo"]
-            curr_song["key"] = SpotifyClient.__get_key_name(curr_audio_features["key"])
-            curr_song["mode"] = SpotifyClient.__get_mode_name(curr_audio_features["mode"])
+        for i in range(0, len(all_audio_features)):
+            audio_features = all_audio_features[i]
+            song = songs[i]
+            song["tempo"] = SpotifyClient.__get_tempo_from_audio_features(audio_features)
+            song["key"] = SpotifyClient.__get_key_from_audio_features(audio_features)
+            song["mode"] = SpotifyClient.__get_mode_from_audio_features(audio_features)
+            song["loudness"] = SpotifyClient.__get_loudness_from_audio_features(audio_features)
 
     @staticmethod
-    def __get_key_name(key):
+    def __get_tempo_from_audio_features(audio_features):
+        tempo = audio_features["tempo"]
+
+        return f"{tempo:.1f}"
+
+    @staticmethod
+    def __get_key_from_audio_features(audio_features):
+        key = audio_features["key"]
+
         if key == -1:
             return "n/a"
 
         return SpotifyClient.KEY_NAMES[key]
 
     @staticmethod
-    def __get_mode_name(mode):
+    def __get_mode_from_audio_features(audio_features):
+        mode = audio_features["mode"]
+
         if mode == 0:
             return "Minor"
 
@@ -176,3 +188,9 @@ class SpotifyClient:
             return "Major"
 
         return "n/a"
+
+    @staticmethod
+    def __get_loudness_from_audio_features(audio_features):
+        loudness = audio_features["loudness"]
+
+        return f"{loudness:.1f}"
