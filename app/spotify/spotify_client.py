@@ -32,6 +32,7 @@ class SpotifyClient:
             artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track)
             all_artist_ids.extend(artist_ids_of_track)
 
+            # TODO refactor: define song as empty {}, then define each attribute, e.g. song["title"] = ...
             song = {"track_id": track_id, "title": title, "artists": artists, "duration": duration,
                     "year_of_release": year_of_release, "artist_ids": artist_ids_of_track}
             songs.append(song)
@@ -159,6 +160,8 @@ class SpotifyClient:
             curr_song["tempo"] = curr_audio_features["tempo"]
             curr_song["key"] = SpotifyClient.__get_key_name(curr_audio_features["key"])
             curr_song["mode"] = SpotifyClient.__get_mode_name(curr_audio_features["mode"])
+            curr_song["loudness"] = curr_audio_features["loudness"]
+            print(f"loudness: {curr_song['loudness']}")
 
     @staticmethod
     def __get_key_name(key):
