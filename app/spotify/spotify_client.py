@@ -161,7 +161,6 @@ class SpotifyClient:
             curr_song["key"] = SpotifyClient.__get_key_name(curr_audio_features["key"])
             curr_song["mode"] = SpotifyClient.__get_mode_name(curr_audio_features["mode"])
             curr_song["loudness"] = curr_audio_features["loudness"]
-            print(f"loudness: {curr_song['loudness']}")
 
     @staticmethod
     def __get_key_name(key):

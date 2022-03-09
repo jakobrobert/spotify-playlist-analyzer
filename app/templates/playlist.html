@@ -69,6 +69,7 @@
                 <th>Tempo<br>(BPM)</th>
                 <th>Key</th>
                 <th>Mode</th>
+                <th>Loudness<br>(dB)</th>
                 <th>Genres</th>
             </tr>
             {% for i in range(0, songs | length) %}
@@ -81,6 +82,7 @@
                 <td>{{ songs[i].tempo }}</td>
                 <td>{{ songs[i].key }}</td>
                 <td>{{ songs[i].mode }}</td>
+                <td>{{ songs[i].loudness }}</td>
                 <td>{{ songs[i].genres }}</td>
             </tr>
             {% endfor %}
