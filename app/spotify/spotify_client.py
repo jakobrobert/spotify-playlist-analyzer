@@ -150,28 +150,31 @@ class SpotifyClient:
         response = requests.get(url, headers=headers, params=params)
         response_data = response.json()
 
-        audio_features = response_data["audio_features"]
+        all_audio_features = response_data["audio_features"]
 
-        assert len(audio_features) == len(songs)
+        assert len(all_audio_features) == len(songs)
 
-        for i in range(0, len(audio_features)):
-            curr_audio_features = audio_features[i]
-            curr_song = songs[i]
-            curr_song["tempo"] = curr_audio_features["tempo"]
-            curr_song["key"] = SpotifyClient.__get_key_name(curr_audio_features["key"])
-            curr_song["mode"] = SpotifyClient.__get_mode_name(curr_audio_features["mode"])
-            curr_song["loudness"] = SpotifyClient.__get_loudness_string(curr_audio_features["loudness"])
-
+        for i in range(0, len(all_audio_features)):
+            audio_features = all_audio_features[i]
+            song = songs[i]
+            song["tempo"] = audio_features["tempo"] # TODO only one decimal place
+            song["key"] = SpotifyClient.__get_key_from_audio_features(audio_features)
+            song["mode"] = SpotifyClient.__get_mode_from_audio_features(audio_features)
+            song["loudness"] = SpotifyClient.__get_loudness_from_audio_features(audio_features)
 
     @staticmethod
-    def __get_key_name(key):
+    def __get_key_from_audio_features(audio_features):
+        key = audio_features["key"]
+
         if key == -1:
             return "n/a"
 
         return SpotifyClient.KEY_NAMES[key]
 
     @staticmethod
-    def __get_mode_name(mode):
+    def __get_mode_from_audio_features(audio_features):
+        mode = audio_features["mode"]
+
         if mode == 0:
             return "Minor"
 
@@ -181,5 +184,7 @@ class SpotifyClient:
         return "n/a"
 
     @staticmethod
-    def __get_loudness_string(loudness):
+    def __get_loudness_from_audio_features(audio_features):
+        loudness = audio_features["loudness"]
+
         return f"{loudness:.1f}"
