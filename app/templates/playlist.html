@@ -82,10 +82,10 @@
                 <td>{{ songs[i].title }}</td>
                 <td>{{ songs[i].duration }}</td>
                 <td>{{ songs[i].year_of_release }}</td>
-                <td>{{ songs[i].tempo }}</td>
+                <td>{{ "%.1f" % songs[i].tempo }}</td>
                 <td>{{ songs[i].key }}</td>
                 <td>{{ songs[i].mode }}</td>
-                <td>{{ songs[i].loudness }}</td>
+                <td>{{ "%.1f" % songs[i].loudness }}</td>
                 <td>{{ songs[i].genres }}</td>
             </tr>
             {% endfor %}
