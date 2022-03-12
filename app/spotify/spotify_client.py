@@ -157,16 +157,10 @@ class SpotifyClient:
         for i in range(0, len(all_audio_features)):
             audio_features = all_audio_features[i]
             song = songs[i]
-            song["tempo"] = SpotifyClient.__get_tempo_from_audio_features(audio_features)
+            song["tempo"] = audio_features["tempo"]
             song["key"] = SpotifyClient.__get_key_from_audio_features(audio_features)
             song["mode"] = SpotifyClient.__get_mode_from_audio_features(audio_features)
-            song["loudness"] = SpotifyClient.__get_loudness_from_audio_features(audio_features)
-
-    @staticmethod
-    def __get_tempo_from_audio_features(audio_features):
-        tempo = audio_features["tempo"]
-
-        return f"{tempo:.1f}"
+            song["loudness"] = audio_features["loudness"]
 
     @staticmethod
     def __get_key_from_audio_features(audio_features):
@@ -188,9 +182,3 @@ class SpotifyClient:
             return "Major"
 
         return "n/a"
-
-    @staticmethod
-    def __get_loudness_from_audio_features(audio_features):
-        loudness = audio_features["loudness"]
-
-        return f"{loudness:.1f}"
