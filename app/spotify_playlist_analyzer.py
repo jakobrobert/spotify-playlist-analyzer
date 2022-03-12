@@ -31,9 +31,8 @@ def get_playlist_by_url():
     return redirect(redirect_url)
 
 
-@app.route(URL_PREFIX + "sorted-playlist-by-id", methods=["GET"])
-def get_sorted_playlist_by_id():
-    playlist_id = request.args.get("playlist_id")
+@app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
+def get_sorted_playlist_by_id(playlist_id):
     sort_by = request.args.get("sort_by")
     ascending_or_descending = request.args.get("ascending_or_descending")
 
