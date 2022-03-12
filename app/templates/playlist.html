@@ -15,6 +15,7 @@
 
         <p># Songs: {{ songs | length }}</p>
 
+        <!-- TODO still incorrect: playlist_id passed two times: playlist/{playlist_id}?playlist_id={playlist_id} -->
         <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist_id) }}" method="GET">
             <label for="sort_by">Sort by</label>
             <select class="form-control" id="sort_by" name="sort_by">
