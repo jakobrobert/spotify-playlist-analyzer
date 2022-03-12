@@ -131,7 +131,9 @@ class SpotifyClient:
 
         for artist_id in artist_ids:
             genres_of_artist = artist_id_to_genres[artist_id]
-            genres.extend(genres_of_artist)
+            for genre in genres_of_artist:
+                if genre not in genres:
+                    genres.append(genre)
 
         return ", ".join(genres)
 
