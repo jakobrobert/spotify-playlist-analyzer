@@ -12,6 +12,15 @@ class SpotifyClient:
         self.CLIENT_ID = client_id
         self.CLIENT_SECRET = client_secret
 
+    def get_name_of_playlist(self, playlist_id):
+        url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
+        access_token = self.__get_access_token()
+        headers = {"Authorization": f"Bearer {access_token}"}
+        response = requests.get(url, headers=headers)
+        response_data = response.json()
+
+        return response_data["name"]
+
     def get_songs_of_playlist(self, playlist_id):
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
