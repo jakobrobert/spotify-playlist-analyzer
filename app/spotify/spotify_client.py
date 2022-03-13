@@ -24,24 +24,23 @@ class SpotifyClient:
         tracks = []
         all_artist_ids = []
         track_index_to_artist_ids = []
+        track_index_to_track_id = []
 
         for track_item in track_items:
             track_data = track_item["track"]
 
-            # TODO move track_id out of SpotifyTrack object, is only needed temporarily to get other data, does not belong to actual model representation
-
             track = SpotifyTrack()
-            track.track_id = track_data["id"]
             track.title = track_data["name"]
             track.artists = SpotifyClient.__get_artists_of_track(track_data)
             track.duration = SpotifyClient.__get_duration_of_track(track_data)
             track.year_of_release = SpotifyClient.__get_year_of_release_of_track(track_data)
+            tracks.append(track)
+
+            track_index_to_track_id.append(track_data["id"])
 
             artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
             track_index_to_artist_ids.append(artist_ids)
             all_artist_ids.extend(artist_ids)
-
-            tracks.append(track)
 
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
@@ -50,7 +49,7 @@ class SpotifyClient:
             track = tracks[track_index]
             track.genres = SpotifyClient.__get_genres_of_artists(artist_ids, artist_id_to_genres)
 
-        SpotifyClient.__set_audio_features_of_tracks(tracks, access_token)
+        SpotifyClient.__set_audio_features_of_tracks(tracks, track_index_to_track_id, access_token)
 
         return tracks
 
@@ -144,31 +143,26 @@ class SpotifyClient:
         return ", ".join(genres)
 
     @staticmethod
-    def __set_audio_features_of_tracks(songs, access_token):
-        track_ids = []
-
-        for song in songs:
-            track_ids.append(song.track_id)
-
+    def __set_audio_features_of_tracks(tracks, track_index_to_track_id, access_token):
         url = "https://api.spotify.com/v1/audio-features"
         headers = {"Authorization": f"Bearer {access_token}"}
         # TODO #5 once more than 100 songs are supported, separate into several requests as done for genres
-        track_ids_string = ','.join(track_ids)
+        track_ids_string = ','.join(track_index_to_track_id)
         params = {"ids": track_ids_string}
         response = requests.get(url, headers=headers, params=params)
         response_data = response.json()
 
         all_audio_features = response_data["audio_features"]
 
-        assert len(all_audio_features) == len(songs)
+        assert len(all_audio_features) == len(tracks)
 
-        for i in range(0, len(all_audio_features)):
+        for i in range(0, len(tracks)):
             audio_features = all_audio_features[i]
-            song = songs[i]
-            song.tempo = audio_features["tempo"]
-            song.key = SpotifyClient.__get_key_from_audio_features(audio_features)
-            song.mode = SpotifyClient.__get_mode_from_audio_features(audio_features)
-            song.loudness = audio_features["loudness"]
+            track = tracks[i]
+            track.tempo = audio_features["tempo"]
+            track.key = SpotifyClient.__get_key_from_audio_features(audio_features)
+            track.mode = SpotifyClient.__get_mode_from_audio_features(audio_features)
+            track.loudness = audio_features["loudness"]
 
     @staticmethod
     def __get_key_from_audio_features(audio_features):
