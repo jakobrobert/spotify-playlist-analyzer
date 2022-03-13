@@ -1,6 +1,5 @@
 class SpotifyTrack:
     def __init__(self):
-        self.track_id = ""
         self.title = "n/a"
         self.artists = "n/a"   # TODO change to array of strings
         self.duration = "n/a"
