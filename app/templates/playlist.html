@@ -7,13 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Spotify Playlist Analyzer - Playlist</title>
+    <title>Spotify Playlist Analyzer - Playlist</title> <!-- TODO can include playlist name here as well? -->
 </head>
 <body>
     <div class="container">
-        <h1>Playlist: {{ playlist_id }}</h1>
+        <h1>Playlist: {{ playlist_name }}</h1>
 
-        <p># Songs: {{ songs | length }}</p>
+        <h4># Songs: {{ songs | length }}</h4>
 
         <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist_id) }}" method="GET">
             <label for="sort_by">Sort by</label>
