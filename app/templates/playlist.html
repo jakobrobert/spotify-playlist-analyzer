@@ -77,7 +77,7 @@
             {% for i in range(0, songs | length) %}
             <tr>
                 <td>{{ i + 1 }}</td>
-                <td>{{ songs[i].artists }}</td>
+                <td>{{ ", ".join(songs[i].artists) }}</td>
                 <td>{{ songs[i].title }}</td>
                 <td>{{ songs[i].duration }}</td>
                 <td>{{ songs[i].year_of_release }}</td>
@@ -85,7 +85,7 @@
                 <td>{{ songs[i].key }}</td>
                 <td>{{ songs[i].mode }}</td>
                 <td>{{ "%.1f" % songs[i].loudness }}</td>
-                <td>{{ songs[i].genres }}</td>
+                <td>{{ ", ".join(songs[i].genres) }}</td>
             </tr>
             {% endfor %}
         </table>
