@@ -1,5 +1,9 @@
 import requests
 
+# PyCharm shows errors for this import locally, but it works this way with the server
+# from spotify_track import SpotifyTrack is shown as valid locally, but does not work with the server
+from spotify.spotify_track import SpotifyTrack
+
 
 class SpotifyClient:
     KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
@@ -17,22 +21,23 @@ class SpotifyClient:
 
         track_item = response_data["tracks"]["items"]
 
-        songs = []
+        songs = []  # TODO rename to tracks
         all_artist_ids = []
 
         for track_item in track_item:
             track = track_item["track"]
 
-            song = {
-                "track_id": track["id"],
-                "title": track["name"],
-                "artists": SpotifyClient.__get_artists_of_track(track),
-                "duration": SpotifyClient.__get_duration_of_track(track),
-                "year_of_release": SpotifyClient.__get_year_of_release_of_track(track)
-            }
+            # TODO move track_id and artist_ids out of SpotifyTrack object, is only needed temporarily to get other data, does not belong to actual model representation
 
-            artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track)
-            song["artist_ids"] = artist_ids_of_track
+            song = SpotifyTrack() # TODO rename to track
+            song.track_id = track["id"]
+            song.title = track["name"]
+            song.artists = SpotifyClient.__get_artists_of_track(track)
+            song.duration = SpotifyClient.__get_duration_of_track(track)
+            song.year_of_release = SpotifyClient.__get_year_of_release_of_track(track)
+
+            artist_ids_of_track = SpotifyClient.__get_artist_ids_of_track(track) # TODO rename to artist_ids
+            song.artist_ids = artist_ids_of_track
             all_artist_ids.extend(artist_ids_of_track)
 
             songs.append(song)
@@ -40,7 +45,7 @@ class SpotifyClient:
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
         for song in songs:
-            song["genres"] = SpotifyClient.__get_genres_of_artists(song["artist_ids"], artist_id_to_genres)
+            song.genres = SpotifyClient.__get_genres_of_artists(song.artist_ids, artist_id_to_genres)
 
         SpotifyClient.__set_audio_features_of_songs(songs, access_token)
 
@@ -142,7 +147,7 @@ class SpotifyClient:
         track_ids = []
 
         for song in songs:
-            track_ids.append(song["track_id"])
+            track_ids.append(song.track_id)
 
         url = "https://api.spotify.com/v1/audio-features"
         headers = {"Authorization": f"Bearer {access_token}"}
@@ -159,10 +164,10 @@ class SpotifyClient:
         for i in range(0, len(all_audio_features)):
             audio_features = all_audio_features[i]
             song = songs[i]
-            song["tempo"] = audio_features["tempo"]
-            song["key"] = SpotifyClient.__get_key_from_audio_features(audio_features)
-            song["mode"] = SpotifyClient.__get_mode_from_audio_features(audio_features)
-            song["loudness"] = audio_features["loudness"]
+            song.tempo = audio_features["tempo"]
+            song.key = SpotifyClient.__get_key_from_audio_features(audio_features)
+            song.mode = SpotifyClient.__get_mode_from_audio_features(audio_features)
+            song.loudness = audio_features["loudness"]
 
     @staticmethod
     def __get_key_from_audio_features(audio_features):
