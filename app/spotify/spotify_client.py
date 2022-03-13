@@ -21,15 +21,16 @@ class SpotifyClient:
 
         track_items = response_data["tracks"]["items"]
 
-        tracks = []  # TODO rename to tracks
+        tracks = []
         all_artist_ids = []
+        track_index_to_artist_ids = []
 
         for track_item in track_items:
             track_data = track_item["track"]
 
-            # TODO move track_id and artist_ids out of SpotifyTrack object, is only needed temporarily to get other data, does not belong to actual model representation
+            # TODO move track_id out of SpotifyTrack object, is only needed temporarily to get other data, does not belong to actual model representation
 
-            track = SpotifyTrack() # TODO rename to track
+            track = SpotifyTrack()
             track.track_id = track_data["id"]
             track.title = track_data["name"]
             track.artists = SpotifyClient.__get_artists_of_track(track_data)
@@ -37,15 +38,17 @@ class SpotifyClient:
             track.year_of_release = SpotifyClient.__get_year_of_release_of_track(track_data)
 
             artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
-            track.artist_ids = artist_ids
+            track_index_to_artist_ids.append(artist_ids)
             all_artist_ids.extend(artist_ids)
 
             tracks.append(track)
 
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
-        for track in tracks:
-            track.genres = SpotifyClient.__get_genres_of_artists(track.artist_ids, artist_id_to_genres)
+        for track_index in range(0, len(tracks)):
+            artist_ids = track_index_to_artist_ids[track_index]
+            track = tracks[track_index]
+            track.genres = SpotifyClient.__get_genres_of_artists(artist_ids, artist_id_to_genres)
 
         SpotifyClient.__set_audio_features_of_tracks(tracks, access_token)
 
