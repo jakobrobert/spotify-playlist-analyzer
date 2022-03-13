@@ -42,15 +42,7 @@ class SpotifyClient:
             artist_ids_per_track.append(artist_ids)
             all_artist_ids.extend(artist_ids)
 
-
-        # TODO refactor: extract method __set_genres_of_tracks
-        artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
-
-        for track_index in range(0, len(tracks)):
-            artist_ids = artist_ids_per_track[track_index]
-            track = tracks[track_index]
-            track.genres = SpotifyClient.__get_genres_of_artists(artist_ids, artist_id_to_genres)
-
+        SpotifyClient.__set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token)
         SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
 
         return tracks
@@ -105,6 +97,15 @@ class SpotifyClient:
             artist_ids.append(artist_id)
 
         return artist_ids
+
+    @staticmethod
+    def __set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token):
+        artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
+
+        for track_index in range(0, len(tracks)):
+            artist_ids = artist_ids_per_track[track_index]
+            track = tracks[track_index]
+            track.genres = SpotifyClient.__get_genres_of_artists(artist_ids, artist_id_to_genres)
 
     @staticmethod
     def __get_artist_id_to_genres(artist_ids, access_token):
