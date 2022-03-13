@@ -38,7 +38,6 @@ def get_playlist_by_id(playlist_id):
     sort_by = request.args.get("sort_by")
     order = request.args.get("order")
 
-    # TODO combine into one method, so do not need extra request: get_playlist_by_id
     playlist_name = spotify_client.get_name_of_playlist(playlist_id)
     songs = spotify_client.get_songs_of_playlist(playlist_id)
     __sort_songs(songs, sort_by, order)
