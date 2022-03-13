@@ -49,11 +49,11 @@
                     Genres
                 </option>
             </select>
-            <select class="form-control" id="ascending_or_descending" name="ascending_or_descending">
-                <option value="ascending" {% if ascending_or_descending == "ascending" %} selected {% endif %}>
+            <select class="form-control" id="order" name="order">
+                <option value="ascending" {% if order == "ascending" %} selected {% endif %}>
                     Ascending
                 </option>
-                <option value="descending" {% if ascending_or_descending == "descending" %} selected {% endif %}>
+                <option value="descending" {% if order == "descending" %} selected {% endif %}>
                     Descending
                 </option>
             </select>
