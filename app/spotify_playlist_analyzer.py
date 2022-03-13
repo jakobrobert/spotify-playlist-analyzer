@@ -26,7 +26,7 @@ def get_playlist_by_url():
 
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
     redirect_url = url_for("get_playlist_by_id",
-                           playlist_id=playlist_id, sort_by="none", ascending_or_descending="ascending")
+                           playlist_id=playlist_id, sort_by="none", order="ascending")
 
     return redirect(redirect_url)
 
@@ -34,14 +34,14 @@ def get_playlist_by_url():
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
     sort_by = request.args.get("sort_by")
-    ascending_or_descending = request.args.get("ascending_or_descending")
+    order = request.args.get("order")
 
     songs = spotify_client.get_songs_of_playlist(playlist_id)
-    __sort_songs(songs, sort_by, ascending_or_descending)
+    __sort_songs(songs, sort_by, order)
 
     return render_template("playlist.html",
                            songs=songs, playlist_id=playlist_id,
-                           sort_by=sort_by, ascending_or_descending=ascending_or_descending)
+                           sort_by=sort_by, order=order)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
@@ -51,9 +51,9 @@ def __get_playlist_id_from_playlist_url(playlist_url):
     return playlist_url[start_index:end_index]
 
 
-def __sort_songs(songs, sort_by, ascending_or_descending):
+def __sort_songs(songs, sort_by, order):
     if sort_by == "none":
         return
 
-    reverse = (ascending_or_descending == "descending")
+    reverse = (order == "descending")
     songs.sort(key=lambda song: song[sort_by], reverse=reverse)
