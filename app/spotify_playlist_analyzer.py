@@ -1,3 +1,5 @@
+import operator
+
 from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
@@ -56,4 +58,4 @@ def __sort_songs(songs, sort_by, order):
         return
 
     reverse = (order == "descending")
-    songs.sort(key=lambda song: song[sort_by], reverse=reverse)
+    songs.sort(key=operator.attrgetter(sort_by), reverse=reverse)
