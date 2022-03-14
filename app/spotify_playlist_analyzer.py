@@ -1,8 +1,7 @@
-import operator
-
 from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
+import operator
 
 from spotify.spotify_client import SpotifyClient
 
@@ -39,11 +38,10 @@ def get_playlist_by_id(playlist_id):
     order = request.args.get("order")
 
     playlist = spotify_client.get_playlist_by_id(playlist_id)
-    __sort_songs(playlist.tracks, sort_by, order)
+    __sort_tracks(playlist.tracks, sort_by, order)
 
-    # TODO pass playlist object instead of separate variables
-    return render_template("playlist.html",
-                           songs=playlist.tracks, playlist_name=playlist.name,
+    # TODO add id to Playlist class
+    return render_template("playlist.html", playlist=playlist,
                            playlist_id=playlist_id, sort_by=sort_by, order=order)
 
 
@@ -54,10 +52,9 @@ def __get_playlist_id_from_playlist_url(playlist_url):
     return playlist_url[start_index:end_index]
 
 
-# TODO rename 'songs' to 'tracks'
-def __sort_songs(songs, sort_by, order):
+def __sort_tracks(tracks, sort_by, order):
     if sort_by == "none":
         return
 
     reverse = (order == "descending")
-    songs.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+    tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
