@@ -38,12 +38,12 @@ def get_playlist_by_id(playlist_id):
     sort_by = request.args.get("sort_by")
     order = request.args.get("order")
 
-    playlist_name = spotify_client.get_name_of_playlist(playlist_id)
-    songs = spotify_client.get_songs_of_playlist(playlist_id)
-    __sort_songs(songs, sort_by, order)
+    playlist = spotify_client.get_playlist_by_id(playlist_id)
+    __sort_songs(playlist.tracks, sort_by, order)
 
+    # TODO pass playlist object instead of separate variables
     return render_template("playlist.html",
-                           songs=songs, playlist_name=playlist_name,
+                           songs=playlist.tracks, playlist_name=playlist.name,
                            playlist_id=playlist_id, sort_by=sort_by, order=order)
 
 
@@ -54,6 +54,7 @@ def __get_playlist_id_from_playlist_url(playlist_url):
     return playlist_url[start_index:end_index]
 
 
+# TODO rename 'songs' to 'tracks'
 def __sort_songs(songs, sort_by, order):
     if sort_by == "none":
         return

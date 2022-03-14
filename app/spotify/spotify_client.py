@@ -1,8 +1,9 @@
 import requests
 
-# PyCharm shows errors for this import locally, but it works this way with the server
-# from spotify_track import SpotifyTrack is shown as valid locally, but does not work with the server
+# PyCharm shows errors for these imports locally, but it works this way with the server
+# 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
 from spotify.spotify_track import SpotifyTrack
+from spotify.spotify_playlist import SpotifyPlaylist
 
 
 class SpotifyClient:
@@ -21,13 +22,17 @@ class SpotifyClient:
 
         return response_data["name"]
 
-    def get_songs_of_playlist(self, playlist_id):
+    def get_playlist_by_id(self, playlist_id):
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.get(url, headers=headers)
-        response_data = response.json()
+        response_data = response.json() # TODO rename to playlist_data
 
+        playlist = SpotifyPlaylist()
+        playlist.name = response_data["name"]
+
+        # TODO extract method get_tracks_of_playlist(response_data)
         track_items = response_data["tracks"]["items"]
 
         tracks = []
@@ -54,7 +59,9 @@ class SpotifyClient:
         SpotifyClient.__set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token)
         SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
 
-        return tracks
+        playlist.tracks = tracks
+
+        return playlist
 
     def __get_access_token(self):
         url = "https://accounts.spotify.com/api/token"
