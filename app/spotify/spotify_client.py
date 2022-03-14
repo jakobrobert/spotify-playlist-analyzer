@@ -1,8 +1,9 @@
 import requests
 
-# PyCharm shows errors for this import locally, but it works this way with the server
-# from spotify_track import SpotifyTrack is shown as valid locally, but does not work with the server
+# PyCharm shows errors for these imports locally, but it works this way with the server
+# 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
 from spotify.spotify_track import SpotifyTrack
+from spotify.spotify_playlist import SpotifyPlaylist
 
 
 class SpotifyClient:
@@ -12,28 +13,37 @@ class SpotifyClient:
         self.CLIENT_ID = client_id
         self.CLIENT_SECRET = client_secret
 
-    def get_name_of_playlist(self, playlist_id):
+    def get_playlist_by_id(self, playlist_id):
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.get(url, headers=headers)
+        playlist_data = response.json()
+
+        playlist = SpotifyPlaylist()
+        playlist.id = playlist_id
+        playlist.name = playlist_data["name"]
+        playlist.tracks = SpotifyClient.__get_tracks_of_playlist(playlist_data, access_token)
+
+        return playlist
+
+    def __get_access_token(self):
+        url = "https://accounts.spotify.com/api/token"
+        data = {"grant_type": "client_credentials"}
+        auth = (self.CLIENT_ID, self.CLIENT_SECRET)
+        response = requests.post(url, data=data, auth=auth)
         response_data = response.json()
 
-        return response_data["name"]
+        return response_data["access_token"]
 
-    def get_songs_of_playlist(self, playlist_id):
-        url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
-        access_token = self.__get_access_token()
-        headers = {"Authorization": f"Bearer {access_token}"}
-        response = requests.get(url, headers=headers)
-        response_data = response.json()
-
-        track_items = response_data["tracks"]["items"]
-
+    @staticmethod
+    def __get_tracks_of_playlist(playlist_data, access_token):
         tracks = []
-        all_artist_ids = []
-        artist_ids_per_track = []
+
+        track_items = playlist_data["tracks"]["items"]
         track_ids = []
+        artist_ids_per_track = []
+        all_artist_ids = []
 
         for track_item in track_items:
             track_data = track_item["track"]
@@ -55,15 +65,6 @@ class SpotifyClient:
         SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
 
         return tracks
-
-    def __get_access_token(self):
-        url = "https://accounts.spotify.com/api/token"
-        data = {"grant_type": "client_credentials"}
-        auth = (self.CLIENT_ID, self.CLIENT_SECRET)
-        response = requests.post(url, data=data, auth=auth)
-        response_data = response.json()
-
-        return response_data["access_token"]
 
     @staticmethod
     def __get_artists_of_track(track):

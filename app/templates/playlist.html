@@ -7,15 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Spotify Playlist Analyzer - Playlist - {{ playlist_name }}</title>
+    <title>Spotify Playlist Analyzer - Playlist - {{ playlist.name }}</title>
 </head>
 <body>
     <div class="container">
-        <h1>Playlist: {{ playlist_name }}</h1>
+        <h1>Playlist: {{ playlist.name }}</h1>
 
-        <h4># Songs: {{ songs | length }}</h4>
+        <h4># Tracks: {{ playlist.tracks | length }}</h4>
 
-        <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist_id) }}" method="GET">
+        <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <label for="sort_by">Sort by</label>
             <select class="form-control" id="sort_by" name="sort_by">
                 <option value="none" {% if sort_by == "none" %} selected {% endif %}>
@@ -74,19 +74,20 @@
                 <th>Loudness<br>(dB)</th>
                 <th>Genres</th>
             </tr>
-            {% for i in range(0, songs | length) %}
-            <tr>
-                <td>{{ i + 1 }}</td>
-                <td>{{ ", ".join(songs[i].artists) }}</td>
-                <td>{{ songs[i].title }}</td>
-                <td>{{ songs[i].duration }}</td>
-                <td>{{ songs[i].year_of_release }}</td>
-                <td>{{ "%.1f" % songs[i].tempo }}</td>
-                <td>{{ songs[i].key }}</td>
-                <td>{{ songs[i].mode }}</td>
-                <td>{{ "%.1f" % songs[i].loudness }}</td>
-                <td>{{ ", ".join(songs[i].genres) }}</td>
-            </tr>
+            {% for i in range(0, playlist.tracks | length) %}
+                {% set track = playlist.tracks[i] %}
+                <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ ", ".join(track.artists) }}</td>
+                    <td>{{ track.title }}</td>
+                    <td>{{ track.duration }}</td>
+                    <td>{{ track.year_of_release }}</td>
+                    <td>{{ "%.1f" % track.tempo }}</td>
+                    <td>{{ track.key }}</td>
+                    <td>{{ track.mode }}</td>
+                    <td>{{ "%.1f" % track.loudness }}</td>
+                    <td>{{ ", ".join(track.genres) }}</td>
+                </tr>
             {% endfor %}
         </table>
     </div>
