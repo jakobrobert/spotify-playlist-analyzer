@@ -21,6 +21,7 @@ class SpotifyClient:
         playlist_data = response.json()
 
         playlist = SpotifyPlaylist()
+        playlist.id = playlist_id
         playlist.name = playlist_data["name"]
         playlist.tracks = SpotifyClient.__get_tracks_of_playlist(playlist_data, access_token)
 

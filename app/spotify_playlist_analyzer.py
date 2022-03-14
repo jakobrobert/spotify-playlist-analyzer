@@ -40,9 +40,7 @@ def get_playlist_by_id(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
     __sort_tracks(playlist.tracks, sort_by, order)
 
-    # TODO add id to Playlist class
-    return render_template("playlist.html", playlist=playlist,
-                           playlist_id=playlist_id, sort_by=sort_by, order=order)
+    return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
