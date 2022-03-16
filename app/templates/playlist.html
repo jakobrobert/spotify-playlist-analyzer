@@ -81,7 +81,7 @@
                     <td>{{ i + 1 }}</td>
                     <td>{{ ", ".join(track.artists) }}</td>
                     <td>{{ track.title }}</td>
-                    <td>{{ track.duration_ms }}</td> <!-- TODO add getter to retrieve duration as string -->
+                    <td>{{ track.get_duration_string() }}</td>
                     <td>{{ track.year_of_release }}</td>
                     <td>{{ "%.1f" % track.tempo }}</td>
                     <td>{{ track.key }}</td>
