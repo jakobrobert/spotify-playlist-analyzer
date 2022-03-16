@@ -76,16 +76,6 @@ class SpotifyClient:
 
         return artist_names
 
-    # TODO move into SpotifyTrack class as get_duration_as_string
-    @staticmethod
-    def __get_duration_of_track(track):
-        milliseconds = track["duration_ms"]
-        total_seconds = milliseconds // 1000
-        total_minutes = total_seconds // 60
-        remaining_seconds = total_seconds % 60
-
-        return f"{total_minutes:02d}:{remaining_seconds:02d}"
-
     @staticmethod
     def __get_year_of_release_of_track(track):
         album = track["album"]
