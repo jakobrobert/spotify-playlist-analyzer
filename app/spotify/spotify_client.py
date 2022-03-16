@@ -51,7 +51,7 @@ class SpotifyClient:
             track = SpotifyTrack()
             track.title = track_data["name"]
             track.artists = SpotifyClient.__get_artists_of_track(track_data)
-            track.duration = SpotifyClient.__get_duration_of_track(track_data)
+            track.duration_ms = track_data["duration_ms"]
             track.year_of_release = SpotifyClient.__get_year_of_release_of_track(track_data)
             tracks.append(track)
 
@@ -75,15 +75,6 @@ class SpotifyClient:
             artist_names.append(artist["name"])
 
         return artist_names
-
-    @staticmethod
-    def __get_duration_of_track(track):
-        milliseconds = track["duration_ms"]
-        total_seconds = milliseconds // 1000
-        total_minutes = total_seconds // 60
-        remaining_seconds = total_seconds % 60
-
-        return f"{total_minutes:02d}:{remaining_seconds:02d}"
 
     @staticmethod
     def __get_year_of_release_of_track(track):

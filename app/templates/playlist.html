@@ -14,6 +14,7 @@
         <h1>Playlist: {{ playlist.name }}</h1>
 
         <h4># Tracks: {{ playlist.tracks | length }}</h4>
+        <h4>Duration: {{ playlist.get_duration_string() }}</h4>
 
         <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <label for="sort_by">Sort by</label>
@@ -27,7 +28,7 @@
                 <option value="title"{% if sort_by == "title" %} selected {% endif %}>
                     Title
                 </option>
-                <option value="duration" {% if sort_by == "duration" %} selected {% endif %}>
+                <option value="duration_ms" {% if sort_by == "duration_ms" %} selected {% endif %}>
                     Duration
                 </option>
                 <option value="year_of_release" {% if sort_by == "year_of_release" %} selected {% endif %}>
@@ -80,7 +81,7 @@
                     <td>{{ i + 1 }}</td>
                     <td>{{ ", ".join(track.artists) }}</td>
                     <td>{{ track.title }}</td>
-                    <td>{{ track.duration }}</td>
+                    <td>{{ track.get_duration_string() }}</td>
                     <td>{{ track.year_of_release }}</td>
                     <td>{{ "%.1f" % track.tempo }}</td>
                     <td>{{ track.key }}</td>
