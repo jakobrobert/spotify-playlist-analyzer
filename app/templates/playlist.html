@@ -43,6 +43,9 @@
                 <option value="mode" {% if sort_by == "mode" %} selected {% endif %}>
                     Mode
                 </option>
+                <option value="camelot" {% if sort_by == "camelot" %} selected {% endif %}>
+                    Camelot
+                </option>
                 <option value="loudness" {% if sort_by == "loudness" %} selected {% endif %}>
                     Loudness
                 </option>
@@ -72,6 +75,7 @@
                 <th>Tempo<br>(BPM)</th>
                 <th>Key</th>
                 <th>Mode</th>
+                <th>Camelot</th>
                 <th>Loudness<br>(dB)</th>
                 <th>Genres</th>
             </tr>
@@ -86,6 +90,7 @@
                     <td>{{ "%.1f" % track.tempo }}</td>
                     <td>{{ track.key }}</td>
                     <td>{{ track.mode }}</td>
+                    <td>{{ track.camelot }}</td>
                     <td>{{ "%.1f" % track.loudness }}</td>
                     <td>{{ ", ".join(track.genres) }}</td>
                 </tr>
