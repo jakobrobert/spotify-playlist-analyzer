@@ -42,3 +42,8 @@ class SpotifyPlaylist:
             total_tempo += track.tempo
 
         return total_tempo / len(self.tracks)
+
+    def get_average_tempo_string(self):
+        average_tempo = self.get_average_tempo()
+
+        return f"{average_tempo:.1f}"
