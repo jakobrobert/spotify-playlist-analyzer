@@ -192,4 +192,48 @@ class SpotifyClient:
 
     @staticmethod
     def __get_camelot_from_key_and_mode(key, mode):
-        return "01A"
+        #KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
+        if key == "G♯/A♭" and mode == "Minor":
+            return "01A"
+        if key == "B" and mode == "Major":
+            return "01B"
+        if key == "D♯/E♭" and mode == "Minor":
+            return "02A"
+        if key == "F♯/G♭" and mode == "Major":
+            return "02B"
+        if key == "A♯/B♭" and mode == "Minor":
+            return "03A"
+        if key == "C♯/D♭" and mode == "Major":
+            return "03B"
+        if key == "F" and mode == "Minor":
+            return "04A"
+        if key == "G♯/A♭" and mode == "Major":
+            return "04B"
+        if key == "C" and mode == "Minor":
+            return "05A"
+        if key == "D♯/E♭" and mode == "Major":
+            return "05B"
+        if key == "G" and mode == "Minor":
+            return "06A"
+        if key == "A♯/B♭" and mode == "Major":
+            return "06B"
+        if key == "D" and mode == "Minor":
+            return "07A"
+        if key == "F" and mode == "Major":
+            return "07B"
+        if key == "A" and mode == "Minor":
+            return "08A"
+        if key == "C" and mode == "Major":
+            return "08B"
+        if key == "E" and mode == "Minor":
+            return "09A"
+        if key == "G" and mode == "Major":
+            return "09B"
+        if key == "B" and mode == "Minor":
+            return "10A"
+        if key == "D" and mode == "Major":
+            return "10B"
+        if key == "F♯/G♭" and mode == "Minor":
+            return "11A"
+        if key == "A" and mode == "Major":
+            return "11B"
