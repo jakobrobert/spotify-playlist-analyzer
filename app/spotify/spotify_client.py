@@ -236,5 +236,9 @@ class SpotifyClient:
             return "11A"
         if key == "A" and mode == "Major":
             return "11B"
+        if key == "C♯/D♭" and mode == "Minor":
+            return "12A"
+        if key == "E" and mode == "Major":
+            return "12B"
 
         return "n/a"
