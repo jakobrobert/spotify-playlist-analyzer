@@ -8,6 +8,7 @@ class SpotifyTrack:
         self.tempo = -1.0
         self.key = "n/a"
         self.mode = "n/a"
+        self.camelot = "n/a"
         self.loudness = -1.0
 
     def get_duration_string(self):
