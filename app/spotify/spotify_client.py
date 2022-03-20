@@ -192,7 +192,6 @@ class SpotifyClient:
 
     @staticmethod
     def __get_camelot_from_key_and_mode(key, mode):
-        #KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
         if key == "G♯/A♭" and mode == "Minor":
             return "01A"
         if key == "B" and mode == "Major":
@@ -237,3 +236,5 @@ class SpotifyClient:
             return "11A"
         if key == "A" and mode == "Major":
             return "11B"
+
+        return "n/a"
