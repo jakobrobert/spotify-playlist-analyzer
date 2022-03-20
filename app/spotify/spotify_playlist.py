@@ -1,3 +1,8 @@
+# PyCharm shows errors for this import locally, but it works this way with the server
+# 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
+from spotify.spotify_track import SpotifyTrack
+
+
 class SpotifyPlaylist:
     def __init__(self):
         self.id = "n/a"
@@ -23,14 +28,9 @@ class SpotifyPlaylist:
         return f"{total_hours:02d}:{remaining_minutes:02d}:{remaining_seconds:02d}"
 
     def get_average_duration_ms(self):
-        total_duration_ms = self.get_total_duration_ms()
-        return total_duration_ms / len(self.tracks)
+        return self.get_total_duration_ms() / len(self.tracks)
 
     def get_average_duration_string(self):
         average_duration_ms = int(self.get_average_duration_ms())
-        # TODO clean up: duplicated code with SpotifyTrack
-        total_seconds = average_duration_ms // 1000
-        total_minutes = total_seconds // 60
-        remaining_seconds = total_seconds % 60
 
-        return f"{total_minutes:02d}:{remaining_seconds:02d}"
+        return SpotifyTrack.get_duration_string_helper(average_duration_ms)

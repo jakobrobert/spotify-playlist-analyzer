@@ -12,7 +12,11 @@ class SpotifyTrack:
         self.loudness = -1.0
 
     def get_duration_string(self):
-        total_seconds = self.duration_ms // 1000
+        return self.get_duration_string_helper(self.duration_ms)
+
+    @staticmethod
+    def get_duration_string_helper(duration_ms):
+        total_seconds = duration_ms // 1000
         total_minutes = total_seconds // 60
         remaining_seconds = total_seconds % 60
 
