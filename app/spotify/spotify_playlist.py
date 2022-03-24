@@ -4,6 +4,9 @@ from spotify.spotify_track import SpotifyTrack
 
 
 class SpotifyPlaylist:
+    # Duplicated with SpotifyClient, but need to do this way because circular import when importing SpotifyClient
+    KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
+
     def __init__(self):
         self.id = "n/a"
         self.name = "n/a"
@@ -47,3 +50,38 @@ class SpotifyPlaylist:
         average_tempo = self.get_average_tempo()
 
         return f"{average_tempo:.1f}"
+
+    def get_key_to_percentage(self):
+        key_to_count = {}
+
+        for key_name in SpotifyPlaylist.KEY_NAMES:
+            key_to_count[key_name] = 0
+
+        key_to_count["n/a"] = 0
+
+        for track in self.tracks:
+            key_to_count[track.key] += 1
+
+        return self.__convert_counts_to_percentages(key_to_count)
+
+    def get_mode_to_percentage(self):
+        mode_to_count = {
+            "Major": 0,
+            "Minor": 0,
+            "n/a": 0
+        }
+
+        for track in self.tracks:
+            mode_to_count[track.mode] += 1
+
+        return self.__convert_counts_to_percentages(mode_to_count)
+
+    def __convert_counts_to_percentages(self, counts_dict):
+        percentages_dict = {}
+
+        for key, count in counts_dict.items():
+            proportion = count / len(self.tracks)
+            percentages_dict[key] = proportion * 100.0
+
+        return percentages_dict
+
