@@ -4,6 +4,9 @@ from spotify.spotify_track import SpotifyTrack
 
 
 class SpotifyPlaylist:
+    # TODO duplicated with SpotifyClient, but need to do this way because circular import when importing SpotifyClient
+    KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
+
     def __init__(self):
         self.id = "n/a"
         self.name = "n/a"
@@ -50,6 +53,9 @@ class SpotifyPlaylist:
 
     def get_key_to_percentage(self):
         key_to_count = {}
+
+        for key_name in SpotifyPlaylist.KEY_NAMES:
+            key_to_count[key_name] = 0
 
         for track in self.tracks:
             if track.key in key_to_count:
