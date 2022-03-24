@@ -58,7 +58,7 @@ class SpotifyPlaylist:
             key_to_count[key_name] = 0
 
         for track in self.tracks:
-            if track.key in key_to_count:
+            if track.key in key_to_count: # TODO clean up: can remove this check, but add "n/a" key to be safe
                 key_to_count[track.key] += 1
             else:
                 key_to_count[track.key] = 1
@@ -72,4 +72,20 @@ class SpotifyPlaylist:
         return key_to_percentage
 
     def get_mode_to_percentage(self):
-        return {}
+        mode_to_count = {
+            "Major": 0,
+            "Minor": 0,
+            "n/a": 0
+        }
+
+        for track in self.tracks:
+            mode_to_count[track.mode] += 1
+
+        mode_to_percentage = {}
+
+        # TODO clean up: duplicated code with get_key_to_percentage()
+        for mode, count in mode_to_count.items():
+            proportion = count / len(self.tracks)
+            mode_to_percentage[mode] = proportion * 100.0
+
+        return mode_to_percentage
