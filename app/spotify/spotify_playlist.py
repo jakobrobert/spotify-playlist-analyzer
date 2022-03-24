@@ -62,13 +62,7 @@ class SpotifyPlaylist:
         for track in self.tracks:
             key_to_count[track.key] += 1
 
-        key_to_percentage = {}
-
-        for key, count in key_to_count.items():
-            proportion = count / len(self.tracks)
-            key_to_percentage[key] = proportion * 100.0
-
-        return key_to_percentage
+        return self.__convert_counts_to_percentages(key_to_count)
 
     def get_mode_to_percentage(self):
         mode_to_count = {
@@ -80,11 +74,14 @@ class SpotifyPlaylist:
         for track in self.tracks:
             mode_to_count[track.mode] += 1
 
-        mode_to_percentage = {}
+        return self.__convert_counts_to_percentages(mode_to_count)
 
-        # TODO clean up: duplicated code with get_key_to_percentage()
-        for mode, count in mode_to_count.items():
+    def __convert_counts_to_percentages(self, counts_dict):
+        percentages_dict = {}
+
+        for key, count in counts_dict.items():
             proportion = count / len(self.tracks)
-            mode_to_percentage[mode] = proportion * 100.0
+            percentages_dict[key] = proportion * 100.0
 
-        return mode_to_percentage
+        return percentages_dict
+
