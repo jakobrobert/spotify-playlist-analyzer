@@ -47,3 +47,20 @@ class SpotifyPlaylist:
         average_tempo = self.get_average_tempo()
 
         return f"{average_tempo:.1f}"
+
+    def get_key_to_percentage(self):
+        key_to_count = {}
+
+        for track in self.tracks:
+            if track.key in key_to_count:
+                key_to_count[track.key] += 1
+            else:
+                key_to_count[track.key] = 1
+
+        key_to_percentage = {}
+
+        for key in key_to_count:
+            proportion = key_to_count[key] / len(self.tracks)
+            key_to_percentage[key] = proportion * 100.0
+
+        print(key_to_percentage)
