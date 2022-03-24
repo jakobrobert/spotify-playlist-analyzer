@@ -57,11 +57,10 @@ class SpotifyPlaylist:
         for key_name in SpotifyPlaylist.KEY_NAMES:
             key_to_count[key_name] = 0
 
+        key_to_count["n/a"] = 0
+
         for track in self.tracks:
-            if track.key in key_to_count: # TODO clean up: can remove this check, but add "n/a" key to be safe
-                key_to_count[track.key] += 1
-            else:
-                key_to_count[track.key] = 1
+            key_to_count[track.key] += 1
 
         key_to_percentage = {}
 
