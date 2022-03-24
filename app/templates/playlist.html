@@ -28,10 +28,10 @@
                 <th>Percentage</th>
             </tr>
             {% set key_to_percentage = playlist.get_key_to_percentage() %}
-            {% for key in key_to_percentage %} <!-- TODO clean up: use key, percentage in ...items() -->
+            {% for key, percentage in key_to_percentage.items() %}
                 <tr>
                     <td>{{ key }}</td>
-                    <td>{{ key_to_percentage[key] }}</td> <!-- TODO format to one digit, add method which returns strings -->
+                    <td>{{ percentage }}</td>
                 </tr>
             {% endfor %}
         </table>
