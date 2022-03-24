@@ -27,20 +27,13 @@
                 <th>Key</th>
                 <th>Percentage</th>
             </tr>
-            <!-- TODO get real data from playlist -->
             {% set key_to_percentage = playlist.get_key_to_percentage() %}
-            <tr>
-                <td>C</td>
-                <td>42</td>
-            </tr>
-            <tr>
-                <td>C#</td>
-                <td>69</td>
-            </tr>
-            <tr>
-                <td>D</td>
-                <td>99</td>
-            </tr>
+            {% for key in key_to_percentage %} <!-- TODO clean up: use key, percentage in ...items() -->
+                <tr>
+                    <td>{{ key }}</td>
+                    <td>{{ key_to_percentage[key] }}</td> <!-- TODO format to one digit, add method which returns strings -->
+                </tr>
+            {% endfor %}
         </table>
         <br>
 
