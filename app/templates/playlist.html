@@ -12,12 +12,60 @@
 <body>
     <div class="container">
         <h1>Playlist: {{ playlist.name }}</h1>
+        <br>
 
+        <h2>General Info</h2>
         <h4># Tracks: {{ playlist.tracks | length }}</h4>
         <h4>Total Duration: {{ playlist.get_total_duration_string() }}</h4>
         <h4>Average Duration: {{ playlist.get_average_duration_string() }}</h4>
         <h4>Average Tempo: {{ playlist.get_average_tempo_string() }}</h4>
+        <br>
 
+        <h2>Key Distribution</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Key</th>
+                <th>Percentage</th>
+            </tr>
+            <!-- TODO get real data from playlist -->
+            <tr>
+                <td>C</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td>C#</td>
+                <td>69</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>99</td>
+            </tr>
+        </table>
+        <br>
+
+        <h2>Mode Distribution</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Mode</th>
+                <th>Percentage</th>
+            </tr>
+            <!-- TODO get real data from playlist -->
+            <tr>
+                <td>Major</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>Minor</td>
+                <td>40</td>
+            </tr>
+            <tr>
+                <td>n/a</td>
+                <td>10</td>
+            </tr>
+        </table>
+        <br>
+
+        <h2>Tracks</h2>
         <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <label for="sort_by">Sort by</label>
             <select class="form-control" id="sort_by" name="sort_by">
