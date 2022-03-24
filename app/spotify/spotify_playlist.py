@@ -65,10 +65,8 @@ class SpotifyPlaylist:
 
         key_to_percentage = {}
 
-        for key in key_to_count: # TODO clean up: use key, percentage in ...items()
-            proportion = key_to_count[key] / len(self.tracks)
+        for key, count in key_to_count.items():
+            proportion = count / len(self.tracks)
             key_to_percentage[key] = proportion * 100.0
-
-        # TODO sort, maybe can fix by adding all keys in beginning
 
         return key_to_percentage
