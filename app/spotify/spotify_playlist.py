@@ -70,3 +70,6 @@ class SpotifyPlaylist:
             key_to_percentage[key] = proportion * 100.0
 
         return key_to_percentage
+
+    def get_mode_to_percentage(self):
+        return {}

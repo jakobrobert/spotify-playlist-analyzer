@@ -27,7 +27,7 @@
                 <th>Key</th>
                 <th>Percentage</th>
             </tr>
-            {% set key_to_percentage = playlist.get_key_to_percentage() %}
+            {% set key_to_percentage = playlist.get_key_to_percentage() %} <!-- TODO clean up: inline -->
             {% for key, percentage in key_to_percentage.items() %}
                 <tr>
                     <td>{{ key }}</td>
@@ -43,19 +43,12 @@
                 <th>Mode</th>
                 <th>Percentage</th>
             </tr>
-            <!-- TODO get real data from playlist -->
-            <tr>
-                <td>Major</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>Minor</td>
-                <td>40</td>
-            </tr>
-            <tr>
-                <td>n/a</td>
-                <td>10</td>
-            </tr>
+            {% for mode, percentage in playlist.get_mode_to_percentage().items() %}
+                <tr>
+                    <td>{{ mode }}</td>
+                    <td>{{ percentage }}</td>
+                </tr>
+            {% endfor %}
         </table>
         <br>
 
