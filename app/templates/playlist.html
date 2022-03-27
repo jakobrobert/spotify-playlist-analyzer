@@ -22,6 +22,36 @@
         <h4>Average Tempo (BPM): {{ playlist.get_average_tempo_string() }}</h4>
         <br>
 
+        <h2>Year of Release Distribution</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Year of Release</th>
+                <th>Percentage</th>
+            </tr>
+            {% for year_interval, percentage in playlist.get_year_interval_to_percentage().items() %}
+                <tr>
+                    <td>{{ year_interval }}</td>
+                    <td>{{ "%.1f" % percentage }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+
+        <h2>Tempo (BPM) Distribution</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Tempo (BPM)</th>
+                <th>Percentage</th>
+            </tr>
+            {% for tempo_interval, percentage in playlist.get_tempo_interval_to_percentage().items() %}
+                <tr>
+                    <td>{{ tempo_interval }}</td>
+                    <td>{{ "%.1f" % percentage }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+
         <h2>Key Distribution</h2>
         <table class="table table-bordered">
             <tr>
