@@ -96,6 +96,32 @@ class SpotifyPlaylist:
 
         return self.__convert_counts_to_percentages(year_interval_to_count)
 
+    # TODO clean up: duplicated code with get_year_interval_to_percentage(), actually the same instead of replacing "year" by "tempo"
+    def get_tempo_interval_to_percentage(self):
+        tempo_interval_to_count = {}
+
+        first_interval_max_tempo = 89
+        last_interval_min_tempo = 180
+        interval_size = 10
+
+        # TODO Determine counts for each interval, analogously to get_year_interval_to_percentage()
+
+        # First interval
+        first_interval_string = f"≤ {first_interval_max_tempo}"
+        tempo_interval_to_count[first_interval_string] = 0
+
+        # Middle intervals
+        for min_tempo in range(first_interval_max_tempo + 1, last_interval_min_tempo, interval_size):
+            max_tempo = min_tempo + interval_size - 1
+            interval_string = f"{min_tempo} - {max_tempo}"
+            tempo_interval_to_count[interval_string] = 0
+
+        # Last interval
+        last_interval_string = f"≥ {last_interval_min_tempo}"
+        tempo_interval_to_count[last_interval_string] = 0
+
+        return self.__convert_counts_to_percentages(tempo_interval_to_count)
+
     def get_key_to_percentage(self):
         key_to_count = {}
 
