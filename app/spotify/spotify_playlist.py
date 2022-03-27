@@ -65,71 +65,22 @@ class SpotifyPlaylist:
         return f"{average_tempo:.1f}"
 
     def get_year_interval_to_percentage(self):
-        year_interval_to_count = {}
-
         first_interval_max_year = 1969
         last_interval_min_year = 2020
         interval_size = 10
 
-        # First interval
-        first_interval_string = f"≤ {first_interval_max_year}"
-        year_interval_to_count[first_interval_string] = 0
-        for track in self.tracks:
-            if track.year_of_release <= first_interval_max_year:
-                year_interval_to_count[first_interval_string] += 1
-
-        # Middle intervals
-        for min_year in range(first_interval_max_year + 1, last_interval_min_year, interval_size):
-            max_year = min_year + interval_size - 1
-            interval_string = f"{min_year} - {max_year}"
-            year_interval_to_count[interval_string] = 0
-            for track in self.tracks:
-                if min_year <= track.year_of_release <= max_year:
-                    year_interval_to_count[interval_string] += 1
-
-        # Last interval
-        last_interval_string = f"≥ {last_interval_min_year}"
-        year_interval_to_count[last_interval_string] = 0
-        for track in self.tracks:
-            if track.year_of_release >= last_interval_min_year:
-                year_interval_to_count[last_interval_string] += 1
+        year_interval_to_count = self.__get_attribute_interval_to_count(
+            first_interval_max_year, last_interval_min_year, interval_size, lambda track: track.year_of_release)
 
         return self.__convert_counts_to_percentages(year_interval_to_count)
 
-    # TODO clean up: duplicated code with get_year_interval_to_percentage(), actually the same instead of replacing "year" by "tempo"
     def get_tempo_interval_to_percentage(self):
-        """"
-        tempo_interval_to_count = {}
-
         first_interval_max_tempo = 89
-        last_interval_min_tempo = 180
+        last_interval_min_year = 180
         interval_size = 10
 
-        # First interval
-        first_interval_string = f"≤ {first_interval_max_tempo}"
-        tempo_interval_to_count[first_interval_string] = 0
-        for track in self.tracks:
-            if track.tempo <= first_interval_max_tempo:
-                tempo_interval_to_count[first_interval_string] += 1
-
-        # Middle intervals
-        for min_tempo in range(first_interval_max_tempo + 1, last_interval_min_tempo, interval_size):
-            max_tempo = min_tempo + interval_size - 1
-            interval_string = f"{min_tempo} - {max_tempo}"
-            tempo_interval_to_count[interval_string] = 0
-            for track in self.tracks:
-                if min_tempo <= track.tempo <= max_tempo:
-                    tempo_interval_to_count[interval_string] += 1
-
-        # Last interval
-        last_interval_string = f"≥ {last_interval_min_tempo}"
-        tempo_interval_to_count[last_interval_string] = 0
-        for track in self.tracks:
-            if track.tempo >= last_interval_min_tempo:
-                tempo_interval_to_count[last_interval_string] += 1
-        """
-
-        tempo_interval_to_count = self.__get_attribute_interval_to_count(89, 180, 10, lambda track: track.tempo)
+        tempo_interval_to_count = self.__get_attribute_interval_to_count(
+            first_interval_max_tempo, last_interval_min_year, interval_size, lambda track: track.tempo)
 
         return self.__convert_counts_to_percentages(tempo_interval_to_count)
 
