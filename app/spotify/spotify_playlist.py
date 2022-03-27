@@ -71,14 +71,28 @@ class SpotifyPlaylist:
         last_interval_min_year = 2020
         interval_size = 10
 
-        # TODO determine counts for each interval
-        year_interval_to_count["≤ 1969"] = 0
+        # First interval
+        first_interval_string = f"≤ {first_interval_max_year}"
+        year_interval_to_count[first_interval_string] = 0
+        for track in self.tracks:
+            if track.year_of_release <= first_interval_max_year:
+                year_interval_to_count[first_interval_string] += 1
 
-        for year in range(first_interval_max_year + 1, last_interval_min_year, interval_size):
-            interval_string = f"{year} - {year + interval_size - 1}"
+        # Middle intervals
+        for min_year in range(first_interval_max_year + 1, last_interval_min_year, interval_size):
+            max_year = min_year + interval_size - 1
+            interval_string = f"{min_year} - {max_year}"
             year_interval_to_count[interval_string] = 0
+            for track in self.tracks:
+                if min_year <= track.year_of_release <= max_year:
+                    year_interval_to_count[interval_string] += 1
 
-        year_interval_to_count["≥ 2020"] = 0
+        # Last interval
+        last_interval_string = f"≥ {last_interval_min_year}"
+        year_interval_to_count[last_interval_string] = 0
+        for track in self.tracks:
+            if track.year_of_release >= last_interval_min_year:
+                year_interval_to_count[last_interval_string] += 1
 
         return year_interval_to_count
 
