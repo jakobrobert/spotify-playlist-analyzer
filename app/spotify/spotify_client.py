@@ -84,9 +84,9 @@ class SpotifyClient:
         year_end_index = release_date.find("-")
 
         if year_end_index == -1:
-            return release_date
+            return int(release_date)
 
-        return release_date[:year_end_index]
+        return int(release_date[:year_end_index])
 
     @staticmethod
     def __get_artist_ids_of_track(track):

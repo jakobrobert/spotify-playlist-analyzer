@@ -38,6 +38,19 @@ class SpotifyPlaylist:
 
         return SpotifyTrack.get_duration_string_helper(average_duration_ms)
 
+    def get_average_year_of_release(self):
+        total_year = 0.0
+
+        for track in self.tracks:
+            total_year += track.year_of_release
+
+        return total_year / len(self.tracks)
+
+    def get_average_year_of_release_string(self):
+        average_year = self.get_average_year_of_release()
+
+        return f"{average_year:.1f}"
+
     def get_average_tempo(self):
         total_tempo = 0.0
 
