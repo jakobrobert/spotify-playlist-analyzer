@@ -94,7 +94,7 @@ class SpotifyPlaylist:
             if track.year_of_release >= last_interval_min_year:
                 year_interval_to_count[last_interval_string] += 1
 
-        return year_interval_to_count
+        return self.__convert_counts_to_percentages(year_interval_to_count)
 
     def get_key_to_percentage(self):
         key_to_count = {}
