@@ -64,6 +64,24 @@ class SpotifyPlaylist:
 
         return f"{average_tempo:.1f}"
 
+    def get_year_interval_to_percentage(self):
+        year_interval_to_count = {}
+
+        first_interval_max_year = 1969
+        last_interval_min_year = 2020
+        interval_size = 10
+
+        # TODO determine counts for each interval
+        year_interval_to_count["≤ 1969"] = 0
+
+        for year in range(first_interval_max_year + 1, last_interval_min_year, interval_size):
+            interval_string = f"{year} - {year + interval_size - 1}"
+            year_interval_to_count[interval_string] = 0
+
+        year_interval_to_count["≥ 2020"] = 0
+
+        return year_interval_to_count
+
     def get_key_to_percentage(self):
         key_to_count = {}
 
