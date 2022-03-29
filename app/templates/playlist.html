@@ -22,19 +22,9 @@
         <h4>Average Tempo (BPM): {{ playlist.get_average_tempo_string() }}</h4>
         <br>
 
-        <h2>Year of Release Distribution</h2>
-        <table class="table table-bordered">
-            <tr>
-                <th>Year of Release</th>
-                <th>Percentage</th>
-            </tr>
-            {% for year_interval, percentage in playlist.get_year_interval_to_percentage().items() %}
-                <tr>
-                    <td>{{ year_interval }}</td>
-                    <td>{{ "%.1f" % percentage }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        <a href="{{ url_for('get_year_distribution_of_playlist', playlist_id=playlist.id) }}"
+           class="btn btn-secondary" role="button">Year of Release Distribution</a>
+        <br>
         <br>
 
         <h2>Tempo (BPM) Distribution</h2>
