@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
 import operator
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 from io import BytesIO
 
 from spotify.spotify_client import SpotifyClient
@@ -74,10 +74,14 @@ def __sort_tracks(tracks, sort_by, order):
 
 
 def __get_year_distribution_histogram_image_base64():
-    # TODO render histogram using Matplotlib
+    plt.title("Year of Release Distribution")
+    plt.xlabel("Years")
+    plt.ylabel("Percentage")
 
-    plt.plot([1, 23, 2, 4])
-    plt.ylabel("dummy data")
+    # TODO replace by real data
+    x_labels_years = [1980, 1990, 2000, 2010, 2020]
+    y_labels_percentage = [5.0, 12.0, 42.5, 13.5, 20.6]
+    plt.bar(x_labels_years, y_labels_percentage, width=10, edgecolor="black")
 
     image_buffer = BytesIO()
     plt.savefig(image_buffer, format="png")
