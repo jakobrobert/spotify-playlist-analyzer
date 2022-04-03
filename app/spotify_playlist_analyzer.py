@@ -78,6 +78,7 @@ def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
     plt.title("Year of Release Distribution")
     plt.xlabel("Year Interval")
     plt.ylabel("Percentage")
+    plt.xticks(rotation=15)
 
     # TODO replace by real data
     print(year_interval_to_percentage)
@@ -94,8 +95,8 @@ def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
         x_labels_year_interval.append(year_interval)
         y_labels_percentage.append(percentage)
 
-    plt.xticks(rotation=15)
     plt.bar(x_labels_year_interval, y_labels_percentage, edgecolor="black")
+    plt.tight_layout()
 
     image_buffer = BytesIO()
     plt.savefig(image_buffer, format="png")
