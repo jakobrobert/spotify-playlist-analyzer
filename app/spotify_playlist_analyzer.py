@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
 import operator
-import matplotlib.pyplot as plt
+from matplotlib import pyplot as plt
 from io import BytesIO
 
 from spotify.spotify_client import SpotifyClient
@@ -83,6 +83,6 @@ def __get_year_distribution_histogram_image_base64():
     plt.savefig(image_buffer, format="png")
     image_bytes = image_buffer.getvalue()
     image_base64_bytes = base64.encodebytes(image_bytes)
-    image_base64_string = image_base64_bytes.decode("ascii")
+    image_base64_string = image_base64_bytes.decode("utf8")
 
     return image_base64_string
