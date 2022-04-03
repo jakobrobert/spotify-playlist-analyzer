@@ -81,7 +81,8 @@ def __get_year_distribution_histogram_image_base64():
 
     image_buffer = BytesIO()
     plt.savefig(image_buffer, format="png")
-    image_base64_bytes = base64.encodebytes(image_buffer.getvalue())
+    image_bytes = image_buffer.getvalue()
+    image_base64_bytes = base64.encodebytes(image_bytes)
     image_base64_string = image_base64_bytes.decode("ascii")
 
     return image_base64_string
