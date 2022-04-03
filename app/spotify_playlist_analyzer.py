@@ -94,6 +94,7 @@ def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
         x_labels_year_interval.append(year_interval)
         y_labels_percentage.append(percentage)
 
+    plt.xticks(rotation=15)
     plt.bar(x_labels_year_interval, y_labels_percentage, edgecolor="black")
 
     image_buffer = BytesIO()
