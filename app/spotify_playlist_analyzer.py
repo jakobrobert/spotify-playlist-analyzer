@@ -1,7 +1,11 @@
+import base64
+
 from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
 import operator
+import matplotlib.pyplot as plt
+from io import BytesIO
 
 from spotify.spotify_client import SpotifyClient
 
@@ -43,6 +47,18 @@ def get_playlist_by_id(playlist_id):
     return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order)
 
 
+@app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
+def get_year_distribution_of_playlist(playlist_id):
+    playlist = spotify_client.get_playlist_by_id(playlist_id)
+
+    year_interval_to_percentage = playlist.get_year_interval_to_percentage()
+    histogram_image_base64 = __get_year_distribution_histogram_image_base64(year_interval_to_percentage)
+
+    return render_template("year_distribution.html", playlist=playlist,
+                           year_interval_to_percentage=year_interval_to_percentage,
+                           histogram_image_base64=histogram_image_base64)
+
+
 def __get_playlist_id_from_playlist_url(playlist_url):
     start_index = playlist_url.find("playlist/") + len("playlist/")
     end_index = playlist_url.find("?")
@@ -56,3 +72,27 @@ def __sort_tracks(tracks, sort_by, order):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+
+
+def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
+    plt.title("Year of Release Distribution")
+    plt.xlabel("Year Interval")
+    plt.ylabel("Percentage")
+
+    x_labels_year_interval = []
+    y_labels_percentage = []
+    for year_interval, percentage in year_interval_to_percentage.items():
+        x_labels_year_interval.append(year_interval)
+        y_labels_percentage.append(percentage)
+
+    plt.bar(x_labels_year_interval, y_labels_percentage, edgecolor="black")
+    plt.xticks(rotation=15)
+    plt.tight_layout()
+
+    image_buffer = BytesIO()
+    plt.savefig(image_buffer, format="png")
+    image_bytes = image_buffer.getvalue()
+    image_base64_bytes = base64.encodebytes(image_bytes)
+    image_base64_string = image_base64_bytes.decode("utf8")
+
+    return image_base64_string
