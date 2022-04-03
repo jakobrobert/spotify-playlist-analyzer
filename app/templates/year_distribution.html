@@ -20,7 +20,7 @@
                 <th>Year of Release</th>
                 <th>Percentage</th>
             </tr>
-            {% for year_interval, percentage in playlist.get_year_interval_to_percentage().items() %}
+            {% for year_interval, percentage in year_interval_to_percentage.items() %}
                 <tr>
                     <td>{{ year_interval }}</td>
                     <td>{{ "%.1f" % percentage }}</td>
@@ -29,7 +29,6 @@
         </table>
         <br>
 
-        <!-- TODO add histogram chart, show as image which is rendered by the server -->
         <h2>Year of Release Distribution [Histogram]</h2>
         <img src="data:image/png;base64,{{ histogram_image_base64 }}">
     </div>

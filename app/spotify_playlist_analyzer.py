@@ -51,12 +51,12 @@ def get_playlist_by_id(playlist_id):
 def get_year_distribution_of_playlist(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
 
-    # TODO clean up: pass data of playlist.get_year_interval_to_percentage() directly,
-    #  -> need to get it here anyway to render histogram
     year_interval_to_percentage = playlist.get_year_interval_to_percentage()
     histogram_image_base64 = __get_year_distribution_histogram_image_base64(year_interval_to_percentage)
 
-    return render_template("year_distribution.html", playlist=playlist, histogram_image_base64=histogram_image_base64)
+    return render_template("year_distribution.html", playlist=playlist,
+                           year_interval_to_percentage=year_interval_to_percentage,
+                           histogram_image_base64=histogram_image_base64)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
@@ -78,16 +78,6 @@ def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
     plt.title("Year of Release Distribution")
     plt.xlabel("Year Interval")
     plt.ylabel("Percentage")
-    plt.xticks(rotation=15)
-
-    # TODO replace by real data
-    print(year_interval_to_percentage)
-
-    """
-    x_labels_years = [1980, 1990, 2000, 2010, 2020]
-    y_labels_percentage = [5.0, 12.0, 42.5, 13.5, 20.6]
-    # TODO clean up: hardcoding width=10 is dangerous, depends on the interval used in SpotifyPlaylist.get_year_interval_to_percentage, should pass interval to this method
-    """
 
     x_labels_year_interval = []
     y_labels_percentage = []
@@ -96,6 +86,7 @@ def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
         y_labels_percentage.append(percentage)
 
     plt.bar(x_labels_year_interval, y_labels_percentage, edgecolor="black")
+    plt.xticks(rotation=15)
     plt.tight_layout()
 
     image_buffer = BytesIO()
