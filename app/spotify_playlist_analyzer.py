@@ -91,6 +91,7 @@ def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
 
     image_buffer = BytesIO()
     plt.savefig(image_buffer, format="png")
+    plt.clf()   # Clear the current figure. Else the different figures would be drawn on top of each other.
     image_bytes = image_buffer.getvalue()
     image_base64_bytes = base64.encodebytes(image_bytes)
     image_base64_string = image_base64_bytes.decode("utf8")
