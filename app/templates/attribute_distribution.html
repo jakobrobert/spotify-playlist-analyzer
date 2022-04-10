@@ -7,29 +7,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Spotify Playlist Analyzer - Playlist - {{ playlist.name }} - Tempo Distribution</title>
+    <title>Spotify Playlist Analyzer - Playlist - {{ playlist.name }} - {{ attribute_name }} Distribution</title>
 </head>
 <body>
     <div class="container">
         <h1>Playlist: {{ playlist.name }}</h1>
         <br>
 
-        <h2>Tempo (BPM) Distribution [Table]</h2>
+        <h2>{{ attribute_name }} Distribution [Table]</h2>
         <table class="table table-bordered">
             <tr>
-                <th>Tempo (BPM)</th>
+                <th>{{ attribute_name }}</th>
                 <th>Percentage</th>
             </tr>
-            {% for tempo_interval, percentage in tempo_interval_to_percentage.items() %}
+            {% for attribute_value, percentage in attribute_value_to_percentage.items() %}
                 <tr>
-                    <td>{{ tempo_interval }}</td>
+                    <td>{{ attribute_value }}</td>
                     <td>{{ "%.1f" % percentage }}</td>
                 </tr>
             {% endfor %}
         </table>
         <br>
 
-        <h2>Tempo (BPM) Distribution [Histogram]</h2>
+        <h2>{{ attribute_name }} Distribution [Histogram]</h2>
         <img src="data:image/png;base64,{{ histogram_image_base64 }}">
     </div>
 
