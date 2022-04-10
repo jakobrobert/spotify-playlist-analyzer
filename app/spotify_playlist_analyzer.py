@@ -52,7 +52,7 @@ def get_year_distribution_of_playlist(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
 
     year_interval_to_percentage = playlist.get_year_interval_to_percentage()
-    histogram_image_base64 = __get_year_distribution_histogram_image_base64(year_interval_to_percentage)
+    histogram_image_base64 = __get_histogram_image_base64("Year of Release", year_interval_to_percentage)
 
     return render_template("attribute_distribution.html", playlist=playlist,
                            attribute_name="Year of Release",
@@ -65,7 +65,8 @@ def get_tempo_distribution_of_playlist(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
 
     tempo_interval_to_percentage = playlist.get_tempo_interval_to_percentage()
-    histogram_image_base64 = __get_tempo_distribution_histogram_image_base64(tempo_interval_to_percentage)
+    # TODO clean up: can extract from here on into helper method, only attribute_name is different
+    histogram_image_base64 = __get_histogram_image_base64("Tempo (BPM)", tempo_interval_to_percentage)
 
     return render_template("attribute_distribution.html", playlist=playlist,
                            attribute_name="Tempo (BPM)",
@@ -88,15 +89,7 @@ def __sort_tracks(tracks, sort_by, order):
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
 
-def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
-    return __get_attribute_distribution_histogram_image_base64("Year of Release", year_interval_to_percentage)
-
-
-def __get_tempo_distribution_histogram_image_base64(tempo_interval_to_percentage):
-    return __get_attribute_distribution_histogram_image_base64("Tempo (BPM)", tempo_interval_to_percentage)
-
-
-def __get_attribute_distribution_histogram_image_base64(attribute_name, attribute_value_to_percentage):
+def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
     plt.title(f"{attribute_name} Distribution")
     plt.xlabel(attribute_name)
     plt.ylabel("Percentage")
