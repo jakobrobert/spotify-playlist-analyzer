@@ -94,15 +94,15 @@ def __get_tempo_distribution_histogram_image_base64(tempo_interval_to_percentage
     return __get_attribute_distribution_histogram_image_base64(tempo_interval_to_percentage, "Tempo (BPM)")
 
 
-def __get_attribute_distribution_histogram_image_base64(x_label_to_percentage, attribute_name):
+def __get_attribute_distribution_histogram_image_base64(attribute_value_to_percentage, attribute_name):
     plt.title(f"{attribute_name} Distribution")
     plt.xlabel(attribute_name)
     plt.ylabel("Percentage")
 
     x_labels = []
     y_labels = []
-    for x_label, percentage in x_label_to_percentage.items():
-        x_labels.append(x_label)
+    for attribute_value, percentage in attribute_value_to_percentage.items():
+        x_labels.append(attribute_value)
         y_labels.append(percentage)
 
     plt.bar(x_labels, y_labels, edgecolor="black")
