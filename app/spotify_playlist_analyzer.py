@@ -50,28 +50,17 @@ def get_playlist_by_id(playlist_id):
 @app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
 def get_year_distribution_of_playlist(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
-
     year_interval_to_percentage = playlist.get_year_interval_to_percentage()
-    histogram_image_base64 = __get_histogram_image_base64("Year of Release", year_interval_to_percentage)
 
-    return render_template("attribute_distribution.html", playlist=playlist,
-                           attribute_name="Year of Release",
-                           attribute_value_to_percentage=year_interval_to_percentage,
-                           histogram_image_base64=histogram_image_base64)
+    return __render_attribute_distribution_template(playlist, "Year of Release", year_interval_to_percentage)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/tempo-distribution", methods=["GET"])
 def get_tempo_distribution_of_playlist(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
-
     tempo_interval_to_percentage = playlist.get_tempo_interval_to_percentage()
-    # TODO clean up: can extract from here on into helper method, only attribute_name is different
-    histogram_image_base64 = __get_histogram_image_base64("Tempo (BPM)", tempo_interval_to_percentage)
 
-    return render_template("attribute_distribution.html", playlist=playlist,
-                           attribute_name="Tempo (BPM)",
-                           attribute_value_to_percentage=tempo_interval_to_percentage,
-                           histogram_image_base64=histogram_image_base64)
+    return __render_attribute_distribution_template(playlist, "Tempo (BPM)", tempo_interval_to_percentage)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
@@ -87,6 +76,15 @@ def __sort_tracks(tracks, sort_by, order):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+
+
+def __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage):
+    histogram_image_base64 = __get_histogram_image_base64(attribute_name, attribute_value_to_percentage)
+
+    return render_template("attribute_distribution.html", playlist=playlist,
+                           attribute_name=attribute_name,
+                           attribute_value_to_percentage=attribute_value_to_percentage,
+                           histogram_image_base64=histogram_image_base64)
 
 
 def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
