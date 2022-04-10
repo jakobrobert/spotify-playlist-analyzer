@@ -89,14 +89,14 @@ def __sort_tracks(tracks, sort_by, order):
 
 
 def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
-    return __get_attribute_distribution_histogram_image_base64(year_interval_to_percentage, "Year of Release")
+    return __get_attribute_distribution_histogram_image_base64("Year of Release", year_interval_to_percentage)
 
 
 def __get_tempo_distribution_histogram_image_base64(tempo_interval_to_percentage):
-    return __get_attribute_distribution_histogram_image_base64(tempo_interval_to_percentage, "Tempo (BPM)")
+    return __get_attribute_distribution_histogram_image_base64("Tempo (BPM)", tempo_interval_to_percentage)
 
 
-def __get_attribute_distribution_histogram_image_base64(attribute_value_to_percentage, attribute_name):
+def __get_attribute_distribution_histogram_image_base64(attribute_name, attribute_value_to_percentage):
     plt.title(f"{attribute_name} Distribution")
     plt.xlabel(attribute_name)
     plt.ylabel("Percentage")
