@@ -59,6 +59,18 @@ def get_year_distribution_of_playlist(playlist_id):
                            histogram_image_base64=histogram_image_base64)
 
 
+@app.route(URL_PREFIX + "playlist/<playlist_id>/tempo-distribution", methods=["GET"])
+def get_tempo_distribution_of_playlist(playlist_id):
+    playlist = spotify_client.get_playlist_by_id(playlist_id)
+
+    tempo_interval_to_percentage = playlist.get_tempo_interval_to_percentage()
+    histogram_image_base64 = __get_tempo_distribution_histogram_image_base64(tempo_interval_to_percentage)
+
+    return render_template("tempo_distribution.html", playlist=playlist,
+                           tempo_interval_to_percentage=tempo_interval_to_percentage,
+                           histogram_image_base64=histogram_image_base64)
+
+
 def __get_playlist_id_from_playlist_url(playlist_url):
     start_index = playlist_url.find("playlist/") + len("playlist/")
     end_index = playlist_url.find("?")
@@ -75,23 +87,31 @@ def __sort_tracks(tracks, sort_by, order):
 
 
 def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
-    plt.title("Year of Release Distribution")
-    plt.xlabel("Year Interval")
+    return __get_attribute_distribution_histogram_image_base64(year_interval_to_percentage, "Year of Release")
+
+
+def __get_tempo_distribution_histogram_image_base64(tempo_interval_to_percentage):
+    return __get_attribute_distribution_histogram_image_base64(tempo_interval_to_percentage, "Tempo (BPM)")
+
+
+def __get_attribute_distribution_histogram_image_base64(x_label_to_percentage, attribute_name):
+    plt.title(f"{attribute_name} Distribution")
+    plt.xlabel(attribute_name)
     plt.ylabel("Percentage")
 
-    x_labels_year_interval = []
-    y_labels_percentage = []
-    for year_interval, percentage in year_interval_to_percentage.items():
-        x_labels_year_interval.append(year_interval)
-        y_labels_percentage.append(percentage)
+    x_labels = []
+    y_labels = []
+    for x_label, percentage in x_label_to_percentage.items():
+        x_labels.append(x_label)
+        y_labels.append(percentage)
 
-    plt.bar(x_labels_year_interval, y_labels_percentage, edgecolor="black")
+    plt.bar(x_labels, y_labels, edgecolor="black")
     plt.xticks(rotation=15)
     plt.tight_layout()
 
     image_buffer = BytesIO()
     plt.savefig(image_buffer, format="png")
-    plt.clf()   # Clear the current figure. Else the different figures would be drawn on top of each other.
+    plt.clf()  # Clear the current figure. Else the different figures would be drawn on top of each other.
     image_bytes = image_buffer.getvalue()
     image_base64_bytes = base64.encodebytes(image_bytes)
     image_base64_string = image_base64_bytes.decode("utf8")
