@@ -54,8 +54,9 @@ def get_year_distribution_of_playlist(playlist_id):
     year_interval_to_percentage = playlist.get_year_interval_to_percentage()
     histogram_image_base64 = __get_year_distribution_histogram_image_base64(year_interval_to_percentage)
 
-    return render_template("year_distribution.html", playlist=playlist,
-                           year_interval_to_percentage=year_interval_to_percentage,
+    return render_template("attribute_distribution.html", playlist=playlist,
+                           attribute_name="Year of Release",
+                           attribute_value_to_percentage=year_interval_to_percentage,
                            histogram_image_base64=histogram_image_base64)
 
 
@@ -66,8 +67,9 @@ def get_tempo_distribution_of_playlist(playlist_id):
     tempo_interval_to_percentage = playlist.get_tempo_interval_to_percentage()
     histogram_image_base64 = __get_tempo_distribution_histogram_image_base64(tempo_interval_to_percentage)
 
-    return render_template("tempo_distribution.html", playlist=playlist,
-                           tempo_interval_to_percentage=tempo_interval_to_percentage,
+    return render_template("attribute_distribution.html", playlist=playlist,
+                           attribute_name="Tempo (BPM)",
+                           attribute_value_to_percentage=tempo_interval_to_percentage,
                            histogram_image_base64=histogram_image_base64)
 
 
