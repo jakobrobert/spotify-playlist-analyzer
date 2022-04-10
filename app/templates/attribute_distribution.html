@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Spotify Playlist Analyzer - Playlist - {{ playlist.name }} - {{ attribute_name }} Distribution</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Playlist: {{ playlist.name }}</h1>
+        <br>
+
+        <h2>{{ attribute_name }} Distribution [Table]</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>{{ attribute_name }}</th>
+                <th>Percentage</th>
+            </tr>
+            {% for attribute_value, percentage in attribute_value_to_percentage.items() %}
+                <tr>
+                    <td>{{ attribute_value }}</td>
+                    <td>{{ "%.1f" % percentage }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+
+        <h2>{{ attribute_name }} Distribution [Histogram]</h2>
+        <img src="data:image/png;base64,{{ histogram_image_base64 }}">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous">
+    </script>
+</body>
+</html>
