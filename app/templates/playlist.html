@@ -27,19 +27,9 @@
         <br>
         <br>
 
-        <h2>Tempo (BPM) Distribution</h2>
-        <table class="table table-bordered">
-            <tr>
-                <th>Tempo (BPM)</th>
-                <th>Percentage</th>
-            </tr>
-            {% for tempo_interval, percentage in playlist.get_tempo_interval_to_percentage().items() %}
-                <tr>
-                    <td>{{ tempo_interval }}</td>
-                    <td>{{ "%.1f" % percentage }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        <a href="{{ url_for('get_tempo_distribution_of_playlist', playlist_id=playlist.id) }}"
+           class="btn btn-secondary" role="button">Tempo Distribution</a>
+        <br>
         <br>
 
         <h2>Key Distribution</h2>
