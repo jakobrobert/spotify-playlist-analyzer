@@ -50,25 +50,17 @@ def get_playlist_by_id(playlist_id):
 @app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
 def get_year_distribution_of_playlist(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
-
     year_interval_to_percentage = playlist.get_year_interval_to_percentage()
-    histogram_image_base64 = __get_year_distribution_histogram_image_base64(year_interval_to_percentage)
 
-    return render_template("year_distribution.html", playlist=playlist,
-                           year_interval_to_percentage=year_interval_to_percentage,
-                           histogram_image_base64=histogram_image_base64)
+    return __render_attribute_distribution_template(playlist, "Year of Release", year_interval_to_percentage)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/tempo-distribution", methods=["GET"])
 def get_tempo_distribution_of_playlist(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
-
     tempo_interval_to_percentage = playlist.get_tempo_interval_to_percentage()
-    histogram_image_base64 = __get_tempo_distribution_histogram_image_base64(tempo_interval_to_percentage)
 
-    return render_template("tempo_distribution.html", playlist=playlist,
-                           tempo_interval_to_percentage=tempo_interval_to_percentage,
-                           histogram_image_base64=histogram_image_base64)
+    return __render_attribute_distribution_template(playlist, "Tempo (BPM)", tempo_interval_to_percentage)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
@@ -86,23 +78,24 @@ def __sort_tracks(tracks, sort_by, order):
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
 
-def __get_year_distribution_histogram_image_base64(year_interval_to_percentage):
-    return __get_attribute_distribution_histogram_image_base64(year_interval_to_percentage, "Year of Release")
+def __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage):
+    histogram_image_base64 = __get_histogram_image_base64(attribute_name, attribute_value_to_percentage)
+
+    return render_template("attribute_distribution.html", playlist=playlist,
+                           attribute_name=attribute_name,
+                           attribute_value_to_percentage=attribute_value_to_percentage,
+                           histogram_image_base64=histogram_image_base64)
 
 
-def __get_tempo_distribution_histogram_image_base64(tempo_interval_to_percentage):
-    return __get_attribute_distribution_histogram_image_base64(tempo_interval_to_percentage, "Tempo (BPM)")
-
-
-def __get_attribute_distribution_histogram_image_base64(x_label_to_percentage, attribute_name):
+def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
     plt.title(f"{attribute_name} Distribution")
     plt.xlabel(attribute_name)
     plt.ylabel("Percentage")
 
     x_labels = []
     y_labels = []
-    for x_label, percentage in x_label_to_percentage.items():
-        x_labels.append(x_label)
+    for attribute_value, percentage in attribute_value_to_percentage.items():
+        x_labels.append(attribute_value)
         y_labels.append(percentage)
 
     plt.bar(x_labels, y_labels, edgecolor="black")
