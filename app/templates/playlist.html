@@ -37,19 +37,9 @@
         <br>
         <br>
 
-        <h2>Mode Distribution</h2>
-        <table class="table table-bordered">
-            <tr>
-                <th>Mode</th>
-                <th>Percentage</th>
-            </tr>
-            {% for mode, percentage in playlist.get_mode_to_percentage().items() %}
-                <tr>
-                    <td>{{ mode }}</td>
-                    <td>{{ "%.1f" % percentage }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        <a href="{{ url_for('get_mode_distribution_of_playlist', playlist_id=playlist.id) }}"
+           class="btn btn-secondary" role="button">Mode Distribution</a>
+        <br>
         <br>
 
         <h2>Tracks</h2>
