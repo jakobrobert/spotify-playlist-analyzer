@@ -71,6 +71,14 @@ def get_key_distribution_of_playlist(playlist_id):
     return __render_attribute_distribution_template(playlist, "Key", key_to_percentage)
 
 
+@app.route(URL_PREFIX + "playlist/<playlist_id>/mode-distribution", methods=["GET"])
+def get_mode_distribution_of_playlist(playlist_id):
+    playlist = spotify_client.get_playlist_by_id(playlist_id)
+    mode_to_percentage = playlist.get_mode_to_percentage()
+
+    return __render_attribute_distribution_template(playlist, "Mode", mode_to_percentage)
+
+
 def __get_playlist_id_from_playlist_url(playlist_url):
     start_index = playlist_url.find("playlist/") + len("playlist/")
     end_index = playlist_url.find("?")
