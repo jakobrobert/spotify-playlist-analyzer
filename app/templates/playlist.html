@@ -32,19 +32,9 @@
         <br>
         <br>
 
-        <h2>Key Distribution</h2>
-        <table class="table table-bordered">
-            <tr>
-                <th>Key</th>
-                <th>Percentage</th>
-            </tr>
-            {% for key, percentage in playlist.get_key_to_percentage().items() %}
-                <tr>
-                    <td>{{ key }}</td>
-                    <td>{{ "%.1f" % percentage }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        <a href="{{ url_for('get_key_distribution_of_playlist', playlist_id=playlist.id) }}"
+           class="btn btn-secondary" role="button">Key Distribution</a>
+        <br>
         <br>
 
         <h2>Mode Distribution</h2>
