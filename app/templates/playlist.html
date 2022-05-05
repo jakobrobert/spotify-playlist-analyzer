@@ -110,16 +110,16 @@
                 {% set track = playlist.tracks[i] %}
                 <tr>
                     <td>{{ i + 1 }}</td>
-                    <td>{{ ", ".join(track.artists) }}</td>
+                    <td>{{ track.get_artists_string() }}</td>
                     <td>{{ track.title }}</td>
                     <td>{{ track.get_duration_string() }}</td>
                     <td>{{ track.year_of_release }}</td>
-                    <td>{{ "%.1f" % track.tempo }}</td>
+                    <td>{{ track.get_tempo_string() }}</td>
                     <td>{{ track.key }}</td>
                     <td>{{ track.mode }}</td>
                     <td>{{ track.camelot }}</td>
-                    <td>{{ "%.1f" % track.loudness }}</td>
-                    <td>{{ ", ".join(track.genres) }}</td>
+                    <td>{{ track.get_loudness_string() }}</td>
+                    <td>{{ track.get_genres_string() }}</td>
                 </tr>
             {% endfor %}
         </table>
