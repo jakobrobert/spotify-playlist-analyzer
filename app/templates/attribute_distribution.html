@@ -23,7 +23,7 @@
             {% for attribute_value, percentage in attribute_value_to_percentage.items() %}
                 <tr>
                     <td>{{ attribute_value }}</td>
-                    <td>{{ "%.1f" % percentage }}</td>
+                    <td>{{ playlist.percentage_to_string(percentage) }}</td>
                 </tr>
             {% endfor %}
         </table>
