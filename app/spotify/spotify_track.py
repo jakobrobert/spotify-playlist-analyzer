@@ -18,12 +18,10 @@ class SpotifyTrack:
         return ", ".join(self.artists)
 
     def get_tempo_string(self):
-        # TODO CLEANUP use f string
-        return "%.1f" % self.tempo
+        return f"{self.tempo:.1f}"
 
     def get_loudness_string(self):
-        # TODO CLEANUP use f string
-        return "%.1f" % self.loudness
+        return f"{self.loudness:.1f}"
 
     def get_genres_string(self):
         return ", ".join(self.genres)
