@@ -30,16 +30,15 @@ def get_playlist_by_url():
     playlist_url = request.args.get("playlist_url")
 
     playlist_id = __get_playlist_id_from_playlist_url(playlist_url)
-    redirect_url = url_for("get_playlist_by_id",
-                           playlist_id=playlist_id, sort_by="none", order="ascending")
+    redirect_url = url_for("get_playlist_by_id", playlist_id=playlist_id)
 
     return redirect(redirect_url)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
-    sort_by = request.args.get("sort_by")
-    order = request.args.get("order")
+    sort_by = request.args.get("sort_by") or "none"
+    order = request.args.get("order") or "ascending"
 
     playlist = spotify_client.get_playlist_by_id(playlist_id)
     __sort_tracks(playlist.tracks, sort_by, order)
