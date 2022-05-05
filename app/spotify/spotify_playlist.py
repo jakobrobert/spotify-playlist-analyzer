@@ -12,6 +12,10 @@ class SpotifyPlaylist:
         self.name = "n/a"
         self.tracks = []
 
+    # Cannot be static, else template code cannot access it
+    def percentage_to_string(self, percentage):
+        return f"{percentage:.1f}"
+
     def get_total_duration_ms(self):
         total_duration_ms = 0
 
