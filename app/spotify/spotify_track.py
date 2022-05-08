@@ -3,13 +3,13 @@ class SpotifyTrack:
         self.title = "n/a"
         self.artists = []
         self.duration_ms = 0
-        self.year_of_release = -1
+        self.year_of_release = 0
         self.genres = []
-        self.tempo = -1.0
+        self.tempo = 0
         self.key = "n/a"
         self.mode = "n/a"
         self.camelot = "n/a"
-        self.loudness = -1.0
+        self.loudness = 0
 
     def get_duration_string(self):
         return self.get_duration_string_helper(self.duration_ms)
