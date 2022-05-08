@@ -14,6 +14,7 @@ class SpotifyClient:
         self.CLIENT_SECRET = client_secret
 
     def get_playlist_by_id(self, playlist_id):
+        # TODO CLEANUP extract method?
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
         headers = {"Authorization": f"Bearer {access_token}"}
@@ -41,6 +42,24 @@ class SpotifyClient:
         tracks = []
 
         track_items = playlist_data["tracks"]["items"]
+
+        print(f"len(track_items): {len(track_items)}")
+        # TODO contains only first 100 tracks, need more requests to retrieve all
+        next_url = playlist_data["tracks"]["next"]
+        print(f"next_url: {next_url}")
+
+        while next_url is not None:
+            # TODO CLEANUP these three lines are duplicated for all GET requests
+            headers = {"Authorization": f"Bearer {access_token}"}
+            response = requests.get(next_url, headers=headers)
+            tracks_data = response.json()
+
+            new_track_items = tracks_data["items"]
+            track_items.extend(new_track_items)
+            print(f"len(track_items): {len(track_items)}")
+            next_url = tracks_data["next"]
+            print(f"next_url: {next_url}")
+
         track_ids = []
         artist_ids_per_track = []
         all_artist_ids = []
@@ -62,7 +81,8 @@ class SpotifyClient:
             all_artist_ids.extend(artist_ids)
 
         SpotifyClient.__set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token)
-        SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
+        # TODO need to fix so it can handle more than 100 tracks
+        # SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
 
         return tracks
 
