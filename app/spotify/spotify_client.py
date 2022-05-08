@@ -81,8 +81,7 @@ class SpotifyClient:
             all_artist_ids.extend(artist_ids)
 
         SpotifyClient.__set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token)
-        # TODO need to fix so it can handle more than 100 tracks
-        # SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
+        SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
 
         return tracks
 
@@ -168,6 +167,7 @@ class SpotifyClient:
 
     @staticmethod
     def __set_audio_features_of_tracks(tracks, track_ids, access_token):
+        """
         url = "https://api.spotify.com/v1/audio-features"
         headers = {"Authorization": f"Bearer {access_token}"}
         # TODO #5 once more than 100 songs are supported, separate into several requests as done for genres
@@ -177,6 +177,8 @@ class SpotifyClient:
         response_data = response.json()
 
         all_audio_features = response_data["audio_features"]
+        """
+        all_audio_features = SpotifyClient.__get_audio_features(track_ids, access_token)
 
         assert len(all_audio_features) == len(tracks)
 
@@ -188,6 +190,34 @@ class SpotifyClient:
             track.mode = SpotifyClient.__get_mode_from_audio_features(audio_features)
             track.camelot = SpotifyClient.__get_camelot_from_key_and_mode(track.key, track.mode)
             track.loudness = audio_features["loudness"]
+
+    @staticmethod
+    def __get_audio_features(track_ids, access_token):
+        audio_features = []
+
+        url = "https://api.spotify.com/v1/audio-features"
+        headers = {"Authorization": f"Bearer {access_token}"}
+
+        # TODO CLEANUP partly duplicated code with __get_artist_id_to_genres
+        max_ids_per_request = 100
+        for i in range(0, len(track_ids), max_ids_per_request):
+            end_index = min(i + max_ids_per_request, len(track_ids))
+            curr_track_ids = track_ids[i:end_index]
+            SpotifyClient.__get_audio_features_for_one_request(curr_track_ids, url, headers, audio_features)
+
+        return audio_features
+
+    # TODO CLEANUP prefer to return list rather than changing existing one
+    @staticmethod
+    def __get_audio_features_for_one_request(track_ids, url, headers, audio_features):
+        # TODO CLEANUP partly duplicated with __get_artist_id_to_genres_for_one_request
+        track_ids_string = ",".join(track_ids)
+        params = {"ids": track_ids_string}
+        response = requests.get(url, headers=headers, params=params)
+        response_data = response.json()
+
+        curr_audio_features = response_data["audio_features"]
+        audio_features.extend(curr_audio_features)
 
     @staticmethod
     def __get_key_from_audio_features(audio_features):
