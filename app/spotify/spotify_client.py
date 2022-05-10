@@ -205,7 +205,7 @@ class SpotifyClient:
     @staticmethod
     def __get_camelot_from_track(track):
         key = track.get_key_string()
-        mode = track.mode
+        mode = track.get_mode_string()
         if key == "G♯/A♭" and mode == "Minor":
             return "01A"
         if key == "B" and mode == "Major":
