@@ -206,12 +206,16 @@ class SpotifyClient:
 
     @staticmethod
     def __get_key_from_audio_features(audio_features):
+        # TODO inline method
+        return audio_features["key"]
+        """
         key = audio_features["key"]
 
         if key == -1:
             return "n/a"
 
         return SpotifyClient.KEY_NAMES[key]
+        """
 
     @staticmethod
     def __get_mode_from_audio_features(audio_features):
