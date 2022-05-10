@@ -106,17 +106,16 @@
                 <th>Loudness<br>(dB)</th>
                 <th>Genres</th>
             </tr>
-            {% for i in range(0, playlist.tracks | length) %}
-                {% set track = playlist.tracks[i] %}
+            {% for track in playlist.tracks %}
                 <tr>
-                    <td>{{ i + 1 }}</td>
+                    <td>{{ loop.index }}</td>
                     <td>{{ track.get_artists_string() }}</td>
                     <td>{{ track.title }}</td>
                     <td>{{ track.get_duration_string() }}</td>
                     <td>{{ track.year_of_release }}</td>
                     <td>{{ track.get_tempo_string() }}</td>
-                    <td>{{ track.key }}</td>
-                    <td>{{ track.mode }}</td>
+                    <td>{{ track.get_key_string() }}</td>
+                    <td>{{ track.get_mode_string() }}</td>
                     <td>{{ track.camelot }}</td>
                     <td>{{ track.get_loudness_string() }}</td>
                     <td>{{ track.get_genres_string() }}</td>
