@@ -9,7 +9,7 @@ class SpotifyTrack:
         self.genres = []
         self.tempo = 0
         self.key = -1
-        self.mode = "n/a"
+        self.mode = -1
         self.camelot = "n/a"
         self.loudness = 0
 
