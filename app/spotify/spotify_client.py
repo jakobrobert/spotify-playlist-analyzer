@@ -171,7 +171,7 @@ class SpotifyClient:
             track.tempo = audio_features["tempo"]
             track.key = audio_features["key"]
             track.mode = SpotifyClient.__get_mode_from_audio_features(audio_features)
-            track.camelot = SpotifyClient.__get_camelot_from_key_and_mode(track.key, track.mode)
+            track.camelot = SpotifyClient.__get_camelot_from_track(track)
             track.loudness = audio_features["loudness"]
 
     @staticmethod
@@ -215,8 +215,9 @@ class SpotifyClient:
         return "n/a"
 
     @staticmethod
-    def __get_camelot_from_key_and_mode(key, mode):
-        # TODO need to fix, now key is number
+    def __get_camelot_from_track(track):
+        key = track.get_key_string()
+        mode = track.mode
         if key == "G♯/A♭" and mode == "Minor":
             return "01A"
         if key == "B" and mode == "Major":
