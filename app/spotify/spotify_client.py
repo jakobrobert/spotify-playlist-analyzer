@@ -7,8 +7,6 @@ from spotify.spotify_playlist import SpotifyPlaylist
 
 
 class SpotifyClient:
-    KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
-
     def __init__(self, client_id, client_secret):
         self.CLIENT_ID = client_id
         self.CLIENT_SECRET = client_secret
@@ -171,9 +169,9 @@ class SpotifyClient:
             audio_features = all_audio_features[i]
             track = tracks[i]
             track.tempo = audio_features["tempo"]
-            track.key = SpotifyClient.__get_key_from_audio_features(audio_features)
-            track.mode = SpotifyClient.__get_mode_from_audio_features(audio_features)
-            track.camelot = SpotifyClient.__get_camelot_from_key_and_mode(track.key, track.mode)
+            track.key = audio_features["key"]
+            track.mode = audio_features["mode"]
+            track.camelot = SpotifyClient.__get_camelot_from_track(track)
             track.loudness = audio_features["loudness"]
 
     @staticmethod
@@ -205,28 +203,9 @@ class SpotifyClient:
         return response_data["audio_features"]
 
     @staticmethod
-    def __get_key_from_audio_features(audio_features):
-        key = audio_features["key"]
-
-        if key == -1:
-            return "n/a"
-
-        return SpotifyClient.KEY_NAMES[key]
-
-    @staticmethod
-    def __get_mode_from_audio_features(audio_features):
-        mode = audio_features["mode"]
-
-        if mode == 0:
-            return "Minor"
-
-        if mode == 1:
-            return "Major"
-
-        return "n/a"
-
-    @staticmethod
-    def __get_camelot_from_key_and_mode(key, mode):
+    def __get_camelot_from_track(track):
+        key = track.get_key_string()
+        mode = track.get_mode_string()
         if key == "G♯/A♭" and mode == "Minor":
             return "01A"
         if key == "B" and mode == "Major":
