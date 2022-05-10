@@ -170,7 +170,7 @@ class SpotifyClient:
             track = tracks[i]
             track.tempo = audio_features["tempo"]
             track.key = audio_features["key"]
-            track.mode = SpotifyClient.__get_mode_from_audio_features(audio_features)
+            track.mode = audio_features["mode"]
             track.camelot = SpotifyClient.__get_camelot_from_track(track)
             track.loudness = audio_features["loudness"]
 
@@ -202,6 +202,7 @@ class SpotifyClient:
 
         return response_data["audio_features"]
 
+    # TODO CLEANUP remove
     @staticmethod
     def __get_mode_from_audio_features(audio_features):
         mode = audio_features["mode"]
