@@ -106,7 +106,7 @@
                 <th>Loudness<br>(dB)</th>
                 <th>Genres</th>
             </tr>
-            {% for i in range(0, playlist.tracks | length) %}
+            {% for i in range(0, playlist.tracks | length) %} <!-- TODO CLEANUP Use enumerate -->
                 {% set track = playlist.tracks[i] %}
                 <tr>
                     <td>{{ i + 1 }}</td>

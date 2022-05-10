@@ -26,10 +26,9 @@ class SpotifyTrack:
         return f"{self.tempo:.1f}"
 
     def get_key_string(self):
-        if self.key == -1:
+        if self.key < 0 or self.key >= len(SpotifyTrack.KEY_NAMES):
             return "n/a"
 
-        # TODO ME CLEANUP check if key in dict instead of for -1 to be safe
         return SpotifyTrack.KEY_NAMES[self.key]
 
     def get_mode_string(self):
