@@ -29,7 +29,17 @@ class SpotifyTrack:
         if self.key == -1:
             return "n/a"
 
+        # TODO ME CLEANUP check if key in dict instead of for -1 to be safe
         return SpotifyTrack.KEY_NAMES[self.key]
+
+    def get_mode_string(self):
+        if self.mode == 0:
+            return "Minor"
+
+        if self.mode == 1:
+            return "Major"
+
+        return "n/a"
 
     def get_loudness_string(self):
         return f"{self.loudness:.1f}"

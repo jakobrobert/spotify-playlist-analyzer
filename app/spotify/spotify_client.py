@@ -202,19 +202,6 @@ class SpotifyClient:
 
         return response_data["audio_features"]
 
-    # TODO CLEANUP remove
-    @staticmethod
-    def __get_mode_from_audio_features(audio_features):
-        mode = audio_features["mode"]
-
-        if mode == 0:
-            return "Minor"
-
-        if mode == 1:
-            return "Major"
-
-        return "n/a"
-
     @staticmethod
     def __get_camelot_from_track(track):
         key = track.get_key_string()
