@@ -129,9 +129,14 @@ class SpotifyClient:
         headers = {"Authorization": f"Bearer {access_token}"}
 
         max_ids_per_request = 50
-        for i in range(0, len(artist_ids), max_ids_per_request):
-            end_index = min(i + max_ids_per_request, len(artist_ids))
-            curr_artist_ids = artist_ids[i:end_index]
+        split_artist_ids = []
+
+        for start_index in range(0, len(artist_ids), max_ids_per_request):
+            end_index = min(start_index + max_ids_per_request, len(artist_ids))
+            curr_artist_ids = artist_ids[start_index:end_index]
+            split_artist_ids.append(curr_artist_ids)
+
+        for curr_artist_ids in split_artist_ids:
             SpotifyClient.__get_artist_id_to_genres_for_one_request(curr_artist_ids, url, headers, artist_id_to_genres)
 
         return artist_id_to_genres
