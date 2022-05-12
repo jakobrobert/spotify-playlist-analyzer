@@ -39,6 +39,7 @@ class SpotifyClient:
 
         return response.json()
 
+    # TODO CLEANUP function too long, split it up
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
         tracks = []
@@ -49,11 +50,7 @@ class SpotifyClient:
 
         # Get remaining tracks, playlist_data only contains the first 100
         while next_url is not None:
-            # TODO CLEANUP these three lines are duplicated for all GET requests
-            headers = {"Authorization": f"Bearer {access_token}"}
-            response = requests.get(next_url, headers=headers)
-            tracks_data = response.json()
-
+            tracks_data = SpotifyClient.__send_get_request(next_url, access_token)
             new_track_items = tracks_data["items"]
             track_items.extend(new_track_items)
             next_url = tracks_data["next"]
