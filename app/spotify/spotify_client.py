@@ -147,6 +147,7 @@ class SpotifyClient:
 
         return chunks
 
+    # TODO CLEANUP out param is dirty, better: return dict for this request, merge data outside of this function
     @staticmethod
     def __get_artist_id_to_genres_for_one_request(artist_ids, url, headers, artist_id_to_genres):
         artist_ids_string = ",".join(artist_ids)
@@ -192,11 +193,10 @@ class SpotifyClient:
         url = "https://api.spotify.com/v1/audio-features"
         headers = {"Authorization": f"Bearer {access_token}"}
 
-        # TODO CLEANUP partly duplicated code with __get_artist_id_to_genres
         max_ids_per_request = 100
-        for i in range(0, len(track_ids), max_ids_per_request):
-            end_index = min(i + max_ids_per_request, len(track_ids))
-            curr_track_ids = track_ids[i:end_index]
+        track_id_chunks = SpotifyClient.__split_list_into_chunks(track_ids, max_ids_per_request)
+
+        for curr_track_ids in track_id_chunks:
             curr_audio_features = SpotifyClient.__get_audio_features_of_tracks_for_one_request(
                 curr_track_ids, url, headers)
             audio_features.extend(curr_audio_features)
