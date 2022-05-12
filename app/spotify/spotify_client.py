@@ -12,12 +12,9 @@ class SpotifyClient:
         self.CLIENT_SECRET = client_secret
 
     def get_playlist_by_id(self, playlist_id):
-        # TODO CLEANUP extract method?
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
-        headers = {"Authorization": f"Bearer {access_token}"}
-        response = requests.get(url, headers=headers)
-        playlist_data = response.json()
+        playlist_data = SpotifyClient.__send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
         playlist.id = playlist_id
@@ -34,6 +31,13 @@ class SpotifyClient:
         response_data = response.json()
 
         return response_data["access_token"]
+
+    @staticmethod
+    def __send_get_request(url, access_token):
+        headers = {"Authorization": f"Bearer {access_token}"}
+        response = requests.get(url, headers=headers)
+
+        return response.json()
 
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
@@ -206,6 +210,7 @@ class SpotifyClient:
     @staticmethod
     def __get_audio_features_of_tracks_for_one_request(track_ids, url, headers):
         # TODO CLEANUP partly duplicated code with __get_artist_id_to_genres_for_one_request
+        #   -> Can re-use __send_get_request, need to add params
         track_ids_string = ",".join(track_ids)
         params = {"ids": track_ids_string}
         response = requests.get(url, headers=headers, params=params)
