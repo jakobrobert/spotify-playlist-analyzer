@@ -25,6 +25,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
+def compare_playlists():
+    return render_template("compare_playlists.html")
+
+
 @app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
 def get_playlist_by_url():
     playlist_url = request.args.get("playlist_url")
@@ -76,6 +81,13 @@ def get_mode_distribution_of_playlist(playlist_id):
     mode_to_percentage = playlist.get_mode_to_percentage()
 
     return __render_attribute_distribution_template(playlist, "Mode", mode_to_percentage)
+
+
+@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
+def compare_tempo_distribution_of_playlists():
+    # TODO implement
+    # -> similar to get_playlist_by_url, convert both urls to id, then redirect to new page, pass the ids to it
+    return redirect(url_for("compare_playlists"))
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
