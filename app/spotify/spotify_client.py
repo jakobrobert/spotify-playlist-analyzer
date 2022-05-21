@@ -53,11 +53,7 @@ class SpotifyClient:
         for track_item in track_items:
             track_data = track_item["track"]
 
-            track = SpotifyTrack()
-            track.title = track_data["name"]
-            track.artists = SpotifyClient.__get_artists_of_track(track_data)
-            track.duration_ms = track_data["duration_ms"]
-            track.year_of_release = SpotifyClient.__get_year_of_release_of_track(track_data)
+            track = SpotifyClient.__create_spotify_track(track_data)
             tracks.append(track)
 
             track_ids.append(track_data["id"])
@@ -85,6 +81,17 @@ class SpotifyClient:
             next_url = tracks_data["next"]
 
         return track_items
+
+    @staticmethod
+    def __create_spotify_track(track_data):
+        track = SpotifyTrack()
+
+        track.title = track_data["name"]
+        track.artists = SpotifyClient.__get_artists_of_track(track_data)
+        track.duration_ms = track_data["duration_ms"]
+        track.year_of_release = SpotifyClient.__get_year_of_release_of_track(track_data)
+
+        return track
 
     @staticmethod
     def __get_artists_of_track(track):
