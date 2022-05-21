@@ -44,16 +44,7 @@ class SpotifyClient:
     def __get_tracks_of_playlist(playlist_data, access_token):
         tracks = []
 
-        tracks_data = playlist_data["tracks"]
-        track_items = tracks_data["items"]
-        next_url = tracks_data["next"]
-
-        # Get remaining tracks, playlist_data only contains the first 100
-        while next_url is not None:
-            tracks_data = SpotifyClient.__send_get_request(next_url, access_token)
-            new_track_items = tracks_data["items"]
-            track_items.extend(new_track_items)
-            next_url = tracks_data["next"]
+        track_items = SpotifyClient.__get_all_track_items_of_playlist(playlist_data, access_token)
 
         track_ids = []
         artist_ids_per_track = []
@@ -79,6 +70,21 @@ class SpotifyClient:
         SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
 
         return tracks
+
+    @staticmethod
+    def __get_all_track_items_of_playlist(playlist_data, access_token):
+        tracks_data = playlist_data["tracks"]
+        track_items = tracks_data["items"]
+        next_url = tracks_data["next"]
+
+        # Get remaining tracks, playlist_data only contains the first 100
+        while next_url is not None:
+            tracks_data = SpotifyClient.__send_get_request(next_url, access_token)
+            new_track_items = tracks_data["items"]
+            track_items.extend(new_track_items)
+            next_url = tracks_data["next"]
+
+        return track_items
 
     @staticmethod
     def __get_artists_of_track(track):
