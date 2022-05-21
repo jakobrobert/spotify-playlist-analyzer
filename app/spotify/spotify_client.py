@@ -12,12 +12,9 @@ class SpotifyClient:
         self.CLIENT_SECRET = client_secret
 
     def get_playlist_by_id(self, playlist_id):
-        # TODO CLEANUP extract method?
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
-        headers = {"Authorization": f"Bearer {access_token}"}
-        response = requests.get(url, headers=headers)
-        playlist_data = response.json()
+        playlist_data = SpotifyClient.__send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
         playlist.id = playlist_id
@@ -36,23 +33,18 @@ class SpotifyClient:
         return response_data["access_token"]
 
     @staticmethod
+    def __send_get_request(url, access_token):
+        headers = {"Authorization": f"Bearer {access_token}"}
+        response = requests.get(url, headers=headers)
+
+        return response.json()
+
+    # TODO CLEANUP function too long, split it up
+    @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
         tracks = []
 
-        tracks_data = playlist_data["tracks"]
-        track_items = tracks_data["items"]
-        next_url = tracks_data["next"]
-
-        # Get remaining tracks, playlist_data only contains the first 100
-        while next_url is not None:
-            # TODO CLEANUP these three lines are duplicated for all GET requests
-            headers = {"Authorization": f"Bearer {access_token}"}
-            response = requests.get(next_url, headers=headers)
-            tracks_data = response.json()
-
-            new_track_items = tracks_data["items"]
-            track_items.extend(new_track_items)
-            next_url = tracks_data["next"]
+        track_items = SpotifyClient.__get_all_track_items_of_playlist(playlist_data, access_token)
 
         track_ids = []
         artist_ids_per_track = []
@@ -61,11 +53,7 @@ class SpotifyClient:
         for track_item in track_items:
             track_data = track_item["track"]
 
-            track = SpotifyTrack()
-            track.title = track_data["name"]
-            track.artists = SpotifyClient.__get_artists_of_track(track_data)
-            track.duration_ms = track_data["duration_ms"]
-            track.year_of_release = SpotifyClient.__get_year_of_release_of_track(track_data)
+            track = SpotifyClient.__create_spotify_track(track_data)
             tracks.append(track)
 
             track_ids.append(track_data["id"])
@@ -78,6 +66,32 @@ class SpotifyClient:
         SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
 
         return tracks
+
+    @staticmethod
+    def __get_all_track_items_of_playlist(playlist_data, access_token):
+        tracks_data = playlist_data["tracks"]
+        track_items = tracks_data["items"]
+        next_url = tracks_data["next"]
+
+        # Get remaining tracks, playlist_data only contains the first 100
+        while next_url is not None:
+            tracks_data = SpotifyClient.__send_get_request(next_url, access_token)
+            new_track_items = tracks_data["items"]
+            track_items.extend(new_track_items)
+            next_url = tracks_data["next"]
+
+        return track_items
+
+    @staticmethod
+    def __create_spotify_track(track_data):
+        track = SpotifyTrack()
+
+        track.title = track_data["name"]
+        track.artists = SpotifyClient.__get_artists_of_track(track_data)
+        track.duration_ms = track_data["duration_ms"]
+        track.year_of_release = SpotifyClient.__get_year_of_release_of_track(track_data)
+
+        return track
 
     @staticmethod
     def __get_artists_of_track(track):
@@ -126,26 +140,47 @@ class SpotifyClient:
         artist_id_to_genres = {}
 
         url = "https://api.spotify.com/v1/artists"
-        headers = {"Authorization": f"Bearer {access_token}"}
-
         max_ids_per_request = 50
-        for i in range(0, len(artist_ids), max_ids_per_request):
-            end_index = min(i + max_ids_per_request, len(artist_ids))
-            curr_artist_ids = artist_ids[i:end_index]
-            SpotifyClient.__get_artist_id_to_genres_for_one_request(curr_artist_ids, url, headers, artist_id_to_genres)
+        artist_id_chunks = SpotifyClient.__split_list_into_chunks(artist_ids, max_ids_per_request)
+
+        for curr_artist_ids in artist_id_chunks:
+            curr_artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres_for_one_request(
+                curr_artist_ids, url, access_token)
+            artist_id_to_genres.update(curr_artist_id_to_genres)
 
         return artist_id_to_genres
 
     @staticmethod
-    def __get_artist_id_to_genres_for_one_request(artist_ids, url, headers, artist_id_to_genres):
-        artist_ids_string = ",".join(artist_ids)
-        params = {"ids": artist_ids_string}
-        response = requests.get(url, headers=headers, params=params)
-        response_data = response.json()
+    def __split_list_into_chunks(list_, chunk_size):
+        chunks = []
 
+        for start_index in range(0, len(list_), chunk_size):
+            end_index = min(start_index + chunk_size, len(list_))
+            chunk = list_[start_index:end_index]
+            chunks.append(chunk)
+
+        return chunks
+
+    @staticmethod
+    def __get_artist_id_to_genres_for_one_request(artist_ids, url, access_token):
+        artist_id_to_genres = {}
+
+        response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, artist_ids)
         artists = response_data["artists"]
+
         for artist in artists:
             artist_id_to_genres[artist["id"]] = artist["genres"]
+
+        return artist_id_to_genres
+
+    @staticmethod
+    def __send_get_request_with_ids(url, access_token, ids):
+        headers = {"Authorization": f"Bearer {access_token}"}
+        ids_string = ",".join(ids)
+        params = {"ids": ids_string}
+        response = requests.get(url, headers=headers, params=params)
+
+        return response.json()
 
     @staticmethod
     def __get_genres_of_artists(artist_ids, artist_id_to_genres):
@@ -179,26 +214,19 @@ class SpotifyClient:
         audio_features = []
 
         url = "https://api.spotify.com/v1/audio-features"
-        headers = {"Authorization": f"Bearer {access_token}"}
-
-        # TODO CLEANUP partly duplicated code with __get_artist_id_to_genres
         max_ids_per_request = 100
-        for i in range(0, len(track_ids), max_ids_per_request):
-            end_index = min(i + max_ids_per_request, len(track_ids))
-            curr_track_ids = track_ids[i:end_index]
+        track_id_chunks = SpotifyClient.__split_list_into_chunks(track_ids, max_ids_per_request)
+
+        for curr_track_ids in track_id_chunks:
             curr_audio_features = SpotifyClient.__get_audio_features_of_tracks_for_one_request(
-                curr_track_ids, url, headers)
+                curr_track_ids, url, access_token)
             audio_features.extend(curr_audio_features)
 
         return audio_features
 
     @staticmethod
-    def __get_audio_features_of_tracks_for_one_request(track_ids, url, headers):
-        # TODO CLEANUP partly duplicated code with __get_artist_id_to_genres_for_one_request
-        track_ids_string = ",".join(track_ids)
-        params = {"ids": track_ids_string}
-        response = requests.get(url, headers=headers, params=params)
-        response_data = response.json()
+    def __get_audio_features_of_tracks_for_one_request(track_ids, url, access_token):
+        response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, track_ids)
 
         return response_data["audio_features"]
 
