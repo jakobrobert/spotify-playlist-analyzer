@@ -197,26 +197,19 @@ class SpotifyClient:
         audio_features = []
 
         url = "https://api.spotify.com/v1/audio-features"
-        headers = {"Authorization": f"Bearer {access_token}"}
-
         max_ids_per_request = 100
         track_id_chunks = SpotifyClient.__split_list_into_chunks(track_ids, max_ids_per_request)
 
         for curr_track_ids in track_id_chunks:
             curr_audio_features = SpotifyClient.__get_audio_features_of_tracks_for_one_request(
-                curr_track_ids, url, headers)
+                curr_track_ids, url, access_token)
             audio_features.extend(curr_audio_features)
 
         return audio_features
 
     @staticmethod
-    def __get_audio_features_of_tracks_for_one_request(track_ids, url, headers):
-        # TODO CLEANUP partly duplicated code with __get_artist_id_to_genres_for_one_request
-        #   -> Can re-use __send_get_request, need to add params
-        track_ids_string = ",".join(track_ids)
-        params = {"ids": track_ids_string}
-        response = requests.get(url, headers=headers, params=params)
-        response_data = response.json()
+    def __get_audio_features_of_tracks_for_one_request(track_ids, url, access_token):
+        response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, track_ids)
 
         return response_data["audio_features"]
 
