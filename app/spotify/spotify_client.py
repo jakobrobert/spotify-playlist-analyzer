@@ -151,14 +151,20 @@ class SpotifyClient:
     # TODO CLEANUP out param is dirty, better: return dict for this request, merge data outside of this function
     @staticmethod
     def __get_artist_id_to_genres_for_one_request(artist_ids, url, headers, artist_id_to_genres):
-        artist_ids_string = ",".join(artist_ids)
-        params = {"ids": artist_ids_string}
-        response = requests.get(url, headers=headers, params=params)
-        response_data = response.json()
+        response_data = SpotifyClient.__send_get_request_with_ids(url, headers, artist_ids)
 
         artists = response_data["artists"]
         for artist in artists:
             artist_id_to_genres[artist["id"]] = artist["genres"]
+
+    @staticmethod
+    def __send_get_request_with_ids(url, access_token, ids):
+        headers = {"Authorization": f"Bearer {access_token}"}
+        ids_string = ",".join(ids)
+        params = {"ids": ids_string}
+        response = requests.get(url, headers=headers, params=params)
+
+        return response.json()
 
     @staticmethod
     def __get_genres_of_artists(artist_ids, artist_id_to_genres):
