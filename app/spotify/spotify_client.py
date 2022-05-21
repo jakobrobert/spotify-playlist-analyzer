@@ -131,8 +131,9 @@ class SpotifyClient:
         artist_id_chunks = SpotifyClient.__split_list_into_chunks(artist_ids, max_ids_per_request)
 
         for curr_artist_ids in artist_id_chunks:
-            SpotifyClient.__get_artist_id_to_genres_for_one_request(curr_artist_ids, url, access_token,
-                                                                    artist_id_to_genres)
+            curr_artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres_for_one_request(
+                curr_artist_ids, url, access_token)
+            artist_id_to_genres.update(curr_artist_id_to_genres)
 
         return artist_id_to_genres
 
@@ -147,14 +148,17 @@ class SpotifyClient:
 
         return chunks
 
-    # TODO CLEANUP out param is dirty, better: return dict for this request, merge data outside of this function
     @staticmethod
-    def __get_artist_id_to_genres_for_one_request(artist_ids, url, access_token, artist_id_to_genres):
-        response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, artist_ids)
+    def __get_artist_id_to_genres_for_one_request(artist_ids, url, access_token):
+        artist_id_to_genres = {}
 
+        response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, artist_ids)
         artists = response_data["artists"]
+
         for artist in artists:
             artist_id_to_genres[artist["id"]] = artist["genres"]
+
+        return artist_id_to_genres
 
     @staticmethod
     def __send_get_request_with_ids(url, access_token, ids):
