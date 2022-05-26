@@ -25,11 +25,6 @@ def index():
     return render_template("index.html")
 
 
-@app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
-def compare_playlists():
-    return render_template("compare_playlists.html")
-
-
 @app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
 def get_playlist_by_url():
     playlist_url = request.args.get("playlist_url")
@@ -83,11 +78,33 @@ def get_mode_distribution_of_playlist(playlist_id):
     return __render_attribute_distribution_template(playlist, "Mode", mode_to_percentage)
 
 
+@app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
+def compare_playlists():
+    return render_template("compare_playlists.html")
+
+
+@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
+def compare_tempo_distribution_of_playlists_by_urls():
+    first_playlist_url = request.args.get("first_playlist_url")
+    second_playlist_url = request.args.get("first_playlist_url")
+
+    first_playlist_id = __get_playlist_id_from_playlist_url(first_playlist_url)
+    second_playlist_id = __get_playlist_id_from_playlist_url(second_playlist_url)
+    redirect_url = url_for("compare_tempo_distribution_of_playlists_by_ids",
+                           first_playlist_id=first_playlist_id, second_playlist_id=second_playlist_id)
+
+    return redirect(redirect_url)
+
+
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
-def compare_tempo_distribution_of_playlists():
-    # TODO implement
-    # -> similar to get_playlist_by_url, convert both urls to id, then redirect to new page, pass the ids to it
-    return redirect(url_for("compare_playlists"))
+def compare_tempo_distribution_of_playlists_by_ids():
+    first_playlist_id = request.args.get("first_playlist_id")
+    second_playlist_id = request.args.get("second_playlist_id")
+
+    print(f"first_playlist_id: {first_playlist_id}")
+    print(f"second_playlist_id: {second_playlist_id}")
+
+    return "<h3>TODO</h3>"
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
