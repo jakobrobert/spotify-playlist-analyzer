@@ -85,33 +85,39 @@ def compare_playlists():
 
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
 def compare_tempo_distribution_of_playlists_by_urls():
-    first_playlist_url = request.args.get("first_playlist_url")
-    second_playlist_url = request.args.get("second_playlist_url")
+    playlist_url_1 = request.args.get("playlist_url_1")
+    playlist_url_2 = request.args.get("playlist_url_2")
 
-    first_playlist_id = __get_playlist_id_from_playlist_url(first_playlist_url)
-    second_playlist_id = __get_playlist_id_from_playlist_url(second_playlist_url)
+    playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
+    playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
     redirect_url = url_for("compare_tempo_distribution_of_playlists_by_ids",
-                           first_playlist_id=first_playlist_id, second_playlist_id=second_playlist_id)
+                           playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
 
     return redirect(redirect_url)
 
 
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
 def compare_tempo_distribution_of_playlists_by_ids():
-    first_playlist_id = request.args.get("first_playlist_id")
-    second_playlist_id = request.args.get("second_playlist_id")
+    playlist_1 = request.args.get("playlist_id_1")
+    playlist_2 = request.args.get("playlist_id_2")
 
-    first_playlist = spotify_client.get_playlist_by_id(first_playlist_id)
-    second_playlist = spotify_client.get_playlist_by_id(second_playlist_id)
+    playlist_1 = spotify_client.get_playlist_by_id(playlist_1)
+    playlist_2 = spotify_client.get_playlist_by_id(playlist_2)
 
-    tempo_interval_to_percentage_for_first_playlist = first_playlist.get_tempo_interval_to_percentage()
-    tempo_interval_to_percentage_for_second_playlist = second_playlist.get_tempo_interval_to_percentage()
+    tempo_interval_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
+    tempo_interval_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
+
+    attribute_name = "Tempo (BPM)"
+    chart_image_base64 = __get_attribute_comparison_chart_image_base64(
+        attribute_name, playlist_1.name, playlist_2.name,
+        tempo_interval_to_percentage_1, tempo_interval_to_percentage_2
+    )
 
     return render_template("compare_attribute_distribution.html",
-                           first_playlist=first_playlist, second_playlist=second_playlist,
-                           attribute_name="Tempo (BPM)",
-                           attribute_value_to_percentage_for_first_playlist=tempo_interval_to_percentage_for_first_playlist,
-                           attribute_value_to_percentage_for_second_playlist=tempo_interval_to_percentage_for_second_playlist)
+                           playlist_1=playlist_1, playlist_2=playlist_2, attribute_name=attribute_name,
+                           attribute_value_to_percentage_1=tempo_interval_to_percentage_1,
+                           attribute_value_to_percentage_2=tempo_interval_to_percentage_2,
+                           chart_image_base64=chart_image_base64)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
@@ -153,6 +159,10 @@ def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
     plt.xticks(rotation=15)
     plt.tight_layout()
 
+    return __get_image_base64_from_plot()
+
+
+def __get_image_base64_from_plot():
     image_buffer = BytesIO()
     plt.savefig(image_buffer, format="png")
     plt.clf()  # Clear the current figure. Else the different figures would be drawn on top of each other.
@@ -161,3 +171,26 @@ def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
     image_base64_string = image_base64_bytes.decode("utf8")
 
     return image_base64_string
+
+
+def __get_attribute_comparison_chart_image_base64(attribute_name, playlist_name_1, playlist_name_2,
+                                                  attribute_value_to_percentage_1, attribute_value_to_percentage_2):
+    plt.title(f"Compare {attribute_name} Distribution")
+    plt.xlabel(attribute_name)
+    plt.ylabel("Percentage")
+
+    x_labels = []
+    y_labels_1 = []
+    y_labels_2 = []
+    for attribute_value in attribute_value_to_percentage_1.keys():
+        x_labels.append(attribute_value)
+        y_labels_1.append(attribute_value_to_percentage_1[attribute_value])
+        y_labels_2.append(attribute_value_to_percentage_2[attribute_value])
+
+    plt.bar(x_labels, y_labels_1, fill=False, linewidth=2, edgecolor="red", label=playlist_name_1)
+    plt.bar(x_labels, y_labels_2, fill=False, linewidth=2, edgecolor="blue", label=playlist_name_2)
+    plt.xticks(rotation=15)
+    plt.legend()
+    plt.tight_layout()
+
+    return __get_image_base64_from_plot()
