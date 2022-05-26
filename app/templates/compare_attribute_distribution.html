@@ -11,20 +11,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>First Playlist: {{ first_playlist.name }}</h1>
-        <h1>Second Playlist: {{ second_playlist.name }}</h1>
+        <h1>Playlist 1: {{ first_playlist.name }}</h1>
+        <h1>Playlist 2: {{ second_playlist.name }}</h1>
         <br>
 
         <h2>Compare {{ attribute_name }} Distribution [Table]</h2>
         <table class="table table-bordered">
             <tr>
                 <th>{{ attribute_name }}</th>
-                <th>Percentage (First Playlist)</th>
-                <th>Percentage (Second Playlist)</th>
+                <th>Percentage [{{ first_playlist.name }}]</th>
+                <th>Percentage [{{ second_playlist.name }}]</th>
             </tr>
             {% for attribute_value in attribute_value_to_percentage_for_first_playlist.keys() %}
                 {% set percentage_for_first_playlist = attribute_value_to_percentage_for_first_playlist[attribute_value] %}
-                <!-- TODO possible error if key does not exist, should check to be sure -->
                 {% set percentage_for_second_playlist = attribute_value_to_percentage_for_second_playlist[attribute_value] %}
                 <tr>
                     <td>{{ attribute_value }}</td>
