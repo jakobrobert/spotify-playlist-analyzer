@@ -173,5 +173,31 @@ def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
 def __get_attribute_comparison_chart_image_base64(
         attribute_name,
         attribute_value_to_percentage_for_first_playlist, attribute_value_to_percentage_for_second_playlist):
+    plt.title(f"Compare {attribute_name} Distribution")
+    plt.xlabel(attribute_name)
+    plt.ylabel("Percentage")
 
-    return ""
+    x_labels = []
+    y_labels_for_first_playlist = []
+    y_labels_for_second_playlist =[]
+    for attribute_value in attribute_value_to_percentage_for_first_playlist.keys():
+        x_labels.append(attribute_value)
+        percentage_for_first_playlist = attribute_value_to_percentage_for_first_playlist[attribute_value]
+        y_labels_for_first_playlist.append(percentage_for_first_playlist)
+        percentage_for_second_playlist = attribute_value_to_percentage_for_second_playlist[attribute_value]
+        y_labels_for_second_playlist.append(percentage_for_second_playlist)
+
+    plt.bar(x_labels, y_labels_for_first_playlist, edgecolor="black")
+    plt.bar(x_labels, y_labels_for_second_playlist, edgecolor="black")
+    plt.xticks(rotation=15)
+    plt.tight_layout()
+
+    # TODO duplicated code, same as in __get_histogram_image_base64
+    image_buffer = BytesIO()
+    plt.savefig(image_buffer, format="png")
+    plt.clf()  # Clear the current figure. Else the different figures would be drawn on top of each other.
+    image_bytes = image_buffer.getvalue()
+    image_base64_bytes = base64.encodebytes(image_bytes)
+    image_base64_string = image_base64_bytes.decode("utf8")
+
+    return image_base64_string
