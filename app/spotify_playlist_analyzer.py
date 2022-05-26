@@ -101,10 +101,17 @@ def compare_tempo_distribution_of_playlists_by_ids():
     first_playlist_id = request.args.get("first_playlist_id")
     second_playlist_id = request.args.get("second_playlist_id")
 
-    print(f"first_playlist_id: {first_playlist_id}")
-    print(f"second_playlist_id: {second_playlist_id}")
+    first_playlist = spotify_client.get_playlist_by_id(first_playlist_id)
+    second_playlist = spotify_client.get_playlist_by_id(second_playlist_id)
 
-    return "<h3>TODO</h3>"
+    tempo_interval_to_percentage_for_first_playlist = first_playlist.get_tempo_interval_to_percentage()
+    tempo_interval_to_percentage_for_second_playlist = second_playlist.get_tempo_interval_to_percentage()
+
+    return render_template("compare_attribute_distribution.html",
+                           first_playlist=first_playlist, second_playlist=second_playlist,
+                           attribute_name="Tempo (BPM)",
+                           attribute_value_to_percentage_for_first_playlist=tempo_interval_to_percentage_for_first_playlist,
+                           attribute_value_to_percentage_for_second_playlist=tempo_interval_to_percentage_for_second_playlist)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
