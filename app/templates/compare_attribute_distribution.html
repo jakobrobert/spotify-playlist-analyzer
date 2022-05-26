@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Spotify Playlist Analyzer - Compare {{ attribute_name }} Distribution</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Playlist 1: {{ first_playlist.name }}</h1>
+        <h1>Playlist 2: {{ second_playlist.name }}</h1>
+        <br>
+
+        <h2>Compare {{ attribute_name }} Distribution [Table]</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>{{ attribute_name }}</th>
+                <th>Percentage [{{ first_playlist.name }}]</th>
+                <th>Percentage [{{ second_playlist.name }}]</th>
+            </tr>
+            {% for attribute_value in attribute_value_to_percentage_for_first_playlist.keys() %}
+                {% set percentage_for_first_playlist = attribute_value_to_percentage_for_first_playlist[attribute_value] %}
+                {% set percentage_for_second_playlist = attribute_value_to_percentage_for_second_playlist[attribute_value] %}
+                <tr>
+                    <td>{{ attribute_value }}</td>
+                    <td>{{ first_playlist.percentage_to_string(percentage_for_first_playlist) }}</td>
+                    <td>{{ second_playlist.percentage_to_string(percentage_for_second_playlist) }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous">
+    </script>
+</body>
+</html>
