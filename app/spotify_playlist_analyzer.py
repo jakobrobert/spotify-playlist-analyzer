@@ -107,11 +107,18 @@ def compare_tempo_distribution_of_playlists_by_ids():
     tempo_interval_to_percentage_for_first_playlist = first_playlist.get_tempo_interval_to_percentage()
     tempo_interval_to_percentage_for_second_playlist = second_playlist.get_tempo_interval_to_percentage()
 
+    attribute_name = "Tempo (BPM)"
+    chart_image_base64 = __get_attribute_comparison_chart_image_base64(
+        attribute_name, tempo_interval_to_percentage_for_first_playlist,
+        tempo_interval_to_percentage_for_second_playlist
+    )
+
     return render_template("compare_attribute_distribution.html",
                            first_playlist=first_playlist, second_playlist=second_playlist,
-                           attribute_name="Tempo (BPM)",
+                           attribute_name=attribute_name,
                            attribute_value_to_percentage_for_first_playlist=tempo_interval_to_percentage_for_first_playlist,
-                           attribute_value_to_percentage_for_second_playlist=tempo_interval_to_percentage_for_second_playlist)
+                           attribute_value_to_percentage_for_second_playlist=tempo_interval_to_percentage_for_second_playlist,
+                           chart_image_base_64=chart_image_base64)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
@@ -161,3 +168,10 @@ def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
     image_base64_string = image_base64_bytes.decode("utf8")
 
     return image_base64_string
+
+
+def __get_attribute_comparison_chart_image_base64(
+        attribute_name,
+        attribute_value_to_percentage_for_first_playlist, attribute_value_to_percentage_for_second_playlist):
+
+    return ""
