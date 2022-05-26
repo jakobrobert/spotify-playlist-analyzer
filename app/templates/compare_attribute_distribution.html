@@ -33,6 +33,9 @@
             {% endfor %}
         </table>
         <br>
+
+        <h2>Compare {{ attribute_name }} Distribution [Chart]</h2>
+        <img src="data:image/png;base64,{{ chart_image_base64 }}">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
