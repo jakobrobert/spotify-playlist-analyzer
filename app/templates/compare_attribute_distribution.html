@@ -11,24 +11,24 @@
 </head>
 <body>
     <div class="container">
-        <h1>Playlist 1: {{ first_playlist.name }}</h1>
-        <h1>Playlist 2: {{ second_playlist.name }}</h1>
+        <h1>Playlist 1: {{ playlist_1.name }}</h1>
+        <h1>Playlist 2: {{ playlist_2.name }}</h1>
         <br>
 
         <h2>Compare {{ attribute_name }} Distribution [Table]</h2>
         <table class="table table-bordered">
             <tr>
                 <th>{{ attribute_name }}</th>
-                <th>Percentage [{{ first_playlist.name }}]</th>
-                <th>Percentage [{{ second_playlist.name }}]</th>
+                <th>Percentage [{{ playlist_1.name }}]</th>
+                <th>Percentage [{{ playlist_2.name }}]</th>
             </tr>
-            {% for attribute_value in attribute_value_to_percentage_for_first_playlist.keys() %}
-                {% set percentage_for_first_playlist = attribute_value_to_percentage_for_first_playlist[attribute_value] %}
-                {% set percentage_for_second_playlist = attribute_value_to_percentage_for_second_playlist[attribute_value] %}
+            {% for attribute_value in attribute_value_to_percentage_1.keys() %}
+                {% set percentage_1 = attribute_value_to_percentage_1[attribute_value] %}
+                {% set percentage_2 = attribute_value_to_percentage_2[attribute_value] %}
                 <tr>
                     <td>{{ attribute_value }}</td>
-                    <td>{{ first_playlist.percentage_to_string(percentage_for_first_playlist) }}</td>
-                    <td>{{ second_playlist.percentage_to_string(percentage_for_second_playlist) }}</td>
+                    <td>{{ playlist_1.percentage_to_string(percentage_1) }}</td>
+                    <td>{{ playlist_2.percentage_to_string(percentage_2) }}</td>
                 </tr>
             {% endfor %}
         </table>
