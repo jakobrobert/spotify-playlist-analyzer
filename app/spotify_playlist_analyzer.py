@@ -78,6 +78,42 @@ def get_mode_distribution_of_playlist(playlist_id):
     return __render_attribute_distribution_template(playlist, "Mode", mode_to_percentage)
 
 
+@app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
+def compare_playlists():
+    return render_template("compare_playlists.html")
+
+
+@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
+def compare_tempo_distribution_of_playlists_by_urls():
+    first_playlist_url = request.args.get("first_playlist_url")
+    second_playlist_url = request.args.get("second_playlist_url")
+
+    first_playlist_id = __get_playlist_id_from_playlist_url(first_playlist_url)
+    second_playlist_id = __get_playlist_id_from_playlist_url(second_playlist_url)
+    redirect_url = url_for("compare_tempo_distribution_of_playlists_by_ids",
+                           first_playlist_id=first_playlist_id, second_playlist_id=second_playlist_id)
+
+    return redirect(redirect_url)
+
+
+@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
+def compare_tempo_distribution_of_playlists_by_ids():
+    first_playlist_id = request.args.get("first_playlist_id")
+    second_playlist_id = request.args.get("second_playlist_id")
+
+    first_playlist = spotify_client.get_playlist_by_id(first_playlist_id)
+    second_playlist = spotify_client.get_playlist_by_id(second_playlist_id)
+
+    tempo_interval_to_percentage_for_first_playlist = first_playlist.get_tempo_interval_to_percentage()
+    tempo_interval_to_percentage_for_second_playlist = second_playlist.get_tempo_interval_to_percentage()
+
+    return render_template("compare_attribute_distribution.html",
+                           first_playlist=first_playlist, second_playlist=second_playlist,
+                           attribute_name="Tempo (BPM)",
+                           attribute_value_to_percentage_for_first_playlist=tempo_interval_to_percentage_for_first_playlist,
+                           attribute_value_to_percentage_for_second_playlist=tempo_interval_to_percentage_for_second_playlist)
+
+
 def __get_playlist_id_from_playlist_url(playlist_url):
     start_index = playlist_url.find("playlist/") + len("playlist/")
     end_index = playlist_url.find("?")
