@@ -159,6 +159,10 @@ def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
     plt.xticks(rotation=15)
     plt.tight_layout()
 
+    return __get_image_base64_from_plot()
+
+
+def __get_image_base64_from_plot():
     image_buffer = BytesIO()
     plt.savefig(image_buffer, format="png")
     plt.clf()  # Clear the current figure. Else the different figures would be drawn on top of each other.
@@ -189,12 +193,4 @@ def __get_attribute_comparison_chart_image_base64(attribute_name, playlist_name_
     plt.legend()
     plt.tight_layout()
 
-    # TODO duplicated code, same as in __get_histogram_image_base64
-    image_buffer = BytesIO()
-    plt.savefig(image_buffer, format="png")
-    plt.clf()  # Clear the current figure. Else the different figures would be drawn on top of each other.
-    image_bytes = image_buffer.getvalue()
-    image_base64_bytes = base64.encodebytes(image_bytes)
-    image_base64_string = image_base64_bytes.decode("utf8")
-
-    return image_base64_string
+    return __get_image_base64_from_plot()
