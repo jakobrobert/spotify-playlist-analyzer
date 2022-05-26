@@ -86,7 +86,7 @@ def compare_playlists():
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
 def compare_tempo_distribution_of_playlists_by_urls():
     first_playlist_url = request.args.get("first_playlist_url")
-    second_playlist_url = request.args.get("first_playlist_url")
+    second_playlist_url = request.args.get("second_playlist_url")
 
     first_playlist_id = __get_playlist_id_from_playlist_url(first_playlist_url)
     second_playlist_id = __get_playlist_id_from_playlist_url(second_playlist_url)
