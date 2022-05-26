@@ -118,7 +118,7 @@ def compare_tempo_distribution_of_playlists_by_ids():
                            attribute_name=attribute_name,
                            attribute_value_to_percentage_for_first_playlist=tempo_interval_to_percentage_for_first_playlist,
                            attribute_value_to_percentage_for_second_playlist=tempo_interval_to_percentage_for_second_playlist,
-                           chart_image_base_64=chart_image_base64)
+                           chart_image_base64=chart_image_base64)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
