@@ -109,8 +109,8 @@ def compare_tempo_distribution_of_playlists_by_ids():
 
     attribute_name = "Tempo (BPM)"
     chart_image_base64 = __get_attribute_comparison_chart_image_base64(
-        attribute_name, tempo_interval_to_percentage_for_first_playlist,
-        tempo_interval_to_percentage_for_second_playlist
+        attribute_name, first_playlist.name, second_playlist.name,
+        tempo_interval_to_percentage_for_first_playlist, tempo_interval_to_percentage_for_second_playlist
     )
 
     return render_template("compare_attribute_distribution.html",
@@ -171,7 +171,7 @@ def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
 
 
 def __get_attribute_comparison_chart_image_base64(
-        attribute_name,
+        attribute_name, first_playlist_name, second_playlist_name,
         attribute_value_to_percentage_for_first_playlist, attribute_value_to_percentage_for_second_playlist):
     plt.title(f"Compare {attribute_name} Distribution")
     plt.xlabel(attribute_name)
@@ -187,9 +187,10 @@ def __get_attribute_comparison_chart_image_base64(
         percentage_for_second_playlist = attribute_value_to_percentage_for_second_playlist[attribute_value]
         y_labels_for_second_playlist.append(percentage_for_second_playlist)
 
-    plt.bar(x_labels, y_labels_for_first_playlist, edgecolor="black")
-    plt.bar(x_labels, y_labels_for_second_playlist, edgecolor="black")
+    plt.bar(x_labels, y_labels_for_first_playlist, edgecolor="black", color="red", label=first_playlist_name)
+    plt.bar(x_labels, y_labels_for_second_playlist, edgecolor="black", color="blue", label=second_playlist_name)
     plt.xticks(rotation=15)
+    plt.legend()
     plt.tight_layout()
 
     # TODO duplicated code, same as in __get_histogram_image_base64
