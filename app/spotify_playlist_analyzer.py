@@ -83,41 +83,78 @@ def compare_playlists():
     return render_template("compare_playlists.html")
 
 
-@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
-def compare_tempo_distribution_of_playlists_by_urls():
+@app.route(URL_PREFIX + "compare-year-distribution-of-playlists-by-urls", methods=["GET"])
+def compare_year_distribution_of_playlists_by_urls():
+    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_year_distribution_of_playlists_by_ids")
+
+
+@app.route(URL_PREFIX + "compare-year-distribution-of-playlists", methods=["GET"])
+def compare_year_distribution_of_playlists_by_ids():
+    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
+    year_interval_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
+    year_interval_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
+
+    return __render_compare_attribute_distribution_template(
+        playlist_1, playlist_2, "Year of Release", year_interval_to_percentage_1, year_interval_to_percentage_2
+    )
+
+
+def __redirect_compare_attribute_distribution_from_urls_to_ids(endpoint):
     playlist_url_1 = request.args.get("playlist_url_1")
     playlist_url_2 = request.args.get("playlist_url_2")
-
     playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
     playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
-    redirect_url = url_for("compare_tempo_distribution_of_playlists_by_ids",
-                           playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
+    redirect_url = url_for(endpoint, playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
 
     return redirect(redirect_url)
 
 
+@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
+def compare_tempo_distribution_of_playlists_by_urls():
+    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_tempo_distribution_of_playlists_by_ids")
+
+
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
 def compare_tempo_distribution_of_playlists_by_ids():
-    playlist_1 = request.args.get("playlist_id_1")
-    playlist_2 = request.args.get("playlist_id_2")
-
-    playlist_1 = spotify_client.get_playlist_by_id(playlist_1)
-    playlist_2 = spotify_client.get_playlist_by_id(playlist_2)
-
+    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
     tempo_interval_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
     tempo_interval_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
 
-    attribute_name = "Tempo (BPM)"
-    chart_image_base64 = __get_attribute_comparison_chart_image_base64(
-        attribute_name, playlist_1.name, playlist_2.name,
-        tempo_interval_to_percentage_1, tempo_interval_to_percentage_2
+    return __render_compare_attribute_distribution_template(
+        playlist_1, playlist_2, "Tempo (BPM)", tempo_interval_to_percentage_1, tempo_interval_to_percentage_2
     )
 
-    return render_template("compare_attribute_distribution.html",
-                           playlist_1=playlist_1, playlist_2=playlist_2, attribute_name=attribute_name,
-                           attribute_value_to_percentage_1=tempo_interval_to_percentage_1,
-                           attribute_value_to_percentage_2=tempo_interval_to_percentage_2,
-                           chart_image_base64=chart_image_base64)
+
+@app.route(URL_PREFIX + "compare-key-distribution-of-playlists-by-urls", methods=["GET"])
+def compare_key_distribution_of_playlists_by_urls():
+    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_key_distribution_of_playlists_by_ids")
+
+
+@app.route(URL_PREFIX + "compare-key-distribution-of-playlists", methods=["GET"])
+def compare_key_distribution_of_playlists_by_ids():
+    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
+    key_to_percentage_1 = playlist_1.get_key_to_percentage()
+    key_to_percentage_2 = playlist_2.get_key_to_percentage()
+
+    return __render_compare_attribute_distribution_template(
+        playlist_1, playlist_2, "Key", key_to_percentage_1, key_to_percentage_2
+    )
+
+
+@app.route(URL_PREFIX + "compare-mode-distribution-of-playlists-by-urls", methods=["GET"])
+def compare_mode_distribution_of_playlists_by_urls():
+    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_mode_distribution_of_playlists_by_ids")
+
+
+@app.route(URL_PREFIX + "compare-mode-distribution-of-playlists", methods=["GET"])
+def compare_mode_distribution_of_playlists_by_ids():
+    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
+    mode_to_percentage_1 = playlist_1.get_mode_to_percentage()
+    mode_to_percentage_2 = playlist_2.get_mode_to_percentage()
+
+    return __render_compare_attribute_distribution_template(
+        playlist_1, playlist_2, "mode", mode_to_percentage_1, mode_to_percentage_2
+    )
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
@@ -171,6 +208,29 @@ def __get_image_base64_from_plot():
     image_base64_string = image_base64_bytes.decode("utf8")
 
     return image_base64_string
+
+
+def __get_playlists_to_compare_attribute_distribution():
+    playlist_id_1 = request.args.get("playlist_id_1")
+    playlist_id_2 = request.args.get("playlist_id_2")
+    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
+
+    return playlist_1, playlist_2
+
+
+def __render_compare_attribute_distribution_template(
+        playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2):
+    chart_image_base64 = __get_attribute_comparison_chart_image_base64(
+        attribute_name, playlist_1.name, playlist_2.name,
+        attribute_value_to_percentage_1, attribute_value_to_percentage_2
+    )
+
+    return render_template("compare_attribute_distribution.html",
+                           playlist_1=playlist_1, playlist_2=playlist_2, attribute_name=attribute_name,
+                           attribute_value_to_percentage_1=attribute_value_to_percentage_1,
+                           attribute_value_to_percentage_2=attribute_value_to_percentage_2,
+                           chart_image_base64=chart_image_base64)
 
 
 def __get_attribute_comparison_chart_image_base64(attribute_name, playlist_name_1, playlist_name_2,

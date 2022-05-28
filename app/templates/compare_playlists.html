@@ -13,12 +13,30 @@
     <div class="container">
         <h1>Compare Playlists</h1>
 
-        <form action="{{ url_for('compare_tempo_distribution_of_playlists_by_urls') }}" method="GET">
+        <form method="GET">
             <label class="form-label" for="playlist_url_1">Link to the first Spotify playlist:</label><br>
             <input class="form-control" type="text" id="playlist_url_1" name="playlist_url_1"><br>
             <label class="form-label" for="playlist_url_2">Link to the second Spotify playlist:</label><br>
             <input class="form-control" type="text" id="playlist_url_2" name="playlist_url_2"><br>
-            <button class="btn btn-secondary" type="submit">Compare tempo distribution of playlists</button>
+            <button class="btn btn-secondary" type="submit"
+                    formaction="{{ url_for('compare_tempo_distribution_of_playlists_by_urls') }}">
+                Compare tempo distribution of playlists
+            </button><br>
+            <br>
+            <button class="btn btn-secondary" type="submit"
+                    formaction="{{ url_for('compare_year_distribution_of_playlists_by_urls') }}">
+                Compare year distribution of playlists
+            </button><br>
+            <br>
+            <button class="btn btn-secondary" type="submit"
+                    formaction="{{ url_for('compare_key_distribution_of_playlists_by_urls') }}">
+                Compare key distribution of playlists
+            </button><br>
+            <br>
+            <button class="btn btn-secondary" type="submit"
+                    formaction="{{ url_for('compare_mode_distribution_of_playlists_by_urls') }}">
+                Compare mode distribution of playlists
+            </button>
         </form>
     </div>
 
