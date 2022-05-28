@@ -98,12 +98,7 @@ def compare_year_distribution_of_playlists_by_urls():
 
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists", methods=["GET"])
 def compare_year_distribution_of_playlists_by_ids():
-    # TODO extract getting ids and playlists
-    playlist_id_1 = request.args.get("playlist_id_1")
-    playlist_id_2 = request.args.get("playlist_id_2")
-
-    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
-    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
+    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
 
     year_interval_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
     year_interval_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
@@ -115,6 +110,7 @@ def compare_year_distribution_of_playlists_by_ids():
 
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
 def compare_tempo_distribution_of_playlists_by_urls():
+    # TODO clean up: same code as for year, instead the url string, so can extract function.
     playlist_url_1 = request.args.get("playlist_url_1")
     playlist_url_2 = request.args.get("playlist_url_2")
 
@@ -128,11 +124,7 @@ def compare_tempo_distribution_of_playlists_by_urls():
 
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
 def compare_tempo_distribution_of_playlists_by_ids():
-    playlist_1 = request.args.get("playlist_id_1")
-    playlist_2 = request.args.get("playlist_id_2")
-
-    playlist_1 = spotify_client.get_playlist_by_id(playlist_1)
-    playlist_2 = spotify_client.get_playlist_by_id(playlist_2)
+    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
 
     tempo_interval_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
     tempo_interval_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
@@ -193,6 +185,15 @@ def __get_image_base64_from_plot():
     image_base64_string = image_base64_bytes.decode("utf8")
 
     return image_base64_string
+
+
+def __get_playlists_to_compare_attribute_distribution():
+    playlist_id_1 = request.args.get("playlist_id_1")
+    playlist_id_2 = request.args.get("playlist_id_2")
+    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
+
+    return playlist_1, playlist_2
 
 
 def __render_compare_attribute_distribution_template(
