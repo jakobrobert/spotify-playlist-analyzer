@@ -141,6 +141,22 @@ def compare_key_distribution_of_playlists_by_ids():
     )
 
 
+@app.route(URL_PREFIX + "compare-mode-distribution-of-playlists-by-urls", methods=["GET"])
+def compare_mode_distribution_of_playlists_by_urls():
+    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_mode_distribution_of_playlists_by_ids")
+
+
+@app.route(URL_PREFIX + "compare-mode-distribution-of-playlists", methods=["GET"])
+def compare_mode_distribution_of_playlists_by_ids():
+    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
+    mode_to_percentage_1 = playlist_1.get_mode_to_percentage()
+    mode_to_percentage_2 = playlist_2.get_mode_to_percentage()
+
+    return __render_compare_attribute_distribution_template(
+        playlist_1, playlist_2, "mode", mode_to_percentage_1, mode_to_percentage_2
+    )
+
+
 def __get_playlist_id_from_playlist_url(playlist_url):
     start_index = playlist_url.find("playlist/") + len("playlist/")
     end_index = playlist_url.find("?")
