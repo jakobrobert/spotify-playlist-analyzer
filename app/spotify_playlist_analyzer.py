@@ -137,17 +137,9 @@ def compare_tempo_distribution_of_playlists_by_ids():
     tempo_interval_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
     tempo_interval_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
 
-    attribute_name = "Tempo (BPM)"
-    chart_image_base64 = __get_attribute_comparison_chart_image_base64(
-        attribute_name, playlist_1.name, playlist_2.name,
-        tempo_interval_to_percentage_1, tempo_interval_to_percentage_2
+    return __render_compare_attribute_distribution_template(
+        playlist_1, playlist_2, "Tempo (BPM)", tempo_interval_to_percentage_1, tempo_interval_to_percentage_2
     )
-
-    return render_template("compare_attribute_distribution.html",
-                           playlist_1=playlist_1, playlist_2=playlist_2, attribute_name=attribute_name,
-                           attribute_value_to_percentage_1=tempo_interval_to_percentage_1,
-                           attribute_value_to_percentage_2=tempo_interval_to_percentage_2,
-                           chart_image_base64=chart_image_base64)
 
 
 def __get_playlist_id_from_playlist_url(playlist_url):
