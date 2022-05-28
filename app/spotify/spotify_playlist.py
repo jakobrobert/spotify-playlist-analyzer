@@ -94,7 +94,8 @@ class SpotifyPlaylist:
         key_to_count["n/a"] = 0
 
         for track in self.tracks:
-            key_to_count[track.key] += 1
+            key_string = track.get_key_string()
+            key_to_count[key_string] += 1
 
         return self.__convert_counts_to_percentages(key_to_count)
 
@@ -106,7 +107,8 @@ class SpotifyPlaylist:
         }
 
         for track in self.tracks:
-            mode_to_count[track.mode] += 1
+            mode_string = track.get_mode_string()
+            mode_to_count[mode_string] += 1
 
         return self.__convert_counts_to_percentages(mode_to_count)
 
