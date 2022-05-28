@@ -91,7 +91,6 @@ def compare_year_distribution_of_playlists_by_urls():
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists", methods=["GET"])
 def compare_year_distribution_of_playlists_by_ids():
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
-
     year_interval_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
     year_interval_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
 
@@ -118,7 +117,6 @@ def compare_tempo_distribution_of_playlists_by_urls():
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
 def compare_tempo_distribution_of_playlists_by_ids():
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
-
     tempo_interval_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
     tempo_interval_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
 
