@@ -85,15 +85,7 @@ def compare_playlists():
 
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists-by-urls", methods=["GET"])
 def compare_year_distribution_of_playlists_by_urls():
-    playlist_url_1 = request.args.get("playlist_url_1")
-    playlist_url_2 = request.args.get("playlist_url_2")
-
-    playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
-    playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
-    redirect_url = url_for("compare_year_distribution_of_playlists_by_ids",
-                           playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
-
-    return redirect(redirect_url)
+    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_year_distribution_of_playlists_by_ids")
 
 
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists", methods=["GET"])
@@ -108,18 +100,19 @@ def compare_year_distribution_of_playlists_by_ids():
     )
 
 
-@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
-def compare_tempo_distribution_of_playlists_by_urls():
-    # TODO clean up: same code as for year, instead the url string, so can extract function.
+def __redirect_compare_attribute_distribution_from_urls_to_ids(endpoint):
     playlist_url_1 = request.args.get("playlist_url_1")
     playlist_url_2 = request.args.get("playlist_url_2")
-
     playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
     playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
-    redirect_url = url_for("compare_tempo_distribution_of_playlists_by_ids",
-                           playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
+    redirect_url = url_for(endpoint, playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
 
     return redirect(redirect_url)
+
+
+@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
+def compare_tempo_distribution_of_playlists_by_urls():
+    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_tempo_distribution_of_playlists_by_ids")
 
 
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
