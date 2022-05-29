@@ -83,14 +83,21 @@ def choose_playlists_for_comparison():
     return render_template("choose_playlists_for_comparison.html")
 
 
-@app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
-def compare_playlists():
-    # TODO add in between page which takes in playlist ids so it can be shared / bookmarked
+@app.route(URL_PREFIX + "compare-playlists-by-urls", methods=["GET"])
+def compare_playlists_by_urls():
     playlist_url_1 = request.args.get("playlist_url_1")
     playlist_url_2 = request.args.get("playlist_url_2")
     playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
     playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
+    redirect_url = url_for("compare_playlists_by_ids", playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
 
+    return redirect(redirect_url)
+
+
+@app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
+def compare_playlists_by_ids():
+    playlist_id_1 = request.args.get("playlist_id_1")
+    playlist_id_2 = request.args.get("playlist_id_2")
     playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
     playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
