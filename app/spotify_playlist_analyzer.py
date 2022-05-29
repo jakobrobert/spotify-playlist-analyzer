@@ -85,25 +85,16 @@ def choose_playlists_for_comparison():
 
 @app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
 def compare_playlists():
-    # TODO add in between page so it can be shared / bookmarked
+    # TODO add in between page which takes in playlist ids so it can be shared / bookmarked
     playlist_url_1 = request.args.get("playlist_url_1")
-    print(f"playlist_url_1: {playlist_url_1}")
     playlist_url_2 = request.args.get("playlist_url_2")
-    print(f"playlist_url_2: {playlist_url_2}")
     playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
-    print(f"playlist_id_1: {playlist_id_1}")
     playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
-    print(f"playlist_id_2: {playlist_id_2}")
 
     playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
     playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
     return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
-
-
-@app.route(URL_PREFIX + "compare-year-distribution-of-playlists-by-urls", methods=["GET"])
-def compare_year_distribution_of_playlists_by_urls():
-    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_year_distribution_of_playlists_by_ids")
 
 
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists", methods=["GET"])
@@ -117,22 +108,6 @@ def compare_year_distribution_of_playlists_by_ids():
     )
 
 
-# TODO clean up: move function down to other private ones
-def __redirect_compare_attribute_distribution_from_urls_to_ids(endpoint):
-    playlist_url_1 = request.args.get("playlist_url_1")
-    playlist_url_2 = request.args.get("playlist_url_2")
-    playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
-    playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
-    redirect_url = url_for(endpoint, playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
-
-    return redirect(redirect_url)
-
-
-@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists-by-urls", methods=["GET"])
-def compare_tempo_distribution_of_playlists_by_urls():
-    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_tempo_distribution_of_playlists_by_ids")
-
-
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
 def compare_tempo_distribution_of_playlists_by_ids():
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
@@ -142,11 +117,6 @@ def compare_tempo_distribution_of_playlists_by_ids():
     return __render_compare_attribute_distribution_template(
         playlist_1, playlist_2, "Tempo (BPM)", tempo_interval_to_percentage_1, tempo_interval_to_percentage_2
     )
-
-
-@app.route(URL_PREFIX + "compare-key-distribution-of-playlists-by-urls", methods=["GET"])
-def compare_key_distribution_of_playlists_by_urls():
-    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_key_distribution_of_playlists_by_ids")
 
 
 @app.route(URL_PREFIX + "compare-key-distribution-of-playlists", methods=["GET"])
@@ -160,11 +130,6 @@ def compare_key_distribution_of_playlists_by_ids():
     )
 
 
-@app.route(URL_PREFIX + "compare-mode-distribution-of-playlists-by-urls", methods=["GET"])
-def compare_mode_distribution_of_playlists_by_urls():
-    return __redirect_compare_attribute_distribution_from_urls_to_ids("compare_mode_distribution_of_playlists_by_ids")
-
-
 @app.route(URL_PREFIX + "compare-mode-distribution-of-playlists", methods=["GET"])
 def compare_mode_distribution_of_playlists_by_ids():
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
@@ -172,7 +137,7 @@ def compare_mode_distribution_of_playlists_by_ids():
     mode_to_percentage_2 = playlist_2.get_mode_to_percentage()
 
     return __render_compare_attribute_distribution_template(
-        playlist_1, playlist_2, "mode", mode_to_percentage_1, mode_to_percentage_2
+        playlist_1, playlist_2, "Mode", mode_to_percentage_1, mode_to_percentage_2
     )
 
 
