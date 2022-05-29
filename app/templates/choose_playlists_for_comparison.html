@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Choose Playlists for Comparison</h1>
 
-        <form action="{{ url_for('compare_playlists') }}" method="GET">
+        <form action="{{ url_for('compare_playlists_by_urls') }}" method="GET">
             <label class="form-label" for="playlist_url_1">Link to the first Spotify playlist:</label><br>
             <input class="form-control" type="text" id="playlist_url_1" name="playlist_url_1"><br>
             <label class="form-label" for="playlist_url_2">Link to the second Spotify playlist:</label><br>
