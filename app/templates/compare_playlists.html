@@ -13,31 +13,69 @@
     <div class="container">
         <h1>Compare Playlists</h1>
 
-        <form method="GET">
-            <label class="form-label" for="playlist_url_1">Link to the first Spotify playlist:</label><br>
-            <input class="form-control" type="text" id="playlist_url_1" name="playlist_url_1"><br>
-            <label class="form-label" for="playlist_url_2">Link to the second Spotify playlist:</label><br>
-            <input class="form-control" type="text" id="playlist_url_2" name="playlist_url_2"><br>
-            <button class="btn btn-secondary" type="submit"
-                    formaction="{{ url_for('compare_tempo_distribution_of_playlists_by_urls') }}">
-                Compare tempo distribution of playlists
-            </button><br>
-            <br>
-            <button class="btn btn-secondary" type="submit"
-                    formaction="{{ url_for('compare_year_distribution_of_playlists_by_urls') }}">
-                Compare year distribution of playlists
-            </button><br>
-            <br>
-            <button class="btn btn-secondary" type="submit"
-                    formaction="{{ url_for('compare_key_distribution_of_playlists_by_urls') }}">
-                Compare key distribution of playlists
-            </button><br>
-            <br>
-            <button class="btn btn-secondary" type="submit"
-                    formaction="{{ url_for('compare_mode_distribution_of_playlists_by_urls') }}">
-                Compare mode distribution of playlists
-            </button>
-        </form>
+        <h2>General Info</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>Attribute</th>
+                <th>Playlist 1</th>
+                <th>Playlist 2</th>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <td>{{ playlist_1.id }}</td>
+                <td>{{ playlist_2.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ playlist_1.name }}</td>
+                <td>{{ playlist_2.name}}</td>
+            </tr>
+            <tr>
+                <th># Tracks</th>
+                <td>{{ playlist_1.tracks | length }}</td>
+                <td>{{ playlist_2.tracks | length }}</td>
+            </tr>
+            <tr>
+                <th>Total Duration</th>
+                <td>{{ playlist_1.get_total_duration_string() }}</td>
+                <td>{{ playlist_2.get_total_duration_string() }}</td>
+            </tr>
+            <tr>
+                <th>Average Duration</th>
+                <td>{{ playlist_1.get_average_duration_string() }}</td>
+                <td>{{ playlist_2.get_average_duration_string() }}</td>
+            </tr>
+            <tr>
+                <th>Average Year of Release</th>
+                <td>{{ playlist_1.get_average_year_of_release_string() }}</td>
+                <td>{{ playlist_2.get_average_year_of_release_string() }}</td>
+            </tr>
+            <tr>
+                <th>Average Tempo (BPM)</th>
+                <td>{{ playlist_1.get_average_tempo_string() }}</td>
+                <td>{{ playlist_2.get_average_tempo_string() }}</td>
+            </tr>
+        </table>
+
+        <a href="{{ url_for('compare_year_distribution_of_playlists', playlist_id_1=playlist_1.id, playlist_id_2=playlist_2.id) }}"
+           class="btn btn-secondary" role="button">Compare Year of Release Distribution</a>
+        <br>
+        <br>
+
+        <a href="{{ url_for('compare_tempo_distribution_of_playlists', playlist_id_1=playlist_1.id, playlist_id_2=playlist_2.id) }}"
+           class="btn btn-secondary" role="button">Compare Tempo Distribution</a>
+        <br>
+        <br>
+
+        <a href="{{ url_for('compare_key_distribution_of_playlists', playlist_id_1=playlist_1.id, playlist_id_2=playlist_2.id) }}"
+           class="btn btn-secondary" role="button">Compare Key Distribution</a>
+        <br>
+        <br>
+
+        <a href="{{ url_for('compare_mode_distribution_of_playlists', playlist_id_1=playlist_1.id, playlist_id_2=playlist_2.id) }}"
+           class="btn btn-secondary" role="button">Compare Mode Distribution</a>
+        <br>
+        <br>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
