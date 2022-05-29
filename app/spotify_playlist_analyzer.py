@@ -78,8 +78,22 @@ def get_mode_distribution_of_playlist(playlist_id):
     return __render_attribute_distribution_template(playlist, "Mode", mode_to_percentage)
 
 
+@app.route(URL_PREFIX + "choose-playlists-for-comparison", methods=["GET"])
+def choose_playlists_for_comparison():
+    return render_template("choose_playlists_for_comparison.html")
+
+
 @app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
 def compare_playlists():
+    playlist_url_1 = request.args.get("playlist_url_1")
+    print(f"playlist_url_1: {playlist_url_1}")
+    playlist_url_2 = request.args.get("playlist_url_2")
+    print(f"playlist_url_2: {playlist_url_2}")
+    playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
+    print(f"playlist_id_1: {playlist_id_1}")
+    playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
+    print(f"playlist_id_2: {playlist_id_2}")
+
     return render_template("compare_playlists.html")
 
 
@@ -99,6 +113,7 @@ def compare_year_distribution_of_playlists_by_ids():
     )
 
 
+# TODO clean up: move function down to other private ones
 def __redirect_compare_attribute_distribution_from_urls_to_ids(endpoint):
     playlist_url_1 = request.args.get("playlist_url_1")
     playlist_url_2 = request.args.get("playlist_url_2")
