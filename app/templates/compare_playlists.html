@@ -13,31 +13,25 @@
     <div class="container">
         <h1>Compare Playlists</h1>
 
-        <form method="GET">
-            <label class="form-label" for="playlist_url_1">Link to the first Spotify playlist:</label><br>
-            <input class="form-control" type="text" id="playlist_url_1" name="playlist_url_1"><br>
-            <label class="form-label" for="playlist_url_2">Link to the second Spotify playlist:</label><br>
-            <input class="form-control" type="text" id="playlist_url_2" name="playlist_url_2"><br>
-            <button class="btn btn-secondary" type="submit"
-                    formaction="{{ url_for('compare_tempo_distribution_of_playlists_by_urls') }}">
-                Compare tempo distribution of playlists
-            </button><br>
-            <br>
-            <button class="btn btn-secondary" type="submit"
-                    formaction="{{ url_for('compare_year_distribution_of_playlists_by_urls') }}">
-                Compare year distribution of playlists
-            </button><br>
-            <br>
-            <button class="btn btn-secondary" type="submit"
-                    formaction="{{ url_for('compare_key_distribution_of_playlists_by_urls') }}">
-                Compare key distribution of playlists
-            </button><br>
-            <br>
-            <button class="btn btn-secondary" type="submit"
-                    formaction="{{ url_for('compare_mode_distribution_of_playlists_by_urls') }}">
-                Compare mode distribution of playlists
-            </button>
-        </form>
+        <a href="{{ url_for('compare_year_distribution_of_playlists_by_ids', playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2) }}"
+           class="btn btn-secondary" role="button">Compare Year of Release Distribution</a>
+        <br>
+        <br>
+
+        <a href="{{ url_for('compare_tempo_distribution_of_playlists_by_ids', playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2) }}"
+           class="btn btn-secondary" role="button">Compare Tempo Distribution</a>
+        <br>
+        <br>
+
+        <a href="{{ url_for('compare_key_distribution_of_playlists_by_ids', playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2) }}"
+           class="btn btn-secondary" role="button">Compare Key Distribution</a>
+        <br>
+        <br>
+
+        <a href="{{ url_for('compare_mode_distribution_of_playlists_by_ids', playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2) }}"
+           class="btn btn-secondary" role="button">Compare Mode Distribution</a>
+        <br>
+        <br>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

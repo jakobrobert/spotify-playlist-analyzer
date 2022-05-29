@@ -85,6 +85,7 @@ def choose_playlists_for_comparison():
 
 @app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
 def compare_playlists():
+    # TODO add in between page so it can be shared / bookmarked
     playlist_url_1 = request.args.get("playlist_url_1")
     print(f"playlist_url_1: {playlist_url_1}")
     playlist_url_2 = request.args.get("playlist_url_2")
@@ -94,7 +95,7 @@ def compare_playlists():
     playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
     print(f"playlist_id_2: {playlist_id_2}")
 
-    return render_template("compare_playlists.html")
+    return render_template("compare_playlists.html", playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
 
 
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists-by-urls", methods=["GET"])
