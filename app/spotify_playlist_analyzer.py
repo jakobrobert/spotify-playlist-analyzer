@@ -98,7 +98,7 @@ def compare_playlists():
 
 
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists", methods=["GET"])
-def compare_year_distribution_of_playlists_by_ids():
+def compare_year_distribution_of_playlists():
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
     year_interval_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
     year_interval_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
@@ -109,7 +109,7 @@ def compare_year_distribution_of_playlists_by_ids():
 
 
 @app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
-def compare_tempo_distribution_of_playlists_by_ids():
+def compare_tempo_distribution_of_playlists():
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
     tempo_interval_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
     tempo_interval_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
@@ -120,7 +120,7 @@ def compare_tempo_distribution_of_playlists_by_ids():
 
 
 @app.route(URL_PREFIX + "compare-key-distribution-of-playlists", methods=["GET"])
-def compare_key_distribution_of_playlists_by_ids():
+def compare_key_distribution_of_playlists():
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
     key_to_percentage_1 = playlist_1.get_key_to_percentage()
     key_to_percentage_2 = playlist_2.get_key_to_percentage()
@@ -131,7 +131,7 @@ def compare_key_distribution_of_playlists_by_ids():
 
 
 @app.route(URL_PREFIX + "compare-mode-distribution-of-playlists", methods=["GET"])
-def compare_mode_distribution_of_playlists_by_ids():
+def compare_mode_distribution_of_playlists():
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
     mode_to_percentage_1 = playlist_1.get_mode_to_percentage()
     mode_to_percentage_2 = playlist_2.get_mode_to_percentage()
