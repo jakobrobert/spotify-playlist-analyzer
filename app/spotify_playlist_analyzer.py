@@ -95,7 +95,10 @@ def compare_playlists():
     playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
     print(f"playlist_id_2: {playlist_id_2}")
 
-    return render_template("compare_playlists.html", playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
+    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
+
+    return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
 
 
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists-by-urls", methods=["GET"])
