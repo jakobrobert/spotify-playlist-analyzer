@@ -47,7 +47,6 @@ class SpotifyClient:
         track_items = SpotifyClient.__get_all_track_items_of_playlist(playlist_data, access_token)
 
         # TODO can remove these variables later
-        track_ids = []
         artist_ids_per_track = []
         all_artist_ids = []
 
@@ -57,14 +56,12 @@ class SpotifyClient:
             track = SpotifyClient.__create_spotify_track(track_data)
             tracks.append(track)
 
-            track_ids.append(track.id)
-
             artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
             artist_ids_per_track.append(artist_ids)
             all_artist_ids.extend(artist_ids)
 
         SpotifyClient.__set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token)
-        SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
+        SpotifyClient.__set_audio_features_of_tracks(tracks, access_token)
 
         return tracks
 
@@ -197,7 +194,7 @@ class SpotifyClient:
         return genres
 
     @staticmethod
-    def __set_audio_features_of_tracks(tracks, track_ids, access_token):
+    def __set_audio_features_of_tracks(tracks, access_token):
         all_audio_features = SpotifyClient.__get_audio_features_of_tracks(tracks, access_token)
 
         assert len(all_audio_features) == len(tracks)
