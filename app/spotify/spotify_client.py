@@ -124,9 +124,7 @@ class SpotifyClient:
 
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
-        # TODO iterate through list directly, NO index necessary
-        for track_index in range(0, len(tracks)):
-            track = tracks[track_index]
+        for track in tracks:
             track.genres = SpotifyClient.__get_genres_of_artists(track.artist_ids, artist_id_to_genres)
 
     @staticmethod
