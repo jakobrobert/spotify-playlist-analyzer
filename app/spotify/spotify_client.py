@@ -39,7 +39,6 @@ class SpotifyClient:
 
         return response.json()
 
-    # TODO CLEANUP function too long, split it up
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
         tracks = []
@@ -132,10 +131,10 @@ class SpotifyClient:
     def __set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token):
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
+        # TODO iterate through list directly, NO index necessary
         for track_index in range(0, len(tracks)):
-            artist_ids = artist_ids_per_track[track_index]
             track = tracks[track_index]
-            track.genres = SpotifyClient.__get_genres_of_artists(artist_ids, artist_id_to_genres)
+            track.genres = SpotifyClient.__get_genres_of_artists(track.artist_ids, artist_id_to_genres)
 
     @staticmethod
     def __get_artist_id_to_genres(artist_ids, access_token):
