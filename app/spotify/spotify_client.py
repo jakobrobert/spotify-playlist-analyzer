@@ -198,7 +198,7 @@ class SpotifyClient:
 
     @staticmethod
     def __set_audio_features_of_tracks(tracks, track_ids, access_token):
-        all_audio_features = SpotifyClient.__get_audio_features_of_tracks(track_ids, access_token)
+        all_audio_features = SpotifyClient.__get_audio_features_of_tracks(tracks, access_token)
 
         assert len(all_audio_features) == len(tracks)
 
@@ -212,8 +212,12 @@ class SpotifyClient:
             track.loudness = audio_features["loudness"]
 
     @staticmethod
-    def __get_audio_features_of_tracks(track_ids, access_token):
+    def __get_audio_features_of_tracks(tracks, access_token):
         audio_features = []
+
+        track_ids = []
+        for track in tracks:
+            track_ids.append(track.id)
 
         url = "https://api.spotify.com/v1/audio-features"
         max_ids_per_request = 100
