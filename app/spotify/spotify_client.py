@@ -56,9 +56,12 @@ class SpotifyClient:
             track = SpotifyClient.__create_spotify_track(track_data)
             tracks.append(track)
 
-            artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
-            artist_ids_per_track.append(artist_ids)
-            all_artist_ids.extend(artist_ids)
+            # TODO can move this call into __create_spotify_track
+            #   -> more consistent because all other attributes are set there as well.
+            #   -> except the ones which require extra requests, but those are done out of the for loop anyway
+            track.artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
+            artist_ids_per_track.append(track.artist_ids)
+            all_artist_ids.extend(track.artist_ids)
 
         SpotifyClient.__set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token)
         SpotifyClient.__set_audio_features_of_tracks(tracks, access_token)
