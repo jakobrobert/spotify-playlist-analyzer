@@ -46,7 +46,6 @@ class SpotifyClient:
         track_items = SpotifyClient.__get_all_track_items_of_playlist(playlist_data, access_token)
 
         # TODO can remove these variables later
-        artist_ids_per_track = []
         all_artist_ids = []
 
         for track_item in track_items:
@@ -59,10 +58,9 @@ class SpotifyClient:
             #   -> more consistent because all other attributes are set there as well.
             #   -> except the ones which require extra requests, but those are done out of the for loop anyway
             track.artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
-            artist_ids_per_track.append(track.artist_ids)
             all_artist_ids.extend(track.artist_ids)
 
-        SpotifyClient.__set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token)
+        SpotifyClient.__set_genres_of_tracks(tracks, all_artist_ids, access_token)
         SpotifyClient.__set_audio_features_of_tracks(tracks, access_token)
 
         return tracks
@@ -128,7 +126,7 @@ class SpotifyClient:
         return artist_ids
 
     @staticmethod
-    def __set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token):
+    def __set_genres_of_tracks(tracks, all_artist_ids, access_token):
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
         # TODO iterate through list directly, NO index necessary
