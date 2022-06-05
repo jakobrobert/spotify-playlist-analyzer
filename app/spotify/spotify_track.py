@@ -2,7 +2,9 @@ class SpotifyTrack:
     KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
 
     def __init__(self):
+        self.id = "n/a"
         self.title = "n/a"
+        self.artist_ids = []
         self.artists = []
         self.duration_ms = 0
         self.year_of_release = 0

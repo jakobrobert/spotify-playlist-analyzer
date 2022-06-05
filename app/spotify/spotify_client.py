@@ -46,6 +46,7 @@ class SpotifyClient:
 
         track_items = SpotifyClient.__get_all_track_items_of_playlist(playlist_data, access_token)
 
+        # TODO can remove these variables later
         track_ids = []
         artist_ids_per_track = []
         all_artist_ids = []
@@ -56,7 +57,7 @@ class SpotifyClient:
             track = SpotifyClient.__create_spotify_track(track_data)
             tracks.append(track)
 
-            track_ids.append(track_data["id"])
+            track_ids.append(track.id)
 
             artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
             artist_ids_per_track.append(artist_ids)
@@ -86,6 +87,7 @@ class SpotifyClient:
     def __create_spotify_track(track_data):
         track = SpotifyTrack()
 
+        track.id = track_data["id"]
         track.title = track_data["name"]
         track.artists = SpotifyClient.__get_artists_of_track(track_data)
         track.duration_ms = track_data["duration_ms"]
