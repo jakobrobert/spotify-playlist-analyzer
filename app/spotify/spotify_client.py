@@ -126,7 +126,11 @@ class SpotifyClient:
         return artist_ids
 
     @staticmethod
-    def __set_genres_of_tracks(tracks, all_artist_ids, access_token):
+    def __set_genres_of_tracks(tracks, unused_all_artist_ids, access_token):
+        all_artist_ids = []
+        for track in tracks:
+            all_artist_ids.extend(track.artist_ids)
+
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
         # TODO iterate through list directly, NO index necessary
