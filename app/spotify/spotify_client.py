@@ -39,31 +39,19 @@ class SpotifyClient:
 
         return response.json()
 
-    # TODO CLEANUP function too long, split it up
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
         tracks = []
 
         track_items = SpotifyClient.__get_all_track_items_of_playlist(playlist_data, access_token)
 
-        track_ids = []
-        artist_ids_per_track = []
-        all_artist_ids = []
-
         for track_item in track_items:
             track_data = track_item["track"]
-
             track = SpotifyClient.__create_spotify_track(track_data)
             tracks.append(track)
 
-            track_ids.append(track_data["id"])
-
-            artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
-            artist_ids_per_track.append(artist_ids)
-            all_artist_ids.extend(artist_ids)
-
-        SpotifyClient.__set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token)
-        SpotifyClient.__set_audio_features_of_tracks(tracks, track_ids, access_token)
+        SpotifyClient.__set_genres_of_tracks(tracks, access_token)
+        SpotifyClient.__set_audio_features_of_tracks(tracks, access_token)
 
         return tracks
 
@@ -86,7 +74,9 @@ class SpotifyClient:
     def __create_spotify_track(track_data):
         track = SpotifyTrack()
 
+        track.id = track_data["id"]
         track.title = track_data["name"]
+        track.artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
         track.artists = SpotifyClient.__get_artists_of_track(track_data)
         track.duration_ms = track_data["duration_ms"]
         track.year_of_release = SpotifyClient.__get_year_of_release_of_track(track_data)
@@ -127,13 +117,15 @@ class SpotifyClient:
         return artist_ids
 
     @staticmethod
-    def __set_genres_of_tracks(tracks, all_artist_ids, artist_ids_per_track, access_token):
+    def __set_genres_of_tracks(tracks, access_token):
+        all_artist_ids = []
+        for track in tracks:
+            all_artist_ids.extend(track.artist_ids)
+
         artist_id_to_genres = SpotifyClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
-        for track_index in range(0, len(tracks)):
-            artist_ids = artist_ids_per_track[track_index]
-            track = tracks[track_index]
-            track.genres = SpotifyClient.__get_genres_of_artists(artist_ids, artist_id_to_genres)
+        for track in tracks:
+            track.genres = SpotifyClient.__get_genres_of_artists(track.artist_ids, artist_id_to_genres)
 
     @staticmethod
     def __get_artist_id_to_genres(artist_ids, access_token):
@@ -195,8 +187,8 @@ class SpotifyClient:
         return genres
 
     @staticmethod
-    def __set_audio_features_of_tracks(tracks, track_ids, access_token):
-        all_audio_features = SpotifyClient.__get_audio_features_of_tracks(track_ids, access_token)
+    def __set_audio_features_of_tracks(tracks, access_token):
+        all_audio_features = SpotifyClient.__get_audio_features_of_tracks(tracks, access_token)
 
         assert len(all_audio_features) == len(tracks)
 
@@ -210,8 +202,12 @@ class SpotifyClient:
             track.loudness = audio_features["loudness"]
 
     @staticmethod
-    def __get_audio_features_of_tracks(track_ids, access_token):
+    def __get_audio_features_of_tracks(tracks, access_token):
         audio_features = []
+
+        track_ids = []
+        for track in tracks:
+            track_ids.append(track.id)
 
         url = "https://api.spotify.com/v1/audio-features"
         max_ids_per_request = 100
