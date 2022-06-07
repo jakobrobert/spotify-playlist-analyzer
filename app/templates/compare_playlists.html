@@ -60,17 +60,8 @@
 
         <h2>Compare Attribute Distribution</h2>
 
-        <!--
-        <select class="form-control" id="order" name="order">
-                <option value="ascending" {% if order == "ascending" %} selected {% endif %}>
-                    Ascending
-                </option>
-                <option value="descending" {% if order == "descending" %} selected {% endif %}>
-                    Descending
-                </option>
-            </select>
-            <button class="btn btn-secondary" type="submit">Sort</button>
-        -->
+        <h3>playlist_1.id: {{ playlist_1.id }}</h3>
+        <h3>playlist_2.id: {{ playlist_2.id }}</h3>
 
         <!-- TODO add 'none' option -->
         <form action="{{ url_for('compare_attribute_distribution_of_playlists', playlist_id_1=playlist_1.id, playlist_id_2=playlist_2.id) }}" method="GET">
