@@ -110,11 +110,6 @@ def compare_attribute_distribution_of_playlists():
 
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
 
-    # TODO CLEANUP can remove declarations?
-    attribute_name = "n/a"
-    attribute_value_to_percentage_1 = {}
-    attribute_value_to_percentage_2 = {}
-
     if attribute == "year_of_release":
         attribute_name = "Year of Release"
         attribute_value_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
