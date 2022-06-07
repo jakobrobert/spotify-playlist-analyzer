@@ -106,23 +106,31 @@ def compare_playlists_by_ids():
 
 @app.route(URL_PREFIX + "compare-attribute-distribution-of-playlists", methods=["GET"])
 def compare_attribute_distribution_of_playlists():
-    playlist_id_1 = request.args.get("playlist_id_1")
-    print(f"playlist_id_1: {playlist_id_1}")
-    playlist_id_2 = request.args.get("playlist_id_2")
-    print(f"playlist_id_2: {playlist_id_2}")
     attribute = request.args.get("attribute")
-    print(f"attribute: {attribute}")
 
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
+
+    # TODO CLEANUP can remove declarations?
     attribute_name = "n/a"
     attribute_value_to_percentage_1 = {}
     attribute_value_to_percentage_2 = {}
 
-    # TODO implement: basically, do the same as individual methods compare_year_distribution_of_playlists etc., depending on value of 'attribute'
     if attribute == "year_of_release":
         attribute_name = "Year of Release"
         attribute_value_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
         attribute_value_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
+    elif attribute == "tempo":
+        attribute_name = "Tempo (BPM)"
+        attribute_value_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
+        attribute_value_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
+    elif attribute == "key":
+        attribute_name = "Key"
+        attribute_value_to_percentage_1 = playlist_1.get_key_to_percentage()
+        attribute_value_to_percentage_2 = playlist_2.get_key_to_percentage()
+    elif attribute == "mode":
+        attribute_name = "Mode"
+        attribute_value_to_percentage_1 = playlist_1.get_mode_to_percentage()
+        attribute_value_to_percentage_2 = playlist_2.get_mode_to_percentage()
     else:
         raise ValueError(f"Unknown attribute '{attribute}'")
 
@@ -228,6 +236,7 @@ def __get_image_base64_from_plot():
     return image_base64_string
 
 
+# TODO CLEANUP if only used in one place, maybe can move out request args for more clarity
 def __get_playlists_to_compare_attribute_distribution():
     playlist_id_1 = request.args.get("playlist_id_1")
     playlist_id_2 = request.args.get("playlist_id_2")
