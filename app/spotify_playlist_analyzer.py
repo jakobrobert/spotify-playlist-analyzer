@@ -106,7 +106,6 @@ def compare_playlists_by_ids():
 
 @app.route(URL_PREFIX + "compare-attribute-distribution-of-playlists", methods=["GET"])
 def compare_attribute_distribution_of_playlists():
-    # TODO playlist_ids are None, why?
     playlist_id_1 = request.args.get("playlist_id_1")
     print(f"playlist_id_1: {playlist_id_1}")
     playlist_id_2 = request.args.get("playlist_id_2")
