@@ -64,13 +64,18 @@
         <h3>playlist_2.id: {{ playlist_2.id }}</h3>
 
         <!-- TODO add 'none' option -->
-        <form action="{{ url_for('compare_attribute_distribution_of_playlists', playlist_id_1=playlist_1.id, playlist_id_2=playlist_2.id) }}" method="GET">
+        <form action="{{ url_for('compare_attribute_distribution_of_playlists') }}" method="GET">
+            <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
                 <option value="year_of_release">Year of Release</option>
                 <option value="tempo">Tempo</option>
                 <option value="key">Key</option>
                 <option value="mode">Mode</option>
             </select>
+            <!-- Hidden fields to pass the query params to the URL.
+                It seems not to be possible to pass query params to the url_for function when using a form -->
+            <input type="hidden" name="playlist_id_1" value="{{ playlist_1.id }}">
+            <input type="hidden" name="playlist_id_2" value="{{ playlist_2.id }}">
             <button class="btn btn-secondary" type="submit">Compare</button>
         </form>
 
