@@ -106,9 +106,12 @@ def compare_playlists_by_ids():
 
 @app.route(URL_PREFIX + "compare-attribute-distribution-of-playlists", methods=["GET"])
 def compare_attribute_distribution_of_playlists():
+    playlist_id_1 = request.args.get("playlist_id_1")
+    playlist_id_2 = request.args.get("playlist_id_2")
     attribute = request.args.get("attribute")
 
-    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
+    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
     if attribute == "year_of_release":
         attribute_name = "Year of Release"
@@ -185,16 +188,6 @@ def __get_image_base64_from_plot():
     image_base64_string = image_base64_bytes.decode("utf8")
 
     return image_base64_string
-
-
-# TODO CLEANUP if only used in one place, maybe can move out request args for more clarity
-def __get_playlists_to_compare_attribute_distribution():
-    playlist_id_1 = request.args.get("playlist_id_1")
-    playlist_id_2 = request.args.get("playlist_id_2")
-    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
-    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
-
-    return playlist_1, playlist_2
 
 
 def __render_compare_attribute_distribution_template(
