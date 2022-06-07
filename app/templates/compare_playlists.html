@@ -57,6 +57,33 @@
             </tr>
         </table>
 
+
+        <h2>Compare Attribute Distribution</h2>
+
+        <!--
+        <select class="form-control" id="order" name="order">
+                <option value="ascending" {% if order == "ascending" %} selected {% endif %}>
+                    Ascending
+                </option>
+                <option value="descending" {% if order == "descending" %} selected {% endif %}>
+                    Descending
+                </option>
+            </select>
+            <button class="btn btn-secondary" type="submit">Sort</button>
+        -->
+
+        <!-- TODO add 'none' option -->
+        <form action="{{ url_for('compare_attribute_distribution_of_playlists', playlist_id_1=playlist_1.id, playlist_id_2=playlist_2.id) }}" method="GET">
+            <select class="form-control" id="attribute" name="attribute">
+                <option value="year_of_release">Year of Release</option>
+                <option value="tempo">Tempo</option>
+                <option value="key">Key</option>
+                <option value="mode">Mode</option>
+            </select>
+            <button class="btn btn-secondary" type="submit">Compare</button>
+        </form>
+
+        <!-- TODO remove all these buttons once dropdown menu is finished -->
         <a href="{{ url_for('compare_year_distribution_of_playlists', playlist_id_1=playlist_1.id, playlist_id_2=playlist_2.id) }}"
            class="btn btn-secondary" role="button">Compare Year of Release Distribution</a>
         <br>

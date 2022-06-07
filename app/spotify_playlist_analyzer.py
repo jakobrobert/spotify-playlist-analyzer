@@ -104,6 +104,19 @@ def compare_playlists_by_ids():
     return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
 
 
+@app.route(URL_PREFIX + "compare-attribute-distribution-of-playlists", methods=["GET"])
+def compare_attribute_distribution_of_playlists():
+    # TODO playlist_ids are None, why?
+    playlist_id_1 = request.args.get("playlist_id_1")
+    print(f"playlist_id_1: {playlist_id_1}")
+    playlist_id_2 = request.args.get("playlist_id_2")
+    print(f"playlist_id_2: {playlist_id_2}")
+    attribute = request.args.get("attribute")
+    print(f"attribute: {attribute}")
+
+    # TODO implement: basically, do the same as individual methods compare_year_distribution_of_playlists etc., depending on value of 'attribute'
+
+
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists", methods=["GET"])
 def compare_year_distribution_of_playlists():
     playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
