@@ -104,47 +104,36 @@ def compare_playlists_by_ids():
     return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
 
 
-@app.route(URL_PREFIX + "compare-year-distribution-of-playlists", methods=["GET"])
-def compare_year_distribution_of_playlists():
-    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
-    year_interval_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
-    year_interval_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
+@app.route(URL_PREFIX + "compare-attribute-distribution-of-playlists", methods=["GET"])
+def compare_attribute_distribution_of_playlists():
+    playlist_id_1 = request.args.get("playlist_id_1")
+    playlist_id_2 = request.args.get("playlist_id_2")
+    attribute = request.args.get("attribute")
+
+    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
+
+    if attribute == "year_of_release":
+        attribute_name = "Year of Release"
+        attribute_value_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
+        attribute_value_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
+    elif attribute == "tempo":
+        attribute_name = "Tempo (BPM)"
+        attribute_value_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
+        attribute_value_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
+    elif attribute == "key":
+        attribute_name = "Key"
+        attribute_value_to_percentage_1 = playlist_1.get_key_to_percentage()
+        attribute_value_to_percentage_2 = playlist_2.get_key_to_percentage()
+    elif attribute == "mode":
+        attribute_name = "Mode"
+        attribute_value_to_percentage_1 = playlist_1.get_mode_to_percentage()
+        attribute_value_to_percentage_2 = playlist_2.get_mode_to_percentage()
+    else:
+        raise ValueError(f"Unknown attribute '{attribute}'")
 
     return __render_compare_attribute_distribution_template(
-        playlist_1, playlist_2, "Year of Release", year_interval_to_percentage_1, year_interval_to_percentage_2
-    )
-
-
-@app.route(URL_PREFIX + "compare-tempo-distribution-of-playlists", methods=["GET"])
-def compare_tempo_distribution_of_playlists():
-    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
-    tempo_interval_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
-    tempo_interval_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
-
-    return __render_compare_attribute_distribution_template(
-        playlist_1, playlist_2, "Tempo (BPM)", tempo_interval_to_percentage_1, tempo_interval_to_percentage_2
-    )
-
-
-@app.route(URL_PREFIX + "compare-key-distribution-of-playlists", methods=["GET"])
-def compare_key_distribution_of_playlists():
-    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
-    key_to_percentage_1 = playlist_1.get_key_to_percentage()
-    key_to_percentage_2 = playlist_2.get_key_to_percentage()
-
-    return __render_compare_attribute_distribution_template(
-        playlist_1, playlist_2, "Key", key_to_percentage_1, key_to_percentage_2
-    )
-
-
-@app.route(URL_PREFIX + "compare-mode-distribution-of-playlists", methods=["GET"])
-def compare_mode_distribution_of_playlists():
-    playlist_1, playlist_2 = __get_playlists_to_compare_attribute_distribution()
-    mode_to_percentage_1 = playlist_1.get_mode_to_percentage()
-    mode_to_percentage_2 = playlist_2.get_mode_to_percentage()
-
-    return __render_compare_attribute_distribution_template(
-        playlist_1, playlist_2, "Mode", mode_to_percentage_1, mode_to_percentage_2
+        playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2
     )
 
 
@@ -199,15 +188,6 @@ def __get_image_base64_from_plot():
     image_base64_string = image_base64_bytes.decode("utf8")
 
     return image_base64_string
-
-
-def __get_playlists_to_compare_attribute_distribution():
-    playlist_id_1 = request.args.get("playlist_id_1")
-    playlist_id_2 = request.args.get("playlist_id_2")
-    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
-    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
-
-    return playlist_1, playlist_2
 
 
 def __render_compare_attribute_distribution_template(
