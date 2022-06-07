@@ -12,6 +12,9 @@ class SpotifyClient:
         self.CLIENT_SECRET = client_secret
 
     def get_playlist_by_id(self, playlist_id):
+        if playlist_id is None:
+            raise ValueError("playlist_id is None!")
+
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
         playlist_data = SpotifyClient.__send_get_request(url, access_token)

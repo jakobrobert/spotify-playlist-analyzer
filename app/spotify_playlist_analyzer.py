@@ -116,6 +116,8 @@ def compare_attribute_distribution_of_playlists():
 
     # TODO implement: basically, do the same as individual methods compare_year_distribution_of_playlists etc., depending on value of 'attribute'
 
+    return redirect(url_for("compare_playlists_by_ids", playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2))
+
 
 @app.route(URL_PREFIX + "compare-year-distribution-of-playlists", methods=["GET"])
 def compare_year_distribution_of_playlists():
