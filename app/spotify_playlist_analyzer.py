@@ -37,13 +37,19 @@ def get_playlist_by_url():
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
+    playlist = spotify_client.get_playlist_by_id(playlist_id)
+
     sort_by = request.args.get("sort_by") or "none"
     order = request.args.get("order") or "ascending"
-
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
     __sort_tracks(playlist.tracks, sort_by, order)
 
-    return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order)
+    filter_by = request.args.get("filter_by") or None
+    from_value = int(request.args.get("from")) or None
+    to_value = int(request.args.get("to")) or None
+    playlist.tracks = __filter_tracks(playlist.tracks, filter_by, from_value, to_value)
+
+    return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order,
+                           filter_by=filter_by, from_value=from_value, to_value=to_value)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
@@ -150,6 +156,24 @@ def __sort_tracks(tracks, sort_by, order):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+
+
+def __filter_tracks(tracks, filter_by, from_value, to_value):
+    if filter_by is None:
+        return tracks
+
+    if filter_by != "tempo":
+        raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
+
+    if from_value is None:
+        raise ValueError("from_value must be defined to filter by tempo!")
+
+    if to_value is None:
+        raise ValueError("to_value must be defined to filter by tempo!")
+
+    filter_iterator = filter(lambda track: from_value <= track.tempo <= to_value, tracks)
+
+    return list(filter_iterator)
 
 
 def __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage):
