@@ -37,19 +37,15 @@ def get_playlist_by_url():
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
-    # TODO refactor: move variables close to usage, i.e. directly before sort_tracks
+    playlist = spotify_client.get_playlist_by_id(playlist_id)
+
     sort_by = request.args.get("sort_by") or "none"
     order = request.args.get("order") or "ascending"
+    __sort_tracks(playlist.tracks, sort_by, order)
 
     filter_by = request.args.get("filter_by") or None
-    print(f"filter_by: {filter_by}")
     from_value = int(request.args.get("from")) or None
-    print(f"from_value: {from_value}")
     to_value = int(request.args.get("to")) or None
-    print(f"to_value: {to_value}")
-
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
-    __sort_tracks(playlist.tracks, sort_by, order)
     playlist.tracks = __filter_tracks(playlist.tracks, filter_by, from_value, to_value)
 
     return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order,
