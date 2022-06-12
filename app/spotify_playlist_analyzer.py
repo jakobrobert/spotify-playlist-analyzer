@@ -51,7 +51,8 @@ def get_playlist_by_id(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
     __sort_tracks(playlist.tracks, sort_by, order)
 
-    return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order)
+    return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order,
+                           filter_by=filter_by, from_value=from_value, to_value=to_value)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
