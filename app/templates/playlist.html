@@ -95,8 +95,13 @@
 
         <h4>Filter Tracks by</h4>
         <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
-            <label>Tempo (BPM)</label><br>
-            <button class="btn btn-secondary" type="submit">Sort</button>
+            <label>Tempo (BPM)</label>
+            <label for="from">from</label>
+            <input type="number" id="from" name="from">
+            <label for="to">to</label>
+            <input type="number" id="to" name="to">
+            <br>
+            <button class="btn btn-secondary" type="submit">Filter</button>
         </form>
         <br>
 
