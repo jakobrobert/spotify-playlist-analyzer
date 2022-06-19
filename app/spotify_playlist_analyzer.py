@@ -44,8 +44,8 @@ def get_playlist_by_id(playlist_id):
     __sort_tracks(playlist.tracks, sort_by, order)
 
     filter_by = request.args.get("filter_by") or None
-    from_value = int(request.args.get("from")) or None
-    to_value = int(request.args.get("to")) or None
+    from_value = __get_request_param_as_int_or_none("from")
+    to_value = __get_request_param_as_int_or_none("to")
     playlist.tracks = __filter_tracks(playlist.tracks, filter_by, from_value, to_value)
 
     return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order,
@@ -156,6 +156,15 @@ def __sort_tracks(tracks, sort_by, order):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+
+
+def __get_request_param_as_int_or_none(name):
+    value_string = request.args.get(name) or None
+
+    if value_string:
+        return int(value_string)
+
+    return None
 
 
 def __filter_tracks(tracks, filter_by, from_value, to_value):
