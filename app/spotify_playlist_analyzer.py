@@ -44,12 +44,16 @@ def get_playlist_by_id(playlist_id):
     __sort_tracks(playlist.tracks, sort_by, order)
 
     filter_by = request.args.get("filter_by") or None
-    from_value = __get_request_param_as_int_or_none("from")
-    to_value = __get_request_param_as_int_or_none("to")
-    playlist.tracks = __filter_tracks(playlist.tracks, filter_by, from_value, to_value)
+    min_tempo = __get_request_param_as_int_or_none("min_tempo")
+    max_tempo = __get_request_param_as_int_or_none("max_tempo")
+    min_year = __get_request_param_as_int_or_none("min_year")
+    max_year = __get_request_param_as_int_or_none("max_year")
+    playlist.tracks = __filter_tracks(playlist.tracks, filter_by, min_tempo, max_tempo, min_year, max_year)
 
-    return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order,
-                           filter_by=filter_by, from_value=from_value, to_value=to_value)
+    return render_template(
+        "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
+        min_tempo=min_tempo, max_tempo=max_tempo, min_year=min_year, max_year=max_year
+    )
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
@@ -167,22 +171,29 @@ def __get_request_param_as_int_or_none(name):
     return None
 
 
-def __filter_tracks(tracks, filter_by, from_value, to_value):
+def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year):
     if filter_by is None:
         return tracks
 
-    if filter_by != "tempo":
-        raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
+    if filter_by == "tempo":
+        if min_tempo is None:
+            raise ValueError("min_tempo must be defined to filter by tempo!")
 
-    if from_value is None:
-        raise ValueError("from_value must be defined to filter by tempo!")
+        if max_tempo is None:
+            raise ValueError("max_tempo must be defined to filter by tempo!")
 
-    if to_value is None:
-        raise ValueError("to_value must be defined to filter by tempo!")
+        return list(filter(lambda track: min_tempo <= track.tempo <= max_tempo, tracks))
 
-    filter_iterator = filter(lambda track: from_value <= track.tempo <= to_value, tracks)
+    if filter_by == "year":
+        if min_year is None:
+            raise ValueError("min_year must be defined to filter by year!")
 
-    return list(filter_iterator)
+        if max_year is None:
+            raise ValueError("max_year must be defined to filter by year!")
+
+        return list(filter(lambda track: min_year <= track.year_of_release <= max_year, tracks))
+
+    raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
 
 def __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage):
