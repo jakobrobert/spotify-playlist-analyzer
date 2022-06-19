@@ -44,17 +44,15 @@ def get_playlist_by_id(playlist_id):
     __sort_tracks(playlist.tracks, sort_by, order)
 
     filter_by = request.args.get("filter_by") or None
-
-    # TODO CLEANUP rename to "min_tempo" & "max_tempo" etc.
-    from_tempo = __get_request_param_as_int_or_none("from_tempo")
-    to_tempo = __get_request_param_as_int_or_none("to_tempo")
-    from_year = __get_request_param_as_int_or_none("from_year")
-    to_year = __get_request_param_as_int_or_none("to_year")
-    playlist.tracks = __filter_tracks(playlist.tracks, filter_by, from_tempo, to_tempo, from_year, to_year)
+    min_tempo = __get_request_param_as_int_or_none("min_tempo")
+    max_tempo = __get_request_param_as_int_or_none("max_tempo")
+    min_year = __get_request_param_as_int_or_none("min_year")
+    max_year = __get_request_param_as_int_or_none("max_year")
+    playlist.tracks = __filter_tracks(playlist.tracks, filter_by, min_tempo, max_tempo, min_year, max_year)
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
-        from_tempo=from_tempo, to_tempo=to_tempo, from_year=from_year, to_year=to_year
+        min_tempo=min_tempo, max_tempo=max_tempo, min_year=min_year, max_year=max_year
     )
 
 
@@ -173,27 +171,27 @@ def __get_request_param_as_int_or_none(name):
     return None
 
 
-def __filter_tracks(tracks, filter_by, from_tempo, to_tempo, from_year, to_year):
+def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year):
     if filter_by is None:
         return tracks
 
     if filter_by == "tempo":
-        if from_tempo is None:
-            raise ValueError("from_tempo must be defined to filter by tempo!")
+        if min_tempo is None:
+            raise ValueError("min_tempo must be defined to filter by tempo!")
 
-        if to_tempo is None:
-            raise ValueError("to_tempo must be defined to filter by tempo!")
+        if max_tempo is None:
+            raise ValueError("max_tempo must be defined to filter by tempo!")
 
-        return list(filter(lambda track: from_tempo <= track.tempo <= to_tempo, tracks))
+        return list(filter(lambda track: min_tempo <= track.tempo <= max_tempo, tracks))
 
     if filter_by == "year":
-        if from_year is None:
-            raise ValueError("from_year must be defined to filter by year!")
+        if min_year is None:
+            raise ValueError("min_year must be defined to filter by year!")
 
-        if to_year is None:
-            raise ValueError("to_year must be defined to filter by year!")
+        if max_year is None:
+            raise ValueError("max_year must be defined to filter by year!")
 
-        return list(filter(lambda track: from_year <= track.year_of_release <= to_year, tracks))
+        return list(filter(lambda track: min_year <= track.year_of_release <= max_year, tracks))
 
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
