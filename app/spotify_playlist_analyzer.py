@@ -44,12 +44,14 @@ def get_playlist_by_id(playlist_id):
     __sort_tracks(playlist.tracks, sort_by, order)
 
     filter_by = request.args.get("filter_by") or None
-    from_value = __get_request_param_as_int_or_none("from")
-    to_value = __get_request_param_as_int_or_none("to")
-    playlist.tracks = __filter_tracks(playlist.tracks, filter_by, from_value, to_value)
+
+    # TODO CLEANUP rename to "min_tempo" & "max_tempo"
+    from_tempo = __get_request_param_as_int_or_none("from_tempo")
+    to_tempo = __get_request_param_as_int_or_none("to_tempo")
+    playlist.tracks = __filter_tracks(playlist.tracks, filter_by, from_tempo, to_tempo)
 
     return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order,
-                           filter_by=filter_by, from_value=from_value, to_value=to_value)
+                           filter_by=filter_by, from_tempo=from_tempo, to_tempo=to_tempo)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
@@ -167,20 +169,20 @@ def __get_request_param_as_int_or_none(name):
     return None
 
 
-def __filter_tracks(tracks, filter_by, from_value, to_value):
+def __filter_tracks(tracks, filter_by, from_tempo, to_tempo):
     if filter_by is None:
         return tracks
 
     if filter_by != "tempo":
         raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
-    if from_value is None:
-        raise ValueError("from_value must be defined to filter by tempo!")
+    if from_tempo is None:
+        raise ValueError("from_tempo must be defined to filter by tempo!")
 
-    if to_value is None:
-        raise ValueError("to_value must be defined to filter by tempo!")
+    if to_tempo is None:
+        raise ValueError("to_tempo must be defined to filter by tempo!")
 
-    filter_iterator = filter(lambda track: from_value <= track.tempo <= to_value, tracks)
+    filter_iterator = filter(lambda track: from_tempo <= track.tempo <= to_tempo, tracks)
 
     return list(filter_iterator)
 
