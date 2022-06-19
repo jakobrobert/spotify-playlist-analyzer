@@ -52,8 +52,10 @@ def get_playlist_by_id(playlist_id):
     to_year = __get_request_param_as_int_or_none("to_year")
     playlist.tracks = __filter_tracks(playlist.tracks, filter_by, from_tempo, to_tempo, from_year, to_year)
 
-    return render_template("playlist.html", playlist=playlist, sort_by=sort_by, order=order,
-                           filter_by=filter_by, from_tempo=from_tempo, to_tempo=to_tempo)
+    return render_template(
+        "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
+        from_tempo=from_tempo, to_tempo=to_tempo, from_year=from_year, to_year=to_year
+    )
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
