@@ -97,7 +97,8 @@
         <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <!-- TODO add "checked" attribute if filter_by is set to this attribute -->
             <div>
-                <input type="radio" id="tempo" name="filter_by" value="tempo">
+                <input type="radio" id="tempo" name="filter_by" value="tempo"
+                       {% if filter_by == "tempo" %} checked {% endif %}>
                 <label for="tempo">Tempo (BPM)</label>
                 <label for="from_tempo">from</label>
                 <input type="number" id="from_tempo" name="from_tempo" value="{{ from_tempo }}">
@@ -105,7 +106,8 @@
                 <input type="number" id="to_tempo" name="to_tempo" value="{{ to_tempo }}">
             </div>
             <div>
-                <input type="radio" id="year" name="filter_by" value="year">
+                <input type="radio" id="year" name="filter_by" value="year"
+                       {% if filter_by == "year" %} checked {% endif %}>
                 <label for="year">Year of Release</label>
                 <!-- TODO FIX somehow, values for year not shown in input fields, even though passed as query params.
                     But for Tempo, input field shows the correct values -->
