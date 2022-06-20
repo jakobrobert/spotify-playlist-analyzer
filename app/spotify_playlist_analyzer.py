@@ -56,6 +56,16 @@ def get_playlist_by_id(playlist_id):
     )
 
 
+@app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
+def get_attribute_distribution_of_playlist(playlist_id):
+    print(f"playlist_id: {playlist_id}")
+
+    # TODO implement. similar to compare_attribute_distribution_of_playlists
+
+    return redirect(url_for("get_playlist_by_id", playlist_id=playlist_id))
+
+
+# TODO remove old functions
 @app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
 def get_year_distribution_of_playlist(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
