@@ -15,11 +15,27 @@
         <br>
 
         <h2>General Info</h2>
+
         <h4># Tracks: {{ playlist.tracks | length }}</h4>
         <h4>Total Duration: {{ playlist.get_total_duration_string() }}</h4>
         <h4>Average Duration: {{ playlist.get_average_duration_string() }}</h4>
         <h4>Average Year of Release: {{ playlist.get_average_year_of_release_string() }}</h4>
         <h4>Average Tempo (BPM): {{ playlist.get_average_tempo_string() }}</h4>
+        <br>
+
+        <h2>Attribute Distribution</h2>
+
+        <form action="{{ url_for('get_attribute_distribution_of_playlist', playlist_id=playlist.id) }}" method="GET">
+            <label for="attribute">Attribute</label>
+            <select class="form-control" id="attribute" name="attribute">
+                <option value="year_of_release">Year of Release</option>
+                <option value="tempo">Tempo</option>
+                <option value="key">Key</option>
+                <option value="mode">Mode</option>
+            </select>
+            <br>
+            <button class="btn btn-secondary" type="submit">Show</button>
+        </form>
         <br>
 
         <a href="{{ url_for('get_year_distribution_of_playlist', playlist_id=playlist.id) }}"
