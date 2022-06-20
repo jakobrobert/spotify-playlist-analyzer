@@ -80,39 +80,6 @@ def get_attribute_distribution_of_playlist(playlist_id):
     return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
 
 
-# TODO remove old functions
-@app.route(URL_PREFIX + "playlist/<playlist_id>/year-distribution", methods=["GET"])
-def get_year_distribution_of_playlist(playlist_id):
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
-    year_interval_to_percentage = playlist.get_year_interval_to_percentage()
-
-    return __render_attribute_distribution_template(playlist, "Year of Release", year_interval_to_percentage)
-
-
-@app.route(URL_PREFIX + "playlist/<playlist_id>/tempo-distribution", methods=["GET"])
-def get_tempo_distribution_of_playlist(playlist_id):
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
-    tempo_interval_to_percentage = playlist.get_tempo_interval_to_percentage()
-
-    return __render_attribute_distribution_template(playlist, "Tempo (BPM)", tempo_interval_to_percentage)
-
-
-@app.route(URL_PREFIX + "playlist/<playlist_id>/key-distribution", methods=["GET"])
-def get_key_distribution_of_playlist(playlist_id):
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
-    key_to_percentage = playlist.get_key_to_percentage()
-
-    return __render_attribute_distribution_template(playlist, "Key", key_to_percentage)
-
-
-@app.route(URL_PREFIX + "playlist/<playlist_id>/mode-distribution", methods=["GET"])
-def get_mode_distribution_of_playlist(playlist_id):
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
-    mode_to_percentage = playlist.get_mode_to_percentage()
-
-    return __render_attribute_distribution_template(playlist, "Mode", mode_to_percentage)
-
-
 @app.route(URL_PREFIX + "choose-playlists-for-comparison", methods=["GET"])
 def choose_playlists_for_comparison():
     return render_template("choose_playlists_for_comparison.html")
