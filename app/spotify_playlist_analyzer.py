@@ -100,10 +100,10 @@ def compare_playlists_by_urls():
 def compare_playlists_by_ids():
     playlist_id_1 = request.args.get("playlist_id_1")
     playlist_id_2 = request.args.get("playlist_id_2")
-    playlist = spotify_client.get_playlist_by_id(playlist_id_1)
+    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
     playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
-    return render_template("compare_playlists.html", playlist=playlist, playlist_2=playlist_2)
+    return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
 
 
 @app.route(URL_PREFIX + "compare-attribute-distribution-of-playlists", methods=["GET"])
@@ -112,30 +112,30 @@ def compare_attribute_distribution_of_playlists():
     playlist_id_2 = request.args.get("playlist_id_2")
     attribute = request.args.get("attribute")
 
-    playlist = spotify_client.get_playlist_by_id(playlist_id_1)
+    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
     playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
     if attribute == "year_of_release":
         attribute_name = "Year of Release"
-        attribute_value_to_percentage_1 = playlist.get_year_interval_to_percentage()
+        attribute_value_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
         attribute_value_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
     elif attribute == "tempo":
         attribute_name = "Tempo (BPM)"
-        attribute_value_to_percentage_1 = playlist.get_tempo_interval_to_percentage()
+        attribute_value_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
         attribute_value_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
     elif attribute == "key":
         attribute_name = "Key"
-        attribute_value_to_percentage_1 = playlist.get_key_to_percentage()
+        attribute_value_to_percentage_1 = playlist_1.get_key_to_percentage()
         attribute_value_to_percentage_2 = playlist_2.get_key_to_percentage()
     elif attribute == "mode":
         attribute_name = "Mode"
-        attribute_value_to_percentage_1 = playlist.get_mode_to_percentage()
+        attribute_value_to_percentage_1 = playlist_1.get_mode_to_percentage()
         attribute_value_to_percentage_2 = playlist_2.get_mode_to_percentage()
     else:
         raise ValueError(f"Unknown attribute: '{attribute}'")
 
     return __render_compare_attribute_distribution_template(
-        playlist, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2
+        playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2
     )
 
 
@@ -227,14 +227,14 @@ def __get_image_base64_from_plot():
 
 
 def __render_compare_attribute_distribution_template(
-        playlist, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2):
+        playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2):
     chart_image_base64 = __get_attribute_comparison_chart_image_base64(
-        attribute_name, playlist.name, playlist_2.name,
+        attribute_name, playlist_1.name, playlist_2.name,
         attribute_value_to_percentage_1, attribute_value_to_percentage_2
     )
 
     return render_template("compare_attribute_distribution.html",
-                           playlist=playlist, playlist_2=playlist_2, attribute_name=attribute_name,
+                           playlist_1=playlist_1, playlist_2=playlist_2, attribute_name=attribute_name,
                            attribute_value_to_percentage_1=attribute_value_to_percentage_1,
                            attribute_value_to_percentage_2=attribute_value_to_percentage_2,
                            chart_image_base64=chart_image_base64)
