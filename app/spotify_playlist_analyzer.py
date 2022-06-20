@@ -58,10 +58,7 @@ def get_playlist_by_id(playlist_id):
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
 def get_attribute_distribution_of_playlist(playlist_id):
-    # TODO remove logging
-    print(f"playlist_id: {playlist_id}")
     attribute = request.args.get("attribute")
-    print(f"attribute: {attribute}")
     
     playlist = spotify_client.get_playlist_by_id(playlist_id)
 

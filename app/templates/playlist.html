@@ -15,7 +15,6 @@
         <br>
 
         <h2>General Info</h2>
-
         <h4># Tracks: {{ playlist.tracks | length }}</h4>
         <h4>Total Duration: {{ playlist.get_total_duration_string() }}</h4>
         <h4>Average Duration: {{ playlist.get_average_duration_string() }}</h4>
@@ -24,7 +23,6 @@
         <br>
 
         <h2>Attribute Distribution</h2>
-
         <form action="{{ url_for('get_attribute_distribution_of_playlist', playlist_id=playlist.id) }}" method="GET">
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
@@ -36,27 +34,6 @@
             <br>
             <button class="btn btn-secondary" type="submit">Show</button>
         </form>
-        <br>
-
-        <!-- TODO remove old buttons -->
-        <a href="{{ url_for('get_year_distribution_of_playlist', playlist_id=playlist.id) }}"
-           class="btn btn-secondary" role="button">Year of Release Distribution</a>
-        <br>
-        <br>
-
-        <a href="{{ url_for('get_tempo_distribution_of_playlist', playlist_id=playlist.id) }}"
-           class="btn btn-secondary" role="button">Tempo Distribution</a>
-        <br>
-        <br>
-
-        <a href="{{ url_for('get_key_distribution_of_playlist', playlist_id=playlist.id) }}"
-           class="btn btn-secondary" role="button">Key Distribution</a>
-        <br>
-        <br>
-
-        <a href="{{ url_for('get_mode_distribution_of_playlist', playlist_id=playlist.id) }}"
-           class="btn btn-secondary" role="button">Mode Distribution</a>
-        <br>
         <br>
 
         <h2>Tracks</h2>
