@@ -22,24 +22,18 @@
         <h4>Average Tempo (BPM): {{ playlist.get_average_tempo_string() }}</h4>
         <br>
 
-        <a href="{{ url_for('get_year_distribution_of_playlist', playlist_id=playlist.id) }}"
-           class="btn btn-secondary" role="button">Year of Release Distribution</a>
-        <br>
-        <br>
-
-        <a href="{{ url_for('get_tempo_distribution_of_playlist', playlist_id=playlist.id) }}"
-           class="btn btn-secondary" role="button">Tempo Distribution</a>
-        <br>
-        <br>
-
-        <a href="{{ url_for('get_key_distribution_of_playlist', playlist_id=playlist.id) }}"
-           class="btn btn-secondary" role="button">Key Distribution</a>
-        <br>
-        <br>
-
-        <a href="{{ url_for('get_mode_distribution_of_playlist', playlist_id=playlist.id) }}"
-           class="btn btn-secondary" role="button">Mode Distribution</a>
-        <br>
+        <h2>Attribute Distribution</h2>
+        <form action="{{ url_for('get_attribute_distribution_of_playlist', playlist_id=playlist.id) }}" method="GET">
+            <label for="attribute">Attribute</label>
+            <select class="form-control" id="attribute" name="attribute">
+                <option value="year_of_release">Year of Release</option>
+                <option value="tempo">Tempo</option>
+                <option value="key">Key</option>
+                <option value="mode">Mode</option>
+            </select>
+            <br>
+            <button class="btn btn-secondary" type="submit">Show</button>
+        </form>
         <br>
 
         <h2>Tracks</h2>
