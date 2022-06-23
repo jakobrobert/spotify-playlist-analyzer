@@ -111,8 +111,8 @@
                 <input type="radio" id="artists" name="filter_by" value="artists"
                        {% if filter_by == "artists" %} checked {% endif %}>
                 <label for="artists">Artists</label>
-                <label for="artists_contain">contain</label>
-                <input type="text" id="artists_contain" name="artists_contain" value="{{ artists_contain }}">
+                <label for="artists_substring">contain</label>
+                <input type="text" id="artists_substring" name="artists_substring" value="{{ artists_substring }}">
             </div>
             <button class="btn btn-secondary" type="submit">Filter</button>
         </form>
