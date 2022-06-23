@@ -48,11 +48,16 @@ def get_playlist_by_id(playlist_id):
     max_tempo = __get_request_param_as_int_or_none("max_tempo")
     min_year = __get_request_param_as_int_or_none("min_year")
     max_year = __get_request_param_as_int_or_none("max_year")
-    playlist.tracks = __filter_tracks(playlist.tracks, filter_by, min_tempo, max_tempo, min_year, max_year)
+    artists_substring = request.args.get("artists_substring") or None
+    playlist.tracks = __filter_tracks(
+        playlist.tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
+        artists_substring
+    )
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
-        min_tempo=min_tempo, max_tempo=max_tempo, min_year=min_year, max_year=max_year
+        min_tempo=min_tempo, max_tempo=max_tempo, min_year=min_year, max_year=max_year,
+        artists_substring=artists_substring
     )
 
 
@@ -163,7 +168,7 @@ def __get_request_param_as_int_or_none(name):
     return None
 
 
-def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year):
+def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year, artists_substring):
     if filter_by is None:
         return tracks
 
@@ -184,6 +189,12 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year)
             raise ValueError("max_year must be defined to filter by year!")
 
         return list(filter(lambda track: min_year <= track.year_of_release <= max_year, tracks))
+
+    if filter_by == "artists":
+        if artists_substring is None:
+            raise ValueError("artists_substring must be defined to filter by artists!")
+
+        return list(filter(lambda track: any(artists_substring in artist for artist in track.artists), tracks))
 
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
