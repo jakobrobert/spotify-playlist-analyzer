@@ -44,14 +44,14 @@ def get_playlist_by_id(playlist_id):
     __sort_tracks(playlist.tracks, sort_by, order)
 
     filter_by = request.args.get("filter_by") or None
-    min_tempo = __get_request_param_as_int_or_none("min_tempo")
-    max_tempo = __get_request_param_as_int_or_none("max_tempo")
+    artists_substring = request.args.get("artists_substring") or None
     min_year = __get_request_param_as_int_or_none("min_year")
     max_year = __get_request_param_as_int_or_none("max_year")
-    artists_substring = request.args.get("artists_substring") or None
-    genres_substring = request.args.get("genres_substring") or None
+    min_tempo = __get_request_param_as_int_or_none("min_tempo")
+    max_tempo = __get_request_param_as_int_or_none("max_tempo")
     expected_key = request.args.get("expected_key") or None
     expected_mode = request.args.get("expected_mode") or None
+    genres_substring = request.args.get("genres_substring") or None
     playlist.tracks = __filter_tracks(
         playlist.tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
         artists_substring, genres_substring, expected_key, expected_mode
@@ -59,9 +59,10 @@ def get_playlist_by_id(playlist_id):
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
-        min_tempo=min_tempo, max_tempo=max_tempo, min_year=min_year, max_year=max_year,
-        artists_substring=artists_substring, genres_substring=genres_substring,
-        expected_key=expected_key, expected_mode=expected_mode
+        artists_substring=artists_substring,
+        min_year=min_year, max_year=max_year, min_tempo=min_tempo, max_tempo=max_tempo,
+        expected_key=expected_key, expected_mode=expected_mode,
+        genres_substring=genres_substring,
     )
 
 
@@ -177,6 +178,7 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
     if filter_by is None:
         return tracks
 
+    # TODO adjust order
     if filter_by == "tempo":
         if min_tempo is None:
             raise ValueError("min_tempo must be defined to filter by tempo!")
