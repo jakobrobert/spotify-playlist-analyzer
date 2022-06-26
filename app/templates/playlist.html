@@ -121,6 +121,14 @@
                 <label for="genres_substring">contain</label>
                 <input type="text" id="genres_substring" name="genres_substring" value="{{ genres_substring }}">
             </div>
+            <div>
+                <input type="radio" id="key" name="filter_by" value="key"
+                       {% if filter_by == "key" %} checked {% endif %}>
+                <label for="key">Key</label>
+                <label for="expected_key">is</label>
+                <!-- TODO better dropdown menu (select) because there is a finite amount of options, avoid typos this way -->
+                <input type="text" id="expected_key" name="expected_key" value="{{ expected_key }}">
+            </div>
             <button class="btn btn-secondary" type="submit">Filter</button>
         </form>
         <br>
