@@ -44,14 +44,14 @@ def get_playlist_by_id(playlist_id):
     __sort_tracks(playlist.tracks, sort_by, order)
 
     filter_by = request.args.get("filter_by") or None
-    min_tempo = __get_request_param_as_int_or_none("min_tempo")
-    max_tempo = __get_request_param_as_int_or_none("max_tempo")
+    artists_substring = request.args.get("artists_substring") or None
     min_year = __get_request_param_as_int_or_none("min_year")
     max_year = __get_request_param_as_int_or_none("max_year")
-    artists_substring = request.args.get("artists_substring") or None
-    genres_substring = request.args.get("genres_substring") or None
+    min_tempo = __get_request_param_as_int_or_none("min_tempo")
+    max_tempo = __get_request_param_as_int_or_none("max_tempo")
     expected_key = request.args.get("expected_key") or None
     expected_mode = request.args.get("expected_mode") or None
+    genres_substring = request.args.get("genres_substring") or None
     playlist.tracks = __filter_tracks(
         playlist.tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
         artists_substring, genres_substring, expected_key, expected_mode
@@ -59,9 +59,10 @@ def get_playlist_by_id(playlist_id):
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
-        min_tempo=min_tempo, max_tempo=max_tempo, min_year=min_year, max_year=max_year,
-        artists_substring=artists_substring, genres_substring=genres_substring,
-        expected_key=expected_key, expected_mode=expected_mode
+        artists_substring=artists_substring,
+        min_year=min_year, max_year=max_year, min_tempo=min_tempo, max_tempo=max_tempo,
+        expected_key=expected_key, expected_mode=expected_mode,
+        genres_substring=genres_substring,
     )
 
 
@@ -177,14 +178,11 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
     if filter_by is None:
         return tracks
 
-    if filter_by == "tempo":
-        if min_tempo is None:
-            raise ValueError("min_tempo must be defined to filter by tempo!")
+    if filter_by == "artists":
+        if artists_substring is None:
+            raise ValueError("artists_substring must be defined to filter by artists!")
 
-        if max_tempo is None:
-            raise ValueError("max_tempo must be defined to filter by tempo!")
-
-        return list(filter(lambda track: min_tempo <= track.tempo <= max_tempo, tracks))
+        return list(filter(lambda track: any(artists_substring in artist for artist in track.artists), tracks))
 
     if filter_by == "year":
         if min_year is None:
@@ -195,17 +193,14 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
 
         return list(filter(lambda track: min_year <= track.year_of_release <= max_year, tracks))
 
-    if filter_by == "artists":
-        if artists_substring is None:
-            raise ValueError("artists_substring must be defined to filter by artists!")
+    if filter_by == "tempo":
+        if min_tempo is None:
+            raise ValueError("min_tempo must be defined to filter by tempo!")
 
-        return list(filter(lambda track: any(artists_substring in artist for artist in track.artists), tracks))
+        if max_tempo is None:
+            raise ValueError("max_tempo must be defined to filter by tempo!")
 
-    if filter_by == "genres":
-        if genres_substring is None:
-            raise ValueError("genres_substring must be defined to filter by genres!")
-
-        return list(filter(lambda track: any(genres_substring in genre for genre in track.genres), tracks))
+        return list(filter(lambda track: min_tempo <= track.tempo <= max_tempo, tracks))
 
     if filter_by == "key":
         if expected_key is None:
@@ -218,6 +213,12 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
             raise ValueError("expected_mode must be defined to filter by mode!")
 
         return list(filter(lambda track: track.get_mode_string() == expected_mode, tracks))
+
+    if filter_by == "genres":
+        if genres_substring is None:
+            raise ValueError("genres_substring must be defined to filter by genres!")
+
+        return list(filter(lambda track: any(genres_substring in genre for genre in track.genres), tracks))
 
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 

@@ -90,13 +90,11 @@
         <h4>Filter Tracks by</h4>
         <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <div>
-                <input type="radio" id="tempo" name="filter_by" value="tempo"
-                       {% if filter_by == "tempo" %} checked {% endif %}>
-                <label for="tempo">Tempo (BPM)</label>
-                <label for="min_tempo">from</label>
-                <input type="number" id="min_tempo" name="min_tempo" value="{{ min_tempo }}">
-                <label for="max_tempo">to</label>
-                <input type="number" id="max_tempo" name="max_tempo" value="{{ max_tempo }}">
+                <input type="radio" id="artists" name="filter_by" value="artists"
+                       {% if filter_by == "artists" %} checked {% endif %}>
+                <label for="artists">Artists</label>
+                <label for="artists_substring">contain</label>
+                <input type="text" id="artists_substring" name="artists_substring" value="{{ artists_substring }}">
             </div>
             <div>
                 <input type="radio" id="year" name="filter_by" value="year"
@@ -108,18 +106,13 @@
                 <input type="number" id="max_year" name="max_year" value="{{ max_year }}">
             </div>
             <div>
-                <input type="radio" id="artists" name="filter_by" value="artists"
-                       {% if filter_by == "artists" %} checked {% endif %}>
-                <label for="artists">Artists</label>
-                <label for="artists_substring">contain</label>
-                <input type="text" id="artists_substring" name="artists_substring" value="{{ artists_substring }}">
-            </div>
-            <div>
-                <input type="radio" id="genres" name="filter_by" value="genres"
-                       {% if filter_by == "genres" %} checked {% endif %}>
-                <label for="genres">Genres</label>
-                <label for="genres_substring">contain</label>
-                <input type="text" id="genres_substring" name="genres_substring" value="{{ genres_substring }}">
+                <input type="radio" id="tempo" name="filter_by" value="tempo"
+                       {% if filter_by == "tempo" %} checked {% endif %}>
+                <label for="tempo">Tempo (BPM)</label>
+                <label for="min_tempo">from</label>
+                <input type="number" id="min_tempo" name="min_tempo" value="{{ min_tempo }}">
+                <label for="max_tempo">to</label>
+                <input type="number" id="max_tempo" name="max_tempo" value="{{ max_tempo }}">
             </div>
             <div>
                 <input type="radio" id="key" name="filter_by" value="key"
@@ -154,6 +147,13 @@
                         Minor
                     </option>
                 </select>
+            </div>
+            <div>
+                <input type="radio" id="genres" name="filter_by" value="genres"
+                       {% if filter_by == "genres" %} checked {% endif %}>
+                <label for="genres">Genres</label>
+                <label for="genres_substring">contain</label>
+                <input type="text" id="genres_substring" name="genres_substring" value="{{ genres_substring }}">
             </div>
             <button class="btn btn-secondary" type="submit">Filter</button>
         </form>
