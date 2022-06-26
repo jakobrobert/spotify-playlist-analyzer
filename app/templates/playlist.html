@@ -126,8 +126,21 @@
                        {% if filter_by == "key" %} checked {% endif %}>
                 <label for="key">Key</label>
                 <label for="expected_key">is</label>
-                <!-- TODO better dropdown menu (select) because there is a finite amount of options, avoid typos this way -->
                 <input type="text" id="expected_key" name="expected_key" value="{{ expected_key }}">
+            </div>
+            <div>
+                <input type="radio" id="mode" name="filter_by" value="mode"
+                       {% if filter_by == "mode" %} checked {% endif %}>
+                <label for="mode">Mode</label>
+                <label for="expected_mode">is</label>
+                <select class="form-control" id="expected_mode" name="expected_mode">
+                    <option value="Major" {% if expected_mode == "Major" %} selected {% endif %}>
+                        Major
+                    </option>
+                    <option value="Minor" {% if expected_mode == "Minor" %} selected {% endif %}>
+                        Minor
+                    </option>
+                </select>
             </div>
             <button class="btn btn-secondary" type="submit">Filter</button>
         </form>
