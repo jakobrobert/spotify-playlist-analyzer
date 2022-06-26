@@ -126,7 +126,20 @@
                        {% if filter_by == "key" %} checked {% endif %}>
                 <label for="key">Key</label>
                 <label for="expected_key">is</label>
-                <input type="text" id="expected_key" name="expected_key" value="{{ expected_key }}">
+                <select class="form-control" id="expected_key" name="expected_key">
+                    <option value="C" {% if expected_key == "C" %} selected {% endif %}>C</option>
+                    <option value="C♯/D♭" {% if expected_key == "C♯/D♭" %} selected {% endif %}>C♯/D♭</option>
+                    <option value="D" {% if expected_key == "D" %} selected {% endif %}>D</option>
+                    <option value="D♯/E♭" {% if expected_key == "D♯/E♭" %} selected {% endif %}>D♯/E♭</option>
+                    <option value="E" {% if expected_key == "E" %} selected {% endif %}>E</option>
+                    <option value="F" {% if expected_key == "F" %} selected {% endif %}>F</option>
+                    <option value="F♯/G♭" {% if expected_key == "F♯/G♭" %} selected {% endif %}>F♯/G♭</option>
+                    <option value="G" {% if expected_key == "G" %} selected {% endif %}>G</option>
+                    <option value="G♯/A♭" {% if expected_key == "G♯/A♭" %} selected {% endif %}>G♯/A♭</option>
+                    <option value="A" {% if expected_key == "A" %} selected {% endif %}>A</option>
+                    <option value="A♯/B♭" {% if expected_key == "A♯/B♭" %} selected {% endif %}>A♯/B♭</option>
+                    <option value="B" {% if expected_key == "B" %} selected {% endif %}>B</option>
+                </select>
             </div>
             <div>
                 <input type="radio" id="mode" name="filter_by" value="mode"
