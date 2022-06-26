@@ -51,16 +51,17 @@ def get_playlist_by_id(playlist_id):
     artists_substring = request.args.get("artists_substring") or None
     genres_substring = request.args.get("genres_substring") or None
     expected_key = request.args.get("expected_key") or None
+    expected_mode = request.args.get("expected_mode") or None
     playlist.tracks = __filter_tracks(
         playlist.tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
-        artists_substring, genres_substring, expected_key
+        artists_substring, genres_substring, expected_key, expected_mode
     )
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
         min_tempo=min_tempo, max_tempo=max_tempo, min_year=min_year, max_year=max_year,
         artists_substring=artists_substring, genres_substring=genres_substring,
-        expected_key=expected_key
+        expected_key=expected_key, expected_mode=expected_mode
     )
 
 
@@ -172,7 +173,7 @@ def __get_request_param_as_int_or_none(name):
 
 
 def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year, artists_substring, genres_substring,
-                    expected_key):
+                    expected_key, expected_mode):
     if filter_by is None:
         return tracks
 
@@ -211,6 +212,12 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
             raise ValueError("expected_key must be defined to filter by key!")
 
         return list(filter(lambda track: track.get_key_string() == expected_key, tracks))
+    
+    if filter_by == "mode":
+        if expected_mode is None:
+            raise ValueError("expected_mode must be defined to filter by mode!")
+
+        return list(filter(lambda track: track.get_mode_string() == expected_mode, tracks))
 
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
