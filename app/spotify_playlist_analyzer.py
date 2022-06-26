@@ -53,7 +53,7 @@ def get_playlist_by_id(playlist_id):
     expected_key = request.args.get("expected_key") or None
     playlist.tracks = __filter_tracks(
         playlist.tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
-        artists_substring, genres_substring
+        artists_substring, genres_substring, expected_key
     )
 
     return render_template(
@@ -171,7 +171,8 @@ def __get_request_param_as_int_or_none(name):
     return None
 
 
-def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year, artists_substring, genres_substring):
+def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year, artists_substring, genres_substring,
+                    expected_key):
     if filter_by is None:
         return tracks
 
@@ -204,6 +205,12 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
             raise ValueError("genres_substring must be defined to filter by genres!")
 
         return list(filter(lambda track: any(genres_substring in genre for genre in track.genres), tracks))
+
+    if filter_by == "key":
+        if expected_key is None:
+            raise ValueError("expected_key must be defined to filter by key!")
+
+        return list(filter(lambda track: track.get_key_string() == expected_key, tracks))
 
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
