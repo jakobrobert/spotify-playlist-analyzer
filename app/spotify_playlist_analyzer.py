@@ -74,7 +74,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
     if attribute == "release_year":
         attribute_name = "Release Year"
-        attribute_value_to_percentage = playlist.get_year_interval_to_percentage()
+        attribute_value_to_percentage = playlist.get_release_year_interval_to_percentage()
     elif attribute == "tempo":
         attribute_name = "Tempo (BPM)"
         attribute_value_to_percentage = playlist.get_tempo_interval_to_percentage()
@@ -127,8 +127,8 @@ def compare_attribute_distribution_of_playlists():
 
     if attribute == "release_year":
         attribute_name = "Release Year"
-        attribute_value_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
-        attribute_value_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
+        attribute_value_to_percentage_1 = playlist_1.get_release_year_interval_to_percentage()
+        attribute_value_to_percentage_2 = playlist_2.get_release_year_interval_to_percentage()
     elif attribute == "tempo":
         attribute_name = "Tempo (BPM)"
         attribute_value_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
