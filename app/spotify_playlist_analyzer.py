@@ -45,6 +45,7 @@ def get_playlist_by_id(playlist_id):
 
     filter_by = request.args.get("filter_by") or None
     artists_substring = request.args.get("artists_substring") or None
+    title_substring = request.args.get("title_substring") or None
     min_release_year = __get_request_param_as_int_or_none("min_release_year")
     max_release_year = __get_request_param_as_int_or_none("max_release_year")
     min_tempo = __get_request_param_as_int_or_none("min_tempo")
@@ -54,7 +55,7 @@ def get_playlist_by_id(playlist_id):
     genres_substring = request.args.get("genres_substring") or None
     playlist.tracks = __filter_tracks(
         playlist.tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
-        artists_substring, genres_substring, expected_key, expected_mode
+        artists_substring, genres_substring, expected_key, expected_mode, title_substring
     )
 
     return render_template(
@@ -62,7 +63,7 @@ def get_playlist_by_id(playlist_id):
         artists_substring=artists_substring,
         min_release_year=min_release_year, max_release_year=max_release_year, min_tempo=min_tempo, max_tempo=max_tempo,
         expected_key=expected_key, expected_mode=expected_mode,
-        genres_substring=genres_substring,
+        genres_substring=genres_substring, title_substring=title_substring
     )
 
 
@@ -174,7 +175,7 @@ def __get_request_param_as_int_or_none(name):
 
 
 def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
-                    artists_substring, genres_substring, expected_key, expected_mode):
+                    artists_substring, genres_substring, expected_key, expected_mode, title_substring):
     if filter_by is None:
         return tracks
 
@@ -183,6 +184,12 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, m
             raise ValueError("artists_substring must be defined to filter by artists!")
 
         return list(filter(lambda track: any(artists_substring in artist for artist in track.artists), tracks))
+
+    if filter_by == "title":
+        if title_substring is None:
+            raise ValueError("title_substring must be defined to filter by title!")
+
+        return list(filter(lambda track: title_substring in track.title, tracks))
 
     if filter_by == "release_year":
         if min_release_year is None:
