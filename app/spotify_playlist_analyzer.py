@@ -191,7 +191,7 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
         if max_year is None:
             raise ValueError("max_year must be defined to filter by year!")
 
-        return list(filter(lambda track: min_year <= track.year_of_release <= max_year, tracks))
+        return list(filter(lambda track: min_year <= track.release_year <= max_year, tracks))
 
     if filter_by == "tempo":
         if min_tempo is None:

@@ -39,16 +39,16 @@ class SpotifyPlaylist:
 
         return SpotifyTrack.get_duration_string_helper(average_duration_ms)
 
-    def get_average_year_of_release(self):
+    def get_average_release_year(self):
         total_year = 0.0
 
         for track in self.tracks:
-            total_year += track.year_of_release
+            total_year += track.release_year
 
         return total_year / len(self.tracks)
 
-    def get_average_year_of_release_string(self):
-        average_year = self.get_average_year_of_release()
+    def get_average_release_year_string(self):
+        average_year = self.get_average_release_year()
 
         return f"{average_year:.1f}"
 
@@ -71,7 +71,7 @@ class SpotifyPlaylist:
         interval_size = 10
 
         year_interval_to_count = self.__get_attribute_interval_to_count(
-            first_interval_max_year, last_interval_min_year, interval_size, lambda track: track.year_of_release)
+            first_interval_max_year, last_interval_min_year, interval_size, lambda track: track.release_year)
 
         return self.__convert_counts_to_percentages(year_interval_to_count)
 
