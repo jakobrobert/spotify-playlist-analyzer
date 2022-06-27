@@ -65,7 +65,7 @@ class SpotifyPlaylist:
 
         return f"{average_tempo:.1f}"
 
-    def get_year_interval_to_percentage(self):
+    def get_release_year_interval_to_percentage(self):
         first_interval_max_year = 1969
         last_interval_min_year = 2020
         interval_size = 10
