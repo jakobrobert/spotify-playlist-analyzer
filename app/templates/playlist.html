@@ -18,7 +18,7 @@
         <h4># Tracks: {{ playlist.tracks | length }}</h4>
         <h4>Total Duration: {{ playlist.get_total_duration_string() }}</h4>
         <h4>Average Duration: {{ playlist.get_average_duration_string() }}</h4>
-        <h4>Average Year of Release: {{ playlist.get_average_year_of_release_string() }}</h4>
+        <h4>Average Release Year: {{ playlist.get_average_release_year_string() }}</h4>
         <h4>Average Tempo (BPM): {{ playlist.get_average_tempo_string() }}</h4>
         <br>
 
@@ -26,7 +26,7 @@
         <form action="{{ url_for('get_attribute_distribution_of_playlist', playlist_id=playlist.id) }}" method="GET">
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
-                <option value="year_of_release">Year of Release</option>
+                <option value="release_year">Release Year</option>
                 <option value="tempo">Tempo</option>
                 <option value="key">Key</option>
                 <option value="mode">Mode</option>
@@ -53,8 +53,8 @@
                 <option value="duration_ms" {% if sort_by == "duration_ms" %} selected {% endif %}>
                     Duration
                 </option>
-                <option value="year_of_release" {% if sort_by == "year_of_release" %} selected {% endif %}>
-                    Year of Release
+                <option value="release_year" {% if sort_by == "release_year" %} selected {% endif %}>
+                    Release Year
                 </option>
                 <option value="tempo" {% if sort_by == "tempo" %} selected {% endif %}>
                     Tempo
@@ -97,13 +97,13 @@
                 <input type="text" id="artists_substring" name="artists_substring" value="{{ artists_substring }}">
             </div>
             <div>
-                <input type="radio" id="year" name="filter_by" value="year"
-                       {% if filter_by == "year" %} checked {% endif %}>
-                <label for="year">Year of Release</label>
-                <label for="min_year">from</label>
-                <input type="number" id="min_year" name="min_year" value="{{ min_year }}">
-                <label for="max_year">to</label>
-                <input type="number" id="max_year" name="max_year" value="{{ max_year }}">
+                <input type="radio" id="release_year" name="filter_by" value="release_year"
+                       {% if filter_by == "release_year" %} checked {% endif %}>
+                <label for="release_year">Release Year</label>
+                <label for="min_release_year">from</label>
+                <input type="number" id="min_release_year" name="min_release_year" value="{{ min_release_year }}">
+                <label for="max_release_year">to</label>
+                <input type="number" id="max_release_year" name="max_release_year" value="{{ max_release_year }}">
             </div>
             <div>
                 <input type="radio" id="tempo" name="filter_by" value="tempo"
@@ -165,7 +165,7 @@
                 <th>Artists</th>
                 <th>Title</th>
                 <th>Duration</th>
-                <th>Year<br>of Release</th>
+                <th>Release<br>Year</th>
                 <th>Tempo<br>(BPM)</th>
                 <th>Key</th>
                 <th>Mode</th>
@@ -179,7 +179,7 @@
                     <td>{{ track.get_artists_string() }}</td>
                     <td>{{ track.title }}</td>
                     <td>{{ track.get_duration_string() }}</td>
-                    <td>{{ track.year_of_release }}</td>
+                    <td>{{ track.release_year }}</td>
                     <td>{{ track.get_tempo_string() }}</td>
                     <td>{{ track.get_key_string() }}</td>
                     <td>{{ track.get_mode_string() }}</td>
