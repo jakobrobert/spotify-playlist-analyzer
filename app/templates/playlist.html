@@ -18,7 +18,7 @@
         <h4># Tracks: {{ playlist.tracks | length }}</h4>
         <h4>Total Duration: {{ playlist.get_total_duration_string() }}</h4>
         <h4>Average Duration: {{ playlist.get_average_duration_string() }}</h4>
-        <h4>Average Release Year: {{ playlist.get_average_year_of_release_string() }}</h4>
+        <h4>Average Release Year: {{ playlist.get_average_release_year_string() }}</h4>
         <h4>Average Tempo (BPM): {{ playlist.get_average_tempo_string() }}</h4>
         <br>
 
@@ -179,7 +179,7 @@
                     <td>{{ track.get_artists_string() }}</td>
                     <td>{{ track.title }}</td>
                     <td>{{ track.get_duration_string() }}</td>
-                    <td>{{ track.year_of_release }}</td>
+                    <td>{{ track.release_year }}</td>
                     <td>{{ track.get_tempo_string() }}</td>
                     <td>{{ track.get_key_string() }}</td>
                     <td>{{ track.get_mode_string() }}</td>
