@@ -82,7 +82,7 @@ class SpotifyClient:
         track.artist_ids = SpotifyClient.__get_artist_ids_of_track(track_data)
         track.artists = SpotifyClient.__get_artists_of_track(track_data)
         track.duration_ms = track_data["duration_ms"]
-        track.year_of_release = SpotifyClient.__get_year_of_release_of_track(track_data)
+        track.release_year = SpotifyClient.__get_release_year_of_track(track_data)
 
         return track
 
@@ -97,7 +97,7 @@ class SpotifyClient:
         return artist_names
 
     @staticmethod
-    def __get_year_of_release_of_track(track):
+    def __get_release_year_of_track(track):
         album = track["album"]
         release_date = album["release_date"]
 
