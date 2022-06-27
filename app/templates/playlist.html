@@ -97,13 +97,13 @@
                 <input type="text" id="artists_substring" name="artists_substring" value="{{ artists_substring }}">
             </div>
             <div>
-                <input type="radio" id="year" name="filter_by" value="year"
-                       {% if filter_by == "year" %} checked {% endif %}>
-                <label for="year">Release Year</label>
-                <label for="min_year">from</label>
-                <input type="number" id="min_year" name="min_year" value="{{ min_year }}">
-                <label for="max_year">to</label>
-                <input type="number" id="max_year" name="max_year" value="{{ max_year }}">
+                <input type="radio" id="release_year" name="filter_by" value="release_year"
+                       {% if filter_by == "release_year" %} checked {% endif %}>
+                <label for="release_year">Release Year</label>
+                <label for="min_release_year">from</label>
+                <input type="number" id="min_release_year" name="min_release_year" value="{{ min_release_year }}">
+                <label for="max_release_year">to</label>
+                <input type="number" id="max_release_year" name="max_release_year" value="{{ max_release_year }}">
             </div>
             <div>
                 <input type="radio" id="tempo" name="filter_by" value="tempo"
