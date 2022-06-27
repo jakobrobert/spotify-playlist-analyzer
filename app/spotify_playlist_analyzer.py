@@ -73,7 +73,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
 
     if attribute == "year_of_release":
-        attribute_name = "Year of Release"
+        attribute_name = "Release Year"
         attribute_value_to_percentage = playlist.get_year_interval_to_percentage()
     elif attribute == "tempo":
         attribute_name = "Tempo (BPM)"
@@ -126,7 +126,7 @@ def compare_attribute_distribution_of_playlists():
     playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
     if attribute == "year_of_release":
-        attribute_name = "Year of Release"
+        attribute_name = "Release Year"
         attribute_value_to_percentage_1 = playlist_1.get_year_interval_to_percentage()
         attribute_value_to_percentage_2 = playlist_2.get_year_interval_to_percentage()
     elif attribute == "tempo":
