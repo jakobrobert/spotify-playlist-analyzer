@@ -97,6 +97,13 @@
                 <input type="text" id="artists_substring" name="artists_substring" value="{{ artists_substring }}">
             </div>
             <div>
+                <input type="radio" id="title" name="filter_by" value="title"
+                       {% if filter_by == "title" %} checked {% endif %}>
+                <label for="title">Title</label>
+                <label for="title_substring">contains</label>
+                <input type="text" id="title_substring" name="title_substring" value="{{ title_substring }}">
+            </div>
+            <div>
                 <input type="radio" id="release_year" name="filter_by" value="release_year"
                        {% if filter_by == "release_year" %} checked {% endif %}>
                 <label for="release_year">Release Year</label>
