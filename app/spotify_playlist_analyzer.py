@@ -45,22 +45,22 @@ def get_playlist_by_id(playlist_id):
 
     filter_by = request.args.get("filter_by") or None
     artists_substring = request.args.get("artists_substring") or None
-    min_year = __get_request_param_as_int_or_none("min_year")
-    max_year = __get_request_param_as_int_or_none("max_year")
+    min_release_year = __get_request_param_as_int_or_none("min_release_year")
+    max_release_year = __get_request_param_as_int_or_none("max_release_year")
     min_tempo = __get_request_param_as_int_or_none("min_tempo")
     max_tempo = __get_request_param_as_int_or_none("max_tempo")
     expected_key = request.args.get("expected_key") or None
     expected_mode = request.args.get("expected_mode") or None
     genres_substring = request.args.get("genres_substring") or None
     playlist.tracks = __filter_tracks(
-        playlist.tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
+        playlist.tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
         artists_substring, genres_substring, expected_key, expected_mode
     )
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
         artists_substring=artists_substring,
-        min_year=min_year, max_year=max_year, min_tempo=min_tempo, max_tempo=max_tempo,
+        min_release_year=min_release_year, max_release_year=max_release_year, min_tempo=min_tempo, max_tempo=max_tempo,
         expected_key=expected_key, expected_mode=expected_mode,
         genres_substring=genres_substring,
     )
@@ -173,8 +173,8 @@ def __get_request_param_as_int_or_none(name):
     return None
 
 
-def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year, artists_substring, genres_substring,
-                    expected_key, expected_mode):
+def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
+                    artists_substring, genres_substring, expected_key, expected_mode):
     if filter_by is None:
         return tracks
 
@@ -184,14 +184,14 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_year, max_year,
 
         return list(filter(lambda track: any(artists_substring in artist for artist in track.artists), tracks))
 
-    if filter_by == "year":
-        if min_year is None:
-            raise ValueError("min_year must be defined to filter by year!")
+    if filter_by == "release_year":
+        if min_release_year is None:
+            raise ValueError("min_release_year must be defined to filter by release_year!")
 
-        if max_year is None:
-            raise ValueError("max_year must be defined to filter by year!")
+        if max_release_year is None:
+            raise ValueError("max_release_year must be defined to filter by release_year!")
 
-        return list(filter(lambda track: min_year <= track.release_year <= max_year, tracks))
+        return list(filter(lambda track: min_release_year <= track.release_year <= max_release_year, tracks))
 
     if filter_by == "tempo":
         if min_tempo is None:
