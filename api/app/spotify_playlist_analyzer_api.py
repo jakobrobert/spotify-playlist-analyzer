@@ -11,5 +11,5 @@ app = Flask(__name__)
 
 @app.route(URL_PREFIX + "hello-world", methods=["GET"])
 def index():
-    response = {"message": "<h1>Hello World!<h1>"}
+    response = {"message": "<h1>Hello World!</h1>"}
     return jsonify(response)
