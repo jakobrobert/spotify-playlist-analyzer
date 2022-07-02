@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 import configparser
 
@@ -11,4 +11,5 @@ app = Flask(__name__)
 
 @app.route(URL_PREFIX + "hello-world", methods=["GET"])
 def index():
-    return "<h1>Hello World!<h1>"
+    response = {"message": "Hello World!"}
+    return jsonify(response)
