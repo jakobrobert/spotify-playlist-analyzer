@@ -12,6 +12,7 @@ from spotify.spotify_client import SpotifyClient
 config = configparser.ConfigParser()
 config.read("../server.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
+API_BASE_URL = config["DEFAULT"]["API_BASE_URL"]
 SPOTIFY_CLIENT_ID = config["DEFAULT"]["SPOTIFY_CLIENT_ID"]
 SPOTIFY_CLIENT_SECRET = config["DEFAULT"]["SPOTIFY_CLIENT_SECRET"]
 
@@ -28,9 +29,7 @@ def index():
 # TODO just a test endpoint, remove when REST API is implemented & integrated (#112)
 @app.route(URL_PREFIX + "hello-world", methods=["GET"])
 def hello_world():
-    # TODO read API base url from .ini
-    api_base_url = "https://jack0042.uber.space/spotify-playlist-analyzer/api/dev/"
-    url = api_base_url + "hello-world"
+    url = API_BASE_URL + "hello-world"
     response = requests.get(url)
 
     return response.text
