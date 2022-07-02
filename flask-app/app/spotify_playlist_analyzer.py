@@ -31,8 +31,9 @@ def index():
 def hello_world():
     url = API_BASE_URL + "hello-world"
     response = requests.get(url)
+    data = response.json()
 
-    return response.text
+    return data["message"]
 
 
 @app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
