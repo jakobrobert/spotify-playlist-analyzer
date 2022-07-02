@@ -1,17 +1,18 @@
-import base64
-
 from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
 import operator
 import matplotlib.pyplot as plt
 from io import BytesIO
+import base64
+import requests
 
 from spotify.spotify_client import SpotifyClient
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
+API_BASE_URL = config["DEFAULT"]["API_BASE_URL"]
 SPOTIFY_CLIENT_ID = config["DEFAULT"]["SPOTIFY_CLIENT_ID"]
 SPOTIFY_CLIENT_SECRET = config["DEFAULT"]["SPOTIFY_CLIENT_SECRET"]
 
@@ -23,6 +24,16 @@ app = Flask(__name__)
 @app.route(URL_PREFIX, methods=["GET"])
 def index():
     return render_template("index.html")
+
+
+# TODO just a test endpoint, remove when REST API is implemented & integrated (#112)
+@app.route(URL_PREFIX + "hello-world", methods=["GET"])
+def hello_world():
+    url = API_BASE_URL + "hello-world"
+    response = requests.get(url)
+    data = response.json()
+
+    return data["message"]
 
 
 @app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
