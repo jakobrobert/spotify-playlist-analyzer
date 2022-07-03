@@ -8,6 +8,8 @@ import base64
 import requests
 
 from spotify.spotify_client import SpotifyClient
+from spotify.spotify_playlist import SpotifyPlaylist
+from spotify.spotify_track import SpotifyTrack
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
@@ -48,11 +50,45 @@ def get_playlist_by_url():
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
+    url = f"{API_BASE_URL}playlist/{playlist_id}"
 
+    # TODO add the other params
+    params = {
+        "sort_by": request.args.get("sort_by"),
+        "order": request.args.get("order"),
+    }
+
+    print(f"params: {params}")
+
+    response = requests.get(url, params=params)
+    response_data = response.json()
+
+    playlist = SpotifyPlaylist()
+    playlist.id = response_data["id"]
+    playlist.name = response_data["name"]
+
+    playlist.tracks = []
+    for track_data in response_data["tracks"]:
+        track = SpotifyTrack()
+        track.id = track_data["id"]
+        track.title = track_data ["title"]
+        track.artist_ids = track_data["artist_ids"]
+        track.artists = track_data["artists"]
+        track.duration_ms = track_data["duration_ms"]
+        track.release_year = track_data["release_year"]
+        track.genres = track_data["genres"]
+        track.tempo = track_data["tempo"]
+        track.key = track_data["key"]
+        track.mode = track_data["mode"]
+        track.camelot = track_data["camelot"]
+        track.loudness = track_data["loudness"]
+        playlist.tracks.append(track)
+
+
+    # TODO is duplicated code with REST API, but needs to stay here because params are needed for template
+    # --> better: pass the processed params to REST API and there remove code for processing None, conversion to int
     sort_by = request.args.get("sort_by") or "none"
     order = request.args.get("order") or "ascending"
-    __sort_tracks(playlist.tracks, sort_by, order)
 
     filter_by = request.args.get("filter_by") or None
     artists_substring = request.args.get("artists_substring") or None
@@ -64,10 +100,6 @@ def get_playlist_by_id(playlist_id):
     expected_key = request.args.get("expected_key") or None
     expected_mode = request.args.get("expected_mode") or None
     genres_substring = request.args.get("genres_substring") or None
-    playlist.tracks = __filter_tracks(
-        playlist.tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
-        artists_substring, genres_substring, expected_key, expected_mode, title_substring
-    )
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
