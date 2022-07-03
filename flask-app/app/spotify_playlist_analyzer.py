@@ -71,7 +71,7 @@ def get_playlist_by_id(playlist_id):
     for track_data in response_data["tracks"]:
         track = SpotifyTrack()
         track.id = track_data["id"]
-        track.title = track_data ["title"]
+        track.title = track_data["title"]
         track.artist_ids = track_data["artist_ids"]
         track.artists = track_data["artists"]
         track.duration_ms = track_data["duration_ms"]
