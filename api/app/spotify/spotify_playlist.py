@@ -1,3 +1,5 @@
+import json
+
 # PyCharm shows errors for this import locally, but it works this way with the server
 # 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
 from spotify.spotify_track import SpotifyTrack
@@ -9,6 +11,10 @@ class SpotifyPlaylist:
         self.name = "n/a"
         self.tracks = []
 
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__)
+
+    # TODO in API, can be static. but first clarify: should string conversion be done in API or on client side?
     # Cannot be static, else template code cannot access it
     def percentage_to_string(self, percentage):
         return f"{percentage:.1f}"

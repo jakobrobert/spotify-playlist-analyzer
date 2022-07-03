@@ -27,4 +27,4 @@ def get_playlist_by_id(playlist_id):
 
     # TODO LATER: apply sorting & filters. for now, keep in client
 
-    return jsonify(playlist)
+    return playlist.toJSON()
