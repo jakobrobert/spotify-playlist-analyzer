@@ -52,12 +52,22 @@ def get_playlist_by_url():
 def get_playlist_by_id(playlist_id):
     url = f"{API_BASE_URL}playlist/{playlist_id}"
 
-    # TODO add the other params
     params = {
         "sort_by": request.args.get("sort_by"),
         "order": request.args.get("order"),
+        "filter_by": request.args.get("filter_by"),
+        "artists_substring": request.args.get("artists_substring"),
+        "title_substring": request.args.get("title_substring"),
+        "min_release_year": request.args.get("min_release_year"),
+        "max_release_year": request.args.get("max_release_year"),
+        "min_tempo": request.args.get("min_tempo"),
+        "max_tempo": request.args.get("max_tempo"),
+        "expected_key": request.args.get("expected_key"),
+        "expected_mode": request.args.get("expected_mode"),
+        "genres_substring": request.args.get("genres_substring")
     }
 
+    # TODO remove log
     print(f"params: {params}")
 
     response = requests.get(url, params=params)
@@ -86,7 +96,8 @@ def get_playlist_by_id(playlist_id):
 
 
     # TODO is duplicated code with REST API, but needs to stay here because params are needed for template
-    # --> better: pass the processed params to REST API and there remove code for processing None, conversion to int
+    # -> maybe can leave out the processing here, such as __get_request_param_as_int_or_none, this is probably not necessary for the template, in html everything is a string anyway
+
     sort_by = request.args.get("sort_by") or "none"
     order = request.args.get("order") or "ascending"
 

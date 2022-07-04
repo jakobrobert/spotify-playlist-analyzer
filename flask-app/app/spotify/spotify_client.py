@@ -6,6 +6,7 @@ from spotify.spotify_track import SpotifyTrack
 from spotify.spotify_playlist import SpotifyPlaylist
 
 
+# TODO replace all usages of this class by usages of REST API and then remove it
 class SpotifyClient:
     def __init__(self, client_id, client_secret):
         self.CLIENT_ID = client_id
