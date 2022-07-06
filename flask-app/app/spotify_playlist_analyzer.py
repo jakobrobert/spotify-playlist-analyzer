@@ -120,7 +120,8 @@ def get_playlist_by_id(playlist_id):
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
 
-    # TODO use REST API to get playlist
+    # TODO use new REST API endpoint to get attribute_value_to_percentage, pass attribute key like "release_year"
+    #   -> attribute_name might should be defined by this app so it is more flexible. is not a logical thing but visual
     playlist = spotify_client.get_playlist_by_id(playlist_id)
 
     if attribute == "release_year":
@@ -161,7 +162,7 @@ def compare_playlists_by_urls():
 def compare_playlists_by_ids():
     playlist_id_1 = request.args.get("playlist_id_1")
     playlist_id_2 = request.args.get("playlist_id_2")
-    # TODO use REST API to get playlist
+    # TODO use REST API to get playlist, params is empty
     playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
     playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
@@ -174,7 +175,7 @@ def compare_attribute_distribution_of_playlists():
     playlist_id_2 = request.args.get("playlist_id_2")
     attribute = request.args.get("attribute")
 
-    # TODO use REST API to get playlist
+    # TODO use new REST API endpoint to get attribute_value_to_percentage, see get_attribute_distribution_of_playlist
     playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
     playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
@@ -215,15 +216,6 @@ def __sort_tracks(tracks, sort_by, order):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
-
-
-def __get_request_param_as_int_or_none(name):
-    value_string = request.args.get(name) or None
-
-    if value_string:
-        return int(value_string)
-
-    return None
 
 
 def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
