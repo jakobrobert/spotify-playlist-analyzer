@@ -96,8 +96,8 @@ def get_playlist_by_id(playlist_id):
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
 
-    # TODO use new REST API endpoint to get attribute_value_to_percentage, pass attribute key like "release_year"
-    #   -> attribute_name might should be defined by this app so it is more flexible. is not a logical thing but visual
+    # TODO Remove when it works with API
+    """
     playlist = spotify_client.get_playlist_by_id(playlist_id)
 
     if attribute == "release_year":
@@ -114,6 +114,22 @@ def get_attribute_distribution_of_playlist(playlist_id):
         attribute_value_to_percentage = playlist.get_mode_to_percentage()
     else:
         raise ValueError(f"Unknown attribute: '{attribute}'")
+    """
+
+    if attribute == "release_year":
+        attribute_name = "Release Year"
+    elif attribute == "tempo":
+        attribute_name = "Tempo (BPM)"
+    elif attribute == "key":
+        attribute_name = "Key"
+    elif attribute == "mode":
+        attribute_name = "Mode"
+    else:
+        raise ValueError(f"Unknown attribute: '{attribute}'")
+
+    # TODO overkill to get playlist separately, but need to adjust template, so optimize later
+    playlist = __get_playlist_by_id(playlist_id)
+    attribute_value_to_percentage = __get_attribute_distribution_of_playlist(playlist_id, attribute)
 
     return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
 
@@ -151,7 +167,8 @@ def compare_attribute_distribution_of_playlists():
     playlist_id_2 = request.args.get("playlist_id_2")
     attribute = request.args.get("attribute")
 
-    # TODO use new REST API endpoint to get attribute_value_to_percentage, see get_attribute_distribution_of_playlist
+    # TODO Remove when it works with API
+    """
     playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
     playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
@@ -173,6 +190,25 @@ def compare_attribute_distribution_of_playlists():
         attribute_value_to_percentage_2 = playlist_2.get_mode_to_percentage()
     else:
         raise ValueError(f"Unknown attribute: '{attribute}'")
+    """
+
+    # TODO duplicated code -> extract function
+    if attribute == "release_year":
+        attribute_name = "Release Year"
+    elif attribute == "tempo":
+        attribute_name = "Tempo (BPM)"
+    elif attribute == "key":
+        attribute_name = "Key"
+    elif attribute == "mode":
+        attribute_name = "Mode"
+    else:
+        raise ValueError(f"Unknown attribute: '{attribute}'")
+
+    # TODO overkill to get playlists separately, but need to adjust template, so optimize later
+    playlist_1 = __get_playlist_by_id(playlist_id_1)
+    playlist_2 = __get_playlist_by_id(playlist_id_2)
+    attribute_value_to_percentage_1 = __get_attribute_distribution_of_playlist(playlist_id_1, attribute)
+    attribute_value_to_percentage_2 = __get_attribute_distribution_of_playlist(playlist_id_2, attribute)
 
     return __render_compare_attribute_distribution_template(
         playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2
@@ -186,6 +222,7 @@ def __get_playlist_id_from_playlist_url(playlist_url):
     return playlist_url[start_index:end_index]
 
 
+# TODO extract into new class ApiClient
 def __get_playlist_by_id(playlist_id, request_params=None):
     url = f"{API_BASE_URL}playlist/{playlist_id}"
     response = requests.get(url, params=request_params)
@@ -213,6 +250,17 @@ def __get_playlist_by_id(playlist_id, request_params=None):
         playlist.tracks.append(track)
 
     return playlist
+
+
+# TODO extract into new class ApiClient
+def __get_attribute_distribution_of_playlist(playlist_id, attribute):
+    url = f"{API_BASE_URL}playlist/{playlist_id}/attribute-distribution"
+    request_params = {"attribute": attribute}
+    response = requests.get(url, params=request_params)
+    response_data = response.json()
+
+    # TODO should already be in expected data format, but test
+    return response_data
 
 
 def __sort_tracks(tracks, sort_by, order):
