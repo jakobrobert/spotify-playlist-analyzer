@@ -50,8 +50,6 @@ def get_playlist_by_url():
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
-    url = f"{API_BASE_URL}playlist/{playlist_id}"
-
     sort_by = request.args.get("sort_by")
     order = request.args.get("order")
     filter_by = request.args.get("filter_by")
@@ -65,7 +63,7 @@ def get_playlist_by_id(playlist_id):
     expected_mode = request.args.get("expected_mode")
     genres_substring = request.args.get("genres_substring")
 
-    params = {
+    request_params = {
         "sort_by": sort_by,
         "order": order,
         "filter_by": filter_by,
@@ -81,31 +79,9 @@ def get_playlist_by_id(playlist_id):
     }
 
     # TODO remove log
-    print(f"params: {params}")
+    print(f"request_params: {request_params}")
 
-    response = requests.get(url, params=params)
-    response_data = response.json()
-
-    playlist = SpotifyPlaylist()
-    playlist.id = response_data["id"]
-    playlist.name = response_data["name"]
-
-    playlist.tracks = []
-    for track_data in response_data["tracks"]:
-        track = SpotifyTrack()
-        track.id = track_data["id"]
-        track.title = track_data["title"]
-        track.artist_ids = track_data["artist_ids"]
-        track.artists = track_data["artists"]
-        track.duration_ms = track_data["duration_ms"]
-        track.release_year = track_data["release_year"]
-        track.genres = track_data["genres"]
-        track.tempo = track_data["tempo"]
-        track.key = track_data["key"]
-        track.mode = track_data["mode"]
-        track.camelot = track_data["camelot"]
-        track.loudness = track_data["loudness"]
-        playlist.tracks.append(track)
+    playlist = __get_playlist_by_id(playlist_id, request_params)
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
@@ -162,7 +138,7 @@ def compare_playlists_by_urls():
 def compare_playlists_by_ids():
     playlist_id_1 = request.args.get("playlist_id_1")
     playlist_id_2 = request.args.get("playlist_id_2")
-    # TODO use REST API to get playlist, params is empty
+
     playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
     playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
 
@@ -208,6 +184,35 @@ def __get_playlist_id_from_playlist_url(playlist_url):
     end_index = playlist_url.find("?")
 
     return playlist_url[start_index:end_index]
+
+
+def __get_playlist_by_id(playlist_id, request_params=None):
+    url = f"{API_BASE_URL}playlist/{playlist_id}"
+    response = requests.get(url, params=request_params)
+    response_data = response.json()
+
+    playlist = SpotifyPlaylist()
+    playlist.id = response_data["id"]
+    playlist.name = response_data["name"]
+
+    playlist.tracks = []
+    for track_data in response_data["tracks"]:
+        track = SpotifyTrack()
+        track.id = track_data["id"]
+        track.title = track_data["title"]
+        track.artist_ids = track_data["artist_ids"]
+        track.artists = track_data["artists"]
+        track.duration_ms = track_data["duration_ms"]
+        track.release_year = track_data["release_year"]
+        track.genres = track_data["genres"]
+        track.tempo = track_data["tempo"]
+        track.key = track_data["key"]
+        track.mode = track_data["mode"]
+        track.camelot = track_data["camelot"]
+        track.loudness = track_data["loudness"]
+        playlist.tracks.append(track)
+
+    return playlist
 
 
 def __sort_tracks(tracks, sort_by, order):
