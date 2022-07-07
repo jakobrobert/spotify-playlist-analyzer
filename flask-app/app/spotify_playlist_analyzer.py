@@ -7,7 +7,6 @@ from io import BytesIO
 import base64
 import requests
 
-from spotify.spotify_client import SpotifyClient
 from spotify.spotify_playlist import SpotifyPlaylist
 from spotify.spotify_track import SpotifyTrack
 
@@ -15,10 +14,6 @@ config = configparser.ConfigParser()
 config.read("../server.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 API_BASE_URL = config["DEFAULT"]["API_BASE_URL"]
-SPOTIFY_CLIENT_ID = config["DEFAULT"]["SPOTIFY_CLIENT_ID"]
-SPOTIFY_CLIENT_SECRET = config["DEFAULT"]["SPOTIFY_CLIENT_SECRET"]
-
-spotify_client = SpotifyClient(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
 
 app = Flask(__name__)
 
