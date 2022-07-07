@@ -17,12 +17,6 @@ spotify_client = SpotifyClient(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
 app = Flask(__name__)
 
 
-@app.route(URL_PREFIX + "hello-world", methods=["GET"])
-def index():
-    response = {"message": "<h1>Hello World!</h1>"}
-    return jsonify(response)
-
-
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
     playlist = spotify_client.get_playlist_by_id(playlist_id)
