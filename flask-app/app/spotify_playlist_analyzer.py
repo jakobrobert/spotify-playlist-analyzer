@@ -28,16 +28,6 @@ def index():
     return render_template("index.html")
 
 
-# TODO just a test endpoint, remove when REST API is implemented & integrated (#112)
-@app.route(URL_PREFIX + "hello-world", methods=["GET"])
-def hello_world():
-    url = API_BASE_URL + "hello-world"
-    response = requests.get(url)
-    data = response.json()
-
-    return data["message"]
-
-
 @app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
 def get_playlist_by_url():
     playlist_url = request.args.get("playlist_url")
