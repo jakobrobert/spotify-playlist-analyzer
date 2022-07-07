@@ -1,3 +1,5 @@
+from api_client import ApiClient
+
 from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
@@ -5,15 +7,13 @@ import operator
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
-import requests
-
-from spotify.spotify_playlist import SpotifyPlaylist
-from spotify.spotify_track import SpotifyTrack
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 API_BASE_URL = config["DEFAULT"]["API_BASE_URL"]
+
+api_client = ApiClient(API_BASE_URL)
 
 app = Flask(__name__)
 
@@ -63,7 +63,7 @@ def get_playlist_by_id(playlist_id):
         "genres_substring": genres_substring
     }
 
-    playlist = __get_playlist_by_id(playlist_id, request_params)
+    playlist = api_client.get_playlist_by_id(playlist_id, request_params)
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
@@ -78,9 +78,9 @@ def get_playlist_by_id(playlist_id):
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
 
-    playlist = __get_playlist_by_id(playlist_id)
+    playlist = api_client.get_playlist_by_id(playlist_id)
     attribute_name = __get_attribute_name(attribute)
-    attribute_value_to_percentage = __get_attribute_distribution_of_playlist(playlist_id, attribute)
+    attribute_value_to_percentage = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
 
     return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
 
@@ -106,8 +106,8 @@ def compare_playlists_by_ids():
     playlist_id_1 = request.args.get("playlist_id_1")
     playlist_id_2 = request.args.get("playlist_id_2")
 
-    playlist_1 = __get_playlist_by_id(playlist_id_1)
-    playlist_2 = __get_playlist_by_id(playlist_id_2)
+    playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
 
     return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
 
@@ -118,11 +118,11 @@ def compare_attribute_distribution_of_playlists():
     playlist_id_2 = request.args.get("playlist_id_2")
     attribute = request.args.get("attribute")
 
-    playlist_1 = __get_playlist_by_id(playlist_id_1)
-    playlist_2 = __get_playlist_by_id(playlist_id_2)
+    playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
     attribute_name = __get_attribute_name(attribute)
-    attribute_value_to_percentage_1 = __get_attribute_distribution_of_playlist(playlist_id_1, attribute)
-    attribute_value_to_percentage_2 = __get_attribute_distribution_of_playlist(playlist_id_2, attribute)
+    attribute_value_to_percentage_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
+    attribute_value_to_percentage_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
 
     return __render_compare_attribute_distribution_template(
         playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2
@@ -134,46 +134,6 @@ def __get_playlist_id_from_playlist_url(playlist_url):
     end_index = playlist_url.find("?")
 
     return playlist_url[start_index:end_index]
-
-
-# TODO extract into new class ApiClient
-def __get_playlist_by_id(playlist_id, request_params=None):
-    url = f"{API_BASE_URL}playlist/{playlist_id}"
-    response = requests.get(url, params=request_params)
-    response_data = response.json()
-
-    playlist = SpotifyPlaylist()
-    playlist.id = response_data["id"]
-    playlist.name = response_data["name"]
-
-    playlist.tracks = []
-    for track_data in response_data["tracks"]:
-        track = SpotifyTrack()
-        track.id = track_data["id"]
-        track.title = track_data["title"]
-        track.artist_ids = track_data["artist_ids"]
-        track.artists = track_data["artists"]
-        track.duration_ms = track_data["duration_ms"]
-        track.release_year = track_data["release_year"]
-        track.genres = track_data["genres"]
-        track.tempo = track_data["tempo"]
-        track.key = track_data["key"]
-        track.mode = track_data["mode"]
-        track.camelot = track_data["camelot"]
-        track.loudness = track_data["loudness"]
-        playlist.tracks.append(track)
-
-    return playlist
-
-
-# TODO extract into new class ApiClient
-def __get_attribute_distribution_of_playlist(playlist_id, attribute):
-    url = f"{API_BASE_URL}playlist/{playlist_id}/attribute-distribution"
-    request_params = {"attribute": attribute}
-    response = requests.get(url, params=request_params)
-    response_data = response.json()
-
-    return response_data
 
 
 def __sort_tracks(tracks, sort_by, order):
@@ -251,7 +211,8 @@ def __get_attribute_name(attribute):
         return "Mode"
     else:
         raise ValueError(f"Unknown attribute: '{attribute}'")
-    
+
+
 def __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage):
     histogram_image_base64 = __get_histogram_image_base64(attribute_name, attribute_value_to_percentage)
 
