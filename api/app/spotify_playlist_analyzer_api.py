@@ -52,6 +52,26 @@ def get_playlist_by_id(playlist_id):
     return playlist.toJSON()
 
 
+@app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
+def get_attribute_distribution_of_playlist(playlist_id):
+    attribute = request.args.get("attribute")
+
+    playlist = spotify_client.get_playlist_by_id(playlist_id)
+
+    if attribute == "release_year":
+        attribute_value_to_percentage = playlist.get_release_year_interval_to_percentage()
+    elif attribute == "tempo":
+        attribute_value_to_percentage = playlist.get_tempo_interval_to_percentage()
+    elif attribute == "key":
+        attribute_value_to_percentage = playlist.get_key_to_percentage()
+    elif attribute == "mode":
+        attribute_value_to_percentage = playlist.get_mode_to_percentage()
+    else:
+        raise ValueError(f"Unknown attribute: '{attribute}'")
+
+    return jsonify(attribute_value_to_percentage)
+
+
 def __sort_tracks(tracks, sort_by, order):
     if sort_by == "none":
         return
