@@ -127,7 +127,6 @@ def get_attribute_distribution_of_playlist(playlist_id):
     else:
         raise ValueError(f"Unknown attribute: '{attribute}'")
 
-    # TODO overkill to get playlist separately, but need to adjust template, so optimize later
     playlist = __get_playlist_by_id(playlist_id)
     attribute_value_to_percentage = __get_attribute_distribution_of_playlist(playlist_id, attribute)
 
@@ -204,7 +203,6 @@ def compare_attribute_distribution_of_playlists():
     else:
         raise ValueError(f"Unknown attribute: '{attribute}'")
 
-    # TODO overkill to get playlists separately, but need to adjust template, so optimize later
     playlist_1 = __get_playlist_by_id(playlist_id_1)
     playlist_2 = __get_playlist_by_id(playlist_id_2)
     attribute_value_to_percentage_1 = __get_attribute_distribution_of_playlist(playlist_id_1, attribute)
