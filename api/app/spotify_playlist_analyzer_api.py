@@ -46,10 +46,15 @@ def get_playlist_by_id(playlist_id):
         artists_substring, genres_substring, expected_key, expected_mode, title_substring
     )
 
-    # TODO fix: when using toJSON() instead of jsonify, Browser shows as raw text, probably mime type not correct
-    #   -> idea: convert to dict using __dict__, then use jsonify. then need to convert tracks to dict as well
+    # Need to explicitly copy the dict, else changing the dict would change the original object
+    playlist_dict = dict(playlist.__dict__)
 
-    return playlist.toJSON()
+    # Need to convert tracks to dict manually, __dict__ does not work recursively
+    playlist_dict["tracks"] = []
+    for track in playlist.tracks:
+        playlist_dict["tracks"].append(track.__dict__)
+
+    return jsonify(playlist_dict)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
