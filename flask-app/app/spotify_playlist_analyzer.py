@@ -83,18 +83,8 @@ def get_playlist_by_id(playlist_id):
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
 
-    if attribute == "release_year":
-        attribute_name = "Release Year"
-    elif attribute == "tempo":
-        attribute_name = "Tempo (BPM)"
-    elif attribute == "key":
-        attribute_name = "Key"
-    elif attribute == "mode":
-        attribute_name = "Mode"
-    else:
-        raise ValueError(f"Unknown attribute: '{attribute}'")
-
     playlist = __get_playlist_by_id(playlist_id)
+    attribute_name = __get_attribute_name(attribute)
     attribute_value_to_percentage = __get_attribute_distribution_of_playlist(playlist_id, attribute)
 
     return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
@@ -133,20 +123,9 @@ def compare_attribute_distribution_of_playlists():
     playlist_id_2 = request.args.get("playlist_id_2")
     attribute = request.args.get("attribute")
 
-    # TODO duplicated code -> extract function
-    if attribute == "release_year":
-        attribute_name = "Release Year"
-    elif attribute == "tempo":
-        attribute_name = "Tempo (BPM)"
-    elif attribute == "key":
-        attribute_name = "Key"
-    elif attribute == "mode":
-        attribute_name = "Mode"
-    else:
-        raise ValueError(f"Unknown attribute: '{attribute}'")
-
     playlist_1 = __get_playlist_by_id(playlist_id_1)
     playlist_2 = __get_playlist_by_id(playlist_id_2)
+    attribute_name = __get_attribute_name(attribute)
     attribute_value_to_percentage_1 = __get_attribute_distribution_of_playlist(playlist_id_1, attribute)
     attribute_value_to_percentage_2 = __get_attribute_distribution_of_playlist(playlist_id_2, attribute)
 
@@ -266,6 +245,18 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, m
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
 
+def __get_attribute_name(attribute):
+    if attribute == "release_year":
+        return "Release Year"
+    elif attribute == "tempo":
+        return "Tempo (BPM)"
+    elif attribute == "key":
+        return "Key"
+    elif attribute == "mode":
+        return "Mode"
+    else:
+        raise ValueError(f"Unknown attribute: '{attribute}'")
+    
 def __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage):
     histogram_image_base64 = __get_histogram_image_base64(attribute_name, attribute_value_to_percentage)
 
