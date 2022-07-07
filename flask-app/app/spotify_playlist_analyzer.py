@@ -1,3 +1,5 @@
+from api_client import ApiClient
+
 from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
@@ -5,18 +7,13 @@ import operator
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
-import requests
-
-from spotify.spotify_client import SpotifyClient
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 API_BASE_URL = config["DEFAULT"]["API_BASE_URL"]
-SPOTIFY_CLIENT_ID = config["DEFAULT"]["SPOTIFY_CLIENT_ID"]
-SPOTIFY_CLIENT_SECRET = config["DEFAULT"]["SPOTIFY_CLIENT_SECRET"]
 
-spotify_client = SpotifyClient(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
+api_client = ApiClient(API_BASE_URL)
 
 app = Flask(__name__)
 
@@ -24,16 +21,6 @@ app = Flask(__name__)
 @app.route(URL_PREFIX, methods=["GET"])
 def index():
     return render_template("index.html")
-
-
-# TODO just a test endpoint, remove when REST API is implemented & integrated (#112)
-@app.route(URL_PREFIX + "hello-world", methods=["GET"])
-def hello_world():
-    url = API_BASE_URL + "hello-world"
-    response = requests.get(url)
-    data = response.json()
-
-    return data["message"]
 
 
 @app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
@@ -48,26 +35,35 @@ def get_playlist_by_url():
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
+    sort_by = request.args.get("sort_by")
+    order = request.args.get("order")
+    filter_by = request.args.get("filter_by")
+    artists_substring = request.args.get("artists_substring")
+    title_substring = request.args.get("title_substring")
+    min_release_year = request.args.get("min_release_year")
+    max_release_year = request.args.get("max_release_year")
+    min_tempo = request.args.get("min_tempo")
+    max_tempo = request.args.get("max_tempo")
+    expected_key = request.args.get("expected_key")
+    expected_mode = request.args.get("expected_mode")
+    genres_substring = request.args.get("genres_substring")
 
-    sort_by = request.args.get("sort_by") or "none"
-    order = request.args.get("order") or "ascending"
-    __sort_tracks(playlist.tracks, sort_by, order)
+    request_params = {
+        "sort_by": sort_by,
+        "order": order,
+        "filter_by": filter_by,
+        "artists_substring": artists_substring,
+        "title_substring": title_substring,
+        "min_release_year": min_release_year,
+        "max_release_year": max_release_year,
+        "min_tempo": min_tempo,
+        "max_tempo": max_tempo,
+        "expected_key": expected_key,
+        "expected_mode": expected_mode,
+        "genres_substring": genres_substring
+    }
 
-    filter_by = request.args.get("filter_by") or None
-    artists_substring = request.args.get("artists_substring") or None
-    title_substring = request.args.get("title_substring") or None
-    min_release_year = __get_request_param_as_int_or_none("min_release_year")
-    max_release_year = __get_request_param_as_int_or_none("max_release_year")
-    min_tempo = __get_request_param_as_int_or_none("min_tempo")
-    max_tempo = __get_request_param_as_int_or_none("max_tempo")
-    expected_key = request.args.get("expected_key") or None
-    expected_mode = request.args.get("expected_mode") or None
-    genres_substring = request.args.get("genres_substring") or None
-    playlist.tracks = __filter_tracks(
-        playlist.tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
-        artists_substring, genres_substring, expected_key, expected_mode, title_substring
-    )
+    playlist = api_client.get_playlist_by_id(playlist_id, request_params)
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
@@ -81,23 +77,10 @@ def get_playlist_by_id(playlist_id):
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
-    
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
 
-    if attribute == "release_year":
-        attribute_name = "Release Year"
-        attribute_value_to_percentage = playlist.get_release_year_interval_to_percentage()
-    elif attribute == "tempo":
-        attribute_name = "Tempo (BPM)"
-        attribute_value_to_percentage = playlist.get_tempo_interval_to_percentage()
-    elif attribute == "key":
-        attribute_name = "Key"
-        attribute_value_to_percentage = playlist.get_key_to_percentage()
-    elif attribute == "mode":
-        attribute_name = "Mode"
-        attribute_value_to_percentage = playlist.get_mode_to_percentage()
-    else:
-        raise ValueError(f"Unknown attribute: '{attribute}'")
+    playlist = api_client.get_playlist_by_id(playlist_id)
+    attribute_name = __get_attribute_name(attribute)
+    attribute_value_to_percentage = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
 
     return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
 
@@ -122,8 +105,9 @@ def compare_playlists_by_urls():
 def compare_playlists_by_ids():
     playlist_id_1 = request.args.get("playlist_id_1")
     playlist_id_2 = request.args.get("playlist_id_2")
-    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
-    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
+
+    playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
 
     return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
 
@@ -134,27 +118,11 @@ def compare_attribute_distribution_of_playlists():
     playlist_id_2 = request.args.get("playlist_id_2")
     attribute = request.args.get("attribute")
 
-    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
-    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
-
-    if attribute == "release_year":
-        attribute_name = "Release Year"
-        attribute_value_to_percentage_1 = playlist_1.get_release_year_interval_to_percentage()
-        attribute_value_to_percentage_2 = playlist_2.get_release_year_interval_to_percentage()
-    elif attribute == "tempo":
-        attribute_name = "Tempo (BPM)"
-        attribute_value_to_percentage_1 = playlist_1.get_tempo_interval_to_percentage()
-        attribute_value_to_percentage_2 = playlist_2.get_tempo_interval_to_percentage()
-    elif attribute == "key":
-        attribute_name = "Key"
-        attribute_value_to_percentage_1 = playlist_1.get_key_to_percentage()
-        attribute_value_to_percentage_2 = playlist_2.get_key_to_percentage()
-    elif attribute == "mode":
-        attribute_name = "Mode"
-        attribute_value_to_percentage_1 = playlist_1.get_mode_to_percentage()
-        attribute_value_to_percentage_2 = playlist_2.get_mode_to_percentage()
-    else:
-        raise ValueError(f"Unknown attribute: '{attribute}'")
+    playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
+    attribute_name = __get_attribute_name(attribute)
+    attribute_value_to_percentage_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
+    attribute_value_to_percentage_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
 
     return __render_compare_attribute_distribution_template(
         playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2
@@ -174,15 +142,6 @@ def __sort_tracks(tracks, sort_by, order):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
-
-
-def __get_request_param_as_int_or_none(name):
-    value_string = request.args.get(name) or None
-
-    if value_string:
-        return int(value_string)
-
-    return None
 
 
 def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
@@ -239,6 +198,19 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, m
         return list(filter(lambda track: any(genres_substring in genre for genre in track.genres), tracks))
 
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
+
+
+def __get_attribute_name(attribute):
+    if attribute == "release_year":
+        return "Release Year"
+    elif attribute == "tempo":
+        return "Tempo (BPM)"
+    elif attribute == "key":
+        return "Key"
+    elif attribute == "mode":
+        return "Mode"
+    else:
+        raise ValueError(f"Unknown attribute: '{attribute}'")
 
 
 def __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage):
