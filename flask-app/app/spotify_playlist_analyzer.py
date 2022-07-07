@@ -111,8 +111,8 @@ def compare_playlists_by_ids():
     playlist_id_1 = request.args.get("playlist_id_1")
     playlist_id_2 = request.args.get("playlist_id_2")
 
-    playlist_1 = spotify_client.get_playlist_by_id(playlist_id_1)
-    playlist_2 = spotify_client.get_playlist_by_id(playlist_id_2)
+    playlist_1 = __get_playlist_by_id(playlist_id_1)
+    playlist_2 = __get_playlist_by_id(playlist_id_2)
 
     return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
 
