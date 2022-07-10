@@ -229,6 +229,7 @@ class SpotifyClient:
 
         return response_data["audio_features"]
 
+    # TODO does not depend on SpotifyAPI, just add getter get_camelot to SpotifyTrack
     @staticmethod
     def __get_camelot_from_track(track):
         key = track.get_key_string()
