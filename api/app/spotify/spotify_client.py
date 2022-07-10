@@ -229,6 +229,9 @@ class SpotifyClient:
 
         return response_data["audio_features"]
 
+    # Camelot does not directly depend on SpotifyAPI
+    # -> Still determined here so SpotifyTrack immediately contains camelot when created
+    # -> Is important for sorting tracks
     @staticmethod
     def __get_camelot_from_track(track):
         key = track.get_key_string()
