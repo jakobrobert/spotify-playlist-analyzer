@@ -16,6 +16,10 @@ class ApiClient:
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
         playlist.name = response_data["name"]
+        playlist.total_duration_ms = response_data["total_duration_ms"]
+        playlist.average_duration_ms = response_data["average_duration_ms"]
+        playlist.average_release_year = response_data["average_release_year"]
+        playlist.average_tempo = response_data["average_tempo"]
 
         playlist.tracks = []
         for track_data in response_data["tracks"]:
