@@ -11,9 +11,6 @@ class SpotifyPlaylist:
         self.name = "n/a"
         self.tracks = []
 
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__)
-
     def get_release_year_interval_to_percentage(self):
         first_interval_max_year = 1969
         last_interval_min_year = 2020
