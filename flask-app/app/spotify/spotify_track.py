@@ -1,6 +1,4 @@
 class SpotifyTrack:
-    KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
-
     def __init__(self):
         self.id = "n/a"
         self.title = "n/a"
@@ -26,21 +24,6 @@ class SpotifyTrack:
 
     def get_tempo_string(self):
         return f"{self.tempo:.1f}"
-
-    def get_key_string(self):
-        if self.key < 0 or self.key >= len(SpotifyTrack.KEY_NAMES):
-            return "n/a"
-
-        return SpotifyTrack.KEY_NAMES[self.key]
-
-    def get_mode_string(self):
-        if self.mode == 0:
-            return "Minor"
-
-        if self.mode == 1:
-            return "Major"
-
-        return "n/a"
 
     def get_loudness_string(self):
         return f"{self.loudness:.1f}"

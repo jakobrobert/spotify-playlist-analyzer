@@ -17,7 +17,7 @@ class SpotifyTrack:
 
     def get_key_string(self):
         if self.key < 0 or self.key >= len(SpotifyTrack.KEY_NAMES):
-            return "n/a"
+            return None
 
         return SpotifyTrack.KEY_NAMES[self.key]
 
@@ -28,4 +28,4 @@ class SpotifyTrack:
         if self.mode == 1:
             return "Major"
 
-        return "n/a"
+        return None

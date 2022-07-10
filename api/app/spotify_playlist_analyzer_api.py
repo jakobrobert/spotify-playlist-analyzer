@@ -43,10 +43,20 @@ def get_playlist_by_id(playlist_id):
     # Need to explicitly copy the dict, else changing the dict would change the original object
     playlist_dict = dict(playlist.__dict__)
 
-    # Need to convert tracks to dict manually, __dict__ does not work recursively
+    # Add calculated values
+    playlist_dict["total_duration_ms"] = playlist.get_total_duration_ms()
+    playlist_dict["average_duration_ms"] = playlist.get_average_duration_ms()
+    playlist_dict["average_release_year"] = playlist.get_average_release_year()
+    playlist_dict["average_tempo"] = playlist.get_average_tempo()
+
+    # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
     playlist_dict["tracks"] = []
     for track in playlist.tracks:
-        playlist_dict["tracks"].append(track.__dict__)
+        track_dict = dict(track.__dict__)
+        # Overwrite values for key & mode so API returns them as strings instead of numbers
+        track_dict["key"] = track.get_key_string()
+        track_dict["mode"] = track.get_mode_string()
+        playlist_dict["tracks"].append(track_dict)
 
     return jsonify(playlist_dict)
 
