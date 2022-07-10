@@ -52,7 +52,11 @@ def get_playlist_by_id(playlist_id):
     # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
     playlist_dict["tracks"] = []
     for track in playlist.tracks:
-        playlist_dict["tracks"].append(track.__dict__)
+        track_dict = dict(track.__dict__)
+        # Overwrite values for key & mode so API returns them as strings instead of numbers
+        track_dict["key"] = track.get_key_string()
+        track_dict["mode"] = track.get_mode_string()
+        playlist_dict["tracks"].append(track_dict)
 
     return jsonify(playlist_dict)
 
