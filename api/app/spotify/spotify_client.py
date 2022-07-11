@@ -201,7 +201,9 @@ class SpotifyClient:
             track.tempo = audio_features["tempo"]
             track.key = audio_features["key"]
             track.mode = audio_features["mode"]
-            track.camelot = SpotifyClient.__get_camelot_from_track(track)
+            key_string = track.get_key_string()
+            mode_string = track.get_mode_string()
+            track.camelot = SpotifyClient.__get_camelot_from_key_and_mode(key_string, mode_string)
             track.loudness = audio_features["loudness"]
 
     @staticmethod
@@ -233,9 +235,7 @@ class SpotifyClient:
     # -> Still determined here so SpotifyTrack immediately contains camelot when created
     # -> Is important for sorting tracks
     @staticmethod
-    def __get_camelot_from_track(track):
-        key = track.get_key_string()
-        mode = track.get_mode_string()
+    def __get_camelot_from_key_and_mode(key, mode):
         if key == "G♯/A♭" and mode == "Minor":
             return "01A"
         if key == "B" and mode == "Major":
