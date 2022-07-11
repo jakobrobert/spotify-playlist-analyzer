@@ -30,7 +30,7 @@ class SpotifyPlaylist:
         return SpotifyTrack.get_duration_string_helper(int(self.average_duration_ms))
 
     def get_average_release_year_string(self):
-        return f"{self.average_release_year :.1f}"
+        return f"{self.average_release_year:.1f}"
 
     def get_average_tempo_string(self):
-        return f"{self.average_tempo :.1f}"
+        return f"{self.average_tempo:.1f}"
