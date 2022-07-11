@@ -34,10 +34,16 @@ def get_playlist_by_id(playlist_id):
     max_tempo = __get_request_param_as_int_or_none("max_tempo")
     expected_key = request.args.get("expected_key") or None
     expected_mode = request.args.get("expected_mode") or None
+    expected_key_signature = request.args.get("expected_key_signature") or None
     genres_substring = request.args.get("genres_substring") or None
+
+    # TODO remove test code
+    filter_by = "key_signature"
+    expected_key_signature = "4♭"
+
     playlist.tracks = __filter_tracks(
         playlist.tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
-        artists_substring, genres_substring, expected_key, expected_mode, title_substring
+        artists_substring, genres_substring, expected_key, expected_mode, title_substring, expected_key_signature
     )
 
     # Need to explicitly copy the dict, else changing the dict would change the original object
@@ -89,8 +95,10 @@ def __sort_tracks(tracks, sort_by, order):
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
 
+# TODO adjust order of params, should be consistent to order of how request params are passed, this should be consistent to order of the columns in playlist table
 def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
-                    artists_substring, genres_substring, expected_key, expected_mode, title_substring):
+                    artists_substring, genres_substring, expected_key, expected_mode, title_substring,
+                    expected_key_signature):
     if filter_by is None:
         return tracks
 
@@ -135,6 +143,12 @@ def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, m
             raise ValueError("expected_mode must be defined to filter by mode!")
 
         return list(filter(lambda track: track.get_mode_string() == expected_mode, tracks))
+
+    if filter_by == "key_signature":
+        if expected_key_signature is None:
+            raise ValueError("expected_key_signature must be defined to filter by key_signature!")
+
+        return list(filter(lambda track: track.key_signature == expected_key_signature, tracks))
 
     if filter_by == "genres":
         if genres_substring is None:
