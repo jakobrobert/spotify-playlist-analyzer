@@ -35,8 +35,6 @@ class ApiClient:
             track.key = track_data["key"]
             track.mode = track_data["mode"]
             track.key_signature = track_data["key_signature"]
-            # TODO remove log
-            print(f"key_signature: {track.key_signature}")
             track.camelot = track_data["camelot"]
             track.loudness = track_data["loudness"]
             playlist.tracks.append(track)
