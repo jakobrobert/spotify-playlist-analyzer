@@ -10,6 +10,7 @@ class SpotifyTrack:
         self.tempo = 0
         self.key = -1
         self.mode = -1
+        self.key_signature = "n/a"
         self.camelot = "n/a"
         self.loudness = 0
 
