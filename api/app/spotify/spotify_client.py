@@ -201,7 +201,10 @@ class SpotifyClient:
             track.tempo = audio_features["tempo"]
             track.key = audio_features["key"]
             track.mode = audio_features["mode"]
-            track.camelot = SpotifyClient.__get_camelot_from_track(track)
+            key_string = track.get_key_string()
+            mode_string = track.get_mode_string()
+            track.key_signature = SpotifyClient.__get_key_signature_from_key_and_mode(key_string, mode_string)
+            track.camelot = SpotifyClient.__get_camelot_from_key_and_mode(key_string, mode_string)
             track.loudness = audio_features["loudness"]
 
     @staticmethod
@@ -229,13 +232,40 @@ class SpotifyClient:
 
         return response_data["audio_features"]
 
-    # Camelot does not directly depend on SpotifyAPI
-    # -> Still determined here so SpotifyTrack immediately contains camelot when created
+    # Key Signature & Camelot do not directly depend on SpotifyAPI but are derived from key & mode,
+    # so might seem out of place here
+    # -> Still determined here so SpotifyTrack immediately contains these attributes when created
     # -> Is important for sorting tracks
+
     @staticmethod
-    def __get_camelot_from_track(track):
-        key = track.get_key_string()
-        mode = track.get_mode_string()
+    def __get_key_signature_from_key_and_mode(key, mode):
+        if (key == "C" and mode == "Major") or (key == "A" and mode == "Minor"):
+            return "♮"
+        if (key == "G" and mode == "Major") or (key == "E" and mode == "Minor"):
+            return "1♯"
+        if (key == "D" and mode == "Major") or (key == "B" and mode == "Minor"):
+            return "2♯"
+        if (key == "A" and mode == "Major") or (key == "F♯/G♭" and mode == "Minor"):
+            return "3♯"
+        if (key == "E" and mode == "Major") or (key == "C♯/D♭" and mode == "Minor"):
+            return "4♯"
+        if (key == "B" and mode == "Major") or (key == "G♯/A♭" and mode == "Minor"):
+            return "5♯"
+        if (key == "F♯/G♭" and mode == "Major") or (key == "D♯/E♭" and mode == "Minor"):
+            return "6♯/6♭"
+        if (key == "C♯/D♭" and mode == "Major") or (key == "A♯/B♭" and mode == "Minor"):
+            return "5♭"
+        if (key == "G♯/A♭" and mode == "Major") or (key == "F" and mode == "Minor"):
+            return "4♭"
+        if (key == "D♯/E♭" and mode == "Major") or (key == "C" and mode == "Minor"):
+            return "3♭"
+        if (key == "A♯/B♭" and mode == "Major") or (key == "G" and mode == "Minor"):
+            return "2♭"
+        if (key == "F" and mode == "Major") or (key == "D" and mode == "Minor"):
+            return "1♭"
+
+    @staticmethod
+    def __get_camelot_from_key_and_mode(key, mode):
         if key == "G♯/A♭" and mode == "Minor":
             return "01A"
         if key == "B" and mode == "Major":

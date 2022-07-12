@@ -47,6 +47,7 @@ def get_playlist_by_id(playlist_id):
     expected_key = request.args.get("expected_key")
     expected_mode = request.args.get("expected_mode")
     genres_substring = request.args.get("genres_substring")
+    expected_key_signature = request.args.get("expected_key_signature")
 
     request_params = {
         "sort_by": sort_by,
@@ -60,6 +61,7 @@ def get_playlist_by_id(playlist_id):
         "max_tempo": max_tempo,
         "expected_key": expected_key,
         "expected_mode": expected_mode,
+        "expected_key_signature": expected_key_signature,
         "genres_substring": genres_substring
     }
 
@@ -67,10 +69,10 @@ def get_playlist_by_id(playlist_id):
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
-        artists_substring=artists_substring,
+        artists_substring=artists_substring, title_substring=title_substring,
         min_release_year=min_release_year, max_release_year=max_release_year, min_tempo=min_tempo, max_tempo=max_tempo,
-        expected_key=expected_key, expected_mode=expected_mode,
-        genres_substring=genres_substring, title_substring=title_substring
+        expected_key=expected_key, expected_mode=expected_mode, expected_key_signature=expected_key_signature,
+        genres_substring=genres_substring
     )
 
 
