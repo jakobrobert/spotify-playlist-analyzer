@@ -38,8 +38,8 @@ def get_playlist_by_id(playlist_id):
     genres_substring = request.args.get("genres_substring") or None
 
     # TODO remove test code
-    filter_by = "key_signature"
-    expected_key_signature = "4♭"
+    #filter_by = "key_signature"
+    #expected_key_signature = "4♭"
 
     playlist.tracks = __filter_tracks(
         playlist.tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
