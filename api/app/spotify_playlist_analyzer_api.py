@@ -37,13 +37,10 @@ def get_playlist_by_id(playlist_id):
     expected_key_signature = request.args.get("expected_key_signature") or None
     genres_substring = request.args.get("genres_substring") or None
 
-    # TODO remove test code
-    #filter_by = "key_signature"
-    #expected_key_signature = "4♭"
-
     playlist.tracks = __filter_tracks(
-        playlist.tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
-        artists_substring, genres_substring, expected_key, expected_mode, title_substring, expected_key_signature
+        playlist.tracks, filter_by,
+        artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
+        expected_key, expected_mode, expected_key_signature, genres_substring
     )
 
     # Need to explicitly copy the dict, else changing the dict would change the original object
@@ -95,10 +92,11 @@ def __sort_tracks(tracks, sort_by, order):
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
 
-# TODO adjust order of params, should be consistent to order of how request params are passed, this should be consistent to order of the columns in playlist table
-def __filter_tracks(tracks, filter_by, min_tempo, max_tempo, min_release_year, max_release_year,
-                    artists_substring, genres_substring, expected_key, expected_mode, title_substring,
-                    expected_key_signature):
+def __filter_tracks(
+        tracks, filter_by,
+        artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
+        expected_key, expected_mode, expected_key_signature, genres_substring
+):
     if filter_by is None:
         return tracks
 
