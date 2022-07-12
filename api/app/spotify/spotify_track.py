@@ -2,6 +2,7 @@ class SpotifyTrack:
     KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
 
     def __init__(self):
+        # TODO change "n/a" to None
         self.id = "n/a"
         self.title = "n/a"
         self.artist_ids = []
@@ -12,6 +13,7 @@ class SpotifyTrack:
         self.tempo = 0
         self.key = -1
         self.mode = -1
+        self.key_signature = None
         self.camelot = "n/a"
         self.loudness = 0
 
