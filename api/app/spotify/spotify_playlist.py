@@ -61,7 +61,7 @@ class SpotifyPlaylist:
     def get_key_to_percentage(self):
         key_to_count = {}
 
-        for key_name in SpotifyTrack.KEY_NAMES:
+        for key_name in SpotifyTrack.KEY_STRINGS:
             key_to_count[key_name] = 0
 
         key_to_count["n/a"] = 0
