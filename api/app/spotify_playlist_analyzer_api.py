@@ -84,6 +84,11 @@ def get_attribute_distribution_of_playlist(playlist_id):
     return jsonify(attribute_value_to_percentage)
 
 
+@app.route(URL_PREFIX + "valid-keys", methods=["GET"])
+def get_valid_keys():
+    return jsonify(SpotifyTrack.KEY_STRINGS)
+
+
 @app.route(URL_PREFIX + "valid-modes", methods=["GET"])
 def get_valid_modes():
     return jsonify(SpotifyTrack.MODE_STRINGS)
