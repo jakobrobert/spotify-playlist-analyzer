@@ -1,4 +1,5 @@
 class SpotifyTrack:
+    MODE_STRINGS = ["Minor", "Major"]
     KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
 
     def __init__(self):
@@ -23,10 +24,8 @@ class SpotifyTrack:
         return SpotifyTrack.KEY_NAMES[self.key]
 
     def get_mode_string(self):
-        if self.mode == 0:
-            return "Minor"
+        # TODO duplicated code with get_key_string, extract __get_from_list_or_None
+        if self.mode < 0 or self.mode >= len(SpotifyTrack.MODE_STRINGS):
+            return None
 
-        if self.mode == 1:
-            return "Major"
-
-        return None
+        return SpotifyTrack.MODE_STRINGS[self.mode]
