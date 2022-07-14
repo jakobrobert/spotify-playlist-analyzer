@@ -67,6 +67,9 @@ def get_playlist_by_id(playlist_id):
 
     playlist = api_client.get_playlist_by_id(playlist_id, request_params)
 
+    valid_modes = api_client.get_valid_modes()
+    print(f"valid_modes: {valid_modes}")
+
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
         artists_substring=artists_substring, title_substring=title_substring,
