@@ -75,7 +75,7 @@ def get_playlist_by_id(playlist_id):
         artists_substring=artists_substring, title_substring=title_substring,
         min_release_year=min_release_year, max_release_year=max_release_year, min_tempo=min_tempo, max_tempo=max_tempo,
         expected_key=expected_key, expected_mode=expected_mode, expected_key_signature=expected_key_signature,
-        genres_substring=genres_substring
+        genres_substring=genres_substring, valid_modes=valid_modes
     )
 
 
