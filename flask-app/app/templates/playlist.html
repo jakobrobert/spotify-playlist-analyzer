@@ -151,7 +151,7 @@
                 <label for="expected_mode">is</label>
                 <select class="form-control" id="expected_mode" name="expected_mode">
                     {% for mode in valid_modes %}
-                        <option value="{{ mode }}" {% if expected_mode == "{{ mode }}" %} selected {% endif %}>
+                        <option value="{{ mode }}" {% if expected_mode == mode %} selected {% endif %}>
                             {{ mode }}
                         </option>
                     {% endfor %}
