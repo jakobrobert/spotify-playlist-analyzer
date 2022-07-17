@@ -1,5 +1,6 @@
 class SpotifyTrack:
-    KEY_NAMES = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
+    KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
+    MODE_STRINGS = ["Minor", "Major"]
 
     def __init__(self):
         self.id = None
@@ -17,16 +18,14 @@ class SpotifyTrack:
         self.loudness = 0
 
     def get_key_string(self):
-        if self.key < 0 or self.key >= len(SpotifyTrack.KEY_NAMES):
-            return None
-
-        return SpotifyTrack.KEY_NAMES[self.key]
+        return SpotifyTrack.__get_from_list_or_none(SpotifyTrack.KEY_STRINGS, self.key)
 
     def get_mode_string(self):
-        if self.mode == 0:
-            return "Minor"
+        return SpotifyTrack.__get_from_list_or_none(SpotifyTrack.MODE_STRINGS, self.mode)
 
-        if self.mode == 1:
-            return "Major"
+    @staticmethod
+    def __get_from_list_or_none(_list, index):
+        if index < 0 or index >= len(_list):
+            return None
 
-        return None
+        return _list[index]

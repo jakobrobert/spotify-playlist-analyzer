@@ -9,9 +9,8 @@ class ApiClient:
         self.base_url = base_url
 
     def get_playlist_by_id(self, playlist_id, request_params=None):
-        url = f"{self.base_url}playlist/{playlist_id}"
-        response = requests.get(url, params=request_params)
-        response_data = response.json()
+        sub_url = f"playlist/{playlist_id}"
+        response_data = self.__send_get_request(sub_url, request_params)
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
@@ -42,9 +41,23 @@ class ApiClient:
         return playlist
 
     def get_attribute_distribution_of_playlist(self, playlist_id, attribute):
-        url = f"{self.base_url}playlist/{playlist_id}/attribute-distribution"
+        sub_url = f"playlist/{playlist_id}/attribute-distribution"
         request_params = {"attribute": attribute}
-        response = requests.get(url, params=request_params)
+
+        return self.__send_get_request(sub_url, request_params)
+
+    def get_valid_keys(self):
+        return self.__send_get_request("valid-keys")
+
+    def get_valid_modes(self):
+        return self.__send_get_request("valid-modes")
+
+    def get_valid_key_signatures(self):
+        return self.__send_get_request("valid-key-signatures")
+
+    def __send_get_request(self, sub_url, request_params=None):
+        url = f"{self.base_url}{sub_url}"
+        response = requests.get(url, request_params)
         response_data = response.json()
 
         return response_data

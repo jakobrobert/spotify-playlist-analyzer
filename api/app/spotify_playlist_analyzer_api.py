@@ -1,10 +1,10 @@
+import configparser
 import operator
 
 from flask import Flask, jsonify, request
 
-import configparser
-
 from spotify.spotify_client import SpotifyClient
+from spotify.spotify_track import SpotifyTrack
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
@@ -82,6 +82,21 @@ def get_attribute_distribution_of_playlist(playlist_id):
         raise ValueError(f"Unknown attribute: '{attribute}'")
 
     return jsonify(attribute_value_to_percentage)
+
+
+@app.route(URL_PREFIX + "valid-keys", methods=["GET"])
+def get_valid_keys():
+    return jsonify(SpotifyTrack.KEY_STRINGS)
+
+
+@app.route(URL_PREFIX + "valid-modes", methods=["GET"])
+def get_valid_modes():
+    return jsonify(SpotifyTrack.MODE_STRINGS)
+
+
+@app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
+def get_valid_key_signatures():
+    return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
 
 
 def __sort_tracks(tracks, sort_by, order):
