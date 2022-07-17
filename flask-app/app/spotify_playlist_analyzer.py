@@ -67,15 +67,9 @@ def get_playlist_by_id(playlist_id):
 
     playlist = api_client.get_playlist_by_id(playlist_id, request_params)
 
-    # TODO remove print statements
     valid_keys = api_client.get_valid_keys()
-    print(f"valid_keys: {valid_keys}")
-
     valid_modes = api_client.get_valid_modes()
-    print(f"valid_modes: {valid_modes}")
-
     valid_key_signatures = api_client.get_valid_key_signatures()
-    print(f"valid_key_signatures: {valid_key_signatures}")
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
