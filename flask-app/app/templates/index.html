@@ -12,13 +12,6 @@
 <body>
     <div class="container">
         <h1>Spotify Playlist Analyzer</h1>
-
-        <!-- TODO remove form when new template is added -->
-        <form action="{{ url_for('get_playlist_by_url') }}" method="GET">
-            <label class="form-label" for="playlist_url">Link to the Spotify playlist:</label><br>
-            <input class="form-control" type="text" id="playlist_url" name="playlist_url"><br>
-            <button class="btn btn-secondary" type="submit">Show playlist data</button>
-        </form>
         <br>
         <a class="btn btn-secondary" role="button" href="{{ url_for('choose_one_playlist') }}">
             Analyze one playlist
