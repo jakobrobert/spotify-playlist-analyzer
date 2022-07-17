@@ -94,6 +94,11 @@ def get_valid_modes():
     return jsonify(SpotifyTrack.MODE_STRINGS)
 
 
+@app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
+def get_valid_key_signatures():
+    return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
+
+
 def __sort_tracks(tracks, sort_by, order):
     if sort_by == "none":
         return
