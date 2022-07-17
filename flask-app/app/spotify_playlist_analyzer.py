@@ -23,6 +23,11 @@ def index():
     return render_template("index.html")
 
 
+@app.route(URL_PREFIX + "choose-one-playlist", methods=["GET"])
+def choose_one_playlist():
+    return render_template("choose_one_playlist.html")
+
+
 @app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
 def get_playlist_by_url():
     playlist_url = request.args.get("playlist_url")
