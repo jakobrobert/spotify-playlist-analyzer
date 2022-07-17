@@ -63,3 +63,10 @@ class ApiClient:
         response_data = response.json()
 
         return response_data
+
+    def get_valid_key_signatures(self):
+        url = f"{self.base_url}valid-key-signatures"
+        response = requests.get(url)
+        response_data = response.json()
+
+        return response_data
