@@ -49,6 +49,14 @@ class ApiClient:
 
         return response_data
 
+    def get_valid_keys(self):
+        # TODO duplicated code, compare get_valid_modes
+        url = f"{self.base_url}valid-keys"
+        response = requests.get(url)
+        response_data = response.json()
+
+        return response_data
+
     def get_valid_modes(self):
         url = f"{self.base_url}valid-modes"
         response = requests.get(url)
