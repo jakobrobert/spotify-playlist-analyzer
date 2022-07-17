@@ -25,8 +25,7 @@ def index():
 
 @app.route(URL_PREFIX + "choose-one-playlist", methods=["GET"])
 def choose_one_playlist():
-    # TODO render new template
-    return "<h3>Hello, World!</h3>"
+    return render_template("choose_one_playlist.html")
 
 
 @app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
