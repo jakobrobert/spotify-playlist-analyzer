@@ -23,8 +23,10 @@ def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
     except HttpError as error:
-        error_response = jsonify(error.__dict__)
-        return error_response, error.status_code
+        response_data = {"error": error.__dict__}
+        response = jsonify(response_data)
+
+        return response, error.status_code
 
     sort_by = request.args.get("sort_by") or "none"
     order = request.args.get("order") or "ascending"

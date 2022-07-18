@@ -12,6 +12,14 @@ class ApiClient:
         sub_url = f"playlist/{playlist_id}"
         response_data = self.__send_get_request(sub_url, request_params)
 
+        # TODO error handling can be done generally, so put into __send_get_request
+        if "error" in response_data:
+            error = response_data["error"]
+            status_code = error["status_code"]
+            message = error["message"]
+            # TODO raise HttpError as in API, then render error page showing the status code & message
+            raise ValueError(f"status_code: {status_code}, message: {message}")
+
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
         playlist.name = response_data["name"]
