@@ -17,12 +17,22 @@ class SpotifyClient:
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
-        playlist_data = SpotifyClient.__send_get_request(url, access_token)
+        response_data = SpotifyClient.__send_get_request(url, access_token)
+
+        # TODO CLEANUP remove print
+        print(response_data)
+        if "error" in response_data:
+            error = response_data["error"]
+            status = error["status"]
+            message = error["message"]
+            # TODO raise Error object which includes status & message
+            raise ValueError(f"status: {status}, message: {message}")
 
         playlist = SpotifyPlaylist()
+        # TODO CLEANUP get id from response for consistency
         playlist.id = playlist_id
-        playlist.name = playlist_data["name"]
-        playlist.tracks = SpotifyClient.__get_tracks_of_playlist(playlist_data, access_token)
+        playlist.name = response_data["name"]
+        playlist.tracks = SpotifyClient.__get_tracks_of_playlist(response_data, access_token)
 
         return playlist
 
