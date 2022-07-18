@@ -4,6 +4,7 @@ import requests
 # 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
 from spotify.spotify_track import SpotifyTrack
 from spotify.spotify_playlist import SpotifyPlaylist
+from http_error import HttpError
 
 
 class SpotifyClient:
@@ -19,14 +20,12 @@ class SpotifyClient:
         access_token = self.__get_access_token()
         response_data = SpotifyClient.__send_get_request(url, access_token)
 
-        # TODO CLEANUP remove print
-        print(response_data)
         if "error" in response_data:
             error = response_data["error"]
             status = error["status"]
             message = error["message"]
-            # TODO raise Error object which includes status & message
-            raise ValueError(f"status: {status}, message: {message}")
+
+            raise HttpError(status, message)
 
         playlist = SpotifyPlaylist()
         # TODO CLEANUP get id from response for consistency
