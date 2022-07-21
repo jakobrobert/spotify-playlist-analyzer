@@ -21,8 +21,7 @@ class SpotifyClient:
         response_data = SpotifyClient.__send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
-        # TODO CLEANUP get id from response for consistency
-        playlist.id = playlist_id
+        playlist.id = response_data["id"]
         playlist.name = response_data["name"]
         playlist.tracks = SpotifyClient.__get_tracks_of_playlist(response_data, access_token)
 
