@@ -35,6 +35,13 @@ class SpotifyClient:
         response = requests.post(url, data=data, auth=auth)
         response_data = response.json()
 
+        if "error" in response_data:
+            error = response_data["error"]
+            status = error["status"]
+            message = error["message"]
+
+            raise HttpError(status, message)
+
         return response_data["access_token"]
 
     @staticmethod
