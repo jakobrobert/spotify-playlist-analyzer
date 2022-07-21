@@ -5,6 +5,7 @@ from flask import Flask, jsonify, request
 
 from spotify.spotify_client import SpotifyClient
 from spotify.spotify_track import SpotifyTrack
+from http_error import HttpError
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
@@ -19,7 +20,13 @@ app = Flask(__name__)
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
+    try:
+        playlist = spotify_client.get_playlist_by_id(playlist_id)
+    except HttpError as error:
+        response_data = {"error": error.__dict__}
+        response = jsonify(response_data)
+
+        return response, error.status_code
 
     sort_by = request.args.get("sort_by") or "none"
     order = request.args.get("order") or "ascending"

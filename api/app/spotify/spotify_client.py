@@ -4,6 +4,7 @@ import requests
 # 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
 from spotify.spotify_track import SpotifyTrack
 from spotify.spotify_playlist import SpotifyPlaylist
+from http_error import HttpError
 
 
 class SpotifyClient:
@@ -17,12 +18,12 @@ class SpotifyClient:
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
-        playlist_data = SpotifyClient.__send_get_request(url, access_token)
+        response_data = SpotifyClient.__send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
-        playlist.id = playlist_id
-        playlist.name = playlist_data["name"]
-        playlist.tracks = SpotifyClient.__get_tracks_of_playlist(playlist_data, access_token)
+        playlist.id = response_data["id"]
+        playlist.name = response_data["name"]
+        playlist.tracks = SpotifyClient.__get_tracks_of_playlist(response_data, access_token)
 
         return playlist
 
@@ -33,14 +34,29 @@ class SpotifyClient:
         response = requests.post(url, data=data, auth=auth)
         response_data = response.json()
 
+        if "error" in response_data:
+            error = response_data["error"]
+            status = error["status"]
+            message = error["message"]
+
+            raise HttpError(status, message)
+
         return response_data["access_token"]
 
     @staticmethod
     def __send_get_request(url, access_token):
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.get(url, headers=headers)
+        response_data = response.json()
 
-        return response.json()
+        if "error" in response_data:
+            error = response_data["error"]
+            status = error["status"]
+            message = error["message"]
+
+            raise HttpError(status, message)
+
+        return response_data
 
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
