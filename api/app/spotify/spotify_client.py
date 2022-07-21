@@ -20,13 +20,6 @@ class SpotifyClient:
         access_token = self.__get_access_token()
         response_data = SpotifyClient.__send_get_request(url, access_token)
 
-        if "error" in response_data:
-            error = response_data["error"]
-            status = error["status"]
-            message = error["message"]
-
-            raise HttpError(status, message)
-
         playlist = SpotifyPlaylist()
         # TODO CLEANUP get id from response for consistency
         playlist.id = playlist_id
@@ -48,8 +41,16 @@ class SpotifyClient:
     def __send_get_request(url, access_token):
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.get(url, headers=headers)
+        response_data = response.json()
 
-        return response.json()
+        if "error" in response_data:
+            error = response_data["error"]
+            status = error["status"]
+            message = error["message"]
+
+            raise HttpError(status, message)
+
+        return response_data
 
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
