@@ -72,12 +72,11 @@ def get_playlist_by_id(playlist_id):
 
     try:
         playlist = api_client.get_playlist_by_id(playlist_id, request_params)
+        valid_keys = api_client.get_valid_keys()
+        valid_modes = api_client.get_valid_modes()
+        valid_key_signatures = api_client.get_valid_key_signatures()
     except HttpError as error:
         return render_template("error.html", error=error)
-
-    valid_keys = api_client.get_valid_keys()
-    valid_modes = api_client.get_valid_modes()
-    valid_key_signatures = api_client.get_valid_key_signatures()
 
     return render_template(
         "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
@@ -93,9 +92,13 @@ def get_playlist_by_id(playlist_id):
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
 
-    playlist = api_client.get_playlist_by_id(playlist_id)
     attribute_name = __get_attribute_name(attribute)
-    attribute_value_to_percentage = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
+
+    try:
+        playlist = api_client.get_playlist_by_id(playlist_id)
+        attribute_value_to_percentage = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
+    except HttpError as error:
+        return render_template("error.html", error=error)
 
     return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
 
@@ -121,8 +124,11 @@ def compare_playlists_by_ids():
     playlist_id_1 = request.args.get("playlist_id_1")
     playlist_id_2 = request.args.get("playlist_id_2")
 
-    playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
-    playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
+    try:
+        playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
+        playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
+    except HttpError as error:
+        return render_template("error.html", error=error)
 
     return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
 
@@ -133,11 +139,15 @@ def compare_attribute_distribution_of_playlists():
     playlist_id_2 = request.args.get("playlist_id_2")
     attribute = request.args.get("attribute")
 
-    playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
-    playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
     attribute_name = __get_attribute_name(attribute)
-    attribute_value_to_percentage_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
-    attribute_value_to_percentage_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
+
+    try:
+        playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
+        playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
+        attribute_value_to_percentage_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
+        attribute_value_to_percentage_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
+    except HttpError as error:
+        return render_template("error.html", error=error)
 
     return __render_compare_attribute_distribution_template(
         playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2
