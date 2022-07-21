@@ -1,4 +1,5 @@
 from api_client import ApiClient
+from http_error import HttpError
 
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -69,8 +70,10 @@ def get_playlist_by_id(playlist_id):
         "genres_substring": genres_substring
     }
 
-    # TODO Handle HttpError, in all occurrences of get_playlist_by_id
-    playlist = api_client.get_playlist_by_id(playlist_id, request_params)
+    try:
+        playlist = api_client.get_playlist_by_id(playlist_id, request_params)
+    except HttpError as error:
+        return render_template("error.html", error=error)
 
     valid_keys = api_client.get_valid_keys()
     valid_modes = api_client.get_valid_modes()
