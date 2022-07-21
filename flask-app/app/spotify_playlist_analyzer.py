@@ -3,7 +3,6 @@ from api_client import ApiClient
 from flask import Flask, render_template, request, redirect, url_for
 
 import configparser
-import operator
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
@@ -70,6 +69,7 @@ def get_playlist_by_id(playlist_id):
         "genres_substring": genres_substring
     }
 
+    # TODO Handle HttpError, in all occurrences of get_playlist_by_id
     playlist = api_client.get_playlist_by_id(playlist_id, request_params)
 
     valid_keys = api_client.get_valid_keys()
