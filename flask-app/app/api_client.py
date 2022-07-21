@@ -1,5 +1,6 @@
 from spotify.spotify_playlist import SpotifyPlaylist
 from spotify.spotify_track import SpotifyTrack
+from http_error import HttpError
 
 import requests
 
@@ -59,5 +60,12 @@ class ApiClient:
         url = f"{self.base_url}{sub_url}"
         response = requests.get(url, request_params)
         response_data = response.json()
+
+        if "error" in response_data:
+            error = response_data["error"]
+            status = error["status_code"]
+            message = error["message"]
+
+            raise HttpError(status, message)
 
         return response_data
