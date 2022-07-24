@@ -146,7 +146,11 @@ def compare_attribute_distribution_of_playlists():
     attribute = request.args.get("attribute")
 
     # TODO missing try except, see other usage
-    attribute_name = __get_attribute_name(attribute)
+    try:
+        attribute_name = __get_attribute_name(attribute)
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return render_template("error.html", error=error)
 
     try:
         playlist_1 = api_client.get_playlist_by_id(playlist_id_1)

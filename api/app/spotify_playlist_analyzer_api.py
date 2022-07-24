@@ -21,16 +21,12 @@ app = Flask(__name__)
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
     try:
-        # TODO remove debug code
-        #playlist_id = None
         playlist = spotify_client.get_playlist_by_id(playlist_id)
     except HttpError as error:
         return __create_error_response(error)
 
     sort_by = request.args.get("sort_by") or "none"
     order = request.args.get("order") or "ascending"
-    # TODO remove debug code
-    sort_by = "foo"
     try:
         __sort_tracks(playlist.tracks, sort_by, order)
     except Exception as e:
@@ -49,8 +45,6 @@ def get_playlist_by_id(playlist_id):
     expected_key_signature = request.args.get("expected_key_signature") or None
     genres_substring = request.args.get("genres_substring") or None
 
-    # TODO remove debug code
-    filter_by = "foo"
     playlist.tracks = __filter_tracks(
         playlist.tracks, filter_by,
         artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
