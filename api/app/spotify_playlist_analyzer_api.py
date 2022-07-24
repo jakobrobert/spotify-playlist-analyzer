@@ -22,7 +22,7 @@ app = Flask(__name__)
 def get_playlist_by_id(playlist_id):
     try:
         # TODO remove debug code
-        playlist_id = None
+        #playlist_id = None
         playlist = spotify_client.get_playlist_by_id(playlist_id)
     except HttpError as error:
         response_data = {"error": error.__dict__}
@@ -77,8 +77,14 @@ def get_playlist_by_id(playlist_id):
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
 
-    # TODO missing try except
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
+    try:
+        playlist = spotify_client.get_playlist_by_id(playlist_id)
+    except HttpError as error:
+        # TODO extract duplicated code
+        response_data = {"error": error.__dict__}
+        response = jsonify(response_data)
+
+        return response, error.status_code
 
     if attribute == "release_year":
         attribute_value_to_percentage = playlist.get_release_year_interval_to_percentage()
@@ -89,6 +95,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
     elif attribute == "mode":
         attribute_value_to_percentage = playlist.get_mode_to_percentage()
     else:
+        # TODO replace by error response
         raise ValueError(f"Unknown attribute: '{attribute}'")
 
     return jsonify(attribute_value_to_percentage)
