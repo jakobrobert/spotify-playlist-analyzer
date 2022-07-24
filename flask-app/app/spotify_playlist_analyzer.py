@@ -92,7 +92,11 @@ def get_playlist_by_id(playlist_id):
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
 
-    attribute_name = __get_attribute_name(attribute)
+    try:
+        attribute_name = __get_attribute_name(attribute)
+    except Exception as e:
+        error = HttpError(400, e)
+        return render_template("error.html", error=error)
 
     # TODO optimize: requesting playlist separately is overkill
     #   -> only need it in template for name & percentage_to_string()
@@ -173,7 +177,7 @@ def __get_attribute_name(attribute):
     elif attribute == "mode":
         return "Mode"
     else:
-        raise ValueError(f"Unknown attribute: '{attribute}'")
+        raise ValueError(f"Invalid attribute: '{attribute}'")
 
 
 def __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage):
