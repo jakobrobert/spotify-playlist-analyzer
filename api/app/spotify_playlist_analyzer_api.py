@@ -22,88 +22,106 @@ app = Flask(__name__)
 def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
+
+        sort_by = request.args.get("sort_by") or "none"
+        order = request.args.get("order") or "ascending"
+
+        __sort_tracks(playlist.tracks, sort_by, order)
+
+        filter_by = request.args.get("filter_by") or None
+        artists_substring = request.args.get("artists_substring") or None
+        title_substring = request.args.get("title_substring") or None
+        min_release_year = __get_request_param_as_int_or_none("min_release_year")
+        max_release_year = __get_request_param_as_int_or_none("max_release_year")
+        min_tempo = __get_request_param_as_int_or_none("min_tempo")
+        max_tempo = __get_request_param_as_int_or_none("max_tempo")
+        expected_key = request.args.get("expected_key") or None
+        expected_mode = request.args.get("expected_mode") or None
+        expected_key_signature = request.args.get("expected_key_signature") or None
+        genres_substring = request.args.get("genres_substring") or None
+
+        playlist.tracks = __filter_tracks(
+            playlist.tracks, filter_by,
+            artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
+            expected_key, expected_mode, expected_key_signature, genres_substring)
+
+        # Need to explicitly copy the dict, else changing the dict would change the original object
+        playlist_dict = dict(playlist.__dict__)
+
+        # Add calculated values
+        playlist_dict["total_duration_ms"] = playlist.get_total_duration_ms()
+        playlist_dict["average_duration_ms"] = playlist.get_average_duration_ms()
+        playlist_dict["average_release_year"] = playlist.get_average_release_year()
+        playlist_dict["average_tempo"] = playlist.get_average_tempo()
+
+        # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
+        playlist_dict["tracks"] = []
+        for track in playlist.tracks:
+            track_dict = dict(track.__dict__)
+            # Overwrite values for key & mode so API returns them as strings instead of numbers
+            track_dict["key"] = track.get_key_string()
+            track_dict["mode"] = track.get_mode_string()
+            playlist_dict["tracks"].append(track_dict)
+
+        return jsonify(playlist_dict)
     except HttpError as error:
-        response_data = {"error": error.__dict__}
-        response = jsonify(response_data)
-
-        return response, error.status_code
-
-    sort_by = request.args.get("sort_by") or "none"
-    order = request.args.get("order") or "ascending"
-    __sort_tracks(playlist.tracks, sort_by, order)
-
-    filter_by = request.args.get("filter_by") or None
-    artists_substring = request.args.get("artists_substring") or None
-    title_substring = request.args.get("title_substring") or None
-    min_release_year = __get_request_param_as_int_or_none("min_release_year")
-    max_release_year = __get_request_param_as_int_or_none("max_release_year")
-    min_tempo = __get_request_param_as_int_or_none("min_tempo")
-    max_tempo = __get_request_param_as_int_or_none("max_tempo")
-    expected_key = request.args.get("expected_key") or None
-    expected_mode = request.args.get("expected_mode") or None
-    expected_key_signature = request.args.get("expected_key_signature") or None
-    genres_substring = request.args.get("genres_substring") or None
-
-    playlist.tracks = __filter_tracks(
-        playlist.tracks, filter_by,
-        artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
-        expected_key, expected_mode, expected_key_signature, genres_substring
-    )
-
-    # Need to explicitly copy the dict, else changing the dict would change the original object
-    playlist_dict = dict(playlist.__dict__)
-
-    # Add calculated values
-    playlist_dict["total_duration_ms"] = playlist.get_total_duration_ms()
-    playlist_dict["average_duration_ms"] = playlist.get_average_duration_ms()
-    playlist_dict["average_release_year"] = playlist.get_average_release_year()
-    playlist_dict["average_tempo"] = playlist.get_average_tempo()
-
-    # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
-    playlist_dict["tracks"] = []
-    for track in playlist.tracks:
-        track_dict = dict(track.__dict__)
-        # Overwrite values for key & mode so API returns them as strings instead of numbers
-        track_dict["key"] = track.get_key_string()
-        track_dict["mode"] = track.get_mode_string()
-        playlist_dict["tracks"].append(track_dict)
-
-    return jsonify(playlist_dict)
+        return __create_error_response(error)
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
 def get_attribute_distribution_of_playlist(playlist_id):
-    attribute = request.args.get("attribute")
+    try:
+        attribute = request.args.get("attribute")
 
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
+        playlist = spotify_client.get_playlist_by_id(playlist_id)
 
-    if attribute == "release_year":
-        attribute_value_to_percentage = playlist.get_release_year_interval_to_percentage()
-    elif attribute == "tempo":
-        attribute_value_to_percentage = playlist.get_tempo_interval_to_percentage()
-    elif attribute == "key":
-        attribute_value_to_percentage = playlist.get_key_to_percentage()
-    elif attribute == "mode":
-        attribute_value_to_percentage = playlist.get_mode_to_percentage()
-    else:
-        raise ValueError(f"Unknown attribute: '{attribute}'")
+        if attribute == "release_year":
+            attribute_value_to_percentage = playlist.get_release_year_interval_to_percentage()
+        elif attribute == "tempo":
+            attribute_value_to_percentage = playlist.get_tempo_interval_to_percentage()
+        elif attribute == "key":
+            attribute_value_to_percentage = playlist.get_key_to_percentage()
+        elif attribute == "mode":
+            attribute_value_to_percentage = playlist.get_mode_to_percentage()
+        else:
+            raise HttpError(400, f"Invalid attribute: '{attribute}'")
 
-    return jsonify(attribute_value_to_percentage)
+        return jsonify(attribute_value_to_percentage)
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
 
 @app.route(URL_PREFIX + "valid-keys", methods=["GET"])
 def get_valid_keys():
-    return jsonify(SpotifyTrack.KEY_STRINGS)
+    try:
+        return jsonify(SpotifyTrack.KEY_STRINGS)
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
 
 @app.route(URL_PREFIX + "valid-modes", methods=["GET"])
 def get_valid_modes():
-    return jsonify(SpotifyTrack.MODE_STRINGS)
+    try:
+        return jsonify(SpotifyTrack.MODE_STRINGS)
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
 
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
 def get_valid_key_signatures():
-    return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
+    try:
+        return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
 
 def __sort_tracks(tracks, sort_by, order):
@@ -186,3 +204,10 @@ def __get_request_param_as_int_or_none(name):
         return int(value_string)
 
     return None
+
+
+def __create_error_response(error):
+    response_data = {"error": error.__dict__}
+    response = jsonify(response_data)
+
+    return response, error.status_code
