@@ -95,7 +95,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute_name = __get_attribute_name(attribute)
     except Exception as e:
-        error = HttpError(400, e)
+        error = HttpError(400, repr(e))
         return render_template("error.html", error=error)
 
     # TODO optimize: requesting playlist separately is overkill
