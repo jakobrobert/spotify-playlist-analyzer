@@ -94,6 +94,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
     attribute_name = __get_attribute_name(attribute)
 
+    # TODO optimize: requesting playlist separately is overkill
+    #   -> only need it in template for name & percentage_to_string()
     try:
         playlist = api_client.get_playlist_by_id(playlist_id)
         attribute_value_to_percentage = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
