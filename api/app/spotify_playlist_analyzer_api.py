@@ -58,12 +58,15 @@ def get_playlist_by_id(playlist_id):
     # Need to explicitly copy the dict, else changing the dict would change the original object
     playlist_dict = dict(playlist.__dict__)
 
-    # TODO handle errors, e.g. DivisionByZero occurs for empty playlist
     # Add calculated values
-    playlist_dict["total_duration_ms"] = playlist.get_total_duration_ms()
-    playlist_dict["average_duration_ms"] = playlist.get_average_duration_ms()
-    playlist_dict["average_release_year"] = playlist.get_average_release_year()
-    playlist_dict["average_tempo"] = playlist.get_average_tempo()
+    try:
+        playlist_dict["total_duration_ms"] = playlist.get_total_duration_ms()
+        playlist_dict["average_duration_ms"] = playlist.get_average_duration_ms()
+        playlist_dict["average_release_year"] = playlist.get_average_release_year()
+        playlist_dict["average_tempo"] = playlist.get_average_tempo()
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
     # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
     playlist_dict["tracks"] = []
