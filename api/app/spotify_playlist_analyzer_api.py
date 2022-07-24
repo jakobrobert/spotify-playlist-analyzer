@@ -27,6 +27,7 @@ def get_playlist_by_id(playlist_id):
 
     sort_by = request.args.get("sort_by") or "none"
     order = request.args.get("order") or "ascending"
+
     try:
         __sort_tracks(playlist.tracks, sort_by, order)
     except Exception as e:
@@ -45,11 +46,14 @@ def get_playlist_by_id(playlist_id):
     expected_key_signature = request.args.get("expected_key_signature") or None
     genres_substring = request.args.get("genres_substring") or None
 
-    playlist.tracks = __filter_tracks(
-        playlist.tracks, filter_by,
-        artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
-        expected_key, expected_mode, expected_key_signature, genres_substring
-    )
+    try:
+        playlist.tracks = __filter_tracks(
+            playlist.tracks, filter_by,
+            artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
+            expected_key, expected_mode, expected_key_signature, genres_substring)
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
     # Need to explicitly copy the dict, else changing the dict would change the original object
     playlist_dict = dict(playlist.__dict__)
