@@ -95,8 +95,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
     elif attribute == "mode":
         attribute_value_to_percentage = playlist.get_mode_to_percentage()
     else:
-        # TODO replace by error response
-        raise ValueError(f"Unknown attribute: '{attribute}'")
+        error = HttpError(400, f"Invalid attribute: '{attribute}'")
+        return __create_error_response(error)
 
     return jsonify(attribute_value_to_percentage)
 
