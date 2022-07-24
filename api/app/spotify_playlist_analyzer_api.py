@@ -29,7 +29,13 @@ def get_playlist_by_id(playlist_id):
 
     sort_by = request.args.get("sort_by") or "none"
     order = request.args.get("order") or "ascending"
-    __sort_tracks(playlist.tracks, sort_by, order)
+    # TODO remove debug code
+    sort_by = "foo"
+    try:
+        __sort_tracks(playlist.tracks, sort_by, order)
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
     filter_by = request.args.get("filter_by") or None
     artists_substring = request.args.get("artists_substring") or None
@@ -43,6 +49,8 @@ def get_playlist_by_id(playlist_id):
     expected_key_signature = request.args.get("expected_key_signature") or None
     genres_substring = request.args.get("genres_substring") or None
 
+    # TODO remove debug code
+    filter_by = "foo"
     playlist.tracks = __filter_tracks(
         playlist.tracks, filter_by,
         artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
@@ -52,6 +60,7 @@ def get_playlist_by_id(playlist_id):
     # Need to explicitly copy the dict, else changing the dict would change the original object
     playlist_dict = dict(playlist.__dict__)
 
+    # TODO handle errors, e.g. DivisionByZero occurs for empty playlist
     # Add calculated values
     playlist_dict["total_duration_ms"] = playlist.get_total_duration_ms()
     playlist_dict["average_duration_ms"] = playlist.get_average_duration_ms()
