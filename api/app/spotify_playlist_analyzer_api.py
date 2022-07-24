@@ -73,7 +73,6 @@ def get_playlist_by_id(playlist_id):
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
 def get_attribute_distribution_of_playlist(playlist_id):
-
     try:
         attribute = request.args.get("attribute")
 
@@ -100,17 +99,29 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
 @app.route(URL_PREFIX + "valid-keys", methods=["GET"])
 def get_valid_keys():
-    return jsonify(SpotifyTrack.KEY_STRINGS)
+    try:
+        return jsonify(SpotifyTrack.KEY_STRINGS)
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
 
 @app.route(URL_PREFIX + "valid-modes", methods=["GET"])
 def get_valid_modes():
-    return jsonify(SpotifyTrack.MODE_STRINGS)
+    try:
+        return jsonify(SpotifyTrack.MODE_STRINGS)
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
 
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
 def get_valid_key_signatures():
-    return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
+    try:
+        return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
+    except Exception as e:
+        error = HttpError(400, repr(e))
+        return __create_error_response(error)
 
 
 def __sort_tracks(tracks, sort_by, order):
