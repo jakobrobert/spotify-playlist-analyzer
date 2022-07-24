@@ -145,6 +145,7 @@ def compare_attribute_distribution_of_playlists():
     playlist_id_2 = request.args.get("playlist_id_2")
     attribute = request.args.get("attribute")
 
+    # TODO missing try except, see other usage
     attribute_name = __get_attribute_name(attribute)
 
     try:
