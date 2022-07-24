@@ -21,6 +21,8 @@ app = Flask(__name__)
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
     try:
+        # TODO remove debug code
+        playlist_id = None
         playlist = spotify_client.get_playlist_by_id(playlist_id)
     except HttpError as error:
         response_data = {"error": error.__dict__}
@@ -75,6 +77,7 @@ def get_playlist_by_id(playlist_id):
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
 
+    # TODO missing try except
     playlist = spotify_client.get_playlist_by_id(playlist_id)
 
     if attribute == "release_year":
