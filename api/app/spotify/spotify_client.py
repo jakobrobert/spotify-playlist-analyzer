@@ -14,7 +14,8 @@ class SpotifyClient:
 
     def get_playlist_by_id(self, playlist_id):
         if playlist_id is None:
-            raise ValueError("playlist_id is None!")
+            # TODO wanted to use 505 (Internal Server Error), but then it does not return proper error JSON but default error page
+            raise HttpError(400, "playlist_id is None!")
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token()
