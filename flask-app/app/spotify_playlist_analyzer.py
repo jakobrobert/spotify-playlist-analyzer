@@ -83,23 +83,22 @@ def get_playlist_by_id(playlist_id):
             "genres_substring": genres_substring
         }
 
-        # TODO merge with outer try-except, HttpError first. in other occurences as well
-        try:
-            playlist = api_client.get_playlist_by_id(playlist_id, request_params)
-            valid_keys = api_client.get_valid_keys()
-            valid_modes = api_client.get_valid_modes()
-            valid_key_signatures = api_client.get_valid_key_signatures()
-        except HttpError as error:
-            return render_template("error.html", error=error)
+        playlist = api_client.get_playlist_by_id(playlist_id, request_params)
+        valid_keys = api_client.get_valid_keys()
+        valid_modes = api_client.get_valid_modes()
+        valid_key_signatures = api_client.get_valid_key_signatures()
 
         return render_template(
             "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
             artists_substring=artists_substring, title_substring=title_substring,
-            min_release_year=min_release_year, max_release_year=max_release_year, min_tempo=min_tempo, max_tempo=max_tempo,
+            min_release_year=min_release_year, max_release_year=max_release_year,
+            min_tempo=min_tempo, max_tempo=max_tempo,
             expected_key=expected_key, expected_mode=expected_mode, expected_key_signature=expected_key_signature,
             genres_substring=genres_substring,
             valid_keys=valid_keys, valid_modes=valid_modes, valid_key_signatures=valid_key_signatures
         )
+    except HttpError as error:
+        return render_template("error.html", error=error)
     except Exception as e:
         error = HttpError(400, repr(e))
         return render_template("error.html", error=error)
@@ -110,21 +109,17 @@ def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
 
-        try:
-            attribute_name = __get_attribute_name(attribute)
-        except Exception as e:
-            error = HttpError(400, repr(e))
-            return render_template("error.html", error=error)
+        attribute_name = __get_attribute_name(attribute)
 
-        # TODO optimize: requesting playlist separately is overkill
-        #   -> only need it in template for name & percentage_to_string()
-        try:
-            playlist = api_client.get_playlist_by_id(playlist_id)
-            attribute_value_to_percentage = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
-        except HttpError as error:
-            return render_template("error.html", error=error)
+        # TODO optimize: separate request to get playlist is overkill,
+        #   -> get_attribute_distribution_of_playlist already gets the playlist in API
+        #   -> only need playlist in template for name & percentage_to_string()
+        playlist = api_client.get_playlist_by_id(playlist_id)
+        attribute_value_to_percentage = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
 
         return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
+    except HttpError as error:
+        return render_template("error.html", error=error)
     except Exception as e:
         error = HttpError(400, repr(e))
         return render_template("error.html", error=error)
@@ -160,13 +155,12 @@ def compare_playlists_by_ids():
         playlist_id_1 = request.args.get("playlist_id_1")
         playlist_id_2 = request.args.get("playlist_id_2")
 
-        try:
-            playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
-            playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
-        except HttpError as error:
-            return render_template("error.html", error=error)
+        playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
+        playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
 
         return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
+    except HttpError as error:
+        return render_template("error.html", error=error)
     except Exception as e:
         error = HttpError(400, repr(e))
         return render_template("error.html", error=error)
@@ -179,23 +173,17 @@ def compare_attribute_distribution_of_playlists():
         playlist_id_2 = request.args.get("playlist_id_2")
         attribute = request.args.get("attribute")
 
-        try:
-            attribute_name = __get_attribute_name(attribute)
-        except Exception as e:
-            error = HttpError(400, repr(e))
-            return render_template("error.html", error=error)
+        attribute_name = __get_attribute_name(attribute)
 
-        try:
-            playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
-            playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
-            attribute_value_to_percentage_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
-            attribute_value_to_percentage_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
-        except HttpError as error:
-            return render_template("error.html", error=error)
+        playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
+        playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
+        attribute_value_to_percentage_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
+        attribute_value_to_percentage_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
 
         return __render_compare_attribute_distribution_template(
-            playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2
-        )
+            playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2)
+    except HttpError as error:
+        return render_template("error.html", error=error)
     except Exception as e:
         error = HttpError(400, repr(e))
         return render_template("error.html", error=error)
