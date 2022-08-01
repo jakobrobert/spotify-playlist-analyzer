@@ -2,6 +2,7 @@ import configparser
 import operator
 
 from flask import Flask, jsonify, request
+from werkzeug.exceptions import HTTPException
 
 from spotify.spotify_client import SpotifyClient
 from spotify.spotify_track import SpotifyTrack
@@ -67,7 +68,7 @@ def get_playlist_by_id(playlist_id):
     except HttpError as error:
         return __create_error_response(error)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
 
 
@@ -87,13 +88,13 @@ def get_attribute_distribution_of_playlist(playlist_id):
         elif attribute == "mode":
             attribute_value_to_percentage = playlist.get_mode_to_percentage()
         else:
-            raise HttpError(400, f"Invalid attribute: '{attribute}'")
+            raise HttpError(500, f"Invalid attribute: '{attribute}'")
 
         return jsonify(attribute_value_to_percentage)
     except HttpError as error:
         return __create_error_response(error)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
 
 
@@ -102,7 +103,7 @@ def get_valid_keys():
     try:
         return jsonify(SpotifyTrack.KEY_STRINGS)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
 
 
@@ -111,7 +112,7 @@ def get_valid_modes():
     try:
         return jsonify(SpotifyTrack.MODE_STRINGS)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
 
 
@@ -120,7 +121,7 @@ def get_valid_key_signatures():
     try:
         return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
 
 
