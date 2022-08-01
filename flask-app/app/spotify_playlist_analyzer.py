@@ -23,7 +23,7 @@ def index():
     try:
         return render_template("index.html")
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
 
 
@@ -32,7 +32,7 @@ def choose_one_playlist():
     try:
         return render_template("choose_one_playlist.html")
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
 
 
@@ -46,7 +46,7 @@ def get_playlist_by_url():
 
         return redirect(redirect_url)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
 
 
@@ -100,7 +100,7 @@ def get_playlist_by_id(playlist_id):
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
 
 
@@ -121,7 +121,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
 
 
@@ -130,7 +130,7 @@ def choose_playlists_for_comparison():
     try:
         return render_template("choose_playlists_for_comparison.html")
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
 
 
@@ -145,7 +145,7 @@ def compare_playlists_by_urls():
 
         return redirect(redirect_url)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
 
 
@@ -162,7 +162,7 @@ def compare_playlists_by_ids():
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
 
 
@@ -185,7 +185,7 @@ def compare_attribute_distribution_of_playlists():
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
 
 
