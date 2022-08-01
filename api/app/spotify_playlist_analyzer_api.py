@@ -67,10 +67,12 @@ def get_playlist_by_id(playlist_id):
         return jsonify(playlist_dict)
     except HttpError as error:
         return __create_error_response(error)
+    """
     except Exception as e:
         error = HttpError(500, repr(e))
         print(f"error: {error}")
         return __create_error_response(error)
+    """
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
