@@ -130,11 +130,8 @@ def get_valid_key_signatures():
 
 @app.errorhandler(HTTPException)
 def handle_exception(e):
-    error = HttpError(500, repr(e))
-    #return "<h1>TEST</h1>" # if returning this, is properly displayed
-    # TODO if returning the JSON error response, again receiving default error page instead of JSON
-    # maybe this is a problem with error code 500? Is considered as unhandled error by Flask?
-    #return __create_error_response(error)
+    error = HttpError(502, repr(e))
+    return __create_error_response(error)
 
 
 def __sort_tracks(tracks, sort_by, order):
