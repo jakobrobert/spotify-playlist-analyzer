@@ -2,6 +2,7 @@ import configparser
 import operator
 
 from flask import Flask, jsonify, request
+from werkzeug.exceptions import HTTPException
 
 from spotify.spotify_client import SpotifyClient
 from spotify.spotify_track import SpotifyTrack
@@ -68,6 +69,7 @@ def get_playlist_by_id(playlist_id):
         return __create_error_response(error)
     except Exception as e:
         error = HttpError(500, repr(e))
+        print(f"error: {error}")
         return __create_error_response(error)
 
 
@@ -122,6 +124,13 @@ def get_valid_key_signatures():
     except Exception as e:
         error = HttpError(500, repr(e))
         return __create_error_response(error)
+
+
+# TODO is not called for some reason, even if disabling debug mode as suggested somewhere
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    print(f"handle_exception. exception: {e}")
+    return "<h1>TEST</h1>"
 
 
 def __sort_tracks(tracks, sort_by, order):
