@@ -67,12 +67,9 @@ def get_playlist_by_id(playlist_id):
         return jsonify(playlist_dict)
     except HttpError as error:
         return __create_error_response(error)
-    """
     except Exception as e:
-        error = HttpError(500, repr(e))
-        print(f"error: {error}")
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
-    """
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
@@ -97,7 +94,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
     except HttpError as error:
         return __create_error_response(error)
     except Exception as e:
-        error = HttpError(400, repr(e))
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
 
 
@@ -106,7 +103,7 @@ def get_valid_keys():
     try:
         return jsonify(SpotifyTrack.KEY_STRINGS)
     except Exception as e:
-        error = HttpError(500, repr(e))
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
 
 
@@ -115,7 +112,7 @@ def get_valid_modes():
     try:
         return jsonify(SpotifyTrack.MODE_STRINGS)
     except Exception as e:
-        error = HttpError(500, repr(e))
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
 
 
@@ -124,14 +121,8 @@ def get_valid_key_signatures():
     try:
         return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
     except Exception as e:
-        error = HttpError(500, repr(e))
+        error = HttpError(502, repr(e))
         return __create_error_response(error)
-
-
-@app.errorhandler(HTTPException)
-def handle_exception(e):
-    error = HttpError(502, repr(e))
-    return __create_error_response(error)
 
 
 def __sort_tracks(tracks, sort_by, order):
