@@ -128,11 +128,13 @@ def get_valid_key_signatures():
         return __create_error_response(error)
 
 
-# TODO is not called for some reason, even if disabling debug mode as suggested somewhere
 @app.errorhandler(HTTPException)
 def handle_exception(e):
-    print(f"handle_exception. exception: {e}")
-    return "<h1>TEST</h1>"
+    error = HttpError(500, repr(e))
+    #return "<h1>TEST</h1>" # if returning this, is properly displayed
+    # TODO if returning the JSON error response, again receiving default error page instead of JSON
+    # maybe this is a problem with error code 500? Is considered as unhandled error by Flask?
+    #return __create_error_response(error)
 
 
 def __sort_tracks(tracks, sort_by, order):
