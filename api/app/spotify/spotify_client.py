@@ -31,13 +31,14 @@ class SpotifyClient:
         if track_id is None:
             raise HttpError(400, "track_id is None!")
 
-        # TODO get track from Spotify API
+        url = f"https://api.spotify.com/v1/tracks/{track_id}"
+        access_token = self.__get_access_token()
+        track_data = SpotifyClient.__send_get_request(url, access_token)
 
-        # TODO fill track object with real data
-        track = SpotifyTrack()
-        track.id = track_id
-        track.title = "blub"
-        track.artists = ["foo", "bar", "yo"]
+        track = SpotifyClient.__create_spotify_track(track_data)
+        tracks = [track]
+        SpotifyClient.__set_genres_of_tracks(tracks, access_token)
+        SpotifyClient.__set_audio_features_of_tracks(tracks, access_token)
 
         return track
 
