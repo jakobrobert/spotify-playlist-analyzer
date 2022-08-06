@@ -27,6 +27,20 @@ class SpotifyClient:
 
         return playlist
 
+    def get_track_by_id(self, track_id):
+        if track_id is None:
+            raise HttpError(400, "track_id is None!")
+
+        # TODO get track from Spotify API
+
+        # TODO fill track object with real data
+        track = SpotifyTrack()
+        track.id = track_id
+        track.title = "blub"
+        track.artists = ["foo", "bar", "yo"]
+
+        return track
+
     def __get_access_token(self):
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
