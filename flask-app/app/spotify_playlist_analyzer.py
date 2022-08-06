@@ -189,6 +189,37 @@ def compare_attribute_distribution_of_playlists():
         return render_template("error.html", error=error)
 
 
+@app.route(URL_PREFIX + "choose-one-track", methods=["GET"])
+def choose_one_track():
+    try:
+        return render_template("choose_one_track.html")
+    except Exception as e:
+        error = HttpError(502, repr(e))
+        return render_template("error.html", error=error)
+
+
+@app.route(URL_PREFIX + "track-by-url", methods=["GET"])
+def get_track_by_url():
+    try:
+        track_url = request.args.get("track_url")
+
+        # TODO remove print
+        print(f"track_url: {track_url}")
+
+        # TODO implement
+        return "TODO"
+
+        """
+        playlist_id = __get_track_id_from_playlist_url(playlist_url)
+        redirect_url = url_for("get_track_by_id", playlist_id=playlist_id)
+
+        return redirect(redirect_url)
+        """
+    except Exception as e:
+        error = HttpError(502, repr(e))
+        return render_template("error.html", error=error)
+
+
 def __get_playlist_id_from_playlist_url(playlist_url):
     start_index = playlist_url.find("playlist/") + len("playlist/")
     end_index = playlist_url.find("?")
