@@ -203,18 +203,28 @@ def get_track_by_url():
     try:
         track_url = request.args.get("track_url")
 
-        # TODO remove print
-        print(f"track_url: {track_url}")
+        track_id = __get_track_id_from_track_url(track_url)
+        redirect_url = url_for("get_track_by_id", track_id=track_id)
 
-        # TODO implement
+        return redirect(redirect_url)
+    except Exception as e:
+        error = HttpError(502, repr(e))
+        return render_template("error.html", error=error)
+
+
+@app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
+def get_track_by_id(track_id):
+    try:
+        # TODO implement after API endpoint has been added
         return "TODO"
 
         """
-        playlist_id = __get_track_id_from_playlist_url(playlist_url)
-        redirect_url = url_for("get_track_by_id", playlist_id=playlist_id)
+        track = api_client.get_track_by_id(track_id)
 
-        return redirect(redirect_url)
+        return render_template("track.html", track=track)
         """
+    except HttpError as error:
+        return render_template("error.html", error=error)
     except Exception as e:
         error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
@@ -313,3 +323,10 @@ def __get_attribute_comparison_chart_image_base64(attribute_name, playlist_name_
     plt.tight_layout()
 
     return __get_image_base64_from_plot()
+
+
+def __get_track_id_from_track_url(track_url):
+    start_index = track_url.find("track/") + len("track/")
+    end_index = track_url.find("?")
+
+    return track_url[start_index:end_index]
