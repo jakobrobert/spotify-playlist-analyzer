@@ -123,6 +123,19 @@ def get_valid_key_signatures():
     except Exception as e:
         error = HttpError(502, repr(e))
         return __create_error_response(error)
+    
+
+@app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
+def get_track_by_id(track_id):
+    try:
+        track = spotify_client.get_track_by_id(track_id)
+
+        return jsonify(track.__dict__)
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception as e:
+        error = HttpError(502, repr(e))
+        return __create_error_response(error)
 
 
 def __sort_tracks(tracks, sort_by, order):
