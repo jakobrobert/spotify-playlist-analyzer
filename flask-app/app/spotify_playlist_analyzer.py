@@ -215,14 +215,12 @@ def get_track_by_url():
 @app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
 def get_track_by_id(track_id):
     try:
-        # TODO implement after API endpoint has been added
-        return "TODO"
-
-        """
         track = api_client.get_track_by_id(track_id)
+        # TODO remove print
+        print(f"track: {track.__dict__}")
 
-        return render_template("track.html", track=track)
-        """
+        # TODO template for track page
+        return "TODO template for track page"
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception as e:
