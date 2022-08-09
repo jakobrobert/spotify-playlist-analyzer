@@ -14,35 +14,53 @@
         <h1>Track: {{ track.get_artists_string() }} - {{ track.title }}</h1>
         <br>
 
-        <h4>Artists: {{ track.get_artists_string() }}</h4>
-        <h4>Title: {{ track.title }}</h4>
-
-        <!-- TODO no table, show using h4 (this is as done for General Info in playlist template) -->
         <table class="table table-bordered">
             <tr>
-                <th>Artists</th>
-                <th>Title</th>
-                <th>Duration</th>
-                <th>Release<br>Year</th>
-                <th>Tempo<br>(BPM)</th>
-                <th>Key</th>
-                <th>Mode</th>
-                <th>Key<br>Signature</th>
-                <th>Camelot</th>
-                <th>Loudness<br>(dB)</th>
-                <th>Genres</th>
+                <th>Attribute</th>
+                <th>Value</th>
             </tr>
             <tr>
+                <td>Artists</td>
                 <td>{{ track.get_artists_string() }}</td>
+            </tr>
+            <tr>
+                <td>Title</td>
                 <td>{{ track.title }}</td>
+            </tr>
+            <tr>
+                <td>Duration</td>
                 <td>{{ track.get_duration_string() }}</td>
+            </tr>
+            <tr>
+                <td>Release Year</td>
                 <td>{{ track.release_year }}</td>
+            </tr>
+            <tr>
+                <td>Tempo (BPM)</td>
                 <td>{{ track.get_tempo_string() }}</td>
+            </tr>
+            <tr>
+                <td>Key</td>
                 <td>{{ track.key }}</td>
+            </tr>
+            <tr>
+                <td>Mode</td>
                 <td>{{ track.mode }}</td>
+            </tr>
+            <tr>
+                <td>Key Signature</td>
                 <td>{{ track.key_signature }}</td>
+            </tr>
+            <tr>
+                <td>Camelot</td>
                 <td>{{ track.camelot }}</td>
+            </tr>
+            <tr>
+                <td>Loudness (dB)</td>
                 <td>{{ track.get_loudness_string() }}</td>
+            </tr>
+            <tr>
+                <td>Genres</td>
                 <td>{{ track.get_genres_string() }}</td>
             </tr>
         </table>
