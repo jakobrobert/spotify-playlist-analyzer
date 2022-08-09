@@ -216,11 +216,7 @@ def get_track_by_url():
 def get_track_by_id(track_id):
     try:
         track = api_client.get_track_by_id(track_id)
-        # TODO remove print
-        print(f"track: {track.__dict__}")
-
-        # TODO template for track page
-        return "TODO template for track page"
+        return render_template("track.html", track=track)
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception as e:
