@@ -11,32 +11,19 @@ class ApiClient:
 
     def get_playlist_by_id(self, playlist_id, request_params=None):
         sub_url = f"playlist/{playlist_id}"
-        response_data = self.__send_get_request(sub_url, request_params)
+        playlist_data = self.__send_get_request(sub_url, request_params)
 
         playlist = SpotifyPlaylist()
-        playlist.id = response_data["id"]
-        playlist.name = response_data["name"]
-        playlist.total_duration_ms = response_data["total_duration_ms"]
-        playlist.average_duration_ms = response_data["average_duration_ms"]
-        playlist.average_release_year = response_data["average_release_year"]
-        playlist.average_tempo = response_data["average_tempo"]
+        playlist.id = playlist_data["id"]
+        playlist.name = playlist_data["name"]
+        playlist.total_duration_ms = playlist_data["total_duration_ms"]
+        playlist.average_duration_ms = playlist_data["average_duration_ms"]
+        playlist.average_release_year = playlist_data["average_release_year"]
+        playlist.average_tempo = playlist_data["average_tempo"]
 
         playlist.tracks = []
-        for track_data in response_data["tracks"]:
-            track = SpotifyTrack()
-            track.id = track_data["id"]
-            track.title = track_data["title"]
-            track.artist_ids = track_data["artist_ids"]
-            track.artists = track_data["artists"]
-            track.duration_ms = track_data["duration_ms"]
-            track.release_year = track_data["release_year"]
-            track.genres = track_data["genres"]
-            track.tempo = track_data["tempo"]
-            track.key = track_data["key"]
-            track.mode = track_data["mode"]
-            track.key_signature = track_data["key_signature"]
-            track.camelot = track_data["camelot"]
-            track.loudness = track_data["loudness"]
+        for track_data in playlist_data["tracks"]:
+            track = self.__create_spotify_track(track_data)
             playlist.tracks.append(track)
 
         return playlist
@@ -56,6 +43,12 @@ class ApiClient:
     def get_valid_key_signatures(self):
         return self.__send_get_request("valid-key-signatures")
 
+    def get_track_by_id(self, track_id):
+        sub_url = f"track/{track_id}"
+        track_data = self.__send_get_request(sub_url)
+
+        return self.__create_spotify_track(track_data)
+
     def __send_get_request(self, sub_url, request_params=None):
         url = f"{self.base_url}{sub_url}"
         response = requests.get(url, request_params)
@@ -69,3 +62,23 @@ class ApiClient:
             raise HttpError(status, message)
 
         return response_data
+
+    @staticmethod
+    def __create_spotify_track(track_data):
+        track = SpotifyTrack()
+
+        track.id = track_data["id"]
+        track.title = track_data["title"]
+        track.artist_ids = track_data["artist_ids"]
+        track.artists = track_data["artists"]
+        track.duration_ms = track_data["duration_ms"]
+        track.release_year = track_data["release_year"]
+        track.genres = track_data["genres"]
+        track.tempo = track_data["tempo"]
+        track.key = track_data["key"]
+        track.mode = track_data["mode"]
+        track.key_signature = track_data["key_signature"]
+        track.camelot = track_data["camelot"]
+        track.loudness = track_data["loudness"]
+
+        return track
