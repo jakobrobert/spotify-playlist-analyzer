@@ -23,20 +23,7 @@ class ApiClient:
 
         playlist.tracks = []
         for track_data in playlist_data["tracks"]:
-            track = SpotifyTrack()
-            track.id = track_data["id"]
-            track.title = track_data["title"]
-            track.artist_ids = track_data["artist_ids"]
-            track.artists = track_data["artists"]
-            track.duration_ms = track_data["duration_ms"]
-            track.release_year = track_data["release_year"]
-            track.genres = track_data["genres"]
-            track.tempo = track_data["tempo"]
-            track.key = track_data["key"]
-            track.mode = track_data["mode"]
-            track.key_signature = track_data["key_signature"]
-            track.camelot = track_data["camelot"]
-            track.loudness = track_data["loudness"]
+            track = self.__create_spotify_track(track_data)
             playlist.tracks.append(track)
 
         return playlist
@@ -60,8 +47,26 @@ class ApiClient:
         sub_url = f"track/{track_id}"
         track_data = self.__send_get_request(sub_url)
 
-        # TODO duplicated code, see get_playlist_by_id
+        return self.__create_spotify_track(track_data)
+
+    def __send_get_request(self, sub_url, request_params=None):
+        url = f"{self.base_url}{sub_url}"
+        response = requests.get(url, request_params)
+        response_data = response.json()
+
+        if "error" in response_data:
+            error = response_data["error"]
+            status = error["status_code"]
+            message = error["message"]
+
+            raise HttpError(status, message)
+
+        return response_data
+
+    @staticmethod
+    def __create_spotify_track(track_data):
         track = SpotifyTrack()
+
         track.id = track_data["id"]
         track.title = track_data["title"]
         track.artist_ids = track_data["artist_ids"]
@@ -77,17 +82,3 @@ class ApiClient:
         track.loudness = track_data["loudness"]
 
         return track
-
-    def __send_get_request(self, sub_url, request_params=None):
-        url = f"{self.base_url}{sub_url}"
-        response = requests.get(url, request_params)
-        response_data = response.json()
-
-        if "error" in response_data:
-            error = response_data["error"]
-            status = error["status_code"]
-            message = error["message"]
-
-            raise HttpError(status, message)
-
-        return response_data
