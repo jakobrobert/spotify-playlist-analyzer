@@ -189,6 +189,41 @@ def compare_attribute_distribution_of_playlists():
         return render_template("error.html", error=error)
 
 
+@app.route(URL_PREFIX + "choose-one-track", methods=["GET"])
+def choose_one_track():
+    try:
+        return render_template("choose_one_track.html")
+    except Exception as e:
+        error = HttpError(502, repr(e))
+        return render_template("error.html", error=error)
+
+
+@app.route(URL_PREFIX + "track-by-url", methods=["GET"])
+def get_track_by_url():
+    try:
+        track_url = request.args.get("track_url")
+
+        track_id = __get_track_id_from_track_url(track_url)
+        redirect_url = url_for("get_track_by_id", track_id=track_id)
+
+        return redirect(redirect_url)
+    except Exception as e:
+        error = HttpError(502, repr(e))
+        return render_template("error.html", error=error)
+
+
+@app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
+def get_track_by_id(track_id):
+    try:
+        track = api_client.get_track_by_id(track_id)
+        return render_template("track.html", track=track)
+    except HttpError as error:
+        return render_template("error.html", error=error)
+    except Exception as e:
+        error = HttpError(502, repr(e))
+        return render_template("error.html", error=error)
+
+
 def __get_playlist_id_from_playlist_url(playlist_url):
     start_index = playlist_url.find("playlist/") + len("playlist/")
     end_index = playlist_url.find("?")
@@ -282,3 +317,10 @@ def __get_attribute_comparison_chart_image_base64(attribute_name, playlist_name_
     plt.tight_layout()
 
     return __get_image_base64_from_plot()
+
+
+def __get_track_id_from_track_url(track_url):
+    start_index = track_url.find("track/") + len("track/")
+    end_index = track_url.find("?")
+
+    return track_url[start_index:end_index]
