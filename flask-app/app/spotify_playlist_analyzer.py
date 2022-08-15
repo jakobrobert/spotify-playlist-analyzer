@@ -120,9 +120,12 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
     except HttpError as error:
         return render_template("error.html", error=error)
+    # TODO revert, just for debugging to see stacktrace
+    """
     except Exception as e:
         error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
+    """
 
 
 @app.route(URL_PREFIX + "choose-playlists-for-comparison", methods=["GET"])
@@ -260,9 +263,9 @@ def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
 
     x_labels = []
     y_labels = []
-    for attribute_value, percentage in attribute_value_to_percentage.items():
-        x_labels.append(attribute_value)
-        y_labels.append(percentage)
+    for item in attribute_value_to_percentage:
+        x_labels.append(item["label"])
+        y_labels.append(item["percentage"])
 
     plt.bar(x_labels, y_labels, edgecolor="black")
     plt.xticks(rotation=15)
