@@ -112,16 +112,15 @@ class SpotifyPlaylist:
         intervals.append(first_interval)
 
         # Middle intervals
-        # TODO "year" misleading, is general function. rename to "value"
-        for min_year in range(first_interval_max + 1, last_interval_min, interval_size):
-            max_year = min_year + interval_size - 1
+        for min_value in range(first_interval_max + 1, last_interval_min, interval_size):
+            max_value = min_value + interval_size - 1
             interval = {
-                "label": f"{min_year} - {max_year}",
+                "label": f"{min_value} - {max_value}",
                 "count": 0
             }
 
             for track in self.tracks:
-                if min_year <= get_track_value(track) <= max_year:
+                if min_value <= get_track_value(track) <= max_value:
                     interval["count"] += 1
 
             intervals.append(interval)
