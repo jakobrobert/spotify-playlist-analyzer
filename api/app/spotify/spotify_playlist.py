@@ -78,18 +78,23 @@ class SpotifyPlaylist:
         return self.__convert_counts_to_percentages(keys_with_count)
 
     def get_mode_to_percentage(self):
-        # TODO adjust to return array
-        mode_to_count = {
-            "Major": 0,
-            "Minor": 0,
-            "n/a": 0
-        }
+        modes_with_count = []
 
+        # Add one item for each mode
+        for mode_name in SpotifyTrack.MODE_STRINGS:
+            mode_with_count = {
+                "label": mode_name,
+                "count": 0
+            }
+
+            modes_with_count.append(mode_with_count)
+
+        # Calculate count for each mode
         for track in self.tracks:
-            mode_string = track.get_mode_string()
-            mode_to_count[mode_string] += 1
+            mode_with_count = modes_with_count[track.mode]
+            mode_with_count["count"] += 1
 
-        return self.__convert_counts_to_percentages(mode_to_count)
+        return self.__convert_counts_to_percentages(modes_with_count)
 
     def __get_intervals_with_count(self, first_interval_max, last_interval_min, interval_size, get_track_value):
         intervals = []
