@@ -126,8 +126,9 @@ def get_valid_key_signatures():
 def get_track_by_id(track_id):
     try:
         track = spotify_client.get_track_by_id(track_id)
+        track_dict = __convert_track_to_dict(track)
 
-        return jsonify(track.__dict__)
+        return jsonify(track_dict)
     except HttpError as error:
         return __create_error_response(error)
     except Exception as e:
