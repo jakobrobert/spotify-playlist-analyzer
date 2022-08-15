@@ -43,81 +43,114 @@ class SpotifyPlaylist:
         last_interval_min_year = 2020
         interval_size = 10
 
-        year_interval_to_count = self.__get_attribute_interval_to_count(
+        year_intervals_with_count = self.__get_intervals_with_count(
             first_interval_max_year, last_interval_min_year, interval_size, lambda track: track.release_year)
 
-        return self.__convert_counts_to_percentages(year_interval_to_count)
+        return self.__convert_counts_to_percentages(year_intervals_with_count)
 
     def get_tempo_interval_to_percentage(self):
         first_interval_max_tempo = 89
         last_interval_min_year = 180
         interval_size = 10
 
-        tempo_interval_to_count = self.__get_attribute_interval_to_count(
+        tempo_intervals_with_count = self.__get_intervals_with_count(
             first_interval_max_tempo, last_interval_min_year, interval_size, lambda track: track.tempo)
 
-        return self.__convert_counts_to_percentages(tempo_interval_to_count)
+        return self.__convert_counts_to_percentages(tempo_intervals_with_count)
 
     def get_key_to_percentage(self):
-        key_to_count = {}
+        keys_with_count = []
 
+        # Add one item for each key
         for key_name in SpotifyTrack.KEY_STRINGS:
-            key_to_count[key_name] = 0
+            key_with_count = {
+                "label": key_name,
+                "count": 0
+            }
 
-        key_to_count["n/a"] = 0
+            keys_with_count.append(key_with_count)
 
+        # Calculate count for each key
         for track in self.tracks:
-            key_string = track.get_key_string()
-            key_to_count[key_string] += 1
+            key_with_count = keys_with_count[track.key]
+            key_with_count["count"] += 1
 
-        return self.__convert_counts_to_percentages(key_to_count)
+        return self.__convert_counts_to_percentages(keys_with_count)
 
     def get_mode_to_percentage(self):
-        mode_to_count = {
-            "Major": 0,
-            "Minor": 0,
-            "n/a": 0
+        modes_with_count = []
+
+        # Add one item for each mode
+        for mode_name in SpotifyTrack.MODE_STRINGS:
+            mode_with_count = {
+                "label": mode_name,
+                "count": 0
+            }
+
+            modes_with_count.append(mode_with_count)
+
+        # Calculate count for each mode
+        for track in self.tracks:
+            mode_with_count = modes_with_count[track.mode]
+            mode_with_count["count"] += 1
+
+        return self.__convert_counts_to_percentages(modes_with_count)
+
+    def __get_intervals_with_count(self, first_interval_max, last_interval_min, interval_size, get_track_value):
+        intervals = []
+
+        # First interval
+        first_interval = {
+            "label": f"≤ {first_interval_max}",
+            "count": 0
         }
 
         for track in self.tracks:
-            mode_string = track.get_mode_string()
-            mode_to_count[mode_string] += 1
-
-        return self.__convert_counts_to_percentages(mode_to_count)
-
-    def __get_attribute_interval_to_count(self, first_interval_max, last_interval_min, interval_size, get_track_value):
-        interval_to_count = {}
-
-        # First interval
-        first_interval_string = f"≤ {first_interval_max}"
-        interval_to_count[first_interval_string] = 0
-        for track in self.tracks:
             if get_track_value(track) <= first_interval_max:
-                interval_to_count[first_interval_string] += 1
+                first_interval["count"] += 1
+
+        intervals.append(first_interval)
 
         # Middle intervals
-        for min_year in range(first_interval_max + 1, last_interval_min, interval_size):
-            max_year = min_year + interval_size - 1
-            interval_string = f"{min_year} - {max_year}"
-            interval_to_count[interval_string] = 0
+        for min_value in range(first_interval_max + 1, last_interval_min, interval_size):
+            max_value = min_value + interval_size - 1
+            interval = {
+                "label": f"{min_value} - {max_value}",
+                "count": 0
+            }
+
             for track in self.tracks:
-                if min_year <= get_track_value(track) <= max_year:
-                    interval_to_count[interval_string] += 1
+                if min_value <= get_track_value(track) <= max_value:
+                    interval["count"] += 1
+
+            intervals.append(interval)
 
         # Last interval
-        last_interval_string = f"≥ {last_interval_min}"
-        interval_to_count[last_interval_string] = 0
+        last_interval = {
+            "label": f"≥ {last_interval_min}",
+            "count": 0
+        }
+
         for track in self.tracks:
             if get_track_value(track) >= last_interval_min:
-                interval_to_count[last_interval_string] += 1
+                last_interval["count"] += 1
 
-        return interval_to_count
+        intervals.append(last_interval)
 
-    def __convert_counts_to_percentages(self, counts_dict):
-        percentages_dict = {}
+        return intervals
 
-        for key, count in counts_dict.items():
-            proportion = count / len(self.tracks)
-            percentages_dict[key] = proportion * 100.0
+    def __convert_counts_to_percentages(self, intervals_with_count):
+        intervals_with_percentage = []
 
-        return percentages_dict
+        for interval_with_count in intervals_with_count:
+            proportion = interval_with_count["count"] / len(self.tracks)
+            percentage = proportion * 100.0
+
+            interval_with_percentage = {
+                "label": interval_with_count["label"],
+                "percentage": percentage
+            }
+
+            intervals_with_percentage.append(interval_with_percentage)
+
+        return intervals_with_percentage
