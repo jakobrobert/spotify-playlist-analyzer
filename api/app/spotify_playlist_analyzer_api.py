@@ -58,10 +58,7 @@ def get_playlist_by_id(playlist_id):
         # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
         playlist_dict["tracks"] = []
         for track in playlist.tracks:
-            track_dict = dict(track.__dict__)
-            # Overwrite values for key & mode so API returns them as strings instead of numbers
-            track_dict["key"] = track.get_key_string()
-            track_dict["mode"] = track.get_mode_string()
+            track_dict = __convert_track_to_dict(track)
             playlist_dict["tracks"].append(track_dict)
 
         return jsonify(playlist_dict)
@@ -225,3 +222,14 @@ def __create_error_response(error):
     response = jsonify(response_data)
 
     return response, error.status_code
+
+
+def __convert_track_to_dict(track):
+    # Need to explicitly copy the dict, else changing the dict would change the original object
+    track_dict = dict(track.__dict__)
+
+    # Overwrite values for key & mode so API returns them as strings instead of numbers
+    track_dict["key"] = track.get_key_string()
+    track_dict["mode"] = track.get_mode_string()
+
+    return track_dict
