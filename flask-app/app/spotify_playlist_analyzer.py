@@ -120,12 +120,9 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
     except HttpError as error:
         return render_template("error.html", error=error)
-    # TODO revert, just for debugging to see stacktrace
-    """
     except Exception as e:
         error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
-    """
 
 
 @app.route(URL_PREFIX + "choose-playlists-for-comparison", methods=["GET"])
@@ -187,12 +184,9 @@ def compare_attribute_distribution_of_playlists():
             playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2)
     except HttpError as error:
         return render_template("error.html", error=error)
-    # TODO revert, just for debugging to see stacktrace
-    """
     except Exception as e:
         error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
-    """
 
 
 @app.route(URL_PREFIX + "choose-one-track", methods=["GET"])
