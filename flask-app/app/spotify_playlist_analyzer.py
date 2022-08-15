@@ -187,9 +187,12 @@ def compare_attribute_distribution_of_playlists():
             playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2)
     except HttpError as error:
         return render_template("error.html", error=error)
+    # TODO revert, just for debugging to see stacktrace
+    """
     except Exception as e:
         error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
+    """
 
 
 @app.route(URL_PREFIX + "choose-one-track", methods=["GET"])
@@ -308,10 +311,10 @@ def __get_attribute_comparison_chart_image_base64(attribute_name, playlist_name_
     x_labels = []
     y_labels_1 = []
     y_labels_2 = []
-    for attribute_value in attribute_value_to_percentage_1.keys():
-        x_labels.append(attribute_value)
-        y_labels_1.append(attribute_value_to_percentage_1[attribute_value])
-        y_labels_2.append(attribute_value_to_percentage_2[attribute_value])
+    for item_1, item_2 in zip(attribute_value_to_percentage_1, attribute_value_to_percentage_2):
+        x_labels.append(item_1["label"])
+        y_labels_1.append(item_1["percentage"])
+        y_labels_2.append(item_2["percentage"])
 
     plt.bar(x_labels, y_labels_1, fill=False, linewidth=2, edgecolor="red", label=playlist_name_1)
     plt.bar(x_labels, y_labels_2, fill=False, linewidth=2, edgecolor="blue", label=playlist_name_2)
