@@ -20,10 +20,10 @@
                 <th>{{ attribute_name }}</th>
                 <th>Percentage</th>
             </tr>
-            {% for attribute_value, percentage in attribute_value_to_percentage.items() %}
+            {% for item in attribute_value_to_percentage %}
                 <tr>
-                    <td>{{ attribute_value }}</td>
-                    <td>{{ playlist.percentage_to_string(percentage) }}</td>
+                    <td>{{ item["label"] }}</td>
+                    <td>{{ playlist.percentage_to_string(item["percentage"]) }}</td>
                 </tr>
             {% endfor %}
         </table>

@@ -260,9 +260,9 @@ def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
 
     x_labels = []
     y_labels = []
-    for attribute_value, percentage in attribute_value_to_percentage.items():
-        x_labels.append(attribute_value)
-        y_labels.append(percentage)
+    for item in attribute_value_to_percentage:
+        x_labels.append(item["label"])
+        y_labels.append(item["percentage"])
 
     plt.bar(x_labels, y_labels, edgecolor="black")
     plt.xticks(rotation=15)
@@ -305,10 +305,10 @@ def __get_attribute_comparison_chart_image_base64(attribute_name, playlist_name_
     x_labels = []
     y_labels_1 = []
     y_labels_2 = []
-    for attribute_value in attribute_value_to_percentage_1.keys():
-        x_labels.append(attribute_value)
-        y_labels_1.append(attribute_value_to_percentage_1[attribute_value])
-        y_labels_2.append(attribute_value_to_percentage_2[attribute_value])
+    for item_1, item_2 in zip(attribute_value_to_percentage_1, attribute_value_to_percentage_2):
+        x_labels.append(item_1["label"])
+        y_labels_1.append(item_1["percentage"])
+        y_labels_2.append(item_2["percentage"])
 
     plt.bar(x_labels, y_labels_1, fill=False, linewidth=2, edgecolor="red", label=playlist_name_1)
     plt.bar(x_labels, y_labels_2, fill=False, linewidth=2, edgecolor="blue", label=playlist_name_2)

@@ -22,13 +22,17 @@
                 <th>Percentage [{{ playlist_1.name }}]</th>
                 <th>Percentage [{{ playlist_2.name }}]</th>
             </tr>
-            {% for attribute_value in attribute_value_to_percentage_1.keys() %}
-                {% set percentage_1 = attribute_value_to_percentage_1[attribute_value] %}
-                {% set percentage_2 = attribute_value_to_percentage_2[attribute_value] %}
+            <!-- Doing it the ugly way because zip function not accessible in Jinja2.
+                This did not help as well:
+                app.jinja_env.filters["zip"] = zip
+            -->
+            {% for index in range(attribute_value_to_percentage_1 | length) %}
+                {% set item_1 = attribute_value_to_percentage_1[index] %}
+                {% set item_2 = attribute_value_to_percentage_2[index]%}
                 <tr>
-                    <td>{{ attribute_value }}</td>
-                    <td>{{ playlist_1.percentage_to_string(percentage_1) }}</td>
-                    <td>{{ playlist_2.percentage_to_string(percentage_2) }}</td>
+                    <td>{{ item_1["label"] }}</td>
+                    <td>{{ playlist_1.percentage_to_string(item_1["percentage"]) }}</td>
+                    <td>{{ playlist_2.percentage_to_string(item_2["percentage"]) }}</td>
                 </tr>
             {% endfor %}
         </table>
