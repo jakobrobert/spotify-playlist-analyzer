@@ -7,10 +7,11 @@ class SpotifyPlaylist:
     def __init__(self):
         self.id = "n/a"
         self.name = "n/a"
-        self.total_duration_ms = 0
-        self.average_duration_ms = 0
-        self.average_release_year = 0
-        self.average_tempo = 0
+        self.total_duration_ms = 0.0
+        self.average_duration_ms = 0.0
+        self.average_release_year = 0.0
+        self.average_popularity = 0.0
+        self.average_tempo = 0.0
         self.tracks = []
 
     # Cannot be static, else template code cannot access it
@@ -31,6 +32,9 @@ class SpotifyPlaylist:
 
     def get_average_release_year_string(self):
         return f"{self.average_release_year:.1f}"
+
+    def get_average_popularity_string(self):
+        return f"{self.average_popularity:.1f}"
 
     def get_average_tempo_string(self):
         return f"{self.average_tempo:.1f}"
