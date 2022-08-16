@@ -19,6 +19,7 @@ class ApiClient:
         playlist.total_duration_ms = playlist_data["total_duration_ms"]
         playlist.average_duration_ms = playlist_data["average_duration_ms"]
         playlist.average_release_year = playlist_data["average_release_year"]
+        playlist.average_popularity = playlist_data["average_popularity"]
         playlist.average_tempo = playlist_data["average_tempo"]
 
         playlist.tracks = []
@@ -73,6 +74,7 @@ class ApiClient:
         track.artists = track_data["artists"]
         track.duration_ms = track_data["duration_ms"]
         track.release_year = track_data["release_year"]
+        track.popularity = track_data["popularity"]
         track.genres = track_data["genres"]
         track.tempo = track_data["tempo"]
         track.key = track_data["key"]

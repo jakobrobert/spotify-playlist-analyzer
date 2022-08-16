@@ -22,6 +22,14 @@ class SpotifyPlaylist:
     def get_average_duration_ms(self):
         return self.get_total_duration_ms() / len(self.tracks)
 
+    def get_average_popularity(self):
+        total_popularity = 0.0
+
+        for track in self.tracks:
+            total_popularity += track.popularity
+
+        return total_popularity / len(self.tracks)
+
     def get_average_release_year(self):
         total_year = 0.0
 

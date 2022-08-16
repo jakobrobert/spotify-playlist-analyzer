@@ -19,6 +19,7 @@
         <h4>Total Duration: {{ playlist.get_total_duration_string() }}</h4>
         <h4>Average Duration: {{ playlist.get_average_duration_string() }}</h4>
         <h4>Average Release Year: {{ playlist.get_average_release_year_string() }}</h4>
+        <h4>Average Popularity: {{ playlist.get_average_popularity_string() }}</h4>
         <h4>Average Tempo (BPM): {{ playlist.get_average_tempo_string() }}</h4>
         <br>
 
@@ -55,6 +56,9 @@
                 </option>
                 <option value="release_year" {% if sort_by == "release_year" %} selected {% endif %}>
                     Release Year
+                </option>
+                <option value="popularity" {% if sort_by == "popularity" %} selected {% endif %}>
+                    Popularity
                 </option>
                 <option value="tempo" {% if sort_by == "tempo" %} selected {% endif %}>
                     Tempo
@@ -181,6 +185,7 @@
                 <th>Title</th>
                 <th>Duration</th>
                 <th>Release<br>Year</th>
+                <th>Popularity</th>
                 <th>Tempo<br>(BPM)</th>
                 <th>Key</th>
                 <th>Mode</th>
@@ -196,6 +201,7 @@
                     <td>{{ track.title }}</td>
                     <td>{{ track.get_duration_string() }}</td>
                     <td>{{ track.release_year }}</td>
+                    <td>{{ track.popularity }}</td>
                     <td>{{ track.get_tempo_string() }}</td>
                     <td>{{ track.key }}</td>
                     <td>{{ track.mode }}</td>
