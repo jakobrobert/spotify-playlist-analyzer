@@ -73,6 +73,7 @@ class ApiClient:
         track.artists = track_data["artists"]
         track.duration_ms = track_data["duration_ms"]
         track.release_year = track_data["release_year"]
+        track.popularity = track_data["popularity"]
         track.genres = track_data["genres"]
         track.tempo = track_data["tempo"]
         track.key = track_data["key"]

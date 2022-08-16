@@ -216,6 +216,7 @@ def get_track_by_url():
 def get_track_by_id(track_id):
     try:
         track = api_client.get_track_by_id(track_id)
+        print(f"popularity: {track.popularity}")
         return render_template("track.html", track=track)
     except HttpError as error:
         return render_template("error.html", error=error)

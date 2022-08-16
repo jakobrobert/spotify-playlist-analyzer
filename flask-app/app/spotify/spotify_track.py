@@ -6,8 +6,10 @@ class SpotifyTrack:
         self.artists = []
         self.duration_ms = 0
         self.release_year = 0
+        self.popularity = 0
         self.genres = []
         self.tempo = 0
+        # TODO key & mode as string by default because API returns them as string as well
         self.key = -1
         self.mode = -1
         self.key_signature = "n/a"
