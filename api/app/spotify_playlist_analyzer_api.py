@@ -53,6 +53,7 @@ def get_playlist_by_id(playlist_id):
         playlist_dict["total_duration_ms"] = playlist.get_total_duration_ms()
         playlist_dict["average_duration_ms"] = playlist.get_average_duration_ms()
         playlist_dict["average_release_year"] = playlist.get_average_release_year()
+        playlist_dict["average_popularity"] = playlist.get_average_popularity()
         playlist_dict["average_tempo"] = playlist.get_average_tempo()
 
         # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
