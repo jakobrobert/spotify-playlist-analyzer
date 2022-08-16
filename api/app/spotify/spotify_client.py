@@ -114,6 +114,7 @@ class SpotifyClient:
         track.artists = SpotifyClient.__get_artists_of_track(track_data)
         track.duration_ms = track_data["duration_ms"]
         track.release_year = SpotifyClient.__get_release_year_of_track(track_data)
+        track.popularity = track_data["popularity"]
 
         return track
 

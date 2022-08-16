@@ -9,6 +9,7 @@ class SpotifyTrack:
         self.artists = []
         self.duration_ms = 0
         self.release_year = 0
+        self.popularity = 0
         self.genres = []
         self.tempo = 0
         self.key = -1
