@@ -94,12 +94,9 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return jsonify(attribute_value_to_percentage)
     except HttpError as error:
         return __create_error_response(error)
-    # TODO revert. debug code to see stack trace
-    """
     except Exception as e:
         error = HttpError(502, traceback.format_exc(e))
         return __create_error_response(error)
-    """
 
 
 @app.route(URL_PREFIX + "valid-keys", methods=["GET"])
