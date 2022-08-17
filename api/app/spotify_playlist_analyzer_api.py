@@ -86,7 +86,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
         elif attribute == "mode":
             attribute_value_to_percentage = playlist.get_mode_to_percentage()
         else:
-            raise HttpError(500, f"Invalid attribute: '{attribute}'")
+            raise HttpError(502, f"Invalid attribute: '{attribute}'")
 
         return jsonify(attribute_value_to_percentage)
     except HttpError as error:
