@@ -216,7 +216,6 @@ def get_track_by_url():
 def get_track_by_id(track_id):
     try:
         track = api_client.get_track_by_id(track_id)
-        print(f"popularity: {track.popularity}") # TODO remove debug code
         return render_template("track.html", track=track)
     except HttpError as error:
         return render_template("error.html", error=error)
@@ -235,6 +234,8 @@ def __get_playlist_id_from_playlist_url(playlist_url):
 def __get_attribute_name(attribute):
     if attribute == "release_year":
         return "Release Year"
+    elif attribute == "popularity":
+        return "Popularity"
     elif attribute == "tempo":
         return "Tempo (BPM)"
     elif attribute == "key":

@@ -1,5 +1,6 @@
 import configparser
 import operator
+import traceback
 
 from flask import Flask, jsonify, request
 from werkzeug.exceptions import HTTPException
@@ -79,6 +80,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
         if attribute == "release_year":
             attribute_value_to_percentage = playlist.get_release_year_interval_to_percentage()
+        elif attribute == "popularity":
+            attribute_value_to_percentage = playlist.get_popularity_interval_to_percentage()
         elif attribute == "tempo":
             attribute_value_to_percentage = playlist.get_tempo_interval_to_percentage()
         elif attribute == "key":
@@ -86,14 +89,17 @@ def get_attribute_distribution_of_playlist(playlist_id):
         elif attribute == "mode":
             attribute_value_to_percentage = playlist.get_mode_to_percentage()
         else:
-            raise HttpError(500, f"Invalid attribute: '{attribute}'")
+            raise HttpError(502, f"Invalid attribute: '{attribute}'")
 
         return jsonify(attribute_value_to_percentage)
     except HttpError as error:
         return __create_error_response(error)
+    # TODO revert. debug code to see stack trace
+    """
     except Exception as e:
-        error = HttpError(502, repr(e))
+        error = HttpError(502, traceback.format_exc(e))
         return __create_error_response(error)
+    """
 
 
 @app.route(URL_PREFIX + "valid-keys", methods=["GET"])
