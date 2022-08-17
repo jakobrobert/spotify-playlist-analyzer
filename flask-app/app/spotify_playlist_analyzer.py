@@ -216,7 +216,6 @@ def get_track_by_url():
 def get_track_by_id(track_id):
     try:
         track = api_client.get_track_by_id(track_id)
-        print(f"popularity: {track.popularity}") # TODO remove debug code
         return render_template("track.html", track=track)
     except HttpError as error:
         return render_template("error.html", error=error)
@@ -241,6 +240,8 @@ def __get_attribute_name(attribute):
         return "Key"
     elif attribute == "mode":
         return "Mode"
+    elif attribute == "popularity":
+        return "Popularity"
     else:
         raise ValueError(f"Invalid attribute: '{attribute}'")
 
