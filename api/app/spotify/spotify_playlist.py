@@ -56,6 +56,17 @@ class SpotifyPlaylist:
 
         return self.__convert_counts_to_percentages(year_intervals_with_count)
 
+    def get_popularity_interval_to_percentage(self):
+        first_interval_max_popularity = 9
+        last_interval_min_popularity = 90
+        interval_size = 10
+
+        year_intervals_with_count = self.__get_intervals_with_count(
+            first_interval_max_popularity, last_interval_min_popularity, interval_size,
+            lambda track: track.popularity)
+
+        return self.__convert_counts_to_percentages(year_intervals_with_count)
+
     def get_tempo_interval_to_percentage(self):
         first_interval_max_tempo = 89
         last_interval_min_year = 180
