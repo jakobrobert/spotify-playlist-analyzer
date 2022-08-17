@@ -234,14 +234,14 @@ def __get_playlist_id_from_playlist_url(playlist_url):
 def __get_attribute_name(attribute):
     if attribute == "release_year":
         return "Release Year"
+    elif attribute == "popularity":
+        return "Popularity"
     elif attribute == "tempo":
         return "Tempo (BPM)"
     elif attribute == "key":
         return "Key"
     elif attribute == "mode":
         return "Mode"
-    elif attribute == "popularity":
-        return "Popularity"
     else:
         raise ValueError(f"Invalid attribute: '{attribute}'")
 
