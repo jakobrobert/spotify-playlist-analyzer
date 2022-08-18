@@ -87,6 +87,7 @@ def get_playlist_by_id(playlist_id):
         valid_keys = api_client.get_valid_keys()
         valid_modes = api_client.get_valid_modes()
         valid_key_signatures = api_client.get_valid_key_signatures()
+        valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
 
         return render_template(
             "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
@@ -95,7 +96,8 @@ def get_playlist_by_id(playlist_id):
             min_tempo=min_tempo, max_tempo=max_tempo,
             expected_key=expected_key, expected_mode=expected_mode, expected_key_signature=expected_key_signature,
             genres_substring=genres_substring,
-            valid_keys=valid_keys, valid_modes=valid_modes, valid_key_signatures=valid_key_signatures
+            valid_keys=valid_keys, valid_modes=valid_modes, valid_key_signatures=valid_key_signatures,
+            valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution
         )
     except HttpError as error:
         return render_template("error.html", error=error)

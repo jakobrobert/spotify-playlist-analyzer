@@ -24,6 +24,8 @@
         <br>
 
         <h2>Attribute Distribution</h2>
+        <!-- TODO integrate into select -->
+        {{ valid_attributes_for_attribute_distribution }}
         <form action="{{ url_for('get_attribute_distribution_of_playlist', playlist_id=playlist.id) }}" method="GET">
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">

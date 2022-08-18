@@ -44,6 +44,9 @@ class ApiClient:
     def get_valid_key_signatures(self):
         return self.__send_get_request("valid-key-signatures")
 
+    def get_valid_attributes_for_attribute_distribution(self):
+        return self.__send_get_request("valid-attributes-for-attribute-distribution")
+
     def get_track_by_id(self, track_id):
         sub_url = f"track/{track_id}"
         track_data = self.__send_get_request(sub_url)
