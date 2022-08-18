@@ -87,6 +87,7 @@ def get_playlist_by_id(playlist_id):
         valid_keys = api_client.get_valid_keys()
         valid_modes = api_client.get_valid_modes()
         valid_key_signatures = api_client.get_valid_key_signatures()
+        valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
 
         return render_template(
             "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
@@ -95,7 +96,8 @@ def get_playlist_by_id(playlist_id):
             min_tempo=min_tempo, max_tempo=max_tempo,
             expected_key=expected_key, expected_mode=expected_mode, expected_key_signature=expected_key_signature,
             genres_substring=genres_substring,
-            valid_keys=valid_keys, valid_modes=valid_modes, valid_key_signatures=valid_key_signatures
+            valid_keys=valid_keys, valid_modes=valid_modes, valid_key_signatures=valid_key_signatures,
+            valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution
         )
     except HttpError as error:
         return render_template("error.html", error=error)
@@ -109,7 +111,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
 
-        attribute_name = __get_attribute_name(attribute)
+        attribute_name = __get_attribute_display_name(attribute)
 
         # TODO optimize: separate request to get playlist is overkill,
         #   -> get_attribute_distribution_of_playlist already gets the playlist in API
@@ -173,7 +175,7 @@ def compare_attribute_distribution_of_playlists():
         playlist_id_2 = request.args.get("playlist_id_2")
         attribute = request.args.get("attribute")
 
-        attribute_name = __get_attribute_name(attribute)
+        attribute_name = __get_attribute_display_name(attribute)
 
         playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
         playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
@@ -231,19 +233,14 @@ def __get_playlist_id_from_playlist_url(playlist_url):
     return playlist_url[start_index:end_index]
 
 
-def __get_attribute_name(attribute):
-    if attribute == "release_year":
-        return "Release Year"
-    elif attribute == "popularity":
-        return "Popularity"
-    elif attribute == "tempo":
-        return "Tempo (BPM)"
-    elif attribute == "key":
-        return "Key"
-    elif attribute == "mode":
-        return "Mode"
-    else:
-        raise ValueError(f"Invalid attribute: '{attribute}'")
+def __get_attribute_display_name(attribute_name):
+    attributes = api_client.get_valid_attributes_for_attribute_distribution()
+
+    for attribute in attributes:
+        if attribute["name"] == attribute_name:
+            return attribute["display_name"]
+
+    raise ValueError(f"Invalid attribute: '{attribute_name}'")
 
 
 def __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage):
