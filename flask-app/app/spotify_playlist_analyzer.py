@@ -231,6 +231,7 @@ def __get_playlist_id_from_playlist_url(playlist_url):
     return playlist_url[start_index:end_index]
 
 
+# TODO make dynamically, use data from API valid-attributes...
 def __get_attribute_name(attribute):
     if attribute == "release_year":
         return "Release Year"
