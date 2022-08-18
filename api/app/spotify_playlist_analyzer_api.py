@@ -78,7 +78,9 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
-        if attribute == "release_year":
+        if attribute == "duration_ms":
+            attribute_value_to_percentage = playlist.get_duration_interval_to_percentage()
+        elif attribute == "release_year":
             attribute_value_to_percentage = playlist.get_release_year_interval_to_percentage()
         elif attribute == "popularity":
             attribute_value_to_percentage = playlist.get_popularity_interval_to_percentage()
@@ -131,6 +133,10 @@ def get_valid_attributes_for_attribute_distribution():
     try:
         attributes = [
             {
+                "name": "duration_ms",
+                "display_name": "Duration"
+            },
+            {
                 "name": "release_year",
                 "display_name": "Release Year"
             },
@@ -149,10 +155,6 @@ def get_valid_attributes_for_attribute_distribution():
             {
                 "name": "mode",
                 "display_name": "Mode"
-            },
-            {
-                "name": "duration_ms",
-                "display_name": "Duration"
             }
         ]
 

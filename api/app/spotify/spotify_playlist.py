@@ -46,6 +46,17 @@ class SpotifyPlaylist:
 
         return total_tempo / len(self.tracks)
 
+    def get_duration_interval_to_percentage(self):
+        first_interval_max_duration = 119000    # 119 seconds -> 01:59
+        last_interval_min_duration = 300000     # 300 seconds -> 05:00
+        interval_size = 30000                   # 30 seconds
+
+        # TODO labels should contain duration formatted as string. Need to pass a lambda?
+        duration_intervals_with_count = self.__get_intervals_with_count(
+            first_interval_max_duration, last_interval_min_duration, interval_size, lambda track: track.duration_ms)
+
+        return self.__convert_counts_to_percentages(duration_intervals_with_count)
+
     def get_release_year_interval_to_percentage(self):
         first_interval_max_year = 1969
         last_interval_min_year = 2020
@@ -61,19 +72,18 @@ class SpotifyPlaylist:
         last_interval_min_popularity = 90
         interval_size = 10
 
-        year_intervals_with_count = self.__get_intervals_with_count(
-            first_interval_max_popularity, last_interval_min_popularity, interval_size,
-            lambda track: track.popularity)
+        popularity_intervals_with_count = self.__get_intervals_with_count(
+            first_interval_max_popularity, last_interval_min_popularity, interval_size, lambda track: track.popularity)
 
-        return self.__convert_counts_to_percentages(year_intervals_with_count)
+        return self.__convert_counts_to_percentages(popularity_intervals_with_count)
 
     def get_tempo_interval_to_percentage(self):
         first_interval_max_tempo = 89
-        last_interval_min_year = 180
+        last_interval_min_tempo = 180
         interval_size = 10
 
         tempo_intervals_with_count = self.__get_intervals_with_count(
-            first_interval_max_tempo, last_interval_min_year, interval_size, lambda track: track.tempo)
+            first_interval_max_tempo, last_interval_min_tempo, interval_size, lambda track: track.tempo)
 
         return self.__convert_counts_to_percentages(tempo_intervals_with_count)
 
