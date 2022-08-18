@@ -47,7 +47,7 @@ class SpotifyPlaylist:
         return total_tempo / len(self.tracks)
 
     def get_duration_interval_to_percentage(self):
-        first_interval_max_duration = 119000    # 119 seconds -> 01:59
+        first_interval_max_duration = 120000    # 120 seconds -> 02:00
         last_interval_min_duration = 300000     # 300 seconds -> 05:00
         interval_size = 30000                   # 30 seconds
 
