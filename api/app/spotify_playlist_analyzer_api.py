@@ -139,7 +139,7 @@ def get_valid_attributes_for_attribute_distribution():
                 "display_name": "Popularity"
             },
             {
-                "tempo": "tempo",
+                "name": "tempo",
                 "display_name": "Tempo (BPM)"
             },
             {
