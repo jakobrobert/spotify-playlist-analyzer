@@ -149,6 +149,10 @@ def get_valid_attributes_for_attribute_distribution():
             {
                 "name": "mode",
                 "display_name": "Mode"
+            },
+            {
+                "name": "duration_ms",
+                "display_name": "Duration"
             }
         ]
 
