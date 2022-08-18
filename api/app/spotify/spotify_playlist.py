@@ -46,6 +46,17 @@ class SpotifyPlaylist:
 
         return total_tempo / len(self.tracks)
 
+    def get_duration_interval_to_percentage(self):
+        first_interval_max_duration = 120000    # 120 seconds -> 02:00
+        last_interval_min_duration = 300000     # 300 seconds -> 05:00
+        interval_size = 30000                   # 30 seconds
+
+        duration_intervals_with_count = self.__get_intervals_with_count(
+            first_interval_max_duration, last_interval_min_duration, interval_size,
+            lambda track: track.duration_ms, lambda duration_ms: SpotifyPlaylist.__get_duration_string(duration_ms))
+
+        return self.__convert_counts_to_percentages(duration_intervals_with_count)
+
     def get_release_year_interval_to_percentage(self):
         first_interval_max_year = 1969
         last_interval_min_year = 2020
@@ -61,19 +72,18 @@ class SpotifyPlaylist:
         last_interval_min_popularity = 90
         interval_size = 10
 
-        year_intervals_with_count = self.__get_intervals_with_count(
-            first_interval_max_popularity, last_interval_min_popularity, interval_size,
-            lambda track: track.popularity)
+        popularity_intervals_with_count = self.__get_intervals_with_count(
+            first_interval_max_popularity, last_interval_min_popularity, interval_size, lambda track: track.popularity)
 
-        return self.__convert_counts_to_percentages(year_intervals_with_count)
+        return self.__convert_counts_to_percentages(popularity_intervals_with_count)
 
     def get_tempo_interval_to_percentage(self):
         first_interval_max_tempo = 89
-        last_interval_min_year = 180
+        last_interval_min_tempo = 180
         interval_size = 10
 
         tempo_intervals_with_count = self.__get_intervals_with_count(
-            first_interval_max_tempo, last_interval_min_year, interval_size, lambda track: track.tempo)
+            first_interval_max_tempo, last_interval_min_tempo, interval_size, lambda track: track.tempo)
 
         return self.__convert_counts_to_percentages(tempo_intervals_with_count)
 
@@ -115,12 +125,16 @@ class SpotifyPlaylist:
 
         return self.__convert_counts_to_percentages(modes_with_count)
 
-    def __get_intervals_with_count(self, first_interval_max, last_interval_min, interval_size, get_track_value):
+    def __get_intervals_with_count(self, first_interval_max, last_interval_min, interval_size,
+                                   get_track_value, get_label_for_value=None):
         intervals = []
+
+        if get_label_for_value is None:
+            get_label_for_value = str
 
         # First interval
         first_interval = {
-            "label": f"≤ {first_interval_max}",
+            "label": f"≤ {get_label_for_value(first_interval_max)}",
             "count": 0
         }
 
@@ -134,7 +148,7 @@ class SpotifyPlaylist:
         for min_value in range(first_interval_max + 1, last_interval_min, interval_size):
             max_value = min_value + interval_size - 1
             interval = {
-                "label": f"{min_value} - {max_value}",
+                "label": f"{get_label_for_value(min_value)} - {get_label_for_value(max_value)}",
                 "count": 0
             }
 
@@ -146,7 +160,7 @@ class SpotifyPlaylist:
 
         # Last interval
         last_interval = {
-            "label": f"≥ {last_interval_min}",
+            "label": f"≥ {get_label_for_value(last_interval_min)}",
             "count": 0
         }
 
@@ -173,3 +187,11 @@ class SpotifyPlaylist:
             intervals_with_percentage.append(interval_with_percentage)
 
         return intervals_with_percentage
+
+    @staticmethod
+    def __get_duration_string(duration_ms):
+        total_seconds = duration_ms // 1000
+        total_minutes = total_seconds // 60
+        remaining_seconds = total_seconds % 60
+
+        return f"{total_minutes:02d}:{remaining_seconds:02d}"
