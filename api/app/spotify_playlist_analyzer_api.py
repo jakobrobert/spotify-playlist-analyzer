@@ -126,6 +126,38 @@ def get_valid_key_signatures():
         return __create_error_response(error)
     
 
+@app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
+def get_valid_attributes_for_attribute_distribution():
+    try:
+        attributes = [
+            {
+                "name": "release_year",
+                "display_name": "Release Year"
+            },
+            {
+                "name": "popularity",
+                "display_name": "Popularity"
+            },
+            {
+                "name": "tempo",
+                "display_name": "Tempo (BPM)"
+            },
+            {
+                "name": "key",
+                "display_name": "Key"
+            },
+            {
+                "name": "mode",
+                "display_name": "Mode"
+            }
+        ]
+
+        return jsonify(attributes)
+    except Exception as e:
+        error = HttpError(502, repr(e))
+        return __create_error_response(error)
+
+
 @app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
 def get_track_by_id(track_id):
     try:
