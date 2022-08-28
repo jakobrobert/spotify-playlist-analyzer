@@ -6,9 +6,6 @@ from http_error import HttpError
 from flask import Blueprint, render_template, request, redirect, url_for
 import configparser
 
-playlist_view = Blueprint("playlist_view", __name__)
-
-
 config = configparser.ConfigParser()
 config.read("../server.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
@@ -16,9 +13,10 @@ API_BASE_URL = config["DEFAULT"]["API_BASE_URL"]
 
 api_client = ApiClient(API_BASE_URL)
 
+playlist_view = Blueprint("playlist_view", __name__)
 
-# TODO CLEANUP use URL_PREFIX constant. or pass url_prefix to app.register_blueprint, but did not work as expected
-@playlist_view.route("/spotify-playlist-analyzer/dev/" + "playlist-by-url", methods=["GET"])
+
+@playlist_view.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
 def get_playlist_by_url():
     try:
         playlist_url = request.args.get("playlist_url")
@@ -32,8 +30,7 @@ def get_playlist_by_url():
         return render_template("error.html", error=error)
 
 
-# TODO CLEANUP use URL_PREFIX constant. or pass url_prefix to app.register_blueprint, but did not work as expected
-@playlist_view.route("/spotify-playlist-analyzer/dev/" + "playlist/<playlist_id>", methods=["GET"])
+@playlist_view.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
     try:
         sort_by = request.args.get("sort_by")
