@@ -1,6 +1,7 @@
 from api_client import ApiClient
 from http_error import HttpError
-from views.index import index
+from views.index_view import index_view
+from views.choose_one_playlist_view import choose_one_playlist_view
 
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -17,16 +18,8 @@ API_BASE_URL = config["DEFAULT"]["API_BASE_URL"]
 api_client = ApiClient(API_BASE_URL)
 
 app = Flask(__name__)
-app.register_blueprint(index)
-
-
-@app.route(URL_PREFIX + "choose-one-playlist", methods=["GET"])
-def choose_one_playlist():
-    try:
-        return render_template("choose_one_playlist.html")
-    except Exception as e:
-        error = HttpError(502, repr(e))
-        return render_template("error.html", error=error)
+app.register_blueprint(index_view)
+app.register_blueprint(choose_one_playlist_view)
 
 
 @app.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
