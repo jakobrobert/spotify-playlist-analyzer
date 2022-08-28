@@ -3,12 +3,16 @@
 from http_error import HttpError
 
 from flask import Blueprint, render_template
+import configparser
+
+config = configparser.ConfigParser()
+config.read("../server.ini")
+URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 
 index_view = Blueprint("index_view", __name__)
 
 
-# TODO CLEANUP use URL_PREFIX constant. or pass url_prefix to app.register_blueprint, but did not work as expected
-@index_view.route("/spotify-playlist-analyzer/dev/", methods=["GET"])
+@index_view.route(URL_PREFIX, methods=["GET"])
 def index():
     try:
         return render_template("index.html")
