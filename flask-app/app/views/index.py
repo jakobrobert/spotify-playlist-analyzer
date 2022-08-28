@@ -1,11 +1,9 @@
-# TODO check if it works this way
 # PyCharm shows errors for this import locally, but it works this way with the server
-# 'from app.http_error import SpotifyTrack' is shown as valid locally, but does not work with the server
+# 'from app.http_error import HttpError' is shown as valid locally, but does not work with the server
 from http_error import HttpError
 
 from flask import Blueprint, render_template
 
-print(f"__name__: {__name__}")
 index = Blueprint("index", __name__)
 
 

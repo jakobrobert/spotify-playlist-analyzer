@@ -1,6 +1,5 @@
 from api_client import ApiClient
 from http_error import HttpError
-# TODO check if works this way
 from views.index import index
 
 from flask import Flask, render_template, request, redirect, url_for
