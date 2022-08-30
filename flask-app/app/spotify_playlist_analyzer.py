@@ -4,6 +4,7 @@ from views.index_view import index_view
 from views.choose_one_playlist_view import choose_one_playlist_view
 from views.playlist_view import playlist_view
 from views.attribute_distribution_view import attribute_distribution_view
+from views.choose_playlists_for_comparison_view import choose_playlists_for_comparison_view
 
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -24,15 +25,7 @@ app.register_blueprint(index_view)
 app.register_blueprint(choose_one_playlist_view)
 app.register_blueprint(playlist_view)
 app.register_blueprint(attribute_distribution_view)
-
-
-@app.route(URL_PREFIX + "choose-playlists-for-comparison", methods=["GET"])
-def choose_playlists_for_comparison():
-    try:
-        return render_template("choose_playlists_for_comparison.html")
-    except Exception as e:
-        error = HttpError(502, repr(e))
-        return render_template("error.html", error=error)
+app.register_blueprint(choose_playlists_for_comparison_view)
 
 
 @app.route(URL_PREFIX + "compare-playlists-by-urls", methods=["GET"])
