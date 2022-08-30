@@ -5,6 +5,7 @@ from views.choose_one_playlist_view import choose_one_playlist_view
 from views.playlist_view import playlist_view
 from views.attribute_distribution_view import attribute_distribution_view
 from views.choose_playlists_for_comparison_view import choose_playlists_for_comparison_view
+from views.compare_playlists_view import compare_playlists_view
 
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -26,39 +27,7 @@ app.register_blueprint(choose_one_playlist_view)
 app.register_blueprint(playlist_view)
 app.register_blueprint(attribute_distribution_view)
 app.register_blueprint(choose_playlists_for_comparison_view)
-
-
-@app.route(URL_PREFIX + "compare-playlists-by-urls", methods=["GET"])
-def compare_playlists_by_urls():
-    try:
-        playlist_url_1 = request.args.get("playlist_url_1")
-        playlist_url_2 = request.args.get("playlist_url_2")
-        # TODO fix: these functions are now missing, moved to playlist_view.py
-        playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
-        playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
-        redirect_url = url_for("compare_playlists_by_ids", playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
-
-        return redirect(redirect_url)
-    except Exception as e:
-        error = HttpError(502, repr(e))
-        return render_template("error.html", error=error)
-
-
-@app.route(URL_PREFIX + "compare-playlists", methods=["GET"])
-def compare_playlists_by_ids():
-    try:
-        playlist_id_1 = request.args.get("playlist_id_1")
-        playlist_id_2 = request.args.get("playlist_id_2")
-
-        playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
-        playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
-
-        return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
-    except HttpError as error:
-        return render_template("error.html", error=error)
-    except Exception as e:
-        error = HttpError(502, repr(e))
-        return render_template("error.html", error=error)
+app.register_blueprint(compare_playlists_view)
 
 
 @app.route(URL_PREFIX + "compare-attribute-distribution-of-playlists", methods=["GET"])
