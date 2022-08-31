@@ -1,5 +1,4 @@
 from api_client import ApiClient
-from http_error import HttpError
 from views.index_view import index_view
 from views.choose_one_playlist_view import choose_one_playlist_view
 from views.playlist_view import playlist_view
@@ -10,7 +9,7 @@ from views.compare_attribute_distribution_view import compare_attribute_distribu
 from views.choose_one_track_view import choose_one_track_view
 from views.track_view import track_view
 
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask
 
 import configparser
 
