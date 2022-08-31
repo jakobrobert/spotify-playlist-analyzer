@@ -13,17 +13,20 @@
     <div class="container">
         <h1>Spotify Playlist Analyzer</h1>
         <br>
-        <a class="btn btn-secondary" role="button" href="{{ url_for('choose_one_playlist') }}">
+        <a class="btn btn-secondary" role="button"
+           href="{{ url_for('choose_one_playlist_view.choose_one_playlist') }}">
             Analyze one playlist
         </a>
         <br>
         <br>
-        <a class="btn btn-secondary" role="button" href="{{ url_for('choose_playlists_for_comparison') }}">
+        <a class="btn btn-secondary" role="button"
+           href="{{ url_for('choose_playlists_for_comparison_view.choose_playlists_for_comparison') }}">
             Compare two playlists
         </a>
         <br>
         <br>
-        <a class="btn btn-secondary" role="button" href="{{ url_for('choose_one_track') }}">
+        <a class="btn btn-secondary" role="button"
+           href="{{ url_for('choose_one_track_view.choose_one_track') }}">
             Analyze one track
         </a>
     </div>

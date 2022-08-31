@@ -24,7 +24,7 @@
         <br>
 
         <h2>Attribute Distribution</h2>
-        <form action="{{ url_for('get_attribute_distribution_of_playlist', playlist_id=playlist.id) }}" method="GET">
+        <form action="{{ url_for('attribute_distribution_view.get_attribute_distribution_of_playlist', playlist_id=playlist.id) }}" method="GET">
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
                 {% for attribute in valid_attributes_for_attribute_distribution %}
@@ -41,7 +41,7 @@
         <h2>Tracks</h2>
 
         <h4>Sort Tracks by</h4>
-        <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
+        <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <select class="form-control" name="sort_by">
                 <option value="none" {% if sort_by == "none" %} selected {% endif %}>
                     None
@@ -96,7 +96,7 @@
         <br>
 
         <h4>Filter Tracks by</h4>
-        <form action="{{ url_for('get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
+        <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <div>
                 <input type="radio" id="artists" name="filter_by" value="artists"
                        {% if filter_by == "artists" %} checked {% endif %}>
