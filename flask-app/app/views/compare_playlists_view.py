@@ -2,6 +2,7 @@
 # 'from app.http_error import HttpError' is shown as valid locally, but does not work with the server
 from api_client import ApiClient
 from http_error import HttpError
+from views.view_utils import ViewUtils
 
 from flask import Blueprint, render_template, request, redirect, url_for
 import configparser
@@ -21,8 +22,9 @@ def compare_playlists_by_urls():
     try:
         playlist_url_1 = request.args.get("playlist_url_1")
         playlist_url_2 = request.args.get("playlist_url_2")
-        playlist_id_1 = __get_playlist_id_from_playlist_url(playlist_url_1)
-        playlist_id_2 = __get_playlist_id_from_playlist_url(playlist_url_2)
+
+        playlist_id_1 = ViewUtils.get_playlist_id_from_playlist_url(playlist_url_1)
+        playlist_id_2 = ViewUtils.get_playlist_id_from_playlist_url(playlist_url_2)
         redirect_url = url_for(
             "compare_playlists_view.compare_playlists_by_ids",
             playlist_id_1=playlist_id_1, playlist_id_2=playlist_id_2)
@@ -48,11 +50,3 @@ def compare_playlists_by_ids():
     except Exception as e:
         error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
-
-
-# TODO CLEANUP duplicated code with playlist_view. maybe extract into utils file
-def __get_playlist_id_from_playlist_url(playlist_url):
-    start_index = playlist_url.find("playlist/") + len("playlist/")
-    end_index = playlist_url.find("?")
-
-    return playlist_url[start_index:end_index]
