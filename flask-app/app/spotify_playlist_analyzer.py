@@ -7,6 +7,7 @@ from views.attribute_distribution_view import attribute_distribution_view
 from views.choose_playlists_for_comparison_view import choose_playlists_for_comparison_view
 from views.compare_playlists_view import compare_playlists_view
 from views.compare_attribute_distribution_view import compare_attribute_distribution_view
+from views.choose_one_track_view import choose_one_track_view
 
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -27,15 +28,7 @@ app.register_blueprint(attribute_distribution_view)
 app.register_blueprint(choose_playlists_for_comparison_view)
 app.register_blueprint(compare_playlists_view)
 app.register_blueprint(compare_attribute_distribution_view)
-
-
-@app.route(URL_PREFIX + "choose-one-track", methods=["GET"])
-def choose_one_track():
-    try:
-        return render_template("choose_one_track.html")
-    except Exception as e:
-        error = HttpError(502, repr(e))
-        return render_template("error.html", error=error)
+app.register_blueprint(choose_one_track_view)
 
 
 @app.route(URL_PREFIX + "track-by-url", methods=["GET"])
