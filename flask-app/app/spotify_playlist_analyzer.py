@@ -8,6 +8,7 @@ from views.choose_playlists_for_comparison_view import choose_playlists_for_comp
 from views.compare_playlists_view import compare_playlists_view
 from views.compare_attribute_distribution_view import compare_attribute_distribution_view
 from views.choose_one_track_view import choose_one_track_view
+from views.track_view import track_view
 
 from flask import Flask, render_template, request, redirect, url_for
 
@@ -29,36 +30,4 @@ app.register_blueprint(choose_playlists_for_comparison_view)
 app.register_blueprint(compare_playlists_view)
 app.register_blueprint(compare_attribute_distribution_view)
 app.register_blueprint(choose_one_track_view)
-
-
-@app.route(URL_PREFIX + "track-by-url", methods=["GET"])
-def get_track_by_url():
-    try:
-        track_url = request.args.get("track_url")
-
-        track_id = __get_track_id_from_track_url(track_url)
-        redirect_url = url_for("get_track_by_id", track_id=track_id)
-
-        return redirect(redirect_url)
-    except Exception as e:
-        error = HttpError(502, repr(e))
-        return render_template("error.html", error=error)
-
-
-@app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
-def get_track_by_id(track_id):
-    try:
-        track = api_client.get_track_by_id(track_id)
-        return render_template("track.html", track=track)
-    except HttpError as error:
-        return render_template("error.html", error=error)
-    except Exception as e:
-        error = HttpError(502, repr(e))
-        return render_template("error.html", error=error)
-
-
-def __get_track_id_from_track_url(track_url):
-    start_index = track_url.find("track/") + len("track/")
-    end_index = track_url.find("?")
-
-    return track_url[start_index:end_index]
+app.register_blueprint(track_view)
