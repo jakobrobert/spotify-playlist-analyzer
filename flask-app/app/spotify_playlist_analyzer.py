@@ -1,4 +1,3 @@
-from api_client import ApiClient
 from views.index_view import index_view
 from views.choose_one_playlist_view import choose_one_playlist_view
 from views.playlist_view import playlist_view
@@ -10,15 +9,6 @@ from views.choose_one_track_view import choose_one_track_view
 from views.track_view import track_view
 
 from flask import Flask
-
-import configparser
-
-config = configparser.ConfigParser()
-config.read("../server.ini")
-URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
-API_BASE_URL = config["DEFAULT"]["API_BASE_URL"]
-
-api_client = ApiClient(API_BASE_URL)
 
 app = Flask(__name__)
 app.register_blueprint(index_view)
