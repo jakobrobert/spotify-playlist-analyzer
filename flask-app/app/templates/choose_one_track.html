@@ -13,7 +13,7 @@
     <div class="container">
         <h1>Choose one Track</h1>
 
-        <form action="{{ url_for('get_track_by_url') }}" method="GET">
+        <form action="{{ url_for('track_view.get_track_by_url') }}" method="GET">
             <label class="form-label" for="track_url">Link to the Spotify track:</label><br>
             <input class="form-control" type="text" id="track_url" name="track_url"><br>
             <button class="btn btn-secondary" type="submit">Show track data</button>
