@@ -2,6 +2,7 @@
 # 'from app.http_error import HttpError' is shown as valid locally, but does not work with the server
 from api_client import ApiClient
 from http_error import HttpError
+from views.view_utils import ViewUtils
 
 from flask import Blueprint, render_template, request
 import configparser
@@ -26,7 +27,7 @@ def compare_attribute_distribution_of_playlists():
         playlist_id_2 = request.args.get("playlist_id_2")
         attribute = request.args.get("attribute")
 
-        attribute_name = __get_attribute_display_name(attribute)
+        attribute_name = ViewUtils.get_attribute_display_name(attribute, api_client)
 
         # TODO optimize: separate request to get playlist is overkill, see attribute_distribution_view.py
         playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
@@ -41,17 +42,6 @@ def compare_attribute_distribution_of_playlists():
     except Exception as e:
         error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
-
-
-# TODO CLEANUP duplicated code with attribute_distribution_view.py, put into new file view_utils.py
-def __get_attribute_display_name(attribute_name):
-    attributes = api_client.get_valid_attributes_for_attribute_distribution()
-
-    for attribute in attributes:
-        if attribute["name"] == attribute_name:
-            return attribute["display_name"]
-
-    raise ValueError(f"Invalid attribute: '{attribute_name}'")
 
 
 def __render_compare_attribute_distribution_template(
