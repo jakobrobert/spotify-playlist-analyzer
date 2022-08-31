@@ -7,8 +7,6 @@ from views.view_utils import ViewUtils
 from flask import Blueprint, render_template, request
 import configparser
 import matplotlib.pyplot as plt
-from io import BytesIO
-import base64
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
@@ -78,16 +76,4 @@ def __get_attribute_comparison_chart_image_base64(attribute_name, playlist_name_
     plt.legend()
     plt.tight_layout()
 
-    return __get_image_base64_from_plot()
-
-
-# TODO CLEANUP duplicated code with attribute_distribution_view.py, put into new file view_utils.py
-def __get_image_base64_from_plot():
-    image_buffer = BytesIO()
-    plt.savefig(image_buffer, format="png")
-    plt.clf()  # Clear the current figure. Else the different figures would be drawn on top of each other.
-    image_bytes = image_buffer.getvalue()
-    image_base64_bytes = base64.encodebytes(image_bytes)
-    image_base64_string = image_base64_bytes.decode("utf8")
-
-    return image_base64_string
+    return ViewUtils.get_image_base64_from_plot()
