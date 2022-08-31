@@ -59,7 +59,8 @@
 
         <h2>Compare Attribute Distribution</h2>
 
-        <form action="{{ url_for('compare_attribute_distribution_of_playlists') }}" method="GET">
+        <form action="{{ url_for('compare_attribute_distribution_view.compare_attribute_distribution_of_playlists') }}"
+              method="GET">
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
                 <option value="release_year">Release Year</option>
