@@ -7,6 +7,7 @@ from views.view_utils import ViewUtils
 from flask import Blueprint, render_template, request, redirect, url_for
 import configparser
 import traceback
+import sys
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
@@ -84,10 +85,15 @@ def get_playlist_by_id(playlist_id):
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception as e:
-        tb = traceback.format_exc()
-        print("BEGIN TRACEBACK")
-        print(tb)
-        print("END TRACEBACK")
+        # TODO CLEANUP extract helper method, re-use for all generic exceptions
+        # TODO improve template: print error code, name & traceback separately. traceback should be smaller & not be in website title
+        # Somehow, if then printing ex_traceback, just prints something like <traceback object at 0x7f43916de7c8>,
+        # So using traceback.format_exc() for this.
+        # ex_value just contains less info traceback, so can ignore this
+        ex_type, ex_value, ex_traceback = sys.exc_info()
+        ex_name = ex_type.__name__
+        traceback_text = traceback.format_exc()
+        message = f"{ex_name}: {traceback_text}"
+        error = HttpError(502, message)
 
-        error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
