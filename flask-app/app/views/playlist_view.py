@@ -6,6 +6,7 @@ from views.view_utils import ViewUtils
 
 from flask import Blueprint, render_template, request, redirect, url_for
 import configparser
+import traceback
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
@@ -83,5 +84,10 @@ def get_playlist_by_id(playlist_id):
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception as e:
+        tb = traceback.format_exc()
+        print("BEGIN TRACEBACK")
+        print(tb)
+        print("END TRACEBACK")
+
         error = HttpError(502, repr(e))
         return render_template("error.html", error=error)
