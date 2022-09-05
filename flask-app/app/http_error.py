@@ -18,6 +18,10 @@ class HttpError(Exception):
         ex_type, ex_value, ex_traceback = sys.exc_info()
         ex_name = ex_type.__name__
         traceback_text = traceback.format_exc()
+        # TODO improve formatting, proper indentation -> can retrieve info from traceback and format manually using extract_tb, see here:
+        #  https://stackoverflow.com/questions/4690600/python-exception-message-capturing
+        # then can handle proper indentation in the HTML template
+        # should NOT replace newlines and spaces by HTML tags in python code, this would be ugly
         traceback_lines = traceback_text.splitlines()
 
         return HttpError(502, "", ex_name, traceback_lines)
