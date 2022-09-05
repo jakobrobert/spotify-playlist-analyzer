@@ -13,8 +13,11 @@
     <div class="container">
         <h1>Error {{ error.status_code }} - {{ error.name }}</h1>
 
+        <h3>Traceback</h3>
         <p>
-            {{ error.traceback_text }}
+            {% for traceback_line in error.traceback_lines %}
+                {{ traceback_line }}<br>
+            {% endfor %}
         </p>
     </div>
 

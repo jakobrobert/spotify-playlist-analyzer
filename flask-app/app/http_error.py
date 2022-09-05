@@ -4,11 +4,11 @@ import traceback
 
 class HttpError(Exception):
     # TODO CLEANUP after all occurrences adjusted, remove message from constructor
-    def __init__(self, status_code, message, name="", traceback_text=""):
+    def __init__(self, status_code, message, name="", traceback_lines=[]):
         self.status_code = status_code
         self.message = message
         self.name = name
-        self.traceback_text = traceback_text
+        self.traceback_lines = traceback_lines
 
     @staticmethod
     def from_last_exception():
@@ -18,6 +18,7 @@ class HttpError(Exception):
         ex_type, ex_value, ex_traceback = sys.exc_info()
         ex_name = ex_type.__name__
         traceback_text = traceback.format_exc()
+        traceback_lines = traceback_text.splitlines()
 
-        return HttpError(502, "", ex_name, traceback_text)
+        return HttpError(502, "", ex_name, traceback_lines)
 
