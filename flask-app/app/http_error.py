@@ -3,8 +3,8 @@ import traceback
 
 
 class HttpError(Exception):
-    # TODO CLEANUP after all occurences adjusted, remove message from constructor
-    def __init__(self, status_code, message, name=None, traceback_text=None):
+    # TODO CLEANUP after all occurrences adjusted, remove message from constructor
+    def __init__(self, status_code, message, name="", traceback_text=""):
         self.status_code = status_code
         self.message = message
         self.name = name
