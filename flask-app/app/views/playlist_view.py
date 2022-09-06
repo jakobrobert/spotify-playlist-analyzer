@@ -28,8 +28,8 @@ def get_playlist_by_url():
         redirect_url = url_for("playlist_view.get_playlist_by_id", playlist_id=playlist_id)
 
         return redirect(redirect_url)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
 
 
@@ -86,5 +86,4 @@ def get_playlist_by_id(playlist_id):
         return render_template("error.html", error=error)
     except Exception as e:
         error = HttpError.from_last_exception()
-        # TODO improve template: print error code, name & traceback separately. traceback should be smaller & not be in website title
         return render_template("error.html", error=error)

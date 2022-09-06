@@ -16,6 +16,6 @@ index_view = Blueprint("index_view", __name__)
 def index():
     try:
         return render_template("index.html")
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
