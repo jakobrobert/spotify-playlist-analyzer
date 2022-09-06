@@ -60,10 +60,11 @@ class ApiClient:
 
         if "error" in response_data:
             error = response_data["error"]
-            status = error["status_code"]
+            status_code = error["status_code"]
             message = error["message"]
 
-            raise HttpError(status, message)
+            # TODO need to adjust API to also return HttpError including traceback, but no message
+            raise HttpError(status_code, message)
 
         return response_data
 
