@@ -31,7 +31,7 @@ def compare_playlists_by_urls():
 
         return redirect(redirect_url)
     except Exception as e:
-        error = HttpError(502, repr(e))
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
 
 
@@ -47,6 +47,6 @@ def compare_playlists_by_ids():
         return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
     except HttpError as error:
         return render_template("error.html", error=error)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)

@@ -7,8 +7,6 @@ from views.view_utils import ViewUtils
 from flask import Blueprint, render_template, request
 import configparser
 import matplotlib.pyplot as plt
-from io import BytesIO
-import base64
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
@@ -36,8 +34,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return __render_attribute_distribution_template(playlist, attribute_name, attribute_value_to_percentage)
     except HttpError as error:
         return render_template("error.html", error=error)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
 
 

@@ -16,6 +16,6 @@ choose_playlists_for_comparison_view = Blueprint("choose_playlists_for_compariso
 def choose_playlists_for_comparison():
     try:
         return render_template("choose_playlists_for_comparison.html")
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
