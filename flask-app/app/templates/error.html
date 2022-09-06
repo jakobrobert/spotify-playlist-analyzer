@@ -14,11 +14,16 @@
         <h1>Error {{ error.status_code }} - {{ error.name }}</h1>
 
         <h3>Traceback</h3>
-        <p>
-            {% for traceback_line in error.traceback_lines %}
-                {{ traceback_line }}<br>
-            {% endfor %}
-        </p>
+
+        <!-- TODO improve, show as a table -->
+        {% for traceback_item in error.traceback_items %}
+            <div>
+                Func Name: {{ traceback_item[2] }}<br>
+                Code: {{ traceback_item[3] }}<br>
+                File: {{ traceback_item[0] }}<br>
+                Line: {{ traceback_item[1] }}<br>
+            </div>
+        {% endfor %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
