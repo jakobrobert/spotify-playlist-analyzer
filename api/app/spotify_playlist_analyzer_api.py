@@ -275,7 +275,7 @@ def __create_error_response(error):
 
     response_data = {"error": {
         "status_code": error.status_code,
-        "name": error.name,
+        "title": error.title,
         "traceback_items": traceback_items_converted
     }}
     response = jsonify(response_data)
