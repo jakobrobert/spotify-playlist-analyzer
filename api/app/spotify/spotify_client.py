@@ -22,7 +22,7 @@ class SpotifyClient:
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
-        playlist.name = response_data["name"]
+        playlist.title = response_data["name"]
         playlist.tracks = SpotifyClient.__get_tracks_of_playlist(response_data, access_token)
 
         return playlist
@@ -51,10 +51,10 @@ class SpotifyClient:
 
         if "error" in response_data:
             error = response_data["error"]
-            status = error["status"]
-            message = error["message"]
+            status_code = error["status"]
+            title = error["message"]
 
-            raise HttpError(status, message)
+            raise HttpError(status_code, title)
 
         return response_data["access_token"]
 
@@ -66,10 +66,10 @@ class SpotifyClient:
 
         if "error" in response_data:
             error = response_data["error"]
-            status = error["status"]
-            message = error["message"]
+            status_code = error["status"]
+            title = error["message"]
 
-            raise HttpError(status, message)
+            raise HttpError(status_code, title)
 
         return response_data
 
