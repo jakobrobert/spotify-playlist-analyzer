@@ -16,6 +16,6 @@ choose_one_track_view = Blueprint("choose_one_track_view", __name__)
 def choose_one_track():
     try:
         return render_template("choose_one_track.html")
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)

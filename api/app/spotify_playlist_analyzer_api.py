@@ -65,9 +65,10 @@ def get_playlist_by_id(playlist_id):
 
         return jsonify(playlist_dict)
     except HttpError as error:
+        # TODO add traceback as well when HttpError is catched?
         return __create_error_response(error)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return __create_error_response(error)
 
 
@@ -96,8 +97,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return jsonify(attribute_value_to_percentage)
     except HttpError as error:
         return __create_error_response(error)
-    except Exception as e:
-        error = HttpError(502, traceback.format_exc(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return __create_error_response(error)
 
 
@@ -105,8 +106,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
 def get_valid_keys():
     try:
         return jsonify(SpotifyTrack.KEY_STRINGS)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return __create_error_response(error)
 
 
@@ -114,8 +115,8 @@ def get_valid_keys():
 def get_valid_modes():
     try:
         return jsonify(SpotifyTrack.MODE_STRINGS)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return __create_error_response(error)
 
 
@@ -123,8 +124,8 @@ def get_valid_modes():
 def get_valid_key_signatures():
     try:
         return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return __create_error_response(error)
     
 
@@ -159,8 +160,8 @@ def get_valid_attributes_for_attribute_distribution():
         ]
 
         return jsonify(attributes)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return __create_error_response(error)
 
 
@@ -173,8 +174,8 @@ def get_track_by_id(track_id):
         return jsonify(track_dict)
     except HttpError as error:
         return __create_error_response(error)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return __create_error_response(error)
 
 
@@ -261,7 +262,22 @@ def __get_request_param_as_int_or_none(name):
 
 
 def __create_error_response(error):
-    response_data = {"error": error.__dict__}
+    # Need to convert traceback_items manually, __dict__ is not supported
+    traceback_items_converted = []
+
+    for traceback_item in error.traceback_items:
+        traceback_item_converted = []
+
+        for traceback_item_attribute in traceback_item:
+            traceback_item_converted.append(str(traceback_item_attribute))
+
+        traceback_items_converted.append(traceback_item_converted)
+
+    response_data = {"error": {
+        "status_code": error.status_code,
+        "title": error.title,
+        "traceback_items": traceback_items_converted
+    }}
     response = jsonify(response_data)
 
     return response, error.status_code

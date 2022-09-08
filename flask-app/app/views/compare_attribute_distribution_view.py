@@ -37,8 +37,8 @@ def compare_attribute_distribution_of_playlists():
             playlist_1, playlist_2, attribute_name, attribute_value_to_percentage_1, attribute_value_to_percentage_2)
     except HttpError as error:
         return render_template("error.html", error=error)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
 
 

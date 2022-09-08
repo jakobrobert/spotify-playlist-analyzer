@@ -25,8 +25,8 @@ def get_track_by_url():
         redirect_url = url_for("track_view.get_track_by_id", track_id=track_id)
 
         return redirect(redirect_url)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
 
 
@@ -37,8 +37,8 @@ def get_track_by_id(track_id):
         return render_template("track.html", track=track)
     except HttpError as error:
         return render_template("error.html", error=error)
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
 
 

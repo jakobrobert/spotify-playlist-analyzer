@@ -16,6 +16,6 @@ choose_one_playlist_view = Blueprint("choose_one_playlist_view", __name__)
 def choose_one_playlist():
     try:
         return render_template("choose_one_playlist.html")
-    except Exception as e:
-        error = HttpError(502, repr(e))
+    except Exception:
+        error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
