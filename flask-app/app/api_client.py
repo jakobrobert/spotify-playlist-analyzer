@@ -61,10 +61,10 @@ class ApiClient:
         if "error" in response_data:
             error = response_data["error"]
             status_code = error["status_code"]
-            message = error["message"]
+            name = error["name"]
+            traceback_items = error["traceback_items"]
 
-            # TODO need to adjust API to also return HttpError including traceback, but no message
-            raise HttpError(status_code, message)
+            raise HttpError(status_code, "", name, traceback_items)
 
         return response_data
 
