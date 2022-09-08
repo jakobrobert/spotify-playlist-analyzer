@@ -61,10 +61,10 @@ class ApiClient:
         if "error" in response_data:
             error = response_data["error"]
             status_code = error["status_code"]
-            name = error["name"]
+            title = error["title"]
             traceback_items = error["traceback_items"]
 
-            raise HttpError(status_code, "", name, traceback_items)
+            raise HttpError(status_code, "", title, traceback_items)
 
         return response_data
 

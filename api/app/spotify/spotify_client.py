@@ -22,7 +22,7 @@ class SpotifyClient:
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
-        playlist.name = response_data["name"]
+        playlist.title = response_data["name"]
         playlist.tracks = SpotifyClient.__get_tracks_of_playlist(response_data, access_token)
 
         return playlist

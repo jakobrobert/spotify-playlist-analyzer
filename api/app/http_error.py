@@ -4,13 +4,13 @@ import traceback
 
 class HttpError(Exception):
     # TODO CLEANUP after all occurrences adjusted, remove message from constructor
-    def __init__(self, status_code, message, name="", traceback_items=None):
+    def __init__(self, status_code, message, title="", traceback_items=None):
         if traceback_items is None:
             traceback_items = []
 
         self.status_code = status_code
         self.message = message
-        self.name = name
+        self.title = title
         self.traceback_items = traceback_items
 
     @staticmethod
