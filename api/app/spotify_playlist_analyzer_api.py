@@ -176,6 +176,7 @@ def get_track_by_id(track_id):
         return __create_error_response(error)
 
 
+# TODO adjust to take query as request param
 @app.route(URL_PREFIX + "search-tracks/<query>", methods=["GET"])
 def search_tracks(query):
     try:
