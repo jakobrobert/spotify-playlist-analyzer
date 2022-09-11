@@ -42,6 +42,21 @@ class SpotifyClient:
 
         return track
 
+    def search_tracks_by_title(self, title):
+        if title is None:
+            raise HttpError(400, "title is None!")
+
+        url = f"https://api.spotify.com/v1/search"
+        access_token = self.__get_access_token()
+        params = {
+            "q": title,
+            "type": "track",
+            "limit": 50
+        }
+        tracks_data = SpotifyClient.__send_get_request(url, access_token, params)
+        print(f"tracks_data: {tracks_data}")
+        # TODO return result
+
     def __get_access_token(self):
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
@@ -59,9 +74,9 @@ class SpotifyClient:
         return response_data["access_token"]
 
     @staticmethod
-    def __send_get_request(url, access_token):
+    def __send_get_request(url, access_token, params=None):
         headers = {"Authorization": f"Bearer {access_token}"}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, params=params)
         response_data = response.json()
 
         if "error" in response_data:
@@ -72,6 +87,16 @@ class SpotifyClient:
             raise HttpError(status_code, title)
 
         return response_data
+
+    @staticmethod
+    def __send_get_request_with_ids(url, access_token, ids):
+        headers = {"Authorization": f"Bearer {access_token}"}
+        ids_string = ",".join(ids)
+        # TODO CLEANUP use __send_get_request
+        params = {"ids": ids_string}
+        response = requests.get(url, headers=headers, params=params)
+
+        return response.json()
 
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
@@ -199,15 +224,6 @@ class SpotifyClient:
             artist_id_to_genres[artist["id"]] = artist["genres"]
 
         return artist_id_to_genres
-
-    @staticmethod
-    def __send_get_request_with_ids(url, access_token, ids):
-        headers = {"Authorization": f"Bearer {access_token}"}
-        ids_string = ",".join(ids)
-        params = {"ids": ids_string}
-        response = requests.get(url, headers=headers, params=params)
-
-        return response.json()
 
     @staticmethod
     def __get_genres_of_artists(artist_ids, artist_id_to_genres):
