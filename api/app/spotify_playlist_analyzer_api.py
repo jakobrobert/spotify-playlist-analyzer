@@ -179,6 +179,18 @@ def get_track_by_id(track_id):
         return __create_error_response(error)
 
 
+@app.route(URL_PREFIX + "search-tracks/<title>", methods=["GET"])
+def search_tracks_by_title(title):
+    try:
+        spotify_client.search_tracks_by_title(title)
+        raise HttpError(502, "WIP")
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
 def __sort_tracks(tracks, sort_by, order):
     if sort_by == "none":
         return
