@@ -64,7 +64,8 @@ class SpotifyClient:
             track = SpotifyClient.__create_spotify_track(track_item)
             tracks.append(track)
 
-        # TODO include additional data such as genres, key, mode
+        SpotifyClient.__set_genres_of_tracks(tracks, access_token)
+        SpotifyClient.__set_audio_features_of_tracks(tracks, access_token)
 
         return tracks
 
