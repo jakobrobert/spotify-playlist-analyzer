@@ -176,10 +176,11 @@ def get_track_by_id(track_id):
         return __create_error_response(error)
 
 
-# TODO adjust to take query as request param
-@app.route(URL_PREFIX + "search-tracks/<query>", methods=["GET"])
-def search_tracks(query):
+@app.route(URL_PREFIX + "search-tracks", methods=["GET"])
+def search_tracks():
     try:
+        query = request.args.get("query")
+
         tracks = spotify_client.search_tracks(query)
 
         tracks_converted = []
