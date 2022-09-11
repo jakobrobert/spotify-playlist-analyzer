@@ -17,6 +17,9 @@ class HttpError(Exception):
         ex_type, ex_value, ex_traceback = sys.exc_info()
         ex_name = ex_type.__name__
 
+        # TODO #157 In error page, also show the exception message
+        print(f"ex_value: {ex_value}")
+
         # Using this instead so the template code can deal with formatting
         # With traceback.format_exc()
         traceback_items = traceback.extract_tb(ex_traceback)

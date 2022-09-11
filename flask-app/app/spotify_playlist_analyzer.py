@@ -7,6 +7,8 @@ from views.compare_playlists_view import compare_playlists_view
 from views.compare_attribute_distribution_view import compare_attribute_distribution_view
 from views.choose_one_track_view import choose_one_track_view
 from views.track_view import track_view
+from views.enter_query_to_search_tracks_view import enter_query_to_search_tracks_view
+from views.search_tracks_view import search_tracks_view
 
 from flask import Flask
 
@@ -20,3 +22,5 @@ app.register_blueprint(compare_playlists_view)
 app.register_blueprint(compare_attribute_distribution_view)
 app.register_blueprint(choose_one_track_view)
 app.register_blueprint(track_view)
+app.register_blueprint(enter_query_to_search_tracks_view)
+app.register_blueprint(search_tracks_view)

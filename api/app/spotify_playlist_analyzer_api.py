@@ -1,9 +1,7 @@
 import configparser
 import operator
-import traceback
 
 from flask import Flask, jsonify, request
-from werkzeug.exceptions import HTTPException
 
 from spotify.spotify_client import SpotifyClient
 from spotify.spotify_track import SpotifyTrack
@@ -65,7 +63,6 @@ def get_playlist_by_id(playlist_id):
 
         return jsonify(playlist_dict)
     except HttpError as error:
-        # TODO add traceback as well when HttpError is catched?
         return __create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()
@@ -172,6 +169,27 @@ def get_track_by_id(track_id):
         track_dict = __convert_track_to_dict(track)
 
         return jsonify(track_dict)
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
+@app.route(URL_PREFIX + "search-tracks", methods=["GET"])
+def search_tracks():
+    try:
+        query = request.args.get("query")
+
+        tracks = spotify_client.search_tracks(query)
+
+        tracks_converted = []
+
+        for track in tracks:
+            track_dict = __convert_track_to_dict(track)
+            tracks_converted.append(track_dict)
+
+        return jsonify(tracks_converted)
     except HttpError as error:
         return __create_error_response(error)
     except Exception:

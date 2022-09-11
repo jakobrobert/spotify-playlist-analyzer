@@ -53,9 +53,22 @@ class ApiClient:
 
         return self.__create_spotify_track(track_data)
 
-    def __send_get_request(self, sub_url, request_params=None):
+    def search_tracks(self, query):
+        sub_url = f"search-tracks"
+        params = {"query": query}
+        tracks_data = self.__send_get_request(sub_url, params)
+
+        tracks = []
+
+        for track_data in tracks_data:
+            track = self.__create_spotify_track(track_data)
+            tracks.append(track)
+
+        return tracks
+
+    def __send_get_request(self, sub_url, params=None):
         url = f"{self.base_url}{sub_url}"
-        response = requests.get(url, request_params)
+        response = requests.get(url, params)
         response_data = response.json()
 
         if "error" in response_data:
