@@ -22,6 +22,7 @@ class SpotifyClient:
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
+        # TODO #158 App expects attribute "name", probably accidentally renamed it, be careful with automatic refactorings
         playlist.title = response_data["name"]
         playlist.tracks = SpotifyClient.__get_tracks_of_playlist(response_data, access_token)
 
@@ -42,6 +43,33 @@ class SpotifyClient:
 
         return track
 
+    def search_tracks(self, query):
+        if query is None:
+            raise HttpError(400, "query is None!")
+
+        url = f"https://api.spotify.com/v1/search"
+        access_token = self.__get_access_token()
+        params = {
+            "q": query,
+            "type": "track",
+            "limit": 50
+        }
+
+        response_data = SpotifyClient.__send_get_request(url, access_token, params)
+        tracks_data = response_data["tracks"]
+        track_items = tracks_data["items"]
+
+        tracks = []
+
+        for track_item in track_items:
+            track = SpotifyClient.__create_spotify_track(track_item)
+            tracks.append(track)
+
+        SpotifyClient.__set_genres_of_tracks(tracks, access_token)
+        SpotifyClient.__set_audio_features_of_tracks(tracks, access_token)
+
+        return tracks
+
     def __get_access_token(self):
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
@@ -59,9 +87,9 @@ class SpotifyClient:
         return response_data["access_token"]
 
     @staticmethod
-    def __send_get_request(url, access_token):
+    def __send_get_request(url, access_token, params=None):
         headers = {"Authorization": f"Bearer {access_token}"}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, params=params)
         response_data = response.json()
 
         if "error" in response_data:
@@ -72,6 +100,13 @@ class SpotifyClient:
             raise HttpError(status_code, title)
 
         return response_data
+
+    @staticmethod
+    def __send_get_request_with_ids(url, access_token, ids):
+        ids_string = ",".join(ids)
+        params = {"ids": ids_string}
+
+        return SpotifyClient.__send_get_request(url, access_token, params)
 
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
@@ -199,15 +234,6 @@ class SpotifyClient:
             artist_id_to_genres[artist["id"]] = artist["genres"]
 
         return artist_id_to_genres
-
-    @staticmethod
-    def __send_get_request_with_ids(url, access_token, ids):
-        headers = {"Authorization": f"Bearer {access_token}"}
-        ids_string = ",".join(ids)
-        params = {"ids": ids_string}
-        response = requests.get(url, headers=headers, params=params)
-
-        return response.json()
 
     @staticmethod
     def __get_genres_of_artists(artist_ids, artist_id_to_genres):
