@@ -22,7 +22,7 @@ class SpotifyClient:
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
-        playlist.title = response_data["name"]
+        playlist.title = response_data["name"] # TODO App expects attribute "name", probably accidentally renamed it, be careful with automatic refactorings
         playlist.tracks = SpotifyClient.__get_tracks_of_playlist(response_data, access_token)
 
         return playlist
@@ -53,9 +53,20 @@ class SpotifyClient:
             "type": "track",
             "limit": 50
         }
-        tracks_data = SpotifyClient.__send_get_request(url, access_token, params)
-        print(f"tracks_data: {tracks_data}")
-        # TODO return result
+
+        response_data = SpotifyClient.__send_get_request(url, access_token, params)
+        tracks_data = response_data["tracks"]
+        track_items = tracks_data["items"]
+
+        tracks = []
+
+        for track_item in track_items:
+            track = SpotifyClient.__create_spotify_track(track_item)
+            tracks.append(track)
+
+        # TODO include additional data such as genres, key, mode
+
+        return tracks
 
     def __get_access_token(self):
         url = "https://accounts.spotify.com/api/token"
