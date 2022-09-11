@@ -42,14 +42,14 @@ class SpotifyClient:
 
         return track
 
-    def search_tracks_by_title(self, title):
-        if title is None:
-            raise HttpError(400, "title is None!")
+    def search_tracks(self, query):
+        if query is None:
+            raise HttpError(400, "query is None!")
 
         url = f"https://api.spotify.com/v1/search"
         access_token = self.__get_access_token()
         params = {
-            "q": title,
+            "q": query,
             "type": "track",
             "limit": 50
         }
