@@ -22,7 +22,8 @@ class SpotifyClient:
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
-        playlist.title = response_data["name"] # TODO App expects attribute "name", probably accidentally renamed it, be careful with automatic refactorings
+        # TODO #158 App expects attribute "name", probably accidentally renamed it, be careful with automatic refactorings
+        playlist.title = response_data["name"]
         playlist.tracks = SpotifyClient.__get_tracks_of_playlist(response_data, access_token)
 
         return playlist
@@ -102,13 +103,10 @@ class SpotifyClient:
 
     @staticmethod
     def __send_get_request_with_ids(url, access_token, ids):
-        headers = {"Authorization": f"Bearer {access_token}"}
         ids_string = ",".join(ids)
-        # TODO CLEANUP use __send_get_request
         params = {"ids": ids_string}
-        response = requests.get(url, headers=headers, params=params)
 
-        return response.json()
+        return SpotifyClient.__send_get_request(url, access_token, params)
 
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
