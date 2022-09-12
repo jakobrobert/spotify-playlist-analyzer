@@ -58,7 +58,7 @@ class SpotifyPlaylist:
         return self.__convert_counts_to_percentages(duration_intervals_with_count)
 
     def get_release_year_interval_to_percentage(self):
-        first_interval_max_year = 1969
+        first_interval_max_year = 1979
         last_interval_min_year = 2020
         interval_size = 10
 
