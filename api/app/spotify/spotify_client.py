@@ -22,8 +22,7 @@ class SpotifyClient:
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
-        # TODO #158 App expects attribute "name", probably accidentally renamed it, be careful with automatic refactorings
-        playlist.title = response_data["name"]
+        playlist.name = response_data["name"]
         playlist.tracks = SpotifyClient.__get_tracks_of_playlist(response_data, access_token)
 
         return playlist
