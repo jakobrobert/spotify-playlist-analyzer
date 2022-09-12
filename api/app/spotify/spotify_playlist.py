@@ -140,13 +140,9 @@ class SpotifyPlaylist:
         # Calculate count for each key_signature
         for track in self.tracks:
             key_signature = track.key_signature
-            print(f"key_signature: {key_signature}")
-            key_signature_index = SpotifyTrack.KEY_SIGNATURE_STRINGS.index(key_signature) # TODO BUG this always returns 0
-            print(f"key_signature_index: {key_signature_index}")
+            key_signature_index = SpotifyTrack.KEY_SIGNATURE_STRINGS.index(key_signature)
             key_signature_with_count = key_signatures_with_count[key_signature_index]
-            print(f"key_signature_with_count (before inc): {key_signature_with_count}")
             key_signature_with_count["count"] += 1
-            print(f"key_signature_with_count (after inc): {key_signature_with_count}")
 
         return self.__convert_counts_to_percentages(key_signatures_with_count)
 
