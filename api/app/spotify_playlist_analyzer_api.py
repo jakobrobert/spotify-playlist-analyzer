@@ -88,6 +88,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
             attribute_value_to_percentage = playlist.get_key_to_percentage()
         elif attribute == "mode":
             attribute_value_to_percentage = playlist.get_mode_to_percentage()
+        elif attribute == "key_signature":
+            attribute_value_to_percentage = playlist.get_key_signature_to_percentage()
         else:
             raise HttpError(502, f"Invalid attribute: '{attribute}'")
 
@@ -153,6 +155,10 @@ def get_valid_attributes_for_attribute_distribution():
             {
                 "name": "mode",
                 "display_name": "Mode"
+            },
+            {
+                "name": "key_signature",
+                "display_name": "Key Signature"
             }
         ]
 
