@@ -153,6 +153,10 @@ def get_valid_attributes_for_attribute_distribution():
             {
                 "name": "mode",
                 "display_name": "Mode"
+            },
+            {
+                "name": "key_signature",
+                "display_name": "Key Signature"
             }
         ]
 
