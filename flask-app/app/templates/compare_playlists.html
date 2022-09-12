@@ -63,11 +63,11 @@
               method="GET">
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
-                <option value="release_year">Release Year</option>
-                <option value="popularity">Popularity</option>
-                <option value="tempo">Tempo</option>
-                <option value="key">Key</option>
-                <option value="mode">Mode</option>
+                {% for attribute in valid_attributes_for_attribute_distribution %}
+                    <option value="{{ attribute['name'] }}">
+                        {{ attribute['display_name'] }}
+                    </option>
+                {% endfor %}
             </select>
             <br>
             <!-- Hidden fields to pass the query params to the URL.
