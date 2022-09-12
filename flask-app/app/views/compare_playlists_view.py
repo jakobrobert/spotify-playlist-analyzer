@@ -43,8 +43,11 @@ def compare_playlists_by_ids():
 
         playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
         playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
+        valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
 
-        return render_template("compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2)
+        return render_template(
+            "compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2,
+            valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution)
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception:
