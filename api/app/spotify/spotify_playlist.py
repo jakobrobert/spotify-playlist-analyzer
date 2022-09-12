@@ -124,6 +124,27 @@ class SpotifyPlaylist:
             mode_with_count["count"] += 1
 
         return self.__convert_counts_to_percentages(modes_with_count)
+    
+    def get_key_signature_to_percentage(self):
+        key_signatures_with_count = []
+
+        # Add one item for each key_signature
+        for key_signature_name in SpotifyTrack.KEY_SIGNATURE_STRINGS:
+            key_signature_with_count = {
+                "label": key_signature_name,
+                "count": 0
+            }
+
+            key_signatures_with_count.append(key_signature_with_count)
+
+        # Calculate count for each key_signature
+        for track in self.tracks:
+            key_signature = track.key_signature
+            key_signature_index = SpotifyTrack.KEY_SIGNATURE_STRINGS.index(key_signature)
+            key_signature_with_count = key_signatures_with_count[key_signature_index]
+            key_signature_with_count["count"] += 1
+
+        return self.__convert_counts_to_percentages(key_signatures_with_count)
 
     def __get_intervals_with_count(self, first_interval_max, last_interval_min, interval_size,
                                    get_track_value, get_label_for_value=None):
