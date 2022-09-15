@@ -76,14 +76,9 @@ class SpotifyClient:
         response = requests.post(url, data=data, auth=auth)
         response_data = response.json()
 
-        # TODO extract method
-        if "error" in response_data:
-            error = response_data["error"]
-            status_code = error["status"]
-            message = error["message"]
-            title = "Spotify API Error"
-
-            raise HttpError(status_code, title, message)
+        error = SpotifyClient.__create_http_error_from_response_data(response_data)
+        if error:
+            raise error
 
         return response_data["access_token"]
 
@@ -93,15 +88,23 @@ class SpotifyClient:
         response = requests.get(url, headers=headers, params=params)
         response_data = response.json()
 
-        if "error" in response_data:
-            error = response_data["error"]
-            status_code = error["status"]
-            message = error["message"]
-            title = "Spotify API Error"
-
-            raise HttpError(status_code, title, message)
+        error = SpotifyClient.__create_http_error_from_response_data(response_data)
+        if error:
+            raise error
 
         return response_data
+
+    @staticmethod
+    def __create_http_error_from_response_data(response_data):
+        if "error" not in response_data:
+            return None
+
+        error = response_data["error"]
+        status_code = error["status"]
+        message = error["message"]
+        title = "Spotify API Error"
+
+        return HttpError(status_code, message, title)
 
     @staticmethod
     def __send_get_request_with_ids(url, access_token, ids):
