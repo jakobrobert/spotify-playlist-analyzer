@@ -76,12 +76,14 @@ class SpotifyClient:
         response = requests.post(url, data=data, auth=auth)
         response_data = response.json()
 
+        # TODO extract method
         if "error" in response_data:
             error = response_data["error"]
             status_code = error["status"]
-            title = error["message"]
-            # TODO use message variable, for title put something like "Spotify API Error"
-            raise HttpError(status_code, title)
+            message = error["message"]
+            title = "Spotify API Error"
+
+            raise HttpError(status_code, title, message)
 
         return response_data["access_token"]
 
@@ -94,9 +96,10 @@ class SpotifyClient:
         if "error" in response_data:
             error = response_data["error"]
             status_code = error["status"]
-            title = error["message"]
+            message = error["message"]
+            title = "Spotify API Error"
 
-            raise HttpError(status_code, title)
+            raise HttpError(status_code, title, message)
 
         return response_data
 
