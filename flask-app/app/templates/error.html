@@ -8,11 +8,14 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- TODO show status code separately, such as Message -->
-    <title>Spotify Playlist Analyzer - Error {{ error.status_code }} - {{ error.title }}</title>
+    <title>Spotify Playlist Analyzer - Error - {{ error.title }}</title>
 </head>
 <body>
     <div class="container">
-        <h1>Error {{ error.status_code }} - {{ error.title }}</h1>
+        <h1>Error - {{ error.title }}</h1>
+        <br>
+
+        <h3>Status Code: {{ error.status_code }}</h3>
         <br>
 
         <h3>Message: {{ error.message }}</h3>
