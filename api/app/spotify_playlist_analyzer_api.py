@@ -297,11 +297,14 @@ def __create_error_response(error):
 
         traceback_items_converted.append(traceback_item_converted)
 
-    response_data = {"error": {
-        "status_code": error.status_code,
-        "title": error.title,
-        "traceback_items": traceback_items_converted
-    }}
+    response_data = {
+        "error": {
+            "status_code": error.status_code,
+            "title": error.title,
+            "message": error.message,
+            "traceback_items": traceback_items_converted
+        }
+    }
     response = jsonify(response_data)
 
     return response, error.status_code
