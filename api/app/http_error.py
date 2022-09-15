@@ -17,10 +17,11 @@ class HttpError(Exception):
         # ex_value contains less info than traceback and no additional info, so can ignore this
         ex_type, ex_value, ex_traceback = sys.exc_info()
         ex_name = ex_type.__name__
+        ex_message = str(ex_value)
 
         # Using this instead so the template code can deal with formatting
         # With traceback.format_exc()
         traceback_items = traceback.extract_tb(ex_traceback)
 
-        return HttpError(502, ex_name, ex_value, traceback_items)
+        return HttpError(502, ex_name, ex_message, traceback_items)
 
