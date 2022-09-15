@@ -104,7 +104,7 @@ class SpotifyClient:
         message = error["message"]
         title = "Spotify API Error"
 
-        return HttpError(status_code, message, title)
+        return HttpError(status_code, title, message)
 
     @staticmethod
     def __send_get_request_with_ids(url, access_token, ids):
