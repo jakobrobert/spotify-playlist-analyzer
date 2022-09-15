@@ -12,24 +12,29 @@
 <body>
     <div class="container">
         <h1>Error {{ error.status_code }} - {{ error.title }}</h1>
+        <br>
+
+        <h3>Message: {{ error.message }}</h3>
+        <br>
 
         {% if error.traceback_items|length >= 1 %}
-        <table class="table table-bordered">
-            <tr>
-                <th>Function</th>
-                <th>Code</th>
-                <th>File</th>
-                <th>Line</th>
-            </tr>
-            {% for traceback_item in error.traceback_items %}
+            <h3>Traceback</h3>
+            <table class="table table-bordered">
                 <tr>
-                    <td>{{ traceback_item[2] }}</td>
-                    <td>{{ traceback_item[3] }}</td>
-                    <td>{{ traceback_item[0] }}</td>
-                    <td>{{ traceback_item[1] }}</td>
+                    <th>Function</th>
+                    <th>Code</th>
+                    <th>File</th>
+                    <th>Line</th>
                 </tr>
-            {% endfor %}
-        </table>
+                {% for traceback_item in error.traceback_items %}
+                    <tr>
+                        <td>{{ traceback_item[2] }}</td>
+                        <td>{{ traceback_item[3] }}</td>
+                        <td>{{ traceback_item[0] }}</td>
+                        <td>{{ traceback_item[1] }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
         {% endif %}
     </div>
 
