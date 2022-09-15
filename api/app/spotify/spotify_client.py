@@ -80,7 +80,7 @@ class SpotifyClient:
             error = response_data["error"]
             status_code = error["status"]
             title = error["message"]
-
+            # TODO use message variable, for title put something like "Spotify API Error"
             raise HttpError(status_code, title)
 
         return response_data["access_token"]
