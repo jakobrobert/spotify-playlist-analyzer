@@ -24,4 +24,3 @@ class HttpError(Exception):
         traceback_items = traceback.extract_tb(ex_traceback)
 
         return HttpError(502, ex_name, ex_message, traceback_items)
-
