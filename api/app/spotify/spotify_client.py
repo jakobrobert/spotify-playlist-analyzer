@@ -254,25 +254,16 @@ class SpotifyClient:
 
     @staticmethod
     def __set_audio_features_of_tracks(tracks, access_token):
-        all_audio_features = SpotifyClient.__get_audio_features_of_tracks(tracks, access_token)
+        audio_features_by_track = SpotifyClient.__get_audio_features_of_tracks(tracks, access_token)
 
-        assert len(all_audio_features) == len(tracks)
+        assert len(audio_features_by_track) == len(tracks)
 
         for i in range(0, len(tracks)):
-            audio_features = all_audio_features[i]
-            track = tracks[i]
-            track.tempo = audio_features["tempo"]
-            track.key = audio_features["key"]
-            track.mode = audio_features["mode"]
-            key_string = track.get_key_string()
-            mode_string = track.get_mode_string()
-            track.key_signature = SpotifyClient.__get_key_signature_from_key_and_mode(key_string, mode_string)
-            track.camelot = SpotifyClient.__get_camelot_from_key_and_mode(key_string, mode_string)
-            track.loudness = audio_features["loudness"]
+            tracks[i].update_attributes_by_audio_features(audio_features_by_track[i])
 
     @staticmethod
     def __get_audio_features_of_tracks(tracks, access_token):
-        audio_features = []
+        audio_features_by_track = []
 
         track_ids = []
         for track in tracks:
@@ -282,100 +273,8 @@ class SpotifyClient:
         max_ids_per_request = 100
         track_id_chunks = SpotifyClient.__split_list_into_chunks(track_ids, max_ids_per_request)
 
-        for curr_track_ids in track_id_chunks:
-            curr_audio_features = SpotifyClient.__get_audio_features_of_tracks_for_one_request(
-                curr_track_ids, url, access_token)
-            audio_features.extend(curr_audio_features)
+        for track_ids_of_chunk in track_id_chunks:
+            response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, track_ids_of_chunk)
+            audio_features_by_track.extend(response_data["audio_features"])
 
-        return audio_features
-
-    @staticmethod
-    def __get_audio_features_of_tracks_for_one_request(track_ids, url, access_token):
-        response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, track_ids)
-
-        return response_data["audio_features"]
-
-    # Key Signature & Camelot do not directly depend on SpotifyAPI but are derived from key & mode,
-    # so might seem out of place here
-    # -> Still determined here so SpotifyTrack immediately contains these attributes when created
-    # -> Is important for sorting tracks
-
-    @staticmethod
-    def __get_key_signature_from_key_and_mode(key, mode):
-        if (key == "C" and mode == "Major") or (key == "A" and mode == "Minor"):
-            return "♮"
-        if (key == "G" and mode == "Major") or (key == "E" and mode == "Minor"):
-            return "1♯"
-        if (key == "D" and mode == "Major") or (key == "B" and mode == "Minor"):
-            return "2♯"
-        if (key == "A" and mode == "Major") or (key == "F♯/G♭" and mode == "Minor"):
-            return "3♯"
-        if (key == "E" and mode == "Major") or (key == "C♯/D♭" and mode == "Minor"):
-            return "4♯"
-        if (key == "B" and mode == "Major") or (key == "G♯/A♭" and mode == "Minor"):
-            return "5♯"
-        if (key == "F♯/G♭" and mode == "Major") or (key == "D♯/E♭" and mode == "Minor"):
-            return "6♯/6♭"
-        if (key == "C♯/D♭" and mode == "Major") or (key == "A♯/B♭" and mode == "Minor"):
-            return "5♭"
-        if (key == "G♯/A♭" and mode == "Major") or (key == "F" and mode == "Minor"):
-            return "4♭"
-        if (key == "D♯/E♭" and mode == "Major") or (key == "C" and mode == "Minor"):
-            return "3♭"
-        if (key == "A♯/B♭" and mode == "Major") or (key == "G" and mode == "Minor"):
-            return "2♭"
-        if (key == "F" and mode == "Major") or (key == "D" and mode == "Minor"):
-            return "1♭"
-
-    @staticmethod
-    def __get_camelot_from_key_and_mode(key, mode):
-        if key == "G♯/A♭" and mode == "Minor":
-            return "01A"
-        if key == "B" and mode == "Major":
-            return "01B"
-        if key == "D♯/E♭" and mode == "Minor":
-            return "02A"
-        if key == "F♯/G♭" and mode == "Major":
-            return "02B"
-        if key == "A♯/B♭" and mode == "Minor":
-            return "03A"
-        if key == "C♯/D♭" and mode == "Major":
-            return "03B"
-        if key == "F" and mode == "Minor":
-            return "04A"
-        if key == "G♯/A♭" and mode == "Major":
-            return "04B"
-        if key == "C" and mode == "Minor":
-            return "05A"
-        if key == "D♯/E♭" and mode == "Major":
-            return "05B"
-        if key == "G" and mode == "Minor":
-            return "06A"
-        if key == "A♯/B♭" and mode == "Major":
-            return "06B"
-        if key == "D" and mode == "Minor":
-            return "07A"
-        if key == "F" and mode == "Major":
-            return "07B"
-        if key == "A" and mode == "Minor":
-            return "08A"
-        if key == "C" and mode == "Major":
-            return "08B"
-        if key == "E" and mode == "Minor":
-            return "09A"
-        if key == "G" and mode == "Major":
-            return "09B"
-        if key == "B" and mode == "Minor":
-            return "10A"
-        if key == "D" and mode == "Major":
-            return "10B"
-        if key == "F♯/G♭" and mode == "Minor":
-            return "11A"
-        if key == "A" and mode == "Major":
-            return "11B"
-        if key == "C♯/D♭" and mode == "Minor":
-            return "12A"
-        if key == "E" and mode == "Major":
-            return "12B"
-
-        return "n/a"
+        return audio_features_by_track
