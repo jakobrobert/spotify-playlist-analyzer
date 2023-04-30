@@ -265,16 +265,10 @@ class SpotifyClient:
             track.key = audio_features["key"]
             track.mode = audio_features["mode"]
 
-            # TODO extract method track.update_camelot()
-
             # TODO methods depend on key & mode, this is not clean, confusing to the caller, will refactor more afterwards
             # -> maybe extract one method track.update_attributes_by_audio_features(audio_features), makes this method simpler as well
             track.update_key_signature()
-
-            key_string = track.get_key_string()
-            mode_string = track.get_mode_string()
-            track.camelot = SpotifyClient.__get_camelot_from_key_and_mode(key_string, mode_string)
-
+            track.update_camelot()
             track.loudness = audio_features["loudness"]
 
     @staticmethod
@@ -299,58 +293,4 @@ class SpotifyClient:
     @staticmethod
     def __get_audio_features_of_tracks_for_one_request(track_ids, url, access_token):
         response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, track_ids)
-
         return response_data["audio_features"]
-
-    @staticmethod
-    def __get_camelot_from_key_and_mode(key, mode):
-        if key == "G♯/A♭" and mode == "Minor":
-            return "01A"
-        if key == "B" and mode == "Major":
-            return "01B"
-        if key == "D♯/E♭" and mode == "Minor":
-            return "02A"
-        if key == "F♯/G♭" and mode == "Major":
-            return "02B"
-        if key == "A♯/B♭" and mode == "Minor":
-            return "03A"
-        if key == "C♯/D♭" and mode == "Major":
-            return "03B"
-        if key == "F" and mode == "Minor":
-            return "04A"
-        if key == "G♯/A♭" and mode == "Major":
-            return "04B"
-        if key == "C" and mode == "Minor":
-            return "05A"
-        if key == "D♯/E♭" and mode == "Major":
-            return "05B"
-        if key == "G" and mode == "Minor":
-            return "06A"
-        if key == "A♯/B♭" and mode == "Major":
-            return "06B"
-        if key == "D" and mode == "Minor":
-            return "07A"
-        if key == "F" and mode == "Major":
-            return "07B"
-        if key == "A" and mode == "Minor":
-            return "08A"
-        if key == "C" and mode == "Major":
-            return "08B"
-        if key == "E" and mode == "Minor":
-            return "09A"
-        if key == "G" and mode == "Major":
-            return "09B"
-        if key == "B" and mode == "Minor":
-            return "10A"
-        if key == "D" and mode == "Major":
-            return "10B"
-        if key == "F♯/G♭" and mode == "Minor":
-            return "11A"
-        if key == "A" and mode == "Major":
-            return "11B"
-        if key == "C♯/D♭" and mode == "Minor":
-            return "12A"
-        if key == "E" and mode == "Major":
-            return "12B"
-
-        return "n/a"
