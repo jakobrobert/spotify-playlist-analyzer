@@ -254,19 +254,16 @@ class SpotifyClient:
 
     @staticmethod
     def __set_audio_features_of_tracks(tracks, access_token):
-        all_audio_features = SpotifyClient.__get_audio_features_of_tracks(tracks, access_token)
+        audio_features_by_track = SpotifyClient.__get_audio_features_of_tracks(tracks, access_token)
 
-        assert len(all_audio_features) == len(tracks)
+        assert len(audio_features_by_track) == len(tracks)
 
         for i in range(0, len(tracks)):
-            # TODO inline vars
-            audio_features = all_audio_features[i]
-            track = tracks[i]
-            track.update_attributes_by_audio_features(audio_features)
+            tracks[i].update_attributes_by_audio_features(audio_features_by_track[i])
 
     @staticmethod
     def __get_audio_features_of_tracks(tracks, access_token):
-        audio_features = []
+        audio_features_by_track = []
 
         track_ids = []
         for track in tracks:
@@ -276,14 +273,8 @@ class SpotifyClient:
         max_ids_per_request = 100
         track_id_chunks = SpotifyClient.__split_list_into_chunks(track_ids, max_ids_per_request)
 
-        for curr_track_ids in track_id_chunks:
-            curr_audio_features = SpotifyClient.__get_audio_features_of_tracks_for_one_request(
-                curr_track_ids, url, access_token)
-            audio_features.extend(curr_audio_features)
+        for track_ids_of_chunk in track_id_chunks:
+            response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, track_ids_of_chunk)
+            audio_features_by_track.extend(response_data["audio_features"])
 
-        return audio_features
-
-    @staticmethod
-    def __get_audio_features_of_tracks_for_one_request(track_ids, url, access_token):
-        response_data = SpotifyClient.__send_get_request_with_ids(url, access_token, track_ids)
-        return response_data["audio_features"]
+        return audio_features_by_track
