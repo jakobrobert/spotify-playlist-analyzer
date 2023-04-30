@@ -29,11 +29,10 @@ class SpotifyTrack:
         self.tempo = audio_features["tempo"]
         self.key = audio_features["key"]
         self.mode = audio_features["mode"]
-        # TODO inline those methods, then only need to call get_key_string & get_key_mode_string once
-        self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(
-            self.get_key_string(), self.get_mode_string())
-        self.camelot = SpotifyTrack.__get_camelot_from_key_and_mode(
-            self.get_key_string(), self.get_mode_string())
+        key_string = self.get_key_string()
+        mode_string = self.get_mode_string()
+        self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(key_string, mode_string)
+        self.camelot = SpotifyTrack.__get_camelot_from_key_and_mode(key_string, mode_string)
         self.loudness = audio_features["loudness"]
 
     @staticmethod
