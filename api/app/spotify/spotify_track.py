@@ -5,19 +5,19 @@ class SpotifyTrack:
 
     def __init__(self):
         self.id = None
-        self.title = None
         self.artist_ids = []
         self.artists = []
+        self.title = None
         self.duration_ms = 0
         self.release_year = 0
         self.popularity = 0
-        self.genres = []
         self.tempo = 0
         self.key = -1
         self.mode = -1
         self.key_signature = None
         self.camelot = None
         self.loudness = 0
+        self.genres = []
 
     def get_key_string(self):
         return SpotifyTrack.__get_from_list_or_none(SpotifyTrack.KEY_STRINGS, self.key)
