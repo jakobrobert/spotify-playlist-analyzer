@@ -259,17 +259,10 @@ class SpotifyClient:
         assert len(all_audio_features) == len(tracks)
 
         for i in range(0, len(tracks)):
+            # TODO inline vars
             audio_features = all_audio_features[i]
             track = tracks[i]
-            track.tempo = audio_features["tempo"]
-            track.key = audio_features["key"]
-            track.mode = audio_features["mode"]
-
-            # TODO methods depend on key & mode, this is not clean, confusing to the caller, will refactor more afterwards
-            # -> maybe extract one method track.update_attributes_by_audio_features(audio_features), makes this method simpler as well
-            track.update_key_signature()
-            track.update_camelot()
-            track.loudness = audio_features["loudness"]
+            track.update_attributes_by_audio_features(audio_features)
 
     @staticmethod
     def __get_audio_features_of_tracks(tracks, access_token):
