@@ -30,17 +30,11 @@ class SpotifyTrack:
         self.key = audio_features["key"]
         self.mode = audio_features["mode"]
         # TODO inline those methods, then only need to call get_key_string & get_key_mode_string once
-        self.update_key_signature()
-        self.update_camelot()
-        self.loudness = audio_features["loudness"]
-
-    def update_key_signature(self):
         self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(
             self.get_key_string(), self.get_mode_string())
-
-    def update_camelot(self):
         self.camelot = SpotifyTrack.__get_camelot_from_key_and_mode(
             self.get_key_string(), self.get_mode_string())
+        self.loudness = audio_features["loudness"]
 
     @staticmethod
     def __get_from_list_or_none(_list, index):
