@@ -6,8 +6,6 @@ from views.view_utils import ViewUtils
 
 from flask import Blueprint, render_template, request, redirect, url_for
 import configparser
-import traceback
-import sys
 
 config = configparser.ConfigParser()
 config.read("../server.ini")
@@ -23,10 +21,8 @@ playlist_view = Blueprint("playlist_view", __name__)
 def get_playlist_by_url():
     try:
         playlist_url = request.args.get("playlist_url")
-
         playlist_id = ViewUtils.get_playlist_id_from_playlist_url(playlist_url)
         redirect_url = url_for("playlist_view.get_playlist_by_id", playlist_id=playlist_id)
-
         return redirect(redirect_url)
     except Exception:
         error = HttpError.from_last_exception()
