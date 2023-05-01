@@ -23,10 +23,20 @@ class ViewUtils:
 
     @staticmethod
     def get_track_id_from_track_url(track_url):
-        start_index = track_url.find("track/") + len("track/")
-        end_index = track_url.find("?")
+        url_prefix = "track/"
+        url_prefix_start_index = track_url.find(url_prefix)
 
-        return track_url[start_index:end_index]
+        if url_prefix_start_index == -1:
+            raise ValueError(f"Invalid URL for Spotify Track, missing \"{url_prefix}\": {track_url}")
+
+        id_start_index = track_url.find(url_prefix) + len(url_prefix)
+        id_end_index = None
+
+        si_start_index = track_url.find("?si=")
+        if si_start_index != -1:
+            id_end_index = si_start_index
+
+        return track_url[id_start_index:id_end_index]
 
     @staticmethod
     def get_attribute_display_name(attribute_name, api_client):
