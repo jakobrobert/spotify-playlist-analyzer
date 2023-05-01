@@ -6,10 +6,18 @@ import base64
 class ViewUtils:
     @staticmethod
     def get_playlist_id_from_playlist_url(playlist_url):
-        start_index = playlist_url.find("playlist/") + len("playlist/")
-        end_index = playlist_url.find("?")
+        url_prefix = "playlist/"
+        url_prefix_start_index = playlist_url.find(url_prefix)
 
-        return playlist_url[start_index:end_index]
+        if url_prefix_start_index == -1:
+            raise ValueError(f"Invalid URL for Spotify Playlist, missing \"{url_prefix}\": {playlist_url}")
+
+        id_start_index = playlist_url.find(url_prefix) + len(url_prefix)
+
+        # TODO make more robust, does not need "?si" part. if not found, just take everything until end
+        id_end_index = playlist_url.find("?")
+
+        return playlist_url[id_start_index:id_end_index]
 
     @staticmethod
     def get_attribute_display_name(attribute_name, api_client):
