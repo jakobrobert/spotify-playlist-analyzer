@@ -15,12 +15,32 @@
         <br>
 
         <h2>General Info</h2>
-        <h4># Tracks: {{ playlist.tracks | length }}</h4>
-        <h4>Total Duration: {{ playlist.get_total_duration_string() }}</h4>
-        <h4>Average Duration: {{ playlist.get_average_duration_string() }}</h4>
-        <h4>Average Release Year: {{ playlist.get_average_release_year_string() }}</h4>
-        <h4>Average Popularity: {{ playlist.get_average_popularity_string() }}</h4>
-        <h4>Average Tempo (BPM): {{ playlist.get_average_tempo_string() }}</h4>
+        <table>
+            <tr>
+                <td># Tracks:&nbsp;</td>
+                <td>{{ playlist.tracks | length }}</td>
+            </tr>
+            <tr>
+                <td>Total Duration:&nbsp;</td>
+                <td>{{ playlist.get_total_duration_string() }}</td>
+            </tr>
+            <tr>
+                <td>Average Duration:&nbsp;</td>
+                <td>{{ playlist.get_average_duration_string() }}</td>
+            </tr>
+            <tr>
+                <td>Average Release Year:&nbsp;</td>
+                <td>{{ playlist.get_average_release_year_string() }}</td>
+            </tr>
+            <tr>
+                <td>Average Popularity:&nbsp;</td>
+                <td>{{ playlist.get_average_popularity_string() }}</td>
+            </tr>
+            <tr>
+                <td>Average Tempo (BPM):&nbsp;</td>
+                <td>{{ playlist.get_average_tempo_string() }}</td>
+            </tr>
+        </table>
         <br>
 
         <h2>Attribute Distribution</h2>
