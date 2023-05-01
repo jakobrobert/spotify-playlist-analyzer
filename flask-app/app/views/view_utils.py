@@ -22,6 +22,13 @@ class ViewUtils:
         return playlist_url[id_start_index:id_end_index]
 
     @staticmethod
+    def get_track_id_from_track_url(track_url):
+        start_index = track_url.find("track/") + len("track/")
+        end_index = track_url.find("?")
+
+        return track_url[start_index:end_index]
+
+    @staticmethod
     def get_attribute_display_name(attribute_name, api_client):
         attributes = api_client.get_valid_attributes_for_attribute_distribution()
 
