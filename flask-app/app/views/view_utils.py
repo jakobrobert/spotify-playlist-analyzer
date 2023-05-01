@@ -13,9 +13,11 @@ class ViewUtils:
             raise ValueError(f"Invalid URL for Spotify Playlist, missing \"{url_prefix}\": {playlist_url}")
 
         id_start_index = playlist_url.find(url_prefix) + len(url_prefix)
+        id_end_index = None
 
-        # TODO make more robust, does not need "?si" part. if not found, just take everything until end
-        id_end_index = playlist_url.find("?")
+        si_start_index = playlist_url.find("?si=")
+        if si_start_index != -1:
+            id_end_index = si_start_index
 
         return playlist_url[id_start_index:id_end_index]
 
