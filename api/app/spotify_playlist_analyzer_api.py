@@ -101,6 +101,19 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return __create_error_response(error)
 
 
+@app.route(URL_PREFIX + "playlist/export", methods=["POST"])
+def export_playlist():
+    try:
+        # TODO create new playlist, return id of it
+        # TODO need write access to a user account for it, maybe can hardcode the access token for testing
+        return jsonify({"exported_playlist_id": "0Q4lgHJpZo7DpZRygCGlGs"})
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
 @app.route(URL_PREFIX + "valid-keys", methods=["GET"])
 def get_valid_keys():
     try:

@@ -35,6 +35,12 @@ class ApiClient:
 
         return self.__send_get_request(sub_url, request_params)
 
+    def export_playlist(self):
+        sub_url = f"playlist/export"
+        response_data = self.__send_post_request(sub_url)
+
+        return response_data["exported_playlist_id"]
+
     def get_valid_keys(self):
         return self.__send_get_request("valid-keys")
 
@@ -68,7 +74,7 @@ class ApiClient:
 
     def __send_get_request(self, sub_url, params=None):
         url = f"{self.base_url}{sub_url}"
-        response = requests.get(url, params)
+        response = requests.get(url, params=params)
         response_data = response.json()
 
         if "error" in response_data:
@@ -79,6 +85,17 @@ class ApiClient:
             traceback_items = error["traceback_items"]
 
             raise HttpError(status_code, title, message, traceback_items)
+
+        return response_data
+
+    def __send_post_request(self, sub_url, data=None):
+        url = f"{self.base_url}{sub_url}"
+        response = requests.post(url, data=data)
+        response_data = response.json()
+
+        if "error" in response_data:
+            # TODO same code as in __send_get_request, therefore extract method
+            pass
 
         return response_data
 
