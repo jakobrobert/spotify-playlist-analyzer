@@ -12,6 +12,8 @@ config.read("../server.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 SPOTIFY_CLIENT_ID = config["DEFAULT"]["SPOTIFY_CLIENT_ID"]
 SPOTIFY_CLIENT_SECRET = config["DEFAULT"]["SPOTIFY_CLIENT_SECRET"]
+SPOTIFY_REDIRECT_URI = config["DEFAULT"]["SPOTIFY_REDIRECT_URI"]
+SPOTIFY_TEST_ACCESS_TOKEN = config["DEFAULT"]["SPOTIFY_TEST_ACCESS_TOKEN"]
 
 spotify_client = SpotifyClient(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
 
@@ -104,7 +106,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
 @app.route(URL_PREFIX + "playlist/export", methods=["POST"])
 def export_playlist():
     try:
-        exported_playlist_id = spotify_client.create_playlist(name="Test")
+        exported_playlist_id = spotify_client.create_playlist(
+            name="Test", redirect_uri=SPOTIFY_REDIRECT_URI, test_access_token=SPOTIFY_TEST_ACCESS_TOKEN)
         return jsonify({"exported_playlist_id": exported_playlist_id})
     except HttpError as error:
         return __create_error_response(error)
