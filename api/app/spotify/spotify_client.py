@@ -27,6 +27,15 @@ class SpotifyClient:
 
         return playlist
 
+    def create_playlist(self, name):
+        if not name:
+            raise HttpError(400, "name is invalid!")
+
+        # TODO create empty playlist
+        # TODO therefore, hardcode access token to get write access to the test account
+        playlist_id = "0Q4lgHJpZo7DpZRygCGlGs"
+        return playlist_id
+
     def get_track_by_id(self, track_id):
         if track_id is None:
             raise HttpError(400, "track_id is None!")

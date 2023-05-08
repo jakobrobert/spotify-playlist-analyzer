@@ -104,9 +104,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
 @app.route(URL_PREFIX + "playlist/export", methods=["POST"])
 def export_playlist():
     try:
-        # TODO create new playlist, return id of it
-        # TODO need write access to a user account for it, maybe can hardcode the access token for testing
-        return jsonify({"exported_playlist_id": "0Q4lgHJpZo7DpZRygCGlGs"})
+        exported_playlist_id = spotify_client.create_playlist(name="Test")
+        return jsonify({"exported_playlist_id": exported_playlist_id})
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
