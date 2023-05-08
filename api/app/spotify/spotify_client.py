@@ -27,12 +27,22 @@ class SpotifyClient:
 
         return playlist
 
-    def create_playlist(self, name):
+    def create_playlist(self, name, redirect_uri, test_access_token):
         if not name:
             raise HttpError(400, "name is invalid!")
 
+        # Get access token in order to create playlist. needs scope: playlist-modify-public
+        # TODO currently a hack, just printing url and then using Browser to get the access token
+        # --> should implement proper authorization flow later
+        authorization_url = \
+            f"https://accounts.spotify.com/authorize?response_type=code" \
+            f"&client_id={self.CLIENT_ID}&redirect_uri={redirect_uri}&scope=playlist-modify-public"
+        print(f"authorization_url: {authorization_url}")
+
+        print(f"test_access_token: {test_access_token}")
+
         # TODO create empty playlist
-        # TODO therefore, hardcode access token to get write access to the test account
+
         playlist_id = "0Q4lgHJpZo7DpZRygCGlGs"
         return playlist_id
 
