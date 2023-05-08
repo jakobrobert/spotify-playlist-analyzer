@@ -27,7 +27,7 @@ class SpotifyClient:
 
         return playlist
 
-    def create_playlist(self, name, redirect_uri, test_access_token):
+    def create_playlist(self, name, redirect_uri, test_access_token, test_user_id):
         if not name:
             raise HttpError(400, "name is invalid!")
 
@@ -42,6 +42,13 @@ class SpotifyClient:
         print(f"test_access_token: {test_access_token}")
 
         # TODO create empty playlist
+        # -> not working, error: 405 Method Not Allowed
+        url = f"https://api.spotify.com/v1/users/{test_user_id}/playlists"
+        data = {
+            "name": name,
+            "public": True
+        }
+        SpotifyClient.__send_post_request(url, test_access_token, data)
 
         playlist_id = "0Q4lgHJpZo7DpZRygCGlGs"
         return playlist_id
@@ -106,6 +113,21 @@ class SpotifyClient:
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.get(url, headers=headers, params=params)
         response_data = response.json()
+
+        error = SpotifyClient.__create_http_error_from_response_data(response_data)
+        if error:
+            raise error
+
+        return response_data
+
+    @staticmethod
+    def __send_post_request(url, access_token, data=None):
+        headers = {"Authorization": f"Bearer {access_token}"}
+        response = requests.get(url, headers=headers, data=data)
+        response_data = response.json()
+
+        # TODO remove logging later
+        print(f"response_data: {response_data}")
 
         error = SpotifyClient.__create_http_error_from_response_data(response_data)
         if error:
