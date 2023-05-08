@@ -41,8 +41,9 @@ class SpotifyClient:
 
         print(f"test_access_token: {test_access_token}")
 
-        # TODO create empty playlist
-        # -> not working, error: 405 Method Not Allowed
+        # TODO create empty playlist, not working currently
+        # -> Now getting error: status: 401, message: Invalid access token
+        # -> Makes sense as access token was created with different account than test_user_id, just re-test
         url = f"https://api.spotify.com/v1/users/{test_user_id}/playlists"
         data = {
             "name": name,
@@ -123,7 +124,7 @@ class SpotifyClient:
     @staticmethod
     def __send_post_request(url, access_token, data=None):
         headers = {"Authorization": f"Bearer {access_token}"}
-        response = requests.get(url, headers=headers, data=data)
+        response = requests.post(url, headers=headers, data=data)
         response_data = response.json()
 
         # TODO remove logging later
