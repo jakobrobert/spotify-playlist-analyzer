@@ -95,7 +95,13 @@ class ApiClient:
 
         if "error" in response_data:
             # TODO same code as in __send_get_request, therefore extract method
-            pass
+            error = response_data["error"]
+            status_code = error["status_code"]
+            title = error["title"]
+            message = error["message"]
+            traceback_items = error["traceback_items"]
+
+            raise HttpError(status_code, title, message, traceback_items)
 
         return response_data
 
