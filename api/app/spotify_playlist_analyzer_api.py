@@ -76,10 +76,11 @@ def authorize_callback():
                 status_code=response.status_code,
                 title=response_data["error"], message=response_data["error_description"])
 
-        # TODO get refresh token by authorization code
-        refresh_token = "TODO"
+        access_token = response_data["access_token"]
+        refresh_token = response_data["refresh_token"]
         return \
             f"<h3>AUTHORIZATION CODE: {authorization_code}</h3>" \
+            f"<h3>ACCESS TOKEN: {access_token}</h3>" \
             f"<h3>REFRESH TOKEN: {refresh_token}"
         pass
     except HttpError as error:
