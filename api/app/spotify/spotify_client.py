@@ -38,7 +38,9 @@ class SpotifyClient:
             "public": True
         }
         # TODO return actual id returned by this request
+        print(f"create_playlist BEFORE __send_post_request")
         SpotifyClient.__send_post_request(url, test_access_token, data)
+        print(f"create_playlist AFTER __send_post_request")
 
         playlist_id = "0Q4lgHJpZo7DpZRygCGlGs"
         return playlist_id
@@ -119,13 +121,14 @@ class SpotifyClient:
     def __send_post_request(url, access_token, data=None):
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.post(url, headers=headers, data=data)
+        # TODO Error for create_playlist: "User not registered in the Developer Dashboard"
+        # TODO aha, need response.text, so response is not even in json!
+        print(f"__send_post_request. response.text: {response.text}")
         response_data = response.json()
-
-        # TODO remove logging later
-        print(f"response_data: {response_data}")
 
         error = SpotifyClient.__create_http_error_from_response_data(response_data)
         if error:
+            print(f"__send_post_request. error: {error}")
             raise error
 
         return response_data

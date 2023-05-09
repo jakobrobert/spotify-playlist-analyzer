@@ -183,9 +183,12 @@ def export_playlist():
         #   this way, it is nicely encapsulated, the encoding by spotify uris is impl detail which belongs into SpotifyClient
         return jsonify({"exported_playlist_id": exported_playlist_id})
     except HttpError as error:
+        # TODO Issue with error handling: This is not reached, even though there is HttpError raised in spotify_client.create_playlist
+        print(f"export_playlist. HttpError: {error}")
         return __create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()
+        print(f"export_playlist. Exception. error: {error}")
         return __create_error_response(error)
 
 
