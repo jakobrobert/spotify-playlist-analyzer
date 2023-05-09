@@ -28,26 +28,25 @@ class SpotifyClient:
 
         return playlist
 
-    def create_playlist(self, name):
-        if not name:
-            raise HttpError(400, "name is invalid!")
+    def create_playlist(self, playlist_name, test_user_id, test_access_token):
+        if not playlist_name:
+            raise HttpError(400, "playlist_name is invalid!")
 
-        # TODO create empty playlist.
-        #  First need to get refresh token by authorization code,
-        #  then get access token by refresh token.
-        #  Can get refresh token once by authorization flow, put it into ini
-        #  Then f
-        """
         url = f"https://api.spotify.com/v1/users/{test_user_id}/playlists"
         data = {
-            "name": name,
+            "name": playlist_name,
             "public": True
         }
+        # TODO return actual id returned by this request
         SpotifyClient.__send_post_request(url, test_access_token, data)
-        """
 
         playlist_id = "0Q4lgHJpZo7DpZRygCGlGs"
         return playlist_id
+
+    # TODO add method add_tracks_to_playlist.
+    #  accepts list of tracks.
+    #  need to parse spotify uris to Spotify API endpoint for adding tracks, likely can build those by track id
+    #   see here: https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
 
     def get_track_by_id(self, track_id):
         if track_id is None:

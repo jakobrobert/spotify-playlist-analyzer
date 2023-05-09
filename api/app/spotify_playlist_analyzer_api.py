@@ -15,6 +15,8 @@ URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 SPOTIFY_CLIENT_ID = config["SPOTIFY"]["CLIENT_ID"]
 SPOTIFY_CLIENT_SECRET = config["SPOTIFY"]["CLIENT_SECRET"]
 SPOTIFY_REDIRECT_URI = config["SPOTIFY"]["REDIRECT_URI"]
+# TODO access token only valid for 1 hour. Remove from ini, instead use refresh token to get a new access token whenever needed
+SPOTIFY_TEST_ACCESS_TOKEN = config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
 SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
@@ -56,7 +58,6 @@ def authorize_callback():
             raise ValueError("Failed to get authorization code because request arg 'code' is missing")
 
         authorization_code = request.args.get("code")
-        print(f"authorization_code: {authorization_code}")
         token_url = "https://accounts.spotify.com/api/token"
         data = {
             "grant_type": "authorization_code",
@@ -65,11 +66,10 @@ def authorize_callback():
             "client_id": SPOTIFY_CLIENT_ID,
             "client_secret": SPOTIFY_CLIENT_SECRET,
         }
-        print(f"data: {data}")
+
         headers = {"Content-Type": "application/x-www-form-urlencoded"}
         response = requests.post(token_url, data=data, headers=headers)
         response_data = response.json()
-        print(f"response_data: {response_data}")
 
         if "error" in response_data:
             raise HttpError(
@@ -176,8 +176,11 @@ def get_attribute_distribution_of_playlist(playlist_id):
 @app.route(URL_PREFIX + "playlist/export", methods=["POST"])
 def export_playlist():
     try:
-        # TODO pass tracks, e.g. track ids, then can build spotify uris for those tracks in SpotifyClient
-        exported_playlist_id = spotify_client.create_playlist()
+        exported_playlist_id = spotify_client.create_playlist(
+            "Test by SpotifyPlaylistAnalyzer", SPOTIFY_TEST_USER_ID, SPOTIFY_TEST_ACCESS_TOKEN)
+        # TODO add tracks to playlist. maybe can just pass tracks in template to this endpoint, is then encoded as json?
+        #  here, pass tracks to spotify_client.add_tracks_to_playlist().
+        #   this way, it is nicely encapsulated, the encoding by spotify uris is impl detail which belongs into SpotifyClient
         return jsonify({"exported_playlist_id": exported_playlist_id})
     except HttpError as error:
         return __create_error_response(error)
