@@ -27,29 +27,34 @@ class SpotifyClient:
 
         return playlist
 
-    def create_playlist(self, name, redirect_uri, test_access_token, test_user_id):
+    def create_playlist(self, name):
         if not name:
             raise HttpError(400, "name is invalid!")
 
+        # TODO move this into spotify_playlist_analyzer_api.py, separate endpoint for testing
         # Get access token in order to create playlist. needs scope: playlist-modify-public
         # TODO currently a hack, just printing url and then using Browser to get the access token
         # --> should implement proper authorization flow later
+        """
         authorization_url = \
             f"https://accounts.spotify.com/authorize?response_type=code" \
             f"&client_id={self.CLIENT_ID}&redirect_uri={redirect_uri}&scope=playlist-modify-public"
         print(f"authorization_url: {authorization_url}")
+        """
 
-        print(f"test_access_token: {test_access_token}")
-
-        # TODO create empty playlist, not working currently
-        # -> Now getting error: status: 401, message: Invalid access token
-        # -> Makes sense as access token was created with different account than test_user_id, just re-test
+        # TODO create empty playlist.
+        #  First need to get refresh token by authorization code,
+        #  then get access token by refresh token.
+        #  Can get refresh token once by authorization flow, put it into ini
+        #  Then f
+        """
         url = f"https://api.spotify.com/v1/users/{test_user_id}/playlists"
         data = {
             "name": name,
             "public": True
         }
         SpotifyClient.__send_post_request(url, test_access_token, data)
+        """
 
         playlist_id = "0Q4lgHJpZo7DpZRygCGlGs"
         return playlist_id
