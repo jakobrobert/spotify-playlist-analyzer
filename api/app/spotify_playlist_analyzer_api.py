@@ -3,6 +3,7 @@ import operator
 
 from flask import Flask, jsonify, request, redirect
 from urllib.parse import urlencode
+import requests
 
 from spotify.spotify_client import SpotifyClient
 from spotify.spotify_track import SpotifyTrack
@@ -55,6 +56,26 @@ def authorize_callback():
             raise ValueError("Failed to get authorization code because request arg 'code' is missing")
 
         authorization_code = request.args.get("code")
+        print(f"authorization_code: {authorization_code}")
+        token_url = "https://accounts.spotify.com/api/token"
+        data = {
+            "grant_type": "authorization_code",
+            "code": authorization_code,
+            "redirect_uri": SPOTIFY_REDIRECT_URI,
+            "client_id": SPOTIFY_CLIENT_ID,
+            "client_secret": SPOTIFY_CLIENT_SECRET,
+        }
+        print(f"data: {data}")
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        response = requests.post(token_url, data=data, headers=headers)
+        response_data = response.json()
+        print(f"response_data: {response_data}")
+
+        if "error" in response_data:
+            raise HttpError(
+                status_code=response.status_code,
+                title=response_data["error"], message=response_data["error_description"])
+
         # TODO get refresh token by authorization code
         refresh_token = "TODO"
         return \
