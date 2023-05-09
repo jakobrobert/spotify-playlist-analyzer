@@ -48,7 +48,25 @@ def authorize():
         return __create_error_response(error)
 
 
-# TODO add endpoint for the callback. get "code" from query, use it to retrieve refresh token, log this
+@app.route(URL_PREFIX + "authorize/callback", methods=["GET"])
+def authorize_callback():
+    try:
+        if "code" not in request.args:
+            raise ValueError("Failed to get authorization code because request arg 'code' is missing")
+
+        authorization_code = request.args.get("code")
+        # TODO get refresh token by authorization code
+        refresh_token = "TODO"
+        return \
+            f"<h3>AUTHORIZATION CODE: {authorization_code}</h3>" \
+            f"<h3>REFRESH TOKEN: {refresh_token}"
+        pass
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
