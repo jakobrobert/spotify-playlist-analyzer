@@ -1,7 +1,8 @@
 import configparser
 import operator
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect
+from urllib.parse import urlencode
 
 from spotify.spotify_client import SpotifyClient
 from spotify.spotify_track import SpotifyTrack
@@ -19,6 +20,33 @@ SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 spotify_client = SpotifyClient(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
 
 app = Flask(__name__)
+
+
+@app.route(URL_PREFIX + "authorize", methods=["GET"])
+def authorize():
+    try:
+        authorization_base_url = "https://accounts.spotify.com/authorize"
+        # Cannot use url_for to get redirect uri because url_for just returns part of the url, but need the full
+        # Therefore hardcoded it in ini file.
+        params = {
+            "client_id": SPOTIFY_CLIENT_ID,
+            "response_type": "fool",    # TODO just testing, change to "code"
+            "redirect_uri": SPOTIFY_REDIRECT_URI,
+            "scope": "playlist-modify-public"
+        }
+        print(f"params: {params}")
+        params_encoded = urlencode(params)
+        print(f"params_encoded: {params_encoded}")
+        authorization_url = f"{authorization_base_url}?{params_encoded}"
+        print(f"authorization_url: {authorization_url}")
+
+        # TODO maybe redirect to authorization url & also add endpoint for callback
+        return redirect(authorization_url)
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
@@ -103,10 +131,6 @@ def get_attribute_distribution_of_playlist(playlist_id):
         error = HttpError.from_last_exception()
         return __create_error_response(error)
 
-
-# TODO add test endpoint here to get the authorization code. is fine to just print the authorization url,
-#  then can open in browser, get redirected and then see the code in the url
-#  makes sense in THIS file rather than SpotifyClient so do not need to pass the params read from ini
 
 @app.route(URL_PREFIX + "playlist/export", methods=["POST"])
 def export_playlist():

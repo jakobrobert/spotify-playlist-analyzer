@@ -8,6 +8,7 @@ from http_error import HttpError
 
 
 class SpotifyClient:
+    # TODO add refresh token
     def __init__(self, client_id, client_secret):
         self.CLIENT_ID = client_id
         self.CLIENT_SECRET = client_secret
@@ -30,17 +31,6 @@ class SpotifyClient:
     def create_playlist(self, name):
         if not name:
             raise HttpError(400, "name is invalid!")
-
-        # TODO move this into spotify_playlist_analyzer_api.py, separate endpoint for testing
-        # Get access token in order to create playlist. needs scope: playlist-modify-public
-        # TODO currently a hack, just printing url and then using Browser to get the access token
-        # --> should implement proper authorization flow later
-        """
-        authorization_url = \
-            f"https://accounts.spotify.com/authorize?response_type=code" \
-            f"&client_id={self.CLIENT_ID}&redirect_uri={redirect_uri}&scope=playlist-modify-public"
-        print(f"authorization_url: {authorization_url}")
-        """
 
         # TODO create empty playlist.
         #  First need to get refresh token by authorization code,
