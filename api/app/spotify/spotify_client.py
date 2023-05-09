@@ -1,4 +1,5 @@
 import requests
+import json
 
 # PyCharm shows errors for these imports locally, but it works this way with the server
 # 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
@@ -119,16 +120,20 @@ class SpotifyClient:
 
     @staticmethod
     def __send_post_request(url, access_token, data=None):
-        headers = {"Authorization": f"Bearer {access_token}"}
-        response = requests.post(url, headers=headers, data=data)
-        # TODO Error for create_playlist: "User not registered in the Developer Dashboard"
-        # TODO aha, need response.text, so response is not even in json!
-        print(f"__send_post_request. response.text: {response.text}")
-        response_data = response.json()
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json"
+        }
+        data_as_json = json.dumps(data)
+        response = requests.post(url, headers=headers, data=data_as_json)
+
+        try:
+            response_data = response.json()
+        except Exception:
+            raise HttpError(status_code=response.status_code, title="Spotify API Error", message=response.text)
 
         error = SpotifyClient.__create_http_error_from_response_data(response_data)
         if error:
-            print(f"__send_post_request. error: {error}")
             raise error
 
         return response_data
