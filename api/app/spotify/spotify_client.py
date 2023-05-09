@@ -38,12 +38,10 @@ class SpotifyClient:
             "name": playlist_name,
             "public": True
         }
-        # TODO return actual id returned by this request
-        print(f"create_playlist BEFORE __send_post_request")
-        SpotifyClient.__send_post_request(url, test_access_token, data)
-        print(f"create_playlist AFTER __send_post_request")
 
-        playlist_id = "0Q4lgHJpZo7DpZRygCGlGs"
+        response_data = SpotifyClient.__send_post_request(url, test_access_token, data)
+        playlist_id = response_data["id"]
+
         return playlist_id
 
     # TODO add method add_tracks_to_playlist.
