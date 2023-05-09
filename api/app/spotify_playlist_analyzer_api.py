@@ -8,13 +8,13 @@ from spotify.spotify_track import SpotifyTrack
 from http_error import HttpError
 
 config = configparser.ConfigParser()
-config.read("../server.ini")
+config.read("../config.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
-SPOTIFY_CLIENT_ID = config["DEFAULT"]["SPOTIFY_CLIENT_ID"]
-SPOTIFY_CLIENT_SECRET = config["DEFAULT"]["SPOTIFY_CLIENT_SECRET"]
-SPOTIFY_REDIRECT_URI = config["DEFAULT"]["SPOTIFY_REDIRECT_URI"]
-SPOTIFY_TEST_ACCESS_TOKEN = config["DEFAULT"]["SPOTIFY_TEST_ACCESS_TOKEN"]
-SPOTIFY_TEST_USER_ID = config["DEFAULT"]["SPOTIFY_TEST_USER_ID"]
+SPOTIFY_CLIENT_ID = config["SPOTIFY"]["CLIENT_ID"]
+SPOTIFY_CLIENT_SECRET = config["SPOTIFY"]["CLIENT_SECRET"]
+SPOTIFY_REDIRECT_URI = config["SPOTIFY"]["REDIRECT_URI"]
+SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
+SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
 spotify_client = SpotifyClient(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
 
@@ -104,12 +104,15 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return __create_error_response(error)
 
 
+# TODO add test endpoint here to get the authorization code. is fine to just print the authorization url,
+#  then can open in browser, get redirected and then see the code in the url
+#  makes sense in THIS file rather than SpotifyClient so do not need to pass the params read from ini
+
 @app.route(URL_PREFIX + "playlist/export", methods=["POST"])
 def export_playlist():
     try:
-        exported_playlist_id = spotify_client.create_playlist(
-            name="Test", redirect_uri=SPOTIFY_REDIRECT_URI,
-            test_access_token=SPOTIFY_TEST_ACCESS_TOKEN, test_user_id=SPOTIFY_TEST_USER_ID)
+        # TODO pass tracks, e.g. track ids, then can build spotify uris for those tracks in SpotifyClient
+        exported_playlist_id = spotify_client.create_playlist()
         return jsonify({"exported_playlist_id": exported_playlist_id})
     except HttpError as error:
         return __create_error_response(error)
