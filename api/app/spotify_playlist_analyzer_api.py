@@ -30,7 +30,7 @@ def authorize():
         # Therefore hardcoded it in ini file.
         params = {
             "client_id": SPOTIFY_CLIENT_ID,
-            "response_type": "fool",    # TODO just testing, change to "code"
+            "response_type": "code",
             "redirect_uri": SPOTIFY_REDIRECT_URI,
             "scope": "playlist-modify-public"
         }
@@ -40,7 +40,6 @@ def authorize():
         authorization_url = f"{authorization_base_url}?{params_encoded}"
         print(f"authorization_url: {authorization_url}")
 
-        # TODO maybe redirect to authorization url & also add endpoint for callback
         return redirect(authorization_url)
     except HttpError as error:
         return __create_error_response(error)
@@ -48,6 +47,8 @@ def authorize():
         error = HttpError.from_last_exception()
         return __create_error_response(error)
 
+
+# TODO add endpoint for the callback. get "code" from query, use it to retrieve refresh token, log this
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
