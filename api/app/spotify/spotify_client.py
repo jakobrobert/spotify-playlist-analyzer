@@ -9,10 +9,11 @@ from http_error import HttpError
 
 
 class SpotifyClient:
-    # TODO add refresh token
-    def __init__(self, client_id, client_secret):
-        self.CLIENT_ID = client_id
-        self.CLIENT_SECRET = client_secret
+    def __init__(self, client_id, client_secret, test_refresh_token, test_user_id):
+        self.client_id = client_id
+        self.client_secret = client_secret
+        self.test_refresh_token = test_refresh_token
+        self.test_user_id = test_user_id
 
     def get_playlist_by_id(self, playlist_id):
         if playlist_id is None:
@@ -29,25 +30,27 @@ class SpotifyClient:
 
         return playlist
 
-    def create_playlist(self, playlist_name, test_user_id, test_access_token):
+    # TODO add param track_ids
+    def create_playlist(self, playlist_name):
         if not playlist_name:
             raise HttpError(400, "playlist_name is invalid!")
 
-        url = f"https://api.spotify.com/v1/users/{test_user_id}/playlists"
+        url = f"https://api.spotify.com/v1/users/{self.test_user_id}/playlists"
         data = {
             "name": playlist_name,
             "public": True
         }
 
-        response_data = SpotifyClient.__send_post_request(url, test_access_token, data)
+        # TODO get access token by refresh token
+
+        # TODO inline this post request, not worth abstracting it now, is the only post request anyway
+        response_data = SpotifyClient.__send_post_request(url, access_token="TODO", data=data)
         playlist_id = response_data["id"]
 
-        return playlist_id
+        # TODO add tracks to playlist, can just convert track_ids to spotify uris.
+        # TODO see here: https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
 
-    # TODO add method add_tracks_to_playlist.
-    #  accepts list of tracks.
-    #  need to parse spotify uris to Spotify API endpoint for adding tracks, likely can build those by track id
-    #   see here: https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
+        return playlist_id
 
     def get_track_by_id(self, track_id):
         if track_id is None:
@@ -94,7 +97,7 @@ class SpotifyClient:
     def __get_access_token(self):
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
-        auth = (self.CLIENT_ID, self.CLIENT_SECRET)
+        auth = (self.client_id, self.client_secret)
         response = requests.post(url, data=data, auth=auth)
         response_data = response.json()
 
