@@ -20,7 +20,8 @@ SPOTIFY_TEST_ACCESS_TOKEN = config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
 SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
-spotify_client = SpotifyClient(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
+spotify_client = SpotifyClient(
+    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
 
 app = Flask(__name__)
 
@@ -173,11 +174,12 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return __create_error_response(error)
 
 
+# TODO Rename endpoint to create_playlist & change URL to just "playlist",
+#  method POST is enough to distinguish that it creates a playlist and does not get it
 @app.route(URL_PREFIX + "playlist/export", methods=["POST"])
 def export_playlist():
     try:
-        exported_playlist_id = spotify_client.create_playlist(
-            "Test by SpotifyPlaylistAnalyzer", SPOTIFY_TEST_USER_ID, SPOTIFY_TEST_ACCESS_TOKEN)
+        exported_playlist_id = spotify_client.create_playlist("Test by SpotifyPlaylistAnalyzer")
         # TODO add tracks to playlist. maybe can just pass tracks in template to this endpoint, is then encoded as json?
         #  here, pass tracks to spotify_client.add_tracks_to_playlist().
         #   this way, it is nicely encapsulated, the encoding by spotify uris is impl detail which belongs into SpotifyClient
