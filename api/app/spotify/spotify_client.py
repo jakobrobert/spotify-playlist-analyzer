@@ -124,8 +124,13 @@ class SpotifyClient:
         return response_data["access_token"]
 
     def __get_access_token_by_refresh_token(self):
-        # TODO implement
-        return "TODO"
+        url = "https://accounts.spotify.com/api/token"
+        headers = {"Authorization": f"Basic {self.client_id}:{self.client_secret}",
+                   "Content-Type": "application/x-www-form-urlencoded"}
+        data = {"grant_type": "refresh_token", "refresh_token": self.test_refresh_token}
+        response = requests.post(url, headers=headers, data=data)
+        response_data = response.json()
+        return response_data["access_token"]
 
     @staticmethod
     def __send_get_request(url, access_token, params=None):
