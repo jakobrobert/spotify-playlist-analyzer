@@ -80,6 +80,6 @@ def get_playlist_by_id(playlist_id):
         )
     except HttpError as error:
         return render_template("error.html", error=error)
-    except Exception as e:
+    except Exception:
         error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
