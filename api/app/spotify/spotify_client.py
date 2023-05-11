@@ -130,6 +130,14 @@ class SpotifyClient:
         data = {"grant_type": "refresh_token", "refresh_token": self.test_refresh_token}
         response = requests.post(url, headers=headers, data=data)
         response_data = response.json()
+
+        # TODO returns error with message "invalid_client"
+        if "error" in response_data:
+            error_title = "Spotify API Error: Failed to get access token by refresh token"
+            # Note that this is different to other endpoints, so cannot use __create_http_error_from_response_data here
+            error_message = response_data["error"]
+            raise HttpError(response.status_code, error_title, error_message)
+
         return response_data["access_token"]
 
     @staticmethod
