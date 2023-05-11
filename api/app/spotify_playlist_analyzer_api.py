@@ -180,14 +180,8 @@ def get_attribute_distribution_of_playlist(playlist_id):
 def export_playlist():
     try:
         exported_playlist_id = spotify_client.create_playlist("Test by SpotifyPlaylistAnalyzer")
-        # TODO add tracks to playlist. maybe can just pass tracks in template to this endpoint, is then encoded as json?
-        #  here, pass tracks to spotify_client.add_tracks_to_playlist().
-        #   this way, it is nicely encapsulated, the encoding by spotify uris is impl detail which belongs into SpotifyClient
         return jsonify({"exported_playlist_id": exported_playlist_id})
     except HttpError as error:
-        # TODO This is reached, but output on web page looks strange, maybe Flask App processes it further?
-        # shown like this: Message: (403, 'Spotify API Error', 'User not registered in the Developer Dashboard', [])
-        print(f"export_playlist. HttpError")
         return __create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()

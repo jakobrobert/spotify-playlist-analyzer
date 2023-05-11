@@ -22,6 +22,8 @@ def export_playlist():
         exported_playlist_id = api_client.export_playlist()
         exported_playlist_url = f"https://open.spotify.com/playlist/{exported_playlist_id}"
         return render_template("export_playlist.html", exported_playlist_url=exported_playlist_url)
+    except HttpError as error:
+        return render_template("error.html", error=error)
     except Exception:
         error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
