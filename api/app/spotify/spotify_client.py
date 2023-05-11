@@ -20,7 +20,7 @@ class SpotifyClient:
             raise HttpError(400, "playlist_id is None!")
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
-        access_token = self.__get_access_token()
+        access_token = self.__get_access_token_by_client_credentials()
         response_data = SpotifyClient.__send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
@@ -41,10 +41,25 @@ class SpotifyClient:
             "public": True
         }
 
-        # TODO get access token by refresh token
+        access_token = self.__get_access_token_by_refresh_token()
 
-        # TODO inline this post request, not worth abstracting it now, is the only post request anyway
-        response_data = SpotifyClient.__send_post_request(url, access_token="TODO", data=data)
+        # TODO extract helper method __create_playlist which only creates playlist, but does not add tracks.
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json"
+        }
+        data_as_json = json.dumps(data)
+        response = requests.post(url, headers=headers, data=data_as_json)
+
+        try:
+            response_data = response.json()
+        except Exception:
+            raise HttpError(status_code=response.status_code, title="Spotify API Error", message=response.text)
+
+        error = SpotifyClient.__create_http_error_from_response_data(response_data)
+        if error:
+            raise error
+
         playlist_id = response_data["id"]
 
         # TODO add tracks to playlist, can just convert track_ids to spotify uris.
@@ -57,7 +72,7 @@ class SpotifyClient:
             raise HttpError(400, "track_id is None!")
 
         url = f"https://api.spotify.com/v1/tracks/{track_id}"
-        access_token = self.__get_access_token()
+        access_token = self.__get_access_token_by_client_credentials()
         track_data = SpotifyClient.__send_get_request(url, access_token)
 
         track = SpotifyClient.__create_spotify_track(track_data)
@@ -72,7 +87,7 @@ class SpotifyClient:
             raise HttpError(400, "query is None!")
 
         url = f"https://api.spotify.com/v1/search"
-        access_token = self.__get_access_token()
+        access_token = self.__get_access_token_by_client_credentials()
         params = {
             "q": query,
             "type": "track",
@@ -94,7 +109,8 @@ class SpotifyClient:
 
         return tracks
 
-    def __get_access_token(self):
+    # TODO Extract class SpotifyClientUtils for those helper methods for access token, sending get / post request etc.
+    def __get_access_token_by_client_credentials(self):
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
         auth = (self.client_id, self.client_secret)
@@ -107,31 +123,15 @@ class SpotifyClient:
 
         return response_data["access_token"]
 
+    def __get_access_token_by_refresh_token(self):
+        # TODO implement
+        return "TODO"
+
     @staticmethod
     def __send_get_request(url, access_token, params=None):
         headers = {"Authorization": f"Bearer {access_token}"}
         response = requests.get(url, headers=headers, params=params)
         response_data = response.json()
-
-        error = SpotifyClient.__create_http_error_from_response_data(response_data)
-        if error:
-            raise error
-
-        return response_data
-
-    @staticmethod
-    def __send_post_request(url, access_token, data=None):
-        headers = {
-            "Authorization": f"Bearer {access_token}",
-            "Content-Type": "application/json"
-        }
-        data_as_json = json.dumps(data)
-        response = requests.post(url, headers=headers, data=data_as_json)
-
-        try:
-            response_data = response.json()
-        except Exception:
-            raise HttpError(status_code=response.status_code, title="Spotify API Error", message=response.text)
 
         error = SpotifyClient.__create_http_error_from_response_data(response_data)
         if error:
