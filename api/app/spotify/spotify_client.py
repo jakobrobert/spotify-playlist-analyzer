@@ -36,12 +36,6 @@ class SpotifyClient:
         if not playlist_name:
             raise HttpError(400, "playlist_name is invalid!")
 
-        url = f"https://api.spotify.com/v1/users/{self.test_user_id}/playlists"
-        data = {
-            "name": playlist_name,
-            "public": True
-        }
-
         # TODO Very strange bug! When using access token directly, creates playlist successfully.
         #   When trying to get access token by refresh token, returns error:
         #   status code 401 with message "invalid_client"
@@ -50,28 +44,11 @@ class SpotifyClient:
         print(f"create_playlist => test_access_token: {self.test_access_token}")
         print(f"create_playlist => test_refresh_token: {self.test_refresh_token}")
 
-        #access_token = self.test_access_token
-        access_token = self.__get_access_token_by_refresh_token()
+        access_token = self.test_access_token
+        #access_token = self.__get_access_token_by_refresh_token()
         print(f"create_playlist => access_token: {self.test_access_token}")
 
-        # TODO extract helper method __create_playlist which only creates playlist, but does not add tracks.
-        headers = {
-            "Authorization": f"Bearer {access_token}",
-            "Content-Type": "application/json"
-        }
-        data_as_json = json.dumps(data)
-        response = requests.post(url, headers=headers, data=data_as_json)
-
-        try:
-            response_data = response.json()
-        except Exception:
-            raise HttpError(status_code=response.status_code, title="Spotify API Error", message=response.text)
-
-        error = SpotifyClient.__create_http_error_from_response_data(response_data)
-        if error:
-            raise error
-
-        playlist_id = response_data["id"]
+        playlist_id = self.__create_empty_playlist(playlist_name, self.test_user_id, access_token)
 
         # TODO add tracks to playlist, can just convert track_ids to spotify uris.
         # TODO see here: https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
@@ -120,7 +97,6 @@ class SpotifyClient:
 
         return tracks
 
-    # TODO Extract class SpotifyClientUtils for those helper methods for access token, sending get / post request etc.
     def __get_access_token_by_client_credentials(self):
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
@@ -212,6 +188,31 @@ class SpotifyClient:
             next_url = tracks_data["next"]
 
         return track_items
+
+    @staticmethod
+    def __create_empty_playlist(playlist_name, user_id, access_token):
+        url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
+        data = {
+            "name": playlist_name,
+            "public": True
+        }
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json"
+        }
+        data_as_json = json.dumps(data)
+        response = requests.post(url, headers=headers, data=data_as_json)
+
+        try:
+            response_data = response.json()
+        except Exception:
+            raise HttpError(status_code=response.status_code, title="Spotify API Error", message=response.text)
+
+        error = SpotifyClient.__create_http_error_from_response_data(response_data)
+        if error:
+            raise error
+
+        return response_data["id"]
 
     @staticmethod
     def __create_spotify_track(track_data):
