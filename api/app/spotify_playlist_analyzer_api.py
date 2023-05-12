@@ -59,6 +59,8 @@ def authorize_callback():
             raise ValueError("Failed to get authorization code because request arg 'code' is missing")
 
         authorization_code = request.args.get("code")
+        print(f"authorization_code: {authorization_code}")
+
         token_url = "https://accounts.spotify.com/api/token"
         data = {
             "grant_type": "authorization_code",
@@ -80,9 +82,8 @@ def authorize_callback():
         access_token = response_data["access_token"]
         refresh_token = response_data["refresh_token"]
         return \
-            f"<h3>AUTHORIZATION CODE: {authorization_code}</h3>" \
-            f"<h3>ACCESS TOKEN: {access_token}</h3>" \
-            f"<h3>REFRESH TOKEN: {refresh_token}"
+            f"<p><b>ACCESS TOKEN</b>: {access_token}</p>" \
+            f"<p><b>REFRESH TOKEN</b>: {refresh_token}"
         pass
     except HttpError as error:
         return __create_error_response(error)
