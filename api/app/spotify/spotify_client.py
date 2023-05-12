@@ -31,10 +31,12 @@ class SpotifyClient:
 
         return playlist
 
-    # TODO add param track_ids
-    def create_playlist(self, playlist_name):
+    def create_playlist(self, playlist_name, track_ids):
         if not playlist_name:
-            raise HttpError(400, "playlist_name is invalid!")
+            raise HttpError(400, "create_playlist failed => 'playlist_name' is invalid!")
+
+        if not track_ids:
+            raise HttpError(400, "create_playlist failed => 'track_ids' is invalid!")
 
         # TODO Very strange bug! When using access token directly, creates playlist successfully.
         #   When trying to get access token by refresh token, returns error:
@@ -48,10 +50,8 @@ class SpotifyClient:
         #access_token = self.__get_access_token_by_refresh_token()
         print(f"create_playlist => access_token: {self.test_access_token}")
 
-        playlist_id = self.__create_empty_playlist(playlist_name, self.test_user_id, access_token)
-
-        # TODO add tracks to playlist, can just convert track_ids to spotify uris.
-        # TODO see here: https://developer.spotify.com/documentation/web-api/reference/add-tracks-to-playlist
+        playlist_id = SpotifyClient.__create_empty_playlist(playlist_name, self.test_user_id, access_token)
+        SpotifyClient.__add_tracks_to_playlist(playlist_id, track_ids, access_token)
 
         return playlist_id
 
@@ -213,6 +213,22 @@ class SpotifyClient:
             raise error
 
         return response_data["id"]
+
+    @staticmethod
+    def __add_tracks_to_playlist(playlist_id, track_ids, access_token):
+        url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json",
+        }
+        data = {"uris": [f"spotify:track:{track_id}" for track_id in track_ids]}
+        response = requests.post(url, headers=headers, data=json.dumps(data))
+        # TODO add proper error handling, how does error response look like, is it json or just plain text?
+        if response.status_code != 201:
+            raise HttpError(
+                status_code=response.status_code,
+                title="Spotify API Error",
+                message="Failed to add tracks to playlist")
 
     @staticmethod
     def __create_spotify_track(track_data):
