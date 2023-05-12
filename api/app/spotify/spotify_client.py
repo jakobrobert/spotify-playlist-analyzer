@@ -9,10 +9,11 @@ from http_error import HttpError
 
 
 class SpotifyClient:
-    def __init__(self, client_id, client_secret, test_refresh_token, test_user_id):
+    def __init__(self, client_id, client_secret, test_refresh_token, test_access_token, test_user_id):
         self.client_id = client_id
         self.client_secret = client_secret
         self.test_refresh_token = test_refresh_token
+        self.test_access_token = test_access_token
         self.test_user_id = test_user_id
 
     def get_playlist_by_id(self, playlist_id):
@@ -41,7 +42,17 @@ class SpotifyClient:
             "public": True
         }
 
+        # TODO Very strange bug! When using access token directly, creates playlist successfully.
+        #   When trying to get access token by refresh token, returns error:
+        #   status code 401 with message "invalid_client"
+        #   But checked values in ini, they are consistent, both refresh & access token are from same authorization request
+        #   And logged the values and compared, they also fit
+        print(f"create_playlist => test_access_token: {self.test_access_token}")
+        print(f"create_playlist => test_refresh_token: {self.test_refresh_token}")
+
+        #access_token = self.test_access_token
         access_token = self.__get_access_token_by_refresh_token()
+        print(f"create_playlist => access_token: {self.test_access_token}")
 
         # TODO extract helper method __create_playlist which only creates playlist, but does not add tracks.
         headers = {
