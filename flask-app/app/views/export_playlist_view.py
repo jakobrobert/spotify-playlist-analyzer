@@ -19,10 +19,9 @@ export_playlist_view = Blueprint("export_playlist_view", __name__)
 @export_playlist_view.route(URL_PREFIX + "export-playlist", methods=["POST"])
 def export_playlist():
     try:
-        track_ids = request.form.getlist("track_ids")
+        track_ids = request.form.getlist("track_ids[]")
+        print(f"export_playlist => track_ids: {track_ids}")     # Looks fine
         if not track_ids:
-            # TODO this is reached, does template not pass values correctly?
-            print("export_playlist failed => track_ids None or empty")
             raise HttpError(status_code=400, title="export_playlist failed", message="'track_ids' is None or empty")
 
         # TODO pass track_ids to API endpoint
