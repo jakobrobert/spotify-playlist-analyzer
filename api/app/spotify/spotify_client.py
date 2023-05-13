@@ -186,6 +186,9 @@ class SpotifyClient:
 
         return track_items
 
+    # TODO #169 Extract helper method __send_post_request.
+    #   Code is duplicated partly for __create_empty_playlist & __add_tracks_to_playlist, and both get response as json
+    #   But for __get_access_token_by_refresh_token, error response is different
     @staticmethod
     def __create_empty_playlist(playlist_name, user_id, access_token):
         url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
@@ -220,14 +223,11 @@ class SpotifyClient:
         }
         data = {"uris": [f"spotify:track:{track_id}" for track_id in track_ids]}
         response = requests.post(url, headers=headers, data=json.dumps(data))
-        print(f"__add_tracks_to_playlist => response.text: {response.text}")
-        print(f"__add_tracks_to_playlist => response.json(): {response.json()}")
-        # TODO add proper error handling, how does error response look like, is it json or just plain text?
-        if response.status_code != 201:
-            raise HttpError(
-                status_code=response.status_code,
-                title="Spotify API Error",
-                message="Failed to add tracks to playlist")
+        response_data = response.json()
+
+        error = SpotifyClient.__create_http_error_from_response_data(response_data)
+        if error:
+            raise error
 
     @staticmethod
     def __create_spotify_track(track_data):
