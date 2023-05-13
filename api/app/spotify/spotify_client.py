@@ -34,12 +34,10 @@ class SpotifyClient:
 
     def create_playlist(self, playlist_name, track_ids):
         if not playlist_name:
-            raise HttpError(400, "create_playlist failed => 'playlist_name' is invalid!")
+            raise HttpError(400, title="create_playlist failed", message="'playlist_name' is None or empty")
 
-        """
         if not track_ids:
-            raise HttpError(400, "create_playlist failed => 'track_ids' is invalid!")
-        """
+            raise HttpError(400, title="create_playlist failed", message="'track_ids' is None or empty")
 
         # TODO This is a workaround, because __get_access_token_by_refresh_token fails. See #171
         # Important to read it here from file and NOT before initialization of SpotifyClient, so it is always up to date
