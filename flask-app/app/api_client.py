@@ -35,9 +35,10 @@ class ApiClient:
 
         return self.__send_get_request(sub_url, request_params)
 
-    def export_playlist(self):
+    def export_playlist(self, track_ids):
         sub_url = f"playlist/export"
-        response_data = self.__send_post_request(sub_url)
+        data = {"track_ids": track_ids}
+        response_data = self.__send_post_request(sub_url, data=data)
 
         return response_data["exported_playlist_id"]
 
@@ -90,7 +91,8 @@ class ApiClient:
 
     def __send_post_request(self, sub_url, data=None):
         url = f"{self.base_url}{sub_url}"
-        response = requests.post(url, data=data)
+        # Use json=data so the data is encoded as JSON, else would be url encoded
+        response = requests.post(url, json=data)
         response_data = response.json()
 
         if "error" in response_data:

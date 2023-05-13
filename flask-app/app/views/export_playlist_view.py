@@ -24,8 +24,7 @@ def export_playlist():
         if not track_ids:
             raise HttpError(status_code=400, title="export_playlist failed", message="'track_ids' is None or empty")
 
-        # TODO pass track_ids to API endpoint
-        exported_playlist_id = api_client.export_playlist()
+        exported_playlist_id = api_client.export_playlist(track_ids)
         exported_playlist_url = f"https://open.spotify.com/playlist/{exported_playlist_id}"
         return render_template("export_playlist.html", exported_playlist_url=exported_playlist_url)
     except HttpError as error:
