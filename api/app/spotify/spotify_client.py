@@ -35,19 +35,17 @@ class SpotifyClient:
         if not playlist_name:
             raise HttpError(400, "create_playlist failed => 'playlist_name' is invalid!")
 
+        """
         if not track_ids:
             raise HttpError(400, "create_playlist failed => 'track_ids' is invalid!")
+        """
 
-        # TODO Very strange bug! When using access token directly, creates playlist successfully.
-        #   When trying to get access token by refresh token, returns error:
-        #   status code 401 with message "invalid_client"
-        #   But checked values in ini, they are consistent, both refresh & access token are from same authorization request
-        #   And logged the values and compared, they also fit
         print(f"create_playlist => test_access_token: {self.test_access_token}")
         print(f"create_playlist => test_refresh_token: {self.test_refresh_token}")
 
-        access_token = self.test_access_token
-        #access_token = self.__get_access_token_by_refresh_token()
+        #access_token = self.test_access_token
+        # TODO #171 Fix: Fails to get access token by refresh token
+        access_token = self.__get_access_token_by_refresh_token()
         print(f"create_playlist => access_token: {self.test_access_token}")
 
         playlist_id = SpotifyClient.__create_empty_playlist(playlist_name, self.test_user_id, access_token)
@@ -118,10 +116,9 @@ class SpotifyClient:
         response = requests.post(url, headers=headers, data=data)
         response_data = response.json()
 
-        # TODO returns error with message "invalid_client"
         if "error" in response_data:
             error_title = "Spotify API Error: Failed to get access token by refresh token"
-            # Note that this is different to other endpoints, so cannot use __create_http_error_from_response_data here
+            # This is different to other endpoints, cannot use __create_http_error_from_response_data here
             error_message = response_data["error"]
             raise HttpError(response.status_code, error_title, error_message)
 
