@@ -18,14 +18,8 @@ SPOTIFY_REDIRECT_URI = config["SPOTIFY"]["REDIRECT_URI"]
 SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
-# TODO This is a workaround, because getting access token by refresh token fails. See #171
-read_access_token_config = configparser.ConfigParser()
-read_access_token_config.read("../test_access_token.ini")
-SPOTIFY_TEST_ACCESS_TOKEN = config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
-
-# TODO read access token from test_access_token.ini
 spotify_client = SpotifyClient(
-    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_ACCESS_TOKEN, SPOTIFY_TEST_USER_ID)
+    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
 
 app = Flask(__name__)
 
@@ -92,13 +86,13 @@ def authorize_callback():
         #   -> Need to manually authorize so users can create playlist for the test account
         #   -> But with this workaround, can do it comfortably in browser, on phone.
         #   -> No need to manually update the access code in ini
-        write_access_token_config = configparser.ConfigParser()
-        write_access_token_config.add_section("SPOTIFY")
-        write_access_token_config.set("SPOTIFY", "test_access_token", access_token)
+        test_access_token_config = configparser.ConfigParser()
+        test_access_token_config.add_section("SPOTIFY")
+        test_access_token_config.set("SPOTIFY", "TEST_ACCESS_TOKEN", access_token)
 
         file_name = "../test_access_token.ini"
         with open(file_name, "w") as config_file:
-            write_access_token_config.write(config_file)
+            test_access_token_config.write(config_file)
 
         return f"Authorization was successful. Written access token to file '{file_name}'"
     except HttpError as error:
