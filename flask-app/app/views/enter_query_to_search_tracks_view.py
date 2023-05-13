@@ -6,7 +6,7 @@ from flask import Blueprint, render_template
 import configparser
 
 config = configparser.ConfigParser()
-config.read("../server.ini")
+config.read("../config.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 
 enter_query_to_search_tracks_view = Blueprint("enter_query_to_search_tracks_view", __name__)

@@ -6,7 +6,7 @@ from flask import Blueprint, render_template
 import configparser
 
 config = configparser.ConfigParser()
-config.read("../server.ini")
+config.read("../config.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 
 choose_one_track_view = Blueprint("choose_one_track_view", __name__)

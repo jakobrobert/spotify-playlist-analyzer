@@ -9,7 +9,7 @@ import configparser
 import matplotlib.pyplot as plt
 
 config = configparser.ConfigParser()
-config.read("../server.ini")
+config.read("../config.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 API_BASE_URL = config["DEFAULT"]["API_BASE_URL"]
 

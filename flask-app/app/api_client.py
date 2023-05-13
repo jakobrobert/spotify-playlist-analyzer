@@ -35,6 +35,13 @@ class ApiClient:
 
         return self.__send_get_request(sub_url, request_params)
 
+    def export_playlist(self, track_ids):
+        sub_url = f"playlist/export"
+        data = {"track_ids": track_ids}
+        response_data = self.__send_post_request(sub_url, data=data)
+
+        return response_data["exported_playlist_id"]
+
     def get_valid_keys(self):
         return self.__send_get_request("valid-keys")
 
@@ -68,10 +75,28 @@ class ApiClient:
 
     def __send_get_request(self, sub_url, params=None):
         url = f"{self.base_url}{sub_url}"
-        response = requests.get(url, params)
+        response = requests.get(url, params=params)
         response_data = response.json()
 
         if "error" in response_data:
+            error = response_data["error"]
+            status_code = error["status_code"]
+            title = error["title"]
+            message = error["message"]
+            traceback_items = error["traceback_items"]
+
+            raise HttpError(status_code, title, message, traceback_items)
+
+        return response_data
+
+    def __send_post_request(self, sub_url, data=None):
+        url = f"{self.base_url}{sub_url}"
+        # Use json=data so the data is encoded as JSON, else would be url encoded
+        response = requests.post(url, json=data)
+        response_data = response.json()
+
+        if "error" in response_data:
+            # TODO same code as in __send_get_request, therefore extract method
             error = response_data["error"]
             status_code = error["status_code"]
             title = error["title"]
