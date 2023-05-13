@@ -61,6 +61,7 @@ def authorize_callback():
         print(f"authorize_callback => authorization_code: {authorization_code}")
 
         token_url = "https://accounts.spotify.com/api/token"
+        # TODO use auth=(client_id, client_secret) instead of adding those to data, is more secure
         data = {
             "grant_type": "authorization_code",
             "code": authorization_code,
@@ -78,13 +79,20 @@ def authorize_callback():
                 status_code=response.status_code,
                 title=response_data["error"], message=response_data["error_description"])
 
-        # TODO write access token to test_access_token.ini
         access_token = response_data["access_token"]
         print(f"authorize_callback => {access_token}")
         refresh_token = response_data["refresh_token"]
         print(f"authorize_callback => {refresh_token}")
 
-        return "Authorization was successful"
+        test_access_code_config = configparser.ConfigParser()
+        test_access_code_config.add_section("SPOTIFY")
+        test_access_code_config.set("SPOTIFY", "test_access_token", access_token)
+
+        file_name = "../test_access_code.ini"
+        with open(file_name, "w") as config_file:
+            config.write(config_file)
+
+        return f"Authorization was successful. Written access code to file '{file_name}'"
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
