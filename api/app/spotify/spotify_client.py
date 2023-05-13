@@ -40,9 +40,13 @@ class SpotifyClient:
             raise HttpError(400, "create_playlist failed => 'track_ids' is invalid!")
         """
 
+        print(f"create_playlist => test_access_token: {self.test_access_token}")
+        print(f"create_playlist => test_refresh_token: {self.test_refresh_token}")
+
         access_token = self.test_access_token
         # TODO #171 Fix: Fails to get access token by refresh token
         #access_token = self.__get_access_token_by_refresh_token()
+        print(f"create_playlist => access_token: {access_token}")
 
         playlist_id = SpotifyClient.__create_empty_playlist(playlist_name, self.test_user_id, access_token)
         SpotifyClient.__add_tracks_to_playlist(playlist_id, track_ids, access_token)
@@ -216,6 +220,8 @@ class SpotifyClient:
         }
         data = {"uris": [f"spotify:track:{track_id}" for track_id in track_ids]}
         response = requests.post(url, headers=headers, data=json.dumps(data))
+        print(f"__add_tracks_to_playlist => response.text: {response.text}")
+        print(f"__add_tracks_to_playlist => response.json(): {response.json()}")
         # TODO add proper error handling, how does error response look like, is it json or just plain text?
         if response.status_code != 201:
             raise HttpError(
