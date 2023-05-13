@@ -80,9 +80,9 @@ def authorize_callback():
                 title=response_data["error"], message=response_data["error_description"])
 
         access_token = response_data["access_token"]
-        print(f"authorize_callback => {access_token}")
+        print(f"authorize_callback => access_token: {access_token}")
         refresh_token = response_data["refresh_token"]
-        print(f"authorize_callback => {refresh_token}")
+        print(f"authorize_callback => refresh_token: {refresh_token}")
 
         test_access_code_config = configparser.ConfigParser()
         test_access_code_config.add_section("SPOTIFY")
@@ -90,7 +90,7 @@ def authorize_callback():
 
         file_name = "../test_access_code.ini"
         with open(file_name, "w") as config_file:
-            config.write(config_file)
+            test_access_code_config.write(config_file)
 
         return f"Authorization was successful. Written access code to file '{file_name}'"
     except HttpError as error:
