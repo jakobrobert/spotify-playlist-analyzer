@@ -40,13 +40,9 @@ class SpotifyClient:
             raise HttpError(400, "create_playlist failed => 'track_ids' is invalid!")
         """
 
-        print(f"create_playlist => test_access_token: {self.test_access_token}")
-        print(f"create_playlist => test_refresh_token: {self.test_refresh_token}")
-
-        #access_token = self.test_access_token
+        access_token = self.test_access_token
         # TODO #171 Fix: Fails to get access token by refresh token
-        access_token = self.__get_access_token_by_refresh_token()
-        print(f"create_playlist => access_token: {self.test_access_token}")
+        #access_token = self.__get_access_token_by_refresh_token()
 
         playlist_id = SpotifyClient.__create_empty_playlist(playlist_name, self.test_user_id, access_token)
         SpotifyClient.__add_tracks_to_playlist(playlist_id, track_ids, access_token)
