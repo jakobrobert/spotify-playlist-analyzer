@@ -15,10 +15,13 @@ URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 SPOTIFY_CLIENT_ID = config["SPOTIFY"]["CLIENT_ID"]
 SPOTIFY_CLIENT_SECRET = config["SPOTIFY"]["CLIENT_SECRET"]
 SPOTIFY_REDIRECT_URI = config["SPOTIFY"]["REDIRECT_URI"]
-# TODO access token only valid for 1 hour. Remove from ini, instead use refresh token to get a new access token whenever needed
-SPOTIFY_TEST_ACCESS_TOKEN = config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
 SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
+
+# TODO This is a workaround, because getting access token by refresh token fails. See #171
+read_access_token_config = configparser.ConfigParser()
+read_access_token_config.read("../test_access_token.ini")
+SPOTIFY_TEST_ACCESS_TOKEN = config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
 
 # TODO read access token from test_access_token.ini
 spotify_client = SpotifyClient(
@@ -84,15 +87,20 @@ def authorize_callback():
         refresh_token = response_data["refresh_token"]
         print(f"authorize_callback => refresh_token: {refresh_token}")
 
-        test_access_code_config = configparser.ConfigParser()
-        test_access_code_config.add_section("SPOTIFY")
-        test_access_code_config.set("SPOTIFY", "test_access_token", access_token)
+        # Write access token to file.
+        # TODO This is a workaround, because getting access token by refresh token fails. See #171
+        #   -> Need to manually authorize so users can create playlist for the test account
+        #   -> But with this workaround, can do it comfortably in browser, on phone.
+        #   -> No need to manually update the access code in ini
+        write_access_token_config = configparser.ConfigParser()
+        write_access_token_config.add_section("SPOTIFY")
+        write_access_token_config.set("SPOTIFY", "test_access_token", access_token)
 
-        file_name = "../test_access_code.ini"
+        file_name = "../test_access_token.ini"
         with open(file_name, "w") as config_file:
-            test_access_code_config.write(config_file)
+            write_access_token_config.write(config_file)
 
-        return f"Authorization was successful. Written access code to file '{file_name}'"
+        return f"Authorization was successful. Written access token to file '{file_name}'"
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
