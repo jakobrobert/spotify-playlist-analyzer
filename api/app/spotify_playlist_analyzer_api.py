@@ -20,6 +20,7 @@ SPOTIFY_TEST_ACCESS_TOKEN = config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
 SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
+# TODO read access token from test_access_token.ini
 spotify_client = SpotifyClient(
     SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_ACCESS_TOKEN, SPOTIFY_TEST_USER_ID)
 
@@ -32,17 +33,15 @@ def authorize():
         authorization_base_url = "https://accounts.spotify.com/authorize"
         # Cannot use url_for to get redirect uri because url_for just returns part of the url, but need the full
         # Therefore hardcoded it in ini file.
+        # TODO can use url_for, need to set _external=True
         params = {
             "client_id": SPOTIFY_CLIENT_ID,
             "response_type": "code",
             "redirect_uri": SPOTIFY_REDIRECT_URI,
             "scope": "playlist-modify-public"
         }
-        print(f"params: {params}")
         params_encoded = urlencode(params)
-        print(f"params_encoded: {params_encoded}")
         authorization_url = f"{authorization_base_url}?{params_encoded}"
-        print(f"authorization_url: {authorization_url}")
 
         return redirect(authorization_url)
     except HttpError as error:
@@ -59,7 +58,7 @@ def authorize_callback():
             raise ValueError("Failed to get authorization code because request arg 'code' is missing")
 
         authorization_code = request.args.get("code")
-        print(f"authorization_code: {authorization_code}")
+        print(f"authorize_callback => authorization_code: {authorization_code}")
 
         token_url = "https://accounts.spotify.com/api/token"
         data = {
@@ -79,12 +78,13 @@ def authorize_callback():
                 status_code=response.status_code,
                 title=response_data["error"], message=response_data["error_description"])
 
+        # TODO write access token to test_access_token.ini
         access_token = response_data["access_token"]
+        print(f"authorize_callback => {access_token}")
         refresh_token = response_data["refresh_token"]
-        return \
-            f"<p><b>ACCESS TOKEN</b>: {access_token}</p>" \
-            f"<p><b>REFRESH TOKEN</b>: {refresh_token}"
-        pass
+        print(f"authorize_callback => {refresh_token}")
+
+        return "Authorization was successful"
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
