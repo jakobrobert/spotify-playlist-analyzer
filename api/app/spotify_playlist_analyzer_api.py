@@ -191,8 +191,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
 def export_playlist():
     try:
         playlist_name = "Test by SpotifyPlaylistAnalyzer"
-        # TODO need to pass track_ids from App to this API endpoint
-        track_ids = []
+        track_ids = request.json["track_ids"]
         exported_playlist_id = spotify_client.create_playlist(playlist_name, track_ids)
         return jsonify({"exported_playlist_id": exported_playlist_id})
     except HttpError as error:
