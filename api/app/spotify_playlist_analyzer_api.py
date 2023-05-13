@@ -1,21 +1,105 @@
 import configparser
 import operator
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect
+from urllib.parse import urlencode
+import requests
 
 from spotify.spotify_client import SpotifyClient
 from spotify.spotify_track import SpotifyTrack
 from http_error import HttpError
 
 config = configparser.ConfigParser()
-config.read("../server.ini")
+config.read("../config.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
-SPOTIFY_CLIENT_ID = config["DEFAULT"]["SPOTIFY_CLIENT_ID"]
-SPOTIFY_CLIENT_SECRET = config["DEFAULT"]["SPOTIFY_CLIENT_SECRET"]
+SPOTIFY_CLIENT_ID = config["SPOTIFY"]["CLIENT_ID"]
+SPOTIFY_CLIENT_SECRET = config["SPOTIFY"]["CLIENT_SECRET"]
+SPOTIFY_REDIRECT_URI = config["SPOTIFY"]["REDIRECT_URI"]
+SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
+SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
-spotify_client = SpotifyClient(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET)
+spotify_client = SpotifyClient(
+    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
 
 app = Flask(__name__)
+
+
+@app.route(URL_PREFIX + "authorize", methods=["GET"])
+def authorize():
+    try:
+        authorization_base_url = "https://accounts.spotify.com/authorize"
+        # Cannot use url_for to get redirect uri because url_for just returns part of the url, but need the full
+        # Therefore hardcoded it in ini file.
+        # TODO can use url_for, need to set _external=True
+        params = {
+            "client_id": SPOTIFY_CLIENT_ID,
+            "response_type": "code",
+            "redirect_uri": SPOTIFY_REDIRECT_URI,
+            "scope": "playlist-modify-public"
+        }
+        params_encoded = urlencode(params)
+        authorization_url = f"{authorization_base_url}?{params_encoded}"
+
+        return redirect(authorization_url)
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
+@app.route(URL_PREFIX + "authorize/callback", methods=["GET"])
+def authorize_callback():
+    try:
+        if "code" not in request.args:
+            raise ValueError("Failed to get authorization code because request arg 'code' is missing")
+
+        authorization_code = request.args.get("code")
+        print(f"authorize_callback => authorization_code: {authorization_code}")
+
+        token_url = "https://accounts.spotify.com/api/token"
+        # TODO use auth=(client_id, client_secret) instead of adding those to data, is more secure
+        data = {
+            "grant_type": "authorization_code",
+            "code": authorization_code,
+            "redirect_uri": SPOTIFY_REDIRECT_URI,
+            "client_id": SPOTIFY_CLIENT_ID,
+            "client_secret": SPOTIFY_CLIENT_SECRET,
+        }
+
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        response = requests.post(token_url, data=data, headers=headers)
+        response_data = response.json()
+
+        if "error" in response_data:
+            raise HttpError(
+                status_code=response.status_code,
+                title=response_data["error"], message=response_data["error_description"])
+
+        access_token = response_data["access_token"]
+        print(f"authorize_callback => access_token: {access_token}")
+        refresh_token = response_data["refresh_token"]
+        print(f"authorize_callback => refresh_token: {refresh_token}")
+
+        # Write access token to file.
+        # TODO This is a workaround, because getting access token by refresh token fails. See #171
+        #   -> Need to manually authorize so users can create playlist for the test account
+        #   -> But with this workaround, can do it comfortably in browser, on phone.
+        #   -> No need to manually update the access code in ini
+        test_access_token_config = configparser.ConfigParser()
+        test_access_token_config.add_section("SPOTIFY")
+        test_access_token_config.set("SPOTIFY", "TEST_ACCESS_TOKEN", access_token)
+
+        file_name = "../test_access_token.ini"
+        with open(file_name, "w") as config_file:
+            test_access_token_config.write(config_file)
+
+        return f"Authorization was successful. Written access token to file '{file_name}'"
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
@@ -94,6 +178,22 @@ def get_attribute_distribution_of_playlist(playlist_id):
             raise HttpError(502, f"Invalid attribute: '{attribute}'")
 
         return jsonify(attribute_value_to_percentage)
+    except HttpError as error:
+        return __create_error_response(error)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
+# TODO Rename endpoint to create_playlist & change URL to just "playlist",
+#  method POST is enough to distinguish that it creates a playlist and does not get it
+@app.route(URL_PREFIX + "playlist/export", methods=["POST"])
+def export_playlist():
+    try:
+        playlist_name = "Test by SpotifyPlaylistAnalyzer"
+        track_ids = request.json["track_ids"]
+        exported_playlist_id = spotify_client.create_playlist(playlist_name, track_ids)
+        return jsonify({"exported_playlist_id": exported_playlist_id})
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
