@@ -1,3 +1,5 @@
+import configparser
+
 import requests
 import json
 
@@ -9,11 +11,10 @@ from http_error import HttpError
 
 
 class SpotifyClient:
-    def __init__(self, client_id, client_secret, test_refresh_token, test_access_token, test_user_id):
+    def __init__(self, client_id, client_secret, test_refresh_token, test_user_id):
         self.client_id = client_id
         self.client_secret = client_secret
         self.test_refresh_token = test_refresh_token
-        self.test_access_token = test_access_token
         self.test_user_id = test_user_id
 
     def get_playlist_by_id(self, playlist_id):
@@ -40,16 +41,15 @@ class SpotifyClient:
             raise HttpError(400, "create_playlist failed => 'track_ids' is invalid!")
         """
 
-        print(f"create_playlist => test_access_token: {self.test_access_token}")
-        print(f"create_playlist => test_refresh_token: {self.test_refresh_token}")
+        # TODO This is a workaround, because __get_access_token_by_refresh_token fails. See #171
+        # Important to read it here from file and NOT before initialization of SpotifyClient, so it is always up to date
+        test_access_token_config = configparser.ConfigParser()
+        test_access_token_config.read("../test_access_token.ini")
+        test_access_token = test_access_token_config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
+        print(f"create_playlist => test_access_token: {test_access_token}")
 
-        access_token = self.test_access_token
-        # TODO #171 Fix: Fails to get access token by refresh token
-        #access_token = self.__get_access_token_by_refresh_token()
-        print(f"create_playlist => access_token: {access_token}")
-
-        playlist_id = SpotifyClient.__create_empty_playlist(playlist_name, self.test_user_id, access_token)
-        SpotifyClient.__add_tracks_to_playlist(playlist_id, track_ids, access_token)
+        playlist_id = SpotifyClient.__create_empty_playlist(playlist_name, self.test_user_id, test_access_token)
+        SpotifyClient.__add_tracks_to_playlist(playlist_id, track_ids, test_access_token)
 
         return playlist_id
 
