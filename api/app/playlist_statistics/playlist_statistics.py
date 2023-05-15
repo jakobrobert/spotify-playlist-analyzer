@@ -148,9 +148,9 @@ class PlaylistStatistics:
         # TODO is temporary solution, will change slightly, see __convert_counts_to_percentages
         intervals_with_counts = []
         for interval in intervals:
-            # TODO adjust for first & last interval by using None check
             interval_with_count = {
-                "label": f"{get_label_for_value(interval.min_value)} - {get_label_for_value(interval.max_value)}",
+                "label": PlaylistStatistics.__get_label_for_interval(
+                    interval.min_value, interval.max_value, get_label_for_value),
                 "count": interval.count
             }
             intervals_with_counts.append(interval_with_count)
@@ -175,6 +175,11 @@ class PlaylistStatistics:
             intervals_with_percentage.append(interval_with_percentage)
 
         return intervals_with_percentage
+
+    @staticmethod
+    def __get_label_for_interval(min_value, max_value, get_label_for_value):
+        # TODO handle if min_value or max_value is None
+        return f"{get_label_for_value(min_value)} - {get_label_for_value(max_value)}"
 
     # TODO Need this method here temporarily to get the duration label.
     #  Remove later when view code moved out of this calss
