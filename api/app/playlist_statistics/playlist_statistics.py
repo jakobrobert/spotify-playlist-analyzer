@@ -2,8 +2,8 @@ from spotify.spotify_track import SpotifyTrack
 
 
 class PlaylistStatistics:
-    def __init__(self):
-        self.tracks = []
+    def __init__(self, tracks):
+        self.tracks = tracks
 
     def get_duration_interval_to_percentage(self):
         first_interval_max_duration = 120000  # 120 seconds -> 02:00
