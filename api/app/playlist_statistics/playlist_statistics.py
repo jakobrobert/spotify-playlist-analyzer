@@ -1,64 +1,18 @@
-import json
-
-# PyCharm shows errors for this import locally, but it works this way with the server
-# 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
 from spotify.spotify_track import SpotifyTrack
-from playlist_statistics.playlist_statistics import PlaylistStatistics
 
 
-class SpotifyPlaylist:
+class PlaylistStatistics:
     def __init__(self):
-        self.id = "n/a"
-        self.name = "n/a"
         self.tracks = []
-        self.statistics = PlaylistStatistics()
-
-    def get_total_duration_ms(self):
-        total_duration_ms = 0
-
-        for track in self.tracks:
-            total_duration_ms += track.duration_ms
-
-        return total_duration_ms
-
-    def get_average_duration_ms(self):
-        return self.get_total_duration_ms() / len(self.tracks)
-
-    def get_average_popularity(self):
-        total_popularity = 0.0
-
-        for track in self.tracks:
-            total_popularity += track.popularity
-
-        return total_popularity / len(self.tracks)
-
-    def get_average_release_year(self):
-        total_year = 0.0
-
-        for track in self.tracks:
-            total_year += track.release_year
-
-        return total_year / len(self.tracks)
-
-    def get_average_tempo(self):
-        total_tempo = 0.0
-
-        for track in self.tracks:
-            total_tempo += track.tempo
-
-        return total_tempo / len(self.tracks)
-
-    def update_statistics(self):
-        self.statistics = PlaylistStatistics(self.tracks)
 
     def get_duration_interval_to_percentage(self):
-        first_interval_max_duration = 120000    # 120 seconds -> 02:00
-        last_interval_min_duration = 300000     # 300 seconds -> 05:00
-        interval_size = 30000                   # 30 seconds
+        first_interval_max_duration = 120000  # 120 seconds -> 02:00
+        last_interval_min_duration = 300000  # 300 seconds -> 05:00
+        interval_size = 30000  # 30 seconds
 
         duration_intervals_with_count = self.__get_intervals_with_count(
             first_interval_max_duration, last_interval_min_duration, interval_size,
-            lambda track: track.duration_ms, lambda duration_ms: SpotifyPlaylist.__get_duration_string(duration_ms))
+            lambda track: track.duration_ms, lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
 
         return self.__convert_counts_to_percentages(duration_intervals_with_count)
 
@@ -129,7 +83,7 @@ class SpotifyPlaylist:
             mode_with_count["count"] += 1
 
         return self.__convert_counts_to_percentages(modes_with_count)
-    
+
     def get_key_signature_to_percentage(self):
         key_signatures_with_count = []
 
@@ -214,6 +168,8 @@ class SpotifyPlaylist:
 
         return intervals_with_percentage
 
+    # TODO Need this method here temporarily to get the duration label.
+    #  Remove later when view code moved out of this calss
     @staticmethod
     def __get_duration_string(duration_ms):
         total_seconds = duration_ms // 1000
