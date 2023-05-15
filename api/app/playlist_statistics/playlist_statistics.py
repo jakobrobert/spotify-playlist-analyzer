@@ -1,4 +1,5 @@
 from spotify.spotify_track import SpotifyTrack
+from playlist_statistics.attribute_distribution_interval import AttributeDistributionInterval
 
 
 class PlaylistStatistics:
@@ -113,45 +114,52 @@ class PlaylistStatistics:
             get_label_for_value = str
 
         # First interval
-        first_interval = {
-            "label": f"≤ {get_label_for_value(first_interval_max)}",
-            "count": 0
-        }
+        first_interval = AttributeDistributionInterval(None, first_interval_max)
 
+        # TODO can extract general method is_attribute_value_in_range into AttributeDistributionInterval
+        #   -> special handling for first & last interval by checking for None
         for track in self.tracks:
             if get_track_value(track) <= first_interval_max:
-                first_interval["count"] += 1
+                first_interval.count += 1
 
         intervals.append(first_interval)
 
         # Middle intervals
         for min_value in range(first_interval_max + 1, last_interval_min, interval_size):
             max_value = min_value + interval_size - 1
-            interval = {
-                "label": f"{get_label_for_value(min_value)} - {get_label_for_value(max_value)}",
-                "count": 0
-            }
+            interval = AttributeDistributionInterval(min_value, max_value)
 
             for track in self.tracks:
                 if min_value <= get_track_value(track) <= max_value:
-                    interval["count"] += 1
+                    interval.count += 1
 
             intervals.append(interval)
 
         # Last interval
-        last_interval = {
-            "label": f"≥ {get_label_for_value(last_interval_min)}",
-            "count": 0
-        }
+        last_interval = AttributeDistributionInterval(last_interval_min, None)
 
         for track in self.tracks:
             if get_track_value(track) >= last_interval_min:
-                last_interval["count"] += 1
+                last_interval.count += 1
 
         intervals.append(last_interval)
 
-        return intervals
+        # Transform into array of dicts, each with "label" & "count"
+        # TODO is temporary solution, will change slightly, see __convert_counts_to_percentages
+        intervals_with_counts = []
+        for interval in intervals:
+            # TODO adjust for first & last interval by using None check
+            interval_with_count = {
+                "label": f"{get_label_for_value(interval.min_value)} - {get_label_for_value(interval.max_value)}",
+                "count": interval.count
+            }
+            intervals_with_counts.append(interval_with_count)
 
+        return intervals_with_counts
+
+    # TODO Create helper method in AttributeDistributionInterval, update_percentage(),
+    #   Then transform into dict afterwards
+    #   But note that for key & mode it works a bit differently, cannot use interval there
     def __convert_counts_to_percentages(self, intervals_with_count):
         intervals_with_percentage = []
 
