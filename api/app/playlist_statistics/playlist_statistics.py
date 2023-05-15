@@ -178,7 +178,12 @@ class PlaylistStatistics:
 
     @staticmethod
     def __get_label_for_interval(min_value, max_value, get_label_for_value):
-        # TODO handle if min_value or max_value is None
+        if min_value is None:
+            return f"≤ {get_label_for_value(max_value)}"
+
+        if max_value is None:
+            return f"≥ {get_label_for_value(min_value)}"
+
         return f"{get_label_for_value(min_value)} - {get_label_for_value(max_value)}"
 
     # TODO Need this method here temporarily to get the duration label.
