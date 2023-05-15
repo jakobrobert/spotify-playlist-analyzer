@@ -11,7 +11,7 @@ class SpotifyPlaylist:
         self.id = "n/a"
         self.name = "n/a"
         self.tracks = []
-        self.statistics = PlaylistStatistics()
+        self.statistics = None
 
     def get_total_duration_ms(self):
         total_duration_ms = 0
@@ -48,19 +48,14 @@ class SpotifyPlaylist:
 
         return total_tempo / len(self.tracks)
 
+    # TODO this is temporarily called for each method where statistics needed
+    #   Will move it out later, when methods are inlined and statistics accessed directly from outside
     def update_statistics(self):
         self.statistics = PlaylistStatistics(self.tracks)
 
     def get_duration_interval_to_percentage(self):
-        first_interval_max_duration = 120000    # 120 seconds -> 02:00
-        last_interval_min_duration = 300000     # 300 seconds -> 05:00
-        interval_size = 30000                   # 30 seconds
-
-        duration_intervals_with_count = self.__get_intervals_with_count(
-            first_interval_max_duration, last_interval_min_duration, interval_size,
-            lambda track: track.duration_ms, lambda duration_ms: SpotifyPlaylist.__get_duration_string(duration_ms))
-
-        return self.__convert_counts_to_percentages(duration_intervals_with_count)
+        self.update_statistics()
+        return self.statistics.get_duration_interval_to_percentage()
 
     def get_release_year_interval_to_percentage(self):
         first_interval_max_year = 1979
