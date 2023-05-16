@@ -15,10 +15,6 @@ class PlaylistStatistics:
             first_interval_max_duration, last_interval_min_duration, interval_size,
             lambda track: track.duration_ms)
 
-        total = len(self.tracks)
-        for interval in intervals:
-            interval.update_percentage(total)
-
         dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(
             intervals, get_label_for_value=lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
 
@@ -148,6 +144,10 @@ class PlaylistStatistics:
                 last_interval.count += 1
 
         intervals.append(last_interval)
+
+        total_count = len(self.tracks)
+        for interval in intervals:
+            interval.update_percentage(total_count)
 
         return intervals
 
