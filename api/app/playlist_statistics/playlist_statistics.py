@@ -15,8 +15,7 @@ class PlaylistStatistics:
             first_interval_max_duration, last_interval_min_duration, interval_size,
             lambda track: track.duration_ms)
 
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(
-            intervals, get_label_for_value=lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
+        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
         return dicts_with_label
 
@@ -25,30 +24,39 @@ class PlaylistStatistics:
         last_interval_min_year = 2020
         interval_size = 10
 
-        year_intervals_with_count = self.__get_attribute_distribution_intervals(
-            first_interval_max_year, last_interval_min_year, interval_size, lambda track: track.release_year)
+        intervals = self.__get_attribute_distribution_intervals(
+            first_interval_max_year, last_interval_min_year, interval_size,
+            lambda track: track.release_year)
 
-        return self.__convert_counts_to_percentages(year_intervals_with_count)
+        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
+
+        return dicts_with_label
 
     def get_popularity_interval_to_percentage(self):
         first_interval_max_popularity = 9
         last_interval_min_popularity = 90
         interval_size = 10
 
-        popularity_intervals_with_count = self.__get_attribute_distribution_intervals(
-            first_interval_max_popularity, last_interval_min_popularity, interval_size, lambda track: track.popularity)
+        intervals = self.__get_attribute_distribution_intervals(
+            first_interval_max_popularity, last_interval_min_popularity, interval_size,
+            lambda track: track.popularity)
 
-        return self.__convert_counts_to_percentages(popularity_intervals_with_count)
+        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
+
+        return dicts_with_label
 
     def get_tempo_interval_to_percentage(self):
         first_interval_max_tempo = 89
         last_interval_min_tempo = 180
         interval_size = 10
 
-        tempo_intervals_with_count = self.__get_attribute_distribution_intervals(
-            first_interval_max_tempo, last_interval_min_tempo, interval_size, lambda track: track.tempo)
+        intervals = self.__get_attribute_distribution_intervals(
+            first_interval_max_tempo, last_interval_min_tempo, interval_size,
+            lambda track: track.tempo)
 
-        return self.__convert_counts_to_percentages(tempo_intervals_with_count)
+        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
+
+        return dicts_with_label
 
     def get_key_to_percentage(self):
         keys_with_count = []
@@ -114,6 +122,7 @@ class PlaylistStatistics:
 
         intervals = []
 
+        # TODO Rather than using section comments, extract into helper methods for first interval, middle intervals, last interval
         # First interval
         first_interval = AttributeDistributionInterval(None, first_interval_max)
 
@@ -170,8 +179,12 @@ class PlaylistStatistics:
         return intervals_with_percentage
 
     @staticmethod
-    def __convert_attribute_distribution_intervals_to_dicts_with_label(intervals, get_label_for_value):
+    def __convert_attribute_distribution_intervals_to_dicts_with_label(intervals, get_label_for_value=None):
         dicts_with_label = []
+
+        # By default, for labels just convert the value to string
+        if get_label_for_value is None:
+            get_label_for_value = str
 
         for interval in intervals:
             dict_with_label = {
