@@ -11,18 +11,25 @@ class PlaylistStatistics:
         last_interval_min_duration = 300000  # 300 seconds -> 05:00
         interval_size = 30000  # 30 seconds
 
-        duration_intervals_with_count = self.__get_intervals_with_count(
+        intervals = self.__get_attribute_distribution_intervals(
             first_interval_max_duration, last_interval_min_duration, interval_size,
-            lambda track: track.duration_ms, lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
+            lambda track: track.duration_ms)
 
-        return self.__convert_counts_to_percentages(duration_intervals_with_count)
+        total = len(self.tracks)
+        for interval in intervals:
+            interval.update_percentage(total)
+
+        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(
+            intervals, get_label_for_value=lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
+
+        return dicts_with_label
 
     def get_release_year_interval_to_percentage(self):
         first_interval_max_year = 1979
         last_interval_min_year = 2020
         interval_size = 10
 
-        year_intervals_with_count = self.__get_intervals_with_count(
+        year_intervals_with_count = self.__get_attribute_distribution_intervals(
             first_interval_max_year, last_interval_min_year, interval_size, lambda track: track.release_year)
 
         return self.__convert_counts_to_percentages(year_intervals_with_count)
@@ -32,7 +39,7 @@ class PlaylistStatistics:
         last_interval_min_popularity = 90
         interval_size = 10
 
-        popularity_intervals_with_count = self.__get_intervals_with_count(
+        popularity_intervals_with_count = self.__get_attribute_distribution_intervals(
             first_interval_max_popularity, last_interval_min_popularity, interval_size, lambda track: track.popularity)
 
         return self.__convert_counts_to_percentages(popularity_intervals_with_count)
@@ -42,7 +49,7 @@ class PlaylistStatistics:
         last_interval_min_tempo = 180
         interval_size = 10
 
-        tempo_intervals_with_count = self.__get_intervals_with_count(
+        tempo_intervals_with_count = self.__get_attribute_distribution_intervals(
             first_interval_max_tempo, last_interval_min_tempo, interval_size, lambda track: track.tempo)
 
         return self.__convert_counts_to_percentages(tempo_intervals_with_count)
@@ -106,12 +113,10 @@ class PlaylistStatistics:
 
         return self.__convert_counts_to_percentages(key_signatures_with_count)
 
-    def __get_intervals_with_count(self, first_interval_max, last_interval_min, interval_size,
-                                   get_track_value, get_label_for_value=None):
-        intervals = []
+    def __get_attribute_distribution_intervals(
+            self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
 
-        if get_label_for_value is None:
-            get_label_for_value = str
+        intervals = []
 
         # First interval
         first_interval = AttributeDistributionInterval(None, first_interval_max)
@@ -119,7 +124,7 @@ class PlaylistStatistics:
         # TODO can extract general method is_attribute_value_in_range into AttributeDistributionInterval
         #   -> special handling for first & last interval by checking for None
         for track in self.tracks:
-            if get_track_value(track) <= first_interval_max:
+            if get_attribute_value_of_track(track) <= first_interval_max:
                 first_interval.count += 1
 
         intervals.append(first_interval)
@@ -130,7 +135,7 @@ class PlaylistStatistics:
             interval = AttributeDistributionInterval(min_value, max_value)
 
             for track in self.tracks:
-                if min_value <= get_track_value(track) <= max_value:
+                if min_value <= get_attribute_value_of_track(track) <= max_value:
                     interval.count += 1
 
             intervals.append(interval)
@@ -139,27 +144,15 @@ class PlaylistStatistics:
         last_interval = AttributeDistributionInterval(last_interval_min, None)
 
         for track in self.tracks:
-            if get_track_value(track) >= last_interval_min:
+            if get_attribute_value_of_track(track) >= last_interval_min:
                 last_interval.count += 1
 
         intervals.append(last_interval)
 
-        # Transform into array of dicts, each with "label" & "count"
-        # TODO is temporary solution, will change slightly, see __convert_counts_to_percentages
-        intervals_with_counts = []
-        for interval in intervals:
-            interval_with_count = {
-                "label": PlaylistStatistics.__get_label_for_interval(
-                    interval.min_value, interval.max_value, get_label_for_value),
-                "count": interval.count
-            }
-            intervals_with_counts.append(interval_with_count)
+        return intervals
 
-        return intervals_with_counts
-
-    # TODO Create helper method in AttributeDistributionInterval, update_percentage(),
-    #   Then transform into dict afterwards
-    #   But note that for key & mode it works a bit differently, cannot use interval there
+    # TODO Still keep this method for key & mode, there it works differently, cannot use AttributeDistributionInterval
+    # TODO can pass total (len(self.tracks)), then can make it static
     def __convert_counts_to_percentages(self, intervals_with_count):
         intervals_with_percentage = []
 
@@ -177,6 +170,21 @@ class PlaylistStatistics:
         return intervals_with_percentage
 
     @staticmethod
+    def __convert_attribute_distribution_intervals_to_dicts_with_label(intervals, get_label_for_value):
+        dicts_with_label = []
+
+        for interval in intervals:
+            dict_with_label = {
+                "label": PlaylistStatistics.__get_label_for_interval(
+                    interval.min_value, interval.max_value, get_label_for_value),
+                "count": interval.count,
+                "percentage": interval.percentage
+            }
+            dicts_with_label.append(dict_with_label)
+
+        return dicts_with_label
+
+    @staticmethod
     def __get_label_for_interval(min_value, max_value, get_label_for_value):
         if min_value is None:
             return f"≤ {get_label_for_value(max_value)}"
@@ -186,8 +194,6 @@ class PlaylistStatistics:
 
         return f"{get_label_for_value(min_value)} - {get_label_for_value(max_value)}"
 
-    # TODO Need this method here temporarily to get the duration label.
-    #  Remove later when view code moved out of this calss
     @staticmethod
     def __get_duration_string(duration_ms):
         total_seconds = duration_ms // 1000
