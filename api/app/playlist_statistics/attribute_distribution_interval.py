@@ -8,6 +8,13 @@ class AttributeDistributionInterval:
     def update_percentage(self, total_count):
         self.percentage = 100 * self.count / total_count
 
-    # TODO Add method to check if value is in interval
-    # TODO maybe add more high level method update_count(all_values)
-        # -> e.g. it contains release_year values of all tracks, then counts how many are within this interval
+    # TODO there is a bug, values are now different than with version before
+    def is_value_in_interval(self, value):
+        if self.min_value is None and self.max_value is None:
+            return True
+        if self.min_value is None:
+            return value <= self.max_value
+        if self.max_value is None:
+            return value <= self.min_value
+
+        return self.min_value <= value <= self.max_value
