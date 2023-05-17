@@ -7,6 +7,7 @@ import requests
 
 from spotify.spotify_client import SpotifyClient
 from spotify.spotify_track import SpotifyTrack
+from playlist_statistics.playlist_statistics import PlaylistStatistics
 from http_error import HttpError
 
 config = configparser.ConfigParser()
@@ -132,12 +133,14 @@ def get_playlist_by_id(playlist_id):
         # Need to explicitly copy the dict, else changing the dict would change the original object
         playlist_dict = dict(playlist.__dict__)
 
+        statistics = PlaylistStatistics(playlist.tracks)
+
         # Add calculated values
-        playlist_dict["total_duration_ms"] = playlist.get_total_duration_ms()
-        playlist_dict["average_duration_ms"] = playlist.get_average_duration_ms()
-        playlist_dict["average_release_year"] = playlist.get_average_release_year()
-        playlist_dict["average_popularity"] = playlist.get_average_popularity()
-        playlist_dict["average_tempo"] = playlist.get_average_tempo()
+        playlist_dict["total_duration_ms"] = statistics.get_total_duration_ms()
+        playlist_dict["average_duration_ms"] = statistics.get_average_duration_ms()
+        playlist_dict["average_release_year"] = statistics.get_average_release_year()
+        playlist_dict["average_popularity"] = statistics.get_average_popularity()
+        playlist_dict["average_tempo"] = statistics.get_average_tempo()
 
         # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
         playlist_dict["tracks"] = []
@@ -159,21 +162,22 @@ def get_attribute_distribution_of_playlist(playlist_id):
         attribute = request.args.get("attribute")
 
         playlist = spotify_client.get_playlist_by_id(playlist_id)
+        statistics = PlaylistStatistics(playlist.tracks)
 
         if attribute == "duration_ms":
-            attribute_value_to_percentage = playlist.get_duration_interval_to_percentage()
+            attribute_value_to_percentage = statistics.get_duration_interval_to_percentage()
         elif attribute == "release_year":
-            attribute_value_to_percentage = playlist.get_release_year_interval_to_percentage()
+            attribute_value_to_percentage = statistics.get_release_year_interval_to_percentage()
         elif attribute == "popularity":
-            attribute_value_to_percentage = playlist.get_popularity_interval_to_percentage()
+            attribute_value_to_percentage = statistics.get_popularity_interval_to_percentage()
         elif attribute == "tempo":
-            attribute_value_to_percentage = playlist.get_tempo_interval_to_percentage()
+            attribute_value_to_percentage = statistics.get_tempo_interval_to_percentage()
         elif attribute == "key":
-            attribute_value_to_percentage = playlist.get_key_to_percentage()
+            attribute_value_to_percentage = statistics.get_key_to_percentage()
         elif attribute == "mode":
-            attribute_value_to_percentage = playlist.get_mode_to_percentage()
+            attribute_value_to_percentage = statistics.get_mode_to_percentage()
         elif attribute == "key_signature":
-            attribute_value_to_percentage = playlist.get_key_signature_to_percentage()
+            attribute_value_to_percentage = statistics.get_key_signature_to_percentage()
         else:
             raise HttpError(502, f"Invalid attribute: '{attribute}'")
 
