@@ -13,40 +13,27 @@ class SpotifyPlaylist:
         self.tracks = []
         self.statistics = None
 
+    # TODO Inline all delegating methods & get rid of update_statistics method.
+    #  -> Create PlaylistStatistics object outside, based on playlist, once playlist is processed.
     def get_total_duration_ms(self):
-        total_duration_ms = 0
-
-        for track in self.tracks:
-            total_duration_ms += track.duration_ms
-
-        return total_duration_ms
+        self.update_statistics()
+        return self.statistics.get_total_duration_ms()
 
     def get_average_duration_ms(self):
-        return self.get_total_duration_ms() / len(self.tracks)
+        self.update_statistics()
+        return self.statistics.get_average_duration_ms()
 
     def get_average_popularity(self):
-        total_popularity = 0.0
-
-        for track in self.tracks:
-            total_popularity += track.popularity
-
-        return total_popularity / len(self.tracks)
+        self.update_statistics()
+        return self.statistics.get_average_popularity()
 
     def get_average_release_year(self):
-        total_year = 0.0
-
-        for track in self.tracks:
-            total_year += track.release_year
-
-        return total_year / len(self.tracks)
+        self.update_statistics()
+        return self.statistics.get_average_release_year()
 
     def get_average_tempo(self):
-        total_tempo = 0.0
-
-        for track in self.tracks:
-            total_tempo += track.tempo
-
-        return total_tempo / len(self.tracks)
+        self.update_statistics()
+        return self.statistics.get_average_tempo()
 
     # TODO this is temporarily called for each method where statistics needed
     #   Will move it out later, when methods are inlined and statistics accessed directly from outside
@@ -81,6 +68,7 @@ class SpotifyPlaylist:
         self.update_statistics()
         return self.statistics.get_key_signature_to_percentage()
 
+    # TODO can remove
     @staticmethod
     def __get_duration_string(duration_ms):
         total_seconds = duration_ms // 1000
