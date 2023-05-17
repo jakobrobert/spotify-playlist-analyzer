@@ -122,25 +122,16 @@ class PlaylistStatistics:
 
         all_intervals = []
 
-        # TODO remove the now obsolete section comments
-
-        # Collect values of all tracks
-        all_values = [get_attribute_value_of_track(track) for track in self.tracks]
-
-        # Create first interval
         all_intervals.append(PlaylistStatistics.__create_first_interval(first_interval_max))
-
-        # Create middle intervals
         all_intervals.extend(
             PlaylistStatistics.__create_middle_intervals(first_interval_max, last_interval_min, interval_size))
-
-        # Create last interval
         all_intervals.append(PlaylistStatistics.__create_last_interval(last_interval_min))
+
+        all_values = [get_attribute_value_of_track(track) for track in self.tracks]
 
         for interval in all_intervals:
             interval.update_count(all_values)
 
-        # Update percentages
         total_count = len(self.tracks)
         for interval in all_intervals:
             interval.update_percentage(total_count)
