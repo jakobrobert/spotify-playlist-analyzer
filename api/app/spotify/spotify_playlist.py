@@ -67,12 +67,3 @@ class SpotifyPlaylist:
     def get_key_signature_to_percentage(self):
         self.update_statistics()
         return self.statistics.get_key_signature_to_percentage()
-
-    # TODO can remove
-    @staticmethod
-    def __get_duration_string(duration_ms):
-        total_seconds = duration_ms // 1000
-        total_minutes = total_seconds // 60
-        remaining_seconds = total_seconds % 60
-
-        return f"{total_minutes:02d}:{remaining_seconds:02d}"
