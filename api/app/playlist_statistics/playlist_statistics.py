@@ -122,26 +122,27 @@ class PlaylistStatistics:
 
         all_intervals = []
 
+        # Collect values of all tracks
         all_values = [get_attribute_value_of_track(track) for track in self.tracks]
 
-        # TODO Split Phases: First create all the intervals, then for all intervals calculate count
-
-        # Calculate count for first interval
+        # Create first interval
         first_interval = AttributeDistributionInterval(None, first_interval_max)
-        first_interval.count = sum(first_interval.is_value_in_interval(value) for value in all_values)
         all_intervals.append(first_interval)
 
-        # Calculate counts for middle intervals
+        # Create middle intervals
         for min_value in range(first_interval_max + 1, last_interval_min, interval_size):
             max_value = min_value + interval_size - 1
             middle_interval = AttributeDistributionInterval(min_value, max_value)
-            middle_interval.count = sum(middle_interval.is_value_in_interval(value) for value in all_values)
             all_intervals.append(middle_interval)
 
-        # Calculate count for last interval
+        # Create last interval
         last_interval = AttributeDistributionInterval(last_interval_min, None)
-        last_interval.count = sum(last_interval.is_value_in_interval(value) for value in all_values)
+
         all_intervals.append(last_interval)
+
+        # TODO calculate counts of all intervals
+        for interval in all_intervals:
+            interval.count = sum(interval.is_value_in_interval(value) for value in all_values)
 
         # Update percentages
         total_count = len(self.tracks)
