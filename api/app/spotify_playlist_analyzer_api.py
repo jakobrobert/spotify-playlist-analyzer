@@ -130,10 +130,10 @@ def get_playlist_by_id(playlist_id):
             artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
             expected_key, expected_mode, expected_key_signature, genres_substring)
 
+        statistics = PlaylistStatistics(playlist.tracks)
+
         # Need to explicitly copy the dict, else changing the dict would change the original object
         playlist_dict = dict(playlist.__dict__)
-
-        statistics = PlaylistStatistics(playlist.tracks)
 
         # Add calculated values
         playlist_dict["total_duration_ms"] = statistics.get_total_duration_ms()
