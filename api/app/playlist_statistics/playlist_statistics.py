@@ -120,54 +120,35 @@ class PlaylistStatistics:
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
 
-        intervals = []
+        all_intervals = []
+
+        all_values = [get_attribute_value_of_track(track) for track in self.tracks]
+
+        # TODO Split Phases: First create all the intervals, then for all intervals calculate count
 
         # Calculate count for first interval
         first_interval = AttributeDistributionInterval(None, first_interval_max)
-
-        # TODO the loops for calculating counts look duplicated.
-        # TODO different approach
-        #   collect values of all the tracks in one list
-        #   create all the intervals (not calculating counts yet)
-        #   iterate through the intervals, call new method interval.update_count(values)
-        #   Then function will be shorter, section comments ("First interval") etc. not needed.
-        #       If still function too long, extract helper methods to get rid of section comments
-
-        for track in self.tracks:
-            value = get_attribute_value_of_track(track)
-            if first_interval.is_value_in_interval(value):
-                first_interval.count += 1
-
-        intervals.append(first_interval)
+        first_interval.count = sum(first_interval.is_value_in_interval(value) for value in all_values)
+        all_intervals.append(first_interval)
 
         # Calculate counts for middle intervals
         for min_value in range(first_interval_max + 1, last_interval_min, interval_size):
             max_value = min_value + interval_size - 1
             middle_interval = AttributeDistributionInterval(min_value, max_value)
-
-            for track in self.tracks:
-                value = get_attribute_value_of_track(track)
-                if middle_interval.is_value_in_interval(value):
-                    middle_interval.count += 1
-
-            intervals.append(middle_interval)
+            middle_interval.count = sum(middle_interval.is_value_in_interval(value) for value in all_values)
+            all_intervals.append(middle_interval)
 
         # Calculate count for last interval
         last_interval = AttributeDistributionInterval(last_interval_min, None)
-
-        for track in self.tracks:
-            value = get_attribute_value_of_track(track)
-            if last_interval.is_value_in_interval(value):
-                last_interval.count += 1
-
-        intervals.append(last_interval)
+        last_interval.count = sum(last_interval.is_value_in_interval(value) for value in all_values)
+        all_intervals.append(last_interval)
 
         # Update percentages
         total_count = len(self.tracks)
-        for middle_interval in intervals:
-            middle_interval.update_percentage(total_count)
+        for interval in all_intervals:
+            interval.update_percentage(total_count)
 
-        return intervals
+        return all_intervals
 
     # TODO Still keep this method for key & mode, there it works differently, cannot use AttributeDistributionInterval
     # TODO can pass total (len(self.tracks)), then can make it static
