@@ -122,22 +122,20 @@ class PlaylistStatistics:
 
         all_intervals = []
 
+        # TODO remove the now obsolete section comments
+
         # Collect values of all tracks
         all_values = [get_attribute_value_of_track(track) for track in self.tracks]
 
         # Create first interval
-        first_interval = AttributeDistributionInterval(None, first_interval_max)
-        all_intervals.append(first_interval)
+        all_intervals.append(PlaylistStatistics.__create_first_interval(first_interval_max))
 
         # Create middle intervals
-        for min_value in range(first_interval_max + 1, last_interval_min, interval_size):
-            max_value = min_value + interval_size - 1
-            middle_interval = AttributeDistributionInterval(min_value, max_value)
-            all_intervals.append(middle_interval)
+        all_intervals.extend(
+            PlaylistStatistics.__create_middle_intervals(first_interval_max, last_interval_min, interval_size))
 
         # Create last interval
-        last_interval = AttributeDistributionInterval(last_interval_min, None)
-        all_intervals.append(last_interval)
+        all_intervals.append(PlaylistStatistics.__create_last_interval(last_interval_min))
 
         for interval in all_intervals:
             interval.update_count(all_values)
@@ -149,12 +147,15 @@ class PlaylistStatistics:
 
         return all_intervals
 
-    # TODO Still keep this method for key & mode, there it works differently, cannot use AttributeDistributionInterval
+    # WARNING Still need to keep this method for key & mode#
+    #   -> There it works differently, cannot use AttributeDistributionInterval
     # TODO can pass total (len(self.tracks)), then can make it static
+    # TODO rename, those are actually not intervals, but categories / discrete values
     def __convert_counts_to_percentages(self, intervals_with_count):
         intervals_with_percentage = []
 
         for interval_with_count in intervals_with_count:
+            # TODO inline proportion
             proportion = interval_with_count["count"] / len(self.tracks)
             percentage = proportion * 100.0
 
@@ -166,6 +167,24 @@ class PlaylistStatistics:
             intervals_with_percentage.append(interval_with_percentage)
 
         return intervals_with_percentage
+
+    @staticmethod
+    def __create_first_interval(first_interval_max):
+        return AttributeDistributionInterval(None, first_interval_max)
+
+    @staticmethod
+    def __create_middle_intervals(first_interval_max, last_interval_min, interval_size):
+        middle_intervals = []
+
+        for min_value in range(first_interval_max + 1, last_interval_min, interval_size):
+            max_value = min_value + interval_size - 1
+            middle_intervals.append(AttributeDistributionInterval(min_value, max_value))
+
+        return middle_intervals
+
+    @staticmethod
+    def __create_last_interval(last_interval_min):
+        return AttributeDistributionInterval(last_interval_min, None)
 
     @staticmethod
     def __convert_attribute_distribution_intervals_to_dicts_with_label(intervals, get_label_for_value=None):
