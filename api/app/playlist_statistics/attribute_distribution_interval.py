@@ -17,3 +17,5 @@ class AttributeDistributionInterval:
             return value >= self.min_value
 
         return self.min_value <= value <= self.max_value
+
+    # TODO can add method update_count(values), then make is_value_in_interval private
