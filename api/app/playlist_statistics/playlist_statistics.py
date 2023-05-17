@@ -137,12 +137,10 @@ class PlaylistStatistics:
 
         # Create last interval
         last_interval = AttributeDistributionInterval(last_interval_min, None)
-
         all_intervals.append(last_interval)
 
-        # TODO calculate counts of all intervals
         for interval in all_intervals:
-            interval.count = sum(interval.is_value_in_interval(value) for value in all_values)
+            interval.update_count(all_values)
 
         # Update percentages
         total_count = len(self.tracks)
