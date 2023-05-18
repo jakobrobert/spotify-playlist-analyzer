@@ -35,10 +35,12 @@ class ApiClient:
 
         return self.__send_get_request(sub_url, request_params)
 
-    # TODO add playlist_name
-    def create_playlist(self, track_ids):
+    def create_playlist(self, playlist_name, track_ids):
         sub_url = f"playlist"
-        data = {"track_ids": track_ids}
+        data = {
+            "playlist_name": playlist_name,
+            "track_ids": track_ids
+        }
         response_data = self.__send_post_request(sub_url, data=data)
 
         return response_data["playlist_id"]
