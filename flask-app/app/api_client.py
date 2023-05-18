@@ -24,7 +24,7 @@ class ApiClient:
 
         playlist.tracks = []
         for track_data in playlist_data["tracks"]:
-            track = self.__create_spotify_track(track_data)
+            track = ApiClient.__create_spotify_track(track_data)
             playlist.tracks.append(track)
 
         return playlist
@@ -81,14 +81,9 @@ class ApiClient:
         response = requests.get(url, params=params)
         response_data = response.json()
 
-        if "error" in response_data:
-            error = response_data["error"]
-            status_code = error["status_code"]
-            title = error["title"]
-            message = error["message"]
-            traceback_items = error["traceback_items"]
-
-            raise HttpError(status_code, title, message, traceback_items)
+        http_error = ApiClient.__create_http_error_from_response_data(response_data)
+        if http_error:
+            raise http_error
 
         return response_data
 
@@ -98,17 +93,24 @@ class ApiClient:
         response = requests.post(url, json=data)
         response_data = response.json()
 
-        if "error" in response_data:
-            # TODO same code as in __send_get_request, therefore extract method
-            error = response_data["error"]
-            status_code = error["status_code"]
-            title = error["title"]
-            message = error["message"]
-            traceback_items = error["traceback_items"]
-
-            raise HttpError(status_code, title, message, traceback_items)
+        http_error = ApiClient.__create_http_error_from_response_data(response_data)
+        if http_error:
+            raise http_error
 
         return response_data
+
+    @staticmethod
+    def __create_http_error_from_response_data(response_data):
+        if "error" not in response_data:
+            return None
+
+        error = response_data["error"]
+        status_code = error["status_code"]
+        title = error["title"]
+        message = error["message"]
+        traceback_items = error["traceback_items"]
+
+        return HttpError(status_code, title, message, traceback_items)
 
     @staticmethod
     def __create_spotify_track(track_data):
