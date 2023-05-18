@@ -194,9 +194,7 @@ def create_playlist():
     try:
         request_data = request.json
         playlist_name = request_data["playlist_name"]
-        print(f"playlist_name: {playlist_name}")
         track_ids = request_data["track_ids"]
-        print(f"track_ids: {track_ids}")
         playlist_id = spotify_client.create_playlist(playlist_name, track_ids)
 
         return jsonify({"playlist_id": playlist_id})
