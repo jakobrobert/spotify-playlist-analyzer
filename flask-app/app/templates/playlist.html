@@ -207,7 +207,7 @@
         Don't want to waste time with that now -->
         <form action="{{ url_for('export_playlist_view.export_playlist') }}" method="POST">
             <label for="playlist_name">Playlist Name:</label>
-            <input type="text" id="playlist_name" name="playlist_name"> <!-- TODO add required to check for empty -->
+            <input type="text" id="playlist_name" name="playlist_name" required>
             {% for track in playlist.tracks %}
                 <input type="hidden" name="track_ids[]" value="{{ track.id }}">
             {% endfor %}
