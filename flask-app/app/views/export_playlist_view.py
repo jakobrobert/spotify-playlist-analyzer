@@ -19,14 +19,16 @@ export_playlist_view = Blueprint("export_playlist_view", __name__)
 @export_playlist_view.route(URL_PREFIX + "export-playlist", methods=["POST"])
 def export_playlist():
     try:
+        playlist_name = request.form["playlist_name"]
+
         track_ids = request.form.getlist("track_ids[]")
-        print(f"export_playlist => track_ids: {track_ids}")     # Looks fine
         if not track_ids:
             raise HttpError(status_code=400, title="export_playlist failed", message="'track_ids' is None or empty")
 
-        exported_playlist_id = api_client.export_playlist(track_ids)
-        exported_playlist_url = f"https://open.spotify.com/playlist/{exported_playlist_id}"
-        return render_template("export_playlist.html", exported_playlist_url=exported_playlist_url)
+        playlist_id = api_client.create_playlist(playlist_name, track_ids)
+        playlist_url = f"https://open.spotify.com/playlist/{playlist_id}"
+
+        return render_template("export_playlist.html", exported_playlist_url=playlist_url)
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception:
