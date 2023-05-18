@@ -194,9 +194,13 @@ def get_attribute_distribution_of_playlist(playlist_id):
 @app.route(URL_PREFIX + "playlist/export", methods=["POST"])
 def export_playlist():
     try:
-        playlist_name = "Test by SpotifyPlaylistAnalyzer"
-        track_ids = request.json["track_ids"]
+        request_data = request.json
+        playlist_name = request_data.get("playlist_name", "Test by SpotifyPlaylistAnalyzer")
+        print(f"playlist_name: {playlist_name}")
+        track_ids = request_data["track_ids"]
+        print(f"track_ids: {track_ids}")
         exported_playlist_id = spotify_client.create_playlist(playlist_name, track_ids)
+        # TODO simplify, just "playlist_id" is enough
         return jsonify({"exported_playlist_id": exported_playlist_id})
     except HttpError as error:
         return __create_error_response(error)
