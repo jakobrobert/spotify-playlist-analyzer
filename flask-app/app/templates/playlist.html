@@ -58,6 +58,7 @@
         </form>
         <br>
 
+        <!-- TODO can leave out this heading, and change headings to just "Sort Tracks", "Filter Tracks", "Tracks Table" -->
         <h2>Tracks</h2>
 
         <h4>Sort Tracks by</h4>
@@ -199,10 +200,14 @@
         </form>
         <br>
 
+        <!-- TODO add heading -->
+
         <!-- Form with hidden input element so track ids can be send to POST endpoint.
         Would be cleaner with JavaScript, but was struggling once with adding JavaScript files in this project,
         Don't want to waste time with that now -->
         <form action="{{ url_for('export_playlist_view.export_playlist') }}" method="POST">
+            <label for="playlist_name">Playlist Name:</label>
+            <input type="text" id="playlist_name" name="playlist_name"> <!-- TODO add required to check for empty -->
             {% for track in playlist.tracks %}
                 <input type="hidden" name="track_ids[]" value="{{ track.id }}">
             {% endfor %}

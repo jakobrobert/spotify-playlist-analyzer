@@ -193,7 +193,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
 def create_playlist():
     try:
         request_data = request.json
-        playlist_name = request_data.get("playlist_name", "Test by SpotifyPlaylistAnalyzer")
+        playlist_name = request_data["playlist_name"]
         print(f"playlist_name: {playlist_name}")
         track_ids = request_data["track_ids"]
         print(f"track_ids: {track_ids}")
