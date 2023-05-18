@@ -35,12 +35,13 @@ class ApiClient:
 
         return self.__send_get_request(sub_url, request_params)
 
-    def export_playlist(self, track_ids):
-        sub_url = f"playlist/export"
+    # TODO add playlist_name
+    def create_playlist(self, track_ids):
+        sub_url = f"playlist"
         data = {"track_ids": track_ids}
         response_data = self.__send_post_request(sub_url, data=data)
 
-        return response_data["exported_playlist_id"]
+        return response_data["playlist_id"]
 
     def get_valid_keys(self):
         return self.__send_get_request("valid-keys")
