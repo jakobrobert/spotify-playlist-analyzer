@@ -189,19 +189,17 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return __create_error_response(error)
 
 
-# TODO Rename endpoint to create_playlist & change URL to just "playlist",
-#  method POST is enough to distinguish that it creates a playlist and does not get it
-@app.route(URL_PREFIX + "playlist/export", methods=["POST"])
-def export_playlist():
+@app.route(URL_PREFIX + "playlist", methods=["POST"])
+def create_playlist():
     try:
         request_data = request.json
         playlist_name = request_data.get("playlist_name", "Test by SpotifyPlaylistAnalyzer")
         print(f"playlist_name: {playlist_name}")
         track_ids = request_data["track_ids"]
         print(f"track_ids: {track_ids}")
-        exported_playlist_id = spotify_client.create_playlist(playlist_name, track_ids)
-        # TODO simplify, just "playlist_id" is enough
-        return jsonify({"exported_playlist_id": exported_playlist_id})
+        playlist_id = spotify_client.create_playlist(playlist_name, track_ids)
+
+        return jsonify({"playlist_id": playlist_id})
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
