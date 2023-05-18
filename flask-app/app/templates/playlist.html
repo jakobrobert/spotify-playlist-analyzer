@@ -14,7 +14,7 @@
         <h1>Playlist: {{ playlist.name }}</h1>
         <br>
 
-        <h2>General Info</h2>
+        <h2>Summary</h2>
         <table>
             <tr>
                 <td># Tracks:&nbsp;</td>
@@ -53,15 +53,11 @@
                     </option>
                 {% endfor %}
             </select>
-            <br>
             <button class="btn btn-secondary" type="submit">Show</button>
         </form>
         <br>
 
-        <!-- TODO can leave out this heading, and change headings to just "Sort Tracks", "Filter Tracks", "Tracks Table" -->
-        <h2>Tracks</h2>
-
-        <h4>Sort Tracks by</h4>
+        <h2>Sort Tracks</h2>
         <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <select class="form-control" name="sort_by">
                 <option value="none" {% if sort_by == "none" %} selected {% endif %}>
@@ -116,7 +112,7 @@
         </form>
         <br>
 
-        <h4>Filter Tracks by</h4>
+        <h2>Filter Tracks</h2>
         <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <div>
                 <input type="radio" id="artists" name="filter_by" value="artists"
@@ -200,8 +196,7 @@
         </form>
         <br>
 
-        <h4>Export Playlist</h4>
-
+        <h2>Export Playlist</h2>
         <!-- Form with hidden input element so track ids can be send to POST endpoint.
         Would be cleaner with JavaScript, but was struggling once with adding JavaScript files in this project,
         Don't want to waste time with that now -->
@@ -217,6 +212,7 @@
         </form>
         <br>
 
+        <h2>Tracks Table</h2>
         <table class="table table-bordered">
             <tr>
                 <th>#</th>
