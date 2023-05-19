@@ -34,12 +34,11 @@
             {% for index in range(attribute_value_to_percentage_1 | length) %}
                 {% set item_1 = attribute_value_to_percentage_1[index] %}
                 {% set item_2 = attribute_value_to_percentage_2[index]%}
-                <!-- TODO add count values -->
                 <tr>
                     <td>{{ item_1["label"] }}</td>
-                    <td>TODO</td>
+                    <td>{{ item_1["count"] }}</td>
                     <td>{{ playlist_1.percentage_to_string(item_1["percentage"]) }}</td>
-                    <td>TODO</td>
+                    <td>{{ item_2["count"] }}</td>
                     <td>{{ playlist_2.percentage_to_string(item_2["percentage"]) }}</td>
                 </tr>
             {% endfor %}
