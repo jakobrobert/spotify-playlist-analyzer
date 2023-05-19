@@ -165,19 +165,19 @@ def get_attribute_distribution_of_playlist(playlist_id):
         statistics = PlaylistStatistics(playlist.tracks)
 
         if attribute == "duration_ms":
-            attribute_value_to_percentage = statistics.get_duration_interval_to_percentage()
+            attribute_value_to_percentage = statistics.get_duration_distribution_items()
         elif attribute == "release_year":
-            attribute_value_to_percentage = statistics.get_release_year_interval_to_percentage()
+            attribute_value_to_percentage = statistics.get_release_year_distribution_items()
         elif attribute == "popularity":
-            attribute_value_to_percentage = statistics.get_popularity_interval_to_percentage()
+            attribute_value_to_percentage = statistics.get_popularity_distribution_items()
         elif attribute == "tempo":
-            attribute_value_to_percentage = statistics.get_tempo_interval_to_percentage()
+            attribute_value_to_percentage = statistics.get_tempo_distribution_items()
         elif attribute == "key":
-            attribute_value_to_percentage = statistics.get_key_to_percentage()
+            attribute_value_to_percentage = statistics.get_key_distribution_items()
         elif attribute == "mode":
-            attribute_value_to_percentage = statistics.get_mode_to_percentage()
+            attribute_value_to_percentage = statistics.get_mode_distribution_items()
         elif attribute == "key_signature":
-            attribute_value_to_percentage = statistics.get_key_signature_to_percentage()
+            attribute_value_to_percentage = statistics.get_key_signature_distribution_items()
         else:
             raise HttpError(502, f"Invalid attribute: '{attribute}'")
 
