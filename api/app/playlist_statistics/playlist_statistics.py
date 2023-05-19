@@ -111,6 +111,8 @@ class PlaylistStatistics:
             key_with_count["count"] += 1
 
         total_count = len(self.tracks)
+
+
         return PlaylistStatistics.__convert_counts_to_percentages(keys_with_count, total_count)
 
     def get_mode_to_percentage(self):
