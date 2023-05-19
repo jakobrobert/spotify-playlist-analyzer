@@ -31,9 +31,9 @@
                 This did not help as well:
                 app.jinja_env.filters["zip"] = zip
             -->
-            {% for index in range(attribute_value_to_percentage_1 | length) %}
-                {% set item_1 = attribute_value_to_percentage_1[index] %}
-                {% set item_2 = attribute_value_to_percentage_2[index]%}
+            {% for index in range(attribute_distribution_items_1 | length) %}
+                {% set item_1 = attribute_distribution_items_1[index] %}
+                {% set item_2 = attribute_distribution_items_2[index]%}
                 <tr>
                     <td>{{ item_1["label"] }}</td>
                     <td>{{ item_1["count"] }}</td>
