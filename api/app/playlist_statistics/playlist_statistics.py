@@ -241,21 +241,6 @@ class PlaylistStatistics:
 
         return f"{total_minutes:02d}:{remaining_seconds:02d}"
 
-    # TODO remove later
-    @staticmethod
-    def __convert_counts_to_percentages(label_count_pairs, total_count):
-        label_percentage_pairs = []
-
-        for interval_with_count in label_count_pairs:
-            percentage = 100 * interval_with_count["count"] / total_count
-            interval_with_percentage = {
-                "label": interval_with_count["label"],
-                "percentage": percentage
-            }
-            label_percentage_pairs.append(interval_with_percentage)
-
-        return label_percentage_pairs
-
     @staticmethod
     def __add_percentages_to_attribute_distribution_items(attribute_distribution_items, total_count):
         for item in attribute_distribution_items:
