@@ -181,6 +181,10 @@ def get_attribute_distribution_of_playlist(playlist_id):
         else:
             raise HttpError(502, f"Invalid attribute: '{attribute}'")
 
+        # TODO faking data to test that app correctly receives & displays it, replace by real data in PlaylistStatistics
+        for item in attribute_value_to_percentage:
+            item["count"] = 42
+
         return jsonify(attribute_value_to_percentage)
     except HttpError as error:
         return __create_error_response(error)
