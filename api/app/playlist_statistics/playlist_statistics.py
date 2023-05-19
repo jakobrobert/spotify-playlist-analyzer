@@ -6,6 +6,7 @@ class PlaylistStatistics:
     def __init__(self, tracks):
         self.tracks = tracks
 
+    # TODO for total, can use sum()
     def get_total_duration_ms(self):
         total_duration_ms = 0
 
@@ -14,6 +15,7 @@ class PlaylistStatistics:
 
         return total_duration_ms
 
+    # TODO for average calculations, can use mean()
     def get_average_duration_ms(self):
         return self.get_total_duration_ms() / len(self.tracks)
 
@@ -41,6 +43,7 @@ class PlaylistStatistics:
 
         return total_tempo / len(self.tracks)
 
+    # TODO rename all methods, they do not only contain percentage. maybe just rename to get_duration_distribution_items etc.
     def get_duration_interval_to_percentage(self):
         first_interval_max_duration = 120000  # 120 seconds -> 02:00
         last_interval_min_duration = 300000  # 300 seconds -> 05:00
@@ -50,6 +53,7 @@ class PlaylistStatistics:
             first_interval_max_duration, last_interval_min_duration, interval_size,
             lambda track: track.duration_ms)
 
+        # TODO can inline returns
         dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
         return dicts_with_label
@@ -110,10 +114,11 @@ class PlaylistStatistics:
             key_with_count = keys_with_count[track.key]
             key_with_count["count"] += 1
 
+        # Calculate percentages based on counts
         total_count = len(self.tracks)
+        PlaylistStatistics.__add_percentages_to_label_count_pairs(keys_with_count, total_count)
 
-
-        return PlaylistStatistics.__convert_counts_to_percentages(keys_with_count, total_count)
+        return keys_with_count
 
     def get_mode_to_percentage(self):
         modes_with_count = []
@@ -132,8 +137,11 @@ class PlaylistStatistics:
             mode_with_count = modes_with_count[track.mode]
             mode_with_count["count"] += 1
 
+        # Calculate percentages based on counts
         total_count = len(self.tracks)
-        return PlaylistStatistics.__convert_counts_to_percentages(modes_with_count, total_count)
+        PlaylistStatistics.__add_percentages_to_label_count_pairs(modes_with_count, total_count)
+
+        return modes_with_count
 
     def get_key_signature_to_percentage(self):
         key_signatures_with_count = []
@@ -154,8 +162,11 @@ class PlaylistStatistics:
             key_signature_with_count = key_signatures_with_count[key_signature_index]
             key_signature_with_count["count"] += 1
 
+        # Calculate percentages based on counts
         total_count = len(self.tracks)
-        return PlaylistStatistics.__convert_counts_to_percentages(key_signatures_with_count, total_count)
+        PlaylistStatistics.__add_percentages_to_label_count_pairs(key_signatures_with_count, total_count)
+
+        return key_signatures_with_count
 
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
@@ -233,9 +244,7 @@ class PlaylistStatistics:
 
         return f"{total_minutes:02d}:{remaining_seconds:02d}"
 
-    # WARNING Still need to keep this method for key, mode, etc.
-    #   -> There cannot use AttributeDistributionInterval, but those are actually not intervals, but categorical values
-    #   -> If we want to refactor that, need to do it differently
+    # TODO remove later
     @staticmethod
     def __convert_counts_to_percentages(label_count_pairs, total_count):
         label_percentage_pairs = []
@@ -249,3 +258,8 @@ class PlaylistStatistics:
             label_percentage_pairs.append(interval_with_percentage)
 
         return label_percentage_pairs
+
+    @staticmethod
+    def __add_percentages_to_label_count_pairs(label_count_pairs, total_count):
+        for item in label_count_pairs:
+            item["percentage"] = 100 * item["count"] / total_count
