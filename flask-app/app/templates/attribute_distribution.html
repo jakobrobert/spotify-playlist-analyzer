@@ -21,11 +21,14 @@
         <table class="table table-bordered">
             <tr>
                 <th>{{ attribute_name }}</th>
+                <th>Count</th>
                 <th>Percentage</th>
             </tr>
             {% for item in attribute_value_to_percentage %}
+                <!-- TODO add count -->
                 <tr>
                     <td>{{ item["label"] }}</td>
+                    <td>TODO</td>
                     <td>{{ playlist.percentage_to_string(item["percentage"]) }}</td>
                 </tr>
             {% endfor %}
