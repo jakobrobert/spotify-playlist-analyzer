@@ -14,6 +14,9 @@
         <h1>Playlist: {{ playlist.name }}</h1>
         <br>
 
+        <h2>{{ attribute_name }} Distribution [Histogram]</h2>
+        <img src="data:image/png;base64,{{ histogram_image_base64 }}">
+
         <h2>{{ attribute_name }} Distribution [Table]</h2>
         <table class="table table-bordered">
             <tr>
@@ -27,10 +30,6 @@
                 </tr>
             {% endfor %}
         </table>
-        <br>
-
-        <h2>{{ attribute_name }} Distribution [Histogram]</h2>
-        <img src="data:image/png;base64,{{ histogram_image_base64 }}">
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
