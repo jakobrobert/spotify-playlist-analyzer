@@ -6,7 +6,6 @@ class PlaylistStatistics:
     def __init__(self, tracks):
         self.tracks = tracks
 
-    # TODO for total, can use sum()
     def get_total_duration_ms(self):
         total_duration_ms = 0
 
@@ -15,7 +14,6 @@ class PlaylistStatistics:
 
         return total_duration_ms
 
-    # TODO for average calculations, can use mean()
     def get_average_duration_ms(self):
         return self.get_total_duration_ms() / len(self.tracks)
 
@@ -43,8 +41,7 @@ class PlaylistStatistics:
 
         return total_tempo / len(self.tracks)
 
-    # TODO rename all methods, they do not only contain percentage. maybe just rename to get_duration_distribution_items etc.
-    def get_duration_interval_to_percentage(self):
+    def get_duration_distribution_items(self):
         first_interval_max_duration = 120000  # 120 seconds -> 02:00
         last_interval_min_duration = 300000  # 300 seconds -> 05:00
         interval_size = 30000  # 30 seconds
@@ -58,7 +55,7 @@ class PlaylistStatistics:
 
         return dicts_with_label
 
-    def get_release_year_interval_to_percentage(self):
+    def get_release_year_distribution_items(self):
         first_interval_max_year = 1979
         last_interval_min_year = 2020
         interval_size = 10
@@ -71,7 +68,7 @@ class PlaylistStatistics:
 
         return dicts_with_label
 
-    def get_popularity_interval_to_percentage(self):
+    def get_popularity_distribution_items(self):
         first_interval_max_popularity = 9
         last_interval_min_popularity = 90
         interval_size = 10
@@ -84,7 +81,7 @@ class PlaylistStatistics:
 
         return dicts_with_label
 
-    def get_tempo_interval_to_percentage(self):
+    def get_tempo_distribution_items(self):
         first_interval_max_tempo = 89
         last_interval_min_tempo = 180
         interval_size = 10
@@ -97,8 +94,8 @@ class PlaylistStatistics:
 
         return dicts_with_label
 
-    def get_key_to_percentage(self):
-        keys_with_count = []
+    def get_key_distribution_items(self):
+        key_distribution_items = []
 
         # Add one item for each key
         for key_name in SpotifyTrack.KEY_STRINGS:
@@ -107,21 +104,21 @@ class PlaylistStatistics:
                 "count": 0
             }
 
-            keys_with_count.append(key_with_count)
+            key_distribution_items.append(key_with_count)
 
         # Calculate count for each key
         for track in self.tracks:
-            key_with_count = keys_with_count[track.key]
+            key_with_count = key_distribution_items[track.key]
             key_with_count["count"] += 1
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_label_count_pairs(keys_with_count, total_count)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(key_distribution_items, total_count)
 
-        return keys_with_count
+        return key_distribution_items
 
-    def get_mode_to_percentage(self):
-        modes_with_count = []
+    def get_mode_distribution_items(self):
+        mode_distribution_items = []
 
         # Add one item for each mode
         for mode_name in SpotifyTrack.MODE_STRINGS:
@@ -130,21 +127,21 @@ class PlaylistStatistics:
                 "count": 0
             }
 
-            modes_with_count.append(mode_with_count)
+            mode_distribution_items.append(mode_with_count)
 
         # Calculate count for each mode
         for track in self.tracks:
-            mode_with_count = modes_with_count[track.mode]
+            mode_with_count = mode_distribution_items[track.mode]
             mode_with_count["count"] += 1
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_label_count_pairs(modes_with_count, total_count)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(mode_distribution_items, total_count)
 
-        return modes_with_count
+        return mode_distribution_items
 
-    def get_key_signature_to_percentage(self):
-        key_signatures_with_count = []
+    def get_key_signature_distribution_items(self):
+        key_signature_distribution_items = []
 
         # Add one item for each key_signature
         for key_signature_name in SpotifyTrack.KEY_SIGNATURE_STRINGS:
@@ -153,20 +150,20 @@ class PlaylistStatistics:
                 "count": 0
             }
 
-            key_signatures_with_count.append(key_signature_with_count)
+            key_signature_distribution_items.append(key_signature_with_count)
 
         # Calculate count for each key_signature
         for track in self.tracks:
             key_signature = track.key_signature
             key_signature_index = SpotifyTrack.KEY_SIGNATURE_STRINGS.index(key_signature)
-            key_signature_with_count = key_signatures_with_count[key_signature_index]
+            key_signature_with_count = key_signature_distribution_items[key_signature_index]
             key_signature_with_count["count"] += 1
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_label_count_pairs(key_signatures_with_count, total_count)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(key_signature_distribution_items, total_count)
 
-        return key_signatures_with_count
+        return key_signature_distribution_items
 
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
@@ -260,6 +257,6 @@ class PlaylistStatistics:
         return label_percentage_pairs
 
     @staticmethod
-    def __add_percentages_to_label_count_pairs(label_count_pairs, total_count):
-        for item in label_count_pairs:
+    def __add_percentages_to_attribute_distribution_items(attribute_distribution_items, total_count):
+        for item in attribute_distribution_items:
             item["percentage"] = 100 * item["count"] / total_count
