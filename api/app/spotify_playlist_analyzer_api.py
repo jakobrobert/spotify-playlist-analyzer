@@ -334,7 +334,7 @@ def __filter_tracks(
         if title_substring is None:
             raise ValueError("title_substring must be defined to filter by title!")
 
-        return list(filter(lambda track: title_substring in track.title, tracks))
+        return list(filter(lambda track: __filter_accepts_title(track.title, title_substring), tracks))
 
     if filter_by == "release_year":
         if min_release_year is None:
@@ -381,12 +381,21 @@ def __filter_tracks(
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
 
+# TODO can extract method process_string_for_filter, is 4 times duplicated
 def __filter_accepts_string(actual_strings, expected_substring):
     # Ignore case & spaces
     actual_strings_processed = [string.lower().replace(" ", "") for string in actual_strings]
     expected_substring_processed = expected_substring.lower().replace(" ", "")
 
     return any(expected_substring_processed in artist for artist in actual_strings_processed)
+
+
+def __filter_accepts_title(actual_title, expected_title_substring):
+    # Ignore case & spaces
+    actual_title_processed = actual_title.lower().replace(" ", "")
+    expected_title_substring_processed = expected_title_substring.lower().replace(" ", "")
+
+    return expected_title_substring_processed in actual_title_processed
 
 
 def __get_request_param_as_int_or_none(name):
