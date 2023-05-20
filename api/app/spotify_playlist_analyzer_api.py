@@ -327,7 +327,8 @@ def __filter_tracks(
         if artists_substring is None:
             raise ValueError("artists_substring must be defined to filter by artists!")
 
-        return list(filter(lambda track: any(artists_substring in artist for artist in track.artists), tracks))
+        return list(
+            filter(lambda track: __is_value_accepted_for_artists_filter(track.artists, artists_substring), tracks))
 
     if filter_by == "title":
         if title_substring is None:
@@ -378,6 +379,10 @@ def __filter_tracks(
         return list(filter(lambda track: any(genres_substring in genre for genre in track.genres), tracks))
 
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
+
+
+def __is_value_accepted_for_artists_filter(actual_artists, expected_artists_substring):
+    return any(expected_artists_substring in artist for artist in actual_artists)
 
 
 def __get_request_param_as_int_or_none(name):
