@@ -376,7 +376,7 @@ def __filter_tracks(
         if genres_substring is None:
             raise ValueError("genres_substring must be defined to filter by genres!")
 
-        return list(filter(lambda track: any(genres_substring in genre for genre in track.genres), tracks))
+        return list(filter(lambda track: __filter_accepts_string(track.genres, genres_substring), tracks))
 
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
