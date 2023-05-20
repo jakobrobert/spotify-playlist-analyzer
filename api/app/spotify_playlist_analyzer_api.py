@@ -382,7 +382,11 @@ def __filter_tracks(
 
 
 def __is_value_accepted_for_artists_filter(actual_artists, expected_artists_substring):
-    return any(expected_artists_substring in artist for artist in actual_artists)
+    # Ignore case & spaces
+    actual_artists_processed = [artist.lower().replace(" ", "") for artist in actual_artists]
+    expected_artists_substring_processed = expected_artists_substring.lower().replace(" ", "")
+
+    return any(expected_artists_substring_processed in artist for artist in actual_artists_processed)
 
 
 def __get_request_param_as_int_or_none(name):
