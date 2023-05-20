@@ -63,8 +63,8 @@ class PlaylistStatistics:
             lambda track: track.duration_ms)
 
         # TODO can inline returns
-        # TODO fix: pass get_label_for_value lambda
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
+        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(
+            intervals, lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
 
         return dicts_with_label
 
