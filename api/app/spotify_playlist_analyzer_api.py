@@ -327,13 +327,14 @@ def __filter_tracks(
         if artists_substring is None:
             raise ValueError("artists_substring must be defined to filter by artists!")
 
-        return list(filter(lambda track: any(artists_substring in artist for artist in track.artists), tracks))
+        return list(
+            filter(lambda track: __filter_accepts_string(track.artists, artists_substring), tracks))
 
     if filter_by == "title":
         if title_substring is None:
             raise ValueError("title_substring must be defined to filter by title!")
 
-        return list(filter(lambda track: title_substring in track.title, tracks))
+        return list(filter(lambda track: __filter_accepts_title(track.title, title_substring), tracks))
 
     if filter_by == "release_year":
         if min_release_year is None:
@@ -375,9 +376,29 @@ def __filter_tracks(
         if genres_substring is None:
             raise ValueError("genres_substring must be defined to filter by genres!")
 
-        return list(filter(lambda track: any(genres_substring in genre for genre in track.genres), tracks))
+        return list(filter(lambda track: __filter_accepts_string(track.genres, genres_substring), tracks))
 
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
+
+
+def __filter_accepts_string(actual_strings, expected_substring):
+    # Ignore case & spaces
+    actual_strings_processed = [__process_string_for_filter(string) for string in actual_strings]
+    expected_substring_processed = __process_string_for_filter(expected_substring)
+
+    return any(expected_substring_processed in artist for artist in actual_strings_processed)
+
+
+def __filter_accepts_title(actual_title, expected_title_substring):
+    # Ignore case & spaces
+    actual_title_processed = __process_string_for_filter(actual_title)
+    expected_title_substring_processed = __process_string_for_filter(expected_title_substring)
+
+    return expected_title_substring_processed in actual_title_processed
+
+
+def __process_string_for_filter(original_string):
+    return original_string.lower().replace(" ", "")
 
 
 def __get_request_param_as_int_or_none(name):
