@@ -31,7 +31,7 @@ class SpotifyPlaylist:
         if not self.average_duration_ms:
             return "n/a"
 
-        return SpotifyTrack.get_duration_string_helper(int(self.average_duration_ms))
+        return SpotifyTrack.get_duration_string_helper(self.average_duration_ms)
 
     def get_average_release_year_string(self):
         if not self.average_release_year:
