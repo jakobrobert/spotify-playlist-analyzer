@@ -15,9 +15,15 @@ class PlaylistStatistics:
         return total_duration_ms
 
     def get_average_duration_ms(self):
+        if not self.tracks:
+            return None
+
         return self.get_total_duration_ms() / len(self.tracks)
 
     def get_average_popularity(self):
+        if not self.tracks:
+            return None
+
         total_popularity = 0.0
 
         for track in self.tracks:
@@ -26,6 +32,9 @@ class PlaylistStatistics:
         return total_popularity / len(self.tracks)
 
     def get_average_release_year(self):
+        if not self.tracks:
+            return None
+
         total_year = 0.0
 
         for track in self.tracks:
@@ -34,6 +43,9 @@ class PlaylistStatistics:
         return total_year / len(self.tracks)
 
     def get_average_tempo(self):
+        if not self.tracks:
+            return None
+
         total_tempo = 0.0
 
         for track in self.tracks:
