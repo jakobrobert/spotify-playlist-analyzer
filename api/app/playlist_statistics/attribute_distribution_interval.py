@@ -9,6 +9,10 @@ class AttributeDistributionInterval:
         self.count = sum(self.__is_value_in_interval(value) for value in all_values)
 
     def update_percentage(self, total_count):
+        if total_count == 0:
+            self.percentage = 0
+            return
+
         self.percentage = 100 * self.count / total_count
 
     def __is_value_in_interval(self, value):
