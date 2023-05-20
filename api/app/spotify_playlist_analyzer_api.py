@@ -381,21 +381,24 @@ def __filter_tracks(
     raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
 
-# TODO can extract method process_string_for_filter, is 4 times duplicated
 def __filter_accepts_string(actual_strings, expected_substring):
     # Ignore case & spaces
-    actual_strings_processed = [string.lower().replace(" ", "") for string in actual_strings]
-    expected_substring_processed = expected_substring.lower().replace(" ", "")
+    actual_strings_processed = [__process_string_for_filter(string) for string in actual_strings]
+    expected_substring_processed = __process_string_for_filter(expected_substring)
 
     return any(expected_substring_processed in artist for artist in actual_strings_processed)
 
 
 def __filter_accepts_title(actual_title, expected_title_substring):
     # Ignore case & spaces
-    actual_title_processed = actual_title.lower().replace(" ", "")
-    expected_title_substring_processed = expected_title_substring.lower().replace(" ", "")
+    actual_title_processed = __process_string_for_filter(actual_title)
+    expected_title_substring_processed = __process_string_for_filter(expected_title_substring)
 
     return expected_title_substring_processed in actual_title_processed
+
+
+def __process_string_for_filter(original_string):
+    return original_string.lower().replace(" ", "")
 
 
 def __get_request_param_as_int_or_none(name):
