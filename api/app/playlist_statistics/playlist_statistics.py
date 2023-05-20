@@ -254,7 +254,12 @@ class PlaylistStatistics:
 
         return f"{total_minutes:02d}:{remaining_seconds:02d}"
 
+    # This is used for categorical values like key & mode. There, cannot use AttributeDistributionInterval.
     @staticmethod
     def __add_percentages_to_attribute_distribution_items(attribute_distribution_items, total_count):
         for item in attribute_distribution_items:
+            if total_count == 0:
+                item["percentage"] = 0
+                continue
+
             item["percentage"] = 100 * item["count"] / total_count
