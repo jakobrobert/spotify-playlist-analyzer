@@ -15,9 +15,15 @@ class PlaylistStatistics:
         return total_duration_ms
 
     def get_average_duration_ms(self):
+        if not self.tracks:
+            return None
+
         return self.get_total_duration_ms() / len(self.tracks)
 
     def get_average_popularity(self):
+        if not self.tracks:
+            return None
+
         total_popularity = 0.0
 
         for track in self.tracks:
@@ -26,6 +32,9 @@ class PlaylistStatistics:
         return total_popularity / len(self.tracks)
 
     def get_average_release_year(self):
+        if not self.tracks:
+            return None
+
         total_year = 0.0
 
         for track in self.tracks:
@@ -34,6 +43,9 @@ class PlaylistStatistics:
         return total_year / len(self.tracks)
 
     def get_average_tempo(self):
+        if not self.tracks:
+            return None
+
         total_tempo = 0.0
 
         for track in self.tracks:
@@ -51,6 +63,7 @@ class PlaylistStatistics:
             lambda track: track.duration_ms)
 
         # TODO can inline returns
+        # TODO fix: pass get_label_for_value lambda
         dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
         return dicts_with_label
@@ -241,7 +254,12 @@ class PlaylistStatistics:
 
         return f"{total_minutes:02d}:{remaining_seconds:02d}"
 
+    # This is used for categorical values like key & mode. There, cannot use AttributeDistributionInterval.
     @staticmethod
     def __add_percentages_to_attribute_distribution_items(attribute_distribution_items, total_count):
         for item in attribute_distribution_items:
+            if total_count == 0:
+                item["percentage"] = 0
+                continue
+
             item["percentage"] = 100 * item["count"] / total_count

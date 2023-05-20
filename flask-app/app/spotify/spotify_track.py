@@ -32,7 +32,8 @@ class SpotifyTrack:
 
     @staticmethod
     def get_duration_string_helper(duration_ms):
-        total_seconds = duration_ms // 1000
+        duration_ms_int = int(duration_ms)
+        total_seconds = duration_ms_int // 1000
         total_minutes = total_seconds // 60
         remaining_seconds = total_seconds % 60
 
