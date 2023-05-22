@@ -143,22 +143,6 @@ def get_playlist_by_id(playlist_id):
         return __create_error_response(error)
 
 
-def __extract_filter_params_from_request():
-    return {
-        "filter_by": request.args.get("filter_by") or None,
-        "artists_substring": request.args.get("artists_substring") or None,
-        "title_substring": request.args.get("title_substring") or None,
-        "min_release_year": __get_request_param_as_int_or_none("min_release_year"),
-        "max_release_year": __get_request_param_as_int_or_none("max_release_year"),
-        "min_tempo": __get_request_param_as_int_or_none("min_tempo"),
-        "max_tempo": __get_request_param_as_int_or_none("max_tempo"),
-        "expected_key": request.args.get("expected_key") or None,
-        "expected_mode": request.args.get("expected_mode") or None,
-        "expected_key_signature": request.args.get("expected_key_signature") or None,
-        "genres_substring": request.args.get("genres_substring") or None
-    }
-
-
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
 def get_attribute_distribution_of_playlist(playlist_id):
     try:
@@ -316,6 +300,22 @@ def __sort_tracks(tracks, sort_by, order):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+
+
+def __extract_filter_params_from_request():
+    return {
+        "filter_by": request.args.get("filter_by") or None,
+        "artists_substring": request.args.get("artists_substring") or None,
+        "title_substring": request.args.get("title_substring") or None,
+        "min_release_year": __get_request_param_as_int_or_none("min_release_year"),
+        "max_release_year": __get_request_param_as_int_or_none("max_release_year"),
+        "min_tempo": __get_request_param_as_int_or_none("min_tempo"),
+        "max_tempo": __get_request_param_as_int_or_none("max_tempo"),
+        "expected_key": request.args.get("expected_key") or None,
+        "expected_mode": request.args.get("expected_mode") or None,
+        "expected_key_signature": request.args.get("expected_key_signature") or None,
+        "genres_substring": request.args.get("genres_substring") or None
+    }
 
 
 def __get_request_param_as_int_or_none(name):
