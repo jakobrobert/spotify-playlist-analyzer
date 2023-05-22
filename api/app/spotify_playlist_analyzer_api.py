@@ -307,19 +307,48 @@ def __sort_tracks(tracks, sort_by, order):
 
 
 def __extract_filter_params_from_request():
-    return {
-        "filter_by": request.args.get("filter_by") or None,
-        "artists_substring": request.args.get("artists_substring") or None,
-        "title_substring": request.args.get("title_substring") or None,
-        "min_release_year": __get_request_param_as_int_or_none("min_release_year"),
-        "max_release_year": __get_request_param_as_int_or_none("max_release_year"),
-        "min_tempo": __get_request_param_as_int_or_none("min_tempo"),
-        "max_tempo": __get_request_param_as_int_or_none("max_tempo"),
-        "expected_key": request.args.get("expected_key") or None,
-        "expected_mode": request.args.get("expected_mode") or None,
-        "expected_key_signature": request.args.get("expected_key_signature") or None,
-        "genres_substring": request.args.get("genres_substring") or None
-    }
+    params = {"filter_by": request.args.get("filter_by") or None}
+
+    if params["filter_by"] is None:
+        return params
+
+    # TODO put checks for None & raise ValueError into here, this code has the knowledge of which params are required
+    #   and it deals as a form of validation of request data, so this should be the right place
+    if params["filter_by"] == "artists":
+        params["artists_substring"] = request.args.get("artists_substring") or None
+        return params
+
+    if params["filter_by"] == "title":
+        params["title_substring"] = request.args.get("title_substring") or None
+        return params
+
+    if params["filter_by"] == "release_year":
+        params["min_release_year"] = __get_request_param_as_int_or_none("min_release_year")
+        params["max_release_year"] = __get_request_param_as_int_or_none("max_release_year")
+        return params
+
+    if params["filter_by"] == "tempo":
+        params["min_tempo"] = __get_request_param_as_int_or_none("min_tempo")
+        params["max_tempo"] = __get_request_param_as_int_or_none("max_tempo")
+        return params
+
+    if params["filter_by"] == "key":
+        params["expected_key"] = request.args.get("expected_key") or None
+        return params
+
+    if params["mode"] == "mode":
+        params["expected_mode"] = request.args.get("expected_mode") or None
+        return params
+
+    if params["key_signature"] == "expected_key_signature":
+        params["expected_key_signature"] = request.args.get("expected_key_signature") or None
+        return params
+
+    if params["filter_by"] == "genres":
+        return request.args.get("genres_substring") or None
+
+    filter_by = params["filter_by"]
+    raise ValueError(f"Invalid value for 'filter_by': '{filter_by}'")
 
 
 def __get_request_param_as_int_or_none(name):
