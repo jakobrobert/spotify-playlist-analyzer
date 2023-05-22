@@ -114,22 +114,20 @@ def get_playlist_by_id(playlist_id):
 
         __sort_tracks(playlist.tracks, sort_by, order)
 
-        filter_by = request.args.get("filter_by") or None
-        artists_substring = request.args.get("artists_substring") or None
-        title_substring = request.args.get("title_substring") or None
-        min_release_year = __get_request_param_as_int_or_none("min_release_year")
-        max_release_year = __get_request_param_as_int_or_none("max_release_year")
-        min_tempo = __get_request_param_as_int_or_none("min_tempo")
-        max_tempo = __get_request_param_as_int_or_none("max_tempo")
-        expected_key = request.args.get("expected_key") or None
-        expected_mode = request.args.get("expected_mode") or None
-        expected_key_signature = request.args.get("expected_key_signature") or None
-        genres_substring = request.args.get("genres_substring") or None
-
-        playlist.tracks = TrackFilter.filter_tracks(
-            playlist.tracks, filter_by,
-            artists_substring, title_substring, min_release_year, max_release_year, min_tempo, max_tempo,
-            expected_key, expected_mode, expected_key_signature, genres_substring)
+        filter_params = {
+            "filter_by": request.args.get("filter_by") or None,
+            "artists_substring": request.args.get("artists_substring") or None,
+            "title_substring": request.args.get("title_substring") or None,
+            "min_release_year": __get_request_param_as_int_or_none("min_release_year"),
+            "max_release_year": __get_request_param_as_int_or_none("max_release_year"),
+            "min_tempo": __get_request_param_as_int_or_none("min_tempo"),
+            "max_tempo": __get_request_param_as_int_or_none("max_tempo"),
+            "expected_key": request.args.get("expected_key") or None,
+            "expected_mode": request.args.get("expected_mode") or None,
+            "expected_key_signature": request.args.get("expected_key_signature") or None,
+            "genres_substring": request.args.get("genres_substring") or None
+        }
+        playlist.tracks = TrackFilter.filter_tracks(playlist.tracks, filter_params)
 
         statistics = PlaylistStatistics(playlist.tracks)
 
