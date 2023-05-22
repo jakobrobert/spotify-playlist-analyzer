@@ -114,19 +114,7 @@ def get_playlist_by_id(playlist_id):
 
         __sort_tracks(playlist.tracks, sort_by, order)
 
-        filter_params = {
-            "filter_by": request.args.get("filter_by") or None,
-            "artists_substring": request.args.get("artists_substring") or None,
-            "title_substring": request.args.get("title_substring") or None,
-            "min_release_year": __get_request_param_as_int_or_none("min_release_year"),
-            "max_release_year": __get_request_param_as_int_or_none("max_release_year"),
-            "min_tempo": __get_request_param_as_int_or_none("min_tempo"),
-            "max_tempo": __get_request_param_as_int_or_none("max_tempo"),
-            "expected_key": request.args.get("expected_key") or None,
-            "expected_mode": request.args.get("expected_mode") or None,
-            "expected_key_signature": request.args.get("expected_key_signature") or None,
-            "genres_substring": request.args.get("genres_substring") or None
-        }
+        filter_params = __extract_filter_params_from_request()
         playlist.tracks = TrackFilter.filter_tracks(playlist.tracks, filter_params)
 
         statistics = PlaylistStatistics(playlist.tracks)
@@ -153,6 +141,22 @@ def get_playlist_by_id(playlist_id):
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
+
+
+def __extract_filter_params_from_request():
+    return {
+        "filter_by": request.args.get("filter_by") or None,
+        "artists_substring": request.args.get("artists_substring") or None,
+        "title_substring": request.args.get("title_substring") or None,
+        "min_release_year": __get_request_param_as_int_or_none("min_release_year"),
+        "max_release_year": __get_request_param_as_int_or_none("max_release_year"),
+        "min_tempo": __get_request_param_as_int_or_none("min_tempo"),
+        "max_tempo": __get_request_param_as_int_or_none("max_tempo"),
+        "expected_key": request.args.get("expected_key") or None,
+        "expected_mode": request.args.get("expected_mode") or None,
+        "expected_key_signature": request.args.get("expected_key_signature") or None,
+        "genres_substring": request.args.get("genres_substring") or None
+    }
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
