@@ -315,8 +315,6 @@ def __extract_filter_params_from_request():
 
     # TODO change to HttpError, e.g. title "API Error" and status code 400 because the client sent wrong data to API
     # TODO can remove the "or None", just check for falsy value?
-    # TODO put checks for None & raise ValueError into here, this code has the knowledge of which params are required
-    #   and it deals as a form of validation of request data, so this should be the right place
     if filter_by == "artists":
         artists_substring = request.args.get("artists_substring") or None
         if artists_substring is None:
