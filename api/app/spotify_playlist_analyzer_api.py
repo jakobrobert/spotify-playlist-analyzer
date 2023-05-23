@@ -313,40 +313,83 @@ def __extract_filter_params_from_request():
     if filter_by is None:
         return params
 
+    # TODO change to HttpError, e.g. title "API Error" and status code 400 because the client sent wrong data to API
+    # TODO can remove the "or None", just check for falsy value?
     # TODO put checks for None & raise ValueError into here, this code has the knowledge of which params are required
     #   and it deals as a form of validation of request data, so this should be the right place
     if filter_by == "artists":
-        params["artists_substring"] = request.args.get("artists_substring") or None
+        artists_substring = request.args.get("artists_substring") or None
+        if artists_substring is None:
+            raise ValueError("'artists_substring' is required if 'filter_by' == 'artists'")
+
+        params["artists_substring"] = artists_substring
         return params
 
     if filter_by == "title":
-        params["title_substring"] = request.args.get("title_substring") or None
+        title_substring = request.args.get("title_substring") or None
+        if title_substring is None:
+            raise ValueError("'title_substring' is required if 'filter_by' == 'title'")
+
+        params["title_substring"] = title_substring
         return params
 
     if filter_by == "release_year":
-        params["min_release_year"] = __get_request_param_as_int_or_none("min_release_year")
-        params["max_release_year"] = __get_request_param_as_int_or_none("max_release_year")
+        min_release_year = __get_request_param_as_int_or_none("min_release_year")
+        if min_release_year is None:
+            raise ValueError("'min_release_year' is required if 'filter_by' == 'release_year'")
+        
+        max_release_year = __get_request_param_as_int_or_none("max_release_year")
+        if max_release_year is None:
+            raise ValueError("'max_release_year' is required if 'filter_by' == 'release_year'")
+
+        params["min_release_year"] = min_release_year
+        params["max_release_year"] = max_release_year
         return params
 
     if filter_by == "tempo":
-        params["min_tempo"] = __get_request_param_as_int_or_none("min_tempo")
-        params["max_tempo"] = __get_request_param_as_int_or_none("max_tempo")
+        min_tempo = __get_request_param_as_int_or_none("min_tempo")
+        if min_tempo is None:
+            raise ValueError("'min_tempo' is required if 'filter_by' == 'tempo'")
+
+        max_tempo = __get_request_param_as_int_or_none("max_tempo")
+        if max_tempo is None:
+            raise ValueError("'max_tempo' is required if 'filter_by' == 'tempo'")
+        
+        params["min_tempo"] = min_tempo
+        params["max_tempo"] = max_tempo
         return params
 
     if filter_by == "key":
-        params["expected_key"] = request.args.get("expected_key") or None
+        expected_key = request.args.get("expected_key") or None
+        if expected_key is None:
+            raise ValueError("'expected_key' is required if 'filter_by' == 'key'")
+
+        params["expected_key"] = expected_key
         return params
 
     if filter_by == "mode":
-        params["expected_mode"] = request.args.get("expected_mode") or None
+        expected_mode = request.args.get("expected_mode") or None
+        if expected_mode is None:
+            raise ValueError("'expected_mode' is required if 'filter_by' == 'mode'")
+
+        params["expected_mode"] = expected_mode
         return params
 
     if filter_by == "key_signature":
-        params["expected_key_signature"] = request.args.get("expected_key_signature") or None
+        expected_key_signature = request.args.get("expected_key_signature") or None
+        if expected_key_signature is None:
+            raise ValueError("'expected_key_signature' is required if 'filter_by' == 'key_signature'")
+
+        params["expected_key_signature"] = expected_key_signature
         return params
 
     if filter_by == "genres":
-        return request.args.get("genres_substring") or None
+        genres_substring = request.args.get("genres_substring") or None
+        if genres_substring is None:
+            raise ValueError("'genres_substring' is required if 'filter_by' == 'genres'")
+
+        params["genres_substring"] = genres_substring
+        return params
 
     raise ValueError(f"Invalid value for 'filter_by': '{filter_by}'")
 

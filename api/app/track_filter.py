@@ -6,6 +6,7 @@ class TrackFilter:
         if filter_by is None:
             return tracks
 
+        # TODO remove ValueError here when moved into __extract_filter_params
         if filter_by == "artists":
             artists_substring = filter_params["artists_substring"]
             if artists_substring is None:
