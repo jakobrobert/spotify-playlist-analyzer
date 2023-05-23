@@ -313,12 +313,11 @@ def __extract_filter_params_from_request():
     if filter_by is None:
         return params
 
-    # TODO change to HttpError, e.g. title "API Error" and status code 400 because the client sent wrong data to API
     # TODO can remove the "or None", just check for falsy value?
     if filter_by == "artists":
         artists_substring = request.args.get("artists_substring") or None
         if artists_substring is None:
-            raise ValueError("'artists_substring' is required if 'filter_by' == 'artists'")
+            raise __create_http_error_for_filter_params(filter_by, "artists_substring")
 
         params["artists_substring"] = artists_substring
         return params
@@ -326,7 +325,7 @@ def __extract_filter_params_from_request():
     if filter_by == "title":
         title_substring = request.args.get("title_substring") or None
         if title_substring is None:
-            raise ValueError("'title_substring' is required if 'filter_by' == 'title'")
+            raise __create_http_error_for_filter_params(filter_by, "title_substring")
 
         params["title_substring"] = title_substring
         return params
@@ -334,11 +333,11 @@ def __extract_filter_params_from_request():
     if filter_by == "release_year":
         min_release_year = __get_request_param_as_int_or_none("min_release_year")
         if min_release_year is None:
-            raise ValueError("'min_release_year' is required if 'filter_by' == 'release_year'")
-        
+            raise __create_http_error_for_filter_params(filter_by, "min_release_year")
+
         max_release_year = __get_request_param_as_int_or_none("max_release_year")
         if max_release_year is None:
-            raise ValueError("'max_release_year' is required if 'filter_by' == 'release_year'")
+            raise __create_http_error_for_filter_params(filter_by, "max_release_year")
 
         params["min_release_year"] = min_release_year
         params["max_release_year"] = max_release_year
@@ -347,12 +346,12 @@ def __extract_filter_params_from_request():
     if filter_by == "tempo":
         min_tempo = __get_request_param_as_int_or_none("min_tempo")
         if min_tempo is None:
-            raise ValueError("'min_tempo' is required if 'filter_by' == 'tempo'")
+            raise __create_http_error_for_filter_params(filter_by, "min_tempo")
 
         max_tempo = __get_request_param_as_int_or_none("max_tempo")
         if max_tempo is None:
-            raise ValueError("'max_tempo' is required if 'filter_by' == 'tempo'")
-        
+            raise __create_http_error_for_filter_params(filter_by, "max_tempo")
+
         params["min_tempo"] = min_tempo
         params["max_tempo"] = max_tempo
         return params
@@ -360,7 +359,7 @@ def __extract_filter_params_from_request():
     if filter_by == "key":
         expected_key = request.args.get("expected_key") or None
         if expected_key is None:
-            raise ValueError("'expected_key' is required if 'filter_by' == 'key'")
+            raise __create_http_error_for_filter_params(filter_by, "expected_key")
 
         params["expected_key"] = expected_key
         return params
@@ -368,7 +367,7 @@ def __extract_filter_params_from_request():
     if filter_by == "mode":
         expected_mode = request.args.get("expected_mode") or None
         if expected_mode is None:
-            raise ValueError("'expected_mode' is required if 'filter_by' == 'mode'")
+            raise __create_http_error_for_filter_params(filter_by, "expected_mode")
 
         params["expected_mode"] = expected_mode
         return params
@@ -376,7 +375,7 @@ def __extract_filter_params_from_request():
     if filter_by == "key_signature":
         expected_key_signature = request.args.get("expected_key_signature") or None
         if expected_key_signature is None:
-            raise ValueError("'expected_key_signature' is required if 'filter_by' == 'key_signature'")
+            raise __create_http_error_for_filter_params(filter_by, "expected_key_signature")
 
         params["expected_key_signature"] = expected_key_signature
         return params
@@ -384,12 +383,17 @@ def __extract_filter_params_from_request():
     if filter_by == "genres":
         genres_substring = request.args.get("genres_substring") or None
         if genres_substring is None:
-            raise ValueError("'genres_substring' is required if 'filter_by' == 'genres'")
+            raise __create_http_error_for_filter_params(filter_by, "genres_substring")
 
         params["genres_substring"] = genres_substring
         return params
 
-    raise ValueError(f"Invalid value for 'filter_by': '{filter_by}'")
+    raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
+
+
+def __create_http_error_for_filter_params(filter_by, required_param):
+    message = f"'{required_param}' is required if 'filter_by' == '{filter_by}'"
+    return HttpError(400, "API Error", message)
 
 
 def __get_request_param_as_int_or_none(name):
