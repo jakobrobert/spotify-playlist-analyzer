@@ -336,11 +336,11 @@ def __extract_filter_params_from_request():
         params["expected_key"] = request.args.get("expected_key") or None
         return params
 
-    if params["mode"] == "mode":
+    if params["filter_by"] == "mode":
         params["expected_mode"] = request.args.get("expected_mode") or None
         return params
 
-    if params["key_signature"] == "expected_key_signature":
+    if params["filter_by"] == "key_signature":
         params["expected_key_signature"] = request.args.get("expected_key_signature") or None
         return params
 
