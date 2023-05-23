@@ -313,18 +313,17 @@ def __extract_filter_params_from_request():
     if filter_by is None:
         return params
 
-    # TODO can remove the "or None", just check for falsy value?
     if filter_by == "artists":
-        artists_substring = request.args.get("artists_substring") or None
-        if artists_substring is None:
+        artists_substring = request.args.get("artists_substring")
+        if not artists_substring:
             raise __create_http_error_for_filter_params(filter_by, "artists_substring")
 
         params["artists_substring"] = artists_substring
         return params
 
     if filter_by == "title":
-        title_substring = request.args.get("title_substring") or None
-        if title_substring is None:
+        title_substring = request.args.get("title_substring")
+        if not title_substring:
             raise __create_http_error_for_filter_params(filter_by, "title_substring")
 
         params["title_substring"] = title_substring
@@ -357,32 +356,32 @@ def __extract_filter_params_from_request():
         return params
 
     if filter_by == "key":
-        expected_key = request.args.get("expected_key") or None
-        if expected_key is None:
+        expected_key = request.args.get("expected_key")
+        if not expected_key:
             raise __create_http_error_for_filter_params(filter_by, "expected_key")
 
         params["expected_key"] = expected_key
         return params
 
     if filter_by == "mode":
-        expected_mode = request.args.get("expected_mode") or None
-        if expected_mode is None:
+        expected_mode = request.args.get("expected_mode")
+        if not expected_mode:
             raise __create_http_error_for_filter_params(filter_by, "expected_mode")
 
         params["expected_mode"] = expected_mode
         return params
 
     if filter_by == "key_signature":
-        expected_key_signature = request.args.get("expected_key_signature") or None
-        if expected_key_signature is None:
+        expected_key_signature = request.args.get("expected_key_signature")
+        if not expected_key_signature:
             raise __create_http_error_for_filter_params(filter_by, "expected_key_signature")
 
         params["expected_key_signature"] = expected_key_signature
         return params
 
     if filter_by == "genres":
-        genres_substring = request.args.get("genres_substring") or None
-        if genres_substring is None:
+        genres_substring = request.args.get("genres_substring")
+        if not genres_substring:
             raise __create_http_error_for_filter_params(filter_by, "genres_substring")
 
         params["genres_substring"] = genres_substring
