@@ -217,6 +217,7 @@ def get_valid_modes():
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
 def get_valid_key_signatures():
     try:
+        # TODO CLEANUP use SpotifyTrack.KEY_SIGNATURE_STRINGS
         return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
     except Exception:
         error = HttpError.from_last_exception()
@@ -226,6 +227,8 @@ def get_valid_key_signatures():
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
 def get_valid_attributes_for_attribute_distribution():
     try:
+        # TODO CLEANUP add helper method like __create_valid_attribute("duration_ms", "Duration")
+        #   this way, code here gets shorter and can focus on the relevant part, which is different for each attribute
         attributes = [
             {
                 "name": "duration_ms",
