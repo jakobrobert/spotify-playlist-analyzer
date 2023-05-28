@@ -63,10 +63,11 @@ def get_playlist_by_id(playlist_id):
         }
 
         playlist = api_client.get_playlist_by_id(playlist_id, request_params)
+        valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
+        valid_attributes_for_sort_option = __get_valid_attributes_for_sort_option()
         valid_keys = api_client.get_valid_keys()
         valid_modes = api_client.get_valid_modes()
         valid_key_signatures = api_client.get_valid_key_signatures()
-        valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
 
         return render_template(
             "playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
@@ -75,11 +76,68 @@ def get_playlist_by_id(playlist_id):
             min_tempo=min_tempo, max_tempo=max_tempo,
             expected_key=expected_key, expected_mode=expected_mode, expected_key_signature=expected_key_signature,
             genres_substring=genres_substring,
-            valid_keys=valid_keys, valid_modes=valid_modes, valid_key_signatures=valid_key_signatures,
-            valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution
+            valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
+            valid_attributes_for_sort_option=valid_attributes_for_sort_option,
+            valid_keys=valid_keys, valid_modes=valid_modes, valid_key_signatures=valid_key_signatures
         )
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception:
         error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
+
+
+def __get_valid_attributes_for_sort_option():
+    # TODO Move into API
+    # TODO add attributes, similar as in API get_valid_attributes_for_attribute_distribution
+    #   Attributes:
+    #       artists Artists, title Title, duration_ms Duration, release_year Release Year,
+    #       popularity Popularity, tempo Tempo, key Key, mode Mode, key_signature Key Signature,
+    #       camelot Camelot, loudness Loudness
+    # TODO maybe change names "Tempo" to "Tempo (BPM)", "Loudness" to "Loudness (dB)" so it is consistent to filter option & tracks table
+    return [
+        {
+            "name": "artists",
+            "display_name": "Artists"
+        },
+        {
+            "name": "title",
+            "display_name": "Title"
+        },
+        {
+            "name": "duration_ms",
+            "display_name": "Duration"
+        },
+        {
+            "name": "release_year",
+            "display_name": "Release Year"
+        },
+        {
+            "name": "popularity",
+            "display_name": "Popularity"
+        },
+        {
+            "name": "tempo",
+            "display_name": "Tempo"
+        },
+        {
+            "name": "key",
+            "display_name": "Key"
+        },
+        {
+            "name": "mode",
+            "display_name": "Mode"
+        },
+        {
+            "name": "key_signature",
+            "display_name": "Key Signature"
+        },
+        {
+            "name": "camelot",
+            "display_name": "Camelot"
+        },
+        {
+            "name": "loudness",
+            "display_name": "Loudness"
+        }
+    ]

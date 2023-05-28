@@ -60,6 +60,7 @@
         <h2>Sort Tracks</h2>
         <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <select class="form-control" name="sort_by">
+                <!-- TODO generate option elements dynamically, use valid_attributes_for_sort_option -->
                 <option value="none" {% if sort_by == "none" %} selected {% endif %}>
                     None
                 </option>
