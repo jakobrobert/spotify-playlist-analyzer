@@ -20,6 +20,7 @@
                 <td># Tracks:&nbsp;</td>
                 <td>{{ playlist.tracks | length }}</td>
             </tr>
+            <!-- TODO use attribute_display_names -->
             <tr>
                 <td>Total Duration:&nbsp;</td>
                 <td>{{ playlist.get_total_duration_string() }}</td>
