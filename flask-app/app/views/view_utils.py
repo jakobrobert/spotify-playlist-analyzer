@@ -57,7 +57,7 @@ class ViewUtils:
 
         return track_url[id_start_index:id_end_index]
 
-    # TODO get rid of this method, just pass this constant directly to template, then use it as in playlist template
+    # TODO inline method, and no need for HttpError. just empty string as fallback as done in template when accessing invalid key at attribute_display_names
     @staticmethod
     def get_attribute_display_name(attribute_name):
         if attribute_name not in ViewUtils.ATTRIBUTE_DISPLAY_NAMES:
