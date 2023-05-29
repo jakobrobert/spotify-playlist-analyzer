@@ -12,7 +12,14 @@ class ViewUtils:
         "artists": "Artists",
         "title": "Title",
         "duration_ms": "Duration",
-        # TODO add remaining attributes
+        "release_year": "Release Year",
+        "popularity": "Popularity",
+        "tempo": "Tempo (BPM)",
+        "key": "Key",
+        "mode": "Mode",
+        "key_signature": "Key Signature",
+        "camelot": "Camelot",
+        "loudness": "Loudness (dB)"
     }
 
     @staticmethod
