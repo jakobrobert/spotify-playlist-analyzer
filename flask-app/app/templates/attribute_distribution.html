@@ -14,13 +14,13 @@
         <h1>Playlist: {{ playlist.name }}</h1>
         <br>
 
-        <h2>{{ attribute_name }} Distribution [Histogram]</h2>
+        <h2>{{ attribute_display_name }} Distribution [Histogram]</h2>
         <img src="data:image/png;base64,{{ histogram_image_base64 }}">
 
-        <h2>{{ attribute_name }} Distribution [Table]</h2>
+        <h2>{{ attribute_display_name }} Distribution [Table]</h2>
         <table class="table table-bordered">
             <tr>
-                <th>{{ attribute_name }}</th>
+                <th>{{ attribute_display_name }}</th>
                 <th>Count</th>
                 <th>Percentage</th>
             </tr>
