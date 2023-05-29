@@ -60,45 +60,11 @@
         <h2>Sort Tracks</h2>
         <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <select class="form-control" name="sort_by">
-                <option value="none" {% if sort_by == "none" %} selected {% endif %}>
-                    None
-                </option>
-                <option value="artists" {% if sort_by == "artists" %} selected {% endif %}>
-                    Artists
-                </option>
-                <option value="title"{% if sort_by == "title" %} selected {% endif %}>
-                    Title
-                </option>
-                <option value="duration_ms" {% if sort_by == "duration_ms" %} selected {% endif %}>
-                    Duration
-                </option>
-                <option value="release_year" {% if sort_by == "release_year" %} selected {% endif %}>
-                    Release Year
-                </option>
-                <option value="popularity" {% if sort_by == "popularity" %} selected {% endif %}>
-                    Popularity
-                </option>
-                <option value="tempo" {% if sort_by == "tempo" %} selected {% endif %}>
-                    Tempo
-                </option>
-                <option value="key" {% if sort_by == "key" %} selected {% endif %}>
-                    Key
-                </option>
-                <option value="mode" {% if sort_by == "mode" %} selected {% endif %}>
-                    Mode
-                </option>
-                <option value="key_signature" {% if sort_by == "key_signature" %} selected {% endif %}>
-                    Key Signature
-                </option>
-                <option value="camelot" {% if sort_by == "camelot" %} selected {% endif %}>
-                    Camelot
-                </option>
-                <option value="loudness" {% if sort_by == "loudness" %} selected {% endif %}>
-                    Loudness
-                </option>
-                <option value="genres" {% if sort_by == "genres" %} selected {% endif %}>
-                    Genres
-                </option>
+                {% for attribute in valid_attributes_for_sort_option %}
+                    <option value="{{ attribute['name'] }}" {% if sort_by == attribute['name'] %} selected {% endif %}>
+                        {{ attribute['display_name'] }}
+                    </option>
+                {% endfor %}
             </select>
             <select class="form-control" id="order" name="order">
                 <option value="ascending" {% if order == "ascending" %} selected {% endif %}>

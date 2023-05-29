@@ -40,6 +40,8 @@ class ViewUtils:
 
     @staticmethod
     def get_attribute_display_name(attribute_name, api_client):
+        # TODO #192 Refactor: Add API endpoint to get attribute display names
+        #   -> Use the new endpoint here
         attributes = api_client.get_valid_attributes_for_attribute_distribution()
 
         for attribute in attributes:
