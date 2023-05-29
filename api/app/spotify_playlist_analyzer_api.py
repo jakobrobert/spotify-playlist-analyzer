@@ -222,13 +222,14 @@ def get_valid_key_signatures():
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
-    
+
+
+# TODO #192 Refactor: Add API endpoint to get attribute display names
+#   -> then move display names out of other endpoints, those should only return array of the code names ("release_year" etc.)
 
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
 def get_valid_attributes_for_attribute_distribution():
     try:
-        # TODO CLEANUP add helper method like __create_valid_attribute("duration_ms", "Duration")
-        #   this way, code here gets shorter and can focus on the relevant part, which is different for each attribute
         attributes = [
             {
                 "name": "duration_ms",
@@ -257,6 +258,62 @@ def get_valid_attributes_for_attribute_distribution():
             {
                 "name": "key_signature",
                 "display_name": "Key Signature"
+            }
+        ]
+
+        return jsonify(attributes)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
+@app.route(URL_PREFIX + "valid-attributes-for-sort-option")
+def get_valid_attributes_for_sort_option():
+    try:
+        attributes = [
+            {
+                "name": "artists",
+                "display_name": "Artists"
+            },
+            {
+                "name": "title",
+                "display_name": "Title"
+            },
+            {
+                "name": "duration_ms",
+                "display_name": "Duration"
+            },
+            {
+                "name": "release_year",
+                "display_name": "Release Year"
+            },
+            {
+                "name": "popularity",
+                "display_name": "Popularity"
+            },
+            {
+                "name": "tempo",
+                "display_name": "Tempo"
+            },
+            {
+                "name": "key",
+                "display_name": "Key"
+            },
+            {
+                "name": "mode",
+                "display_name": "Mode"
+            },
+            {
+                "name": "key_signature",
+                "display_name": "Key Signature"
+            },
+            {
+                "name": "camelot",
+                "display_name": "Camelot"
+            },
+            {
+                "name": "loudness",
+                "display_name": "Loudness"
             }
         ]
 
