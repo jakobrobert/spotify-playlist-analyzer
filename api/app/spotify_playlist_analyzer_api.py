@@ -217,8 +217,7 @@ def get_valid_modes():
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
 def get_valid_key_signatures():
     try:
-        # TODO CLEANUP use SpotifyTrack.KEY_SIGNATURE_STRINGS
-        return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
+        return jsonify(SpotifyTrack.KEY_SIGNATURE_STRINGS)
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
