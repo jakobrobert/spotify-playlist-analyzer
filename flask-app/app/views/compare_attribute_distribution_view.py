@@ -25,7 +25,7 @@ def compare_attribute_distribution_of_playlists():
         playlist_id_2 = request.args.get("playlist_id_2")
         attribute = request.args.get("attribute")
 
-        attribute_name = ViewUtils.get_attribute_display_name(attribute, api_client)
+        attribute_name = ViewUtils.get_attribute_display_name(attribute)
 
         # TODO optimize: separate request to get playlist is overkill, see attribute_distribution_view.py
         playlist_1 = api_client.get_playlist_by_id(playlist_id_1)

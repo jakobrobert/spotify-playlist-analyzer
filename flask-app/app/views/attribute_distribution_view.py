@@ -23,7 +23,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
 
-        attribute_name = ViewUtils.get_attribute_display_name(attribute, api_client)
+        attribute_name = ViewUtils.get_attribute_display_name(attribute)
 
         # TODO optimize: separate request to get playlist is overkill,
         #   -> get_attribute_distribution_of_playlist already gets the playlist in API

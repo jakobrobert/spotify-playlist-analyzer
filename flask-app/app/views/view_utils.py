@@ -1,7 +1,10 @@
+# PyCharm shows errors for these imports locally, but it works this way with the server
+# 'from app.http_error import HttpError' is shown as valid locally, but does not work with the server
+from http_error import HttpError
+
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
-
 
 class ViewUtils:
     @staticmethod
@@ -38,16 +41,21 @@ class ViewUtils:
 
         return track_url[id_start_index:id_end_index]
 
-    # TODO Adjust get_attribute_display_name to directly return display name
     @staticmethod
-    def get_attribute_display_name(attribute_name, api_client):
-        attributes = api_client.get_valid_attributes_for_attribute_distribution()
+    def get_attribute_display_name(attribute_name):
+        # TODO use dictionary instead so it is cleaner
+        if attribute_name == "artists":
+            return "Artists"
 
-        for attribute in attributes:
-            if attribute["name"] == attribute_name:
-                return attribute["display_name"]
+        if attribute_name == "title":
+            return "Title"
 
-        raise ValueError(f"Invalid attribute: '{attribute_name}'")
+        if attribute_name == "duration_ms":
+            return "Duration"
+
+        # TODO remaining attributes
+
+        raise HttpError(status_code=400, title="Bad Request", message=f"Invalid attribute: '{attribute_name}'")
 
     @staticmethod
     def get_image_base64_from_plot():
