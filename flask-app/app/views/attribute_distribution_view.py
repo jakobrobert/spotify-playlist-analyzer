@@ -25,10 +25,6 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
         # Just use "" as fallback if attribute invalid. In this case, API will return an error anyway.
         attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
-
-        # TODO optimize: separate request to get playlist is overkill,
-        #   -> get_attribute_distribution_of_playlist already gets the playlist in API
-        #   -> only need playlist in template for name & percentage_to_string()
         playlist = api_client.get_playlist_by_id(playlist_id)
         attribute_distribution_items = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
 
