@@ -23,15 +23,12 @@ def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
 
-        attribute_name = ViewUtils.get_attribute_display_name(attribute, api_client)
-
-        # TODO optimize: separate request to get playlist is overkill,
-        #   -> get_attribute_distribution_of_playlist already gets the playlist in API
-        #   -> only need playlist in template for name & percentage_to_string()
+        # Just use "" as fallback if attribute invalid. In this case, API will return an error anyway.
+        attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
         playlist = api_client.get_playlist_by_id(playlist_id)
         attribute_distribution_items = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
 
-        return __render_attribute_distribution_template(playlist, attribute_name, attribute_distribution_items)
+        return __render_attribute_distribution_template(playlist, attribute_display_name, attribute_distribution_items)
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception:
@@ -39,18 +36,18 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return render_template("error.html", error=error)
 
 
-def __render_attribute_distribution_template(playlist, attribute_name, attribute_distribution_items):
-    histogram_image_base64 = __get_histogram_image_base64(attribute_name, attribute_distribution_items)
+def __render_attribute_distribution_template(playlist, attribute_display_name, attribute_distribution_items):
+    histogram_image_base64 = __get_histogram_image_base64(attribute_display_name, attribute_distribution_items)
 
     return render_template("attribute_distribution.html", playlist=playlist,
-                           attribute_name=attribute_name,
+                           attribute_display_name=attribute_display_name,
                            attribute_distribution_items=attribute_distribution_items,
                            histogram_image_base64=histogram_image_base64)
 
 
-def __get_histogram_image_base64(attribute_name, attribute_value_to_percentage):
-    plt.title(f"{attribute_name} Distribution")
-    plt.xlabel(attribute_name)
+def __get_histogram_image_base64(attribute_display_name, attribute_value_to_percentage):
+    plt.title(f"{attribute_display_name} Distribution")
+    plt.xlabel(attribute_display_name)
     plt.ylabel("Percentage")
 
     x_labels = []

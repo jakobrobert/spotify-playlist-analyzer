@@ -217,49 +217,16 @@ def get_valid_modes():
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
 def get_valid_key_signatures():
     try:
-        # TODO CLEANUP use SpotifyTrack.KEY_SIGNATURE_STRINGS
-        return jsonify(["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"])
+        return jsonify(SpotifyTrack.KEY_SIGNATURE_STRINGS)
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
 
 
-# TODO #192 Refactor: Add API endpoint to get attribute display names
-#   -> then move display names out of other endpoints, those should only return array of the code names ("release_year" etc.)
-
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
 def get_valid_attributes_for_attribute_distribution():
     try:
-        attributes = [
-            {
-                "name": "duration_ms",
-                "display_name": "Duration"
-            },
-            {
-                "name": "release_year",
-                "display_name": "Release Year"
-            },
-            {
-                "name": "popularity",
-                "display_name": "Popularity"
-            },
-            {
-                "name": "tempo",
-                "display_name": "Tempo (BPM)"
-            },
-            {
-                "name": "key",
-                "display_name": "Key"
-            },
-            {
-                "name": "mode",
-                "display_name": "Mode"
-            },
-            {
-                "name": "key_signature",
-                "display_name": "Key Signature"
-            }
-        ]
+        attributes = ["duration_ms", "release_year", "popularity", "tempo", "key", "mode", "key_signature"]
 
         return jsonify(attributes)
     except Exception:
@@ -271,51 +238,8 @@ def get_valid_attributes_for_attribute_distribution():
 def get_valid_attributes_for_sort_option():
     try:
         attributes = [
-            {
-                "name": "artists",
-                "display_name": "Artists"
-            },
-            {
-                "name": "title",
-                "display_name": "Title"
-            },
-            {
-                "name": "duration_ms",
-                "display_name": "Duration"
-            },
-            {
-                "name": "release_year",
-                "display_name": "Release Year"
-            },
-            {
-                "name": "popularity",
-                "display_name": "Popularity"
-            },
-            {
-                "name": "tempo",
-                "display_name": "Tempo"
-            },
-            {
-                "name": "key",
-                "display_name": "Key"
-            },
-            {
-                "name": "mode",
-                "display_name": "Mode"
-            },
-            {
-                "name": "key_signature",
-                "display_name": "Key Signature"
-            },
-            {
-                "name": "camelot",
-                "display_name": "Camelot"
-            },
-            {
-                "name": "loudness",
-                "display_name": "Loudness"
-            }
-        ]
+            "artists", "title", "duration_ms", "release_year", "popularity", "tempo",
+            "key", "mode", "key_signature", "camelot", "loudness"]
 
         return jsonify(attributes)
     except Exception:

@@ -21,23 +21,23 @@
                 <td>{{ playlist.tracks | length }}</td>
             </tr>
             <tr>
-                <td>Total Duration:&nbsp;</td>
+                <td>Total {{ attribute_display_names["duration_ms"] }}:&nbsp;</td>
                 <td>{{ playlist.get_total_duration_string() }}</td>
             </tr>
             <tr>
-                <td>Average Duration:&nbsp;</td>
+                <td>Average {{ attribute_display_names["duration_ms"] }}:&nbsp;</td>
                 <td>{{ playlist.get_average_duration_string() }}</td>
             </tr>
             <tr>
-                <td>Average Release Year:&nbsp;</td>
+                <td>Average {{ attribute_display_names["release_year"] }}:&nbsp;</td>
                 <td>{{ playlist.get_average_release_year_string() }}</td>
             </tr>
             <tr>
-                <td>Average Popularity:&nbsp;</td>
+                <td>Average {{ attribute_display_names["popularity"] }}:&nbsp;</td>
                 <td>{{ playlist.get_average_popularity_string() }}</td>
             </tr>
             <tr>
-                <td>Average Tempo (BPM):&nbsp;</td>
+                <td>Average {{ attribute_display_names["tempo"] }}:&nbsp;</td>
                 <td>{{ playlist.get_average_tempo_string() }}</td>
             </tr>
         </table>
@@ -48,8 +48,8 @@
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
                 {% for attribute in valid_attributes_for_attribute_distribution %}
-                    <option value="{{ attribute['name'] }}">
-                        {{ attribute['display_name'] }}
+                    <option value="{{ attribute }}">
+                        {{ attribute_display_names[attribute] }}
                     </option>
                 {% endfor %}
             </select>
@@ -61,12 +61,12 @@
         <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <select class="form-control" name="sort_by">
                 {% for attribute in valid_attributes_for_sort_option %}
-                    <option value="{{ attribute['name'] }}" {% if sort_by == attribute['name'] %} selected {% endif %}>
-                        {{ attribute['display_name'] }}
+                    <option value="{{ attribute }}" {% if sort_by == attribute %} selected {% endif %}>
+                        {{ attribute_display_names[attribute] }}
                     </option>
                 {% endfor %}
             </select>
-            <select class="form-control" id="order" name="order">
+            <select class="form-control" name="order">
                 <option value="ascending" {% if order == "ascending" %} selected {% endif %}>
                     Ascending
                 </option>
@@ -182,18 +182,18 @@
         <table class="table table-bordered">
             <tr>
                 <th>#</th>
-                <th>Artists</th>
-                <th>Title</th>
-                <th>Duration</th>
-                <th>Release<br>Year</th>
-                <th>Popularity</th>
-                <th>Tempo<br>(BPM)</th>
-                <th>Key</th>
-                <th>Mode</th>
-                <th>Key<br>Signature</th>
-                <th>Camelot</th>
-                <th>Loudness<br>(dB)</th>
-                <th>Genres</th>
+                <th>{{ attribute_display_names["artists"] }}</th>
+                <th>{{ attribute_display_names["title"] }}</th>
+                <th>{{ attribute_display_names["duration_ms"] }}</th>
+                <th>{{ attribute_display_names["release_year"] }}</th>
+                <th>{{ attribute_display_names["popularity"] }}</th>
+                <th>{{ attribute_display_names["tempo"] }}</th>
+                <th>{{ attribute_display_names["key"] }}</th>
+                <th>{{ attribute_display_names["mode"] }}</th>
+                <th>{{ attribute_display_names["key_signature"] }}</th>
+                <th>{{ attribute_display_names["camelot"] }}</th>
+                <th>{{ attribute_display_names["loudness"] }}</th>
+                <th>{{ attribute_display_names["genres"] }}</th>
             </tr>
             {% for track in playlist.tracks %}
                 <tr>

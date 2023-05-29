@@ -14,57 +14,58 @@
         <h1>Track: {{ track.get_artists_string() }} - {{ track.title }}</h1>
         <br>
 
+        <!-- Use attribute_display_names -->
         <table class="table table-bordered">
             <tr>
                 <th>Attribute</th>
                 <th>Value</th>
             </tr>
             <tr>
-                <td>Artists</td>
+                <td>{{ attribute_display_names["artists"] }}</td>
                 <td>{{ track.get_artists_string() }}</td>
             </tr>
             <tr>
-                <td>Title</td>
+                <td>{{ attribute_display_names["title"] }}</td>
                 <td>{{ track.title }}</td>
             </tr>
             <tr>
-                <td>Duration</td>
+                <td>{{ attribute_display_names["duration_ms"] }}</td>
                 <td>{{ track.get_duration_string() }}</td>
             </tr>
             <tr>
-                <td>Release Year</td>
+                <td>{{ attribute_display_names["release_year"] }}</td>
                 <td>{{ track.release_year }}</td>
             </tr>
             <tr>
-                <td>Popularity</td>
+                <td>{{ attribute_display_names["popularity"] }}</td>
                 <td>{{ track.popularity }}</td>
             </tr>
             <tr>
-                <td>Tempo (BPM)</td>
+                <td>{{ attribute_display_names["tempo"] }}</td>
                 <td>{{ track.get_tempo_string() }}</td>
             </tr>
             <tr>
-                <td>Key</td>
+                <td>{{ attribute_display_names["key"] }}</td>
                 <td>{{ track.key }}</td>
             </tr>
             <tr>
-                <td>Mode</td>
+                <td>{{ attribute_display_names["mode"] }}</td>
                 <td>{{ track.mode }}</td>
             </tr>
             <tr>
-                <td>Key Signature</td>
+                <td>{{ attribute_display_names["key_signature"] }}</td>
                 <td>{{ track.key_signature }}</td>
             </tr>
             <tr>
-                <td>Camelot</td>
+                <td>{{ attribute_display_names["camelot"] }}</td>
                 <td>{{ track.camelot }}</td>
             </tr>
             <tr>
-                <td>Loudness (dB)</td>
+                <td>{{ attribute_display_names["loudness"] }}</td>
                 <td>{{ track.get_loudness_string() }}</td>
             </tr>
             <tr>
-                <td>Genres</td>
+                <td>{{ attribute_display_names["genres"] }}</td>
                 <td>{{ track.get_genres_string() }}</td>
             </tr>
         </table>

@@ -1,9 +1,28 @@
+# PyCharm shows errors for these imports locally, but it works this way with the server
+# 'from app.http_error import HttpError' is shown as valid locally, but does not work with the server
+from http_error import HttpError
+
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 
 
 class ViewUtils:
+    ATTRIBUTE_DISPLAY_NAMES = {
+        "artists": "Artists",
+        "title": "Title",
+        "duration_ms": "Duration",
+        "release_year": "Release Year",
+        "popularity": "Popularity",
+        "tempo": "Tempo (BPM)",
+        "key": "Key",
+        "mode": "Mode",
+        "key_signature": "Key Signature",
+        "camelot": "Camelot",
+        "loudness": "Loudness (dB)",
+        "genres": "Genres"
+    }
+
     @staticmethod
     def get_playlist_id_from_playlist_url(playlist_url):
         url_prefix = "playlist/"
@@ -37,18 +56,6 @@ class ViewUtils:
             id_end_index = si_start_index
 
         return track_url[id_start_index:id_end_index]
-
-    @staticmethod
-    def get_attribute_display_name(attribute_name, api_client):
-        # TODO #192 Refactor: Add API endpoint to get attribute display names
-        #   -> Use the new endpoint here
-        attributes = api_client.get_valid_attributes_for_attribute_distribution()
-
-        for attribute in attributes:
-            if attribute["name"] == attribute_name:
-                return attribute["display_name"]
-
-        raise ValueError(f"Invalid attribute: '{attribute_name}'")
 
     @staticmethod
     def get_image_base64_from_plot():

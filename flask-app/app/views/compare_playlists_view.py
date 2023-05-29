@@ -47,6 +47,7 @@ def compare_playlists_by_ids():
 
         return render_template(
             "compare_playlists.html", playlist_1=playlist_1, playlist_2=playlist_2,
+            attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution)
     except HttpError as error:
         return render_template("error.html", error=error)

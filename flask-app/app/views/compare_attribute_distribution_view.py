@@ -25,16 +25,17 @@ def compare_attribute_distribution_of_playlists():
         playlist_id_2 = request.args.get("playlist_id_2")
         attribute = request.args.get("attribute")
 
-        attribute_name = ViewUtils.get_attribute_display_name(attribute, api_client)
+        # Just use "" as fallback if attribute invalid. In this case, API will return an error anyway.
+        attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
 
-        # TODO optimize: separate request to get playlist is overkill, see attribute_distribution_view.py
         playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
         playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
         attribute_distribution_items_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
         attribute_distribution_items_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
 
         return __render_compare_attribute_distribution_template(
-            playlist_1, playlist_2, attribute_name, attribute_distribution_items_1, attribute_distribution_items_2)
+            playlist_1, playlist_2, attribute_display_name,
+            attribute_distribution_items_1, attribute_distribution_items_2)
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception:
@@ -43,23 +44,23 @@ def compare_attribute_distribution_of_playlists():
 
 
 def __render_compare_attribute_distribution_template(
-        playlist_1, playlist_2, attribute_name, attribute_distribution_items_1, attribute_distribution_items_2):
+        playlist_1, playlist_2, attribute_display_name, attribute_distribution_items_1, attribute_distribution_items_2):
     chart_image_base64 = __get_attribute_comparison_chart_image_base64(
-        attribute_name, playlist_1.name, playlist_2.name,
+        attribute_display_name, playlist_1.name, playlist_2.name,
         attribute_distribution_items_1, attribute_distribution_items_2
     )
 
     return render_template("compare_attribute_distribution.html",
-                           playlist_1=playlist_1, playlist_2=playlist_2, attribute_name=attribute_name,
+                           playlist_1=playlist_1, playlist_2=playlist_2, attribute_display_name=attribute_display_name,
                            attribute_distribution_items_1=attribute_distribution_items_1,
                            attribute_distribution_items_2=attribute_distribution_items_2,
                            chart_image_base64=chart_image_base64)
 
 
-def __get_attribute_comparison_chart_image_base64(attribute_name, playlist_name_1, playlist_name_2,
+def __get_attribute_comparison_chart_image_base64(attribute_display_name, playlist_name_1, playlist_name_2,
                                                   attribute_value_to_percentage_1, attribute_value_to_percentage_2):
-    plt.title(f"Compare {attribute_name} Distribution")
-    plt.xlabel(attribute_name)
+    plt.title(f"Compare {attribute_display_name} Distribution")
+    plt.xlabel(attribute_display_name)
     plt.ylabel("Percentage")
 
     x_labels = []
