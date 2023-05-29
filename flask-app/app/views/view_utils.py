@@ -6,7 +6,15 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 
+
 class ViewUtils:
+    ATTRIBUTE_DISPLAY_NAMES = {
+        "artists": "Artists",
+        "title": "Title",
+        "duration_ms": "Duration",
+        # TODO add remaining attributes
+    }
+
     @staticmethod
     def get_playlist_id_from_playlist_url(playlist_url):
         url_prefix = "playlist/"
@@ -41,21 +49,13 @@ class ViewUtils:
 
         return track_url[id_start_index:id_end_index]
 
+    # TODO get rid of this method, just pass this constant directly to template, then use it as in playlist template
     @staticmethod
     def get_attribute_display_name(attribute_name):
-        # TODO use dictionary instead so it is cleaner
-        if attribute_name == "artists":
-            return "Artists"
+        if attribute_name not in ViewUtils.ATTRIBUTE_DISPLAY_NAMES:
+            raise HttpError(status_code=400, title="Bad Request", message=f"Invalid attribute: '{attribute_name}'")
 
-        if attribute_name == "title":
-            return "Title"
-
-        if attribute_name == "duration_ms":
-            return "Duration"
-
-        # TODO remaining attributes
-
-        raise HttpError(status_code=400, title="Bad Request", message=f"Invalid attribute: '{attribute_name}'")
+        return ViewUtils.ATTRIBUTE_DISPLAY_NAMES[attribute_name]
 
     @staticmethod
     def get_image_base64_from_plot():
