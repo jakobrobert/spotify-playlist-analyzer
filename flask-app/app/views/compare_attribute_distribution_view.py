@@ -28,7 +28,6 @@ def compare_attribute_distribution_of_playlists():
         # Just use "" as fallback if attribute invalid. In this case, API will return an error anyway.
         attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
 
-        # TODO optimize: separate request to get playlist is overkill, see attribute_distribution_view.py
         playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
         playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
         attribute_distribution_items_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
