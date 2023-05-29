@@ -182,26 +182,22 @@
         </form>
         <br>
 
-        <!-- TODO remove, just testing -->
-        <h2>attribute_display_names: {{ attribute_display_names }}</h2>
-
         <h2>Tracks Table</h2>
         <table class="table table-bordered">
-            <!-- TODO for table headers, do not hardcode display name, retrieve like this: attribute_display_names[""] -->
             <tr>
                 <th>#</th>
-                <th>Artists</th>
-                <th>Title</th>
-                <th>Duration</th>
-                <th>Release<br>Year</th>
-                <th>Popularity</th>
-                <th>Tempo<br>(BPM)</th>
-                <th>Key</th>
-                <th>Mode</th>
-                <th>Key<br>Signature</th>
-                <th>Camelot</th>
-                <th>Loudness<br>(dB)</th>
-                <th>Genres</th>
+                <th>{{ attribute_display_names["artists"] }}</th>
+                <th>{{ attribute_display_names["title"] }}</th>
+                <th>{{ attribute_display_names["duration_ms"] }}</th>
+                <th>{{ attribute_display_names["release_year"] }}</th>
+                <th>{{ attribute_display_names["popularity"] }}</th>
+                <th>{{ attribute_display_names["tempo"] }}</th>
+                <th>{{ attribute_display_names["key"] }}</th>
+                <th>{{ attribute_display_names["mode"] }}</th>
+                <th>{{ attribute_display_names["key_signature"] }}</th>
+                <th>{{ attribute_display_names["camelot"] }}</th>
+                <th>{{ attribute_display_names["loudness"] }}</th>
+                <th>{{ attribute_display_names["genres"] }}</th>
             </tr>
             {% for track in playlist.tracks %}
                 <tr>
