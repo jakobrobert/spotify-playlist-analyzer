@@ -89,12 +89,6 @@ def get_playlist_by_id(playlist_id):
 
 def __get_valid_attributes_for_sort_option():
     # TODO Move into API
-    # TODO add attributes, similar as in API get_valid_attributes_for_attribute_distribution
-    #   Attributes:
-    #       artists Artists, title Title, duration_ms Duration, release_year Release Year,
-    #       popularity Popularity, tempo Tempo, key Key, mode Mode, key_signature Key Signature,
-    #       camelot Camelot, loudness Loudness
-    # TODO maybe change names "Tempo" to "Tempo (BPM)", "Loudness" to "Loudness (dB)" so it is consistent to filter option & tracks table
     return [
         {
             "name": "artists",
