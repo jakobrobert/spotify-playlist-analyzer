@@ -47,6 +47,8 @@
         <form action="{{ url_for('attribute_distribution_view.get_attribute_distribution_of_playlist', playlist_id=playlist.id) }}" method="GET">
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
+                <!-- TODO adjust to use attribute_display_names -->
+                <!-- TODO adjust when API endpoint valid-attributes-for-attribute-distribution changed, then is just array -->
                 {% for attribute in valid_attributes_for_attribute_distribution %}
                     <option value="{{ attribute['name'] }}">
                         {{ attribute['display_name'] }}
@@ -60,6 +62,8 @@
         <h2>Sort Tracks</h2>
         <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <select class="form-control" name="sort_by">
+                <!-- TODO adjust to use attribute_display_names -->
+                <!-- TODO adjust when API endpoint valid-attributes-for-sort-option changed, then is just array -->
                 {% for attribute in valid_attributes_for_sort_option %}
                     <option value="{{ attribute['name'] }}" {% if sort_by == attribute['name'] %} selected {% endif %}>
                         {{ attribute['display_name'] }}
@@ -180,6 +184,7 @@
 
         <h2>Tracks Table</h2>
         <table class="table table-bordered">
+            <!-- TODO for table headers, do not hardcode display name, retrieve like this: {{ attribute_display_names[""] }}
             <tr>
                 <th>#</th>
                 <th>Artists</th>

@@ -223,8 +223,7 @@ def get_valid_key_signatures():
         return __create_error_response(error)
 
 
-# TODO #192 Refactor: Add API endpoint to get attribute display names
-#   -> then move display names out of other endpoints, those should only return array of the code names ("release_year" etc.)
+# TODO Move display names out of endpoints, those should only return array of the code names ("release_year" etc.)
 
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
 def get_valid_attributes_for_attribute_distribution():
