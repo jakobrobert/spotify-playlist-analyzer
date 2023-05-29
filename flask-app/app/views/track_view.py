@@ -33,7 +33,7 @@ def get_track_by_url():
 def get_track_by_id(track_id):
     try:
         track = api_client.get_track_by_id(track_id)
-        return render_template("track.html", track=track)
+        return render_template("track.html", track=track, attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES)
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception:

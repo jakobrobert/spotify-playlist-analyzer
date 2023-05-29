@@ -62,7 +62,6 @@ class PlaylistStatistics:
             first_interval_max_duration, last_interval_min_duration, interval_size,
             lambda track: track.duration_ms)
 
-        # TODO can inline returns
         dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(
             intervals, lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
 
