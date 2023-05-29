@@ -64,7 +64,7 @@ def get_playlist_by_id(playlist_id):
 
         playlist = api_client.get_playlist_by_id(playlist_id, request_params)
         valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
-        valid_attributes_for_sort_option = __get_valid_attributes_for_sort_option()
+        valid_attributes_for_sort_option = api_client.get_valid_attributes_for_sort_option()
         valid_keys = api_client.get_valid_keys()
         valid_modes = api_client.get_valid_modes()
         valid_key_signatures = api_client.get_valid_key_signatures()
@@ -85,53 +85,3 @@ def get_playlist_by_id(playlist_id):
     except Exception:
         error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
-
-
-def __get_valid_attributes_for_sort_option():
-    # TODO Move into API
-    return [
-        {
-            "name": "artists",
-            "display_name": "Artists"
-        },
-        {
-            "name": "title",
-            "display_name": "Title"
-        },
-        {
-            "name": "duration_ms",
-            "display_name": "Duration"
-        },
-        {
-            "name": "release_year",
-            "display_name": "Release Year"
-        },
-        {
-            "name": "popularity",
-            "display_name": "Popularity"
-        },
-        {
-            "name": "tempo",
-            "display_name": "Tempo"
-        },
-        {
-            "name": "key",
-            "display_name": "Key"
-        },
-        {
-            "name": "mode",
-            "display_name": "Mode"
-        },
-        {
-            "name": "key_signature",
-            "display_name": "Key Signature"
-        },
-        {
-            "name": "camelot",
-            "display_name": "Camelot"
-        },
-        {
-            "name": "loudness",
-            "display_name": "Loudness"
-        }
-    ]
