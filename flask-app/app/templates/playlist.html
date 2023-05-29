@@ -20,25 +20,24 @@
                 <td># Tracks:&nbsp;</td>
                 <td>{{ playlist.tracks | length }}</td>
             </tr>
-            <!-- TODO use attribute_display_names -->
             <tr>
-                <td>Total Duration:&nbsp;</td>
+                <td>Total {{ attribute_display_names["duration_ms"] }}:&nbsp;</td>
                 <td>{{ playlist.get_total_duration_string() }}</td>
             </tr>
             <tr>
-                <td>Average Duration:&nbsp;</td>
+                <td>Average {{ attribute_display_names["duration_ms"] }}:&nbsp;</td>
                 <td>{{ playlist.get_average_duration_string() }}</td>
             </tr>
             <tr>
-                <td>Average Release Year:&nbsp;</td>
+                <td>Average {{ attribute_display_names["release_year"] }}:&nbsp;</td>
                 <td>{{ playlist.get_average_release_year_string() }}</td>
             </tr>
             <tr>
-                <td>Average Popularity:&nbsp;</td>
+                <td>Average {{ attribute_display_names["popularity"] }}:&nbsp;</td>
                 <td>{{ playlist.get_average_popularity_string() }}</td>
             </tr>
             <tr>
-                <td>Average Tempo (BPM):&nbsp;</td>
+                <td>Average {{ attribute_display_names["tempo"] }}:&nbsp;</td>
                 <td>{{ playlist.get_average_tempo_string() }}</td>
             </tr>
         </table>
