@@ -19,7 +19,8 @@ class ViewUtils:
         "mode": "Mode",
         "key_signature": "Key Signature",
         "camelot": "Camelot",
-        "loudness": "Loudness (dB)"
+        "loudness": "Loudness (dB)",
+        "genres": "Genres"
     }
 
     @staticmethod

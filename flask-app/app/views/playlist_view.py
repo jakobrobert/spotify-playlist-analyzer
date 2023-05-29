@@ -76,6 +76,7 @@ def get_playlist_by_id(playlist_id):
             min_tempo=min_tempo, max_tempo=max_tempo,
             expected_key=expected_key, expected_mode=expected_mode, expected_key_signature=expected_key_signature,
             genres_substring=genres_substring,
+            attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
             valid_attributes_for_sort_option=valid_attributes_for_sort_option,
             valid_keys=valid_keys, valid_modes=valid_modes, valid_key_signatures=valid_key_signatures

@@ -267,6 +267,7 @@ def get_valid_attributes_for_attribute_distribution():
 
 @app.route(URL_PREFIX + "valid-attributes-for-sort-option")
 def get_valid_attributes_for_sort_option():
+    # TODO at refactoring #186, forgot "none" & "genres", do follow up commit.
     try:
         attributes = [
             {
