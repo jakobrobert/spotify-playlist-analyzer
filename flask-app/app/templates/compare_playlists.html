@@ -30,43 +30,41 @@
                 <td>{{ playlist_1.tracks | length }}</td>
                 <td>{{ playlist_2.tracks | length }}</td>
             </tr>
-            <!-- TODO use attribute_display_names -->
             <tr>
-                <th>Total Duration</th>
+                <th>Total {{ attribute_display_names["duration_ms"] }}</th>
                 <td>{{ playlist_1.get_total_duration_string() }}</td>
                 <td>{{ playlist_2.get_total_duration_string() }}</td>
             </tr>
             <tr>
-                <th>Average Duration</th>
+                <th>Average {{ attribute_display_names["duration_ms"] }}</th>
                 <td>{{ playlist_1.get_average_duration_string() }}</td>
                 <td>{{ playlist_2.get_average_duration_string() }}</td>
             </tr>
             <tr>
-                <th>Average Release Year</th>
+                <th>Average {{ attribute_display_names["release_year"] }}</th>
                 <td>{{ playlist_1.get_average_release_year_string() }}</td>
                 <td>{{ playlist_2.get_average_release_year_string() }}</td>
             </tr>
             <tr>
-                <th>Average Popularity</th>
+                <th>Average {{ attribute_display_names["popularity"] }}</th>
                 <td>{{ playlist_1.get_average_popularity_string() }}</td>
                 <td>{{ playlist_2.get_average_popularity_string() }}</td>
             </tr>
             <tr>
-                <th>Average Tempo (BPM)</th>
+                <th>Average {{ attribute_display_names["tempo"] }}</th>
                 <td>{{ playlist_1.get_average_tempo_string() }}</td>
                 <td>{{ playlist_2.get_average_tempo_string() }}</td>
             </tr>
         </table>
 
         <h2>Compare Attribute Distribution</h2>
-
         <form action="{{ url_for('compare_attribute_distribution_view.compare_attribute_distribution_of_playlists') }}"
               method="GET">
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
                 {% for attribute in valid_attributes_for_attribute_distribution %}
-                    <option value="{{ attribute['name'] }}">
-                        {{ attribute['display_name'] }}
+                    <option value="{{ attribute }}">
+                        {{ attribute_display_names[attribute] }}
                     </option>
                 {% endfor %}
             </select>
