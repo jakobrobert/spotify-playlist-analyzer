@@ -141,4 +141,3 @@ class SpotifyTrack:
     @staticmethod
     def __process_audio_feature_value(value):
         return round(value * 100)
-
