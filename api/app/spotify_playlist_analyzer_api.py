@@ -238,8 +238,12 @@ def get_valid_attributes_for_attribute_distribution():
 def get_valid_attributes_for_sort_option():
     try:
         attributes = [
+            # TODO #195 add missing attribute "none" here
             "artists", "title", "duration_ms", "release_year", "popularity", "tempo",
-            "key", "mode", "key_signature", "camelot", "loudness"]
+            "key", "mode", "key_signature", "camelot", "loudness"
+            # TODO NOW add new audio features here
+            # TODO #195 add missing attribute "genres" here
+            ]
 
         return jsonify(attributes)
     except Exception:
