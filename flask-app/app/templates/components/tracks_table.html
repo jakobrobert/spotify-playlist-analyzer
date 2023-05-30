@@ -12,7 +12,14 @@
         <th>{{ attribute_display_names["key_signature"] }}</th>
         <th>{{ attribute_display_names["camelot"] }}</th>
         <th>{{ attribute_display_names["loudness"] }}</th>
-        <!-- TODONOW add new audio features there -->
+        <!-- TODO add new audio features here -->
+        <th>TODO</th>
+        <th>TODO</th>
+        <th>TODO</th>
+        <th>TODO</th>
+        <th>TODO</th>
+        <th>TODO</th>
+        <th>TODO</th>
         <th>{{ attribute_display_names["genres"] }}</th>
     </tr>
     {% for track in tracks %}
@@ -29,7 +36,14 @@
         <td>{{ track.key_signature }}</td>
         <td>{{ track.camelot }}</td>
         <td>{{ track.get_loudness_string() }}</td>
-        <!-- TODONOW add new audio features there -->
+        <!-- TODO add new audio features here -->
+        <td>TODO</td>
+        <td>TODO</td>
+        <td>TODO</td>
+        <td>TODO</td>
+        <td>TODO</td>
+        <td>TODO</td>
+        <td>TODO</td>
         <td>{{ track.get_genres_string() }}</td>
     </tr>
     {% endfor %}
