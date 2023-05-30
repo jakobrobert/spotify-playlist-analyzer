@@ -39,7 +39,7 @@ class SpotifyClient:
         if not track_ids:
             raise HttpError(400, title="API: create_playlist failed", message="'track_ids' is None or empty")
 
-        # TODO This is a workaround, because __get_access_token_by_refresh_token fails. See #171
+        # TODOLATER This is a workaround, because __get_access_token_by_refresh_token fails. See #171
         # Important to read it here from file and NOT before initialization of SpotifyClient, so it is always up to date
         test_access_token_config = configparser.ConfigParser()
         test_access_token_config.read("../test_access_token.ini")
@@ -184,7 +184,7 @@ class SpotifyClient:
 
         return track_items
 
-    # TODO #169 Extract helper method __send_post_request.
+    # TODOLATER #169 Extract helper method __send_post_request.
     #   Code is duplicated partly for __create_empty_playlist & __add_tracks_to_playlist, and both get response as json
     #   But for __get_access_token_by_refresh_token, error response is different
     @staticmethod

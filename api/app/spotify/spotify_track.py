@@ -41,7 +41,7 @@ class SpotifyTrack:
         self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(key_string, mode_string)
         self.camelot = SpotifyTrack.__get_camelot_from_key_and_mode(key_string, mode_string)
         self.loudness = audio_features["loudness"]
-        # TODO convert values to integer from 0 to 100 so it fits to Popularity value
+        # TODONOW convert values to integer from 0 to 100 so it fits to Popularity value
         self.danceability = audio_features["danceability"]
         self.energy = audio_features["energy"]
         self.speechiness = audio_features["speechiness"]
