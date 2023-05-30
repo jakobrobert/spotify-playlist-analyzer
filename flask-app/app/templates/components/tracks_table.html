@@ -12,14 +12,13 @@
         <th>{{ attribute_display_names["key_signature"] }}</th>
         <th>{{ attribute_display_names["camelot"] }}</th>
         <th>{{ attribute_display_names["loudness"] }}</th>
-        <!-- TODO add new audio features here -->
-        <th>TODO</th>
-        <th>TODO</th>
-        <th>TODO</th>
-        <th>TODO</th>
-        <th>TODO</th>
-        <th>TODO</th>
-        <th>TODO</th>
+        <th>{{ attribute_display_names["danceability"] }}</th>
+        <th>{{ attribute_display_names["energy"] }}</th>
+        <th>{{ attribute_display_names["speechiness"] }}</th>
+        <th>{{ attribute_display_names["acousticness"] }}</th>
+        <th>{{ attribute_display_names["instrumentalness"] }}</th>
+        <th>{{ attribute_display_names["liveness"] }}</th>
+        <th>{{ attribute_display_names["valence"] }}</th>
         <th>{{ attribute_display_names["genres"] }}</th>
     </tr>
     {% for track in tracks %}
@@ -36,14 +35,13 @@
         <td>{{ track.key_signature }}</td>
         <td>{{ track.camelot }}</td>
         <td>{{ track.get_loudness_string() }}</td>
-        <!-- TODO add new audio features here -->
-        <td>TODO</td>
-        <td>TODO</td>
-        <td>TODO</td>
-        <td>TODO</td>
-        <td>TODO</td>
-        <td>TODO</td>
-        <td>TODO</td>
+        <td>{{ track.danceability }}</td>
+        <td>{{ track.energy }}</td>
+        <td>{{ track.speechiness }}</td>
+        <td>{{ track.acousticness }}</td>
+        <td>{{ track.instrumentalness }}</td>
+        <td>{{ track.liveness }}</td>
+        <td>{{ track.valence }}</td>
         <td>{{ track.get_genres_string() }}</td>
     </tr>
     {% endfor %}
