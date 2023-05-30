@@ -33,7 +33,7 @@ def authorize():
         authorization_base_url = "https://accounts.spotify.com/authorize"
         # Cannot use url_for to get redirect uri because url_for just returns part of the url, but need the full
         # Therefore hardcoded it in ini file.
-        # TODO can use url_for, need to set _external=True
+        # TODOLATER #171 can use url_for, need to set _external=True
         params = {
             "client_id": SPOTIFY_CLIENT_ID,
             "response_type": "code",
@@ -61,7 +61,7 @@ def authorize_callback():
         print(f"authorize_callback => authorization_code: {authorization_code}")
 
         token_url = "https://accounts.spotify.com/api/token"
-        # TODO use auth=(client_id, client_secret) instead of adding those to data, is more secure
+        # TODOLATER #171 use auth=(client_id, client_secret) instead of adding those to data, is more secure
         data = {
             "grant_type": "authorization_code",
             "code": authorization_code,
@@ -85,7 +85,7 @@ def authorize_callback():
         print(f"authorize_callback => refresh_token: {refresh_token}")
 
         # Write access token to file.
-        # TODO This is a workaround, because getting access token by refresh token fails. See #171
+        # TODOLATER #171 This is a workaround, because getting access token by refresh token fails.
         #   -> Need to manually authorize so users can create playlist for the test account
         #   -> But with this workaround, can do it comfortably in browser, on phone.
         #   -> No need to manually update the access code in ini
@@ -238,11 +238,11 @@ def get_valid_attributes_for_attribute_distribution():
 def get_valid_attributes_for_sort_option():
     try:
         attributes = [
-            # TODO #195 add missing attribute "none" here
+            # TODOLATER #195 add missing attribute "none" here
             "artists", "title", "duration_ms", "release_year", "popularity", "tempo",
             "key", "mode", "key_signature", "camelot", "loudness"
-            # TODO NOW add new audio features here
-            # TODO #195 add missing attribute "genres" here
+            # TODONOW add new audio features here
+            # TODOLATER #195 add missing attribute "genres" here
             ]
 
         return jsonify(attributes)
