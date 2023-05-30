@@ -179,6 +179,8 @@
         <br>
 
         <h2>Tracks Table</h2>
+        <!-- Wanted to use "with", but led to TemplateSyntaxError, maybe the used Jinja2 version does not support it -->
+        {% set tracks = playlist.tracks %}
         {% include "./components/tracks_table.html" %}
     </div>
 

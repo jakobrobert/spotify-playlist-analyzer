@@ -15,7 +15,7 @@
         <!-- TODONOW add new audio features there -->
         <th>{{ attribute_display_names["genres"] }}</th>
     </tr>
-    {% for track in playlist.tracks %}
+    {% for track in tracks %}
     <tr>
         <td>{{ loop.index }}</td>
         <td>{{ track.get_artists_string() }}</td>
