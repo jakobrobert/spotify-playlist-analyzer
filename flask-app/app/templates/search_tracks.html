@@ -18,42 +18,8 @@
         <h4># Tracks: {{ tracks | length }}</h4>
         <br>
 
-        <h2>Tracks</h2>
-
-        <table class="table table-bordered">
-            <tr>
-                <th>#</th>
-                <th>Artists</th>
-                <th>Title</th>
-                <th>Duration</th>
-                <th>Release<br>Year</th>
-                <th>Popularity</th>
-                <th>Tempo<br>(BPM)</th>
-                <th>Key</th>
-                <th>Mode</th>
-                <th>Key<br>Signature</th>
-                <th>Camelot</th>
-                <th>Loudness<br>(dB)</th>
-                <th>Genres</th>
-            </tr>
-            {% for track in tracks %}
-                <tr>
-                    <td>{{ loop.index }}</td>
-                    <td>{{ track.get_artists_string() }}</td>
-                    <td>{{ track.title }}</td>
-                    <td>{{ track.get_duration_string() }}</td>
-                    <td>{{ track.release_year }}</td>
-                    <td>{{ track.popularity }}</td>
-                    <td>{{ track.get_tempo_string() }}</td>
-                    <td>{{ track.key }}</td>
-                    <td>{{ track.mode }}</td>
-                    <td>{{ track.key_signature }}</td>
-                    <td>{{ track.camelot }}</td>
-                    <td>{{ track.get_loudness_string() }}</td>
-                    <td>{{ track.get_genres_string() }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        <h2>Tracks Table</h2>
+        {% include "./components/tracks_table.html" %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

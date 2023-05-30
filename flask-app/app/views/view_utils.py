@@ -1,7 +1,3 @@
-# PyCharm shows errors for these imports locally, but it works this way with the server
-# 'from app.http_error import HttpError' is shown as valid locally, but does not work with the server
-from http_error import HttpError
-
 import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
@@ -20,6 +16,13 @@ class ViewUtils:
         "key_signature": "Key Signature",
         "camelot": "Camelot",
         "loudness": "Loudness (dB)",
+        "danceability": "Danceablity",
+        "energy": "Energy",
+        "speechiness": "Speechiness",
+        "acousticness": "Acousticness",
+        "instrumentalness": "Instrumentalness",
+        "liveness": "Liveness",
+        "valence": "Valence",
         "genres": "Genres"
     }
 
