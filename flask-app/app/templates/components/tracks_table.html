@@ -1,0 +1,36 @@
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>{{ attribute_display_names["artists"] }}</th>
+        <th>{{ attribute_display_names["title"] }}</th>
+        <th>{{ attribute_display_names["duration_ms"] }}</th>
+        <th>{{ attribute_display_names["release_year"] }}</th>
+        <th>{{ attribute_display_names["popularity"] }}</th>
+        <th>{{ attribute_display_names["tempo"] }}</th>
+        <th>{{ attribute_display_names["key"] }}</th>
+        <th>{{ attribute_display_names["mode"] }}</th>
+        <th>{{ attribute_display_names["key_signature"] }}</th>
+        <th>{{ attribute_display_names["camelot"] }}</th>
+        <th>{{ attribute_display_names["loudness"] }}</th>
+        <!-- TODONOW add new audio features there -->
+        <th>{{ attribute_display_names["genres"] }}</th>
+    </tr>
+    {% for track in playlist.tracks %}
+    <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ track.get_artists_string() }}</td>
+        <td>{{ track.title }}</td>
+        <td>{{ track.get_duration_string() }}</td>
+        <td>{{ track.release_year }}</td>
+        <td>{{ track.popularity }}</td>
+        <td>{{ track.get_tempo_string() }}</td>
+        <td>{{ track.key }}</td>
+        <td>{{ track.mode }}</td>
+        <td>{{ track.key_signature }}</td>
+        <td>{{ track.camelot }}</td>
+        <td>{{ track.get_loudness_string() }}</td>
+        <!-- TODONOW add new audio features there -->
+        <td>{{ track.get_genres_string() }}</td>
+    </tr>
+    {% endfor %}
+</table>
