@@ -17,6 +17,13 @@ class SpotifyTrack:
         self.key_signature = None
         self.camelot = None
         self.loudness = 0
+        self.danceability = 0
+        self.energy = 0
+        self.speechiness = 0
+        self.acousticness = 0
+        self.instrumentalness = 0
+        self.liveness = 0
+        self.valence = 0
         self.genres = []
 
     def get_key_string(self):
@@ -26,6 +33,8 @@ class SpotifyTrack:
         return SpotifyTrack.__get_from_list_or_none(SpotifyTrack.MODE_STRINGS, self.mode)
 
     def update_attributes_by_audio_features(self, audio_features):
+        print(f"audio_features: {audio_features}")
+
         self.tempo = audio_features["tempo"]
         self.key = audio_features["key"]
         self.mode = audio_features["mode"]
@@ -34,6 +43,7 @@ class SpotifyTrack:
         self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(key_string, mode_string)
         self.camelot = SpotifyTrack.__get_camelot_from_key_and_mode(key_string, mode_string)
         self.loudness = audio_features["loudness"]
+        # TODO NOW add new audio features here
 
     @staticmethod
     def __get_from_list_or_none(_list, index):

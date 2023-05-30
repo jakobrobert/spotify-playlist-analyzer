@@ -20,6 +20,7 @@ class ViewUtils:
         "key_signature": "Key Signature",
         "camelot": "Camelot",
         "loudness": "Loudness (dB)",
+        # TODO NOW add new audio features here
         "genres": "Genres"
     }
 
