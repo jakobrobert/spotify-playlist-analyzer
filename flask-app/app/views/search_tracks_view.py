@@ -2,6 +2,7 @@
 # 'from app.http_error import HttpError' is shown as valid locally, but does not work with the server
 from api_client import ApiClient
 from http_error import HttpError
+from views.view_utils import ViewUtils
 
 from flask import Blueprint, render_template, request, redirect, url_for
 import configparser
@@ -20,10 +21,10 @@ search_tracks_view = Blueprint("search_tracks_view", __name__)
 def search_tracks():
     try:
         query = request.args.get("query")
-
         tracks = api_client.search_tracks(query)
-
-        return render_template("search_tracks.html", query=query, tracks=tracks)
+        return render_template(
+            "search_tracks.html",
+            query=query, tracks=tracks, attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES)
     except HttpError as error:
         return render_template("error.html", error=error)
     except Exception:

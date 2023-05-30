@@ -17,6 +17,13 @@ class SpotifyTrack:
         self.key_signature = None
         self.camelot = None
         self.loudness = 0
+        self.danceability = 0
+        self.energy = 0
+        self.speechiness = 0
+        self.acousticness = 0
+        self.instrumentalness = 0
+        self.liveness = 0
+        self.valence = 0
         self.genres = []
 
     def get_key_string(self):
@@ -34,6 +41,13 @@ class SpotifyTrack:
         self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(key_string, mode_string)
         self.camelot = SpotifyTrack.__get_camelot_from_key_and_mode(key_string, mode_string)
         self.loudness = audio_features["loudness"]
+        self.danceability = SpotifyTrack.__process_audio_feature_value(audio_features["danceability"])
+        self.energy = SpotifyTrack.__process_audio_feature_value(audio_features["energy"])
+        self.speechiness = SpotifyTrack.__process_audio_feature_value(audio_features["speechiness"])
+        self.acousticness = SpotifyTrack.__process_audio_feature_value(audio_features["acousticness"])
+        self.instrumentalness = SpotifyTrack.__process_audio_feature_value(audio_features["instrumentalness"])
+        self.liveness = SpotifyTrack.__process_audio_feature_value(audio_features["liveness"])
+        self.valence = SpotifyTrack.__process_audio_feature_value(audio_features["valence"])
 
     @staticmethod
     def __get_from_list_or_none(_list, index):
@@ -68,6 +82,8 @@ class SpotifyTrack:
             return "2♭"
         if (key_string == "F" and mode_string == "Major") or (key_string == "D" and mode_string == "Minor"):
             return "1♭"
+
+        return "n/a"
 
     @staticmethod
     def __get_camelot_from_key_and_mode(key_string, mode_string):
@@ -121,3 +137,7 @@ class SpotifyTrack:
             return "12B"
 
         return "n/a"
+
+    @staticmethod
+    def __process_audio_feature_value(value):
+        return round(value * 100)
