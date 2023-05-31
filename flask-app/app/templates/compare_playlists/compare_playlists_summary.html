@@ -1,0 +1,42 @@
+<table class="table table-bordered">
+    <tr>
+        <th>Attribute</th>
+        <th>Playlist 1</th>
+        <th>Playlist 2</th>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <td>{{ playlist_1.name }}</td>
+        <td>{{ playlist_2.name}}</td>
+    </tr>
+    <tr>
+        <th># Tracks</th>
+        <td>{{ playlist_1.tracks | length }}</td>
+        <td>{{ playlist_2.tracks | length }}</td>
+    </tr>
+    <tr>
+        <th>Total {{ attribute_display_names["duration_ms"] }}</th>
+        <td>{{ playlist_1.get_total_duration_string() }}</td>
+        <td>{{ playlist_2.get_total_duration_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["duration_ms"] }}</th>
+        <td>{{ playlist_1.get_average_duration_string() }}</td>
+        <td>{{ playlist_2.get_average_duration_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["release_year"] }}</th>
+        <td>{{ playlist_1.get_average_release_year_string() }}</td>
+        <td>{{ playlist_2.get_average_release_year_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["popularity"] }}</th>
+        <td>{{ playlist_1.get_average_popularity_string() }}</td>
+        <td>{{ playlist_2.get_average_popularity_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["tempo"] }}</th>
+        <td>{{ playlist_1.get_average_tempo_string() }}</td>
+        <td>{{ playlist_2.get_average_tempo_string() }}</td>
+    </tr>
+</table>
