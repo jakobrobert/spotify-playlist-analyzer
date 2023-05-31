@@ -1,0 +1,16 @@
+<form action="{{ url_for('compare_attribute_distribution_view.compare_attribute_distribution_of_playlists') }}"
+      method="GET">
+    <label for="attribute">Attribute</label>
+    <select class="form-control" id="attribute" name="attribute">
+        {% for attribute in valid_attributes_for_attribute_distribution %}
+            <option value="{{ attribute }}">
+                {{ attribute_display_names[attribute] }}
+            </option>
+        {% endfor %}
+    </select>
+    <!-- Hidden fields to pass the query params to the URL.
+        It seems not to be possible to pass query params to the url_for function when using a form -->
+    <input type="hidden" name="playlist_id_1" value="{{ playlist_1.id }}">
+    <input type="hidden" name="playlist_id_2" value="{{ playlist_2.id }}">
+    <button class="btn btn-secondary" type="submit">Compare</button>
+</form>
