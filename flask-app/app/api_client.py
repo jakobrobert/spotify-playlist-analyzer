@@ -126,6 +126,9 @@ class ApiClient:
         track.duration_ms = track_data["duration_ms"]
         track.release_year = track_data["release_year"]
         track.popularity = track_data["popularity"]
+        track.genres = track_data["genres"]
+
+        # Audio Features
         track.tempo = track_data["tempo"]
         track.key = track_data["key"]
         track.mode = track_data["mode"]
@@ -134,11 +137,10 @@ class ApiClient:
         track.loudness = track_data["loudness"]
         track.danceability = track_data["danceability"]
         track.energy = track_data["energy"]
-        track.speechiness = track_data["speechiness"]
-        track.acousticness = track_data["acousticness"]
-        track.instrumentalness = track_data["instrumentalness"]
-        track.liveness = track_data["liveness"]
         track.valence = track_data["valence"]
-        track.genres = track_data["genres"]
+        track.instrumentalness = track_data["instrumentalness"]
+        track.acousticness = track_data["acousticness"]
+        track.liveness = track_data["liveness"]
+        track.speechiness = track_data["speechiness"]
 
         return track
