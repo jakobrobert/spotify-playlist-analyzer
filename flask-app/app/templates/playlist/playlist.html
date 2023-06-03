@@ -15,35 +15,11 @@
         <br>
 
         <h2>Summary</h2>
-        <table>
-            <tr>
-                <td># Tracks:&nbsp;</td>
-                <td>{{ playlist.tracks | length }}</td>
-            </tr>
-            <tr>
-                <td>Total {{ attribute_display_names["duration_ms"] }}:&nbsp;</td>
-                <td>{{ playlist.get_total_duration_string() }}</td>
-            </tr>
-            <tr>
-                <td>Average {{ attribute_display_names["duration_ms"] }}:&nbsp;</td>
-                <td>{{ playlist.get_average_duration_string() }}</td>
-            </tr>
-            <tr>
-                <td>Average {{ attribute_display_names["release_year"] }}:&nbsp;</td>
-                <td>{{ playlist.get_average_release_year_string() }}</td>
-            </tr>
-            <tr>
-                <td>Average {{ attribute_display_names["popularity"] }}:&nbsp;</td>
-                <td>{{ playlist.get_average_popularity_string() }}</td>
-            </tr>
-            <tr>
-                <td>Average {{ attribute_display_names["tempo"] }}:&nbsp;</td>
-                <td>{{ playlist.get_average_tempo_string() }}</td>
-            </tr>
-        </table>
+        {% include "playlist/playlist_summary.html" %}
         <br>
 
         <h2>Attribute Distribution</h2>
+        <!-- TODONOW extract sub template -->
         <form action="{{ url_for('attribute_distribution_view.get_attribute_distribution_of_playlist', playlist_id=playlist.id) }}" method="GET">
             <label for="attribute">Attribute</label>
             <select class="form-control" id="attribute" name="attribute">
@@ -58,6 +34,7 @@
         <br>
 
         <h2>Sort Tracks</h2>
+        <!-- TODONOW extract sub template -->
         <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <select class="form-control" name="sort_by">
                 {% for attribute in valid_attributes_for_sort_option %}
@@ -79,6 +56,7 @@
         <br>
 
         <h2>Filter Tracks</h2>
+        <!-- TODONOW extract sub template -->
         <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
             <div>
                 <input type="radio" id="artists" name="filter_by" value="artists"
@@ -163,7 +141,9 @@
         <br>
 
         <h2>Export Playlist</h2>
-        <!-- Form with hidden input element so track ids can be send to POST endpoint.
+        <!-- TODONOW extract sub template -->
+
+        <!-- Form with hidden input element so track ids can be sent to POST endpoint.
         Would be cleaner with JavaScript, but was struggling once with adding JavaScript files in this project,
         Don't want to waste time with that now -->
         <form action="{{ url_for('export_playlist_view.export_playlist') }}" method="POST">
