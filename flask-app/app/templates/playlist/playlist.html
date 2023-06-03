@@ -31,21 +31,7 @@
         <br>
 
         <h2>Export Playlist</h2>
-        <!-- TODONOW extract sub template -->
-
-        <!-- Form with hidden input element so track ids can be sent to POST endpoint.
-        Would be cleaner with JavaScript, but was struggling once with adding JavaScript files in this project,
-        Don't want to waste time with that now -->
-        <form action="{{ url_for('export_playlist_view.export_playlist') }}" method="POST">
-            <div>
-                <label for="playlist_name">Playlist Name:</label>
-                <input type="text" id="playlist_name" name="playlist_name" required>
-            </div>
-            {% for track in playlist.tracks %}
-                <input type="hidden" name="track_ids[]" value="{{ track.id }}">
-            {% endfor %}
-            <button class="btn btn-secondary" type="submit">Export</button>
-        </form>
+        {% include "playlist/playlist_export_form.html" %}
         <br>
 
         <h2>Tracks Table</h2>
