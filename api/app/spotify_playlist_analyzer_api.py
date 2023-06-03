@@ -236,9 +236,12 @@ def get_valid_attributes_for_sort_option():
     try:
         attributes = [
             # TODOLATER #195 add missing attribute "none" here
-            "artists", "title", "duration_ms", "release_year", "popularity", "tempo",
-            "key", "mode", "key_signature", "camelot", "loudness",
+            "artists", "title", "duration_ms", "release_year", "popularity",
+
+            # Audio Features
+            "tempo", "key", "mode", "key_signature", "camelot", "loudness",
             "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
+
             # TODOLATER #195 add missing attribute "genres" here
             ]
 
