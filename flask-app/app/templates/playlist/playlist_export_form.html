@@ -1,0 +1,14 @@
+<form action="{{ url_for('export_playlist_view.export_playlist') }}" method="POST">
+    <div>
+        <label for="playlist_name">Playlist Name:</label>
+        <input type="text" id="playlist_name" name="playlist_name" required>
+    </div>
+    <!-- Hidden input elements so track ids can be sent to POST endpoint.
+        Would be cleaner with JavaScript,
+        but was struggling at an earlier attempt of adding JavaScript files in this project,
+        don't want to waste time with that now -->
+    {% for track in playlist.tracks %}
+        <input type="hidden" name="track_ids[]" value="{{ track.id }}">
+    {% endfor %}
+    <button class="btn btn-secondary" type="submit">Export</button>
+</form>
