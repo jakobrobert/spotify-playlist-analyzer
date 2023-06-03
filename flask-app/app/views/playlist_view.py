@@ -39,11 +39,11 @@ def get_playlist_by_id(playlist_id):
         title_substring = request.args.get("title_substring")
         min_release_year = request.args.get("min_release_year")
         max_release_year = request.args.get("max_release_year")
+        genres_substring = request.args.get("genres_substring")
         min_tempo = request.args.get("min_tempo")
         max_tempo = request.args.get("max_tempo")
         expected_key = request.args.get("expected_key")
         expected_mode = request.args.get("expected_mode")
-        genres_substring = request.args.get("genres_substring")
         expected_key_signature = request.args.get("expected_key_signature")
 
         request_params = {
@@ -54,12 +54,12 @@ def get_playlist_by_id(playlist_id):
             "title_substring": title_substring,
             "min_release_year": min_release_year,
             "max_release_year": max_release_year,
+            "genres_substring": genres_substring,
             "min_tempo": min_tempo,
             "max_tempo": max_tempo,
             "expected_key": expected_key,
             "expected_mode": expected_mode,
             "expected_key_signature": expected_key_signature,
-            "genres_substring": genres_substring
         }
 
         playlist = api_client.get_playlist_by_id(playlist_id, request_params)
@@ -73,9 +73,9 @@ def get_playlist_by_id(playlist_id):
             "playlist/playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
             artists_substring=artists_substring, title_substring=title_substring,
             min_release_year=min_release_year, max_release_year=max_release_year,
+            genres_substring=genres_substring,
             min_tempo=min_tempo, max_tempo=max_tempo,
             expected_key=expected_key, expected_mode=expected_mode, expected_key_signature=expected_key_signature,
-            genres_substring=genres_substring,
             attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
             valid_attributes_for_sort_option=valid_attributes_for_sort_option,

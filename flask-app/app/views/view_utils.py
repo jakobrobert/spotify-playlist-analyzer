@@ -10,6 +10,7 @@ class ViewUtils:
         "duration_ms": "Duration",
         "release_year": "Release Year",
         "popularity": "Popularity",
+        "genres": "Genres",
 
         # Audio Features
         "tempo": "Tempo (BPM)",
@@ -24,9 +25,7 @@ class ViewUtils:
         "acousticness": "Acousticness",
         "instrumentalness": "Instrumentalness",
         "liveness": "Liveness",
-        "valence": "Valence",
-
-        "genres": "Genres"
+        "valence": "Valence"
     }
 
     @staticmethod
