@@ -7,30 +7,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Spotify Playlist Analyzer - Compare {{ attribute_name }} Distribution</title>
+    <title>Spotify Playlist Analyzer - Compare Playlists - {{ playlist_1.name }} | {{ playlist_2.name }}
+        - {{ attribute_display_name }} Distribution</title>
 </head>
 <body>
     <div class="container">
-        <h1>Playlist 1: {{ playlist_1.name }}</h1>
-        <h1>Playlist 2: {{ playlist_2.name }}</h1>
+        <h1>Compare Playlists - {{ playlist_1.name }} | {{ playlist_2.name }}
+            - {{ attribute_display_name }} Distribution</h1>
         <br>
 
-        <h2>Compare {{ attribute_name }} Distribution [Chart]</h2>
+        <h2>Compare {{ attribute_display_name }} Distribution [Chart]</h2>
         <img src="data:image/png;base64,{{ chart_image_base64 }}">
 
-        <h2>Compare {{ attribute_name }} Distribution [Table]</h2>
+        <h2>Compare {{ attribute_display_name }} Distribution [Table]</h2>
         <table class="table table-bordered">
             <tr>
-                <th>{{ attribute_name }}</th>
+                <th>{{ attribute_display_name }}</th>
                 <th>Count [{{ playlist_1.name }}]</th>
                 <th>Percentage [{{ playlist_1.name }}]</th>
                 <th>Count [{{ playlist_2.name }}]</th>
                 <th>Percentage [{{ playlist_2.name }}]</th>
             </tr>
             <!-- Doing it the ugly way because zip function not accessible in Jinja2.
-                This did not help as well:
-                app.jinja_env.filters["zip"] = zip
-            -->
+                This did not help either: app.jinja_env.filters["zip"] = zip -->
             {% for index in range(attribute_distribution_items_1 | length) %}
                 {% set item_1 = attribute_distribution_items_1[index] %}
                 {% set item_2 = attribute_distribution_items_2[index]%}
