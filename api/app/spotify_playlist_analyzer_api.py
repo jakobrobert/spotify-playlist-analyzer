@@ -235,14 +235,12 @@ def get_valid_attributes_for_attribute_distribution():
 def get_valid_attributes_for_sort_option():
     try:
         attributes = [
-            # TODOLATER #195 add missing attribute "none" here
+            # TODOLATER #195 add missing attributes "none" & "genres"
             "artists", "title", "duration_ms", "release_year", "popularity",
 
             # Audio Features
             "tempo", "key", "mode", "key_signature", "camelot", "loudness",
             "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
-
-            # TODOLATER #195 add missing attribute "genres" here
             ]
 
         return jsonify(attributes)
@@ -330,6 +328,14 @@ def __extract_filter_params_from_request():
         params["max_release_year"] = max_release_year
         return params
 
+    if filter_by == "genres":
+        genres_substring = request.args.get("genres_substring")
+        if not genres_substring:
+            raise __create_http_error_for_filter_params(filter_by, "genres_substring")
+
+        params["genres_substring"] = genres_substring
+        return params
+
     if filter_by == "tempo":
         min_tempo = __get_request_param_as_int_or_none("min_tempo")
         if min_tempo is None:
@@ -365,14 +371,6 @@ def __extract_filter_params_from_request():
             raise __create_http_error_for_filter_params(filter_by, "expected_key_signature")
 
         params["expected_key_signature"] = expected_key_signature
-        return params
-
-    if filter_by == "genres":
-        genres_substring = request.args.get("genres_substring")
-        if not genres_substring:
-            raise __create_http_error_for_filter_params(filter_by, "genres_substring")
-
-        params["genres_substring"] = genres_substring
         return params
 
     raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
