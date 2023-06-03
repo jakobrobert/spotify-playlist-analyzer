@@ -7,6 +7,8 @@ class SpotifyTrack:
         self.duration_ms = 0
         self.release_year = 0
         self.popularity = 0
+
+        # Audio Features
         self.tempo = 0
         self.key = "n/a"
         self.mode = "n/a"
@@ -15,11 +17,12 @@ class SpotifyTrack:
         self.loudness = 0
         self.danceability = 0
         self.energy = 0
-        self.speechiness = 0
-        self.acousticness = 0
-        self.instrumentalness = 0
-        self.liveness = 0
         self.valence = 0
+        self.instrumentalness = 0
+        self.acousticness = 0
+        self.liveness = 0
+        self.speechiness = 0
+
         self.genres = []
 
     def get_artists_string(self):
