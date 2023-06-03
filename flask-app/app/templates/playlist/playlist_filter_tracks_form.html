@@ -23,6 +23,13 @@
         <input type="number" id="max_release_year" name="max_release_year" value="{{ max_release_year }}">
     </div>
     <div>
+        <input type="radio" id="genres" name="filter_by" value="genres"
+               {% if filter_by == "genres" %} checked {% endif %}>
+        <label for="genres">Genres</label>
+        <label for="genres_substring">contain</label>
+        <input type="text" id="genres_substring" name="genres_substring" value="{{ genres_substring }}">
+    </div>
+    <div>
         <input type="radio" id="tempo" name="filter_by" value="tempo"
                {% if filter_by == "tempo" %} checked {% endif %}>
         <label for="tempo">Tempo (BPM)</label>
@@ -69,13 +76,6 @@
                 </option>
             {% endfor %}
         </select>
-    </div>
-    <div>
-        <input type="radio" id="genres" name="filter_by" value="genres"
-               {% if filter_by == "genres" %} checked {% endif %}>
-        <label for="genres">Genres</label>
-        <label for="genres_substring">contain</label>
-        <input type="text" id="genres_substring" name="genres_substring" value="{{ genres_substring }}">
     </div>
     <button class="btn btn-secondary" type="submit">Filter</button>
 </form>

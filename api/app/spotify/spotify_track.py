@@ -11,6 +11,7 @@ class SpotifyTrack:
         self.duration_ms = 0
         self.release_year = 0
         self.popularity = 0
+        self.genres = []
 
         # Audio Features
         self.tempo = 0
@@ -26,8 +27,6 @@ class SpotifyTrack:
         self.acousticness = 0
         self.liveness = 0
         self.speechiness = 0
-
-        self.genres = []
 
     def get_key_string(self):
         return SpotifyTrack.__get_from_list_or_none(SpotifyTrack.KEY_STRINGS, self.key)

@@ -7,6 +7,7 @@ class SpotifyTrack:
         self.duration_ms = 0
         self.release_year = 0
         self.popularity = 0
+        self.genres = []
 
         # Audio Features
         self.tempo = 0
@@ -23,22 +24,20 @@ class SpotifyTrack:
         self.liveness = 0
         self.speechiness = 0
 
-        self.genres = []
-
     def get_artists_string(self):
         return ", ".join(self.artists)
 
     def get_duration_string(self):
         return self.get_duration_string_helper(self.duration_ms)
 
+    def get_genres_string(self):
+        return ", ".join(self.genres)
+
     def get_tempo_string(self):
         return f"{self.tempo:.1f}"
 
     def get_loudness_string(self):
         return f"{self.loudness:.1f}"
-
-    def get_genres_string(self):
-        return ", ".join(self.genres)
 
     @staticmethod
     def get_duration_string_helper(duration_ms):
