@@ -11,6 +11,9 @@ class SpotifyTrack:
         self.duration_ms = 0
         self.release_year = 0
         self.popularity = 0
+        self.genres = []
+
+        # Audio Features
         self.tempo = 0
         self.key = -1
         self.mode = -1
@@ -19,12 +22,11 @@ class SpotifyTrack:
         self.loudness = 0
         self.danceability = 0
         self.energy = 0
-        self.speechiness = 0
-        self.acousticness = 0
-        self.instrumentalness = 0
-        self.liveness = 0
         self.valence = 0
-        self.genres = []
+        self.instrumentalness = 0
+        self.acousticness = 0
+        self.liveness = 0
+        self.speechiness = 0
 
     def get_key_string(self):
         return SpotifyTrack.__get_from_list_or_none(SpotifyTrack.KEY_STRINGS, self.key)
@@ -43,11 +45,11 @@ class SpotifyTrack:
         self.loudness = audio_features["loudness"]
         self.danceability = SpotifyTrack.__process_audio_feature_value(audio_features["danceability"])
         self.energy = SpotifyTrack.__process_audio_feature_value(audio_features["energy"])
-        self.speechiness = SpotifyTrack.__process_audio_feature_value(audio_features["speechiness"])
-        self.acousticness = SpotifyTrack.__process_audio_feature_value(audio_features["acousticness"])
-        self.instrumentalness = SpotifyTrack.__process_audio_feature_value(audio_features["instrumentalness"])
-        self.liveness = SpotifyTrack.__process_audio_feature_value(audio_features["liveness"])
         self.valence = SpotifyTrack.__process_audio_feature_value(audio_features["valence"])
+        self.instrumentalness = SpotifyTrack.__process_audio_feature_value(audio_features["instrumentalness"])
+        self.acousticness = SpotifyTrack.__process_audio_feature_value(audio_features["acousticness"])
+        self.liveness = SpotifyTrack.__process_audio_feature_value(audio_features["liveness"])
+        self.speechiness = SpotifyTrack.__process_audio_feature_value(audio_features["speechiness"])
 
     @staticmethod
     def __get_from_list_or_none(_list, index):

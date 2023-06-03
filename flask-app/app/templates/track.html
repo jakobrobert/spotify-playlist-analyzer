@@ -40,6 +40,11 @@
                 <td>{{ track.popularity }}</td>
             </tr>
             <tr>
+                <td>{{ attribute_display_names["genres"] }}</td>
+                <td>{{ track.get_genres_string() }}</td>
+            </tr>
+            <!-- Audio Features -->
+            <tr>
                 <td>{{ attribute_display_names["tempo"] }}</td>
                 <td>{{ track.get_tempo_string() }}</td>
             </tr>
@@ -72,28 +77,24 @@
                 <td>{{ track.energy }}</td>
             </tr>
             <tr>
-                <td>{{ attribute_display_names["speechiness"] }}</td>
-                <td>{{ track.speechiness }}</td>
-            </tr>
-            <tr>
-                <td>{{ attribute_display_names["acousticness"] }}</td>
-                <td>{{ track.acousticness }}</td>
+                <td>{{ attribute_display_names["valence"] }}</td>
+                <td>{{ track.valence }}</td>
             </tr>
             <tr>
                 <td>{{ attribute_display_names["instrumentalness"] }}</td>
                 <td>{{ track.instrumentalness }}</td>
             </tr>
             <tr>
+                <td>{{ attribute_display_names["acousticness"] }}</td>
+                <td>{{ track.acousticness }}</td>
+            </tr>
+            <tr>
                 <td>{{ attribute_display_names["liveness"] }}</td>
                 <td>{{ track.liveness }}</td>
             </tr>
             <tr>
-                <td>{{ attribute_display_names["valence"] }}</td>
-                <td>{{ track.valence }}</td>
-            </tr>
-            <tr>
-                <td>{{ attribute_display_names["genres"] }}</td>
-                <td>{{ track.get_genres_string() }}</td>
+                <td>{{ attribute_display_names["speechiness"] }}</td>
+                <td>{{ track.speechiness }}</td>
             </tr>
         </table>
     </div>
