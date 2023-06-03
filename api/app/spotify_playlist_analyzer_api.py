@@ -115,10 +115,7 @@ def get_playlist_by_id(playlist_id):
 
         __sort_tracks(playlist.tracks, sort_by, order)
 
-        start_time = time.time()
         filter_params = __extract_filter_params_from_request()
-        end_time = time.time()
-        print(f"__extract_filter_params_from_request => elapsed time (ms): {1000 * (end_time - start_time)}")
         playlist.tracks = TrackFilter.filter_tracks(playlist.tracks, filter_params)
 
         statistics = PlaylistStatistics(playlist.tracks)
