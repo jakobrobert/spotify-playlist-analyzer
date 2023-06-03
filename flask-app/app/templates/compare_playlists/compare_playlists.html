@@ -7,19 +7,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Spotify Playlist Analyzer - Search Tracks - {{ query }}</title>
+    <title>Spotify Playlist Analyzer - Compare Playlists - {{ playlist_1.name }} | {{ playlist_2.name }}</title>
 </head>
 <body>
     <div class="container">
-        <h1>Search Tracks: {{ query }}</h1>
+        <h1>Compare Playlists - {{ playlist_1.name }} | {{ playlist_2.name }}</h1>
         <br>
 
-        <h2>General Info</h2>
-        <h4># Tracks: {{ tracks | length }}</h4>
+        <h2>Summary</h2>
+        {% include "compare_playlists/compare_playlists_summary.html" %}
         <br>
 
-        <h2>Tracks Table</h2>
-        {% include "components/tracks_table.html" %}
+        <h2>Compare Attribute Distribution</h2>
+        {% include "compare_playlists/compare_playlists_attribute_distribution_form.html" %}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
