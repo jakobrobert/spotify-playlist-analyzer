@@ -93,22 +93,26 @@ class ApiClient:
                 raise http_error
 
             return response_data
-        except JSONDecodeError as e:
+        except JSONDecodeError:
             if "502 Bad Gateway" in response.text:
-                raise HttpError(status_code=502, title="API Error", message="Bad Gateway: Cannot reach API")
+                raise HttpError(status_code=502, title="API Error", message="Bad Gateway (cannot reach API)")
 
     def __send_post_request(self, sub_url, data=None):
         url = f"{self.base_url}{sub_url}"
         # Use json=data so the data is encoded as JSON, else would be url encoded
         response = requests.post(url, json=data)
-        # TODO here as for __send_get_request
-        response_data = response.json()
 
-        http_error = ApiClient.__create_http_error_from_response_data(response_data)
-        if http_error:
-            raise http_error
+        try:
+            response_data = response.json()
+            http_error = ApiClient.__create_http_error_from_response_data(response_data)
 
-        return response_data
+            if http_error:
+                raise http_error
+
+            return response_data
+        except JSONDecodeError:
+            if "502 Bad Gateway" in response.text:
+                raise HttpError(status_code=502, title="API Error", message="Bad Gateway (cannot reach API)")
 
     @staticmethod
     def __create_http_error_from_response_data(response_data):
