@@ -64,7 +64,18 @@
             {% endfor %}
         </select>
     </div>
-    <!-- TODONOW generate elements for numerical_attributes_to_filter_by.
-    Test that again shows options for release_year & tempo and they work. -->
+    {% for attribute in numerical_attributes_to_filter_by %}
+        <div>
+            <input type="radio" id="{{ attribute }}" name="filter_by" value="{{ attribute }}"
+                   {% if filter_params["filter_by"] == "{{ attribute }}" %} checked {% endif %}>
+            <label for="{{ attribute }}">{{ attribute_display_names[attribute] }}</label>
+            <label for="min_{{ attribute }}">from</label>
+            <input type="number" id="min_{{ attribute }}" name="min_{{ attribute }}"
+                   value="{{ filter_params["min_" + attribute] }}">
+            <label for="max_{{ attribute }}">to</label>
+            <input type="number" id="max_{{ attribute }}" name="max_{{ attribute }}"
+                   value="{{ filter_params["max_" + attribute] }}">
+        </div>
+    {% endfor %}
     <button class="btn btn-secondary" type="submit">Filter</button>
 </form>
