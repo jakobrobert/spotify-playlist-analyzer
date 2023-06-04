@@ -51,6 +51,7 @@ def get_playlist_by_id(playlist_id):
             "playlist/playlist.html", playlist=playlist,
             sort_by=api_request_params["sort_by"], order=api_request_params["order"],
             filter_params=filter_params,
+            numerical_attributes_to_filter_by=ViewUtils.NUMERICAL_ATTRIBUTES_TO_FILTER_BY,
             attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
             valid_attributes_for_sort_option=valid_attributes_for_sort_option,
@@ -77,5 +78,3 @@ def __extract_filter_params_from_request_params(request_params):
         "expected_mode": request.args.get("expected_mode"),
         "expected_key_signature": request.args.get("expected_key_signature")
     }
-
-    

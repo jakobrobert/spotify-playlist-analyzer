@@ -28,6 +28,10 @@ class ViewUtils:
         "valence": "Valence"
     }
 
+    NUMERICAL_ATTRIBUTES_TO_FILTER_BY = [
+        "tempo", "release_year"
+    ]
+
     @staticmethod
     def get_playlist_id_from_playlist_url(playlist_url):
         url_prefix = "playlist/"
