@@ -16,34 +16,12 @@
                value="{{ filter_params["title_substring"] }}">
     </div>
     <div>
-        <input type="radio" id="release_year" name="filter_by" value="release_year"
-               {% if filter_params["filter_by"] == "release_year" %} checked {% endif %}>
-        <label for="release_year">Release Year</label>
-        <label for="min_release_year">from</label>
-        <input type="number" id="min_release_year" name="min_release_year"
-               value="{{ filter_params["min_release_year"] }}">
-        <label for="max_release_year">to</label>
-        <input type="number" id="max_release_year" name="max_release_year"
-               value="{{ filter_params["max_release_year"] }}">
-    </div>
-    <div>
         <input type="radio" id="genres" name="filter_by" value="genres"
                {% if filter_params["filter_by"] == "genres" %} checked {% endif %}>
         <label for="genres">Genres</label>
         <label for="genres_substring">contain</label>
         <input type="text" id="genres_substring" name="genres_substring"
                value="{{ filter_params["genres_substring"] }}">
-    </div>
-    <div>
-        <input type="radio" id="tempo" name="filter_by" value="tempo"
-               {% if filter_params["filter_by"] == "tempo" %} checked {% endif %}>
-        <label for="tempo">Tempo (BPM)</label>
-        <label for="min_tempo">from</label>
-        <input type="number" id="min_tempo" name="min_tempo"
-               value="{{ filter_params["min_tempo"] }}">
-        <label for="max_tempo">to</label>
-        <input type="number" id="max_tempo" name="max_tempo"
-               value="{{ filter_params["max_tempo"] }}">
     </div>
     <div>
         <input type="radio" id="key" name="filter_by" value="key"
@@ -86,5 +64,7 @@
             {% endfor %}
         </select>
     </div>
+    <!-- TODONOW generate elements for numerical_attributes_to_filter_by.
+    Test that again shows options for release_year & tempo and they work. -->
     <button class="btn btn-secondary" type="submit">Filter</button>
 </form>
