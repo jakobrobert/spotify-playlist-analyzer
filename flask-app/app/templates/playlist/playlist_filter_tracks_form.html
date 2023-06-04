@@ -1,7 +1,7 @@
 <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
     <div>
         <input type="radio" id="artists" name="filter_by" value="artists"
-               {% if filter_by == "artists" %} checked {% endif %}>
+               {% if filter_params["filter_by"] == "artists" %} checked {% endif %}>
         <label for="artists">Artists</label>
         <label for="artists_substring">contain</label>
         <input type="text" id="artists_substring" name="artists_substring" value="{{ artists_substring }}">
@@ -15,12 +15,14 @@
     </div>
     <div>
         <input type="radio" id="release_year" name="filter_by" value="release_year"
-               {% if filter_by == "release_year" %} checked {% endif %}>
+               {% if filter_params["filter_by"] == "release_year" %} checked {% endif %}>
         <label for="release_year">Release Year</label>
         <label for="min_release_year">from</label>
-        <input type="number" id="min_release_year" name="min_release_year" value="{{ min_release_year }}">
+        <input type="number" id="min_release_year" name="min_release_year"
+               value="{{ filter_params["min_release_year"] }}">
         <label for="max_release_year">to</label>
-        <input type="number" id="max_release_year" name="max_release_year" value="{{ max_release_year }}">
+        <input type="number" id="max_release_year" name="max_release_year"
+               value="{{ filter_params["max_release_year"] }}">
     </div>
     <div>
         <input type="radio" id="genres" name="filter_by" value="genres"
