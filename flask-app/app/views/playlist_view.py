@@ -47,17 +47,10 @@ def get_playlist_by_id(playlist_id):
         valid_modes = api_client.get_valid_modes()
         valid_key_signatures = api_client.get_valid_key_signatures()
 
-        # TODONOW just pass params=api_request_params, then extract in template
         return render_template(
             "playlist/playlist.html", playlist=playlist,
             sort_by=api_request_params["sort_by"], order=api_request_params["order"],
-            filter_by=filter_params["filter_by"],
-            artists_substring=filter_params["artists_substring"], title_substring=filter_params["title_substring"],
-            min_release_year=filter_params["min_release_year"], max_release_year=filter_params["max_release_year"],
-            genres_substring=filter_params["genres_substring"],
-            min_tempo=filter_params["min_tempo"], max_tempo=filter_params["max_tempo"],
-            expected_key=filter_params["expected_key"], expected_mode=filter_params["expected_mode"],
-            expected_key_signature=filter_params["expected_key_signature"],
+            filter_params=filter_params,
             attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
             valid_attributes_for_sort_option=valid_attributes_for_sort_option,
