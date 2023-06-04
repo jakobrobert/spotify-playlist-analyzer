@@ -32,13 +32,9 @@ def get_playlist_by_url():
 @playlist_view.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
     try:
-        # TODONOW inline those
-        sort_by = request.args.get("sort_by")
-        order = request.args.get("order")
-
         api_request_params = {
-            "sort_by": sort_by,
-            "order": order
+            "sort_by": request.args.get("sort_by"),
+            "order": request.args.get("order")
         }
 
         filter_params = __extract_filter_params_from_request_params(request.args)
@@ -51,8 +47,10 @@ def get_playlist_by_id(playlist_id):
         valid_modes = api_client.get_valid_modes()
         valid_key_signatures = api_client.get_valid_key_signatures()
 
+        # TODONOW just pass params=api_request_params, then extract in template
         return render_template(
-            "playlist/playlist.html", playlist=playlist, sort_by=sort_by, order=order,
+            "playlist/playlist.html", playlist=playlist,
+            sort_by=api_request_params["sort_by"], order=api_request_params["order"],
             filter_by=filter_params["filter_by"],
             artists_substring=filter_params["artists_substring"], title_substring=filter_params["title_substring"],
             min_release_year=filter_params["min_release_year"], max_release_year=filter_params["max_release_year"],
