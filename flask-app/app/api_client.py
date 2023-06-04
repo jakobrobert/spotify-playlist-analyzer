@@ -1,3 +1,5 @@
+from json import JSONDecodeError
+
 from spotify.spotify_playlist import SpotifyPlaylist
 from spotify.spotify_track import SpotifyTrack
 from http_error import HttpError
@@ -82,18 +84,24 @@ class ApiClient:
     def __send_get_request(self, sub_url, params=None):
         url = f"{self.base_url}{sub_url}"
         response = requests.get(url, params=params)
-        response_data = response.json()
 
-        http_error = ApiClient.__create_http_error_from_response_data(response_data)
-        if http_error:
-            raise http_error
+        try:
+            response_data = response.json()
+            http_error = ApiClient.__create_http_error_from_response_data(response_data)
 
-        return response_data
+            if http_error:
+                raise http_error
+
+            return response_data
+        except JSONDecodeError as e:
+            if "502 Bad Gateway" in response.text:
+                raise HttpError(status_code=502, title="API Error", message="Bad Gateway: Cannot reach API")
 
     def __send_post_request(self, sub_url, data=None):
         url = f"{self.base_url}{sub_url}"
         # Use json=data so the data is encoded as JSON, else would be url encoded
         response = requests.post(url, json=data)
+        # TODO here as for __send_get_request
         response_data = response.json()
 
         http_error = ApiClient.__create_http_error_from_response_data(response_data)
