@@ -110,13 +110,15 @@ def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
+        # Sort tracks
         sort_by = request.args.get("sort_by") or "none"
         order = request.args.get("order") or "ascending"
-
         __sort_tracks(playlist.tracks, sort_by, order)
 
+        # Filter tracks
         filter_params = __extract_filter_params_from_request_params(request.args)
-        playlist.tracks = TrackFilter.filter_tracks(playlist.tracks, filter_params)
+        track_filter = TrackFilter(playlist.tracks, filter_params)
+        playlist.tracks = track_filter.filter_tracks()
 
         statistics = PlaylistStatistics(playlist.tracks)
 
