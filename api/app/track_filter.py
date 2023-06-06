@@ -10,45 +10,72 @@ class TrackFilter:
             return self.tracks
 
         if filter_by == "artists":
-            return self.__filter_tracks_by_artists()
+            return self.__filter_by_artists()
 
         if filter_by == "title":
-            title_substring = self.filter_params["title_substring"]
-            return list(filter(lambda track: TrackFilter.string_contains_substring(track.title, title_substring), self.tracks))
+            return self.__filter_by_title()
 
         if filter_by == "genres":
-            genres_substring = self.filter_params["genres_substring"]
-            return list(filter(
-                lambda track: TrackFilter.__any_string_contains_substring(track.genres, genres_substring), self.tracks))
+            return self.__filter_by_genres()
 
         if filter_by == "key":
-            expected_key = self.filter_params["expected_key"]
-            return list(filter(lambda track: track.get_key_string() == expected_key, self.tracks))
+            return self.__filter_by_key()
 
         if filter_by == "mode":
-            expected_mode = self.filter_params["expected_mode"]
-            return list(filter(lambda track: track.get_mode_string() == expected_mode, self.tracks))
+            return self.__filter_by_mode()
 
         if filter_by == "key_signature":
-            expected_key_signature = self.filter_params["expected_key_signature"]
-            return list(filter(lambda track: track.key_signature == expected_key_signature, self.tracks))
+            return self.__filter_by_key_signature()
 
         if filter_by == "release_year":
-            min_release_year = self.filter_params["min_release_year"]
-            max_release_year = self.filter_params["max_release_year"]
-            return list(filter(lambda track: min_release_year <= track.release_year <= max_release_year, self.tracks))
+            return self.__filter_by_release_year()
 
         if filter_by == "tempo":
-            min_tempo = self.filter_params["min_tempo"]
-            max_tempo = self.filter_params["max_tempo"]
-            return list(filter(lambda track: min_tempo <= track.tempo <= max_tempo, self.tracks))
+            return self.__filter_by_tempo()
 
         raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
-    def __filter_tracks_by_artists(self):
+    def __filter_by_tempo(self):
+        min_tempo = self.filter_params["min_tempo"]
+        max_tempo = self.filter_params["max_tempo"]
+        return list(filter(
+            lambda track: min_tempo <= track.tempo <= max_tempo, self.tracks))
+
+    def __filter_by_release_year(self):
+        min_release_year = self.filter_params["min_release_year"]
+        max_release_year = self.filter_params["max_release_year"]
+        return list(filter(
+            lambda track: min_release_year <= track.release_year <= max_release_year, self.tracks))
+
+    def __filter_by_key_signature(self):
+        expected_key_signature = self.filter_params["expected_key_signature"]
+        return list(filter(
+            lambda track: track.key_signature == expected_key_signature, self.tracks))
+
+    def __filter_by_mode(self):
+        expected_mode = self.filter_params["expected_mode"]
+        return list(filter(
+            lambda track: track.get_mode_string() == expected_mode, self.tracks))
+
+    def __filter_by_key(self):
+        expected_key = self.filter_params["expected_key"]
+        return list(filter(
+            lambda track: track.get_key_string() == expected_key, self.tracks))
+
+    def __filter_by_artists(self):
         artists_substring = self.filter_params["artists_substring"]
-        return list(
-            filter(lambda track: TrackFilter.__any_string_contains_substring(track.artists, artists_substring), self.tracks))
+        return list(filter(
+            lambda track: TrackFilter.__any_string_contains_substring(track.artists, artists_substring), self.tracks))
+
+    def __filter_by_title(self):
+        title_substring = self.filter_params["title_substring"]
+        return list(filter(
+            lambda track: TrackFilter.string_contains_substring(track.title, title_substring), self.tracks))
+
+    def __filter_by_genres(self):
+        genres_substring = self.filter_params["genres_substring"]
+        return list(filter(
+            lambda track: TrackFilter.__any_string_contains_substring(track.genres, genres_substring), self.tracks))
 
     @staticmethod
     def __any_string_contains_substring(actual_strings, expected_substring):
