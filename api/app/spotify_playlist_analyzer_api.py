@@ -307,38 +307,12 @@ def __extract_filter_params_from_request_params(request_params):
         filter_params.update(__extract_filter_params_from_request_params_for_title(request_params))
         return filter_params
 
-    if filter_by == "release_year":
-        min_release_year = __get_request_param_as_int_or_none(request_params, "min_release_year")
-        if min_release_year is None:
-            raise __create_http_error_for_filter_params(filter_by, "min_release_year")
-
-        max_release_year = __get_request_param_as_int_or_none(request_params, "max_release_year")
-        if max_release_year is None:
-            raise __create_http_error_for_filter_params(filter_by, "max_release_year")
-
-        filter_params["min_release_year"] = min_release_year
-        filter_params["max_release_year"] = max_release_year
-        return filter_params
-
     if filter_by == "genres":
         genres_substring = request_params.get("genres_substring")
         if not genres_substring:
             raise __create_http_error_for_filter_params(filter_by, "genres_substring")
 
         filter_params["genres_substring"] = genres_substring
-        return filter_params
-
-    if filter_by == "tempo":
-        min_tempo = __get_request_param_as_int_or_none(request_params, "min_tempo")
-        if min_tempo is None:
-            raise __create_http_error_for_filter_params(filter_by, "min_tempo")
-
-        max_tempo = __get_request_param_as_int_or_none(request_params, "max_tempo")
-        if max_tempo is None:
-            raise __create_http_error_for_filter_params(filter_by, "max_tempo")
-
-        filter_params["min_tempo"] = min_tempo
-        filter_params["max_tempo"] = max_tempo
         return filter_params
 
     if filter_by == "key":
@@ -363,6 +337,32 @@ def __extract_filter_params_from_request_params(request_params):
             raise __create_http_error_for_filter_params(filter_by, "expected_key_signature")
 
         filter_params["expected_key_signature"] = expected_key_signature
+        return filter_params
+
+    if filter_by == "release_year":
+        min_release_year = __get_request_param_as_int_or_none(request_params, "min_release_year")
+        if min_release_year is None:
+            raise __create_http_error_for_filter_params(filter_by, "min_release_year")
+
+        max_release_year = __get_request_param_as_int_or_none(request_params, "max_release_year")
+        if max_release_year is None:
+            raise __create_http_error_for_filter_params(filter_by, "max_release_year")
+
+        filter_params["min_release_year"] = min_release_year
+        filter_params["max_release_year"] = max_release_year
+        return filter_params
+
+    if filter_by == "tempo":
+        min_tempo = __get_request_param_as_int_or_none(request_params, "min_tempo")
+        if min_tempo is None:
+            raise __create_http_error_for_filter_params(filter_by, "min_tempo")
+
+        max_tempo = __get_request_param_as_int_or_none(request_params, "max_tempo")
+        if max_tempo is None:
+            raise __create_http_error_for_filter_params(filter_by, "max_tempo")
+
+        filter_params["min_tempo"] = min_tempo
+        filter_params["max_tempo"] = max_tempo
         return filter_params
 
     raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
