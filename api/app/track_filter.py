@@ -14,12 +14,12 @@ class TrackFilter:
 
         if filter_by == "title":
             title_substring = self.filter_params["title_substring"]
-            return list(filter(lambda track: TrackFilter.__filter_accepts_title(track.title, title_substring), self.tracks))
+            return list(filter(lambda track: TrackFilter.string_contains_substring(track.title, title_substring), self.tracks))
 
         if filter_by == "genres":
             genres_substring = self.filter_params["genres_substring"]
             return list(filter(
-                lambda track: TrackFilter.__filter_accepts_string(track.genres, genres_substring), self.tracks))
+                lambda track: TrackFilter.__any_string_contains_substring(track.genres, genres_substring), self.tracks))
 
         if filter_by == "key":
             expected_key = self.filter_params["expected_key"]
@@ -48,18 +48,17 @@ class TrackFilter:
     def __filter_tracks_by_artists(self):
         artists_substring = self.filter_params["artists_substring"]
         return list(
-            filter(lambda track: TrackFilter.__filter_accepts_string(track.artists, artists_substring), self.tracks))
+            filter(lambda track: TrackFilter.__any_string_contains_substring(track.artists, artists_substring), self.tracks))
 
     @staticmethod
-    def __filter_accepts_string(actual_strings, expected_substring):
+    def __any_string_contains_substring(actual_strings, expected_substring):
         actual_strings_processed = [TrackFilter.__process_string_for_filter(string) for string in actual_strings]
         expected_substring_processed = TrackFilter.__process_string_for_filter(expected_substring)
 
-        # TODO adjust names
-        return any(expected_substring_processed in artist for artist in actual_strings_processed)
+        return any(expected_substring_processed in actual_string for actual_string in actual_strings_processed)
 
     @staticmethod
-    def __filter_accepts_title(actual_title, expected_title_substring):
+    def string_contains_substring(actual_title, expected_title_substring):
         actual_title_processed = TrackFilter.__process_string_for_filter(actual_title)
         expected_title_substring_processed = TrackFilter.__process_string_for_filter(expected_title_substring)
 
