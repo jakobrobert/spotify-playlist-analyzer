@@ -69,12 +69,12 @@ def __extract_filter_params_from_request_params(request_params):
         "filter_by": request_params.get("filter_by"),
         "artists_substring": request.args.get("artists_substring"),
         "title_substring": request.args.get("title_substring"),
-        "min_release_year": request.args.get("min_release_year"),
-        "max_release_year": request.args.get("max_release_year"),
         "genres_substring": request.args.get("genres_substring"),
-        "min_tempo": request.args.get("min_tempo"),
-        "max_tempo": request.args.get("max_tempo"),
         "expected_key": request.args.get("expected_key"),
         "expected_mode": request.args.get("expected_mode"),
-        "expected_key_signature": request.args.get("expected_key_signature")
+        "expected_key_signature": request.args.get("expected_key_signature"),
+        "min_release_year": request.args.get("min_release_year"),
+        "max_release_year": request.args.get("max_release_year"),
+        "min_tempo": request.args.get("min_tempo"),
+        "max_tempo": request.args.get("max_tempo")
     }
