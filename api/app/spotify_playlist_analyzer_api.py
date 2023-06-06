@@ -304,11 +304,7 @@ def __extract_filter_params_from_request_params(request_params):
         return filter_params
 
     if filter_by == "title":
-        title_substring = request_params.get("title_substring")
-        if not title_substring:
-            raise __create_http_error_for_filter_params(filter_by, "title_substring")
-
-        filter_params["title_substring"] = title_substring
+        filter_params.update(__extract_filter_params_from_request_params_for_title(request_params))
         return filter_params
 
     if filter_by == "release_year":
@@ -380,6 +376,18 @@ def __extract_filter_params_from_request_params_for_artists(request_params):
         raise __create_http_error_for_filter_params("artists", "artists_substring")
 
     filter_params["artists_substring"] = artists_substring
+
+    return filter_params
+
+
+def __extract_filter_params_from_request_params_for_title(request_params):
+    filter_params = {}
+    title_substring = request_params.get("title_substring")
+
+    if not title_substring:
+        raise __create_http_error_for_filter_params("title", "title_substring")
+
+    filter_params["title_substring"] = title_substring
 
     return filter_params
 
