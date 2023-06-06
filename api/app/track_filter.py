@@ -10,9 +10,7 @@ class TrackFilter:
             return self.tracks
 
         if filter_by == "artists":
-            artists_substring = self.filter_params["artists_substring"]
-            return list(
-                filter(lambda track: TrackFilter.__filter_accepts_string(track.artists, artists_substring), self.tracks))
+            return self.__filter_tracks_by_artists()
 
         if filter_by == "title":
             title_substring = self.filter_params["title_substring"]
@@ -46,6 +44,11 @@ class TrackFilter:
             return list(filter(lambda track: min_tempo <= track.tempo <= max_tempo, self.tracks))
 
         raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
+
+    def __filter_tracks_by_artists(self):
+        artists_substring = self.filter_params["artists_substring"]
+        return list(
+            filter(lambda track: TrackFilter.__filter_accepts_string(track.artists, artists_substring), self.tracks))
 
     @staticmethod
     def __filter_accepts_string(actual_strings, expected_substring):
