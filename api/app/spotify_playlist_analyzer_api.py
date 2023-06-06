@@ -115,7 +115,7 @@ def get_playlist_by_id(playlist_id):
 
         __sort_tracks(playlist.tracks, sort_by, order)
 
-        filter_params = __extract_filter_params_from_request()
+        filter_params = __extract_filter_params_from_request_params(request.args)
         playlist.tracks = TrackFilter.filter_tracks(playlist.tracks, filter_params)
 
         statistics = PlaylistStatistics(playlist.tracks)
@@ -292,15 +292,15 @@ def __sort_tracks(tracks, sort_by, order):
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
 
-def __extract_filter_params_from_request():
-    filter_by = request.args.get("filter_by") or None
+def __extract_filter_params_from_request_params(request_params):
+    filter_by = request_params.get("filter_by") or None
     params = {"filter_by": filter_by}
 
     if filter_by is None:
         return params
 
     if filter_by == "artists":
-        artists_substring = request.args.get("artists_substring")
+        artists_substring = request_params.get("artists_substring")
         if not artists_substring:
             raise __create_http_error_for_filter_params(filter_by, "artists_substring")
 
@@ -308,7 +308,7 @@ def __extract_filter_params_from_request():
         return params
 
     if filter_by == "title":
-        title_substring = request.args.get("title_substring")
+        title_substring = request_params.get("title_substring")
         if not title_substring:
             raise __create_http_error_for_filter_params(filter_by, "title_substring")
 
@@ -316,11 +316,11 @@ def __extract_filter_params_from_request():
         return params
 
     if filter_by == "release_year":
-        min_release_year = __get_request_param_as_int_or_none("min_release_year")
+        min_release_year = __get_request_param_as_int_or_none(request_params, "min_release_year")
         if min_release_year is None:
             raise __create_http_error_for_filter_params(filter_by, "min_release_year")
 
-        max_release_year = __get_request_param_as_int_or_none("max_release_year")
+        max_release_year = __get_request_param_as_int_or_none(request_params, "max_release_year")
         if max_release_year is None:
             raise __create_http_error_for_filter_params(filter_by, "max_release_year")
 
@@ -329,7 +329,7 @@ def __extract_filter_params_from_request():
         return params
 
     if filter_by == "genres":
-        genres_substring = request.args.get("genres_substring")
+        genres_substring = request_params.get("genres_substring")
         if not genres_substring:
             raise __create_http_error_for_filter_params(filter_by, "genres_substring")
 
@@ -337,11 +337,11 @@ def __extract_filter_params_from_request():
         return params
 
     if filter_by == "tempo":
-        min_tempo = __get_request_param_as_int_or_none("min_tempo")
+        min_tempo = __get_request_param_as_int_or_none(request_params, "min_tempo")
         if min_tempo is None:
             raise __create_http_error_for_filter_params(filter_by, "min_tempo")
 
-        max_tempo = __get_request_param_as_int_or_none("max_tempo")
+        max_tempo = __get_request_param_as_int_or_none(request_params, "max_tempo")
         if max_tempo is None:
             raise __create_http_error_for_filter_params(filter_by, "max_tempo")
 
@@ -350,7 +350,7 @@ def __extract_filter_params_from_request():
         return params
 
     if filter_by == "key":
-        expected_key = request.args.get("expected_key")
+        expected_key = request_params.get("expected_key")
         if not expected_key:
             raise __create_http_error_for_filter_params(filter_by, "expected_key")
 
@@ -358,7 +358,7 @@ def __extract_filter_params_from_request():
         return params
 
     if filter_by == "mode":
-        expected_mode = request.args.get("expected_mode")
+        expected_mode = request_params.get("expected_mode")
         if not expected_mode:
             raise __create_http_error_for_filter_params(filter_by, "expected_mode")
 
@@ -366,7 +366,7 @@ def __extract_filter_params_from_request():
         return params
 
     if filter_by == "key_signature":
-        expected_key_signature = request.args.get("expected_key_signature")
+        expected_key_signature = request_params.get("expected_key_signature")
         if not expected_key_signature:
             raise __create_http_error_for_filter_params(filter_by, "expected_key_signature")
 
@@ -381,8 +381,8 @@ def __create_http_error_for_filter_params(filter_by, required_param):
     return HttpError(400, "API Error", message)
 
 
-def __get_request_param_as_int_or_none(name):
-    value_string = request.args.get(name)
+def __get_request_param_as_int_or_none(request_params, name):
+    value_string = request_params.get(name)
 
     if value_string:
         return int(value_string)
