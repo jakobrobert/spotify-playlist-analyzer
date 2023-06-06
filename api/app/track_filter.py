@@ -15,20 +15,10 @@ class TrackFilter:
             title_substring = filter_params["title_substring"]
             return list(filter(lambda track: TrackFilter.__filter_accepts_title(track.title, title_substring), tracks))
 
-        if filter_by == "release_year":
-            min_release_year = filter_params["min_release_year"]
-            max_release_year = filter_params["max_release_year"]
-            return list(filter(lambda track: min_release_year <= track.release_year <= max_release_year, tracks))
-
         if filter_by == "genres":
             genres_substring = filter_params["genres_substring"]
             return list(filter(
                 lambda track: TrackFilter.__filter_accepts_string(track.genres, genres_substring), tracks))
-
-        if filter_by == "tempo":
-            min_tempo = filter_params["min_tempo"]
-            max_tempo = filter_params["max_tempo"]
-            return list(filter(lambda track: min_tempo <= track.tempo <= max_tempo, tracks))
 
         if filter_by == "key":
             expected_key = filter_params["expected_key"]
@@ -41,6 +31,16 @@ class TrackFilter:
         if filter_by == "key_signature":
             expected_key_signature = filter_params["expected_key_signature"]
             return list(filter(lambda track: track.key_signature == expected_key_signature, tracks))
+
+        if filter_by == "release_year":
+            min_release_year = filter_params["min_release_year"]
+            max_release_year = filter_params["max_release_year"]
+            return list(filter(lambda track: min_release_year <= track.release_year <= max_release_year, tracks))
+
+        if filter_by == "tempo":
+            min_tempo = filter_params["min_tempo"]
+            max_tempo = filter_params["max_tempo"]
+            return list(filter(lambda track: min_tempo <= track.tempo <= max_tempo, tracks))
 
         raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
