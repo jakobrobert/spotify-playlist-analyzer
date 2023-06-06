@@ -294,26 +294,22 @@ def __sort_tracks(tracks, sort_by, order):
 
 def __extract_filter_params_from_request_params(request_params):
     filter_by = request_params.get("filter_by") or None
-    params = {"filter_by": filter_by}
+    filter_params = {"filter_by": filter_by}
 
     if filter_by is None:
-        return params
+        return filter_params
 
     if filter_by == "artists":
-        artists_substring = request_params.get("artists_substring")
-        if not artists_substring:
-            raise __create_http_error_for_filter_params(filter_by, "artists_substring")
-
-        params["artists_substring"] = artists_substring
-        return params
+        filter_params.update(__extract_filter_params_from_request_params_for_artists(request_params))
+        return filter_params
 
     if filter_by == "title":
         title_substring = request_params.get("title_substring")
         if not title_substring:
             raise __create_http_error_for_filter_params(filter_by, "title_substring")
 
-        params["title_substring"] = title_substring
-        return params
+        filter_params["title_substring"] = title_substring
+        return filter_params
 
     if filter_by == "release_year":
         min_release_year = __get_request_param_as_int_or_none(request_params, "min_release_year")
@@ -324,17 +320,17 @@ def __extract_filter_params_from_request_params(request_params):
         if max_release_year is None:
             raise __create_http_error_for_filter_params(filter_by, "max_release_year")
 
-        params["min_release_year"] = min_release_year
-        params["max_release_year"] = max_release_year
-        return params
+        filter_params["min_release_year"] = min_release_year
+        filter_params["max_release_year"] = max_release_year
+        return filter_params
 
     if filter_by == "genres":
         genres_substring = request_params.get("genres_substring")
         if not genres_substring:
             raise __create_http_error_for_filter_params(filter_by, "genres_substring")
 
-        params["genres_substring"] = genres_substring
-        return params
+        filter_params["genres_substring"] = genres_substring
+        return filter_params
 
     if filter_by == "tempo":
         min_tempo = __get_request_param_as_int_or_none(request_params, "min_tempo")
@@ -345,35 +341,47 @@ def __extract_filter_params_from_request_params(request_params):
         if max_tempo is None:
             raise __create_http_error_for_filter_params(filter_by, "max_tempo")
 
-        params["min_tempo"] = min_tempo
-        params["max_tempo"] = max_tempo
-        return params
+        filter_params["min_tempo"] = min_tempo
+        filter_params["max_tempo"] = max_tempo
+        return filter_params
 
     if filter_by == "key":
         expected_key = request_params.get("expected_key")
         if not expected_key:
             raise __create_http_error_for_filter_params(filter_by, "expected_key")
 
-        params["expected_key"] = expected_key
-        return params
+        filter_params["expected_key"] = expected_key
+        return filter_params
 
     if filter_by == "mode":
         expected_mode = request_params.get("expected_mode")
         if not expected_mode:
             raise __create_http_error_for_filter_params(filter_by, "expected_mode")
 
-        params["expected_mode"] = expected_mode
-        return params
+        filter_params["expected_mode"] = expected_mode
+        return filter_params
 
     if filter_by == "key_signature":
         expected_key_signature = request_params.get("expected_key_signature")
         if not expected_key_signature:
             raise __create_http_error_for_filter_params(filter_by, "expected_key_signature")
 
-        params["expected_key_signature"] = expected_key_signature
-        return params
+        filter_params["expected_key_signature"] = expected_key_signature
+        return filter_params
 
     raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
+
+
+def __extract_filter_params_from_request_params_for_artists(request_params):
+    filter_params = {}
+    artists_substring = request_params.get("artists_substring")
+
+    if not artists_substring:
+        raise __create_http_error_for_filter_params("artists", "artists_substring")
+
+    filter_params["artists_substring"] = artists_substring
+
+    return filter_params
 
 
 def __create_http_error_for_filter_params(filter_by, required_param):
