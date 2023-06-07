@@ -1,4 +1,5 @@
 from http_error import HttpError
+from track_filter import TrackFilter
 
 
 class FilterParams:
@@ -28,11 +29,8 @@ class FilterParams:
         if filter_by == "key_signature":
             return FilterParams.__extract_params_for_key_signature(request_params)
 
-        if filter_by == "release_year":
-            return FilterParams.__extract_params_for_number_based_attribute(request_params, "release_year")
-
-        if filter_by == "tempo":
-            return FilterParams.__extract_params_for_number_based_attribute(request_params, "tempo")
+        if filter_by in TrackFilter.NUMBER_BASED_ATTRIBUTES:
+            return FilterParams.__extract_params_for_number_based_attribute(request_params, filter_by)
 
         raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
 
