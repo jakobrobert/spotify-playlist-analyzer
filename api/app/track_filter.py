@@ -27,11 +27,11 @@ class TrackFilter:
         if filter_by == "key_signature":
             return self.__filter_by_key_signature()
 
-        if filter_by == "release_year":
-            return self.__filter_by_release_year()
-
         if filter_by == "tempo":
-            return self.__filter_by_tempo()
+            return self.__filter_by_number_based_attribute("tempo")
+
+        if filter_by == "release_year":
+            return self.__filter_by_number_based_attribute("release_year")
 
         raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
@@ -64,13 +64,6 @@ class TrackFilter:
         expected_key_signature = self.filter_params["expected_key_signature"]
         return list(filter(
             lambda track: track.key_signature == expected_key_signature, self.tracks))
-
-    # TODO can inline?
-    def __filter_by_tempo(self):
-        return self.__filter_by_number_based_attribute("tempo")
-
-    def __filter_by_release_year(self):
-        return self.__filter_by_release_year("release_year")
 
     def __filter_by_number_based_attribute(self, attribute_name):
         min_value = self.filter_params[f"min_{attribute_name}"]
