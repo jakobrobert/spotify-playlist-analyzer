@@ -29,7 +29,7 @@ class FilterParams:
         if filter_by == "key_signature":
             return FilterParams.__extract_params_for_key_signature(request_params)
 
-        if filter_by in TrackFilter.NUMBER_BASED_ATTRIBUTES:
+        if filter_by in TrackFilter.NUMERICAL_ATTRIBUTES:
             return FilterParams.__extract_params_for_number_based_attribute(request_params, filter_by)
 
         raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
