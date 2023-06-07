@@ -29,6 +29,7 @@ class TrackFilter:
         if filter_by == "key_signature":
             return self.__filter_by_key_signature()
 
+        # TODONOW could do more general,just define list of NUMBER_BASED_ATTRIBUTES, then check (filter_by in ...)
         if filter_by == "release_year":
             return self.__filter_by_number_based_attribute("release_year")
 

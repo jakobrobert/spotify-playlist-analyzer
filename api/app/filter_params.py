@@ -104,38 +104,31 @@ class FilterParams:
         filter_params["expected_key_signature"] = expected_key_signature
         return filter_params
 
-    # TODO extract duplicated code of __extract_params_for_release_year & __extract_params_for_tempo, only name is different
-    #   see e.g. in TrackFilter with getattr for comparison
+    # TODONOW inline ?
     @staticmethod
     def __extract_params_for_release_year(request_params):
-        filter_params = {"filter_by": "release_year"}
+        return FilterParams.__extract_params_for_number_based_attribute(request_params, "release_year")
 
-        min_release_year = FilterParams.__get_request_param_as_int_or_none(request_params, "min_release_year")
-        if min_release_year is None:
-            raise FilterParams.__create_http_error_for_required_param("release_year", "min_release_year")
-
-        max_release_year = FilterParams.__get_request_param_as_int_or_none(request_params, "max_release_year")
-        if max_release_year is None:
-            raise FilterParams.__create_http_error_for_required_param("release_year", "max_release_year")
-
-        filter_params["min_release_year"] = min_release_year
-        filter_params["max_release_year"] = max_release_year
-        return filter_params
-
+    # TODONOW inline?
     @staticmethod
     def __extract_params_for_tempo(request_params):
-        filter_params = {"filter_by": "tempo"}
+        return FilterParams.__extract_params_for_number_based_attribute(request_params, "tempo")
 
-        min_tempo = FilterParams.__get_request_param_as_int_or_none(request_params, "min_tempo")
-        if min_tempo is None:
-            raise FilterParams.__create_http_error_for_required_param("tempo", "min_tempo")
+    @staticmethod
+    def __extract_params_for_number_based_attribute(request_params, attribute_name):
+        filter_params = {"filter_by": attribute_name}
 
-        max_tempo = FilterParams.__get_request_param_as_int_or_none(request_params, "max_tempo")
-        if max_tempo is None:
-            raise FilterParams.__create_http_error_for_required_param("tempo", "max_tempo")
+        min_value = FilterParams.__get_request_param_as_int_or_none(request_params, f"min_{attribute_name}")
+        if min_value is None:
+            raise FilterParams.__create_http_error_for_required_param(attribute_name, f"min_{attribute_name}")
 
-        filter_params["min_tempo"] = min_tempo
-        filter_params["max_tempo"] = max_tempo
+        max_value = FilterParams.__get_request_param_as_int_or_none(request_params, f"max_{attribute_name}")
+        if max_value is None:
+            raise FilterParams.__create_http_error_for_required_param(attribute_name, f"max_{attribute_name}")
+
+        filter_params[f"min_{attribute_name}"] = min_value
+        filter_params[f"max_{attribute_name}"] = max_value
+
         return filter_params
 
     @staticmethod
