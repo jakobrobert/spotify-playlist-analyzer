@@ -32,37 +32,15 @@ def get_playlist_by_url():
 @playlist_view.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
     try:
-        sort_by = request.args.get("sort_by")
-        order = request.args.get("order")
-        filter_by = request.args.get("filter_by")
-        artists_substring = request.args.get("artists_substring")
-        title_substring = request.args.get("title_substring")
-        min_release_year = request.args.get("min_release_year")
-        max_release_year = request.args.get("max_release_year")
-        genres_substring = request.args.get("genres_substring")
-        min_tempo = request.args.get("min_tempo")
-        max_tempo = request.args.get("max_tempo")
-        expected_key = request.args.get("expected_key")
-        expected_mode = request.args.get("expected_mode")
-        expected_key_signature = request.args.get("expected_key_signature")
-
-        request_params = {
-            "sort_by": sort_by,
-            "order": order,
-            "filter_by": filter_by,
-            "artists_substring": artists_substring,
-            "title_substring": title_substring,
-            "min_release_year": min_release_year,
-            "max_release_year": max_release_year,
-            "genres_substring": genres_substring,
-            "min_tempo": min_tempo,
-            "max_tempo": max_tempo,
-            "expected_key": expected_key,
-            "expected_mode": expected_mode,
-            "expected_key_signature": expected_key_signature,
+        api_request_params = {
+            "sort_by": request.args.get("sort_by"),
+            "order": request.args.get("order")
         }
 
-        playlist = api_client.get_playlist_by_id(playlist_id, request_params)
+        filter_params = __extract_filter_params_from_request_params(request.args)
+        api_request_params.update(filter_params)
+
+        playlist = api_client.get_playlist_by_id(playlist_id, api_request_params)
         valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
         valid_attributes_for_sort_option = api_client.get_valid_attributes_for_sort_option()
         valid_keys = api_client.get_valid_keys()
@@ -70,12 +48,10 @@ def get_playlist_by_id(playlist_id):
         valid_key_signatures = api_client.get_valid_key_signatures()
 
         return render_template(
-            "playlist/playlist.html", playlist=playlist, sort_by=sort_by, order=order, filter_by=filter_by,
-            artists_substring=artists_substring, title_substring=title_substring,
-            min_release_year=min_release_year, max_release_year=max_release_year,
-            genres_substring=genres_substring,
-            min_tempo=min_tempo, max_tempo=max_tempo,
-            expected_key=expected_key, expected_mode=expected_mode, expected_key_signature=expected_key_signature,
+            "playlist/playlist.html", playlist=playlist,
+            sort_by=api_request_params["sort_by"], order=api_request_params["order"],
+            filter_params=filter_params,
+            numerical_attributes_to_filter_by=ViewUtils.NUMERICAL_ATTRIBUTES_TO_FILTER_BY,
             attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
             valid_attributes_for_sort_option=valid_attributes_for_sort_option,
@@ -86,3 +62,19 @@ def get_playlist_by_id(playlist_id):
     except Exception:
         error = HttpError.from_last_exception()
         return render_template("error.html", error=error)
+
+
+def __extract_filter_params_from_request_params(request_params):
+    return {
+        "filter_by": request_params.get("filter_by"),
+        "artists_substring": request.args.get("artists_substring"),
+        "title_substring": request.args.get("title_substring"),
+        "genres_substring": request.args.get("genres_substring"),
+        "expected_key": request.args.get("expected_key"),
+        "expected_mode": request.args.get("expected_mode"),
+        "expected_key_signature": request.args.get("expected_key_signature"),
+        "min_release_year": request.args.get("min_release_year"),
+        "max_release_year": request.args.get("max_release_year"),
+        "min_tempo": request.args.get("min_tempo"),
+        "max_tempo": request.args.get("max_tempo")
+    }

@@ -1,51 +1,36 @@
 <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
     <div>
         <input type="radio" id="artists" name="filter_by" value="artists"
-               {% if filter_by == "artists" %} checked {% endif %}>
+               {% if filter_params["filter_by"] == "artists" %} checked {% endif %}>
         <label for="artists">Artists</label>
         <label for="artists_substring">contain</label>
-        <input type="text" id="artists_substring" name="artists_substring" value="{{ artists_substring }}">
+        <input type="text" id="artists_substring" name="artists_substring"
+               value="{{ filter_params["artists_substring"] }}">
     </div>
     <div>
         <input type="radio" id="title" name="filter_by" value="title"
-               {% if filter_by == "title" %} checked {% endif %}>
+               {% if filter_params["filter_by"] == "title" %} checked {% endif %}>
         <label for="title">Title</label>
         <label for="title_substring">contains</label>
-        <input type="text" id="title_substring" name="title_substring" value="{{ title_substring }}">
-    </div>
-    <div>
-        <input type="radio" id="release_year" name="filter_by" value="release_year"
-               {% if filter_by == "release_year" %} checked {% endif %}>
-        <label for="release_year">Release Year</label>
-        <label for="min_release_year">from</label>
-        <input type="number" id="min_release_year" name="min_release_year" value="{{ min_release_year }}">
-        <label for="max_release_year">to</label>
-        <input type="number" id="max_release_year" name="max_release_year" value="{{ max_release_year }}">
+        <input type="text" id="title_substring" name="title_substring"
+               value="{{ filter_params["title_substring"] }}">
     </div>
     <div>
         <input type="radio" id="genres" name="filter_by" value="genres"
-               {% if filter_by == "genres" %} checked {% endif %}>
+               {% if filter_params["filter_by"] == "genres" %} checked {% endif %}>
         <label for="genres">Genres</label>
         <label for="genres_substring">contain</label>
-        <input type="text" id="genres_substring" name="genres_substring" value="{{ genres_substring }}">
-    </div>
-    <div>
-        <input type="radio" id="tempo" name="filter_by" value="tempo"
-               {% if filter_by == "tempo" %} checked {% endif %}>
-        <label for="tempo">Tempo (BPM)</label>
-        <label for="min_tempo">from</label>
-        <input type="number" id="min_tempo" name="min_tempo" value="{{ min_tempo }}">
-        <label for="max_tempo">to</label>
-        <input type="number" id="max_tempo" name="max_tempo" value="{{ max_tempo }}">
+        <input type="text" id="genres_substring" name="genres_substring"
+               value="{{ filter_params["genres_substring"] }}">
     </div>
     <div>
         <input type="radio" id="key" name="filter_by" value="key"
-               {% if filter_by == "key" %} checked {% endif %}>
+               {% if filter_params["filter_by"] == "key" %} checked {% endif %}>
         <label for="key">Key</label>
         <label for="expected_key">is</label>
         <select class="form-control" id="expected_key" name="expected_key">
             {% for key in valid_keys %}
-                <option value="{{ key }}" {% if expected_key == key %} selected {% endif %}>
+                <option value="{{ key }}" {% if filter_params["expected_key"] == key %} selected {% endif %}>
                     {{ key }}
                 </option>
             {% endfor %}
@@ -53,12 +38,13 @@
     </div>
     <div>
         <input type="radio" id="mode" name="filter_by" value="mode"
-               {% if filter_by == "mode" %} checked {% endif %}>
+               {% if filter_params["filter_by"] == "mode" %} checked {% endif %}>
         <label for="mode">Mode</label>
         <label for="expected_mode">is</label>
         <select class="form-control" id="expected_mode" name="expected_mode">
             {% for mode in valid_modes %}
-                <option value="{{ mode }}" {% if expected_mode == mode %} selected {% endif %}>
+                <option value="{{ mode }}"
+                        {% if filter_params["expected_mode"] == mode %} selected {% endif %}>
                     {{ mode }}
                 </option>
             {% endfor %}
@@ -66,16 +52,30 @@
     </div>
     <div>
         <input type="radio" id="key_signature" name="filter_by" value="key_signature"
-               {% if filter_by == "key_signature" %} checked {% endif %}>
+               {% if filter_params["filter_by"] == "key_signature" %} checked {% endif %}>
         <label for="key_signature">Key Signature</label>
         <label for="expected_key_signature">is</label>
         <select class="form-control" id="expected_key_signature" name="expected_key_signature">
             {% for key_signature in valid_key_signatures %}
-                <option value="{{ key_signature }}" {% if expected_key_signature == key_signature %} selected {% endif %}>
+                <option value="{{ key_signature }}"
+                        {% if filter_params["expected_key_signature"] == key_signature %} selected {% endif %}>
                     {{ key_signature }}
                 </option>
             {% endfor %}
         </select>
     </div>
+    {% for attribute in numerical_attributes_to_filter_by %}
+        <div>
+            <input type="radio" id="{{ attribute }}" name="filter_by" value="{{ attribute }}"
+                   {% if filter_params["filter_by"] == attribute %} checked {% endif %}>
+            <label for="{{ attribute }}">{{ attribute_display_names[attribute] }}</label>
+            <label for="min_{{ attribute }}">from</label>
+            <input type="number" id="min_{{ attribute }}" name="min_{{ attribute }}"
+                   value="{{ filter_params["min_" + attribute] }}">
+            <label for="max_{{ attribute }}">to</label>
+            <input type="number" id="max_{{ attribute }}" name="max_{{ attribute }}"
+                   value="{{ filter_params["max_" + attribute] }}">
+        </div>
+    {% endfor %}
     <button class="btn btn-secondary" type="submit">Filter</button>
 </form>
