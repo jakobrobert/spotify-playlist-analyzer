@@ -29,10 +29,10 @@ class FilterParams:
             return FilterParams.__extract_params_for_key_signature(request_params)
 
         if filter_by == "release_year":
-            return FilterParams.__extract_params_for_release_year(request_params)
+            return FilterParams.__extract_params_for_number_based_attribute(request_params, "release_year")
 
         if filter_by == "tempo":
-            return FilterParams.__extract_params_for_tempo(request_params)
+            return FilterParams.__extract_params_for_number_based_attribute(request_params, "tempo")
 
         raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
 
@@ -108,11 +108,6 @@ class FilterParams:
     @staticmethod
     def __extract_params_for_release_year(request_params):
         return FilterParams.__extract_params_for_number_based_attribute(request_params, "release_year")
-
-    # TODONOW inline?
-    @staticmethod
-    def __extract_params_for_tempo(request_params):
-        return FilterParams.__extract_params_for_number_based_attribute(request_params, "tempo")
 
     @staticmethod
     def __extract_params_for_number_based_attribute(request_params, attribute_name):
