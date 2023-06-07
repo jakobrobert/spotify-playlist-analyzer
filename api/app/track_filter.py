@@ -35,33 +35,6 @@ class TrackFilter:
 
         raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
-    def __filter_by_tempo(self):
-        min_tempo = self.filter_params["min_tempo"]
-        max_tempo = self.filter_params["max_tempo"]
-        return list(filter(
-            lambda track: min_tempo <= track.tempo <= max_tempo, self.tracks))
-
-    def __filter_by_release_year(self):
-        min_release_year = self.filter_params["min_release_year"]
-        max_release_year = self.filter_params["max_release_year"]
-        return list(filter(
-            lambda track: min_release_year <= track.release_year <= max_release_year, self.tracks))
-
-    def __filter_by_key_signature(self):
-        expected_key_signature = self.filter_params["expected_key_signature"]
-        return list(filter(
-            lambda track: track.key_signature == expected_key_signature, self.tracks))
-
-    def __filter_by_mode(self):
-        expected_mode = self.filter_params["expected_mode"]
-        return list(filter(
-            lambda track: track.get_mode_string() == expected_mode, self.tracks))
-
-    def __filter_by_key(self):
-        expected_key = self.filter_params["expected_key"]
-        return list(filter(
-            lambda track: track.get_key_string() == expected_key, self.tracks))
-
     def __filter_by_artists(self):
         artists_substring = self.filter_params["artists_substring"]
         return list(filter(
@@ -76,6 +49,33 @@ class TrackFilter:
         genres_substring = self.filter_params["genres_substring"]
         return list(filter(
             lambda track: TrackFilter.__any_string_contains_substring(track.genres, genres_substring), self.tracks))
+
+    def __filter_by_key(self):
+        expected_key = self.filter_params["expected_key"]
+        return list(filter(
+            lambda track: track.get_key_string() == expected_key, self.tracks))
+
+    def __filter_by_mode(self):
+        expected_mode = self.filter_params["expected_mode"]
+        return list(filter(
+            lambda track: track.get_mode_string() == expected_mode, self.tracks))
+
+    def __filter_by_key_signature(self):
+        expected_key_signature = self.filter_params["expected_key_signature"]
+        return list(filter(
+            lambda track: track.key_signature == expected_key_signature, self.tracks))
+
+    def __filter_by_tempo(self):
+        min_tempo = self.filter_params["min_tempo"]
+        max_tempo = self.filter_params["max_tempo"]
+        return list(filter(
+            lambda track: min_tempo <= track.tempo <= max_tempo, self.tracks))
+
+    def __filter_by_release_year(self):
+        min_release_year = self.filter_params["min_release_year"]
+        max_release_year = self.filter_params["max_release_year"]
+        return list(filter(
+            lambda track: min_release_year <= track.release_year <= max_release_year, self.tracks))
 
     @staticmethod
     def __any_string_contains_substring(actual_strings, expected_substring):
