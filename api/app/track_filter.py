@@ -1,4 +1,6 @@
 class TrackFilter:
+
+
     def __init__(self, tracks, filter_params):
         self.tracks = tracks
         self.filter_params = filter_params
@@ -27,11 +29,11 @@ class TrackFilter:
         if filter_by == "key_signature":
             return self.__filter_by_key_signature()
 
-        if filter_by == "tempo":
-            return self.__filter_by_number_based_attribute("tempo")
-
         if filter_by == "release_year":
             return self.__filter_by_number_based_attribute("release_year")
+
+        if filter_by == "tempo":
+            return self.__filter_by_number_based_attribute("tempo")
 
         # Here, ValueError is correct rather than HttpError because it is logic code
         # Here, the filter_by value might also be hardcoded in a unit test e.g.

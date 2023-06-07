@@ -29,7 +29,7 @@ class ViewUtils:
     }
 
     NUMERICAL_ATTRIBUTES_TO_FILTER_BY = [
-        "tempo", "release_year"
+        "release_year", "tempo",
     ]
 
     @staticmethod
