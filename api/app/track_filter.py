@@ -65,17 +65,18 @@ class TrackFilter:
         return list(filter(
             lambda track: track.key_signature == expected_key_signature, self.tracks))
 
+    # TODO can inline?
     def __filter_by_tempo(self):
-        min_tempo = self.filter_params["min_tempo"]
-        max_tempo = self.filter_params["max_tempo"]
-        return list(filter(
-            lambda track: min_tempo <= track.tempo <= max_tempo, self.tracks))
+        return self.__filter_by_number_based_attribute("tempo")
 
     def __filter_by_release_year(self):
-        min_release_year = self.filter_params["min_release_year"]
-        max_release_year = self.filter_params["max_release_year"]
+        return self.__filter_by_release_year("release_year")
+
+    def __filter_by_number_based_attribute(self, attribute_name):
+        min_value = self.filter_params[f"min_{attribute_name}"]
+        max_value = self.filter_params[f"max_{attribute_name}"]
         return list(filter(
-            lambda track: min_release_year <= track.release_year <= max_release_year, self.tracks))
+            lambda track: min_value <= getattr(track, attribute_name) <= max_value, self.tracks))
 
     @staticmethod
     def __any_string_contains_substring(actual_strings, expected_substring):
