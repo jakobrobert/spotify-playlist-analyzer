@@ -1,5 +1,5 @@
 class TrackFilter:
-    NUMBER_BASED_ATTRIBUTES = ["release_year", "tempo"]
+    NUMERICAL_ATTRIBUTES = ["release_year", "tempo"]
 
     def __init__(self, tracks, filter_params):
         self.tracks = tracks
@@ -29,7 +29,7 @@ class TrackFilter:
         if filter_by == "key_signature":
             return self.__filter_by_key_signature()
 
-        if filter_by in TrackFilter.NUMBER_BASED_ATTRIBUTES:
+        if filter_by in TrackFilter.NUMERICAL_ATTRIBUTES:
             return self.__filter_by_number_based_attribute(filter_by)
 
         # Here, ValueError is correct rather than HttpError because it is logic code
