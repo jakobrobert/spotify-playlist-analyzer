@@ -1,5 +1,5 @@
 class TrackFilter:
-
+    NUMBER_BASED_ATTRIBUTES = ["release_year", "tempo"]
 
     def __init__(self, tracks, filter_params):
         self.tracks = tracks
@@ -29,15 +29,11 @@ class TrackFilter:
         if filter_by == "key_signature":
             return self.__filter_by_key_signature()
 
-        # TODONOW could do more general,just define list of NUMBER_BASED_ATTRIBUTES, then check (filter_by in ...)
-        if filter_by == "release_year":
-            return self.__filter_by_number_based_attribute("release_year")
-
-        if filter_by == "tempo":
-            return self.__filter_by_number_based_attribute("tempo")
+        if filter_by in TrackFilter.NUMBER_BASED_ATTRIBUTES:
+            return self.__filter_by_number_based_attribute(filter_by)
 
         # Here, ValueError is correct rather than HttpError because it is logic code
-        # Here, the filter_by value might also be hardcoded in a unit test e.g.
+        # E.g., the filter_by value might also be hardcoded in a unit test e.g.
         raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
     def __filter_by_artists(self):
