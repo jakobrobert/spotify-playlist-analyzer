@@ -104,11 +104,6 @@ class FilterParams:
         filter_params["expected_key_signature"] = expected_key_signature
         return filter_params
 
-    # TODONOW inline ?
-    @staticmethod
-    def __extract_params_for_release_year(request_params):
-        return FilterParams.__extract_params_for_number_based_attribute(request_params, "release_year")
-
     @staticmethod
     def __extract_params_for_number_based_attribute(request_params, attribute_name):
         filter_params = {"filter_by": attribute_name}
