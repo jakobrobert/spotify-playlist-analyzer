@@ -33,6 +33,8 @@ class TrackFilter:
         if filter_by == "release_year":
             return self.__filter_by_number_based_attribute("release_year")
 
+        # Here, ValueError is correct rather than HttpError because it is logic code
+        # Here, the filter_by value might also be hardcoded in a unit test e.g.
         raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
     def __filter_by_artists(self):
