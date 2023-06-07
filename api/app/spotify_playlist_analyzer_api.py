@@ -1,16 +1,16 @@
 import configparser
 import operator
-import time
 
 from flask import Flask, jsonify, request, redirect
 from urllib.parse import urlencode
 import requests
 
+from http_error import HttpError
 from spotify.spotify_client import SpotifyClient
 from spotify.spotify_track import SpotifyTrack
-from playlist_statistics.playlist_statistics import PlaylistStatistics
+from filter_params import FilterParams
 from track_filter import TrackFilter
-from http_error import HttpError
+from playlist_statistics.playlist_statistics import PlaylistStatistics
 
 config = configparser.ConfigParser()
 config.read("../config.ini")
@@ -110,13 +110,15 @@ def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
+        # Sort tracks
         sort_by = request.args.get("sort_by") or "none"
         order = request.args.get("order") or "ascending"
-
         __sort_tracks(playlist.tracks, sort_by, order)
 
-        filter_params = __extract_filter_params_from_request()
-        playlist.tracks = TrackFilter.filter_tracks(playlist.tracks, filter_params)
+        # Filter tracks
+        filter_params = FilterParams.extract_filter_params_from_request_params(request.args)
+        track_filter = TrackFilter(playlist.tracks, filter_params)
+        playlist.tracks = track_filter.filter_tracks()
 
         statistics = PlaylistStatistics(playlist.tracks)
 
@@ -290,104 +292,6 @@ def __sort_tracks(tracks, sort_by, order):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
-
-
-def __extract_filter_params_from_request():
-    filter_by = request.args.get("filter_by") or None
-    params = {"filter_by": filter_by}
-
-    if filter_by is None:
-        return params
-
-    if filter_by == "artists":
-        artists_substring = request.args.get("artists_substring")
-        if not artists_substring:
-            raise __create_http_error_for_filter_params(filter_by, "artists_substring")
-
-        params["artists_substring"] = artists_substring
-        return params
-
-    if filter_by == "title":
-        title_substring = request.args.get("title_substring")
-        if not title_substring:
-            raise __create_http_error_for_filter_params(filter_by, "title_substring")
-
-        params["title_substring"] = title_substring
-        return params
-
-    if filter_by == "release_year":
-        min_release_year = __get_request_param_as_int_or_none("min_release_year")
-        if min_release_year is None:
-            raise __create_http_error_for_filter_params(filter_by, "min_release_year")
-
-        max_release_year = __get_request_param_as_int_or_none("max_release_year")
-        if max_release_year is None:
-            raise __create_http_error_for_filter_params(filter_by, "max_release_year")
-
-        params["min_release_year"] = min_release_year
-        params["max_release_year"] = max_release_year
-        return params
-
-    if filter_by == "genres":
-        genres_substring = request.args.get("genres_substring")
-        if not genres_substring:
-            raise __create_http_error_for_filter_params(filter_by, "genres_substring")
-
-        params["genres_substring"] = genres_substring
-        return params
-
-    if filter_by == "tempo":
-        min_tempo = __get_request_param_as_int_or_none("min_tempo")
-        if min_tempo is None:
-            raise __create_http_error_for_filter_params(filter_by, "min_tempo")
-
-        max_tempo = __get_request_param_as_int_or_none("max_tempo")
-        if max_tempo is None:
-            raise __create_http_error_for_filter_params(filter_by, "max_tempo")
-
-        params["min_tempo"] = min_tempo
-        params["max_tempo"] = max_tempo
-        return params
-
-    if filter_by == "key":
-        expected_key = request.args.get("expected_key")
-        if not expected_key:
-            raise __create_http_error_for_filter_params(filter_by, "expected_key")
-
-        params["expected_key"] = expected_key
-        return params
-
-    if filter_by == "mode":
-        expected_mode = request.args.get("expected_mode")
-        if not expected_mode:
-            raise __create_http_error_for_filter_params(filter_by, "expected_mode")
-
-        params["expected_mode"] = expected_mode
-        return params
-
-    if filter_by == "key_signature":
-        expected_key_signature = request.args.get("expected_key_signature")
-        if not expected_key_signature:
-            raise __create_http_error_for_filter_params(filter_by, "expected_key_signature")
-
-        params["expected_key_signature"] = expected_key_signature
-        return params
-
-    raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
-
-
-def __create_http_error_for_filter_params(filter_by, required_param):
-    message = f"'{required_param}' is required if 'filter_by' == '{filter_by}'"
-    return HttpError(400, "API Error", message)
-
-
-def __get_request_param_as_int_or_none(name):
-    value_string = request.args.get(name)
-
-    if value_string:
-        return int(value_string)
-
-    return None
 
 
 def __create_error_response(error):
