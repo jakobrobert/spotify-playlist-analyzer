@@ -47,6 +47,15 @@ class ApiClient:
 
         return response_data["playlist_id"]
 
+    def get_valid_attributes_for_attribute_distribution(self):
+        return self.__send_get_request("valid-attributes-for-attribute-distribution")
+
+    def get_valid_attributes_for_sort_option(self):
+        return self.__send_get_request("valid-attributes-for-sort-option")
+
+    def get_numerical_attributes_for_filter_option(self):
+        return self.__send_get_request("numerical-attributes-for-filter-option")
+
     def get_valid_keys(self):
         return self.__send_get_request("valid-keys")
 
@@ -55,12 +64,6 @@ class ApiClient:
 
     def get_valid_key_signatures(self):
         return self.__send_get_request("valid-key-signatures")
-
-    def get_valid_attributes_for_attribute_distribution(self):
-        return self.__send_get_request("valid-attributes-for-attribute-distribution")
-
-    def get_valid_attributes_for_sort_option(self):
-        return self.__send_get_request("valid-attributes-for-sort-option")
 
     def get_track_by_id(self, track_id):
         sub_url = f"track/{track_id}"
