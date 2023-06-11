@@ -64,7 +64,7 @@
             {% endfor %}
         </select>
     </div>
-    {% for attribute in numerical_attributes_to_filter_by %}
+    {% for attribute in numerical_attributes_for_filter_option %}
         <div>
             <input type="radio" id="{{ attribute }}" name="filter_by" value="{{ attribute }}"
                    {% if filter_params["filter_by"] == attribute %} checked {% endif %}>

@@ -37,7 +37,8 @@ def get_playlist_by_id(playlist_id):
             "order": request.args.get("order")
         }
 
-        filter_params = __extract_filter_params(request.args)
+        numerical_attributes_for_filter_option = api_client.get_numerical_attributes_for_filter_option()
+        filter_params = __extract_filter_params(request.args, numerical_attributes_for_filter_option)
         api_request_params.update(filter_params)
 
         playlist = api_client.get_playlist_by_id(playlist_id, api_request_params)
@@ -51,7 +52,7 @@ def get_playlist_by_id(playlist_id):
             "playlist/playlist.html", playlist=playlist,
             sort_by=api_request_params["sort_by"], order=api_request_params["order"],
             filter_params=filter_params,
-            numerical_attributes_to_filter_by=ViewUtils.NUMERICAL_ATTRIBUTES_TO_FILTER_BY,
+            numerical_attributes_for_filter_option=numerical_attributes_for_filter_option,
             attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
             valid_attributes_for_sort_option=valid_attributes_for_sort_option,
@@ -64,7 +65,7 @@ def get_playlist_by_id(playlist_id):
         return render_template("error.html", error=error)
 
 
-def __extract_filter_params(request_params):
+def __extract_filter_params(request_params, numerical_attributes_for_filter_option):
     filter_params = {
         "filter_by": request_params.get("filter_by"),
         "artists_substring": request.args.get("artists_substring"),
@@ -75,15 +76,17 @@ def __extract_filter_params(request_params):
         "expected_key_signature": request.args.get("expected_key_signature")
     }
 
-    filter_params.update(__extract_filter_params_for_numerical_attributes(request_params))
+    filter_params.update(
+        __extract_filter_params_for_numerical_attributes(request_params, numerical_attributes_for_filter_option)
+    )
 
     return filter_params
 
 
-def __extract_filter_params_for_numerical_attributes(request_params):
+def __extract_filter_params_for_numerical_attributes(request_params, numerical_attributes_for_filter_option):
     filter_params = {}
 
-    for attribute in ViewUtils.NUMERICAL_ATTRIBUTES_TO_FILTER_BY:
+    for attribute in numerical_attributes_for_filter_option:
         min_value_key = f"min_{attribute}"
         max_value_key = f"max_{attribute}"
         filter_params[min_value_key] = request_params.get(min_value_key)
