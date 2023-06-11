@@ -36,7 +36,7 @@ class FilterParams:
             return filter_params
 
         if filter_by in TrackFilter.NUMERICAL_ATTRIBUTES:
-            filter_params.update(FilterParams.__extract_params_for_number_based_attribute(request_params, filter_by))
+            filter_params.update(FilterParams.__extract_params_for_numerical_attribute(request_params, filter_by))
             return filter_params
 
         raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
@@ -109,7 +109,7 @@ class FilterParams:
         return filter_params
 
     @staticmethod
-    def __extract_params_for_number_based_attribute(request_params, attribute_name):
+    def __extract_params_for_numerical_attribute(request_params, attribute_name):
         filter_params = {}
 
         min_value = FilterParams.__get_request_param_as_int_or_none(request_params, f"min_{attribute_name}")
