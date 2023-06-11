@@ -254,15 +254,7 @@ def get_valid_attributes_for_sort_option():
 @app.route(URL_PREFIX + "numerical-attributes-for-filter-option")
 def get_numerical_attributes_for_filter_option():
     try:
-        attributes = [
-            # TODOLATER #208 add popularity, move "tempo" down
-            "release_year", "tempo",
-
-            # Audio Features
-            # TODOLATER #208 move tempo to here, add audio features added in #80
-        ]
-
-        return jsonify(attributes)
+        return jsonify(TrackFilter.NUMERICAL_ATTRIBUTES)
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
