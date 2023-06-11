@@ -1,4 +1,6 @@
 class TrackFilter:
+    # TODOLATER #208 add popularity, move "tempo" down
+    # TODOLATER #208 move tempo to here, add audio features added in #80
     NUMERICAL_ATTRIBUTES = ["release_year", "tempo"]
 
     def __init__(self, tracks, filter_params):
@@ -33,7 +35,7 @@ class TrackFilter:
             return self.__filter_by_number_based_attribute(filter_by)
 
         # Here, ValueError is correct rather than HttpError because it is logic code
-        # E.g., the filter_by value might also be hardcoded in a unit test e.g.
+        # E.g., the filter_by value might also be hardcoded in a unit test
         raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
 
     def __filter_by_artists(self):

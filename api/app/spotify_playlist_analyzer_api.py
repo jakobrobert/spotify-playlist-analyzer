@@ -195,33 +195,6 @@ def create_playlist():
         return __create_error_response(error)
 
 
-@app.route(URL_PREFIX + "valid-keys", methods=["GET"])
-def get_valid_keys():
-    try:
-        return jsonify(SpotifyTrack.KEY_STRINGS)
-    except Exception:
-        error = HttpError.from_last_exception()
-        return __create_error_response(error)
-
-
-@app.route(URL_PREFIX + "valid-modes", methods=["GET"])
-def get_valid_modes():
-    try:
-        return jsonify(SpotifyTrack.MODE_STRINGS)
-    except Exception:
-        error = HttpError.from_last_exception()
-        return __create_error_response(error)
-
-
-@app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
-def get_valid_key_signatures():
-    try:
-        return jsonify(SpotifyTrack.KEY_SIGNATURE_STRINGS)
-    except Exception:
-        error = HttpError.from_last_exception()
-        return __create_error_response(error)
-
-
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
 def get_valid_attributes_for_attribute_distribution():
     try:
@@ -246,6 +219,42 @@ def get_valid_attributes_for_sort_option():
             ]
 
         return jsonify(attributes)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
+@app.route(URL_PREFIX + "numerical-attributes-for-filter-option")
+def get_numerical_attributes_for_filter_option():
+    try:
+        return jsonify(TrackFilter.NUMERICAL_ATTRIBUTES)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
+@app.route(URL_PREFIX + "valid-keys", methods=["GET"])
+def get_valid_keys():
+    try:
+        return jsonify(SpotifyTrack.KEY_STRINGS)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
+@app.route(URL_PREFIX + "valid-modes", methods=["GET"])
+def get_valid_modes():
+    try:
+        return jsonify(SpotifyTrack.MODE_STRINGS)
+    except Exception:
+        error = HttpError.from_last_exception()
+        return __create_error_response(error)
+
+
+@app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
+def get_valid_key_signatures():
+    try:
+        return jsonify(SpotifyTrack.KEY_SIGNATURE_STRINGS)
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
