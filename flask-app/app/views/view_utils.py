@@ -5,6 +5,8 @@ import base64
 
 class ViewUtils:
     ATTRIBUTE_DISPLAY_NAMES = {
+        "none": "None",
+
         "artists": "Artists",
         "title": "Title",
         "duration_ms": "Duration",
