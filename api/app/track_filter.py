@@ -3,8 +3,8 @@ class TrackFilter:
         "release_year", "popularity",
         
         # Audio Features
-        # TODONOW add all audio features
-        "tempo"]
+        "tempo", "loudness", "danceability", "energy", "valence",
+        "instrumentalness", "acousticness", "liveness", "speechiness"]
 
     def __init__(self, tracks, filter_params):
         self.tracks = tracks
