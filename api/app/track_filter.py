@@ -1,7 +1,10 @@
 class TrackFilter:
-    # TODOLATER #208 add popularity, move "tempo" down
-    # TODOLATER #208 move tempo to here, add audio features added in #80
-    NUMERICAL_ATTRIBUTES = ["release_year", "tempo"]
+    NUMERICAL_ATTRIBUTES = [
+        "release_year", "popularity",
+        
+        # Audio Features
+        # TODONOW add all audio features
+        "tempo"]
 
     def __init__(self, tracks, filter_params):
         self.tracks = tracks
