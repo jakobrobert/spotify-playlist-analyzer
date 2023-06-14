@@ -1,4 +1,5 @@
 <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
+    <h4>Filter by</h4>
     <div>
         <input type="radio" id="artists" name="filter_by" value="artists"
                {% if filter_params["filter_by"] == "artists" %} checked {% endif %}>
