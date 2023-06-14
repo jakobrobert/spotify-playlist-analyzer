@@ -204,6 +204,7 @@ class SpotifyClient:
             "Authorization": f"Bearer {access_token}",
             "Content-Type": "application/json"
         }
+        # TODONOW try if json=data works as well
         data_as_json = json.dumps(data)
         response = requests.post(url, headers=headers, data=data_as_json)
 
@@ -225,13 +226,19 @@ class SpotifyClient:
             "Authorization": f"Bearer {access_token}",
             "Content-Type": "application/json",
         }
-        data = {"uris": [f"spotify:track:{track_id}" for track_id in track_ids]}
-        response = requests.post(url, headers=headers, data=json.dumps(data))
-        response_data = response.json()
 
-        error = SpotifyClient.__create_http_error_from_response_data(response_data)
-        if error:
-            raise error
+        max_ids_per_request = 100
+        track_id_chunks = SpotifyClient.__split_list_into_chunks(track_ids, max_ids_per_request)
+
+        for track_id_chunk in track_id_chunks:
+            data = {"uris": [f"spotify:track:{track_id}" for track_id in track_id_chunk]}
+            # TODONOW try if json=data works as well
+            response = requests.post(url, headers=headers, data=json.dumps(data))
+            response_data = response.json()
+
+            error = SpotifyClient.__create_http_error_from_response_data(response_data)
+            if error:
+                raise error
 
     @staticmethod
     def __create_spotify_track(track_data):
