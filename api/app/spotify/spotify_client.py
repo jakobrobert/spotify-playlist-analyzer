@@ -39,7 +39,7 @@ class SpotifyClient:
         if not track_ids:
             raise HttpError(400, title="API: create_playlist failed", message="'track_ids' is None or empty")
 
-        # TODOLATER This is a workaround, because __get_access_token_by_refresh_token fails. See #171
+        # TODOLATER #171 This is a workaround because __get_access_token_by_refresh_token fails
         # Important to read it here from file and NOT before initialization of SpotifyClient, so it is always up to date
         test_access_token_config = configparser.ConfigParser()
         test_access_token_config.read("../test_access_token.ini")
@@ -93,6 +93,7 @@ class SpotifyClient:
 
         return tracks
 
+    # TODOLATER #169 Refactor: From SpotifyClient, extract general helper methods into separate class
     def __get_access_token_by_client_credentials(self):
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
@@ -106,6 +107,7 @@ class SpotifyClient:
 
         return response_data["access_token"]
 
+    # TODOLATER #169 Refactor: From SpotifyClient, extract general helper methods into separate class
     def __get_access_token_by_refresh_token(self):
         url = "https://accounts.spotify.com/api/token"
         headers = {"Authorization": f"Basic {self.client_id}:{self.client_secret}",
@@ -122,6 +124,7 @@ class SpotifyClient:
 
         return response_data["access_token"]
 
+    # TODOLATER #169 Refactor: From SpotifyClient, extract general helper methods into separate class
     @staticmethod
     def __send_get_request(url, access_token, params=None):
         headers = {"Authorization": f"Bearer {access_token}"}
@@ -134,6 +137,7 @@ class SpotifyClient:
 
         return response_data
 
+    # TODOLATER #169 Refactor: From SpotifyClient, extract general helper methods into separate class
     @staticmethod
     def __create_http_error_from_response_data(response_data):
         if "error" not in response_data:
@@ -146,6 +150,7 @@ class SpotifyClient:
 
         return HttpError(status_code, title, message)
 
+    # TODOLATER #169 Refactor: From SpotifyClient, extract general helper methods into separate class
     @staticmethod
     def __send_get_request_with_ids(url, access_token, ids):
         ids_string = ",".join(ids)
@@ -184,7 +189,8 @@ class SpotifyClient:
 
         return track_items
 
-    # TODOLATER #169 Extract helper method __send_post_request.
+    # TODOLATER #169 Refactor: From SpotifyClient, extract general helper methods into separate class
+    #   Extract helper method __send_post_request.
     #   Code is duplicated partly for __create_empty_playlist & __add_tracks_to_playlist, and both get response as json
     #   But for __get_access_token_by_refresh_token, error response is different
     @staticmethod
@@ -300,6 +306,7 @@ class SpotifyClient:
 
         return artist_id_to_genres
 
+    # TODOLATER #169 Refactor: From SpotifyClient, extract general helper methods into separate class
     @staticmethod
     def __split_list_into_chunks(list_, chunk_size):
         chunks = []
