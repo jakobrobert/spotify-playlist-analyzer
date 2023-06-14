@@ -1,3 +1,7 @@
-<!-- TODONOW merge those two forms into one with only one submit button -->
-{% include "playlist/process_tracks_form/sort_options.html" %}
-{% include "playlist/process_tracks_form/filter_options.html" %}
+<form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
+    <h4>Sort by</h4>
+    {% include "playlist/process_tracks_form/sort_options.html" %}
+    <h4>Filter by</h4>
+    {% include "playlist/process_tracks_form/filter_options.html" %}
+    <button class="btn btn-secondary" type="submit">Process</button>
+</form>
