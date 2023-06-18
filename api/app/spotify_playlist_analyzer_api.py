@@ -152,24 +152,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
         attribute = request.args.get("attribute")
 
         playlist = spotify_client.get_playlist_by_id(playlist_id)
-        statistics = PlaylistStatistics(playlist.tracks)
-
-        if attribute == "duration_ms":
-            attribute_distribution_items = statistics.get_duration_distribution_items()
-        elif attribute == "release_year":
-            attribute_distribution_items = statistics.get_release_year_distribution_items()
-        elif attribute == "popularity":
-            attribute_distribution_items = statistics.get_popularity_distribution_items()
-        elif attribute == "tempo":
-            attribute_distribution_items = statistics.get_tempo_distribution_items()
-        elif attribute == "key":
-            attribute_distribution_items = statistics.get_key_distribution_items()
-        elif attribute == "mode":
-            attribute_distribution_items = statistics.get_mode_distribution_items()
-        elif attribute == "key_signature":
-            attribute_distribution_items = statistics.get_key_signature_distribution_items()
-        else:
-            raise HttpError(502, f"Invalid attribute: '{attribute}'")
+        attribute_distribution_items = __get_attribute_distribution_items(attribute, playlist.tracks)
 
         return jsonify(attribute_distribution_items)
     except HttpError as error:
@@ -198,7 +181,13 @@ def create_playlist():
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
 def get_valid_attributes_for_attribute_distribution():
     try:
-        attributes = ["duration_ms", "release_year", "popularity", "tempo", "key", "mode", "key_signature"]
+        attributes = [
+            "duration_ms", "release_year", "popularity",
+            # Audio Features
+            # TODOLATER #224 Add attribute distribution for Loudness
+            "tempo", "key", "mode", "key_signature",
+            "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
+        ]
 
         return jsonify(attributes)
     except Exception:
@@ -337,3 +326,41 @@ def __convert_track_to_dict(track):
     track_dict["mode"] = track.get_mode_string()
 
     return track_dict
+
+
+def __get_attribute_distribution_items(attribute, tracks):
+    statistics = PlaylistStatistics(tracks)
+
+    if attribute == "duration_ms":
+        return statistics.get_duration_distribution_items()
+    if attribute == "release_year":
+        return statistics.get_release_year_distribution_items()
+    if attribute == "popularity":
+        return statistics.get_popularity_distribution_items()
+
+    # Audio Features
+    if attribute == "tempo":
+        return statistics.get_tempo_distribution_items()
+    if attribute == "key":
+        return statistics.get_key_distribution_items()
+    if attribute == "mode":
+        return statistics.get_mode_distribution_items()
+    if attribute == "key_signature":
+        return statistics.get_key_signature_distribution_items()
+    # TODOLATER #224 Add attribute distribution for Loudness
+    if attribute == "danceability":
+        return statistics.get_danceability_distribution_items()
+    if attribute == "energy":
+        return statistics.get_energy_distribution_items()
+    if attribute == "valence":
+        return statistics.get_valence_distribution_items()
+    if attribute == "instrumentalness":
+        return statistics.get_instrumentalness_distribution_items()
+    if attribute == "acousticness":
+        return statistics.get_acousticness_distribution_items()
+    if attribute == "liveness":
+        return statistics.get_liveness_distribution_items()
+    if attribute == "speechiness":
+        return statistics.get_speechiness_distribution_items()
+
+    raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")

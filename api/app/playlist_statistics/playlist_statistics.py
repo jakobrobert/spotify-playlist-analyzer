@@ -62,10 +62,8 @@ class PlaylistStatistics:
             first_interval_max_duration, last_interval_min_duration, interval_size,
             lambda track: track.duration_ms)
 
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(
+        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(
             intervals, lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
-
-        return dicts_with_label
 
     def get_release_year_distribution_items(self):
         first_interval_max_year = 1979
@@ -76,22 +74,10 @@ class PlaylistStatistics:
             first_interval_max_year, last_interval_min_year, interval_size,
             lambda track: track.release_year)
 
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
-
-        return dicts_with_label
+        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
     def get_popularity_distribution_items(self):
-        first_interval_max_popularity = 9
-        last_interval_min_popularity = 90
-        interval_size = 10
-
-        intervals = self.__get_attribute_distribution_intervals(
-            first_interval_max_popularity, last_interval_min_popularity, interval_size,
-            lambda track: track.popularity)
-
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
-
-        return dicts_with_label
+        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.popularity)
 
     def get_tempo_distribution_items(self):
         first_interval_max_tempo = 89
@@ -102,9 +88,7 @@ class PlaylistStatistics:
             first_interval_max_tempo, last_interval_min_tempo, interval_size,
             lambda track: track.tempo)
 
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
-
-        return dicts_with_label
+        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
     def get_key_distribution_items(self):
         key_distribution_items = []
@@ -173,9 +157,31 @@ class PlaylistStatistics:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(key_signature_distribution_items, total_count)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(
+            key_signature_distribution_items, total_count)
 
         return key_signature_distribution_items
+
+    def get_danceability_distribution_items(self):
+        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.danceability)
+
+    def get_energy_distribution_items(self):
+        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.energy)
+
+    def get_speechiness_distribution_items(self):
+        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.speechiness)
+
+    def get_liveness_distribution_items(self):
+        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.liveness)
+
+    def get_acousticness_distribution_items(self):
+        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.acousticness)
+
+    def get_instrumentalness_distribution_items(self):
+        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.instrumentalness)
+
+    def get_valence_distribution_items(self):
+        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.valence)
 
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
@@ -197,6 +203,16 @@ class PlaylistStatistics:
             interval.update_percentage(total_count)
 
         return all_intervals
+
+    def __get_attribute_distribution_items_for_interval_range_0_to_100(self, get_attribute_value_of_track):
+        first_interval_max = 9
+        last_interval_min = 90
+        interval_size = 10
+
+        intervals = self.__get_attribute_distribution_intervals(
+            first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track)
+
+        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
     @staticmethod
     def __create_first_interval(first_interval_max):
