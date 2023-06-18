@@ -167,9 +167,14 @@ class PlaylistStatistics:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(key_signature_distribution_items, total_count)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(
+            key_signature_distribution_items, total_count)
 
         return key_signature_distribution_items
+
+    def get_danceability_distribution_items(self):
+        # TODONOW implement
+        return []
 
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
