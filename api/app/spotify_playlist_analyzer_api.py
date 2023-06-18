@@ -181,7 +181,13 @@ def create_playlist():
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
 def get_valid_attributes_for_attribute_distribution():
     try:
-        attributes = ["duration_ms", "release_year", "popularity", "tempo", "key", "mode", "key_signature"]
+        attributes = [
+            "duration_ms", "release_year", "popularity",
+            # Audio Features
+            # TODOLATER #224 Add attribute distribution for Loudness
+            "tempo", "key", "mode", "key_signature",
+            "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
+        ]
 
         return jsonify(attributes)
     except Exception:
