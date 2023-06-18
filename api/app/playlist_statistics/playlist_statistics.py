@@ -165,6 +165,24 @@ class PlaylistStatistics:
     def get_danceability_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.danceability)
 
+    def get_energy_distribution_items(self):
+        return []
+
+    def get_speechiness_distribution_items(self):
+        return []
+
+    def get_liveness_distribution_items(self):
+        return []
+
+    def get_acousticness_distribution_items(self):
+        return []
+
+    def get_instrumentalness_distribution_items(self):
+        return []
+
+    def get_valence_distribution_items(self):
+        return []
+
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
 

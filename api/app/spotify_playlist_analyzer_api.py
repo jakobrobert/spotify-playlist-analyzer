@@ -350,6 +350,17 @@ def __get_attribute_distribution_items(attribute, tracks):
     # TODOLATER #224 Add attribute distribution for Loudness
     if attribute == "danceability":
         return statistics.get_danceability_distribution_items()
-    # TODONOW add remaining attributes
+    if attribute == "energy":
+        return statistics.get_energy_distribution_items()
+    if attribute == "valence":
+        return statistics.get_valence_distribution_items()
+    if attribute == "instrumentalness":
+        return statistics.get_instrumentalness_distribution_items()
+    if attribute == "acousticness":
+        return statistics.get_acousticness_distribution_items()
+    if attribute == "liveness":
+        return statistics.get_liveness_distribution_items()
+    if attribute == "speechiness":
+        return statistics.get_speechiness_distribution_items()
 
     raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")
