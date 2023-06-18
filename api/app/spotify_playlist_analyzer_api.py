@@ -325,23 +325,21 @@ def __convert_track_to_dict(track):
 def __get_attribute_distribution_items(attribute, tracks):
     statistics = PlaylistStatistics(tracks)
 
-    # TODONOW Refactor to use return for each if
     if attribute == "duration_ms":
-        attribute_distribution_items = statistics.get_duration_distribution_items()
-    elif attribute == "release_year":
-        attribute_distribution_items = statistics.get_release_year_distribution_items()
+        return statistics.get_duration_distribution_items()
+    if attribute == "release_year":
+        return statistics.get_release_year_distribution_items()
     elif attribute == "popularity":
-        attribute_distribution_items = statistics.get_popularity_distribution_items()
+        return statistics.get_popularity_distribution_items()
+
     # Audio Features
     elif attribute == "tempo":
-        attribute_distribution_items = statistics.get_tempo_distribution_items()
+        return statistics.get_tempo_distribution_items()
     elif attribute == "key":
-        attribute_distribution_items = statistics.get_key_distribution_items()
+        return statistics.get_key_distribution_items()
     elif attribute == "mode":
-        attribute_distribution_items = statistics.get_mode_distribution_items()
+        return statistics.get_mode_distribution_items()
     elif attribute == "key_signature":
-        attribute_distribution_items = statistics.get_key_signature_distribution_items()
-    else:
-        raise HttpError(502, f"Invalid attribute: '{attribute}'")
+        return statistics.get_key_signature_distribution_items()
 
-    return attribute_distribution_items
+    raise HttpError(502, f"Invalid attribute: '{attribute}'")
