@@ -348,4 +348,4 @@ def __get_attribute_distribution_items(attribute, tracks):
     elif attribute == "key_signature":
         return statistics.get_key_signature_distribution_items()
 
-    raise HttpError(502, f"Invalid attribute: '{attribute}'")
+    raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")
