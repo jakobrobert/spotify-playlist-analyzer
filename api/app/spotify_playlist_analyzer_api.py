@@ -335,17 +335,20 @@ def __get_attribute_distribution_items(attribute, tracks):
         return statistics.get_duration_distribution_items()
     if attribute == "release_year":
         return statistics.get_release_year_distribution_items()
-    elif attribute == "popularity":
+    if attribute == "popularity":
         return statistics.get_popularity_distribution_items()
 
     # Audio Features
-    elif attribute == "tempo":
+    if attribute == "tempo":
         return statistics.get_tempo_distribution_items()
-    elif attribute == "key":
+    if attribute == "key":
         return statistics.get_key_distribution_items()
-    elif attribute == "mode":
+    if attribute == "mode":
         return statistics.get_mode_distribution_items()
-    elif attribute == "key_signature":
+    if attribute == "key_signature":
         return statistics.get_key_signature_distribution_items()
+    # TODOLATER #224 Add attribute distribution for Loudness
+    if attribute == "danceability":
+        return statistics.get_danceability_distribution_items()
 
     raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")
