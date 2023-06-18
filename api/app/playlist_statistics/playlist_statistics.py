@@ -173,8 +173,17 @@ class PlaylistStatistics:
         return key_signature_distribution_items
 
     def get_danceability_distribution_items(self):
-        # TODONOW implement
-        return []
+        # TODONOW extract general method. code will be same for all attributes which are numerical and have range 0-100
+        #   only lambda to retrieve attribute value changes
+        first_interval_max_danceability = 9
+        last_interval_min_danceability = 90
+        interval_size = 10
+
+        intervals = self.__get_attribute_distribution_intervals(
+            first_interval_max_danceability, last_interval_min_danceability, interval_size,
+            lambda track: track.danceability)
+
+        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
