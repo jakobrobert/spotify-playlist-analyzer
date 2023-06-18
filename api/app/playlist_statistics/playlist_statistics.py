@@ -62,11 +62,8 @@ class PlaylistStatistics:
             first_interval_max_duration, last_interval_min_duration, interval_size,
             lambda track: track.duration_ms)
 
-        # TODONOW refactor all methods: inline variable, directly return
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(
+        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(
             intervals, lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
-
-        return dicts_with_label
 
     def get_release_year_distribution_items(self):
         first_interval_max_year = 1979
@@ -77,11 +74,11 @@ class PlaylistStatistics:
             first_interval_max_year, last_interval_min_year, interval_size,
             lambda track: track.release_year)
 
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
-
-        return dicts_with_label
+        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
     def get_popularity_distribution_items(self):
+        # TODONOW extract general method. code will be same for all attributes which are numerical and have range 0-100
+        #   only lambda to retrieve attribute value changes
         first_interval_max_popularity = 9
         last_interval_min_popularity = 90
         interval_size = 10
@@ -90,9 +87,7 @@ class PlaylistStatistics:
             first_interval_max_popularity, last_interval_min_popularity, interval_size,
             lambda track: track.popularity)
 
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
-
-        return dicts_with_label
+        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
     def get_tempo_distribution_items(self):
         first_interval_max_tempo = 89
@@ -103,9 +98,7 @@ class PlaylistStatistics:
             first_interval_max_tempo, last_interval_min_tempo, interval_size,
             lambda track: track.tempo)
 
-        dicts_with_label = self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
-
-        return dicts_with_label
+        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
     def get_key_distribution_items(self):
         key_distribution_items = []
