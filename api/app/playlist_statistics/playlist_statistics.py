@@ -162,6 +162,10 @@ class PlaylistStatistics:
 
         return key_signature_distribution_items
 
+    def get_loudness_distribution_items(self):
+        # TODONOW implement
+        return []
+
     def get_danceability_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.danceability)
 

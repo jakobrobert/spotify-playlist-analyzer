@@ -347,7 +347,8 @@ def __get_attribute_distribution_items(attribute, tracks):
         return statistics.get_mode_distribution_items()
     if attribute == "key_signature":
         return statistics.get_key_signature_distribution_items()
-    # TODOLATER #224 Add attribute distribution for Loudness
+    if attribute == "loudness":
+        return statistics.get_loudness_distribution_items()
     if attribute == "danceability":
         return statistics.get_danceability_distribution_items()
     if attribute == "energy":
