@@ -1,0 +1,28 @@
+from core.views.index_view import index_view
+from core.views.choose_one_playlist_view import choose_one_playlist_view
+from core.views.playlist_view import playlist_view
+from core.views.attribute_distribution_view import attribute_distribution_view
+from core.views.export_playlist_view import export_playlist_view
+from core.views.choose_playlists_for_comparison_view import choose_playlists_for_comparison_view
+from core.views.compare_playlists_view import compare_playlists_view
+from core.views.compare_attribute_distribution_view import compare_attribute_distribution_view
+from core.views.choose_one_track_view import choose_one_track_view
+from core.views.track_view import track_view
+from core.views.enter_query_to_search_tracks_view import enter_query_to_search_tracks_view
+from core.views.search_tracks_view import search_tracks_view
+
+from flask import Flask
+
+app = Flask(__name__, template_folder="core/templates")
+app.register_blueprint(index_view)
+app.register_blueprint(choose_one_playlist_view)
+app.register_blueprint(playlist_view)
+app.register_blueprint(attribute_distribution_view)
+app.register_blueprint(export_playlist_view)
+app.register_blueprint(choose_playlists_for_comparison_view)
+app.register_blueprint(compare_playlists_view)
+app.register_blueprint(compare_attribute_distribution_view)
+app.register_blueprint(choose_one_track_view)
+app.register_blueprint(track_view)
+app.register_blueprint(enter_query_to_search_tracks_view)
+app.register_blueprint(search_tracks_view)

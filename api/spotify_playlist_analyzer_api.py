@@ -5,15 +5,15 @@ from flask import Flask, jsonify, request, redirect
 from urllib.parse import urlencode
 import requests
 
-from http_error import HttpError
-from spotify.spotify_client import SpotifyClient
-from spotify.spotify_track import SpotifyTrack
-from filter_params import FilterParams
-from track_filter import TrackFilter
-from playlist_statistics.playlist_statistics import PlaylistStatistics
+from core.http_error import HttpError
+from core.spotify.spotify_client import SpotifyClient
+from core.spotify.spotify_track import SpotifyTrack
+from core.filter_params import FilterParams
+from core.track_filter import TrackFilter
+from core.playlist_statistics.playlist_statistics import PlaylistStatistics
 
 config = configparser.ConfigParser()
-config.read("../config.ini")
+config.read("config.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 SPOTIFY_CLIENT_ID = config["SPOTIFY"]["CLIENT_ID"]
 SPOTIFY_CLIENT_SECRET = config["SPOTIFY"]["CLIENT_SECRET"]

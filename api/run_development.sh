@@ -1,5 +1,4 @@
 source ENV/bin/activate
-cd app/ || exit
 export FLASK_APP=spotify_playlist_analyzer_api:app
 export FLASK_ENV=development
 export FLASK_RUN_HOST=0.0.0.0
