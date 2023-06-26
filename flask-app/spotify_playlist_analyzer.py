@@ -1,15 +1,15 @@
-from views.index_view import index_view
-from views.choose_one_playlist_view import choose_one_playlist_view
-from views.playlist_view import playlist_view
-from views.attribute_distribution_view import attribute_distribution_view
-from views.export_playlist_view import export_playlist_view
-from views.choose_playlists_for_comparison_view import choose_playlists_for_comparison_view
-from views.compare_playlists_view import compare_playlists_view
-from views.compare_attribute_distribution_view import compare_attribute_distribution_view
-from views.choose_one_track_view import choose_one_track_view
-from views.track_view import track_view
-from views.enter_query_to_search_tracks_view import enter_query_to_search_tracks_view
-from views.search_tracks_view import search_tracks_view
+from app.views.index_view import index_view
+from app.views.choose_one_playlist_view import choose_one_playlist_view
+from app.views.playlist_view import playlist_view
+from app.views.attribute_distribution_view import attribute_distribution_view
+from app.views.export_playlist_view import export_playlist_view
+from app.views.choose_playlists_for_comparison_view import choose_playlists_for_comparison_view
+from app.views.compare_playlists_view import compare_playlists_view
+from app.views.compare_attribute_distribution_view import compare_attribute_distribution_view
+from app.views.choose_one_track_view import choose_one_track_view
+from app.views.track_view import track_view
+from app.views.enter_query_to_search_tracks_view import enter_query_to_search_tracks_view
+from app.views.search_tracks_view import search_tracks_view
 
 from flask import Flask
 
