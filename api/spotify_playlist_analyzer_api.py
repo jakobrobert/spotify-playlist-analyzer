@@ -13,7 +13,7 @@ from core.track_filter import TrackFilter
 from core.playlist_statistics.playlist_statistics import PlaylistStatistics
 
 config = configparser.ConfigParser()
-config.read("../config.ini")
+config.read("config.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
 SPOTIFY_CLIENT_ID = config["SPOTIFY"]["CLIENT_ID"]
 SPOTIFY_CLIENT_SECRET = config["SPOTIFY"]["CLIENT_SECRET"]
