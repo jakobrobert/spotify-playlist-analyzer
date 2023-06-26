@@ -1,6 +1,4 @@
-# PyCharm shows errors for these imports locally, but it works this way with the server
-# 'from app.http_error import HttpError' is shown as valid locally, but does not work with the server
-from api_client import ApiClient
+from app.api_client import ApiClient
 from http_error import HttpError
 from views.view_utils import ViewUtils
 
