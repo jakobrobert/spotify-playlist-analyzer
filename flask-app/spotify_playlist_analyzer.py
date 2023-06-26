@@ -13,7 +13,7 @@ from core.views.search_tracks_view import search_tracks_view
 
 from flask import Flask
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="core/templates")
 app.register_blueprint(index_view)
 app.register_blueprint(choose_one_playlist_view)
 app.register_blueprint(playlist_view)
