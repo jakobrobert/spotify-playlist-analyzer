@@ -1,5 +1,5 @@
-from spotify.spotify_track import SpotifyTrack
-from playlist_statistics.attribute_distribution_interval import AttributeDistributionInterval
+from core.spotify.spotify_track import SpotifyTrack
+from core.playlist_statistics.attribute_distribution_interval import AttributeDistributionInterval
 
 
 class PlaylistStatistics:
