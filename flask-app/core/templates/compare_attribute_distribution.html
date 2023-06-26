@@ -28,8 +28,6 @@
                 <th>Count [{{ playlist_2.name }}]</th>
                 <th>Percentage [{{ playlist_2.name }}]</th>
             </tr>
-            <!-- Doing it the ugly way because zip function not accessible in Jinja2.
-                This did not help either: app.jinja_env.filters["zip"] = zip -->
             {% for index in range(attribute_distribution_items_1 | length) %}
                 {% set item_1 = attribute_distribution_items_1[index] %}
                 {% set item_2 = attribute_distribution_items_2[index]%}
