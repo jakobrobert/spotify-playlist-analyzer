@@ -1,13 +1,10 @@
 import configparser
 
 import requests
-import json
 
-# PyCharm shows errors for these imports locally, but it works this way with the server
-# 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
-from spotify.spotify_track import SpotifyTrack
-from spotify.spotify_playlist import SpotifyPlaylist
-from http_error import HttpError
+from core.spotify.spotify_track import SpotifyTrack
+from core.spotify.spotify_playlist import SpotifyPlaylist
+from core.http_error import HttpError
 
 
 class SpotifyClient:

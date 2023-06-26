@@ -1,8 +1,8 @@
 from json import JSONDecodeError
 
-from spotify.spotify_playlist import SpotifyPlaylist
-from spotify.spotify_track import SpotifyTrack
-from http_error import HttpError
+from core.spotify.spotify_playlist import SpotifyPlaylist
+from core.spotify.spotify_track import SpotifyTrack
+from core.http_error import HttpError
 
 import requests
 

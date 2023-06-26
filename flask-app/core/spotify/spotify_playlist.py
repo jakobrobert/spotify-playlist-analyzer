@@ -1,6 +1,4 @@
-# PyCharm shows errors for this import locally, but it works this way with the server
-# 'from spotify_track import SpotifyTrack' is shown as valid locally, but does not work with the server
-from spotify.spotify_track import SpotifyTrack
+from core.spotify.spotify_track import SpotifyTrack
 
 
 class SpotifyPlaylist:
