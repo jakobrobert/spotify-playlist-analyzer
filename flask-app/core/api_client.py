@@ -148,7 +148,6 @@ class ApiClient:
         track.key = track_data["key"]
         track.mode = track_data["mode"]
         track.key_signature = track_data["key_signature"]
-        track.camelot = track_data["camelot"]
         track.loudness = track_data["loudness"]
         track.danceability = track_data["danceability"]
         track.energy = track_data["energy"]
