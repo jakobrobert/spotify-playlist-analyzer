@@ -18,7 +18,6 @@ class SpotifyTrack:
         self.key = -1
         self.mode = -1
         self.key_signature = None
-        self.camelot = None
         self.loudness = 0
         self.danceability = 0
         self.energy = 0
@@ -41,7 +40,6 @@ class SpotifyTrack:
         key_string = self.get_key_string()
         mode_string = self.get_mode_string()
         self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(key_string, mode_string)
-        self.camelot = SpotifyTrack.__get_camelot_from_key_and_mode(key_string, mode_string)
         self.loudness = audio_features["loudness"]
         self.danceability = SpotifyTrack.__process_audio_feature_value(audio_features["danceability"])
         self.energy = SpotifyTrack.__process_audio_feature_value(audio_features["energy"])
@@ -84,59 +82,6 @@ class SpotifyTrack:
             return "2♭"
         if (key_string == "F" and mode_string == "Major") or (key_string == "D" and mode_string == "Minor"):
             return "1♭"
-
-        return "n/a"
-
-    @staticmethod
-    def __get_camelot_from_key_and_mode(key_string, mode_string):
-        if key_string == "G♯/A♭" and mode_string == "Minor":
-            return "01A"
-        if key_string == "B" and mode_string == "Major":
-            return "01B"
-        if key_string == "D♯/E♭" and mode_string == "Minor":
-            return "02A"
-        if key_string == "F♯/G♭" and mode_string == "Major":
-            return "02B"
-        if key_string == "A♯/B♭" and mode_string == "Minor":
-            return "03A"
-        if key_string == "C♯/D♭" and mode_string == "Major":
-            return "03B"
-        if key_string == "F" and mode_string == "Minor":
-            return "04A"
-        if key_string == "G♯/A♭" and mode_string == "Major":
-            return "04B"
-        if key_string == "C" and mode_string == "Minor":
-            return "05A"
-        if key_string == "D♯/E♭" and mode_string == "Major":
-            return "05B"
-        if key_string == "G" and mode_string == "Minor":
-            return "06A"
-        if key_string == "A♯/B♭" and mode_string == "Major":
-            return "06B"
-        if key_string == "D" and mode_string == "Minor":
-            return "07A"
-        if key_string == "F" and mode_string == "Major":
-            return "07B"
-        if key_string == "A" and mode_string == "Minor":
-            return "08A"
-        if key_string == "C" and mode_string == "Major":
-            return "08B"
-        if key_string == "E" and mode_string == "Minor":
-            return "09A"
-        if key_string == "G" and mode_string == "Major":
-            return "09B"
-        if key_string == "B" and mode_string == "Minor":
-            return "10A"
-        if key_string == "D" and mode_string == "Major":
-            return "10B"
-        if key_string == "F♯/G♭" and mode_string == "Minor":
-            return "11A"
-        if key_string == "A" and mode_string == "Major":
-            return "11B"
-        if key_string == "C♯/D♭" and mode_string == "Minor":
-            return "12A"
-        if key_string == "E" and mode_string == "Major":
-            return "12B"
 
         return "n/a"
 
