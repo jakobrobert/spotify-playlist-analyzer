@@ -26,7 +26,7 @@ class ApiClient:
 
         playlist.tracks = []
         for track_data in playlist_data["tracks"]:
-            track = ApiClient.__create_spotify_track(track_data)
+            track = ApiClient.__convert_dict_to_track(track_data)
             playlist.tracks.append(track)
 
         return playlist
@@ -67,9 +67,9 @@ class ApiClient:
 
     def get_track_by_id(self, track_id):
         sub_url = f"track/{track_id}"
-        track_data = self.__send_get_request(sub_url)
+        track_dict = self.__send_get_request(sub_url)
 
-        return self.__create_spotify_track(track_data)
+        return self.__convert_dict_to_track(track_dict)
 
     def search_tracks(self, query):
         sub_url = f"search-tracks"
@@ -79,7 +79,7 @@ class ApiClient:
         tracks = []
 
         for track_data in tracks_data:
-            track = self.__create_spotify_track(track_data)
+            track = self.__convert_dict_to_track(track_data)
             tracks.append(track)
 
         return tracks
@@ -131,31 +131,31 @@ class ApiClient:
         return HttpError(status_code, title, message, traceback_items)
 
     @staticmethod
-    def __create_spotify_track(track_data):
+    def __convert_dict_to_track(track_dict):
         track = SpotifyTrack()
 
-        track.id = track_data["id"]
-        track.title = track_data["title"]
-        track.artist_ids = track_data["artist_ids"]
-        track.artists = track_data["artists"]
-        track.duration_ms = track_data["duration_ms"]
-        track.release_year = track_data["release_year"]
-        track.popularity = track_data["popularity"]
-        track.genres = track_data["genres"]
+        track.id = track_dict["id"]
+        track.title = track_dict["title"]
+        track.artist_ids = track_dict["artist_ids"]
+        track.artists = track_dict["artists"]
+        track.duration_ms = track_dict["duration_ms"]
+        track.release_year = track_dict["release_year"]
+        track.popularity = track_dict["popularity"]
+        track.genres = track_dict["genres"]
 
         # Audio Features
-        track.tempo = track_data["tempo"]
-        track.key = track_data["key"]
-        track.mode = track_data["mode"]
-        track.key_signature = track_data["key_signature"]
-        track.camelot = track_data["camelot"]
-        track.loudness = track_data["loudness"]
-        track.danceability = track_data["danceability"]
-        track.energy = track_data["energy"]
-        track.valence = track_data["valence"]
-        track.instrumentalness = track_data["instrumentalness"]
-        track.acousticness = track_data["acousticness"]
-        track.liveness = track_data["liveness"]
-        track.speechiness = track_data["speechiness"]
+        track.tempo = track_dict["tempo"]
+        track.key = track_dict["key"]
+        track.mode = track_dict["mode"]
+        track.key_signature = track_dict["key_signature"]
+        track.camelot = track_dict["camelot"]
+        track.loudness = track_dict["loudness"]
+        track.danceability = track_dict["danceability"]
+        track.energy = track_dict["energy"]
+        track.valence = track_dict["valence"]
+        track.instrumentalness = track_dict["instrumentalness"]
+        track.acousticness = track_dict["acousticness"]
+        track.liveness = track_dict["liveness"]
+        track.speechiness = track_dict["speechiness"]
 
         return track
