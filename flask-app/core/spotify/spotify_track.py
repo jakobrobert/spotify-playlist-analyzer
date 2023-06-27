@@ -14,7 +14,6 @@ class SpotifyTrack:
         self.key = "n/a"
         self.mode = "n/a"
         self.key_signature = "n/a"
-        self.camelot = "n/a"
         self.loudness = 0
         self.danceability = 0
         self.energy = 0
