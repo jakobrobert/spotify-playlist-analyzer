@@ -269,14 +269,13 @@ def search_tracks():
         query = request.args.get("query")
 
         tracks = spotify_client.search_tracks(query)
-
-        tracks_converted = []
+        track_dicts = []
 
         for track in tracks:
             track_dict = __convert_track_to_dict(track)
-            tracks_converted.append(track_dict)
+            track_dicts.append(track_dict)
 
-        return jsonify(tracks_converted)
+        return jsonify(track_dicts)
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
