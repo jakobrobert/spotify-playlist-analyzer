@@ -203,7 +203,7 @@ def get_valid_attributes_for_sort_option():
             "artists", "title", "duration_ms", "release_year", "popularity", "genres",
 
             # Audio Features
-            "tempo", "key", "mode", "key_signature", "camelot", "loudness",
+            "tempo", "key", "mode", "key_signature", "loudness",
             "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
             ]
 
