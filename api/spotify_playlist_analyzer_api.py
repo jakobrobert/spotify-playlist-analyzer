@@ -28,6 +28,19 @@ spotify_client = SpotifyClient(
 app = Flask(__name__)
 
 
+def measure_execution_time(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        response = func(*args, **kwargs)
+        end_time = time.time()
+        elapsed_time_seconds = end_time - start_time
+        elapsed_time_ms = elapsed_time_seconds * 1000
+        print(f"API endpoint => {func.__name__} => {elapsed_time_ms} ms")
+        return response
+
+    return wrapper
+
+
 @app.route(URL_PREFIX + "authorize", methods=["GET"])
 def authorize():
     try:
@@ -107,10 +120,9 @@ def authorize_callback():
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
+@measure_execution_time
 def get_playlist_by_id(playlist_id):
     try:
-        start_time = time.time()
-
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
         # Sort tracks
@@ -141,14 +153,7 @@ def get_playlist_by_id(playlist_id):
             track_dict = __convert_track_to_dict(track)
             playlist_dict["tracks"].append(track_dict)
 
-        response = jsonify(playlist_dict)
-
-        end_time = time.time()
-        elapsed_time_seconds = end_time - start_time
-        elapsed_time_ms = elapsed_time_seconds * 1000
-        print(f"API endpoint => get_playlist_by_id => {elapsed_time_ms} ms")
-
-        return response
+        return jsonify(playlist_dict)
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
