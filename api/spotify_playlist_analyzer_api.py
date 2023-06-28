@@ -1,5 +1,6 @@
 import configparser
 import operator
+import time
 
 from flask import Flask, jsonify, request, redirect
 from urllib.parse import urlencode
@@ -108,6 +109,8 @@ def authorize_callback():
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 def get_playlist_by_id(playlist_id):
     try:
+        start_time = time.time()
+
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
         # Sort tracks
@@ -138,7 +141,14 @@ def get_playlist_by_id(playlist_id):
             track_dict = __convert_track_to_dict(track)
             playlist_dict["tracks"].append(track_dict)
 
-        return jsonify(playlist_dict)
+        response = jsonify(playlist_dict)
+
+        end_time = time.time()
+        elapsed_time_seconds = end_time - start_time
+        elapsed_time_ms = elapsed_time_seconds * 1000
+        print(f"API endpoint => get_playlist_by_id => {elapsed_time_ms} ms")
+
+        return response
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
