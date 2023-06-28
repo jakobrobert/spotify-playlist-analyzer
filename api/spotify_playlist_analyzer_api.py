@@ -30,14 +30,8 @@ app = Flask(__name__)
 
 
 def measure_execution_time(func):
-    print("measure_execution_time")  # TODONOW this is logged
-
-    # TODONOW using @functools.wraps(func) as suggested by ChatGPT to fix issue which occurs when for endpoint, first @app.route & then @measure_execution_time
-    #   AssertionError: View function mapping is overwriting an existing endpoint function: wrapper
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        print("measure_execution_time => wrapper")  # TODONOW this is NOT logged, why?
-
         start_time = time.time()
         response = func(*args, **kwargs)
         end_time = time.time()
@@ -127,8 +121,8 @@ def authorize_callback():
         return __create_error_response(error)
 
 
-@measure_execution_time
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
+@measure_execution_time
 def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
@@ -169,8 +163,8 @@ def get_playlist_by_id(playlist_id):
         return __create_error_response(error)
 
 
-@measure_execution_time
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
+@measure_execution_time
 def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
