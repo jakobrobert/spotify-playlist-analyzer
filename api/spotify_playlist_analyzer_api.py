@@ -159,12 +159,21 @@ def get_playlist_by_id(playlist_id):
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
 def get_attribute_distribution_of_playlist(playlist_id):
     try:
+        start_time = time.time()
+
         attribute = request.args.get("attribute")
 
         playlist = spotify_client.get_playlist_by_id(playlist_id)
         attribute_distribution_items = __get_attribute_distribution_items(attribute, playlist.tracks)
 
-        return jsonify(attribute_distribution_items)
+        response = jsonify(attribute_distribution_items)
+
+        end_time = time.time()
+        elapsed_time_seconds = end_time - start_time
+        elapsed_time_ms = elapsed_time_seconds * 1000
+        print(f"API endpoint => get_attribute_distribution_of_playlist => {elapsed_time_ms} ms")
+
+        return response
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
