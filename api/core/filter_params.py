@@ -1,9 +1,11 @@
 from core.http_error import HttpError
 from core.track_filter import TrackFilter
+from core.utils import Utils
 
 
 class FilterParams:
     @staticmethod
+    @Utils.measure_execution_time(log_prefix="[FilterParams]")
     def extract_filter_params_from_request_params(request_params):
         filter_by = request_params.get("filter_by") or None
         filter_params = {"filter_by": filter_by}
