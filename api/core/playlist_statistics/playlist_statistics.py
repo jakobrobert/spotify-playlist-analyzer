@@ -1,11 +1,13 @@
 from core.spotify.spotify_track import SpotifyTrack
 from core.playlist_statistics.attribute_distribution_interval import AttributeDistributionInterval
+from core.utils import Utils
 
 
 class PlaylistStatistics:
     def __init__(self, tracks):
         self.tracks = tracks
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_total_duration_ms(self):
         total_duration_ms = 0
 
@@ -14,12 +16,14 @@ class PlaylistStatistics:
 
         return total_duration_ms
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_average_duration_ms(self):
         if not self.tracks:
             return None
 
         return self.get_total_duration_ms() / len(self.tracks)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_average_popularity(self):
         if not self.tracks:
             return None
@@ -31,6 +35,7 @@ class PlaylistStatistics:
 
         return total_popularity / len(self.tracks)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_average_release_year(self):
         if not self.tracks:
             return None
@@ -42,6 +47,7 @@ class PlaylistStatistics:
 
         return total_year / len(self.tracks)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_average_tempo(self):
         if not self.tracks:
             return None
@@ -53,6 +59,7 @@ class PlaylistStatistics:
 
         return total_tempo / len(self.tracks)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_duration_distribution_items(self):
         first_interval_max_duration = 120000  # 120 seconds -> 02:00
         last_interval_min_duration = 300000  # 300 seconds -> 05:00
@@ -65,6 +72,7 @@ class PlaylistStatistics:
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(
             intervals, lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_release_year_distribution_items(self):
         first_interval_max_year = 1979
         last_interval_min_year = 2020
@@ -76,9 +84,11 @@ class PlaylistStatistics:
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_popularity_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.popularity)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_tempo_distribution_items(self):
         first_interval_max_tempo = 89
         last_interval_min_tempo = 180
@@ -90,6 +100,7 @@ class PlaylistStatistics:
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_key_distribution_items(self):
         key_distribution_items = []
 
@@ -113,6 +124,7 @@ class PlaylistStatistics:
 
         return key_distribution_items
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_mode_distribution_items(self):
         mode_distribution_items = []
 
@@ -136,6 +148,7 @@ class PlaylistStatistics:
 
         return mode_distribution_items
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_key_signature_distribution_items(self):
         key_signature_distribution_items = []
 
@@ -162,6 +175,7 @@ class PlaylistStatistics:
 
         return key_signature_distribution_items
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_loudness_distribution_items(self):
         first_interval_max_loudness = -16
         last_interval_min_loudness = -2
@@ -173,24 +187,31 @@ class PlaylistStatistics:
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_danceability_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.danceability)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_energy_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.energy)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_speechiness_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.speechiness)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_liveness_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.liveness)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_acousticness_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.acousticness)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_instrumentalness_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.instrumentalness)
 
+    @Utils.measure_execution_time(log_prefix="[PlaylistStatistics]")
     def get_valence_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.valence)
 
