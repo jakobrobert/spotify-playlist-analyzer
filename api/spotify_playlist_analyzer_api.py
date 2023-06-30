@@ -29,18 +29,21 @@ spotify_client = SpotifyClient(
 app = Flask(__name__)
 
 
-def measure_execution_time(func):
-    @functools.wraps(func)
-    def wrapper(*args, **kwargs):
-        start_time = time.time()
-        response = func(*args, **kwargs)
-        end_time = time.time()
-        elapsed_time_seconds = end_time - start_time
-        elapsed_time_ms = elapsed_time_seconds * 1000
-        print(f"API endpoint => {func.__name__} => {elapsed_time_ms} ms")
-        return response
+def measure_execution_time(log_prefix):
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            start_time = time.time()
+            response = func(*args, **kwargs)
+            end_time = time.time()
+            elapsed_time_seconds = end_time - start_time
+            elapsed_time_ms = elapsed_time_seconds * 1000
+            print(f"[Execution time] {log_prefix} {func.__name__} => {elapsed_time_ms} ms")
+            return response
 
-    return wrapper
+        return wrapper
+
+    return decorator
 
 
 @app.route(URL_PREFIX + "authorize", methods=["GET"])
@@ -122,7 +125,7 @@ def authorize_callback():
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
-@measure_execution_time
+@measure_execution_time(log_prefix="[API endpoint]")
 def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
@@ -164,7 +167,7 @@ def get_playlist_by_id(playlist_id):
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
-@measure_execution_time
+@measure_execution_time(log_prefix="[API endpoint]")
 def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
