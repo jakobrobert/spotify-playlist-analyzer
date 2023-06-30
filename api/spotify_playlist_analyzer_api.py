@@ -47,6 +47,7 @@ def measure_execution_time(log_prefix):
 
 
 @app.route(URL_PREFIX + "authorize", methods=["GET"])
+@measure_execution_time(log_prefix="[API endpoint]")
 def authorize():
     try:
         authorization_base_url = "https://accounts.spotify.com/authorize"
@@ -71,6 +72,7 @@ def authorize():
 
 
 @app.route(URL_PREFIX + "authorize/callback", methods=["GET"])
+@measure_execution_time(log_prefix="[API endpoint]")
 def authorize_callback():
     try:
         if "code" not in request.args:
@@ -186,6 +188,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
 
 @app.route(URL_PREFIX + "playlist", methods=["POST"])
+@measure_execution_time(log_prefix="[API endpoint]")
 def create_playlist():
     try:
         request_data = request.json
@@ -202,6 +205,7 @@ def create_playlist():
 
 
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
+@measure_execution_time(log_prefix="[API endpoint]")
 def get_valid_attributes_for_attribute_distribution():
     try:
         attributes = [
@@ -219,6 +223,7 @@ def get_valid_attributes_for_attribute_distribution():
 
 
 @app.route(URL_PREFIX + "valid-attributes-for-sort-option")
+@measure_execution_time(log_prefix="[API endpoint]")
 def get_valid_attributes_for_sort_option():
     try:
         attributes = [
@@ -237,6 +242,7 @@ def get_valid_attributes_for_sort_option():
 
 
 @app.route(URL_PREFIX + "numerical-attributes-for-filter-option")
+@measure_execution_time(log_prefix="[API endpoint]")
 def get_numerical_attributes_for_filter_option():
     try:
         return jsonify(TrackFilter.NUMERICAL_ATTRIBUTES)
@@ -246,6 +252,7 @@ def get_numerical_attributes_for_filter_option():
 
 
 @app.route(URL_PREFIX + "valid-keys", methods=["GET"])
+@measure_execution_time(log_prefix="[API endpoint]")
 def get_valid_keys():
     try:
         return jsonify(SpotifyTrack.KEY_STRINGS)
@@ -255,6 +262,7 @@ def get_valid_keys():
 
 
 @app.route(URL_PREFIX + "valid-modes", methods=["GET"])
+@measure_execution_time(log_prefix="[API endpoint]")
 def get_valid_modes():
     try:
         return jsonify(SpotifyTrack.MODE_STRINGS)
@@ -264,6 +272,7 @@ def get_valid_modes():
 
 
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
+@measure_execution_time(log_prefix="[API endpoint]")
 def get_valid_key_signatures():
     try:
         return jsonify(SpotifyTrack.KEY_SIGNATURE_STRINGS)
@@ -273,6 +282,7 @@ def get_valid_key_signatures():
 
 
 @app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
+@measure_execution_time(log_prefix="[API endpoint]")
 def get_track_by_id(track_id):
     try:
         track = spotify_client.get_track_by_id(track_id)
@@ -287,6 +297,7 @@ def get_track_by_id(track_id):
 
 
 @app.route(URL_PREFIX + "search-tracks", methods=["GET"])
+@measure_execution_time(log_prefix="[API endpoint]")
 def search_tracks():
     try:
         query = request.args.get("query")
