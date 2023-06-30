@@ -15,7 +15,7 @@ class SpotifyClient:
         self.test_refresh_token = test_refresh_token
         self.test_user_id = test_user_id
 
-    @Utils.measure_execution_time(log_prefix="[SpotifyClient]")
+    @Utils.measure_execution_time(log_prefix="SpotifyClient.")
     def get_playlist_by_id(self, playlist_id):
         if playlist_id is None:
             raise HttpError(400, "playlist_id is None!")
@@ -31,7 +31,7 @@ class SpotifyClient:
 
         return playlist
 
-    @Utils.measure_execution_time(log_prefix="[SpotifyClient]")
+    @Utils.measure_execution_time(log_prefix="SpotifyClient.")
     def create_playlist(self, playlist_name, track_ids):
         if not playlist_name:
             raise HttpError(400, title="API: create_playlist failed", message="'playlist_name' is None or empty")
@@ -51,7 +51,7 @@ class SpotifyClient:
 
         return playlist_id
 
-    @Utils.measure_execution_time(log_prefix="[SpotifyClient]")
+    @Utils.measure_execution_time(log_prefix="SpotifyClient.")
     def get_track_by_id(self, track_id):
         if track_id is None:
             raise HttpError(400, "track_id is None!")
@@ -67,7 +67,7 @@ class SpotifyClient:
 
         return track
 
-    @Utils.measure_execution_time(log_prefix="[SpotifyClient]")
+    @Utils.measure_execution_time(log_prefix="SpotifyClient.")
     def search_tracks(self, query):
         if query is None:
             raise HttpError(400, "query is None!")
