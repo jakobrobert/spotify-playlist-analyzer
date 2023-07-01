@@ -1,6 +1,7 @@
 from core.api_client import ApiClient
 from core.http_error import HttpError
 from core.views.view_utils import ViewUtils
+from core.utils import Utils
 
 from flask import Blueprint, render_template, request
 import configparser
@@ -17,6 +18,7 @@ attribute_distribution_view = Blueprint("attribute_distribution_view", __name__)
 
 
 @attribute_distribution_view.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
