@@ -1,8 +1,10 @@
 from core.api_client import ApiClient
 from core.http_error import HttpError
+from core.utils import Utils
 
 from flask import Blueprint, render_template, request
 import configparser
+
 
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -15,6 +17,7 @@ export_playlist_view = Blueprint("export_playlist_view", __name__)
 
 
 @export_playlist_view.route(URL_PREFIX + "export-playlist", methods=["POST"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def export_playlist():
     try:
         playlist_name = request.form["playlist_name"]
