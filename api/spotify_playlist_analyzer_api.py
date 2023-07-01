@@ -23,7 +23,7 @@ SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
 spotify_client = SpotifyClient(
-    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
+    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
 
 app = Flask(__name__)
 
@@ -63,25 +63,7 @@ def authorize_callback():
         authorization_code = request.args.get("code")
         print(f"authorize_callback => authorization_code: {authorization_code}")
 
-        # TODONOW move helper method into SpotifyClient, measure time
-        token_url = "https://accounts.spotify.com/api/token"
-        # TODOLATER #171 use auth=(client_id, client_secret) instead of adding those to data, is more secure
-        data = {
-            "grant_type": "authorization_code",
-            "code": authorization_code,
-            "redirect_uri": SPOTIFY_REDIRECT_URI,
-            "client_id": SPOTIFY_CLIENT_ID,
-            "client_secret": SPOTIFY_CLIENT_SECRET,
-        }
-
-        headers = {"Content-Type": "application/x-www-form-urlencoded"}
-        response = requests.post(token_url, data=data, headers=headers)
-        response_data = response.json()
-
-        if "error" in response_data:
-            raise HttpError(
-                status_code=response.status_code,
-                title=response_data["error"], message=response_data["error_description"])
+        response_data = spotify_client.get_access_and_refresh_token(authorization_code)
 
         access_token = response_data["access_token"]
         print(f"authorize_callback => access_token: {access_token}")

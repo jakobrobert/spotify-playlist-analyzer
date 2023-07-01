@@ -9,11 +9,35 @@ from core.utils import Utils
 
 
 class SpotifyClient:
-    def __init__(self, client_id, client_secret, test_refresh_token, test_user_id):
+    def __init__(self, client_id, client_secret, redirect_uri, test_refresh_token, test_user_id):
         self.client_id = client_id
         self.client_secret = client_secret
+        self.redirect_uri = redirect_uri
         self.test_refresh_token = test_refresh_token
         self.test_user_id = test_user_id
+
+    @Utils.measure_execution_time(log_prefix="SpotifyClient.")
+    def get_access_and_refresh_token(self, authorization_code):
+        token_url = "https://accounts.spotify.com/api/token"
+        # TODOLATER #171 use auth=(client_id, client_secret) instead of adding those to data, is more secure
+        data = {
+            "grant_type": "authorization_code",
+            "code": authorization_code,
+            "client_id": self.client_id,
+            "client_secret": self.client_secret,
+            "redirect_uri": self.redirect_uri,
+        }
+
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        response = requests.post(token_url, data=data, headers=headers)
+        response_data = response.json()
+
+        if "error" in response_data:
+            raise HttpError(
+                status_code=response.status_code,
+                title=response_data["error"], message=response_data["error_description"])
+
+        return response_data
 
     @Utils.measure_execution_time(log_prefix="SpotifyClient.")
     def get_playlist_by_id(self, playlist_id):
