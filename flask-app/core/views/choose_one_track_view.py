@@ -1,4 +1,5 @@
 from core.http_error import HttpError
+from core.utils import Utils
 
 from flask import Blueprint, render_template
 import configparser
@@ -11,6 +12,7 @@ choose_one_track_view = Blueprint("choose_one_track_view", __name__)
 
 
 @choose_one_track_view.route(URL_PREFIX + "choose-one-track", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def choose_one_track():
     try:
         return render_template("choose_one_track.html")

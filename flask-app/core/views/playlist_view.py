@@ -1,5 +1,6 @@
 from core.api_client import ApiClient
 from core.http_error import HttpError
+from core.utils import Utils
 from core.views.view_utils import ViewUtils
 
 from flask import Blueprint, render_template, request, redirect, url_for
@@ -16,6 +17,7 @@ playlist_view = Blueprint("playlist_view", __name__)
 
 
 @playlist_view.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def get_playlist_by_url():
     try:
         playlist_url = request.args.get("playlist_url")
@@ -28,6 +30,7 @@ def get_playlist_by_url():
 
 
 @playlist_view.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def get_playlist_by_id(playlist_id):
     try:
         api_request_params = {
@@ -63,6 +66,7 @@ def get_playlist_by_id(playlist_id):
         return render_template("error.html", error=error)
 
 
+@Utils.measure_execution_time(log_prefix="playlist_view.")
 def __extract_filter_params(request_params, numerical_attributes_for_filter_option):
     filter_params = {
         "filter_by": request_params.get("filter_by"),
@@ -81,6 +85,7 @@ def __extract_filter_params(request_params, numerical_attributes_for_filter_opti
     return filter_params
 
 
+@Utils.measure_execution_time(log_prefix="playlist_view.")
 def __extract_filter_params_for_numerical_attributes(request_params, numerical_attributes_for_filter_option):
     filter_params = {}
 

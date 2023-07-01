@@ -1,4 +1,5 @@
 from core.http_error import HttpError
+from core.utils import Utils
 
 from flask import Blueprint, render_template
 import configparser
@@ -11,6 +12,7 @@ choose_playlists_for_comparison_view = Blueprint("choose_playlists_for_compariso
 
 
 @choose_playlists_for_comparison_view.route(URL_PREFIX + "choose-playlists-for-comparison", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def choose_playlists_for_comparison():
     try:
         return render_template("choose_playlists_for_comparison.html")

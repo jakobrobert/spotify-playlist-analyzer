@@ -1,5 +1,6 @@
 from core.api_client import ApiClient
 from core.http_error import HttpError
+from core.utils import Utils
 from core.views.view_utils import ViewUtils
 
 from flask import Blueprint, render_template, request, redirect, url_for
@@ -16,6 +17,7 @@ search_tracks_view = Blueprint("search_tracks_view", __name__)
 
 
 @search_tracks_view.route(URL_PREFIX + "search-tracks", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def search_tracks():
     try:
         query = request.args.get("query")
