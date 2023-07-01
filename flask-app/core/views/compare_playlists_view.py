@@ -1,5 +1,6 @@
 from core.api_client import ApiClient
 from core.http_error import HttpError
+from core.utils import Utils
 from core.views.view_utils import ViewUtils
 
 from flask import Blueprint, render_template, request, redirect, url_for
@@ -16,6 +17,7 @@ compare_playlists_view = Blueprint("compare_playlists_view", __name__)
 
 
 @compare_playlists_view.route(URL_PREFIX + "compare-playlists-by-urls", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def compare_playlists_by_urls():
     try:
         playlist_url_1 = request.args.get("playlist_url_1")
@@ -34,6 +36,7 @@ def compare_playlists_by_urls():
 
 
 @compare_playlists_view.route(URL_PREFIX + "compare-playlists", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def compare_playlists_by_ids():
     try:
         playlist_id_1 = request.args.get("playlist_id_1")

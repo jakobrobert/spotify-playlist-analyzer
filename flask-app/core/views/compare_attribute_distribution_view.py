@@ -1,6 +1,7 @@
 from core.api_client import ApiClient
 from core.http_error import HttpError
 from core.views.view_utils import ViewUtils
+from core.utils import Utils
 
 from flask import Blueprint, render_template, request
 import configparser
@@ -17,6 +18,7 @@ compare_attribute_distribution_view = Blueprint("compare_attribute_distribution_
 
 
 @compare_attribute_distribution_view.route(URL_PREFIX + "compare-attribute-distribution-of-playlists", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def compare_attribute_distribution_of_playlists():
     try:
         playlist_id_1 = request.args.get("playlist_id_1")
@@ -41,8 +43,10 @@ def compare_attribute_distribution_of_playlists():
         return render_template("error.html", error=error)
 
 
+@Utils.measure_execution_time(log_prefix="compare_attribute_distribution_view.")
 def __render_compare_attribute_distribution_template(
-        playlist_1, playlist_2, attribute_display_name, attribute_distribution_items_1, attribute_distribution_items_2):
+        playlist_1, playlist_2, attribute_display_name,
+        attribute_distribution_items_1, attribute_distribution_items_2):
     chart_image_base64 = __get_attribute_comparison_chart_image_base64(
         attribute_display_name, playlist_1.name, playlist_2.name,
         attribute_distribution_items_1, attribute_distribution_items_2
@@ -55,8 +59,10 @@ def __render_compare_attribute_distribution_template(
                            chart_image_base64=chart_image_base64)
 
 
-def __get_attribute_comparison_chart_image_base64(attribute_display_name, playlist_name_1, playlist_name_2,
-                                                  attribute_value_to_percentage_1, attribute_value_to_percentage_2):
+@Utils.measure_execution_time(log_prefix="compare_attribute_distribution_view.")
+def __get_attribute_comparison_chart_image_base64(
+        attribute_display_name, playlist_name_1, playlist_name_2,
+        attribute_value_to_percentage_1, attribute_value_to_percentage_2):
     plt.title(f"Compare {attribute_display_name} Distribution")
     plt.xlabel(attribute_display_name)
     plt.ylabel("Percentage")

@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import base64
 
+from core.utils import Utils
+
 
 class ViewUtils:
     ATTRIBUTE_DISPLAY_NAMES = {
@@ -30,6 +32,7 @@ class ViewUtils:
     }
 
     @staticmethod
+    @Utils.measure_execution_time(log_prefix="ViewUtils.")
     def get_playlist_id_from_playlist_url(playlist_url):
         url_prefix = "playlist/"
         url_prefix_start_index = playlist_url.find(url_prefix)
@@ -47,6 +50,7 @@ class ViewUtils:
         return playlist_url[id_start_index:id_end_index]
 
     @staticmethod
+    @Utils.measure_execution_time(log_prefix="ViewUtils.")
     def get_track_id_from_track_url(track_url):
         url_prefix = "track/"
         url_prefix_start_index = track_url.find(url_prefix)
@@ -64,6 +68,7 @@ class ViewUtils:
         return track_url[id_start_index:id_end_index]
 
     @staticmethod
+    @Utils.measure_execution_time(log_prefix="ViewUtils.")
     def get_image_base64_from_plot():
         image_buffer = BytesIO()
         plt.savefig(image_buffer, format="png")

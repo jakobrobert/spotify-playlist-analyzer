@@ -5,6 +5,7 @@ from flask import Flask, jsonify, request, redirect
 from urllib.parse import urlencode
 import requests
 
+from core.utils import Utils
 from core.http_error import HttpError
 from core.spotify.spotify_client import SpotifyClient
 from core.spotify.spotify_track import SpotifyTrack
@@ -22,12 +23,13 @@ SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
 spotify_client = SpotifyClient(
-    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
+    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
 
 app = Flask(__name__)
 
 
 @app.route(URL_PREFIX + "authorize", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def authorize():
     try:
         authorization_base_url = "https://accounts.spotify.com/authorize"
@@ -52,6 +54,7 @@ def authorize():
 
 
 @app.route(URL_PREFIX + "authorize/callback", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def authorize_callback():
     try:
         if "code" not in request.args:
@@ -60,24 +63,7 @@ def authorize_callback():
         authorization_code = request.args.get("code")
         print(f"authorize_callback => authorization_code: {authorization_code}")
 
-        token_url = "https://accounts.spotify.com/api/token"
-        # TODOLATER #171 use auth=(client_id, client_secret) instead of adding those to data, is more secure
-        data = {
-            "grant_type": "authorization_code",
-            "code": authorization_code,
-            "redirect_uri": SPOTIFY_REDIRECT_URI,
-            "client_id": SPOTIFY_CLIENT_ID,
-            "client_secret": SPOTIFY_CLIENT_SECRET,
-        }
-
-        headers = {"Content-Type": "application/x-www-form-urlencoded"}
-        response = requests.post(token_url, data=data, headers=headers)
-        response_data = response.json()
-
-        if "error" in response_data:
-            raise HttpError(
-                status_code=response.status_code,
-                title=response_data["error"], message=response_data["error_description"])
+        response_data = spotify_client.get_access_and_refresh_token(authorization_code)
 
         access_token = response_data["access_token"]
         print(f"authorize_callback => access_token: {access_token}")
@@ -106,6 +92,7 @@ def authorize_callback():
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
@@ -147,6 +134,7 @@ def get_playlist_by_id(playlist_id):
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
@@ -154,7 +142,9 @@ def get_attribute_distribution_of_playlist(playlist_id):
         playlist = spotify_client.get_playlist_by_id(playlist_id)
         attribute_distribution_items = __get_attribute_distribution_items(attribute, playlist.tracks)
 
-        return jsonify(attribute_distribution_items)
+        response = jsonify(attribute_distribution_items)
+
+        return response
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
@@ -163,6 +153,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
 
 @app.route(URL_PREFIX + "playlist", methods=["POST"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def create_playlist():
     try:
         request_data = request.json
@@ -179,6 +170,7 @@ def create_playlist():
 
 
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_valid_attributes_for_attribute_distribution():
     try:
         attributes = [
@@ -196,6 +188,7 @@ def get_valid_attributes_for_attribute_distribution():
 
 
 @app.route(URL_PREFIX + "valid-attributes-for-sort-option")
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_valid_attributes_for_sort_option():
     try:
         attributes = [
@@ -214,6 +207,7 @@ def get_valid_attributes_for_sort_option():
 
 
 @app.route(URL_PREFIX + "numerical-attributes-for-filter-option")
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_numerical_attributes_for_filter_option():
     try:
         return jsonify(TrackFilter.NUMERICAL_ATTRIBUTES)
@@ -223,6 +217,7 @@ def get_numerical_attributes_for_filter_option():
 
 
 @app.route(URL_PREFIX + "valid-keys", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_valid_keys():
     try:
         return jsonify(SpotifyTrack.KEY_STRINGS)
@@ -232,6 +227,7 @@ def get_valid_keys():
 
 
 @app.route(URL_PREFIX + "valid-modes", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_valid_modes():
     try:
         return jsonify(SpotifyTrack.MODE_STRINGS)
@@ -241,6 +237,7 @@ def get_valid_modes():
 
 
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_valid_key_signatures():
     try:
         return jsonify(SpotifyTrack.KEY_SIGNATURE_STRINGS)
@@ -250,6 +247,7 @@ def get_valid_key_signatures():
 
 
 @app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_track_by_id(track_id):
     try:
         track = spotify_client.get_track_by_id(track_id)
@@ -264,6 +262,7 @@ def get_track_by_id(track_id):
 
 
 @app.route(URL_PREFIX + "search-tracks", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def search_tracks():
     try:
         query = request.args.get("query")

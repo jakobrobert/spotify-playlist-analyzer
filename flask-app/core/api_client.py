@@ -1,16 +1,17 @@
 from json import JSONDecodeError
+import requests
 
 from core.spotify.spotify_playlist import SpotifyPlaylist
 from core.spotify.spotify_track import SpotifyTrack
 from core.http_error import HttpError
-
-import requests
+from core.utils import Utils
 
 
 class ApiClient:
     def __init__(self, base_url):
         self.base_url = base_url
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_playlist_by_id(self, playlist_id, request_params=None):
         sub_url = f"playlist/{playlist_id}"
         playlist_data = self.__send_get_request(sub_url, request_params)
@@ -31,12 +32,14 @@ class ApiClient:
 
         return playlist
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_attribute_distribution_of_playlist(self, playlist_id, attribute):
         sub_url = f"playlist/{playlist_id}/attribute-distribution"
         request_params = {"attribute": attribute}
 
         return self.__send_get_request(sub_url, request_params)
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def create_playlist(self, playlist_name, track_ids):
         sub_url = f"playlist"
         data = {
@@ -47,30 +50,38 @@ class ApiClient:
 
         return response_data["playlist_id"]
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_valid_attributes_for_attribute_distribution(self):
         return self.__send_get_request("valid-attributes-for-attribute-distribution")
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_valid_attributes_for_sort_option(self):
         return self.__send_get_request("valid-attributes-for-sort-option")
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_numerical_attributes_for_filter_option(self):
         return self.__send_get_request("numerical-attributes-for-filter-option")
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_valid_keys(self):
         return self.__send_get_request("valid-keys")
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_valid_modes(self):
         return self.__send_get_request("valid-modes")
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_valid_key_signatures(self):
         return self.__send_get_request("valid-key-signatures")
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_track_by_id(self, track_id):
         sub_url = f"track/{track_id}"
         track_dict = self.__send_get_request(sub_url)
 
         return self.__convert_dict_to_track(track_dict)
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def search_tracks(self, query):
         sub_url = f"search-tracks"
         params = {"query": query}

@@ -1,5 +1,6 @@
 from core.api_client import ApiClient
 from core.http_error import HttpError
+from core.utils import Utils
 from core.views.view_utils import ViewUtils
 
 from flask import Blueprint, render_template, request, redirect, url_for
@@ -16,6 +17,7 @@ track_view = Blueprint("track_view", __name__)
 
 
 @track_view.route(URL_PREFIX + "track-by-url", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def get_track_by_url():
     try:
         track_url = request.args.get("track_url")
@@ -28,6 +30,7 @@ def get_track_by_url():
 
 
 @track_view.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
+@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def get_track_by_id(track_id):
     try:
         track = api_client.get_track_by_id(track_id)
