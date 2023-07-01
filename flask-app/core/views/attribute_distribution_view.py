@@ -36,7 +36,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
         return render_template("error.html", error=error)
 
 
-@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
+@Utils.measure_execution_time(log_prefix="attribute_distribution_view.")
 def __render_attribute_distribution_template(playlist, attribute_display_name, attribute_distribution_items):
     histogram_image_base64 = __get_histogram_image_base64(attribute_display_name, attribute_distribution_items)
 
@@ -46,7 +46,7 @@ def __render_attribute_distribution_template(playlist, attribute_display_name, a
                            histogram_image_base64=histogram_image_base64)
 
 
-@Utils.measure_execution_time(log_prefix="[View Endpoint] ")
+@Utils.measure_execution_time(log_prefix="attribute_distribution_view.")
 def __get_histogram_image_base64(attribute_display_name, attribute_value_to_percentage):
     plt.title(f"{attribute_display_name} Distribution")
     plt.xlabel(attribute_display_name)
