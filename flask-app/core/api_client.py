@@ -1,16 +1,17 @@
 from json import JSONDecodeError
+import requests
 
 from core.spotify.spotify_playlist import SpotifyPlaylist
 from core.spotify.spotify_track import SpotifyTrack
 from core.http_error import HttpError
-
-import requests
+from core.utils import Utils
 
 
 class ApiClient:
     def __init__(self, base_url):
         self.base_url = base_url
 
+    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_playlist_by_id(self, playlist_id, request_params=None):
         sub_url = f"playlist/{playlist_id}"
         playlist_data = self.__send_get_request(sub_url, request_params)
