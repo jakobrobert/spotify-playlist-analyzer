@@ -63,6 +63,7 @@ def authorize_callback():
         authorization_code = request.args.get("code")
         print(f"authorize_callback => authorization_code: {authorization_code}")
 
+        # TODONOW move helper method into SpotifyClient, measure time
         token_url = "https://accounts.spotify.com/api/token"
         # TODOLATER #171 use auth=(client_id, client_secret) instead of adding those to data, is more secure
         data = {
