@@ -79,7 +79,7 @@ def authorize_callback():
         test_access_token_config.add_section("SPOTIFY")
         test_access_token_config.set("SPOTIFY", "TEST_ACCESS_TOKEN", access_token)
 
-        file_name = "../test_access_token.ini"
+        file_name = "./test_access_token.ini"
         with open(file_name, "w") as config_file:
             test_access_token_config.write(config_file)
 
