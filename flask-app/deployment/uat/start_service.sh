@@ -1,1 +1,1 @@
-supervisorctl stop spotify_playlist_analyzer_uat
+supervisorctl start spotify_playlist_analyzer_uat
