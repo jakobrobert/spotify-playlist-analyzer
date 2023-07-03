@@ -66,7 +66,7 @@ class SpotifyClient:
         # TODOLATER #171 This is a workaround because __get_access_token_by_refresh_token fails
         # Important to read it here from file and NOT before initialization of SpotifyClient, so it is always up to date
         test_access_token_config = configparser.ConfigParser()
-        test_access_token_config.read("../test_access_token.ini")
+        test_access_token_config.read("./test_access_token.ini")
         test_access_token = test_access_token_config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
         print(f"create_playlist => test_access_token: {test_access_token}")
 
