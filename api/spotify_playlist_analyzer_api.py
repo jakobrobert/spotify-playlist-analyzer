@@ -300,10 +300,7 @@ def __pick_random_tracks(tracks, request_args):
         )
 
     if pick_random_tracks_count >= len(tracks):
-        raise HttpError(
-            400, "API Error",
-            "Invalid value for request arg 'pick_random_tracks_count' -> must be < number of tracks after filtering"
-        )
+        return
 
     random.shuffle(tracks)
     del tracks[pick_random_tracks_count:]
@@ -311,10 +308,10 @@ def __pick_random_tracks(tracks, request_args):
 
 @Utils.measure_execution_time(log_prefix="[API Helper] ")
 def __sort_tracks(tracks, request_args):
-    sort_by = request_args.get("sort_by") or None
+    sort_by = request_args.get("sort_by") or "none"
     order = request_args.get("order") or "ascending"
 
-    if sort_by is None:
+    if sort_by == "none":
         return
 
     reverse = (order == "descending")
