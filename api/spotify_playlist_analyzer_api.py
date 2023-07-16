@@ -97,18 +97,8 @@ def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
-        # Filter tracks
-        # TODONOW extract helper method __filter_tracks such as __pick_random_tracks
-        filter_params = FilterParams.extract_filter_params_from_request_params(request.args)
-        track_filter = TrackFilter(playlist.tracks, filter_params)
-        playlist.tracks = track_filter.filter_tracks()
-
-        # Pick random tracks
-        print(f"Tracks before: {len(playlist.tracks)}")
+        playlist.tracks = __filter_tracks(playlist.tracks, request.args)
         __pick_random_tracks(playlist.tracks, request.args)
-        print(f"Tracks after: {len(playlist.tracks)}")
-
-        # Sort tracks
         __sort_tracks(playlist.tracks, request.args)
 
         statistics = PlaylistStatistics(playlist.tracks)
@@ -135,6 +125,13 @@ def get_playlist_by_id(playlist_id):
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
+
+
+@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+def __filter_tracks(tracks, request_args):
+    filter_params = FilterParams.extract_filter_params_from_request_params(request_args)
+    track_filter = TrackFilter(tracks, filter_params)
+    return track_filter.filter_tracks()
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
@@ -287,18 +284,6 @@ def search_tracks():
 
 
 @Utils.measure_execution_time(log_prefix="[API Helper] ")
-def __sort_tracks(tracks, request_args):
-    sort_by = request_args.get("sort_by") or None
-    order = request_args.get("order") or "ascending"
-
-    if sort_by is None:
-        return
-
-    reverse = (order == "descending")
-    tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
-
-
-@Utils.measure_execution_time(log_prefix="[API Helper] ")
 def __pick_random_tracks(tracks, request_args):
     pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
     if not pick_random_tracks_enabled:
@@ -323,6 +308,17 @@ def __pick_random_tracks(tracks, request_args):
     random.shuffle(tracks)
     del tracks[pick_random_tracks_count:]
 
+
+@Utils.measure_execution_time(log_prefix="[API Helper] ")
+def __sort_tracks(tracks, request_args):
+    sort_by = request_args.get("sort_by") or None
+    order = request_args.get("order") or "ascending"
+
+    if sort_by is None:
+        return
+
+    reverse = (order == "descending")
+    tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
 def __create_error_response(error):
     # Need to convert traceback_items manually, __dict__ is not supported
