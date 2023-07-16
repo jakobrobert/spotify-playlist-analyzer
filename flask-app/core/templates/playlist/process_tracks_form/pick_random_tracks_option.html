@@ -1,0 +1,8 @@
+<div>
+    <input type="checkbox" id="pick_random_tracks_enabled" name="pick_random_tracks_enabled"
+           {% if pick_random_tracks_enabled %} checked {% endif %}>
+    <label for="pick_random_tracks_enabled">Enabled</label>
+    <br>
+    <label for="pick_random_tracks_count">Track Count:</label>
+    <input type="number" id="pick_random_tracks_count" name="pick_random_tracks_count" value="{{ pick_random_tracks_count }}">
+</div>

@@ -1,17 +1,17 @@
 import configparser
 import operator
+import random
+from urllib.parse import urlencode
 
 from flask import Flask, jsonify, request, redirect
-from urllib.parse import urlencode
-import requests
 
-from core.utils import Utils
+from core.filter_params import FilterParams
 from core.http_error import HttpError
+from core.playlist_statistics.playlist_statistics import PlaylistStatistics
 from core.spotify.spotify_client import SpotifyClient
 from core.spotify.spotify_track import SpotifyTrack
-from core.filter_params import FilterParams
 from core.track_filter import TrackFilter
-from core.playlist_statistics.playlist_statistics import PlaylistStatistics
+from core.utils import Utils
 
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -97,15 +97,9 @@ def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
-        # Sort tracks
-        sort_by = request.args.get("sort_by") or "none"
-        order = request.args.get("order") or "ascending"
-        __sort_tracks(playlist.tracks, sort_by, order)
-
-        # Filter tracks
-        filter_params = FilterParams.extract_filter_params_from_request_params(request.args)
-        track_filter = TrackFilter(playlist.tracks, filter_params)
-        playlist.tracks = track_filter.filter_tracks()
+        playlist.tracks = __filter_tracks(playlist.tracks, request.args)
+        __pick_random_tracks(playlist.tracks, request.args)
+        __sort_tracks(playlist.tracks, request.args)
 
         statistics = PlaylistStatistics(playlist.tracks)
 
@@ -282,7 +276,41 @@ def search_tracks():
         return __create_error_response(error)
 
 
-def __sort_tracks(tracks, sort_by, order):
+@Utils.measure_execution_time(log_prefix="[API Helper] ")
+def __filter_tracks(tracks, request_args):
+    filter_params = FilterParams.extract_filter_params_from_request_params(request_args)
+    track_filter = TrackFilter(tracks, filter_params)
+    return track_filter.filter_tracks()
+
+
+@Utils.measure_execution_time(log_prefix="[API Helper] ")
+def __pick_random_tracks(tracks, request_args):
+    pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
+    if not pick_random_tracks_enabled:
+        return
+
+    pick_random_tracks_count = Utils.get_request_arg_as_int_or_none(request_args, "pick_random_tracks_count")
+    if pick_random_tracks_count is None:
+        raise HttpError(400, "API Error", "Missing request arg 'pick_random_tracks_count'")
+
+    if pick_random_tracks_count < 0:
+        raise HttpError(
+            400, "API Error",
+            "Invalid value for request arg 'pick_random_tracks_count' -> must be > 0"
+        )
+
+    if pick_random_tracks_count >= len(tracks):
+        return
+
+    random.shuffle(tracks)
+    del tracks[pick_random_tracks_count:]
+
+
+@Utils.measure_execution_time(log_prefix="[API Helper] ")
+def __sort_tracks(tracks, request_args):
+    sort_by = request_args.get("sort_by") or "none"
+    order = request_args.get("order") or "ascending"
+
     if sort_by == "none":
         return
 
