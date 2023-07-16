@@ -127,13 +127,6 @@ def get_playlist_by_id(playlist_id):
         return __create_error_response(error)
 
 
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
-def __filter_tracks(tracks, request_args):
-    filter_params = FilterParams.extract_filter_params_from_request_params(request_args)
-    track_filter = TrackFilter(tracks, filter_params)
-    return track_filter.filter_tracks()
-
-
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_attribute_distribution_of_playlist(playlist_id):
@@ -284,6 +277,13 @@ def search_tracks():
 
 
 @Utils.measure_execution_time(log_prefix="[API Helper] ")
+def __filter_tracks(tracks, request_args):
+    filter_params = FilterParams.extract_filter_params_from_request_params(request_args)
+    track_filter = TrackFilter(tracks, filter_params)
+    return track_filter.filter_tracks()
+
+
+@Utils.measure_execution_time(log_prefix="[API Helper] ")
 def __pick_random_tracks(tracks, request_args):
     pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
     if not pick_random_tracks_enabled:
@@ -319,6 +319,7 @@ def __sort_tracks(tracks, request_args):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+
 
 def __create_error_response(error):
     # Need to convert traceback_items manually, __dict__ is not supported
