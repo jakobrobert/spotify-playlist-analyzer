@@ -98,10 +98,7 @@ def get_playlist_by_id(playlist_id):
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
         # Sort tracks
-        # TODONOW move parsing of params into __sort_tracks such as __pick_random_tracks
-        sort_by = request.args.get("sort_by") or "none"
-        order = request.args.get("order") or "ascending"
-        __sort_tracks(playlist.tracks, sort_by, order)
+        __sort_tracks(playlist.tracks, request.args)
 
         # Filter tracks
         # TODONOW extract helper method __filter_tracks such as __pick_random_tracks
@@ -289,10 +286,12 @@ def search_tracks():
         return __create_error_response(error)
 
 
-# TODONOW extract request_args in this method
 @Utils.measure_execution_time(log_prefix="[API Helper] ")
-def __sort_tracks(tracks, sort_by, order):
-    if sort_by == "none":
+def __sort_tracks(tracks, request_args):
+    sort_by = request_args.get("sort_by") or None
+    order = request_args.get("order") or "ascending"
+
+    if sort_by is None:
         return
 
     reverse = (order == "descending")
