@@ -1,0 +1,1 @@
+supervisorctl restart spotify_playlist_analyzer_uat
