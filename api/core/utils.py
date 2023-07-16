@@ -21,11 +21,13 @@ class Utils:
         return decorator
 
     @staticmethod
-    def get_request_param_as_int_or_none(request_params, name):
-        value_string = request_params.get(name)
+    def get_request_arg_as_int_or_none(request_args, name):
+        value_string = request_args.get(name)
 
-        # TODONOW invert check
-        if value_string:
+        if not value_string:
+            return None
+
+        try:
             return int(value_string)
-
-        return None
+        except ValueError:
+            return None

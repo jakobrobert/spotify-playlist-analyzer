@@ -289,7 +289,7 @@ def __pick_random_tracks(tracks, request_args):
     if not pick_random_tracks_enabled:
         return
 
-    pick_random_tracks_count = Utils.get_request_param_as_int_or_none(request_args, "pick_random_tracks_count")
+    pick_random_tracks_count = Utils.get_request_arg_as_int_or_none(request_args, "pick_random_tracks_count")
     if pick_random_tracks_count is None:
         raise HttpError(400, "API Error", "Missing request arg 'pick_random_tracks_count'")
 
