@@ -300,10 +300,14 @@ def __pick_random_tracks(tracks, request_args):
     # TODONOW remove debug code
     pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
     print(f"pick_random_tracks_enabled: {pick_random_tracks_enabled}")
-    # TODONOW this param is only needed if enabled
+    if not pick_random_tracks_enabled:
+        return tracks
+
     pick_random_tracks_count = __get_request_param_as_int_or_none(request_args, "pick_random_tracks_count")
+    if pick_random_tracks_count is None:
+        raise HttpError(400, "API Error", f"Missing request arg 'pick_random_tracks_count'")
+
     print(f"pick_random_tracks_count: {pick_random_tracks_count}")
-    # TODONOW raise API error with code 400 if pick_random_tracks_count is None
 
     # TODONOW implement logic
 
