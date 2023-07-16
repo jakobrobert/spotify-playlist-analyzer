@@ -35,8 +35,13 @@ def get_playlist_by_id(playlist_id):
     try:
         api_request_params = {
             "sort_by": request.args.get("sort_by"),
-            "order": request.args.get("order")
+            "order": request.args.get("order"),
+            "pick_random_tracks_enabled": request.args.get("pick_random_tracks_enabled"),
+            "pick_random_tracks_count": request.args.get("pick_random_tracks_count")
         }
+
+        # TODONOW remove debug code
+        print(f"api_request_params: {api_request_params}")
 
         numerical_attributes_for_filter_option = api_client.get_numerical_attributes_for_filter_option()
         filter_params = __extract_filter_params(request.args, numerical_attributes_for_filter_option)
