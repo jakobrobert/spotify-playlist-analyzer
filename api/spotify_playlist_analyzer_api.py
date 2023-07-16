@@ -307,7 +307,19 @@ def __pick_random_tracks(tracks, request_args):
 
     pick_random_tracks_count = __get_request_param_as_int_or_none(request_args, "pick_random_tracks_count")
     if pick_random_tracks_count is None:
-        raise HttpError(400, "API Error", f"Missing request arg 'pick_random_tracks_count'")
+        raise HttpError(400, "API Error", "Missing request arg 'pick_random_tracks_count'")
+
+    if pick_random_tracks_count < 0:
+        raise HttpError(
+            400, "API Error",
+            "Invalid value for request arg 'pick_random_tracks_count' -> must be > 0"
+        )
+
+    if pick_random_tracks_count >= len(tracks):
+        raise HttpError(
+            400, "API Error",
+            "Invalid value for request arg 'pick_random_tracks_count' -> must be < number of tracks after filtering"
+        )
 
     print(f"pick_random_tracks_count: {pick_random_tracks_count}")
     random.shuffle(tracks)
