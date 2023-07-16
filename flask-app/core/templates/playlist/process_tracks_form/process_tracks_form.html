@@ -1,7 +1,11 @@
+
+
 <form action="{{ url_for('playlist_view.get_playlist_by_id', playlist_id=playlist.id) }}" method="GET">
     <h4>Sort by</h4>
     {% include "playlist/process_tracks_form/sort_options.html" %}
     <h4>Filter by</h4>
     {% include "playlist/process_tracks_form/filter_options.html" %}
+    <h4>Pick Random Tracks</h4>
+    {% include "playlist/process_tracks_form/pick_random_tracks_option.html" %}
     <button class="btn btn-secondary" type="submit">Process</button>
 </form>

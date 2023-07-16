@@ -33,9 +33,14 @@ def get_playlist_by_url():
 @Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def get_playlist_by_id(playlist_id):
     try:
+        pick_random_tracks_enabled = request.args.get("pick_random_tracks_enabled")
+        pick_random_tracks_count = request.args.get("pick_random_tracks_count")
+
         api_request_params = {
             "sort_by": request.args.get("sort_by"),
-            "order": request.args.get("order")
+            "order": request.args.get("order"),
+            "pick_random_tracks_enabled": pick_random_tracks_enabled,
+            "pick_random_tracks_count": pick_random_tracks_count
         }
 
         numerical_attributes_for_filter_option = api_client.get_numerical_attributes_for_filter_option()
@@ -52,6 +57,7 @@ def get_playlist_by_id(playlist_id):
         return render_template(
             "playlist/playlist.html", playlist=playlist,
             sort_by=api_request_params["sort_by"], order=api_request_params["order"],
+            pick_random_tracks_enabled=pick_random_tracks_enabled, pick_random_tracks_count=pick_random_tracks_count,
             filter_params=filter_params,
             numerical_attributes_for_filter_option=numerical_attributes_for_filter_option,
             attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
