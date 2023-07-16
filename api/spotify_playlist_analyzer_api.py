@@ -98,24 +98,19 @@ def get_playlist_by_id(playlist_id):
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
         # Sort tracks
+        # TODONOW move parsing of params into __sort_tracks such as __pick_random_tracks
         sort_by = request.args.get("sort_by") or "none"
         order = request.args.get("order") or "ascending"
         __sort_tracks(playlist.tracks, sort_by, order)
 
         # Filter tracks
+        # TODONOW extract helper method __filter_tracks such as __pick_random_tracks
         filter_params = FilterParams.extract_filter_params_from_request_params(request.args)
         track_filter = TrackFilter(playlist.tracks, filter_params)
         playlist.tracks = track_filter.filter_tracks()
 
-        # TODONOW remove debug code
         # Pick random tracks
-        # TODONOW extract helper method
-        pick_random_tracks_enabled = request.args.get("pick_random_tracks_enabled") == "on"
-        print(f"pick_random_tracks_enabled: {pick_random_tracks_enabled}")
-        # TODONOW this param is only needed if enabled
-        pick_random_tracks_count = __get_request_param_as_int_or_none(request.args, "pick_random_tracks_count")
-        print(f"pick_random_tracks_count: {pick_random_tracks_count}")
-        # TODONOW raise API error with code 400 if pick_random_tracks_count is None
+        playlist.tracks = __pick_random_tracks(playlist.tracks, request.args)
 
         statistics = PlaylistStatistics(playlist.tracks)
 
@@ -292,12 +287,27 @@ def search_tracks():
         return __create_error_response(error)
 
 
+# TODONOW extract request_args in this method
 def __sort_tracks(tracks, sort_by, order):
     if sort_by == "none":
         return
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+
+
+def __pick_random_tracks(tracks, request_args):
+    # TODONOW remove debug code
+    pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
+    print(f"pick_random_tracks_enabled: {pick_random_tracks_enabled}")
+    # TODONOW this param is only needed if enabled
+    pick_random_tracks_count = __get_request_param_as_int_or_none(request_args, "pick_random_tracks_count")
+    print(f"pick_random_tracks_count: {pick_random_tracks_count}")
+    # TODONOW raise API error with code 400 if pick_random_tracks_count is None
+
+    # TODONOW implement logic
+
+    return tracks
 
 
 def __create_error_response(error):
@@ -373,6 +383,7 @@ def __get_attribute_distribution_items(attribute, tracks):
         return statistics.get_speechiness_distribution_items()
 
     raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")
+
 
 # TODONOW extract helper method to Utils
 def __get_request_param_as_int_or_none(request_params, name):
