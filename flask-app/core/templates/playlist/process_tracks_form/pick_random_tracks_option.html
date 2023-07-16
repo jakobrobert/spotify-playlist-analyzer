@@ -1,12 +1,8 @@
 <div>
-    <!-- TODO checkbox for param "pick_random_tracks" which is a bool -->
-    <!-- TODO input field to enter number for track_count. -->
-    <!-- example code for another option, should do it here in similar way:
-       <input type="radio" id="artists" name="filter_by" value="artists"
-           {% if filter_params["filter_by"] == "artists" %} checked {% endif %}>
-    <label for="artists">Artists</label>
-    <label for="artists_substring">contain</label>
-    <input type="text" id="artists_substring" name="artists_substring"
-           value="{{ filter_params["artists_substring"] }}">
-    -->
+    <input type="checkbox" id="pick_random_tracks_enabled" name="pick_random_tracks_enabled"
+           {% if pick_random_tracks_enabled %} checked {% endif %}>
+    <label for="pick_random_tracks_enabled">Enabled</label>
+    <br>
+    <label for="pick_random_tracks_count">Track Count:</label>
+    <input type="number" id="pick_random_tracks_count" name="pick_random_tracks_count" value="{{ pick_random_tracks_count }}">
 </div>
