@@ -97,9 +97,6 @@ def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
-        # Sort tracks
-        __sort_tracks(playlist.tracks, request.args)
-
         # Filter tracks
         # TODONOW extract helper method __filter_tracks such as __pick_random_tracks
         filter_params = FilterParams.extract_filter_params_from_request_params(request.args)
@@ -110,6 +107,9 @@ def get_playlist_by_id(playlist_id):
         print(f"Tracks before: {len(playlist.tracks)}")
         __pick_random_tracks(playlist.tracks, request.args)
         print(f"Tracks after: {len(playlist.tracks)}")
+
+        # Sort tracks
+        __sort_tracks(playlist.tracks, request.args)
 
         statistics = PlaylistStatistics(playlist.tracks)
 
