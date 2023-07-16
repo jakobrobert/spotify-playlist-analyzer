@@ -19,3 +19,13 @@ class Utils:
             return wrapper
 
         return decorator
+
+    @staticmethod
+    def get_request_param_as_int_or_none(request_params, name):
+        value_string = request_params.get(name)
+
+        # TODONOW invert check
+        if value_string:
+            return int(value_string)
+
+        return None

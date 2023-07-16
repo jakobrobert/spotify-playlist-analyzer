@@ -289,7 +289,7 @@ def __pick_random_tracks(tracks, request_args):
     if not pick_random_tracks_enabled:
         return
 
-    pick_random_tracks_count = __get_request_param_as_int_or_none(request_args, "pick_random_tracks_count")
+    pick_random_tracks_count = Utils.get_request_param_as_int_or_none(request_args, "pick_random_tracks_count")
     if pick_random_tracks_count is None:
         raise HttpError(400, "API Error", "Missing request arg 'pick_random_tracks_count'")
 
@@ -391,13 +391,3 @@ def __get_attribute_distribution_items(attribute, tracks):
         return statistics.get_speechiness_distribution_items()
 
     raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")
-
-
-# TODONOW extract helper method to Utils
-def __get_request_param_as_int_or_none(request_params, name):
-    value_string = request_params.get(name)
-
-    if value_string:
-        return int(value_string)
-
-    return None
