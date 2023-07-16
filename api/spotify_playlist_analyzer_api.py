@@ -299,9 +299,7 @@ def __sort_tracks(tracks, sort_by, order):
 
 
 def __pick_random_tracks(tracks, request_args):
-    # TODONOW remove debug code
     pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
-    print(f"pick_random_tracks_enabled: {pick_random_tracks_enabled}")
     if not pick_random_tracks_enabled:
         return
 
@@ -321,7 +319,6 @@ def __pick_random_tracks(tracks, request_args):
             "Invalid value for request arg 'pick_random_tracks_count' -> must be < number of tracks after filtering"
         )
 
-    print(f"pick_random_tracks_count: {pick_random_tracks_count}")
     random.shuffle(tracks)
     del tracks[pick_random_tracks_count:]
 
