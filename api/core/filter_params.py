@@ -114,11 +114,11 @@ class FilterParams:
     def __extract_params_for_numerical_attribute(request_params, attribute_name):
         filter_params = {}
 
-        min_value = Utils.get_request_param_as_int_or_none(request_params, f"min_{attribute_name}")
+        min_value = Utils.get_request_arg_as_int_or_none(request_params, f"min_{attribute_name}")
         if min_value is None:
             raise FilterParams.__create_http_error_for_required_param(attribute_name, f"min_{attribute_name}")
 
-        max_value = Utils.get_request_param_as_int_or_none(request_params, f"max_{attribute_name}")
+        max_value = Utils.get_request_arg_as_int_or_none(request_params, f"max_{attribute_name}")
         if max_value is None:
             raise FilterParams.__create_http_error_for_required_param(attribute_name, f"max_{attribute_name}")
 
