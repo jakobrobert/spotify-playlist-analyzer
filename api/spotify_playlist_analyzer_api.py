@@ -290,6 +290,7 @@ def search_tracks():
 
 
 # TODONOW extract request_args in this method
+@Utils.measure_execution_time(log_prefix="[API Helper] ")
 def __sort_tracks(tracks, sort_by, order):
     if sort_by == "none":
         return
@@ -298,6 +299,7 @@ def __sort_tracks(tracks, sort_by, order):
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
 
+@Utils.measure_execution_time(log_prefix="[API Helper] ")
 def __pick_random_tracks(tracks, request_args):
     pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
     if not pick_random_tracks_enabled:
