@@ -13,7 +13,8 @@ class Utils:
                 end_time = time.time()
                 elapsed_time_seconds = end_time - start_time
                 elapsed_time_ms = elapsed_time_seconds * 1000
-                print(f"[Execution time] {log_prefix}{func.__name__} => {elapsed_time_ms} ms")
+                # TODONOW revert
+                #print(f"[Execution time] {log_prefix}{func.__name__} => {elapsed_time_ms} ms")
                 return response
 
             return wrapper

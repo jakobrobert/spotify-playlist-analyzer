@@ -131,6 +131,7 @@ class FilterParams:
         message = f"'{required_param}' is required if 'filter_by' == '{filter_by}'"
         return HttpError(400, "API Error", message)
 
+    # TODONOW extract helper method to Utils
     @staticmethod
     def __get_request_param_as_int_or_none(request_params, name):
         value_string = request_params.get(name)

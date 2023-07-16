@@ -107,6 +107,16 @@ def get_playlist_by_id(playlist_id):
         track_filter = TrackFilter(playlist.tracks, filter_params)
         playlist.tracks = track_filter.filter_tracks()
 
+        # TODONOW remove debug code
+        # Pick random tracks
+        # TODONOW extract helper method
+        pick_random_tracks_enabled = request.args.get("pick_random_tracks_enabled") == "on"
+        print(f"pick_random_tracks_enabled: {pick_random_tracks_enabled}")
+        # TODONOW this param is only needed if enabled
+        pick_random_tracks_count = __get_request_param_as_int_or_none(request.args, "pick_random_tracks_count")
+        print(f"pick_random_tracks_count: {pick_random_tracks_count}")
+        # TODONOW raise API error with code 400 if pick_random_tracks_count is None
+
         statistics = PlaylistStatistics(playlist.tracks)
 
         # Need to explicitly copy the dict, else changing the dict would change the original object
@@ -363,3 +373,12 @@ def __get_attribute_distribution_items(attribute, tracks):
         return statistics.get_speechiness_distribution_items()
 
     raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")
+
+# TODONOW extract helper method to Utils
+def __get_request_param_as_int_or_none(request_params, name):
+    value_string = request_params.get(name)
+
+    if value_string:
+        return int(value_string)
+
+    return None
