@@ -43,9 +43,6 @@ def get_playlist_by_id(playlist_id):
             "pick_random_tracks_count": pick_random_tracks_count
         }
 
-        # TODONOW remove debug code
-        print(f"api_request_params: {api_request_params}")
-
         numerical_attributes_for_filter_option = api_client.get_numerical_attributes_for_filter_option()
         filter_params = __extract_filter_params(request.args, numerical_attributes_for_filter_option)
         api_request_params.update(filter_params)
