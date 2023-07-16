@@ -1,17 +1,17 @@
 import configparser
 import operator
+import random
+from urllib.parse import urlencode
 
 from flask import Flask, jsonify, request, redirect
-from urllib.parse import urlencode
-import requests
 
-from core.utils import Utils
+from core.filter_params import FilterParams
 from core.http_error import HttpError
+from core.playlist_statistics.playlist_statistics import PlaylistStatistics
 from core.spotify.spotify_client import SpotifyClient
 from core.spotify.spotify_track import SpotifyTrack
-from core.filter_params import FilterParams
 from core.track_filter import TrackFilter
-from core.playlist_statistics.playlist_statistics import PlaylistStatistics
+from core.utils import Utils
 
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -110,7 +110,9 @@ def get_playlist_by_id(playlist_id):
         playlist.tracks = track_filter.filter_tracks()
 
         # Pick random tracks
-        playlist.tracks = __pick_random_tracks(playlist.tracks, request.args)
+        print(f"Tracks before: {len(playlist.tracks)}")
+        __pick_random_tracks(playlist.tracks, request.args)
+        print(f"Tracks after: {len(playlist.tracks)}")
 
         statistics = PlaylistStatistics(playlist.tracks)
 
@@ -301,17 +303,15 @@ def __pick_random_tracks(tracks, request_args):
     pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
     print(f"pick_random_tracks_enabled: {pick_random_tracks_enabled}")
     if not pick_random_tracks_enabled:
-        return tracks
+        return
 
     pick_random_tracks_count = __get_request_param_as_int_or_none(request_args, "pick_random_tracks_count")
     if pick_random_tracks_count is None:
         raise HttpError(400, "API Error", f"Missing request arg 'pick_random_tracks_count'")
 
     print(f"pick_random_tracks_count: {pick_random_tracks_count}")
-
-    # TODONOW implement logic
-
-    return tracks
+    random.shuffle(tracks)
+    del tracks[pick_random_tracks_count:]
 
 
 def __create_error_response(error):
