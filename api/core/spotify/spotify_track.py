@@ -1,6 +1,8 @@
 class SpotifyTrack:
+    # TODONOW remove string constants, instead define constants for numbers like C = 0, Cs = 1, Db = 1, etc.
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
     MODE_STRINGS = ["Minor", "Major"]
+
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
 
     def __init__(self):
@@ -27,6 +29,7 @@ class SpotifyTrack:
         self.liveness = 0
         self.speechiness = 0
 
+    # TODONOW remove those 2 methods
     def get_key_string(self):
         return SpotifyTrack.__get_from_list_or_none(SpotifyTrack.KEY_STRINGS, self.key)
 
@@ -58,6 +61,7 @@ class SpotifyTrack:
 
     @staticmethod
     def __get_key_signature_from_key_and_mode(key_string, mode_string):
+        # TODONOW take key & mode as ints. But use constants like C, Cs, Db to be more explicit
         if (key_string == "C" and mode_string == "Major") or (key_string == "A" and mode_string == "Minor"):
             return "♮"
         if (key_string == "G" and mode_string == "Major") or (key_string == "E" and mode_string == "Minor"):
