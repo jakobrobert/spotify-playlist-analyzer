@@ -29,8 +29,8 @@
     <label for="expected_key">is</label>
     <select class="form-control" id="expected_key" name="expected_key">
         {% for key_string in key_strings %}
-            <option value="{{ loop.index }}"
-                    {% if filter_params["expected_key"] == loop.index %} selected {% endif %}>
+            <option value="{{ loop.index0 }}"
+                    {% if filter_params["expected_key"] == loop.index0 %} selected {% endif %}>
                 {{ key_string }}
             </option>
         {% endfor %}
@@ -43,8 +43,8 @@
     <label for="expected_mode">is</label>
     <select class="form-control" id="expected_mode" name="expected_mode">
         {% for mode_string in mode_strings %}
-            <option value="{{ loop.index }}"
-                    {% if filter_params["expected_mode"] == loop.index %} selected {% endif %}>
+            <option value="{{ loop.index0 }}"
+                    {% if filter_params["expected_mode"] == loop.index0 %} selected {% endif %}>
                 {{ mode_string }}
             </option>
         {% endfor %}
