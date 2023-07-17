@@ -19,3 +19,15 @@ class Utils:
             return wrapper
 
         return decorator
+
+    @staticmethod
+    def get_request_arg_as_int_or_none(request_args, name):
+        value_string = request_args.get(name)
+
+        if not value_string:
+            return None
+
+        try:
+            return int(value_string)
+        except ValueError:
+            return None

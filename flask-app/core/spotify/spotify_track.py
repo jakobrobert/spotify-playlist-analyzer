@@ -1,4 +1,7 @@
 class SpotifyTrack:
+    KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
+    MODE_STRINGS = ["Minor", "Major"]
+
     def __init__(self):
         self.id = "n/a"
         self.artist_ids = []
@@ -11,8 +14,8 @@ class SpotifyTrack:
 
         # Audio Features
         self.tempo = 0
-        self.key = "n/a"
-        self.mode = "n/a"
+        self.key = -1
+        self.mode = -1
         self.key_signature = "n/a"
         self.loudness = 0
         self.danceability = 0
@@ -35,6 +38,12 @@ class SpotifyTrack:
     def get_tempo_string(self):
         return f"{self.tempo:.1f}"
 
+    def get_key_string(self):
+        return SpotifyTrack.__get_from_list(SpotifyTrack.KEY_STRINGS, self.key)
+
+    def get_mode_string(self):
+        return SpotifyTrack.__get_from_list(SpotifyTrack.MODE_STRINGS, self.mode)
+
     def get_loudness_string(self):
         return f"{self.loudness:.1f}"
 
@@ -46,3 +55,10 @@ class SpotifyTrack:
         remaining_seconds = total_seconds % 60
 
         return f"{total_minutes:02d}:{remaining_seconds:02d}"
+
+    @staticmethod
+    def __get_from_list(_list, index):
+        if index < 0 or index >= len(_list):
+            return "n/a"
+
+        return _list[index]

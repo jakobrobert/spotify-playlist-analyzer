@@ -1,6 +1,24 @@
+class Key:
+    C = 0
+    Cs = Db = 1
+    D = 2
+    Ds = Eb = 3
+    E = 4
+    F = 5
+    Fs = Gb = 6
+    G = 7
+    Gs = Ab = 8
+    A = 9
+    As = Bb = 10
+    B = 11
+
+
+class Mode:
+    Minor = 0
+    Major = 1
+
+
 class SpotifyTrack:
-    KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
-    MODE_STRINGS = ["Minor", "Major"]
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
 
     def __init__(self):
@@ -27,19 +45,11 @@ class SpotifyTrack:
         self.liveness = 0
         self.speechiness = 0
 
-    def get_key_string(self):
-        return SpotifyTrack.__get_from_list_or_none(SpotifyTrack.KEY_STRINGS, self.key)
-
-    def get_mode_string(self):
-        return SpotifyTrack.__get_from_list_or_none(SpotifyTrack.MODE_STRINGS, self.mode)
-
     def update_attributes_by_audio_features(self, audio_features):
         self.tempo = audio_features["tempo"]
         self.key = audio_features["key"]
         self.mode = audio_features["mode"]
-        key_string = self.get_key_string()
-        mode_string = self.get_mode_string()
-        self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(key_string, mode_string)
+        self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(self.key, self.mode)
         self.loudness = audio_features["loudness"]
         self.danceability = SpotifyTrack.__process_audio_feature_value(audio_features["danceability"])
         self.energy = SpotifyTrack.__process_audio_feature_value(audio_features["energy"])
@@ -57,30 +67,30 @@ class SpotifyTrack:
         return _list[index]
 
     @staticmethod
-    def __get_key_signature_from_key_and_mode(key_string, mode_string):
-        if (key_string == "C" and mode_string == "Major") or (key_string == "A" and mode_string == "Minor"):
+    def __get_key_signature_from_key_and_mode(key, mode):
+        if (key == Key.C and mode == Mode.Major) or (key == Key.A and mode == Mode.Minor):
             return "♮"
-        if (key_string == "G" and mode_string == "Major") or (key_string == "E" and mode_string == "Minor"):
+        if (key == Key.G and mode == Mode.Major) or (key == Key.E and mode == Mode.Minor):
             return "1♯"
-        if (key_string == "D" and mode_string == "Major") or (key_string == "B" and mode_string == "Minor"):
+        if (key == Key.D and mode == Mode.Major) or (key == Key.B and mode == Mode.Minor):
             return "2♯"
-        if (key_string == "A" and mode_string == "Major") or (key_string == "F♯/G♭" and mode_string == "Minor"):
+        if (key == Key.A and mode == Mode.Major) or (key == Key.Fs and mode == Mode.Minor):
             return "3♯"
-        if (key_string == "E" and mode_string == "Major") or (key_string == "C♯/D♭" and mode_string == "Minor"):
+        if (key == Key.E and mode == Mode.Major) or (key == Key.Cs and mode == Mode.Minor):
             return "4♯"
-        if (key_string == "B" and mode_string == "Major") or (key_string == "G♯/A♭" and mode_string == "Minor"):
+        if (key == Key.B and mode == Mode.Major) or (key == Key.Gs and mode == Mode.Minor):
             return "5♯"
-        if (key_string == "F♯/G♭" and mode_string == "Major") or (key_string == "D♯/E♭" and mode_string == "Minor"):
+        if (key == Key.Fs and mode == Mode.Major) or (key == Key.Ds and mode == Mode.Minor):
             return "6♯/6♭"
-        if (key_string == "C♯/D♭" and mode_string == "Major") or (key_string == "A♯/B♭" and mode_string == "Minor"):
+        if (key == Key.Cs and mode == Mode.Major) or (key == Key.As and mode == Mode.Minor):
             return "5♭"
-        if (key_string == "G♯/A♭" and mode_string == "Major") or (key_string == "F" and mode_string == "Minor"):
+        if (key == Key.Gs and mode == Mode.Major) or (key == Key.F and mode == Mode.Minor):
             return "4♭"
-        if (key_string == "D♯/E♭" and mode_string == "Major") or (key_string == "C" and mode_string == "Minor"):
+        if (key == Key.Ds and mode == Mode.Major) or (key == Key.C and mode == Mode.Minor):
             return "3♭"
-        if (key_string == "A♯/B♭" and mode_string == "Major") or (key_string == "G" and mode_string == "Minor"):
+        if (key == Key.As and mode == Mode.Major) or (key == Key.G and mode == Mode.Minor):
             return "2♭"
-        if (key_string == "F" and mode_string == "Major") or (key_string == "D" and mode_string == "Minor"):
+        if (key == Key.F and mode == Mode.Major) or (key == Key.D and mode == Mode.Minor):
             return "1♭"
 
         return "n/a"
