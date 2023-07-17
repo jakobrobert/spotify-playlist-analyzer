@@ -60,16 +60,15 @@ class TrackFilter:
         return list(filter(
             lambda track: TrackFilter.__any_string_contains_substring(track.genres, genres_substring), self.tracks))
 
-    # TODONOW adjust filter, have removed get_key_string & get_mode_string
     def __filter_by_key(self):
         expected_key = self.filter_params["expected_key"]
         return list(filter(
-            lambda track: track.get_key_string() == expected_key, self.tracks))
+            lambda track: track.key == expected_key, self.tracks))
 
     def __filter_by_mode(self):
         expected_mode = self.filter_params["expected_mode"]
         return list(filter(
-            lambda track: track.get_mode_string() == expected_mode, self.tracks))
+            lambda track: track.mode == expected_mode, self.tracks))
 
     def __filter_by_key_signature(self):
         expected_key_signature = self.filter_params["expected_key_signature"]
