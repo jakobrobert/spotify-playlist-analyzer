@@ -19,11 +19,6 @@ class Mode:
 
 
 class SpotifyTrack:
-    # TODONOW those two are still needed for endpoints valid-keys, valid-modes. Should remove those endpoints?
-    #   Now the App already knows those strings.
-    KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
-    MODE_STRINGS = ["Minor", "Major"]
-
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
 
     def __init__(self):

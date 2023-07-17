@@ -63,14 +63,6 @@ class ApiClient:
         return self.__send_get_request("numerical-attributes-for-filter-option")
 
     @Utils.measure_execution_time(log_prefix="ApiClient.")
-    def get_valid_keys(self):
-        return self.__send_get_request("valid-keys")
-
-    @Utils.measure_execution_time(log_prefix="ApiClient.")
-    def get_valid_modes(self):
-        return self.__send_get_request("valid-modes")
-
-    @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_valid_key_signatures(self):
         return self.__send_get_request("valid-key-signatures")
 
