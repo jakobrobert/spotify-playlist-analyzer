@@ -1,22 +1,24 @@
+class Key:
+    C = 0
+    Cs = Db = 1
+    D = 2
+    Ds = Eb = 3
+    E = 4
+    F = 5
+    Fs = Gb = 6
+    G = 7
+    Gs = Ab = 8
+    A = 9
+    As = Bb = 10
+    B = 11
+
+
+class Mode:
+    Minor = 0
+    Major = 1
+
+
 class SpotifyTrack:
-    class Key:
-        C = 0
-        Cs = Db = 1
-        D = 2
-        Ds = Eb = 3
-        E = 4
-        F = 5
-        Fs = Gb = 6
-        G = 7
-        Gs = Ab = 8
-        A = 9
-        As = Bb = 10
-        B = 11
-
-    class Mode:
-        Minor = 0
-        Major = 1
-
     # TODONOW those two are still needed for endpoints valid-keys, valid-modes. Should remove those endpoints?
     #   Now the App already knows those strings.
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
@@ -71,32 +73,29 @@ class SpotifyTrack:
 
     @staticmethod
     def __get_key_signature_from_key_and_mode(key, mode):
-        print(f"key: {key}, key == C: {(key == SpotifyTrack.Key.C)}")
-        print(f"mode: {mode}, mode == Minor: {(mode == SpotifyTrack.Mode.Minor)}")
-
-        if (key == SpotifyTrack.Key.C and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.A and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.C and mode == Mode.Major) or (key == Key.A and mode == Mode.Minor):
             return "♮"
-        if (key == SpotifyTrack.Key.G and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.E and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.G and mode == Mode.Major) or (key == Key.E and mode == Mode.Minor):
             return "1♯"
-        if (key == SpotifyTrack.Key.D and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.B and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.D and mode == Mode.Major) or (key == Key.B and mode == Mode.Minor):
             return "2♯"
-        if (key == SpotifyTrack.Key.A and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.Fs and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.A and mode == Mode.Major) or (key == Key.Fs and mode == Mode.Minor):
             return "3♯"
-        if (key == SpotifyTrack.Key.E and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.Cs and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.E and mode == Mode.Major) or (key == Key.Cs and mode == Mode.Minor):
             return "4♯"
-        if (key == SpotifyTrack.Key.B and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.Gs and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.B and mode == Mode.Major) or (key == Key.Gs and mode == Mode.Minor):
             return "5♯"
-        if (key == SpotifyTrack.Key.Fs and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.Ds and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.Fs and mode == Mode.Major) or (key == Key.Ds and mode == Mode.Minor):
             return "6♯/6♭"
-        if (key == SpotifyTrack.Key.Cs and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.As and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.Cs and mode == Mode.Major) or (key == Key.As and mode == Mode.Minor):
             return "5♭"
-        if (key == SpotifyTrack.Key.Gs and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.F and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.Gs and mode == Mode.Major) or (key == Key.F and mode == Mode.Minor):
             return "4♭"
-        if (key == SpotifyTrack.Key.Ds and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.C and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.Ds and mode == Mode.Major) or (key == Key.C and mode == Mode.Minor):
             return "3♭"
-        if (key == SpotifyTrack.Key.As and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.G and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.As and mode == Mode.Major) or (key == Key.G and mode == Mode.Minor):
             return "2♭"
-        if (key == SpotifyTrack.Key.F and mode == SpotifyTrack.Mode.Major) or (key == SpotifyTrack.Key.D and mode == SpotifyTrack.Mode.Minor):
+        if (key == Key.F and mode == Mode.Major) or (key == Key.D and mode == Mode.Minor):
             return "1♭"
 
         return "n/a"
