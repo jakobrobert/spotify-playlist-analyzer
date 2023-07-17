@@ -1,5 +1,6 @@
 from core.api_client import ApiClient
 from core.http_error import HttpError
+from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
 from core.views.view_utils import ViewUtils
 
@@ -61,7 +62,7 @@ def get_playlist_by_id(playlist_id):
             filter_params=filter_params,
             numerical_attributes_for_filter_option=numerical_attributes_for_filter_option,
             attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
-            key_strings=ViewUtils.KEY_STRINGS, mode_strings=ViewUtils.MODE_STRINGS,
+            key_strings=SpotifyTrack.KEY_STRINGS, mode_strings=SpotifyTrack.MODE_STRINGS,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
             valid_attributes_for_sort_option=valid_attributes_for_sort_option,
             valid_key_signatures=valid_key_signatures
