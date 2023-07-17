@@ -81,8 +81,8 @@ class FilterParams:
     def __extract_params_for_key(request_params):
         filter_params = {}
 
-        expected_key = request_params.get("expected_key")
-        if not expected_key:
+        expected_key = Utils.get_request_arg_as_int_or_none(request_params, "expected_key")
+        if expected_key is None:
             raise FilterParams.__create_http_error_for_required_param("key", "expected_key")
 
         filter_params["expected_key"] = expected_key
@@ -92,8 +92,8 @@ class FilterParams:
     def __extract_params_for_mode(request_params):
         filter_params = {}
 
-        expected_mode = request_params.get("expected_mode")
-        if not expected_mode:
+        expected_mode = Utils.get_request_arg_as_int_or_none(request_params, "expected_mode")
+        if expected_mode is None:
             raise FilterParams.__create_http_error_for_required_param("mode", "expected_mode")
 
         filter_params["expected_mode"] = expected_mode
