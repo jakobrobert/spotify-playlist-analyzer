@@ -116,7 +116,8 @@ def get_playlist_by_id(playlist_id):
         # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
         playlist_dict["tracks"] = []
         for track in playlist.tracks:
-            track_dict = __convert_track_to_dict(track)
+            # Need to explicitly copy the dict, else changing the dict would change the original object
+            track_dict = dict(track.__dict__)
             playlist_dict["tracks"].append(track_dict)
 
         return jsonify(playlist_dict)
@@ -321,16 +322,6 @@ def __create_error_response(error):
     response = jsonify(response_data)
 
     return response, error.status_code
-
-
-# TODONOW can inline
-def __convert_track_to_dict(track):
-    # Need to explicitly copy the dict, else changing the dict would change the original object
-    track_dict = dict(track.__dict__)
-
-    # Overwrite values for key & mode so API returns them as strings instead of numbers
-
-    return track_dict
 
 
 def __get_attribute_distribution_items(attribute, tracks):
