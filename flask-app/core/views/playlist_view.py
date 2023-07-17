@@ -51,8 +51,6 @@ def get_playlist_by_id(playlist_id):
         playlist = api_client.get_playlist_by_id(playlist_id, api_request_params)
         valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
         valid_attributes_for_sort_option = api_client.get_valid_attributes_for_sort_option()
-        valid_keys = api_client.get_valid_keys()
-        valid_modes = api_client.get_valid_modes()
         valid_key_signatures = api_client.get_valid_key_signatures()
 
         return render_template(

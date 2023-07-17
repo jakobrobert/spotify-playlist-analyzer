@@ -210,27 +210,6 @@ def get_numerical_attributes_for_filter_option():
         return __create_error_response(error)
 
 
-# TODONOW remove valid-keys & valid-modes endpoint because moved corresponding logic into App
-@app.route(URL_PREFIX + "valid-keys", methods=["GET"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
-def get_valid_keys():
-    try:
-        return jsonify(SpotifyTrack.KEY_STRINGS)
-    except Exception:
-        error = HttpError.from_last_exception()
-        return __create_error_response(error)
-
-
-@app.route(URL_PREFIX + "valid-modes", methods=["GET"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
-def get_valid_modes():
-    try:
-        return jsonify(SpotifyTrack.MODE_STRINGS)
-    except Exception:
-        error = HttpError.from_last_exception()
-        return __create_error_response(error)
-
-
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_valid_key_signatures():
