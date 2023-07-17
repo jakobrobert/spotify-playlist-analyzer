@@ -81,8 +81,8 @@ def __extract_filter_params(request_params, numerical_attributes_for_filter_opti
         "artists_substring": request.args.get("artists_substring"),
         "title_substring": request.args.get("title_substring"),
         "genres_substring": request.args.get("genres_substring"),
-        "expected_key": request.args.get("expected_key"),
-        "expected_mode": request.args.get("expected_mode"),
+        "expected_key": Utils.get_request_arg_as_int_or_none(request.args, "expected_key"),
+        "expected_mode": Utils.get_request_arg_as_int_or_none(request.args, "expected_mode"),
         "expected_key_signature": request.args.get("expected_key_signature")
     }
 
