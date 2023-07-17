@@ -1,5 +1,6 @@
 from core.api_client import ApiClient
 from core.http_error import HttpError
+from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
 from core.views.view_utils import ViewUtils
 
@@ -50,8 +51,6 @@ def get_playlist_by_id(playlist_id):
         playlist = api_client.get_playlist_by_id(playlist_id, api_request_params)
         valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
         valid_attributes_for_sort_option = api_client.get_valid_attributes_for_sort_option()
-        valid_keys = api_client.get_valid_keys()
-        valid_modes = api_client.get_valid_modes()
         valid_key_signatures = api_client.get_valid_key_signatures()
 
         return render_template(
@@ -61,9 +60,10 @@ def get_playlist_by_id(playlist_id):
             filter_params=filter_params,
             numerical_attributes_for_filter_option=numerical_attributes_for_filter_option,
             attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
+            key_strings=SpotifyTrack.KEY_STRINGS, mode_strings=SpotifyTrack.MODE_STRINGS,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
             valid_attributes_for_sort_option=valid_attributes_for_sort_option,
-            valid_keys=valid_keys, valid_modes=valid_modes, valid_key_signatures=valid_key_signatures
+            valid_key_signatures=valid_key_signatures
         )
     except HttpError as error:
         return render_template("error.html", error=error)
@@ -79,8 +79,8 @@ def __extract_filter_params(request_params, numerical_attributes_for_filter_opti
         "artists_substring": request.args.get("artists_substring"),
         "title_substring": request.args.get("title_substring"),
         "genres_substring": request.args.get("genres_substring"),
-        "expected_key": request.args.get("expected_key"),
-        "expected_mode": request.args.get("expected_mode"),
+        "expected_key": Utils.get_request_arg_as_int_or_none(request.args, "expected_key"),
+        "expected_mode": Utils.get_request_arg_as_int_or_none(request.args, "expected_mode"),
         "expected_key_signature": request.args.get("expected_key_signature")
     }
 
