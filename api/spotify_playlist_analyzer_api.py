@@ -210,6 +210,7 @@ def get_numerical_attributes_for_filter_option():
         return __create_error_response(error)
 
 
+# TODONOW remove valid-keys & valid-modes endpoint because moved corresponding logic into App
 @app.route(URL_PREFIX + "valid-keys", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 def get_valid_keys():
