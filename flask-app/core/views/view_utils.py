@@ -31,6 +31,9 @@ class ViewUtils:
         "valence": "Valence"
     }
 
+    KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
+    MODE_STRINGS = ["Minor", "Major"]
+
     @staticmethod
     @Utils.measure_execution_time(log_prefix="ViewUtils.")
     def get_playlist_id_from_playlist_url(playlist_url):
