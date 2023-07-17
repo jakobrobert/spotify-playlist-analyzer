@@ -343,14 +343,12 @@ def __create_error_response(error):
     return response, error.status_code
 
 
+# TODONOW can inline
 def __convert_track_to_dict(track):
     # Need to explicitly copy the dict, else changing the dict would change the original object
     track_dict = dict(track.__dict__)
 
     # Overwrite values for key & mode so API returns them as strings instead of numbers
-    # TODONOW return key & mode as numbers. then this method will become a one-liner, so can inline
-    track_dict["key"] = track.get_key_string()
-    track_dict["mode"] = track.get_mode_string()
 
     return track_dict
 
