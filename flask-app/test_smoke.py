@@ -1,5 +1,6 @@
 import configparser
 import unittest
+from urllib.parse import urlencode
 
 from spotify_playlist_analyzer import app
 
@@ -36,12 +37,21 @@ class TestSmoke(unittest.TestCase):
         self.__test_get_request("playlist/1v1enByYGutAxxH06UW3cf")
 
     def test_compare_playlists(self):
-        playlist_id_1 = "1v1enByYGutAxxH06UW3cf"
-        playlist_id_2 = "37i9dQZF1DXcBWIGoYBM5M"
+        params = {
+            "playlist_id_1": "1v1enByYGutAxxH06UW3cf",
+            "playlist_id_2": "37i9dQZF1DXcBWIGoYBM5M"
+        }
+        self.__test_get_request(f"compare-playlists", params)
 
-        self.__test_get_request(f"compare-playlists?playlist_id_1={playlist_id_1}&playlist_id_2={playlist_id_2}")
-
-    def __test_get_request(self, sub_url):
-        url = f"{self.base_url}{sub_url}"
+    def __test_get_request(self, sub_url, params=None):
+        encoded_query_params = TestSmoke.__encode_query_params(params)
+        url = f"{self.base_url}{sub_url}{encoded_query_params}"
         response = self.app.get(url, follow_redirects=True)
         self.assertEqual(response.status_code, 200)
+
+    @staticmethod
+    def __encode_query_params(query_params):
+        if not query_params:
+            return ""
+
+        return f"?{urlencode(query_params)}"
