@@ -43,8 +43,13 @@ class TestSmoke(unittest.TestCase):
         }
         self.__test_get_request(f"compare-playlists", params)
 
+    # TODONOW fails as expected due to bug #238
     def test_track(self):
         self.__test_get_request("track/4cOdK2wGLETKBW3PvgPWqT")
+
+    def test_search_tracks(self):
+        params = {"query": "Avicii"}
+        self.__test_get_request("search-tracks", params)
 
     def __test_get_request(self, sub_url, params=None):
         encoded_query_params = TestSmoke.__encode_query_params(params)
