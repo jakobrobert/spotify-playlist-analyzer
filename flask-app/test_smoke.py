@@ -36,7 +36,6 @@ class TestSmoke(unittest.TestCase):
         self.__test_get_request("playlist/1v1enByYGutAxxH06UW3cf")
 
     def __test_get_request(self, sub_url):
-        # TODONOW also move usage of URL_PREFIX into __test_get_request to reduce duplication
         url = f"{self.base_url}{sub_url}"
         response = self.app.get(url, follow_redirects=True)
         self.assertEqual(response.status_code, 200)
