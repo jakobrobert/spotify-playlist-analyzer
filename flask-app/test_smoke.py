@@ -34,21 +34,23 @@ class TestSmoke(unittest.TestCase):
         self.__test_get_request("enter-query-to-search-tracks")
 
     def test_playlist(self):
-        self.__test_get_request("playlist/1v1enByYGutAxxH06UW3cf")
+        playlist_id = "1v1enByYGutAxxH06UW3cf"
+        self.__test_get_request(f"playlist/{playlist_id}")
 
     def test_compare_playlists(self):
-        params = {
-            "playlist_id_1": "1v1enByYGutAxxH06UW3cf",
-            "playlist_id_2": "37i9dQZF1DXcBWIGoYBM5M"
-        }
+        playlist_id_1 = "1v1enByYGutAxxH06UW3cf"
+        playlist_id_2 = "37i9dQZF1DXcBWIGoYBM5M"
+        params = {"playlist_id_1": playlist_id_1, "playlist_id_2": playlist_id_2}
         self.__test_get_request(f"compare-playlists", params)
 
     # TODONOW fails as expected due to bug #238
     def test_track(self):
-        self.__test_get_request("track/4cOdK2wGLETKBW3PvgPWqT")
+        track_id = "4cOdK2wGLETKBW3PvgPWqT"
+        self.__test_get_request(f"track/{track_id}")
 
     def test_search_tracks(self):
-        params = {"query": "Avicii"}
+        query = "Avicii"
+        params = {"query": query}
         self.__test_get_request("search-tracks", params)
 
     # TODONOW add several tests for playlist sort tracks, one for each attribute
