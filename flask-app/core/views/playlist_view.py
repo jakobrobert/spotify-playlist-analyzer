@@ -27,7 +27,7 @@ def get_playlist_by_url():
         return redirect(redirect_url)
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
 
 
 @playlist_view.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])

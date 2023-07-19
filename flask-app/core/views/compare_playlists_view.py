@@ -32,7 +32,7 @@ def compare_playlists_by_urls():
         return redirect(redirect_url)
     except Exception as e:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
 
 
 @compare_playlists_view.route(URL_PREFIX + "compare-playlists", methods=["GET"])
@@ -51,7 +51,7 @@ def compare_playlists_by_ids():
             attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
             valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution)
     except HttpError as error:
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
