@@ -51,6 +51,22 @@ class TestSmoke(unittest.TestCase):
         params = {"query": "Avicii"}
         self.__test_get_request("search-tracks", params)
 
+    # TODONOW add several tests for playlist sort tracks, one for each attribute
+    #   -> But for each attribute, ONLY ascending is enough. For now, only smoke tests, no detailed functional tests
+
+    # TODONOW add several tests for playlist filter tracks, one for each attribute
+    #   -> But for each attribute, ONLY one value / range. For now, only smoke tests, no detailed functional tests
+
+    # TODONOW add several tests for get_attribute_distribution_of_playlist, one for each attribute
+    #   -> should be able to reproduce bug #236 for attributes key & mode.
+
+    # TODONOW add several tests compare_attribute_distribution_of_playlists, one for each attribute
+    #   -> should be able to reproduce bug #236 for attributes key & mode.
+
+    # TODOLATER Did NOT add test for route export_playlist on purpose.
+    #   -> is rather complicated, need to send track ids by post request, needs to have a valid access token
+    #   -> might add later, but then not in smoke tests, would be a more detailed functional test
+
     def __test_get_request(self, sub_url, params=None):
         encoded_query_params = TestSmoke.__encode_query_params(params)
         url = f"{self.base_url}{sub_url}{encoded_query_params}"
