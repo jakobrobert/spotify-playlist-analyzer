@@ -3,6 +3,7 @@ import unittest
 
 from spotify_playlist_analyzer import app
 
+# TODONOW move into setUp?
 config = configparser.ConfigParser()
 config.read("config.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
@@ -33,13 +34,19 @@ class TestSmoke(unittest.TestCase):
         url = f"{URL_PREFIX}choose-playlists-for-comparison"
         self.__test_get_request(url)
 
-    # TODONOW uncomment
-    """
+    def test_choose_one_track(self):
+        url = f"{URL_PREFIX}choose-one-track"
+        self.__test_get_request(url)
+
+    def test_enter_query_to_search_tracks(self):
+        url = f"{URL_PREFIX}enter-query-to-search-tracks"
+        self.__test_get_request(url)
+
     def test_playlist(self):
         url = f"{URL_PREFIX}playlist/1v1enByYGutAxxH06UW3cf"
         self.__test_get_request(url)
-    """
 
     def __test_get_request(self, url):
+        # TODONOW also move usage of URL_PREFIX into __test_get_request to reduce duplication
         response = self.app.get(url, follow_redirects=True)
         self.assertEqual(response.status_code, 200)
