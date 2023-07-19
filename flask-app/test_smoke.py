@@ -37,7 +37,7 @@ class TestSmoke(unittest.TestCase):
 
     def test_compare_playlists(self):
         playlist_id_1 = "1v1enByYGutAxxH06UW3cf"
-        playlist_id_2 = "37i9dQZF1DXcBWIGoYBM5MTEST" # TODONOW incorrect url to test it fails, remove "TEST"
+        playlist_id_2 = "37i9dQZF1DXcBWIGoYBM5M"
 
         self.__test_get_request(f"compare-playlists?playlist_id_1={playlist_id_1}&playlist_id_2={playlist_id_2}")
 
