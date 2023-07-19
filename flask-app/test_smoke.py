@@ -48,6 +48,7 @@ class TestSmoke(unittest.TestCase):
         track_id = "4cOdK2wGLETKBW3PvgPWqT"
         self.__test_get_request(f"track/{track_id}")
 
+    # TODONOW fails as expected due to bug #238
     def test_search_tracks(self):
         query = "Avicii"
         params = {"query": query}

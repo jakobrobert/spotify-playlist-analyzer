@@ -26,7 +26,7 @@ def search_tracks():
             "search_tracks.html",
             query=query, tracks=tracks, attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES)
     except HttpError as error:
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
