@@ -19,28 +19,27 @@ class TestSmoke(unittest.TestCase):
 
     def test_index(self):
         url = f"{URL_PREFIX}"
-        response = self.app.get(url, follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
+        self.__test_get_request(url)
 
     def test_choose_one_playlist(self):
         url = f"{URL_PREFIX}choose-one-playlist"
-        response = self.app.get(url, follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
+        self.__test_get_request(url)
 
     def test_choose_one_playlist(self):
         url = f"{URL_PREFIX}choose-one-playlist"
-        response = self.app.get(url, follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
+        self.__test_get_request(url)
 
     def test_choose_playlists_for_comparison(self):
         url = f"{URL_PREFIX}choose-playlists-for-comparison"
-        response = self.app.get(url, follow_redirects=True)
-        self.assertEqual(response.status_code, 200)
+        self.__test_get_request(url)
 
     # TODONOW uncomment
     """
     def test_playlist(self):
         url = f"{URL_PREFIX}playlist/1v1enByYGutAxxH06UW3cf"
+        self.__test_get_request(url)
+    """
+
+    def __test_get_request(self, url):
         response = self.app.get(url, follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-    """
