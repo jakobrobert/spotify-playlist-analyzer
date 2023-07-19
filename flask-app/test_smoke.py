@@ -43,6 +43,10 @@ class TestSmoke(unittest.TestCase):
         }
         self.__test_get_request(f"compare-playlists", params)
 
+    def test_track(self):
+        # TODONOW passes even though in browser, shows error, likely need to do usual fix
+        self.__test_get_request("track/4cOdK2wGLETKBW3PvgPWqT")
+
     def __test_get_request(self, sub_url, params=None):
         encoded_query_params = TestSmoke.__encode_query_params(params)
         url = f"{self.base_url}{sub_url}{encoded_query_params}"
