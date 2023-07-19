@@ -18,5 +18,12 @@ class TestSmoke(unittest.TestCase):
         pass
 
     def test_index(self):
-        response = self.app.get(f"{URL_PREFIX}/", follow_redirects=True)
+        url = f"{URL_PREFIX}"
+        response = self.app.get(url, follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
+    def test_playlist(self):
+        url = f"{URL_PREFIX}playlist/1v1enByYGutAxxH06UW3cf"
+        response = self.app.get(url, follow_redirects=True)
+        # TODONOW need to adjust. passes even though API not running
         self.assertEqual(response.status_code, 200)
