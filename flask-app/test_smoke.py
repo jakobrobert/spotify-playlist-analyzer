@@ -26,10 +26,6 @@ class TestSmoke(unittest.TestCase):
         url = f"{URL_PREFIX}choose-one-playlist"
         self.__test_get_request(url)
 
-    def test_choose_one_playlist(self):
-        url = f"{URL_PREFIX}choose-one-playlist"
-        self.__test_get_request(url)
-
     def test_choose_playlists_for_comparison(self):
         url = f"{URL_PREFIX}choose-playlists-for-comparison"
         self.__test_get_request(url)
