@@ -56,6 +56,7 @@ class TestSmoke(unittest.TestCase):
 
     # TODONOW add several tests for playlist sort tracks, one for each attribute
     #   -> But for each attribute, ONLY ascending is enough. For now, only smoke tests, no detailed functional tests
+    #   -> Tip: Can use parametrized tests
 
     # TODONOW add several tests for playlist filter tracks, one for each attribute
     #   -> But for each attribute, ONLY one value / range. For now, only smoke tests, no detailed functional tests
