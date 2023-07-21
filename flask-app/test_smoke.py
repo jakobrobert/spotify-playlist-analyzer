@@ -44,7 +44,8 @@ class TestSmoke(unittest.TestCase):
     def test_playlist_sort_tracks(self):
         playlist_id = "1v1enByYGutAxxH06UW3cf"
         attributes = [
-            "duration_ms", "release_year", "popularity",
+            "none",
+            "artists", "title", "duration_ms", "release_year", "popularity", "genres",
             "tempo", "key", "mode", "key_signature", "loudness",
             "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
         ]
@@ -52,6 +53,16 @@ class TestSmoke(unittest.TestCase):
         for attribute in attributes:
             params = {"sort_by": attribute, "order": "ascending"}
             self.__test_get_request(f"playlist/{playlist_id}", params)
+
+    # Use bad practice of for loop instead of parametrized because did not work, see test_playlist_sort_tracks
+    def test_playlist_filter_tracks(self):
+        playlist_id = "1v1enByYGutAxxH06UW3cf"
+        attribute = "duration_ms"
+
+        # TODONOW first, add test for one attribute
+        # -> for all attributes too much work for now because need to define different params for each attribute
+        #params = {"filter_by": artists, }
+
 
     def test_compare_playlists(self):
         playlist_id_1 = "1v1enByYGutAxxH06UW3cf"
@@ -69,9 +80,6 @@ class TestSmoke(unittest.TestCase):
         query = "Avicii"
         params = {"query": query}
         self.__test_get_request("search-tracks", params)
-
-    # TODONOW add several tests for playlist filter tracks, one for each attribute
-    #   -> But for each attribute, ONLY one value / range. For now, only smoke tests, no detailed functional tests
 
     # TODONOW add several tests for get_attribute_distribution_of_playlist, one for each attribute
     #   -> should be able to reproduce bug #236 for attributes key & mode.
