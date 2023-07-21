@@ -80,7 +80,6 @@ class TestSmoke(unittest.TestCase):
         self.__test_get_request(f"playlist/{PLAYLIST_ID_1}/attribute-distribution", params)
 
     def test_compare_attribute_distribution(self):
-        # TODONOW first test that returns code 502 if API not running
         params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2, "attribute": "release_year"}
         self.__test_get_request(f"compare-attribute-distribution-of-playlists", params)
 
