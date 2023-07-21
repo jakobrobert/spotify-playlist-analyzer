@@ -56,29 +56,20 @@ class TestSmoke(unittest.TestCase):
         params = {"query": query}
         self.__test_get_request("search-tracks", params)
 
-    # TODONOW add several tests for playlist sort tracks, one for each attribute
-    #   -> But for each attribute, ONLY ascending is enough. For now, only smoke tests, no detailed functional tests
-    #   -> Tip: Can use parametrized tests
-    # TODONOW use parametrized test, add sort_by value for each attribute
-    """
-    attributes = [
+    # Use bad practice of for loop instead of parametrized because did not work
+    # -> raised TypeError: test_playlist_sort_tracks() missing 1 required positional argument: 'sort_by'
+    def test_playlist_sort_tracks(self):
+        playlist_id = "1v1enByYGutAxxH06UW3cf"
+        order = "ascending"
+        attributes = [
             "duration_ms", "release_year", "popularity",
-
-            # Audio Features
             "tempo", "key", "mode", "key_signature", "loudness",
             "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
         ]
-    """
-    @pytest.mark.parametrize("sort_by", [
-        "duration_ms", "release_year", "popularity",
-        "tempo", "key", "mode", "key_signature", "loudness",
-        "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
-    ])
-    def test_playlist_sort_tracks(self, sort_by):
-        playlist_id = "1v1enByYGutAxxH06UW3cf"
-        order = "ascending"
-        params = {"sort_by": sort_by, "order": order}
-        self.__test_get_request(f"playlist/{playlist_id}", params)
+
+        for attribute in attributes:
+            params = {"sort_by": attribute, "order": order}
+            self.__test_get_request(f"playlist/{playlist_id}", params)
 
     # TODONOW add several tests for playlist filter tracks, one for each attribute
     #   -> But for each attribute, ONLY one value / range. For now, only smoke tests, no detailed functional tests
