@@ -39,6 +39,20 @@ class TestSmoke(unittest.TestCase):
         playlist_id = "1v1enByYGutAxxH06UW3cf"
         self.__test_get_request(f"playlist/{playlist_id}")
 
+    # Use bad practice of for loop instead of parametrized because did not work
+    # -> raised TypeError: test_playlist_sort_tracks() missing 1 required positional argument: 'sort_by'
+    def test_playlist_sort_tracks(self):
+        playlist_id = "1v1enByYGutAxxH06UW3cf"
+        attributes = [
+            "duration_ms", "release_year", "popularity",
+            "tempo", "key", "mode", "key_signature", "loudness",
+            "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
+        ]
+
+        for attribute in attributes:
+            params = {"sort_by": attribute, "order": "ascending"}
+            self.__test_get_request(f"playlist/{playlist_id}", params)
+
     def test_compare_playlists(self):
         playlist_id_1 = "1v1enByYGutAxxH06UW3cf"
         playlist_id_2 = "37i9dQZF1DXcBWIGoYBM5M"
@@ -55,21 +69,6 @@ class TestSmoke(unittest.TestCase):
         query = "Avicii"
         params = {"query": query}
         self.__test_get_request("search-tracks", params)
-
-    # Use bad practice of for loop instead of parametrized because did not work
-    # -> raised TypeError: test_playlist_sort_tracks() missing 1 required positional argument: 'sort_by'
-    def test_playlist_sort_tracks(self):
-        playlist_id = "1v1enByYGutAxxH06UW3cf"
-        order = "ascending"
-        attributes = [
-            "duration_ms", "release_year", "popularity",
-            "tempo", "key", "mode", "key_signature", "loudness",
-            "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
-        ]
-
-        for attribute in attributes:
-            params = {"sort_by": attribute, "order": order}
-            self.__test_get_request(f"playlist/{playlist_id}", params)
 
     # TODONOW add several tests for playlist filter tracks, one for each attribute
     #   -> But for each attribute, ONLY one value / range. For now, only smoke tests, no detailed functional tests
