@@ -6,6 +6,7 @@ from spotify_playlist_analyzer import app
 
 PLAYLIST_ID_1 = "1v1enByYGutAxxH06UW3cf"
 PLAYLIST_ID_2 = "5CgE5f0xzNTTHd6zlYRyzW"
+TRACK_ID = "4cOdK2wGLETKBW3PvgPWqT"
 
 
 class TestSmoke(unittest.TestCase):
@@ -56,8 +57,7 @@ class TestSmoke(unittest.TestCase):
 
     # TODOLATER fails as expected due to bug #238
     def test_track(self):
-        track_id = "4cOdK2wGLETKBW3PvgPWqT"
-        self.__test_get_request(f"track/{track_id}")
+        self.__test_get_request(f"track/{TRACK_ID}")
 
     # TODOLATER fails as expected due to bug #238
     def test_search_tracks(self):
@@ -86,7 +86,6 @@ class TestSmoke(unittest.TestCase):
     # TODOLATER Remove later: Extra tests to reproduce #236, can remove once this bug is fixed
     # -> In smoke tests, should only test one attribute. See comment at test_playlist_sort_tracks.
     def test_compare_attribute_distribution_for_key(self):
-        # TODONOW adjust tests
         params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2, "attribute": "key"}
         self.__test_get_request(f"compare-attribute-distribution-of-playlists", params)
 
