@@ -2,9 +2,10 @@ import configparser
 import unittest
 from urllib.parse import urlencode
 
-import pytest
-
 from spotify_playlist_analyzer import app
+
+PLAYLIST_ID_1 = "1v1enByYGutAxxH06UW3cf"
+PLAYLIST_ID_2 = "5CgE5f0xzNTTHd6zlYRyzW"
 
 
 class TestSmoke(unittest.TestCase):
@@ -36,26 +37,21 @@ class TestSmoke(unittest.TestCase):
         self.__test_get_request("enter-query-to-search-tracks")
 
     def test_playlist(self):
-        playlist_id = "1v1enByYGutAxxH06UW3cf"
-        self.__test_get_request(f"playlist/{playlist_id}")
+        self.__test_get_request(f"playlist/{PLAYLIST_ID_1}")
 
     # Only testing one attribute because else would take too long and also too many requests to Spotify API
     # For Smoke test this is sufficient, only broad test that basic functionality works
     # For detailed functionality tests, would need proper unit tests and avoid requests to Spotify API
     def test_playlist_sort_tracks(self):
-        playlist_id = "1v1enByYGutAxxH06UW3cf"
         params = {"sort_by": "release_year", "order": "ascending"}
-        self.__test_get_request(f"playlist/{playlist_id}", params)
+        self.__test_get_request(f"playlist/{PLAYLIST_ID_1}", params)
 
     def test_playlist_filter_tracks(self):
-        playlist_id = "1v1enByYGutAxxH06UW3cf"
         params = {"filter_by": "release_year", "min_release_year": "1980", "max_release_year": "1989"}
-        self.__test_get_request(f"playlist/{playlist_id}", params)
+        self.__test_get_request(f"playlist/{PLAYLIST_ID_1}", params)
 
     def test_compare_playlists(self):
-        playlist_id_1 = "1v1enByYGutAxxH06UW3cf"
-        playlist_id_2 = "5CgE5f0xzNTTHd6zlYRyzW"
-        params = {"playlist_id_1": playlist_id_1, "playlist_id_2": playlist_id_2}
+        params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2}
         self.__test_get_request(f"compare-playlists", params)
 
     # TODOLATER fails as expected due to bug #238
@@ -70,10 +66,8 @@ class TestSmoke(unittest.TestCase):
         self.__test_get_request("search-tracks", params)
 
     def test_attribute_distribution(self):
-        # TODONOW first test that returns code 502 if API not running
-        playlist_id = "1v1enByYGutAxxH06UW3cf" # TODONOW define constant for playlist_id. all tests should use the same anyway for consistent behavior
         params = {"attribute": "release_year"}
-        self.__test_get_request(f"playlist/{playlist_id}/attribute-distribution", params)
+        self.__test_get_request(f"playlist/{PLAYLIST_ID_1}/attribute-distribution", params)
 
 
     # TODOLATER Extra test to reproduce #236, can remove once this bug fixed to keep it consistent
