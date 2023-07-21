@@ -39,20 +39,13 @@ class TestSmoke(unittest.TestCase):
         playlist_id = "1v1enByYGutAxxH06UW3cf"
         self.__test_get_request(f"playlist/{playlist_id}")
 
-    # Use bad practice of for loop instead of parametrized because did not work
-    # -> raised TypeError: test_playlist_sort_tracks() missing 1 required positional argument: 'sort_by'
+    # Only testing one attribute because else would take too long and also too many requests to Spotify API
+    # For Smoke test this is sufficient, only broad test that basic functionality works
+    # For detailed functionality tests, would need proper unit tests and avoid requests to Spotify API
     def test_playlist_sort_tracks(self):
         playlist_id = "1v1enByYGutAxxH06UW3cf"
-        attributes = [
-            "none",
-            "artists", "title", "duration_ms", "release_year", "popularity", "genres",
-            "tempo", "key", "mode", "key_signature", "loudness",
-            "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
-        ]
-
-        for attribute in attributes:
-            params = {"sort_by": attribute, "order": "ascending"}
-            self.__test_get_request(f"playlist/{playlist_id}", params)
+        params = {"sort_by": "release_year", "order": "ascending"}
+        self.__test_get_request(f"playlist/{playlist_id}", params)
 
     # Use bad practice of for loop instead of parametrized because did not work, see test_playlist_sort_tracks
     def test_playlist_filter_tracks(self):
