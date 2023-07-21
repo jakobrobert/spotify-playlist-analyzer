@@ -85,8 +85,16 @@ class TestSmoke(unittest.TestCase):
 
     # TODOLATER Remove later: Extra tests to reproduce #236, can remove once this bug is fixed
     # -> In smoke tests, should only test one attribute. See comment at test_playlist_sort_tracks.
+    def test_compare_attribute_distribution_for_key(self):
+        # TODONOW adjust tests
+        params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2, "attribute": "key"}
+        self.__test_get_request(f"compare-attribute-distribution-of-playlists", params)
 
-    # NOTE: Did NOT add test for route export_playlist on purpose.
+    def test_compare_attribute_distribution_for_mode(self):
+        params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2, "attribute": "mode"}
+        self.__test_get_request(f"compare-attribute-distribution-of-playlists", params)
+
+    # NOTE: Did NOT add test for endpoint export_playlist on purpose.
     # -> is rather complicated, need to send track ids by post request, needs to have a valid access token
     # -> might add later, but then not in smoke tests, would be a more detailed functional test
 
