@@ -69,7 +69,7 @@ class TestSmoke(unittest.TestCase):
         params = {"attribute": "release_year"}
         self.__test_get_request(f"playlist/{PLAYLIST_ID_1}/attribute-distribution", params)
 
-    # TODOLATER Extra tests to reproduce #236, can remove once the bugs are fixed to keep it consistent
+    # TODOLATER Remove later: Extra tests to reproduce #236, can remove once this bug is fixed
     # -> In smoke tests, should only test one attribute. See comment at test_playlist_sort_tracks.
     def test_attribute_distribution_for_key(self):
         params = {"attribute": "key"}
@@ -79,13 +79,12 @@ class TestSmoke(unittest.TestCase):
         params = {"attribute": "mode"}
         self.__test_get_request(f"playlist/{PLAYLIST_ID_1}/attribute-distribution", params)
 
-    # TODONOW add several tests compare_attribute_distribution_of_playlists, one for each attribute
-    #   -> should be able to reproduce bug #236 for attributes key & mode.
     def test_compare_attribute_distribution(self):
         # TODONOW first test that returns code 502 if API not running
-        pass
+        params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2, "attribute": "release_year"}
+        self.__test_get_request(f"compare-attribute-distribution-of-playlists", params)
 
-    # TODOLATER Extra test to reproduce #236, can remove once this bug fixed to keep it consistent
+    # TODOLATER Remove later: Extra tests to reproduce #236, can remove once this bug is fixed
     # -> In smoke tests, should only test one attribute. See comment at test_playlist_sort_tracks.
 
     # NOTE: Did NOT add test for route export_playlist on purpose.
