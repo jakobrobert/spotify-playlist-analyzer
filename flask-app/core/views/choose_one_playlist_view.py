@@ -18,4 +18,4 @@ def choose_one_playlist():
         return render_template("choose_one_playlist.html")
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code

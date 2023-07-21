@@ -1,1 +1,1 @@
-uberspace web backend set /spotify-playlist-analyzer/api/uat --http --port 4245
+uberspace web backend set /spotify-playlist-analyzer/api/uat --http --port 5003

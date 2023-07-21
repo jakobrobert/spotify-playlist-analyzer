@@ -26,7 +26,7 @@ def get_track_by_url():
         return redirect(redirect_url)
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
 
 
 @track_view.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
@@ -36,7 +36,7 @@ def get_track_by_id(track_id):
         track = api_client.get_track_by_id(track_id)
         return render_template("track.html", track=track, attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES)
     except HttpError as error:
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
