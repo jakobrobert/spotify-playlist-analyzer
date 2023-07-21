@@ -31,7 +31,7 @@ def export_playlist():
 
         return render_template("export_playlist.html", exported_playlist_url=playlist_url)
     except HttpError as error:
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code

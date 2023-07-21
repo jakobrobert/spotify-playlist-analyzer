@@ -18,4 +18,4 @@ def choose_playlists_for_comparison():
         return render_template("choose_playlists_for_comparison.html")
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code

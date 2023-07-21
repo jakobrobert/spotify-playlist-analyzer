@@ -18,4 +18,4 @@ def enter_query_to_search_tracks():
         return render_template("enter_query_to_search_tracks.html")
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
