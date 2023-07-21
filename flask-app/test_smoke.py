@@ -57,16 +57,14 @@ class TestSmoke(unittest.TestCase):
     # Use bad practice of for loop instead of parametrized because did not work, see test_playlist_sort_tracks
     def test_playlist_filter_tracks(self):
         playlist_id = "1v1enByYGutAxxH06UW3cf"
-        attribute = "duration_ms"
-
         # TODONOW first, add test for one attribute
         # -> for all attributes too much work for now because need to define different params for each attribute
-        #params = {"filter_by": artists, }
-
+        params = {"filter_by": "release_year", "min_release_year": "1980", "max_release_year": "1989"}
+        self.__test_get_request(f"playlist/{playlist_id}", params)
 
     def test_compare_playlists(self):
         playlist_id_1 = "1v1enByYGutAxxH06UW3cf"
-        playlist_id_2 = "37i9dQZF1DXcBWIGoYBM5M"
+        playlist_id_2 = "5CgE5f0xzNTTHd6zlYRyzW"
         params = {"playlist_id_1": playlist_id_1, "playlist_id_2": playlist_id_2}
         self.__test_get_request(f"compare-playlists", params)
 
