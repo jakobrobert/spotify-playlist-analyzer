@@ -43,12 +43,12 @@ class TestSmoke(unittest.TestCase):
         params = {"playlist_id_1": playlist_id_1, "playlist_id_2": playlist_id_2}
         self.__test_get_request(f"compare-playlists", params)
 
-    # TODONOW fails as expected due to bug #238
+    # TODOLATER fails as expected due to bug #238
     def test_track(self):
         track_id = "4cOdK2wGLETKBW3PvgPWqT"
         self.__test_get_request(f"track/{track_id}")
 
-    # TODONOW fails as expected due to bug #238
+    # TODOLATER fails as expected due to bug #238
     def test_search_tracks(self):
         query = "Avicii"
         params = {"query": query}
@@ -57,6 +57,22 @@ class TestSmoke(unittest.TestCase):
     # TODONOW add several tests for playlist sort tracks, one for each attribute
     #   -> But for each attribute, ONLY ascending is enough. For now, only smoke tests, no detailed functional tests
     #   -> Tip: Can use parametrized tests
+    # TODONOW use parametrized test, add sort_by value for each attribute
+    """
+    attributes = [
+            "duration_ms", "release_year", "popularity",
+
+            # Audio Features
+            "tempo", "key", "mode", "key_signature", "loudness",
+            "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
+        ]
+    """
+    def test_playlist_sort_tracks(self):
+        playlist_id = "1v1enByYGutAxxH06UW3cf"
+        sort_by = "duration_ms"
+        order = "ascending"
+        params = {"sort_by": sort_by, "order": order}
+        self.__test_get_request(f"playlist/{playlist_id}", params)
 
     # TODONOW add several tests for playlist filter tracks, one for each attribute
     #   -> But for each attribute, ONLY one value / range. For now, only smoke tests, no detailed functional tests
