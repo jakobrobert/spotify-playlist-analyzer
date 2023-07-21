@@ -17,6 +17,5 @@ def choose_one_playlist():
     try:
         return render_template("choose_one_playlist.html")
     except Exception:
-        # TODONOW include status_code in response for all routes, as done in playlist_view.py
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
