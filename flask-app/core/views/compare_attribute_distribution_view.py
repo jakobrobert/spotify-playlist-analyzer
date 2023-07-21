@@ -37,10 +37,10 @@ def compare_attribute_distribution_of_playlists():
             playlist_1, playlist_2, attribute_display_name,
             attribute_distribution_items_1, attribute_distribution_items_2)
     except HttpError as error:
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
 
 
 @Utils.measure_execution_time(log_prefix="compare_attribute_distribution_view.")

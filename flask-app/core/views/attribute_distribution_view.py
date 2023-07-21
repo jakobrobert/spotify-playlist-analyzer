@@ -30,10 +30,10 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
         return __render_attribute_distribution_template(playlist, attribute_display_name, attribute_distribution_items)
     except HttpError as error:
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
     except Exception:
         error = HttpError.from_last_exception()
-        return render_template("error.html", error=error)
+        return render_template("error.html", error=error), error.status_code
 
 
 @Utils.measure_execution_time(log_prefix="attribute_distribution_view.")
