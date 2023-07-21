@@ -47,11 +47,8 @@ class TestSmoke(unittest.TestCase):
         params = {"sort_by": "release_year", "order": "ascending"}
         self.__test_get_request(f"playlist/{playlist_id}", params)
 
-    # Use bad practice of for loop instead of parametrized because did not work, see test_playlist_sort_tracks
     def test_playlist_filter_tracks(self):
         playlist_id = "1v1enByYGutAxxH06UW3cf"
-        # TODONOW first, add test for one attribute
-        # -> for all attributes too much work for now because need to define different params for each attribute
         params = {"filter_by": "release_year", "min_release_year": "1980", "max_release_year": "1989"}
         self.__test_get_request(f"playlist/{playlist_id}", params)
 
