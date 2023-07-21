@@ -2,6 +2,8 @@ import configparser
 import unittest
 from urllib.parse import urlencode
 
+import pytest
+
 from spotify_playlist_analyzer import app
 
 
@@ -67,9 +69,13 @@ class TestSmoke(unittest.TestCase):
             "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
         ]
     """
-    def test_playlist_sort_tracks(self):
+    @pytest.mark.parametrize("sort_by", [
+        "duration_ms", "release_year", "popularity",
+        "tempo", "key", "mode", "key_signature", "loudness",
+        "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
+    ])
+    def test_playlist_sort_tracks(self, sort_by):
         playlist_id = "1v1enByYGutAxxH06UW3cf"
-        sort_by = "duration_ms"
         order = "ascending"
         params = {"sort_by": sort_by, "order": order}
         self.__test_get_request(f"playlist/{playlist_id}", params)
