@@ -69,15 +69,28 @@ class TestSmoke(unittest.TestCase):
         params = {"query": query}
         self.__test_get_request("search-tracks", params)
 
-    # TODONOW add several tests for get_attribute_distribution_of_playlist, one for each attribute
-    #   -> should be able to reproduce bug #236 for attributes key & mode.
+    def test_attribute_distribution(self):
+        # TODONOW first test that returns code 502 if API not running
+        playlist_id = "1v1enByYGutAxxH06UW3cf" # TODONOW define constant for playlist_id. all tests should use the same anyway for consistent behavior
+        params = {"attribute": "release_year"}
+        self.__test_get_request(f"playlist/{playlist_id}/attribute-distribution", params)
+
+
+    # TODOLATER Extra test to reproduce #236, can remove once this bug fixed to keep it consistent
+    # -> In smoke tests, should only test one attribute. See comment at test_playlist_sort_tracks.
 
     # TODONOW add several tests compare_attribute_distribution_of_playlists, one for each attribute
     #   -> should be able to reproduce bug #236 for attributes key & mode.
+    def test_compare_attribute_distribution(self):
+        # TODONOW first test that returns code 502 if API not running
+        pass
 
-    # TODOLATER Did NOT add test for route export_playlist on purpose.
-    #   -> is rather complicated, need to send track ids by post request, needs to have a valid access token
-    #   -> might add later, but then not in smoke tests, would be a more detailed functional test
+    # TODOLATER Extra test to reproduce #236, can remove once this bug fixed to keep it consistent
+    # -> In smoke tests, should only test one attribute. See comment at test_playlist_sort_tracks.
+
+    # NOTE: Did NOT add test for route export_playlist on purpose.
+    # -> is rather complicated, need to send track ids by post request, needs to have a valid access token
+    # -> might add later, but then not in smoke tests, would be a more detailed functional test
 
     def __test_get_request(self, sub_url, params=None):
         encoded_query_params = TestSmoke.__encode_query_params(params)
