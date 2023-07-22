@@ -69,28 +69,8 @@ class TestSmoke(unittest.TestCase):
         params = {"attribute": "release_year"}
         self.__test_get_request(f"playlist/{PLAYLIST_ID_1}/attribute-distribution", params)
 
-    # TODONOW now passes as expected because issue fixed. Remove this test later,
-    # should keep smoke tests minimal because take a lot of time because they do real API requests
-    def test_attribute_distribution_for_key(self):
-        params = {"attribute": "key"}
-        self.__test_get_request(f"playlist/{PLAYLIST_ID_1}/attribute-distribution", params)
-
-    def test_attribute_distribution_for_mode(self):
-        params = {"attribute": "mode"}
-        self.__test_get_request(f"playlist/{PLAYLIST_ID_1}/attribute-distribution", params)
-
     def test_compare_attribute_distribution(self):
         params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2, "attribute": "release_year"}
-        self.__test_get_request(f"compare-attribute-distribution-of-playlists", params)
-
-    # TODONOW now passes as expected because issue fixed. Remove this test later,
-    # should keep smoke tests minimal because take a lot of time because they do real API requests
-    def test_compare_attribute_distribution_for_key(self):
-        params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2, "attribute": "key"}
-        self.__test_get_request(f"compare-attribute-distribution-of-playlists", params)
-
-    def test_compare_attribute_distribution_for_mode(self):
-        params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2, "attribute": "mode"}
         self.__test_get_request(f"compare-attribute-distribution-of-playlists", params)
 
     # NOTE: Did NOT add test for endpoint export_playlist on purpose.
