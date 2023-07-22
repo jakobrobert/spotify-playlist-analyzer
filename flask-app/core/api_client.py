@@ -2,6 +2,7 @@ from json import JSONDecodeError
 import requests
 
 from core.spotify.spotify_playlist import SpotifyPlaylist
+from core.spotify.spotify_playlist_statistics import SpotifyPlaylistStatistics
 from core.spotify.spotify_track import SpotifyTrack
 from core.http_error import HttpError
 from core.utils import Utils
@@ -14,19 +15,15 @@ class ApiClient:
     @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_playlist_by_id(self, playlist_id, request_params=None):
         sub_url = f"playlist/{playlist_id}"
-        playlist_data = self.__send_get_request(sub_url, request_params)
+        playlist_dict = self.__send_get_request(sub_url, request_params)
 
         playlist = SpotifyPlaylist()
-        playlist.id = playlist_data["id"]
-        playlist.name = playlist_data["name"]
-        playlist.total_duration_ms = playlist_data["total_duration_ms"]
-        playlist.average_duration_ms = playlist_data["average_duration_ms"]
-        playlist.average_release_year = playlist_data["average_release_year"]
-        playlist.average_popularity = playlist_data["average_popularity"]
-        playlist.average_tempo = playlist_data["average_tempo"]
+        playlist.id = playlist_dict["id"]
+        playlist.name = playlist_dict["name"]
+        playlist.statistics = ApiClient.__convert_dict_to_playlist_statistics(playlist_dict["statistics"])
 
         playlist.tracks = []
-        for track_data in playlist_data["tracks"]:
+        for track_data in playlist_dict["tracks"]:
             track = ApiClient.__convert_dict_to_track(track_data)
             playlist.tracks.append(track)
 
@@ -132,6 +129,18 @@ class ApiClient:
         traceback_items = error["traceback_items"]
 
         return HttpError(status_code, title, message, traceback_items)
+
+    @staticmethod
+    def __convert_dict_to_playlist_statistics(statistics_dict):
+        playlist_statistics = SpotifyPlaylistStatistics()
+
+        playlist_statistics.total_duration_ms = statistics_dict["total_duration_ms"]
+        playlist_statistics.average_duration_ms = statistics_dict["average_duration_ms"]
+        playlist_statistics.average_release_year = statistics_dict["average_release_year"]
+        playlist_statistics.average_popularity = statistics_dict["average_popularity"]
+        playlist_statistics.average_tempo = statistics_dict["average_tempo"]
+
+        return playlist_statistics
 
     @staticmethod
     def __convert_dict_to_track(track_dict):
