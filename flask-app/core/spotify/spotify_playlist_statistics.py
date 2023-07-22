@@ -22,7 +22,7 @@ class SpotifyPlaylistStatistics:
         if not self.average_duration_ms:
             return "n/a"
 
-        # TODONOW move into utils
+        # TODOLATER move into utils
         return SpotifyTrack.get_duration_string_helper(self.average_duration_ms)
 
     def get_average_release_year_string(self):
