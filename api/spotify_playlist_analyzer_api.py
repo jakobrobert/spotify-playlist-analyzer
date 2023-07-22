@@ -245,8 +245,8 @@ def search_tracks():
         track_dicts = []
 
         for track in tracks:
-            # TODONOW fix here
-            track_dict = __convert_track_to_dict(track)
+            # Need to explicitly copy the dict, else changing the dict would change the original object
+            track_dict = track.__dict__
             track_dicts.append(track_dict)
 
         return jsonify(track_dicts)
