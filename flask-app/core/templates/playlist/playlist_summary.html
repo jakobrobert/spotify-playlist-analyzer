@@ -5,22 +5,22 @@
     </tr>
     <tr>
         <td>Total {{ attribute_display_names["duration_ms"] }}:&nbsp;</td>
-        <td>{{ playlist.get_total_duration_string() }}</td>
+        <td>{{ playlist.statistics.get_total_duration_string() }}</td>
     </tr>
     <tr>
         <td>Average {{ attribute_display_names["duration_ms"] }}:&nbsp;</td>
-        <td>{{ playlist.get_average_duration_string() }}</td>
+        <td>{{ playlist.statistics.get_average_duration_string() }}</td>
     </tr>
     <tr>
         <td>Average {{ attribute_display_names["release_year"] }}:&nbsp;</td>
-        <td>{{ playlist.get_average_release_year_string() }}</td>
+        <td>{{ playlist.statistics.get_average_release_year_string() }}</td>
     </tr>
     <tr>
         <td>Average {{ attribute_display_names["popularity"] }}:&nbsp;</td>
-        <td>{{ playlist.get_average_popularity_string() }}</td>
+        <td>{{ playlist.statistics.get_average_popularity_string() }}</td>
     </tr>
     <tr>
         <td>Average {{ attribute_display_names["tempo"] }}:&nbsp;</td>
-        <td>{{ playlist.get_average_tempo_string() }}</td>
+        <td>{{ playlist.statistics.get_average_tempo_string() }}</td>
     </tr>
 </table>
