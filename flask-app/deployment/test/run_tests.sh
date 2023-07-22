@@ -1,3 +1,3 @@
 source ENV/bin/activate
-pytest
+pytest --verbose --durations=0
 deactivate
