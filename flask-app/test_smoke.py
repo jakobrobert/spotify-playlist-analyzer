@@ -55,11 +55,9 @@ class TestSmoke(unittest.TestCase):
         params = {"playlist_id_1": PLAYLIST_ID_1, "playlist_id_2": PLAYLIST_ID_2}
         self.__test_get_request(f"compare-playlists", params)
 
-    # TODOLATER fails as expected due to bug #238
     def test_track(self):
         self.__test_get_request(f"track/{TRACK_ID}")
 
-    # TODOLATER fails as expected due to bug #238
     def test_search_tracks(self):
         query = "Avicii"
         params = {"query": query}

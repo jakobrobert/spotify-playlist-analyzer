@@ -226,9 +226,8 @@ def get_valid_key_signatures():
 def get_track_by_id(track_id):
     try:
         track = spotify_client.get_track_by_id(track_id)
-        track_dict = __convert_track_to_dict(track)
-
-        return jsonify(track_dict)
+        # Note: If you need to change track_dict, need to explicitly copy so original object will not be changed
+        return jsonify(track.__dict__)
     except HttpError as error:
         return __create_error_response(error)
     except Exception:
@@ -246,7 +245,8 @@ def search_tracks():
         track_dicts = []
 
         for track in tracks:
-            track_dict = __convert_track_to_dict(track)
+            # Need to explicitly copy the dict, else changing the dict would change the original object
+            track_dict = track.__dict__
             track_dicts.append(track_dict)
 
         return jsonify(track_dicts)
