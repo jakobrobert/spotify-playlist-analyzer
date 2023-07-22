@@ -101,17 +101,10 @@ def get_playlist_by_id(playlist_id):
         __pick_random_tracks(playlist.tracks, request.args)
         __sort_tracks(playlist.tracks, request.args)
 
-        statistics = PlaylistStatistics(playlist.tracks)
-
         # Need to explicitly copy the dict, else changing the dict would change the original object
         playlist_dict = dict(playlist.__dict__)
 
-        # Add calculated values
-        playlist_dict["total_duration_ms"] = statistics.get_total_duration_ms()
-        playlist_dict["average_duration_ms"] = statistics.get_average_duration_ms()
-        playlist_dict["average_release_year"] = statistics.get_average_release_year()
-        playlist_dict["average_popularity"] = statistics.get_average_popularity()
-        playlist_dict["average_tempo"] = statistics.get_average_tempo()
+        __add_statistics_to_playlist_dict(playlist_dict, playlist.tracks)
 
         # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
         playlist_dict["tracks"] = []
@@ -126,6 +119,16 @@ def get_playlist_by_id(playlist_id):
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
+
+
+def __add_statistics_to_playlist_dict(playlist_dict, tracks):
+    statistics = PlaylistStatistics(tracks)
+
+    playlist_dict["total_duration_ms"] = statistics.get_total_duration_ms()
+    playlist_dict["average_duration_ms"] = statistics.get_average_duration_ms()
+    playlist_dict["average_release_year"] = statistics.get_average_release_year()
+    playlist_dict["average_popularity"] = statistics.get_average_popularity()
+    playlist_dict["average_tempo"] = statistics.get_average_tempo()
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
