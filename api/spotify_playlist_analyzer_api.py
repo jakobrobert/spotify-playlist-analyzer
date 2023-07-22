@@ -104,14 +104,13 @@ def get_playlist_by_id(playlist_id):
         # Need to explicitly copy the dict, else changing the dict would change the original object
         playlist_dict = dict(playlist.__dict__)
 
-        __add_statistics_to_playlist_dict(playlist_dict, playlist.tracks)
+        playlist_dict["statistics"] = __create_playlist_statistics_dict(playlist.tracks)
 
         # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
         playlist_dict["tracks"] = []
         for track in playlist.tracks:
-            # Need to explicitly copy the dict, else changing the dict would change the original object
-            track_dict = dict(track.__dict__)
-            playlist_dict["tracks"].append(track_dict)
+            # WARNING If you need to change track_dict, need to explicitly copy so original object will not be changed
+            playlist_dict["tracks"].append(track.__dict__)
 
         return jsonify(playlist_dict)
     except HttpError as error:
@@ -119,19 +118,6 @@ def get_playlist_by_id(playlist_id):
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
-
-
-# TODONOW better: this method should return statistics_dict, then add this to playlist_dict on caller
-def __add_statistics_to_playlist_dict(playlist_dict, tracks):
-    statistics = PlaylistStatistics(tracks)
-
-    playlist_dict["statistics"] = {
-        "total_duration_ms":  statistics.get_total_duration_ms(),
-        "average_duration_ms":  statistics.get_average_duration_ms(),
-        "average_release_year":  statistics.get_average_release_year(),
-        "average_popularity":  statistics.get_average_popularity(),
-        "average_tempo":  statistics.get_average_tempo(),
-    }
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
@@ -232,7 +218,7 @@ def get_valid_key_signatures():
 def get_track_by_id(track_id):
     try:
         track = spotify_client.get_track_by_id(track_id)
-        # Note: If you need to change track_dict, need to explicitly copy so original object will not be changed
+        # WARNING If you need to change track_dict, need to explicitly copy so original object will not be changed
         return jsonify(track.__dict__)
     except HttpError as error:
         return __create_error_response(error)
@@ -303,6 +289,19 @@ def __sort_tracks(tracks, request_args):
 
     reverse = (order == "descending")
     tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+
+
+@Utils.measure_execution_time(log_prefix="[API Helper] ")
+def __create_playlist_statistics_dict(tracks):
+    statistics = PlaylistStatistics(tracks)
+
+    return {
+        "total_duration_ms":  statistics.get_total_duration_ms(),
+        "average_duration_ms":  statistics.get_average_duration_ms(),
+        "average_release_year":  statistics.get_average_release_year(),
+        "average_popularity":  statistics.get_average_popularity(),
+        "average_tempo":  statistics.get_average_tempo(),
+    }
 
 
 def __create_error_response(error):
