@@ -2,6 +2,7 @@ from json import JSONDecodeError
 import requests
 
 from core.spotify.spotify_playlist import SpotifyPlaylist
+from core.spotify.spotify_playlist_statistics import SpotifyPlaylistStatistics
 from core.spotify.spotify_track import SpotifyTrack
 from core.http_error import HttpError
 from core.utils import Utils
@@ -19,7 +20,7 @@ class ApiClient:
         playlist = SpotifyPlaylist()
         playlist.id = playlist_dict["id"]
         playlist.name = playlist_dict["name"]
-        ApiClient.__fill_playlist_statistics_from_dict(playlist, playlist_dict["statistics"])
+        playlist.statistics = ApiClient.__convert_dict_to_playlist_statistics(playlist_dict["statistics"])
 
         playlist.tracks = []
         for track_data in playlist_dict["tracks"]:
@@ -130,12 +131,16 @@ class ApiClient:
         return HttpError(status_code, title, message, traceback_items)
 
     @staticmethod
-    def __fill_playlist_statistics_from_dict(playlist, statistics_dict):
-        playlist.total_duration_ms = statistics_dict["total_duration_ms"]
-        playlist.average_duration_ms = statistics_dict["average_duration_ms"]
-        playlist.average_release_year = statistics_dict["average_release_year"]
-        playlist.average_popularity = statistics_dict["average_popularity"]
-        playlist.average_tempo = statistics_dict["average_tempo"]
+    def __convert_dict_to_playlist_statistics(statistics_dict):
+        playlist_statistics = SpotifyPlaylistStatistics()
+
+        playlist_statistics.total_duration_ms = statistics_dict["total_duration_ms"]
+        playlist_statistics.average_duration_ms = statistics_dict["average_duration_ms"]
+        playlist_statistics.average_release_year = statistics_dict["average_release_year"]
+        playlist_statistics.average_popularity = statistics_dict["average_popularity"]
+        playlist_statistics.average_tempo = statistics_dict["average_tempo"]
+
+        return playlist_statistics
 
     @staticmethod
     def __convert_dict_to_track(track_dict):
