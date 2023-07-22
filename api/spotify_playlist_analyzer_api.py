@@ -121,14 +121,17 @@ def get_playlist_by_id(playlist_id):
         return __create_error_response(error)
 
 
+# TODONOW better: this method should return statistics_dict, then add this to playlist_dict on caller
 def __add_statistics_to_playlist_dict(playlist_dict, tracks):
     statistics = PlaylistStatistics(tracks)
 
-    playlist_dict["total_duration_ms"] = statistics.get_total_duration_ms()
-    playlist_dict["average_duration_ms"] = statistics.get_average_duration_ms()
-    playlist_dict["average_release_year"] = statistics.get_average_release_year()
-    playlist_dict["average_popularity"] = statistics.get_average_popularity()
-    playlist_dict["average_tempo"] = statistics.get_average_tempo()
+    playlist_dict["statistics"] = {
+        "total_duration_ms":  statistics.get_total_duration_ms(),
+        "average_duration_ms":  statistics.get_average_duration_ms(),
+        "average_release_year":  statistics.get_average_release_year(),
+        "average_popularity":  statistics.get_average_popularity(),
+        "average_tempo":  statistics.get_average_tempo(),
+    }
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
