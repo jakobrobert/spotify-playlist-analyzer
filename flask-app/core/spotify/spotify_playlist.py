@@ -1,10 +1,11 @@
-from core.spotify.spotify_track import SpotifyTrack
+from core.spotify.spotify_playlist_statistics import SpotifyPlaylistStatistics
 
 
 class SpotifyPlaylist:
     def __init__(self):
         self.id = "n/a"
         self.name = "n/a"
+        self.statistics = SpotifyPlaylistStatistics()
         self.tracks = []
 
     # Cannot be static, else template code cannot access it
