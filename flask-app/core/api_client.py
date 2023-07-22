@@ -19,13 +19,7 @@ class ApiClient:
         playlist = SpotifyPlaylist()
         playlist.id = playlist_dict["id"]
         playlist.name = playlist_dict["name"]
-        # TODONOW extract method?
-        statistics_dict = playlist_dict["statistics"]
-        playlist.total_duration_ms = statistics_dict["total_duration_ms"]
-        playlist.average_duration_ms = statistics_dict["average_duration_ms"]
-        playlist.average_release_year = statistics_dict["average_release_year"]
-        playlist.average_popularity = statistics_dict["average_popularity"]
-        playlist.average_tempo = statistics_dict["average_tempo"]
+        ApiClient.__fill_playlist_statistics_from_dict(playlist, playlist_dict["statistics"])
 
         playlist.tracks = []
         for track_data in playlist_dict["tracks"]:
@@ -134,6 +128,14 @@ class ApiClient:
         traceback_items = error["traceback_items"]
 
         return HttpError(status_code, title, message, traceback_items)
+
+    @staticmethod
+    def __fill_playlist_statistics_from_dict(playlist, statistics_dict):
+        playlist.total_duration_ms = statistics_dict["total_duration_ms"]
+        playlist.average_duration_ms = statistics_dict["average_duration_ms"]
+        playlist.average_release_year = statistics_dict["average_release_year"]
+        playlist.average_popularity = statistics_dict["average_popularity"]
+        playlist.average_tempo = statistics_dict["average_tempo"]
 
     @staticmethod
     def __convert_dict_to_track(track_dict):
