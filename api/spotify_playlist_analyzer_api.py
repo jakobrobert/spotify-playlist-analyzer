@@ -5,6 +5,7 @@ from urllib.parse import urlencode
 
 from flask import Flask, jsonify, request, redirect
 
+from core.api_utils import ApiUtils
 from core.filter_params import FilterParams
 from core.http_error import HttpError
 from core.playlist_statistics.playlist_statistics import PlaylistStatistics
@@ -97,7 +98,7 @@ def get_playlist_by_id(playlist_id):
     try:
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
-        playlist.tracks = __filter_tracks(playlist.tracks, request.args)
+        playlist.tracks = ApiUtils.filter_tracks(playlist.tracks, request.args)
         __pick_random_tracks(playlist.tracks, request.args)
         __sort_tracks(playlist.tracks, request.args)
 
@@ -247,13 +248,6 @@ def search_tracks():
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
-
-
-@Utils.measure_execution_time(log_prefix="[API Helper] ")
-def __filter_tracks(tracks, request_args):
-    filter_params = FilterParams.extract_filter_params_from_request_params(request_args)
-    track_filter = TrackFilter(tracks, filter_params)
-    return track_filter.filter_tracks()
 
 
 @Utils.measure_execution_time(log_prefix="[API Helper] ")
