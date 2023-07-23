@@ -23,4 +23,32 @@
         <td>Average {{ attribute_display_names["tempo"] }}:&nbsp;</td>
         <td>{{ playlist.statistics.get_average_tempo_string() }}</td>
     </tr>
+    <tr>
+        <td>Average {{ attribute_display_names["danceability"] }}:&nbsp;</td>
+        <td>{{ playlist.statistics.get_average_danceability_string() }}</td>
+    </tr>
+    <tr>
+        <td>Average {{ attribute_display_names["energy"] }}:&nbsp;</td>
+        <td>{{ playlist.statistics.get_average_energy_string() }}</td>
+    </tr>
+    <tr>
+        <td>Average {{ attribute_display_names["valence"] }}:&nbsp;</td>
+        <td>{{ playlist.statistics.get_average_valence_string() }}</td>
+    </tr>
+    <tr>
+        <td>Average {{ attribute_display_names["instrumentalness"] }}:&nbsp;</td>
+        <td>{{ playlist.statistics.get_average_instrumentalness_string() }}</td>
+    </tr>
+    <tr>
+        <td>Average {{ attribute_display_names["acousticness"] }}:&nbsp;</td>
+        <td>{{ playlist.statistics.get_average_acousticness_string() }}</td>
+    </tr>
+    <tr>
+        <td>Average {{ attribute_display_names["liveness"] }}:&nbsp;</td>
+        <td>{{ playlist.statistics.get_average_liveness_string() }}</td>
+    </tr>
+    <tr>
+        <td>Average {{ attribute_display_names["speechiness"] }}:&nbsp;</td>
+        <td>{{ playlist.statistics.get_average_speechiness_string() }}</td>
+    </tr>
 </table>
