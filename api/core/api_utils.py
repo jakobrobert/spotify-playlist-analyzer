@@ -1,6 +1,8 @@
 import operator
 import random
 
+from flask import jsonify
+
 from core.filter_params import FilterParams
 from core.http_error import HttpError
 from core.playlist_statistics.playlist_statistics import PlaylistStatistics
@@ -9,6 +11,32 @@ from core.utils import Utils
 
 
 class ApiUtils:
+    @staticmethod
+    @Utils.measure_execution_time(log_prefix="ApiUtils.")
+    def create_error_response(error):
+        # Need to convert traceback_items manually, __dict__ is not supported
+        traceback_items_converted = []
+
+        for traceback_item in error.traceback_items:
+            traceback_item_converted = []
+
+            for traceback_item_attribute in traceback_item:
+                traceback_item_converted.append(str(traceback_item_attribute))
+
+            traceback_items_converted.append(traceback_item_converted)
+
+        response_data = {
+            "error": {
+                "status_code": error.status_code,
+                "title": error.title,
+                "message": error.message,
+                "traceback_items": traceback_items_converted
+            }
+        }
+
+        response = jsonify(response_data)
+        return response, error.status_code
+
     @staticmethod
     @Utils.measure_execution_time(log_prefix="ApiUtils.")
     def filter_tracks(tracks, request_args):
