@@ -29,16 +29,10 @@ class SpotifyPlaylistStatistics:
         return SpotifyPlaylistStatistics.number_to_string(self.average_release_year)
 
     def get_average_popularity_string(self):
-        if not self.average_popularity:
-            return "n/a"
-
-        return f"{self.average_popularity:.1f}"
+        return SpotifyPlaylistStatistics.number_to_string(self.average_popularity)
 
     def get_average_tempo_string(self):
-        if not self.average_tempo:
-            return "n/a"
-
-        return f"{self.average_tempo:.1f}"
+        return SpotifyPlaylistStatistics.number_to_string(self.average_tempo)
 
     # TODONOW implement new methods get_average_x_string
     def get_average_danceability_string(self):
