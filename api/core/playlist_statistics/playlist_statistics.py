@@ -28,36 +28,21 @@ class PlaylistStatistics:
         if not self.tracks:
             return None
 
-        total_popularity = 0.0
-
-        for track in self.tracks:
-            total_popularity += track.popularity
-
-        return total_popularity / len(self.tracks)
+        return statistics.mean(track.popularity for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_release_year(self):
         if not self.tracks:
             return None
 
-        total_year = 0.0
-
-        for track in self.tracks:
-            total_year += track.release_year
-
-        return total_year / len(self.tracks)
+        return statistics.mean(track.release_year for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_tempo(self):
         if not self.tracks:
             return None
 
-        total_tempo = 0.0
-
-        for track in self.tracks:
-            total_tempo += track.tempo
-
-        return total_tempo / len(self.tracks)
+        return statistics.mean(track.tempo for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_duration_distribution_items(self):
