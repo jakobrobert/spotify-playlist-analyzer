@@ -1,5 +1,4 @@
 import configparser
-import operator
 from urllib.parse import urlencode
 
 from flask import Flask, jsonify, request, redirect
@@ -98,7 +97,7 @@ def get_playlist_by_id(playlist_id):
 
         playlist.tracks = ApiUtils.filter_tracks(playlist.tracks, request.args)
         ApiUtils.pick_random_tracks(playlist.tracks, request.args)
-        __sort_tracks(playlist.tracks, request.args)
+        ApiUtils.sort_tracks(playlist.tracks, request.args)
 
         # Need to explicitly copy the dict, else changing the dict would change the original object
         playlist_dict = dict(playlist.__dict__)
@@ -246,18 +245,6 @@ def search_tracks():
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
-
-
-@Utils.measure_execution_time(log_prefix="[API Helper] ")
-def __sort_tracks(tracks, request_args):
-    sort_by = request_args.get("sort_by") or "none"
-    order = request_args.get("order") or "ascending"
-
-    if sort_by == "none":
-        return
-
-    reverse = (order == "descending")
-    tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
 
 @Utils.measure_execution_time(log_prefix="[API Helper] ")
