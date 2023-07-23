@@ -1,12 +1,10 @@
 import configparser
 import operator
-import random
 from urllib.parse import urlencode
 
 from flask import Flask, jsonify, request, redirect
 
 from core.api_utils import ApiUtils
-from core.filter_params import FilterParams
 from core.http_error import HttpError
 from core.playlist_statistics.playlist_statistics import PlaylistStatistics
 from core.spotify.spotify_client import SpotifyClient
@@ -99,7 +97,7 @@ def get_playlist_by_id(playlist_id):
         playlist = spotify_client.get_playlist_by_id(playlist_id)
 
         playlist.tracks = ApiUtils.filter_tracks(playlist.tracks, request.args)
-        __pick_random_tracks(playlist.tracks, request.args)
+        ApiUtils.pick_random_tracks(playlist.tracks, request.args)
         __sort_tracks(playlist.tracks, request.args)
 
         # Need to explicitly copy the dict, else changing the dict would change the original object
@@ -248,29 +246,6 @@ def search_tracks():
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
-
-
-@Utils.measure_execution_time(log_prefix="[API Helper] ")
-def __pick_random_tracks(tracks, request_args):
-    pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
-    if not pick_random_tracks_enabled:
-        return
-
-    pick_random_tracks_count = Utils.get_request_arg_as_int_or_none(request_args, "pick_random_tracks_count")
-    if pick_random_tracks_count is None:
-        raise HttpError(400, "API Error", "Missing request arg 'pick_random_tracks_count'")
-
-    if pick_random_tracks_count < 0:
-        raise HttpError(
-            400, "API Error",
-            "Invalid value for request arg 'pick_random_tracks_count' -> must be > 0"
-        )
-
-    if pick_random_tracks_count >= len(tracks):
-        return
-
-    random.shuffle(tracks)
-    del tracks[pick_random_tracks_count:]
 
 
 @Utils.measure_execution_time(log_prefix="[API Helper] ")
