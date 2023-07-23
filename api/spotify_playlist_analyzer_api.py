@@ -45,10 +45,10 @@ def authorize():
 
         return redirect(authorization_url)
     except HttpError as error:
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "authorize/callback", methods=["GET"])
@@ -83,10 +83,10 @@ def authorize_callback():
 
         return f"Authorization was successful. Written access token to file '{file_name}'"
     except HttpError as error:
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
@@ -112,10 +112,10 @@ def get_playlist_by_id(playlist_id):
 
         return jsonify(playlist_dict)
     except HttpError as error:
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
@@ -131,10 +131,10 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
         return response
     except HttpError as error:
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "playlist", methods=["POST"])
@@ -148,10 +148,10 @@ def create_playlist():
 
         return jsonify({"playlist_id": playlist_id})
     except HttpError as error:
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
@@ -169,7 +169,7 @@ def get_valid_attributes_for_attribute_distribution():
         return jsonify(attributes)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "valid-attributes-for-sort-option")
@@ -188,7 +188,7 @@ def get_valid_attributes_for_sort_option():
         return jsonify(attributes)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "numerical-attributes-for-filter-option")
@@ -198,7 +198,7 @@ def get_numerical_attributes_for_filter_option():
         return jsonify(TrackFilter.NUMERICAL_ATTRIBUTES)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
@@ -208,7 +208,7 @@ def get_valid_key_signatures():
         return jsonify(SpotifyTrack.KEY_SIGNATURE_STRINGS)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
@@ -219,10 +219,10 @@ def get_track_by_id(track_id):
         # WARNING If you need to change track_dict, need to explicitly copy so original object will not be changed
         return jsonify(track.__dict__)
     except HttpError as error:
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
 @app.route(URL_PREFIX + "search-tracks", methods=["GET"])
@@ -241,35 +241,13 @@ def search_tracks():
 
         return jsonify(track_dicts)
     except HttpError as error:
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
     except Exception:
         error = HttpError.from_last_exception()
-        return __create_error_response(error)
+        return ApiUtils.create_error_response(error)
 
 
-def __create_error_response(error):
-    # Need to convert traceback_items manually, __dict__ is not supported
-    traceback_items_converted = []
 
-    for traceback_item in error.traceback_items:
-        traceback_item_converted = []
-
-        for traceback_item_attribute in traceback_item:
-            traceback_item_converted.append(str(traceback_item_attribute))
-
-        traceback_items_converted.append(traceback_item_converted)
-
-    response_data = {
-        "error": {
-            "status_code": error.status_code,
-            "title": error.title,
-            "message": error.message,
-            "traceback_items": traceback_items_converted
-        }
-    }
-    response = jsonify(response_data)
-
-    return response, error.status_code
 
 
 def __get_attribute_distribution_items(attribute, tracks):

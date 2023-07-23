@@ -41,8 +41,8 @@ class SpotifyClient:
 
     @Utils.measure_execution_time(log_prefix="SpotifyClient.")
     def get_playlist_by_id(self, playlist_id):
-        if playlist_id is None:
-            raise HttpError(400, "playlist_id is None!")
+        if not playlist_id:
+            raise HttpError(400, title="API: get_playlist_by_id failed", message="'playlist_id' is None or empty")
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token_by_client_credentials()
