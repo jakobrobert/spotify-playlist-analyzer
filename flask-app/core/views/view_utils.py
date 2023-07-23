@@ -15,8 +15,6 @@ class ViewUtils:
         "release_year": "Release Year",
         "popularity": "Popularity",
         "genres": "Genres",
-
-        # Audio Features
         "tempo": "Tempo (BPM)",
         "key": "Key",
         "mode": "Mode",
