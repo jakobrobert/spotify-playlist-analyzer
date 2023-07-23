@@ -3,6 +3,7 @@ import random
 
 from core.filter_params import FilterParams
 from core.http_error import HttpError
+from core.playlist_statistics.playlist_statistics import PlaylistStatistics
 from core.track_filter import TrackFilter
 from core.utils import Utils
 
@@ -16,7 +17,7 @@ class ApiUtils:
         return track_filter.filter_tracks()
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="[API Helper] ")
+    @Utils.measure_execution_time(log_prefix="ApiUtils.")
     def pick_random_tracks(tracks, request_args):
         pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
         if not pick_random_tracks_enabled:
@@ -39,7 +40,7 @@ class ApiUtils:
         del tracks[pick_random_tracks_count:]
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="[API Helper] ")
+    @Utils.measure_execution_time(log_prefix="ApiUtils.")
     def sort_tracks(tracks, request_args):
         sort_by = request_args.get("sort_by") or "none"
         order = request_args.get("order") or "ascending"
@@ -49,3 +50,16 @@ class ApiUtils:
 
         reverse = (order == "descending")
         tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
+
+    @staticmethod
+    @Utils.measure_execution_time(log_prefix="ApiUtils.")
+    def create_playlist_statistics_dict(tracks):
+        statistics = PlaylistStatistics(tracks)
+
+        return {
+            "total_duration_ms": statistics.get_total_duration_ms(),
+            "average_duration_ms": statistics.get_average_duration_ms(),
+            "average_release_year": statistics.get_average_release_year(),
+            "average_popularity": statistics.get_average_popularity(),
+            "average_tempo": statistics.get_average_tempo(),
+        }

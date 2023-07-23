@@ -102,7 +102,7 @@ def get_playlist_by_id(playlist_id):
         # Need to explicitly copy the dict, else changing the dict would change the original object
         playlist_dict = dict(playlist.__dict__)
 
-        playlist_dict["statistics"] = __create_playlist_statistics_dict(playlist.tracks)
+        playlist_dict["statistics"] = ApiUtils.create_playlist_statistics_dict(playlist.tracks)
 
         # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
         playlist_dict["tracks"] = []
@@ -245,19 +245,6 @@ def search_tracks():
     except Exception:
         error = HttpError.from_last_exception()
         return __create_error_response(error)
-
-
-@Utils.measure_execution_time(log_prefix="[API Helper] ")
-def __create_playlist_statistics_dict(tracks):
-    statistics = PlaylistStatistics(tracks)
-
-    return {
-        "total_duration_ms":  statistics.get_total_duration_ms(),
-        "average_duration_ms":  statistics.get_average_duration_ms(),
-        "average_release_year":  statistics.get_average_release_year(),
-        "average_popularity":  statistics.get_average_popularity(),
-        "average_tempo":  statistics.get_average_tempo(),
-    }
 
 
 def __create_error_response(error):
