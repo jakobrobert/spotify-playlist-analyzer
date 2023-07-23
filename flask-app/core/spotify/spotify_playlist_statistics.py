@@ -26,10 +26,7 @@ class SpotifyPlaylistStatistics:
         return SpotifyTrack.get_duration_string_helper(self.average_duration_ms)
 
     def get_average_release_year_string(self):
-        if not self.average_release_year:
-            return "n/a"
-
-        return f"{self.average_release_year:.1f}"
+        return SpotifyPlaylistStatistics.number_to_string(self.average_release_year)
 
     def get_average_popularity_string(self):
         if not self.average_popularity:
@@ -71,4 +68,4 @@ class SpotifyPlaylistStatistics:
         if not value:
             return "n/a"
 
-        return f"{value:1.f}"
+        return f"{value:.1f}"
