@@ -1,3 +1,5 @@
+import statistics
+
 from core.spotify.spotify_track import SpotifyTrack
 from core.playlist_statistics.attribute_distribution_interval import AttributeDistributionInterval
 from core.utils import Utils
@@ -19,7 +21,7 @@ class PlaylistStatistics:
         if not self.tracks:
             return None
 
-        return self.get_total_duration_ms() / len(self.tracks)
+        return statistics.mean(track.duration_ms for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_popularity(self):
