@@ -9,12 +9,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_total_duration_ms(self):
-        total_duration_ms = 0
-
-        for track in self.tracks:
-            total_duration_ms += track.duration_ms
-
-        return total_duration_ms
+        return sum(track.duration_ms for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_duration_ms(self):
