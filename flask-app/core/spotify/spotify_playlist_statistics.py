@@ -42,3 +42,33 @@ class SpotifyPlaylistStatistics:
             return "n/a"
 
         return f"{self.average_tempo:.1f}"
+
+    # TODONOW implement new methods get_average_x_string
+    def get_average_danceability_string(self):
+        return "n/a"
+
+    def get_average_energy_string(self):
+        return "n/a"
+
+    def get_average_valence_string(self):
+        return "n/a"
+
+    def get_average_instrumentalness_string(self):
+        return "n/a"
+
+    def get_average_acousticness_string(self):
+        return "n/a"
+
+    def get_average_liveness_string(self):
+        return "n/a"
+
+    def get_average_speechiness_string(self):
+        return "n/a"
+
+    # TODONOW use for existing get_x_string methods and test
+    @staticmethod
+    def number_to_string(value):
+        if not value:
+            return "n/a"
+
+        return f"{value:1.f}"
