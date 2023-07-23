@@ -1,3 +1,5 @@
+import statistics
+
 from core.spotify.spotify_track import SpotifyTrack
 from core.playlist_statistics.attribute_distribution_interval import AttributeDistributionInterval
 from core.utils import Utils
@@ -9,55 +11,38 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_total_duration_ms(self):
-        total_duration_ms = 0
+        if not self.tracks:
+            return 0.0
 
-        for track in self.tracks:
-            total_duration_ms += track.duration_ms
-
-        return total_duration_ms
+        return sum(track.duration_ms for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_duration_ms(self):
         if not self.tracks:
             return None
 
-        return self.get_total_duration_ms() / len(self.tracks)
+        return statistics.mean(track.duration_ms for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_popularity(self):
         if not self.tracks:
             return None
 
-        total_popularity = 0.0
-
-        for track in self.tracks:
-            total_popularity += track.popularity
-
-        return total_popularity / len(self.tracks)
+        return statistics.mean(track.popularity for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_release_year(self):
         if not self.tracks:
             return None
 
-        total_year = 0.0
-
-        for track in self.tracks:
-            total_year += track.release_year
-
-        return total_year / len(self.tracks)
+        return statistics.mean(track.release_year for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_tempo(self):
         if not self.tracks:
             return None
 
-        total_tempo = 0.0
-
-        for track in self.tracks:
-            total_tempo += track.tempo
-
-        return total_tempo / len(self.tracks)
+        return statistics.mean(track.tempo for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_duration_distribution_items(self):
