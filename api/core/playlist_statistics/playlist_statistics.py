@@ -9,6 +9,9 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_total_duration_ms(self):
+        if not self.tracks:
+            return 0.0
+
         return sum(track.duration_ms for track in self.tracks)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
