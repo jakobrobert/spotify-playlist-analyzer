@@ -1,3 +1,4 @@
+import operator
 import random
 
 from core.filter_params import FilterParams
@@ -36,3 +37,15 @@ class ApiUtils:
 
         random.shuffle(tracks)
         del tracks[pick_random_tracks_count:]
+
+    @staticmethod
+    @Utils.measure_execution_time(log_prefix="[API Helper] ")
+    def sort_tracks(tracks, request_args):
+        sort_by = request_args.get("sort_by") or "none"
+        order = request_args.get("order") or "ascending"
+
+        if sort_by == "none":
+            return
+
+        reverse = (order == "descending")
+        tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
