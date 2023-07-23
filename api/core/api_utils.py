@@ -91,3 +91,41 @@ class ApiUtils:
             "average_popularity": statistics.get_average_popularity(),
             "average_tempo": statistics.get_average_tempo(),
         }
+
+    @staticmethod
+    @Utils.measure_execution_time(log_prefix="ApiUtils.")
+    def get_attribute_distribution_items(attribute, tracks):
+        statistics = PlaylistStatistics(tracks)
+
+        if attribute == "duration_ms":
+            return statistics.get_duration_distribution_items()
+        if attribute == "release_year":
+            return statistics.get_release_year_distribution_items()
+        if attribute == "popularity":
+            return statistics.get_popularity_distribution_items()
+        if attribute == "tempo":
+            return statistics.get_tempo_distribution_items()
+        if attribute == "key":
+            return statistics.get_key_distribution_items()
+        if attribute == "mode":
+            return statistics.get_mode_distribution_items()
+        if attribute == "key_signature":
+            return statistics.get_key_signature_distribution_items()
+        if attribute == "loudness":
+            return statistics.get_loudness_distribution_items()
+        if attribute == "danceability":
+            return statistics.get_danceability_distribution_items()
+        if attribute == "energy":
+            return statistics.get_energy_distribution_items()
+        if attribute == "valence":
+            return statistics.get_valence_distribution_items()
+        if attribute == "instrumentalness":
+            return statistics.get_instrumentalness_distribution_items()
+        if attribute == "acousticness":
+            return statistics.get_acousticness_distribution_items()
+        if attribute == "liveness":
+            return statistics.get_liveness_distribution_items()
+        if attribute == "speechiness":
+            return statistics.get_speechiness_distribution_items()
+
+        raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")
