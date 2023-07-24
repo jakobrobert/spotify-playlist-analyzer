@@ -32,27 +32,33 @@ class PlaylistStatistics:
     def get_average_tempo(self):
         return self.__get_average_of_attribute("tempo")
 
-    # TODONOW implement average values
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_speechiness(self):
-        return 42
+        return self.__get_average_of_attribute("speechiness")
 
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_liveness(self):
-        return 42
+        return self.__get_average_of_attribute("liveness")
 
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_acousticness(self):
-        return 42
+        return self.__get_average_of_attribute("acousticness")
 
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_instrumentalness(self):
-        return 42
+        return self.__get_average_of_attribute("instrumentalness")
 
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_valence(self):
-        return 42
+        return self.__get_average_of_attribute("valence")
 
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_energy(self):
-        return 42
+        return self.__get_average_of_attribute("energy")
 
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_danceability(self):
-        return 42
+        return self.__get_average_of_attribute("danceability")
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_duration_distribution_items(self):
