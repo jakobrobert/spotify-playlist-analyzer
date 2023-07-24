@@ -139,6 +139,13 @@ class ApiClient:
         playlist_statistics.average_release_year = statistics_dict["average_release_year"]
         playlist_statistics.average_popularity = statistics_dict["average_popularity"]
         playlist_statistics.average_tempo = statistics_dict["average_tempo"]
+        playlist_statistics.average_danceability = statistics_dict["average_danceability"]
+        playlist_statistics.average_energy = statistics_dict["average_energy"]
+        playlist_statistics.average_valence = statistics_dict["average_valence"]
+        playlist_statistics.average_instrumentalness = statistics_dict["average_instrumentalness"]
+        playlist_statistics.average_acousticness = statistics_dict["average_acousticness"]
+        playlist_statistics.average_liveness = statistics_dict["average_liveness"]
+        playlist_statistics.average_speechiness = statistics_dict["average_speechiness"]
 
         return playlist_statistics
 
