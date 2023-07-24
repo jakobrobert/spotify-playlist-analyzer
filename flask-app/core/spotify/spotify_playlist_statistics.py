@@ -41,7 +41,6 @@ class SpotifyPlaylistStatistics:
     def get_average_tempo_string(self):
         return SpotifyPlaylistStatistics.number_to_string(self.average_tempo)
 
-    # TODONOW implement new methods get_average_x_string
     def get_average_danceability_string(self):
         return SpotifyPlaylistStatistics.number_to_string(self.average_danceability)
 
