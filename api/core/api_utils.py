@@ -90,6 +90,13 @@ class ApiUtils:
             "average_release_year": statistics.get_average_release_year(),
             "average_popularity": statistics.get_average_popularity(),
             "average_tempo": statistics.get_average_tempo(),
+            "average_danceability": statistics.get_average_danceability(),
+            "average_energy": statistics.get_average_energy(),
+            "average_valence": statistics.get_average_valence(),
+            "average_instrumentalness": statistics.get_average_instrumentalness(),
+            "average_acousticness": statistics.get_average_acousticness(),
+            "average_liveness": statistics.get_average_liveness(),
+            "average_speechiness": statistics.get_average_speechiness(),
         }
 
     @staticmethod

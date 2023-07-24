@@ -44,6 +44,28 @@ class PlaylistStatistics:
 
         return statistics.mean(track.tempo for track in self.tracks)
 
+    # TODONOW implement average values
+    def get_average_speechiness(self):
+        return 42
+
+    def get_average_liveness(self):
+        return 42
+
+    def get_average_acousticness(self):
+        return 42
+
+    def get_average_instrumentalness(self):
+        return 42
+
+    def get_average_valence(self):
+        return 42
+
+    def get_average_energy(self):
+        return 42
+
+    def get_average_danceability(self):
+        return 42
+
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_duration_distribution_items(self):
         first_interval_max_duration = 120000  # 120 seconds -> 02:00
