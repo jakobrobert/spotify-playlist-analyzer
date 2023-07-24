@@ -22,24 +22,15 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_popularity(self):
-        if not self.tracks:
-            return None
-
-        return statistics.mean(track.popularity for track in self.tracks)
+        return self.__get_average_of_attribute("popularity")
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_release_year(self):
-        if not self.tracks:
-            return None
-
-        return statistics.mean(track.release_year for track in self.tracks)
+        return self.__get_average_of_attribute("release_year")
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_tempo(self):
-        if not self.tracks:
-            return None
-
-        return statistics.mean(track.tempo for track in self.tracks)
+        return self.__get_average_of_attribute("tempo")
 
     # TODONOW implement average values
     def get_average_speechiness(self):
