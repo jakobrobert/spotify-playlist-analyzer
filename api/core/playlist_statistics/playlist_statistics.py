@@ -18,31 +18,47 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_duration_ms(self):
-        if not self.tracks:
-            return None
-
-        return statistics.mean(track.duration_ms for track in self.tracks)
+        return self.__get_average_of_attribute("duration_ms")
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_popularity(self):
-        if not self.tracks:
-            return None
-
-        return statistics.mean(track.popularity for track in self.tracks)
+        return self.__get_average_of_attribute("popularity")
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_release_year(self):
-        if not self.tracks:
-            return None
-
-        return statistics.mean(track.release_year for track in self.tracks)
+        return self.__get_average_of_attribute("release_year")
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_tempo(self):
-        if not self.tracks:
-            return None
+        return self.__get_average_of_attribute("tempo")
 
-        return statistics.mean(track.tempo for track in self.tracks)
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    def get_average_speechiness(self):
+        return self.__get_average_of_attribute("speechiness")
+
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    def get_average_liveness(self):
+        return self.__get_average_of_attribute("liveness")
+
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    def get_average_acousticness(self):
+        return self.__get_average_of_attribute("acousticness")
+
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    def get_average_instrumentalness(self):
+        return self.__get_average_of_attribute("instrumentalness")
+
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    def get_average_valence(self):
+        return self.__get_average_of_attribute("valence")
+
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    def get_average_energy(self):
+        return self.__get_average_of_attribute("energy")
+
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    def get_average_danceability(self):
+        return self.__get_average_of_attribute("danceability")
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_duration_distribution_items(self):
@@ -199,6 +215,12 @@ class PlaylistStatistics:
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_valence_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.valence)
+
+    def __get_average_of_attribute(self, attribute):
+        if not self.tracks:
+            return None
+
+        return statistics.mean(getattr(track, attribute) for track in self.tracks)
 
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):

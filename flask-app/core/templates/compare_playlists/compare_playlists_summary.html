@@ -14,29 +14,65 @@
         <td>{{ playlist_1.tracks | length }}</td>
         <td>{{ playlist_2.tracks | length }}</td>
     </tr>
+    <!-- TODONOW fix: access playlist.statistics -->
     <tr>
         <th>Total {{ attribute_display_names["duration_ms"] }}</th>
-        <td>{{ playlist_1.get_total_duration_string() }}</td>
-        <td>{{ playlist_2.get_total_duration_string() }}</td>
+        <td>{{ playlist_1.statistics.get_total_duration_string() }}</td>
+        <td>{{ playlist_2.statistics.get_total_duration_string() }}</td>
     </tr>
     <tr>
         <th>Average {{ attribute_display_names["duration_ms"] }}</th>
-        <td>{{ playlist_1.get_average_duration_string() }}</td>
-        <td>{{ playlist_2.get_average_duration_string() }}</td>
+        <td>{{ playlist_1.statistics.get_average_duration_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_duration_string() }}</td>
     </tr>
     <tr>
         <th>Average {{ attribute_display_names["release_year"] }}</th>
-        <td>{{ playlist_1.get_average_release_year_string() }}</td>
-        <td>{{ playlist_2.get_average_release_year_string() }}</td>
+        <td>{{ playlist_1.statistics.get_average_release_year_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_release_year_string() }}</td>
     </tr>
     <tr>
         <th>Average {{ attribute_display_names["popularity"] }}</th>
-        <td>{{ playlist_1.get_average_popularity_string() }}</td>
-        <td>{{ playlist_2.get_average_popularity_string() }}</td>
+        <td>{{ playlist_1.statistics.get_average_popularity_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_popularity_string() }}</td>
     </tr>
     <tr>
         <th>Average {{ attribute_display_names["tempo"] }}</th>
-        <td>{{ playlist_1.get_average_tempo_string() }}</td>
-        <td>{{ playlist_2.get_average_tempo_string() }}</td>
+        <td>{{ playlist_1.statistics.get_average_tempo_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_tempo_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["danceability"] }}</th>
+        <td>{{ playlist_1.statistics.get_average_danceability_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_danceability_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["energy"] }}</th>
+        <td>{{ playlist_1.statistics.get_average_energy_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_energy_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["valence"] }}</th>
+        <td>{{ playlist_1.statistics.get_average_valence_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_valence_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["instrumentalness"] }}</th>
+        <td>{{ playlist_1.statistics.get_average_instrumentalness_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_instrumentalness_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["acousticness"] }}</th>
+        <td>{{ playlist_1.statistics.get_average_acousticness_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_acousticness_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["liveness"] }}</th>
+        <td>{{ playlist_1.statistics.get_average_liveness_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_liveness_string() }}</td>
+    </tr>
+    <tr>
+        <th>Average {{ attribute_display_names["speechiness"] }}</th>
+        <td>{{ playlist_1.statistics.get_average_speechiness_string() }}</td>
+        <td>{{ playlist_2.statistics.get_average_speechiness_string() }}</td>
     </tr>
 </table>
