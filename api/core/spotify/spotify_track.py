@@ -77,6 +77,13 @@ class SpotifyTrack:
         if "pop" in genre:
             return "Pop"
 
+        if "rock" in genre:
+            return "Rock"
+
+        if "edm" in genre or "dance" in genre or "house" in genre or "trance" in genre or "hands up" in genre or\
+                "hardstyle" in genre or "big room" in genre:
+            return "EDM"
+
         # TODONOW add other super genres
         return "Others"
 
