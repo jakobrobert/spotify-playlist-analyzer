@@ -32,8 +32,7 @@ class SpotifyTrack:
         self.release_year = 0
         self.popularity = 0
         self.genres = []
-
-        # Audio Features
+        self.super_genres = []
         self.tempo = 0
         self.key = -1
         self.mode = -1
@@ -46,6 +45,10 @@ class SpotifyTrack:
         self.acousticness = 0
         self.liveness = 0
         self.speechiness = 0
+
+    def update_genres_and_super_genres(self, genres):
+        self.genres = genres
+        self.__update_super_genres_by_genres(genres)
 
     def update_attributes_by_audio_features(self, audio_features):
         self.tempo = audio_features["tempo"]
@@ -61,12 +64,39 @@ class SpotifyTrack:
         self.liveness = SpotifyTrack.__process_audio_feature_value(audio_features["liveness"])
         self.speechiness = SpotifyTrack.__process_audio_feature_value(audio_features["speechiness"])
 
-    @staticmethod
-    def __get_from_list_or_none(_list, index):
-        if index < 0 or index >= len(_list):
-            return None
+    def __update_super_genres_by_genres(self, genres):
+        self.super_genres = []
 
-        return _list[index]
+        for genre in genres:
+            super_genre = SpotifyTrack.__get_super_genre_for_genre(genre)
+            if super_genre not in self.super_genres:
+                self.super_genres.append(super_genre)
+
+    @staticmethod
+    def __get_super_genre_for_genre(genre):
+        if "pop" in genre:
+            return "Pop"
+
+        if "rock" in genre:
+            return "Rock"
+
+        if "edm" in genre or "dance" in genre or "house" in genre or "trance" in genre or "hands up" in genre or\
+                "hardstyle" in genre or "big room" in genre:
+            return "EDM"
+
+        if "hip hop" in genre or "rap" in genre:
+            return "Hip Hop / Rap"
+
+        if "schlager" in genre:
+            return "Schlager"
+
+        if "black metal" in genre or "death metal" in genre:
+            return "Extreme Metal"
+
+        if "metal" in genre or "neue deutsche harte" or "industrial" in genre:
+            return "Metal"
+
+        return "Others"
 
     @staticmethod
     def __get_key_signature_from_key_and_mode(key, mode):
