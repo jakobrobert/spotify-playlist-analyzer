@@ -66,13 +66,6 @@ class SpotifyTrack:
         self.speechiness = SpotifyTrack.__process_audio_feature_value(audio_features["speechiness"])
 
     @staticmethod
-    def __get_from_list_or_none(_list, index):
-        if index < 0 or index >= len(_list):
-            return None
-
-        return _list[index]
-
-    @staticmethod
     def __get_key_signature_from_key_and_mode(key, mode):
         if (key == Key.C and mode == Mode.Major) or (key == Key.A and mode == Mode.Minor):
             return "♮"
