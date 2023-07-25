@@ -15,6 +15,7 @@ class ViewUtils:
         "release_year": "Release Year",
         "popularity": "Popularity",
         "genres": "Genres",
+        "super_genres": "Super Genres",
         "tempo": "Tempo (BPM)",
         "key": "Key",
         "mode": "Mode",

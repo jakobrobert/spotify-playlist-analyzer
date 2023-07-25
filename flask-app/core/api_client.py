@@ -161,8 +161,7 @@ class ApiClient:
         track.release_year = track_dict["release_year"]
         track.popularity = track_dict["popularity"]
         track.genres = track_dict["genres"]
-
-        # Audio Features
+        track.super_genres = track_dict["super_genres"]
         track.tempo = track_dict["tempo"]
         track.key = track_dict["key"]
         track.mode = track_dict["mode"]
