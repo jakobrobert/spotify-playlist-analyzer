@@ -90,6 +90,12 @@ class SpotifyTrack:
         if "schlager" in genre:
             return "Schlager"
 
+        if "black metal" in genre or "death metal" in genre:
+            return "Extreme Metal"
+
+        if "metal" in genre:
+            return "Metal"
+
         # TODONOW add other super genres
         return "Others"
 
