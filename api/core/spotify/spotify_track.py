@@ -32,8 +32,7 @@ class SpotifyTrack:
         self.release_year = 0
         self.popularity = 0
         self.genres = []
-
-        # Audio Features
+        self.super_genres = []
         self.tempo = 0
         self.key = -1
         self.mode = -1
@@ -46,6 +45,11 @@ class SpotifyTrack:
         self.acousticness = 0
         self.liveness = 0
         self.speechiness = 0
+
+    def update_genres_and_super_genres(self, genres):
+        self.genres = genres
+        # TODONOW update super_genres
+        self.super_genres = ["Others"]
 
     def update_attributes_by_audio_features(self, audio_features):
         self.tempo = audio_features["tempo"]
