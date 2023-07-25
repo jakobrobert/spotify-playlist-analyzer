@@ -48,8 +48,7 @@ class SpotifyTrack:
 
     def update_genres_and_super_genres(self, genres):
         self.genres = genres
-        # TODONOW update super_genres
-        self.super_genres = ["Others"]
+        self.__update_super_genres_by_genres(genres)
 
     def update_attributes_by_audio_features(self, audio_features):
         self.tempo = audio_features["tempo"]
@@ -64,6 +63,22 @@ class SpotifyTrack:
         self.acousticness = SpotifyTrack.__process_audio_feature_value(audio_features["acousticness"])
         self.liveness = SpotifyTrack.__process_audio_feature_value(audio_features["liveness"])
         self.speechiness = SpotifyTrack.__process_audio_feature_value(audio_features["speechiness"])
+
+    def __update_super_genres_by_genres(self, genres):
+        self.super_genres = []
+
+        for genre in genres:
+            super_genre = SpotifyTrack.__get_super_genre_for_genre(genre)
+            if super_genre not in self.super_genres:
+                self.super_genres.append(super_genre)
+
+    @staticmethod
+    def __get_super_genre_for_genre(genre):
+        if "pop" in genre:
+            return "Pop"
+
+        # TODONOW add other super genres
+        return "Others"
 
     @staticmethod
     def __get_key_signature_from_key_and_mode(key, mode):
