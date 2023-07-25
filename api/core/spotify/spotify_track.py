@@ -84,6 +84,12 @@ class SpotifyTrack:
                 "hardstyle" in genre or "big room" in genre:
             return "EDM"
 
+        if "hip hop" in genre or "rap" in genre:
+            return "Hip Hop / Rap"
+
+        if "schlager" in genre:
+            return "Schlager"
+
         # TODONOW add other super genres
         return "Others"
 
