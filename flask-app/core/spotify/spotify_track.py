@@ -11,8 +11,7 @@ class SpotifyTrack:
         self.release_year = 0
         self.popularity = 0
         self.genres = []
-
-        # Audio Features
+        self.super_genres = []
         self.tempo = 0
         self.key = -1
         self.mode = -1
@@ -34,6 +33,9 @@ class SpotifyTrack:
 
     def get_genres_string(self):
         return ", ".join(self.genres)
+
+    def get_super_genres_string(self):
+        return ", ".join(self.super_genres)
 
     def get_tempo_string(self):
         return f"{self.tempo:.1f}"

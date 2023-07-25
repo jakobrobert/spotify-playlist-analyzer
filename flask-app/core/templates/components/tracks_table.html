@@ -7,8 +7,7 @@
         <th>{{ attribute_display_names["release_year"] }}</th>
         <th>{{ attribute_display_names["popularity"] }}</th>
         <th>{{ attribute_display_names["genres"] }}</th>
-
-        <!-- Audio Features -->
+        <th>{{ attribute_display_names["super_genres"] }}</th>
         <th>{{ attribute_display_names["tempo"] }}</th>
         <th>{{ attribute_display_names["key"] }}</th>
         <th>{{ attribute_display_names["mode"] }}</th>
@@ -32,8 +31,7 @@
         <td>{{ track.release_year }}</td>
         <td>{{ track.popularity }}</td>
         <td>{{ track.get_genres_string() }}</td>
-
-        <!-- Audio Features -->
+        <td>{{ track.get_super_genres_string() }}</td>
         <td>{{ track.get_tempo_string() }}</td>
         <td>{{ track.get_key_string() }}</td>
         <td>{{ track.get_mode_string() }}</td>
