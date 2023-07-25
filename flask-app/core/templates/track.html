@@ -43,7 +43,10 @@
                 <td>{{ attribute_display_names["genres"] }}</td>
                 <td>{{ track.get_genres_string() }}</td>
             </tr>
-            <!-- Audio Features -->
+            <tr>
+                <td>{{ attribute_display_names["super_genres"] }}</td>
+                <td>{{ track.get_super_genres_string() }}</td>
+            </tr>
             <tr>
                 <td>{{ attribute_display_names["tempo"] }}</td>
                 <td>{{ track.get_tempo_string() }}</td>
