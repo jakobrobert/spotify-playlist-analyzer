@@ -93,7 +93,7 @@ class SpotifyTrack:
         if "black metal" in genre or "death metal" in genre:
             return "Extreme Metal"
 
-        if "metal" in genre or "neue deutsche harte" or "industrial" in genre:
+        if "metal" in genre or "neue deutsche harte" in genre or "industrial" in genre:
             return "Metal"
 
         return "Others"
