@@ -111,7 +111,7 @@ class SpotifyTrack:
         if "metal" in genre or "neue deutsche harte" in genre or "industrial" in genre:
             return SuperGenres.Metal
 
-        return SuperGenres.Metal
+        return SuperGenres.Others
 
     @staticmethod
     def __get_key_signature_from_key_and_mode(key, mode):
