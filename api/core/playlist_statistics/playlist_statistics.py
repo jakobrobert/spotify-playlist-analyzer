@@ -90,6 +90,11 @@ class PlaylistStatistics:
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.popularity)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    def get_super_genres_distribution_items(self):
+        # TODONOW implement
+        return []
+
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_tempo_distribution_items(self):
         first_interval_max_tempo = 89
         last_interval_min_tempo = 180
