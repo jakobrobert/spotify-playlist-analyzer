@@ -110,6 +110,8 @@ class ApiUtils:
             return statistics.get_release_year_distribution_items()
         if attribute == "popularity":
             return statistics.get_popularity_distribution_items()
+        if attribute == "super_genres":
+            return statistics.get_super_genres_distribution_items()
         if attribute == "tempo":
             return statistics.get_tempo_distribution_items()
         if attribute == "key":
