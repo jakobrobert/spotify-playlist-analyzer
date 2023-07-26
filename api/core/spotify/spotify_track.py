@@ -1,4 +1,4 @@
-class Key:
+class Keys:
     C = 0
     Cs = Db = 1
     D = 2
@@ -13,15 +13,30 @@ class Key:
     B = 11
 
 
-class Mode:
+class Modes:
     Minor = 0
     Major = 1
+
+
+class SuperGenres:
+    Pop = "Pop"
+    Rock = "Rock"
+    EDM = "EDM"
+    HipHopOrRap = "Hip Hop / Rap"
+    Schlager = "Schlager"
+    ExtremeMetal = "Extreme Metal"
+    Metal = "Metal"
+    Others = "Others"
 
 
 class SpotifyTrack:
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
     MODE_STRINGS = ["Minor", "Major"]
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
+    SUPER_GENRES = [
+        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap, SuperGenres.Schlager,
+        SuperGenres.ExtremeMetal, SuperGenres.Metal, SuperGenres.Others
+    ]
 
     def __init__(self):
         self.id = None
@@ -75,54 +90,54 @@ class SpotifyTrack:
     @staticmethod
     def __get_super_genre_for_genre(genre):
         if "pop" in genre:
-            return "Pop"
+            return SuperGenres.Pop
 
         if "rock" in genre:
-            return "Rock"
+            return SuperGenres.Rock
 
         if "edm" in genre or "dance" in genre or "house" in genre or "trance" in genre or "hands up" in genre or\
                 "hardstyle" in genre or "big room" in genre:
-            return "EDM"
+            return SuperGenres.EDM
 
         if "hip hop" in genre or "rap" in genre:
-            return "Hip Hop / Rap"
+            return SuperGenres.HipHopOrRap
 
         if "schlager" in genre:
-            return "Schlager"
+            return SuperGenres.Schlager
 
         if "black metal" in genre or "death metal" in genre:
-            return "Extreme Metal"
+            return SuperGenres.ExtremeMetal
 
         if "metal" in genre or "neue deutsche harte" in genre or "industrial" in genre:
-            return "Metal"
+            return SuperGenres.Metal
 
-        return "Others"
+        return SuperGenres.Others
 
     @staticmethod
     def __get_key_signature_from_key_and_mode(key, mode):
-        if (key == Key.C and mode == Mode.Major) or (key == Key.A and mode == Mode.Minor):
+        if (key == Keys.C and mode == Modes.Major) or (key == Keys.A and mode == Modes.Minor):
             return "♮"
-        if (key == Key.G and mode == Mode.Major) or (key == Key.E and mode == Mode.Minor):
+        if (key == Keys.G and mode == Modes.Major) or (key == Keys.E and mode == Modes.Minor):
             return "1♯"
-        if (key == Key.D and mode == Mode.Major) or (key == Key.B and mode == Mode.Minor):
+        if (key == Keys.D and mode == Modes.Major) or (key == Keys.B and mode == Modes.Minor):
             return "2♯"
-        if (key == Key.A and mode == Mode.Major) or (key == Key.Fs and mode == Mode.Minor):
+        if (key == Keys.A and mode == Modes.Major) or (key == Keys.Fs and mode == Modes.Minor):
             return "3♯"
-        if (key == Key.E and mode == Mode.Major) or (key == Key.Cs and mode == Mode.Minor):
+        if (key == Keys.E and mode == Modes.Major) or (key == Keys.Cs and mode == Modes.Minor):
             return "4♯"
-        if (key == Key.B and mode == Mode.Major) or (key == Key.Gs and mode == Mode.Minor):
+        if (key == Keys.B and mode == Modes.Major) or (key == Keys.Gs and mode == Modes.Minor):
             return "5♯"
-        if (key == Key.Fs and mode == Mode.Major) or (key == Key.Ds and mode == Mode.Minor):
+        if (key == Keys.Fs and mode == Modes.Major) or (key == Keys.Ds and mode == Modes.Minor):
             return "6♯/6♭"
-        if (key == Key.Cs and mode == Mode.Major) or (key == Key.As and mode == Mode.Minor):
+        if (key == Keys.Cs and mode == Modes.Major) or (key == Keys.As and mode == Modes.Minor):
             return "5♭"
-        if (key == Key.Gs and mode == Mode.Major) or (key == Key.F and mode == Mode.Minor):
+        if (key == Keys.Gs and mode == Modes.Major) or (key == Keys.F and mode == Modes.Minor):
             return "4♭"
-        if (key == Key.Ds and mode == Mode.Major) or (key == Key.C and mode == Mode.Minor):
+        if (key == Keys.Ds and mode == Modes.Major) or (key == Keys.C and mode == Modes.Minor):
             return "3♭"
-        if (key == Key.As and mode == Mode.Major) or (key == Key.G and mode == Mode.Minor):
+        if (key == Keys.As and mode == Modes.Major) or (key == Keys.G and mode == Modes.Minor):
             return "2♭"
-        if (key == Key.F and mode == Mode.Major) or (key == Key.D and mode == Mode.Minor):
+        if (key == Keys.F and mode == Modes.Major) or (key == Keys.D and mode == Modes.Minor):
             return "1♭"
 
         return "n/a"

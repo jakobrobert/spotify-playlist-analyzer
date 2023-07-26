@@ -14,7 +14,6 @@
         <td>{{ playlist_1.tracks | length }}</td>
         <td>{{ playlist_2.tracks | length }}</td>
     </tr>
-    <!-- TODONOW fix: access playlist.statistics -->
     <tr>
         <th>Total {{ attribute_display_names["duration_ms"] }}</th>
         <td>{{ playlist_1.statistics.get_total_duration_string() }}</td>

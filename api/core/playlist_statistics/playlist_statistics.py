@@ -90,6 +90,31 @@ class PlaylistStatistics:
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.popularity)
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    def get_super_genres_distribution_items(self):
+        items = []
+
+        # Calculate count for each super genre
+        for super_genre in SpotifyTrack.SUPER_GENRES:
+            count = 0
+
+            for track in self.tracks:
+                if super_genre in track.super_genres:
+                    count += 1
+
+            item = {
+                "label": super_genre,
+                "count": count
+            }
+
+            items.append(item)
+
+        # Calculate percentages based on counts
+        total_count = len(self.tracks)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
+
+        return items
+
+    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_tempo_distribution_items(self):
         first_interval_max_tempo = 89
         last_interval_min_tempo = 180
@@ -103,78 +128,83 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_key_distribution_items(self):
-        key_distribution_items = []
+        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items.
+        #  -> maybe can then extract general helper method for categorical values?
+        items = []
 
         # Add one item for each key
         for key_name in SpotifyTrack.KEY_STRINGS:
-            key_with_count = {
+            item = {
                 "label": key_name,
                 "count": 0
             }
 
-            key_distribution_items.append(key_with_count)
+            items.append(item)
 
         # Calculate count for each key
         for track in self.tracks:
-            key_with_count = key_distribution_items[track.key]
-            key_with_count["count"] += 1
+            item = items[track.key]
+            item["count"] += 1
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(key_distribution_items, total_count)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
 
-        return key_distribution_items
+        return items
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_mode_distribution_items(self):
-        mode_distribution_items = []
+        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
+        #  -> maybe can then extract general helper method for categorical values?
+        items = []
 
         # Add one item for each mode
         for mode_name in SpotifyTrack.MODE_STRINGS:
-            mode_with_count = {
+            item = {
                 "label": mode_name,
                 "count": 0
             }
 
-            mode_distribution_items.append(mode_with_count)
+            items.append(item)
 
         # Calculate count for each mode
         for track in self.tracks:
-            mode_with_count = mode_distribution_items[track.mode]
-            mode_with_count["count"] += 1
+            item = items[track.mode]
+            item["count"] += 1
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(mode_distribution_items, total_count)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
 
-        return mode_distribution_items
+        return items
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_key_signature_distribution_items(self):
-        key_signature_distribution_items = []
+        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
+        #  -> maybe can then extract general helper method for categorical values?
+        items = []
 
         # Add one item for each key_signature
         for key_signature_name in SpotifyTrack.KEY_SIGNATURE_STRINGS:
-            key_signature_with_count = {
+            item = {
                 "label": key_signature_name,
                 "count": 0
             }
 
-            key_signature_distribution_items.append(key_signature_with_count)
+            items.append(item)
 
         # Calculate count for each key_signature
         for track in self.tracks:
             key_signature = track.key_signature
             key_signature_index = SpotifyTrack.KEY_SIGNATURE_STRINGS.index(key_signature)
-            key_signature_with_count = key_signature_distribution_items[key_signature_index]
-            key_signature_with_count["count"] += 1
+            item = items[key_signature_index]
+            item["count"] += 1
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(
-            key_signature_distribution_items, total_count)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
 
-        return key_signature_distribution_items
+        return items
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_loudness_distribution_items(self):
