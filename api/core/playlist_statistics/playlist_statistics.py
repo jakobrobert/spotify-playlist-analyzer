@@ -128,32 +128,32 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_key_distribution_items(self):
-        # TODONOW simplify names as done in get_super_genres_distribution_items
-        key_distribution_items = []
+        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
+        items = []
 
         # Add one item for each key
         for key_name in SpotifyTrack.KEY_STRINGS:
-            key_with_count = {
+            item = {
                 "label": key_name,
                 "count": 0
             }
 
-            key_distribution_items.append(key_with_count)
+            items.append(item)
 
         # Calculate count for each key
         for track in self.tracks:
-            key_with_count = key_distribution_items[track.key]
-            key_with_count["count"] += 1
+            item = items[track.key]
+            item["count"] += 1
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(key_distribution_items, total_count)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
 
-        return key_distribution_items
+        return items
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_mode_distribution_items(self):
-        # TODONOW simplify names as done in get_super_genres_distribution_items
+        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
         mode_distribution_items = []
 
         # Add one item for each mode
@@ -178,7 +178,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_key_signature_distribution_items(self):
-        # TODONOW simplify names as done in get_super_genres_distribution_items
+        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
         key_signature_distribution_items = []
 
         # Add one item for each key_signature
