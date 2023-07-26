@@ -91,12 +91,28 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_super_genres_distribution_items(self):
-        super_genres_distribution_items = []
+        items = []
 
-        # Add one item for each super_genres value
-        # TODONOW implement
+        # Calculate count for each super genre
+        for super_genre in SpotifyTrack.SUPER_GENRES:
+            count = 0
 
-        return []
+            for track in self.tracks:
+                if super_genre in track.super_genres:
+                    count += 1
+
+            item = {
+                "label": super_genre,
+                "count": count
+            }
+
+            items.append(item)
+
+        # Calculate percentages based on counts
+        total_count = len(self.tracks)
+        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
+
+        return items
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_tempo_distribution_items(self):
@@ -112,6 +128,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_key_distribution_items(self):
+        # TODONOW simplify names as done in get_super_genres_distribution_items
         key_distribution_items = []
 
         # Add one item for each key
@@ -136,6 +153,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_mode_distribution_items(self):
+        # TODONOW simplify names as done in get_super_genres_distribution_items
         mode_distribution_items = []
 
         # Add one item for each mode
@@ -160,6 +178,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_key_signature_distribution_items(self):
+        # TODONOW simplify names as done in get_super_genres_distribution_items
         key_signature_distribution_items = []
 
         # Add one item for each key_signature
