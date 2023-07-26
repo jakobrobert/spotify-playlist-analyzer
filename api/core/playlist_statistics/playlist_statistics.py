@@ -91,7 +91,11 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_super_genres_distribution_items(self):
+        super_genres_distribution_items = []
+
+        # Add one item for each super_genres value
         # TODONOW implement
+
         return []
 
     @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
