@@ -39,14 +39,15 @@ class SpotifyTrack:
         SuperGenres.ExtremeMetal, SuperGenres.Metal, SuperGenres.Others
     ]
 
-    GENRES_BY_SUPER_GENRE = {
+    ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE = {
         SuperGenres.Pop: ["pop"],
         SuperGenres.Rock: ["rock"],
         SuperGenres.EDM: ["edm", "dance", "house", "trance", "hands up", "hardstyle", "big room"],
         SuperGenres.HipHopOrRap: ["hip hop", "rap"],
         SuperGenres.Schlager: ["schlager"],
         SuperGenres.ExtremeMetal: ["black metal", "death metal"],
-        SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial"]
+        SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial"],
+        SuperGenres.Others: []
     }
 
     def __init__(self):
@@ -100,30 +101,11 @@ class SpotifyTrack:
 
     @staticmethod
     def __get_super_genre_for_genre(genre):
-        print(SpotifyTrack.SUPER_GENRES)
-        print(SpotifyTrack.GENRES_BY_SUPER_GENRE)
-
-        if "pop" in genre:
-            return SuperGenres.Pop
-
-        if "rock" in genre:
-            return SuperGenres.Rock
-
-        if "edm" in genre or "dance" in genre or "house" in genre or "trance" in genre or "hands up" in genre or\
-                "hardstyle" in genre or "big room" in genre:
-            return SuperGenres.EDM
-
-        if "hip hop" in genre or "rap" in genre:
-            return SuperGenres.HipHopOrRap
-
-        if "schlager" in genre:
-            return SuperGenres.Schlager
-
-        if "black metal" in genre or "death metal" in genre:
-            return SuperGenres.ExtremeMetal
-
-        if "metal" in genre or "neue deutsche harte" in genre or "industrial" in genre:
-            return SuperGenres.Metal
+        for super_genre in SpotifyTrack.SUPER_GENRES:
+            accepted_genre_substrings = SpotifyTrack.ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE[super_genre]
+            for accepted_genre_substring in accepted_genre_substrings:
+                if accepted_genre_substring in genre:
+                    return super_genre
 
         return SuperGenres.Others
 
