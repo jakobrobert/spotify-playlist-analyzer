@@ -33,10 +33,21 @@ class SpotifyTrack:
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
     MODE_STRINGS = ["Minor", "Major"]
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
+
     SUPER_GENRES = [
         SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap, SuperGenres.Schlager,
         SuperGenres.ExtremeMetal, SuperGenres.Metal, SuperGenres.Others
     ]
+
+    GENRES_BY_SUPER_GENRE = {
+        SuperGenres.Pop: ["pop"],
+        SuperGenres.Rock: ["rock"],
+        SuperGenres.EDM: ["edm", "dance", "house", "trance", "hands up", "hardstyle", "big room"],
+        SuperGenres.HipHopOrRap: ["hip hop", "rap"],
+        SuperGenres.Schlager: ["schlager"],
+        SuperGenres.ExtremeMetal: ["black metal", "death metal"],
+        SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial"]
+    }
 
     def __init__(self):
         self.id = None
@@ -89,6 +100,9 @@ class SpotifyTrack:
 
     @staticmethod
     def __get_super_genre_for_genre(genre):
+        print(SpotifyTrack.SUPER_GENRES)
+        print(SpotifyTrack.GENRES_BY_SUPER_GENRE)
+
         if "pop" in genre:
             return SuperGenres.Pop
 
