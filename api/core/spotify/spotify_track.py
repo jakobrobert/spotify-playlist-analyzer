@@ -23,6 +23,7 @@ class SuperGenres:
     Rock = "Rock"
     EDM = "EDM"
     HipHopOrRap = "Hip Hop / Rap"
+    Afro = "Afro"
     Schlager = "Schlager"
     ExtremeMetal = "Extreme Metal"
     Metal = "Metal"
@@ -33,10 +34,25 @@ class SpotifyTrack:
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
     MODE_STRINGS = ["Minor", "Major"]
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
+
     SUPER_GENRES = [
-        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap, SuperGenres.Schlager,
-        SuperGenres.ExtremeMetal, SuperGenres.Metal, SuperGenres.Others
+        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap, SuperGenres.Afro,
+        SuperGenres.Schlager, SuperGenres.ExtremeMetal, SuperGenres.Metal,
+        SuperGenres.Others
     ]
+
+    ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE = {
+        SuperGenres.Pop: ["pop", "new romantic", "wave"],
+        SuperGenres.Rock: ["rock", "post-grunge", "punk"],
+        SuperGenres.EDM: ["edm", "dance", "house", "trance", "techno", "hands up", "hardstyle", "big room",
+                          "dubstep", "brostep", "complextro"],
+        SuperGenres.HipHopOrRap: ["hip hop", "rap"],
+        SuperGenres.Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
+        SuperGenres.Schlager: ["schlager"],
+        SuperGenres.ExtremeMetal: ["black metal", "death metal"],
+        SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
+        SuperGenres.Others: []
+    }
 
     def __init__(self):
         self.id = None
@@ -89,27 +105,11 @@ class SpotifyTrack:
 
     @staticmethod
     def __get_super_genre_for_genre(genre):
-        if "pop" in genre:
-            return SuperGenres.Pop
-
-        if "rock" in genre:
-            return SuperGenres.Rock
-
-        if "edm" in genre or "dance" in genre or "house" in genre or "trance" in genre or "hands up" in genre or\
-                "hardstyle" in genre or "big room" in genre:
-            return SuperGenres.EDM
-
-        if "hip hop" in genre or "rap" in genre:
-            return SuperGenres.HipHopOrRap
-
-        if "schlager" in genre:
-            return SuperGenres.Schlager
-
-        if "black metal" in genre or "death metal" in genre:
-            return SuperGenres.ExtremeMetal
-
-        if "metal" in genre or "neue deutsche harte" in genre or "industrial" in genre:
-            return SuperGenres.Metal
+        for super_genre in SpotifyTrack.SUPER_GENRES:
+            accepted_genre_substrings = SpotifyTrack.ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE[super_genre]
+            for accepted_genre_substring in accepted_genre_substrings:
+                if accepted_genre_substring in genre:
+                    return super_genre
 
         return SuperGenres.Others
 
