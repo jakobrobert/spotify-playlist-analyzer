@@ -23,6 +23,7 @@ class SuperGenres:
     Rock = "Rock"
     EDM = "EDM"
     HipHopOrRap = "Hip Hop / Rap"
+    Afro = "Afro"
     Schlager = "Schlager"
     ExtremeMetal = "Extreme Metal"
     Metal = "Metal"
@@ -35,18 +36,21 @@ class SpotifyTrack:
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
 
     SUPER_GENRES = [
-        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap, SuperGenres.Schlager,
-        SuperGenres.ExtremeMetal, SuperGenres.Metal, SuperGenres.Others
+        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap, SuperGenres.Afro,
+        SuperGenres.Schlager, SuperGenres.ExtremeMetal, SuperGenres.Metal,
+        SuperGenres.Others
     ]
 
     ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE = {
-        SuperGenres.Pop: ["pop"],
-        SuperGenres.Rock: ["rock"],
-        SuperGenres.EDM: ["edm", "dance", "house", "trance", "hands up", "hardstyle", "big room"],
+        SuperGenres.Pop: ["pop", "new romantic", "wave"],
+        SuperGenres.Rock: ["rock", "post-grunge", "punk"],
+        SuperGenres.EDM: ["edm", "dance", "house", "trance", "techno", "hands up", "hardstyle", "big room",
+                          "dubstep", "brostep", "complextro"],
         SuperGenres.HipHopOrRap: ["hip hop", "rap"],
+        SuperGenres.Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
         SuperGenres.Schlager: ["schlager"],
         SuperGenres.ExtremeMetal: ["black metal", "death metal"],
-        SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial"],
+        SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
         SuperGenres.Others: []
     }
 
