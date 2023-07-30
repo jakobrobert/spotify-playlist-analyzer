@@ -23,10 +23,11 @@ def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
 
-        # Just use "" as fallback if attribute invalid. In this case, API will return an error anyway.
+        # Just use empty string as fallback if attribute invalid. In this case, API will return an error anyway.
         attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
         playlist = api_client.get_playlist_by_id(playlist_id)
         attribute_distribution_items = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
+        # TODONOW pass average_attribute_value to template
 
         return __render_attribute_distribution_template(playlist, attribute_display_name, attribute_distribution_items)
     except HttpError as error:
