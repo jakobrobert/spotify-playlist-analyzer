@@ -1,5 +1,5 @@
 from core.spotify.spotify_playlist_statistics import SpotifyPlaylistStatistics
-from core.spotify.spotify_track import SpotifyTrack
+from core.utils import Utils
 
 
 class SpotifyPlaylist:
@@ -15,7 +15,7 @@ class SpotifyPlaylist:
 
     def get_average_value_for_attribute(self, attribute):
         if attribute == "duration_ms":
-            return SpotifyTrack.get_duration_string_helper(self.statistics.average_duration_ms)
+            return Utils.convert_duration_to_string(self.statistics.average_duration_ms)
         
         if attribute == "release_year":
             return self.statistics.average_release_year

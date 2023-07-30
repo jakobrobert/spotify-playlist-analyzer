@@ -31,3 +31,12 @@ class Utils:
             return int(value_string)
         except ValueError:
             return None
+
+    @staticmethod
+    def convert_duration_to_string(duration_ms):
+        duration_ms_int = int(duration_ms)
+        total_seconds = duration_ms_int // 1000
+        total_minutes = total_seconds // 60
+        remaining_seconds = total_seconds % 60
+
+        return f"{total_minutes:02d}:{remaining_seconds:02d}"
