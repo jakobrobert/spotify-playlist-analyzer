@@ -11,3 +11,7 @@ class SpotifyPlaylist:
     # Cannot be static, else template code cannot access it
     def percentage_to_string(self, percentage):
         return f"{percentage:.1f}"
+
+    def get_average_value_for_attribute(self, attribute):
+        # TODONOW implement
+        return 42
