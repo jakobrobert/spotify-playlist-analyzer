@@ -14,6 +14,17 @@
         <h1>Playlist - {{ playlist.name }} - {{ attribute_display_name }} Distribution</h1>
         <br>
 
+        <table>
+            <tr>
+                <td># Tracks:&nbsp;</td>
+                <td>{{ playlist.tracks | length }}</td>
+            </tr>
+            <tr>
+                <td>Average {{ attribute_display_name }}:&nbsp;</td>
+                <td>{{ average_attribute_value }}</td>
+            </tr>
+        </table>
+
         <img src="data:image/png;base64,{{ histogram_image_base64 }}">
         <br>
         <br>

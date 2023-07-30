@@ -25,13 +25,15 @@ def compare_attribute_distribution_of_playlists():
         playlist_id_2 = request.args.get("playlist_id_2")
         attribute = request.args.get("attribute")
 
-        # Just use "" as fallback if attribute invalid. In this case, API will return an error anyway.
+        # Just use empty string as fallback if attribute invalid. In this case, API will return an error anyway.
         attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
 
         playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
         playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
         attribute_distribution_items_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
         attribute_distribution_items_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
+
+        # TODONOW pass average_attribute_value_1 & average_attribute_value_2 to template
 
         return __render_compare_attribute_distribution_template(
             playlist_1, playlist_2, attribute_display_name,
