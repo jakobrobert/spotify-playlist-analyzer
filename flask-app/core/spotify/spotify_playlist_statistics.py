@@ -1,4 +1,4 @@
-from core.spotify.spotify_track import SpotifyTrack
+from core.utils import Utils
 
 
 class SpotifyPlaylistStatistics:
@@ -29,8 +29,7 @@ class SpotifyPlaylistStatistics:
         if not self.average_duration_ms:
             return "n/a"
 
-        # TODOLATER move into utils
-        return SpotifyTrack.get_duration_string_helper(self.average_duration_ms)
+        return Utils.convert_duration_to_string(self.average_duration_ms)
 
     def get_average_release_year_string(self):
         return SpotifyPlaylistStatistics.number_to_string(self.average_release_year)
@@ -62,6 +61,7 @@ class SpotifyPlaylistStatistics:
     def get_average_speechiness_string(self):
         return SpotifyPlaylistStatistics.number_to_string(self.average_speechiness)
 
+    # TODONOW move into Utils, use instead of SpotifyTrack.percentage_to_string
     @staticmethod
     def number_to_string(value):
         if not value:
