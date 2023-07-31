@@ -32,8 +32,8 @@ def compare_attribute_distribution_of_playlists():
         playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
         attribute_distribution_items_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
         attribute_distribution_items_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
-        average_value_1 = playlist_1.get_average_value_for_attribute(attribute)
-        average_value_2 = playlist_2.get_average_value_for_attribute(attribute)
+        average_value_1 = playlist_1.get_average_value_as_string_for_attribute(attribute)
+        average_value_2 = playlist_2.get_average_value_as_string_for_attribute(attribute)
 
         return __render_compare_attribute_distribution_template(
             playlist_1, playlist_2, attribute_display_name,
