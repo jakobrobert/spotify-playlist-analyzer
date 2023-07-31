@@ -23,12 +23,14 @@ def get_attribute_distribution_of_playlist(playlist_id):
     try:
         attribute = request.args.get("attribute")
 
-        # Just use "" as fallback if attribute invalid. In this case, API will return an error anyway.
+        # Just use empty string as fallback if attribute invalid. In this case, API will return an error anyway.
         attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
         playlist = api_client.get_playlist_by_id(playlist_id)
         attribute_distribution_items = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
+        average_value = playlist.get_average_value_as_string_for_attribute(attribute)
 
-        return __render_attribute_distribution_template(playlist, attribute_display_name, attribute_distribution_items)
+        return __render_attribute_distribution_template(
+            playlist, attribute_display_name, attribute_distribution_items, average_value)
     except HttpError as error:
         return render_template("error.html", error=error), error.status_code
     except Exception:
@@ -37,13 +39,15 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
 
 @Utils.measure_execution_time(log_prefix="attribute_distribution_view.")
-def __render_attribute_distribution_template(playlist, attribute_display_name, attribute_distribution_items):
+def __render_attribute_distribution_template(
+        playlist, attribute_display_name, attribute_distribution_items, average_value):
+
     histogram_image_base64 = __get_histogram_image_base64(attribute_display_name, attribute_distribution_items)
 
-    return render_template("attribute_distribution.html", playlist=playlist,
-                           attribute_display_name=attribute_display_name,
-                           attribute_distribution_items=attribute_distribution_items,
-                           histogram_image_base64=histogram_image_base64)
+    return render_template(
+        "attribute_distribution.html", playlist=playlist, attribute_display_name=attribute_display_name,
+        attribute_distribution_items=attribute_distribution_items, histogram_image_base64=histogram_image_base64,
+        average_value=average_value)
 
 
 @Utils.measure_execution_time(log_prefix="attribute_distribution_view.")
