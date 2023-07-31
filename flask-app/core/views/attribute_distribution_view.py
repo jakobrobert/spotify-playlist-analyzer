@@ -27,7 +27,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
         attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
         playlist = api_client.get_playlist_by_id(playlist_id)
         attribute_distribution_items = api_client.get_attribute_distribution_of_playlist(playlist_id, attribute)
-        average_value = playlist.get_average_value_for_attribute(attribute)
+        average_value = playlist.get_average_value_as_string_for_attribute(attribute)
 
         return __render_attribute_distribution_template(
             playlist, attribute_display_name, attribute_distribution_items, average_value)
