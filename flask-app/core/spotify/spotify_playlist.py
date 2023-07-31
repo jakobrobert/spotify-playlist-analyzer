@@ -9,14 +9,15 @@ class SpotifyPlaylist:
         self.statistics = SpotifyPlaylistStatistics()
         self.tracks = []
 
-    # Cannot be static, else template code cannot access it
+    # Member method as wrapper because did not manage to access static methods in template code
     def percentage_to_string(self, percentage):
-        return f"{percentage:.1f}"
+        return Utils.convert_number_to_string(percentage)
 
     def get_average_value_for_attribute(self, attribute):
         if attribute == "duration_ms":
             return Utils.convert_duration_to_string(self.statistics.average_duration_ms)
-        
+
+        # TODONOW use get_..._string methods
         if attribute == "release_year":
             return self.statistics.average_release_year
         

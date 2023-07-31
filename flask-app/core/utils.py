@@ -33,6 +33,13 @@ class Utils:
             return None
 
     @staticmethod
+    def convert_number_to_string(value):
+        if not value:
+            return "n/a"
+
+        return f"{value:.1f}"
+
+    @staticmethod
     def convert_duration_to_string(duration_ms):
         duration_ms_int = int(duration_ms)
         total_seconds = duration_ms_int // 1000
