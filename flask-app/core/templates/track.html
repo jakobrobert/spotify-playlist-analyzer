@@ -53,11 +53,11 @@
             </tr>
             <tr>
                 <td>{{ attribute_display_names["key"] }}</td>
-                <td>{{ track.key }}</td>
+                <td>{{ track.get_key_string() }}</td>
             </tr>
             <tr>
                 <td>{{ attribute_display_names["mode"] }}</td>
-                <td>{{ track.mode }}</td>
+                <td>{{ track.get_mode_string() }}</td>
             </tr>
             <tr>
                 <td>{{ attribute_display_names["key_signature"] }}</td>
