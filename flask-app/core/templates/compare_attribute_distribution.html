@@ -16,6 +16,24 @@
             - {{ attribute_display_name }} Distribution</h1>
         <br>
 
+        <table class="table table-bordered">
+            <tr>
+                <th></th>
+                <th>{{ playlist_1.name }}</th>
+                <th>{{ playlist_2.name }}</th>
+            </tr>
+            <tr>
+                <th># Tracks</th>
+                <td>{{ playlist_1.tracks | length }}</td>
+                <td>{{ playlist_2.tracks | length }}</td>
+            </tr>
+            <tr>
+                <th>Average {{ attribute_display_name }}</th>
+                <td>{{ average_value_1 }}</td>
+                <td>{{ average_value_2 }}</td>
+            </tr>
+        </table>
+
         <img src="data:image/png;base64,{{ chart_image_base64 }}">
         <br>
         <br>
