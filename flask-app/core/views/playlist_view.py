@@ -19,15 +19,12 @@ playlist_view = Blueprint("playlist_view", __name__)
 
 @playlist_view.route(URL_PREFIX + "playlist-by-url", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[View Endpoint] ")
+@ViewUtils.handle_exceptions
 def get_playlist_by_url():
-    try:
-        playlist_url = request.args.get("playlist_url")
-        playlist_id = ViewUtils.get_playlist_id_from_playlist_url(playlist_url)
-        redirect_url = url_for("playlist_view.get_playlist_by_id", playlist_id=playlist_id)
-        return redirect(redirect_url)
-    except Exception:
-        error = HttpError.from_last_exception()
-        return render_template("error.html", error=error), error.status_code
+    playlist_url = request.args.get("playlist_url")
+    playlist_id = ViewUtils.get_playlist_id_from_playlist_url(playlist_url)
+    redirect_url = url_for("playlist_view.get_playlist_by_id", playlist_id=playlist_id)
+    return redirect(redirect_url)
 
 
 @playlist_view.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])

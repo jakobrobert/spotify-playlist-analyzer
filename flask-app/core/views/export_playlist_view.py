@@ -5,6 +5,7 @@ from core.utils import Utils
 from flask import Blueprint, render_template, request
 import configparser
 
+from core.views.view_utils import ViewUtils
 
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -18,20 +19,15 @@ export_playlist_view = Blueprint("export_playlist_view", __name__)
 
 @export_playlist_view.route(URL_PREFIX + "export-playlist", methods=["POST"])
 @Utils.measure_execution_time(log_prefix="[View Endpoint] ")
+@ViewUtils.handle_exceptions
 def export_playlist():
-    try:
-        playlist_name = request.form["playlist_name"]
+    playlist_name = request.form["playlist_name"]
 
-        track_ids = request.form.getlist("track_ids[]")
-        if not track_ids:
-            raise HttpError(status_code=400, title="export_playlist failed", message="'track_ids' is None or empty")
+    track_ids = request.form.getlist("track_ids[]")
+    if not track_ids:
+        raise HttpError(status_code=400, title="export_playlist failed", message="'track_ids' is None or empty")
 
-        playlist_id = api_client.create_playlist(playlist_name, track_ids)
-        playlist_url = f"https://open.spotify.com/playlist/{playlist_id}"
+    playlist_id = api_client.create_playlist(playlist_name, track_ids)
+    playlist_url = f"https://open.spotify.com/playlist/{playlist_id}"
 
-        return render_template("export_playlist.html", exported_playlist_url=playlist_url)
-    except HttpError as error:
-        return render_template("error.html", error=error), error.status_code
-    except Exception:
-        error = HttpError.from_last_exception()
-        return render_template("error.html", error=error), error.status_code
+    return render_template("export_playlist.html", exported_playlist_url=playlist_url)
