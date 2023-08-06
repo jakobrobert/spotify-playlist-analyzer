@@ -32,44 +32,39 @@ def get_playlist_by_url():
 
 @playlist_view.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[View Endpoint] ")
+@ViewUtils.handle_exceptions
 def get_playlist_by_id(playlist_id):
-    try:
-        pick_random_tracks_enabled = request.args.get("pick_random_tracks_enabled")
-        pick_random_tracks_count = request.args.get("pick_random_tracks_count")
+    pick_random_tracks_enabled = request.args.get("pick_random_tracks_enabled")
+    pick_random_tracks_count = request.args.get("pick_random_tracks_count")
 
-        api_request_params = {
-            "sort_by": request.args.get("sort_by"),
-            "order": request.args.get("order"),
-            "pick_random_tracks_enabled": pick_random_tracks_enabled,
-            "pick_random_tracks_count": pick_random_tracks_count
-        }
+    api_request_params = {
+        "sort_by": request.args.get("sort_by"),
+        "order": request.args.get("order"),
+        "pick_random_tracks_enabled": pick_random_tracks_enabled,
+        "pick_random_tracks_count": pick_random_tracks_count
+    }
 
-        numerical_attributes_for_filter_option = api_client.get_numerical_attributes_for_filter_option()
-        filter_params = __extract_filter_params(request.args, numerical_attributes_for_filter_option)
-        api_request_params.update(filter_params)
+    numerical_attributes_for_filter_option = api_client.get_numerical_attributes_for_filter_option()
+    filter_params = __extract_filter_params(request.args, numerical_attributes_for_filter_option)
+    api_request_params.update(filter_params)
 
-        playlist = api_client.get_playlist_by_id(playlist_id, api_request_params)
-        valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
-        valid_attributes_for_sort_option = api_client.get_valid_attributes_for_sort_option()
-        valid_key_signatures = api_client.get_valid_key_signatures()
+    playlist = api_client.get_playlist_by_id(playlist_id, api_request_params)
+    valid_attributes_for_attribute_distribution = api_client.get_valid_attributes_for_attribute_distribution()
+    valid_attributes_for_sort_option = api_client.get_valid_attributes_for_sort_option()
+    valid_key_signatures = api_client.get_valid_key_signatures()
 
-        return render_template(
-            "playlist/playlist.html", playlist=playlist,
-            sort_by=api_request_params["sort_by"], order=api_request_params["order"],
-            pick_random_tracks_enabled=pick_random_tracks_enabled, pick_random_tracks_count=pick_random_tracks_count,
-            filter_params=filter_params,
-            numerical_attributes_for_filter_option=numerical_attributes_for_filter_option,
-            attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
-            key_strings=SpotifyTrack.KEY_STRINGS, mode_strings=SpotifyTrack.MODE_STRINGS,
-            valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
-            valid_attributes_for_sort_option=valid_attributes_for_sort_option,
-            valid_key_signatures=valid_key_signatures
-        )
-    except HttpError as error:
-        return render_template("error.html", error=error), error.status_code
-    except Exception:
-        error = HttpError.from_last_exception()
-        return render_template("error.html", error=error), error.status_code
+    return render_template(
+        "playlist/playlist.html", playlist=playlist,
+        sort_by=api_request_params["sort_by"], order=api_request_params["order"],
+        pick_random_tracks_enabled=pick_random_tracks_enabled, pick_random_tracks_count=pick_random_tracks_count,
+        filter_params=filter_params,
+        numerical_attributes_for_filter_option=numerical_attributes_for_filter_option,
+        attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
+        key_strings=SpotifyTrack.KEY_STRINGS, mode_strings=SpotifyTrack.MODE_STRINGS,
+        valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
+        valid_attributes_for_sort_option=valid_attributes_for_sort_option,
+        valid_key_signatures=valid_key_signatures
+    )
 
 
 @Utils.measure_execution_time(log_prefix="playlist_view.")
