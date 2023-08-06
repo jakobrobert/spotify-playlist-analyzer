@@ -1,3 +1,4 @@
+import functools
 import operator
 import random
 
@@ -11,6 +12,20 @@ from core.utils import Utils
 
 
 class ApiUtils:
+    @staticmethod
+    def handle_exceptions(func):
+        @functools.wraps(func)
+        def decorator(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except HttpError as error:
+                return ApiUtils.create_error_response(error)
+            except Exception:
+                error =  HttpError.from_last_exception()
+                return ApiUtils.create_error_response(error)
+
+        return decorator
+
     @staticmethod
     @Utils.measure_execution_time(log_prefix="ApiUtils.")
     def create_error_response(error):

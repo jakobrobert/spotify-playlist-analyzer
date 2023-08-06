@@ -19,31 +19,26 @@ compare_attribute_distribution_view = Blueprint("compare_attribute_distribution_
 
 @compare_attribute_distribution_view.route(URL_PREFIX + "compare-attribute-distribution-of-playlists", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[View Endpoint] ")
+@ViewUtils.handle_exceptions
 def compare_attribute_distribution_of_playlists():
-    try:
-        playlist_id_1 = request.args.get("playlist_id_1")
-        playlist_id_2 = request.args.get("playlist_id_2")
-        attribute = request.args.get("attribute")
+    playlist_id_1 = request.args.get("playlist_id_1")
+    playlist_id_2 = request.args.get("playlist_id_2")
+    attribute = request.args.get("attribute")
 
-        # Just use empty string as fallback if attribute invalid. In this case, API will return an error anyway.
-        attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
+    # Just use empty string as fallback if attribute invalid. In this case, API will return an error anyway.
+    attribute_display_name = ViewUtils.ATTRIBUTE_DISPLAY_NAMES.get(attribute, "")
 
-        playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
-        playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
-        attribute_distribution_items_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
-        attribute_distribution_items_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
-        average_value_1 = playlist_1.get_average_value_as_string_for_attribute(attribute)
-        average_value_2 = playlist_2.get_average_value_as_string_for_attribute(attribute)
+    playlist_1 = api_client.get_playlist_by_id(playlist_id_1)
+    playlist_2 = api_client.get_playlist_by_id(playlist_id_2)
+    attribute_distribution_items_1 = api_client.get_attribute_distribution_of_playlist(playlist_id_1, attribute)
+    attribute_distribution_items_2 = api_client.get_attribute_distribution_of_playlist(playlist_id_2, attribute)
+    average_value_1 = playlist_1.get_average_value_as_string_for_attribute(attribute)
+    average_value_2 = playlist_2.get_average_value_as_string_for_attribute(attribute)
 
-        return __render_compare_attribute_distribution_template(
-            playlist_1, playlist_2, attribute_display_name,
-            attribute_distribution_items_1, attribute_distribution_items_2,
-            average_value_1, average_value_2)
-    except HttpError as error:
-        return render_template("error.html", error=error), error.status_code
-    except Exception:
-        error = HttpError.from_last_exception()
-        return render_template("error.html", error=error), error.status_code
+    return __render_compare_attribute_distribution_template(
+        playlist_1, playlist_2, attribute_display_name,
+        attribute_distribution_items_1, attribute_distribution_items_2,
+        average_value_1, average_value_2)
 
 
 @Utils.measure_execution_time(log_prefix="compare_attribute_distribution_view.")

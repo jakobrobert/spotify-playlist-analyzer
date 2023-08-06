@@ -18,25 +18,16 @@ track_view = Blueprint("track_view", __name__)
 
 @track_view.route(URL_PREFIX + "track-by-url", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[View Endpoint] ")
+@ViewUtils.handle_exceptions
 def get_track_by_url():
-    try:
-        track_url = request.args.get("track_url")
-        track_id = ViewUtils.get_track_id_from_track_url(track_url)
-        redirect_url = url_for("track_view.get_track_by_id", track_id=track_id)
-        return redirect(redirect_url)
-    except Exception:
-        error = HttpError.from_last_exception()
-        return render_template("error.html", error=error), error.status_code
+    track_url = request.args.get("track_url")
+    track_id = ViewUtils.get_track_id_from_track_url(track_url)
+    redirect_url = url_for("track_view.get_track_by_id", track_id=track_id)
+    return redirect(redirect_url)
 
 
 @track_view.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[View Endpoint] ")
 def get_track_by_id(track_id):
-    try:
-        track = api_client.get_track_by_id(track_id)
-        return render_template("track.html", track=track, attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES)
-    except HttpError as error:
-        return render_template("error.html", error=error), error.status_code
-    except Exception:
-        error = HttpError.from_last_exception()
-        return render_template("error.html", error=error), error.status_code
+    track = api_client.get_track_by_id(track_id)
+    return render_template("track.html", track=track, attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES)

@@ -1,7 +1,11 @@
-import matplotlib.pyplot as plt
+import functools
 from io import BytesIO
 import base64
 
+from flask import render_template
+import matplotlib.pyplot as plt
+
+from core.http_error import HttpError
 from core.utils import Utils
 
 
@@ -29,6 +33,20 @@ class ViewUtils:
         "liveness": "Liveness",
         "valence": "Valence"
     }
+
+    @staticmethod
+    def handle_exceptions(func):
+        @functools.wraps(func)
+        def decorator(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except HttpError as error:
+                return render_template("error.html", error=error), error.status_code
+            except Exception:
+                error = HttpError.from_last_exception()
+                return render_template("error.html", error=error), error.status_code
+
+        return decorator
 
     @staticmethod
     @Utils.measure_execution_time(log_prefix="ViewUtils.")

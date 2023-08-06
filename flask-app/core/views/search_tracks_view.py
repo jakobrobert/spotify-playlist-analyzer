@@ -18,15 +18,10 @@ search_tracks_view = Blueprint("search_tracks_view", __name__)
 
 @search_tracks_view.route(URL_PREFIX + "search-tracks", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[View Endpoint] ")
+@ViewUtils.handle_exceptions
 def search_tracks():
-    try:
-        query = request.args.get("query")
-        tracks = api_client.search_tracks(query)
-        return render_template(
-            "search_tracks.html",
-            query=query, tracks=tracks, attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES)
-    except HttpError as error:
-        return render_template("error.html", error=error), error.status_code
-    except Exception:
-        error = HttpError.from_last_exception()
-        return render_template("error.html", error=error), error.status_code
+    query = request.args.get("query")
+    tracks = api_client.search_tracks(query)
+    return render_template(
+        "search_tracks.html",
+        query=query, tracks=tracks, attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES)
