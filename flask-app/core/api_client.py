@@ -14,10 +14,6 @@ class ApiClient:
 
     @Utils.measure_execution_time(log_prefix="ApiClient.")
     def get_playlist_by_id(self, playlist_id, request_params=None):
-        # TODONOW revert temporary test code
-        raise HttpError(status_code=400, title="Fake Error", message="bla bla")
-        #raise TypeError("bla bla")
-
         sub_url = f"playlist/{playlist_id}"
         playlist_dict = self.__send_get_request(sub_url, request_params)
 
