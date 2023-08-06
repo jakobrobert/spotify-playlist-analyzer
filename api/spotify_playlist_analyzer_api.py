@@ -91,31 +91,26 @@ def authorize_callback():
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@ApiUtils.handle_exceptions
 def get_playlist_by_id(playlist_id):
-    try:
-        playlist = spotify_client.get_playlist_by_id(playlist_id)
+    playlist = spotify_client.get_playlist_by_id(playlist_id)
 
-        playlist.tracks = ApiUtils.filter_tracks(playlist.tracks, request.args)
-        ApiUtils.pick_random_tracks(playlist.tracks, request.args)
-        ApiUtils.sort_tracks(playlist.tracks, request.args)
+    playlist.tracks = ApiUtils.filter_tracks(playlist.tracks, request.args)
+    ApiUtils.pick_random_tracks(playlist.tracks, request.args)
+    ApiUtils.sort_tracks(playlist.tracks, request.args)
 
-        # Need to explicitly copy the dict, else changing the dict would change the original object
-        playlist_dict = dict(playlist.__dict__)
+    # Need to explicitly copy the dict, else changing the dict would change the original object
+    playlist_dict = dict(playlist.__dict__)
 
-        playlist_dict["statistics"] = ApiUtils.create_playlist_statistics_dict(playlist.tracks)
+    playlist_dict["statistics"] = ApiUtils.create_playlist_statistics_dict(playlist.tracks)
 
-        # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
-        playlist_dict["tracks"] = []
-        for track in playlist.tracks:
-            # WARNING If you need to change track_dict, need to explicitly copy so original object will not be changed
-            playlist_dict["tracks"].append(track.__dict__)
+    # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
+    playlist_dict["tracks"] = []
+    for track in playlist.tracks:
+        # WARNING If you need to change track_dict, need to explicitly copy so original object will not be changed
+        playlist_dict["tracks"].append(track.__dict__)
 
-        return jsonify(playlist_dict)
-    except HttpError as error:
-        return ApiUtils.create_error_response(error)
-    except Exception:
-        error = HttpError.from_last_exception()
-        return ApiUtils.create_error_response(error)
+    return jsonify(playlist_dict)
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
