@@ -43,7 +43,7 @@ class SpotifyClient:
     def get_playlist_by_id(self, playlist_id):
         # TODONOW revert temporary test code
         #raise HttpError(400, title="API: Fake Error", message="Bla bla")
-        raise AttributeError("Bla bla")
+        #raise AttributeError("Bla bla")
 
         if not playlist_id:
             raise HttpError(400, title="API: get_playlist_by_id failed", message="'playlist_id' is None or empty")
