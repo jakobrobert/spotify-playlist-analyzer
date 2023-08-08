@@ -4,7 +4,7 @@ from urllib.parse import urlencode
 from flask import Flask, jsonify, request, redirect
 
 from core.api_utils import ApiUtils
-from core.spotify.spotify_client import SpotifyClient
+from core.spotify.spotify_api_client import SpotifyApiClient
 from core.spotify.spotify_track import SpotifyTrack
 from core.track_filter import TrackFilter
 from core.utils import Utils
@@ -18,7 +18,7 @@ SPOTIFY_REDIRECT_URI = config["SPOTIFY"]["REDIRECT_URI"]
 SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
-spotify_client = SpotifyClient(
+spotify_client = SpotifyApiClient(
     SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
 
 app = Flask(__name__)
