@@ -1,10 +1,11 @@
-from core.api_client import ApiClient
-from core.views.view_utils import ViewUtils
-from core.utils import Utils
-
-from flask import Blueprint, render_template, request
 import configparser
+
 import matplotlib.pyplot as plt
+from flask import Blueprint, render_template, request
+
+from core.api_client import ApiClient
+from core.utils import Utils
+from core.views.view_utils import ViewUtils
 
 config = configparser.ConfigParser()
 config.read("config.ini")

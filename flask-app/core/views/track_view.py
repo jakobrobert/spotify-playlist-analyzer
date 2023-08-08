@@ -1,10 +1,10 @@
-from core.api_client import ApiClient
-from core.http_error import HttpError
-from core.utils import Utils
-from core.views.view_utils import ViewUtils
+import configparser
 
 from flask import Blueprint, render_template, request, redirect, url_for
-import configparser
+
+from core.api_client import ApiClient
+from core.utils import Utils
+from core.views.view_utils import ViewUtils
 
 config = configparser.ConfigParser()
 config.read("config.ini")

@@ -1,9 +1,9 @@
+import base64
 import functools
 from io import BytesIO
-import base64
 
-from flask import render_template
 import matplotlib.pyplot as plt
+from flask import render_template
 
 from core.http_error import HttpError
 from core.utils import Utils
