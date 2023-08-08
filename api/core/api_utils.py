@@ -21,7 +21,7 @@ class ApiUtils:
             except HttpError as error:
                 return ApiUtils.create_error_response(error)
             except Exception:
-                error =  HttpError.from_last_exception()
+                error = HttpError.from_last_exception()
                 return ApiUtils.create_error_response(error)
 
         return decorator
