@@ -3,6 +3,7 @@ import configparser
 import requests
 
 from core.http_error import HttpError
+from core.spotify.spotify_api_client_utils import SpotifyApiClientUtils
 from core.spotify.spotify_playlist import SpotifyPlaylist
 from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
@@ -64,7 +65,8 @@ class SpotifyApiClient:
             raise HttpError(400, title="API: create_playlist failed", message="'track_ids' is None or empty")
 
         # TODOLATER #171 This is a workaround because __get_access_token_by_refresh_token fails
-        # Important to read it here from file and NOT before initialization of SpotifyApiClient, so it is always up to date
+        # Important to read it here from file
+        # NOT before initialization of SpotifyApiClient, so it is always up to date
         test_access_token_config = configparser.ConfigParser()
         test_access_token_config.read("./test_access_token.ini")
         test_access_token = test_access_token_config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
@@ -127,7 +129,7 @@ class SpotifyApiClient:
         response = requests.post(url, data=data, auth=auth)
         response_data = response.json()
 
-        error = SpotifyApiClient.__create_http_error_from_response_data(response_data)
+        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
         if error:
             raise error
 
@@ -157,24 +159,11 @@ class SpotifyApiClient:
         response = requests.get(url, headers=headers, params=params)
         response_data = response.json()
 
-        error = SpotifyApiClient.__create_http_error_from_response_data(response_data)
+        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
         if error:
             raise error
 
         return response_data
-
-    # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    @staticmethod
-    def __create_http_error_from_response_data(response_data):
-        if "error" not in response_data:
-            return None
-
-        error = response_data["error"]
-        status_code = error["status"]
-        message = error["message"]
-        title = "Spotify API Error"
-
-        return HttpError(status_code, title, message)
 
     # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
     @staticmethod
@@ -237,7 +226,7 @@ class SpotifyApiClient:
         except Exception:
             raise HttpError(status_code=response.status_code, title="Spotify API Error", message=response.text)
 
-        error = SpotifyApiClient.__create_http_error_from_response_data(response_data)
+        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
         if error:
             raise error
 
@@ -259,7 +248,7 @@ class SpotifyApiClient:
             response = requests.post(url, headers=headers, json=data)
             response_data = response.json()
 
-            error = SpotifyApiClient.__create_http_error_from_response_data(response_data)
+            error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
             if error:
                 raise error
 
