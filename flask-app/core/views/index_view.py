@@ -1,8 +1,8 @@
-from core.utils import Utils
-
-from flask import Blueprint, render_template
 import configparser
 
+from flask import Blueprint, render_template
+
+from core.utils import Utils
 from core.views.view_utils import ViewUtils
 
 config = configparser.ConfigParser()

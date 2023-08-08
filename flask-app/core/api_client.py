@@ -1,10 +1,11 @@
 from json import JSONDecodeError
+
 import requests
 
+from core.http_error import HttpError
 from core.spotify.spotify_playlist import SpotifyPlaylist
 from core.spotify.spotify_playlist_statistics import SpotifyPlaylistStatistics
 from core.spotify.spotify_track import SpotifyTrack
-from core.http_error import HttpError
 from core.utils import Utils
 
 
