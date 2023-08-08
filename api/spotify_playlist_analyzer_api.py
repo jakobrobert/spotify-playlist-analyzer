@@ -4,8 +4,6 @@ from urllib.parse import urlencode
 from flask import Flask, jsonify, request, redirect
 
 from core.api_utils import ApiUtils
-from core.http_error import HttpError
-from core.playlist_statistics.playlist_statistics import PlaylistStatistics
 from core.spotify.spotify_client import SpotifyClient
 from core.spotify.spotify_track import SpotifyTrack
 from core.track_filter import TrackFilter
