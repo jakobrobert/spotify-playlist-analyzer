@@ -18,7 +18,7 @@ SPOTIFY_REDIRECT_URI = config["SPOTIFY"]["REDIRECT_URI"]
 SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
-spotify_client = SpotifyApiClient(
+spotify_api_client = SpotifyApiClient(
     SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
 
 app = Flask(__name__)
@@ -54,7 +54,7 @@ def authorize_callback():
     authorization_code = request.args.get("code")
     print(f"authorize_callback => authorization_code: {authorization_code}")
 
-    response_data = spotify_client.get_access_and_refresh_token(authorization_code)
+    response_data = spotify_api_client.get_access_and_refresh_token(authorization_code)
 
     access_token = response_data["access_token"]
     print(f"authorize_callback => access_token: {access_token}")
@@ -81,7 +81,7 @@ def authorize_callback():
 @Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 @ApiUtils.handle_exceptions
 def get_playlist_by_id(playlist_id):
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
+    playlist = spotify_api_client.get_playlist_by_id(playlist_id)
 
     playlist.tracks = ApiUtils.filter_tracks(playlist.tracks, request.args)
     ApiUtils.pick_random_tracks(playlist.tracks, request.args)
@@ -107,7 +107,7 @@ def get_playlist_by_id(playlist_id):
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
 
-    playlist = spotify_client.get_playlist_by_id(playlist_id)
+    playlist = spotify_api_client.get_playlist_by_id(playlist_id)
     attribute_distribution_items = ApiUtils.get_attribute_distribution_items(attribute, playlist.tracks)
 
     response = jsonify(attribute_distribution_items)
@@ -122,7 +122,7 @@ def create_playlist():
     request_data = request.json
     playlist_name = request_data["playlist_name"]
     track_ids = request_data["track_ids"]
-    playlist_id = spotify_client.create_playlist(playlist_name, track_ids)
+    playlist_id = spotify_api_client.create_playlist(playlist_name, track_ids)
 
     return jsonify({"playlist_id": playlist_id})
 
@@ -172,7 +172,7 @@ def get_valid_key_signatures():
 @Utils.measure_execution_time(log_prefix="[API Endpoint] ")
 @ApiUtils.handle_exceptions
 def get_track_by_id(track_id):
-    track = spotify_client.get_track_by_id(track_id)
+    track = spotify_api_client.get_track_by_id(track_id)
     # WARNING If you need to change track_dict, need to explicitly copy so original object will not be changed
     return jsonify(track.__dict__)
 
@@ -183,7 +183,7 @@ def get_track_by_id(track_id):
 def search_tracks():
     query = request.args.get("query")
 
-    tracks = spotify_client.search_tracks(query)
+    tracks = spotify_api_client.search_tracks(query)
     track_dicts = []
 
     for track in tracks:
