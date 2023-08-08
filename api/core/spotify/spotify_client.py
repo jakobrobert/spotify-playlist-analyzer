@@ -2,9 +2,9 @@ import configparser
 
 import requests
 
-from core.spotify.spotify_track import SpotifyTrack
-from core.spotify.spotify_playlist import SpotifyPlaylist
 from core.http_error import HttpError
+from core.spotify.spotify_playlist import SpotifyPlaylist
+from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
 
 
