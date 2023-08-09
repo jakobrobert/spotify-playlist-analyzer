@@ -5,6 +5,25 @@ from core.http_error import HttpError
 
 class SpotifyApiClientUtils:
     @staticmethod
+    def send_get_request(url, access_token, params=None):
+        headers = {"Authorization": f"Bearer {access_token}"}
+        response = requests.get(url, headers=headers, params=params)
+        response_data = response.json()
+
+        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
+        if error:
+            raise error
+
+        return response_data
+
+    @staticmethod
+    def send_get_request_with_ids(url, access_token, ids):
+        ids_string = ",".join(ids)
+        params = {"ids": ids_string}
+
+        return SpotifyApiClientUtils.send_get_request(url, access_token, params)
+
+    @staticmethod
     def send_post_request(url, access_token, data):
         headers = {
             "Authorization": f"Bearer {access_token}",

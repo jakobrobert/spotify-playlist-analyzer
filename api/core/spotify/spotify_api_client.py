@@ -47,7 +47,7 @@ class SpotifyApiClient:
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.__get_access_token_by_client_credentials()
-        response_data = SpotifyApiClient.__send_get_request(url, access_token)
+        response_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
@@ -84,7 +84,7 @@ class SpotifyApiClient:
 
         url = f"https://api.spotify.com/v1/tracks/{track_id}"
         access_token = self.__get_access_token_by_client_credentials()
-        track_data = SpotifyApiClient.__send_get_request(url, access_token)
+        track_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         track = SpotifyApiClient.__create_spotify_track(track_data)
         tracks = [track]
@@ -106,7 +106,7 @@ class SpotifyApiClient:
             "limit": 50
         }
 
-        response_data = SpotifyApiClient.__send_get_request(url, access_token, params)
+        response_data = SpotifyApiClientUtils.send_get_request(url, access_token, params)
         tracks_data = response_data["tracks"]
         track_items = tracks_data["items"]
 
@@ -158,27 +158,6 @@ class SpotifyApiClient:
 
         return response_data["access_token"]
 
-    # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    @staticmethod
-    def __send_get_request(url, access_token, params=None):
-        headers = {"Authorization": f"Bearer {access_token}"}
-        response = requests.get(url, headers=headers, params=params)
-        response_data = response.json()
-
-        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
-        if error:
-            raise error
-
-        return response_data
-
-    # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    @staticmethod
-    def __send_get_request_with_ids(url, access_token, ids):
-        ids_string = ",".join(ids)
-        params = {"ids": ids_string}
-
-        return SpotifyApiClient.__send_get_request(url, access_token, params)
-
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
         tracks = []
@@ -203,7 +182,7 @@ class SpotifyApiClient:
 
         # Get remaining tracks, playlist_data only contains the first 100
         while next_url is not None:
-            tracks_data = SpotifyApiClient.__send_get_request(next_url, access_token)
+            tracks_data = SpotifyApiClientUtils.send_get_request(next_url, access_token)
             new_track_items = tracks_data["items"]
             track_items.extend(new_track_items)
             next_url = tracks_data["next"]
@@ -300,7 +279,7 @@ class SpotifyApiClient:
     def __get_artist_id_to_genres_for_one_request(artist_ids, url, access_token):
         artist_id_to_genres = {}
 
-        response_data = SpotifyApiClient.__send_get_request_with_ids(url, access_token, artist_ids)
+        response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, artist_ids)
         artists = response_data["artists"]
 
         for artist in artists:
@@ -342,7 +321,7 @@ class SpotifyApiClient:
         track_id_chunks = SpotifyApiClient.__split_list_into_chunks(track_ids, max_ids_per_request)
 
         for track_ids_of_chunk in track_id_chunks:
-            response_data = SpotifyApiClient.__send_get_request_with_ids(url, access_token, track_ids_of_chunk)
+            response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, track_ids_of_chunk)
             audio_features_by_track.extend(response_data["audio_features"])
 
         return audio_features_by_track
