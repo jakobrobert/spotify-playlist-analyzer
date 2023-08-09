@@ -45,7 +45,7 @@ class SpotifyApiClient:
             raise HttpError(400, title="API: get_playlist_by_id failed", message="'playlist_id' is None or empty")
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
-        access_token = self.__get_access_token_by_client_credentials(self.client_id, self.client_secret)
+        access_token = SpotifyApiClientUtils.get_access_token_by_client_credentials(self.client_id, self.client_secret)
         response_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
@@ -85,7 +85,7 @@ class SpotifyApiClient:
             raise HttpError(400, "track_id is None!")
 
         url = f"https://api.spotify.com/v1/tracks/{track_id}"
-        access_token = self.__get_access_token_by_client_credentials(self.client_id, self.client_secret)
+        access_token = SpotifyApiClientUtils.get_access_token_by_client_credentials(self.client_id, self.client_secret)
         track_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         track = SpotifyApiClient.__create_spotify_track(track_data)
@@ -101,7 +101,7 @@ class SpotifyApiClient:
             raise HttpError(400, "query is None!")
 
         url = f"https://api.spotify.com/v1/search"
-        access_token = self.__get_access_token_by_client_credentials(self.client_id, self.client_secret)
+        access_token = SpotifyApiClientUtils.get_access_token_by_client_credentials(self.client_id, self.client_secret)
         params = {
             "q": query,
             "type": "track",
@@ -122,46 +122,6 @@ class SpotifyApiClient:
         SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
 
         return tracks
-
-    # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    @staticmethod
-    def __get_access_token_by_client_credentials(client_id, client_secret):
-        url = "https://accounts.spotify.com/api/token"
-        data = {"grant_type": "client_credentials"}
-        auth = (client_id, client_secret)
-        response = requests.post(url, data=data, auth=auth)
-        response_data = response.json()
-
-        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
-        if error:
-            raise error
-
-        return response_data["access_token"]
-
-    # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    # TODOLATER #171 Fix: Get access token by refresh token fails
-    @staticmethod
-    def __get_access_token_by_refresh_token(self, client_id, client_secret):
-        url = "https://accounts.spotify.com/api/token"
-        headers = {
-            "Authorization": f"Basic {client_id}:{client_secret}",
-            "Content-Type": "application/x-www-form-urlencoded"
-        }
-        data = {
-            "grant_type": "refresh_token",
-            "refresh_token": self.test_refresh_token
-        }
-
-        response = requests.post(url, headers=headers, data=data)
-        response_data = response.json()
-
-        if "error" in response_data:
-            error_title = "Spotify API Error: Failed to get access token by refresh token"
-            # This is different to other endpoints, cannot use create_http_error_from_response_data here
-            error_message = response_data["error"]
-            raise HttpError(response.status_code, error_title, error_message)
-
-        return response_data["access_token"]
 
     @staticmethod
     def __get_tracks_of_playlist(playlist_data, access_token):
