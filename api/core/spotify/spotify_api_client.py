@@ -254,7 +254,7 @@ class SpotifyApiClient:
 
         url = "https://api.spotify.com/v1/artists"
         max_ids_per_request = 50
-        artist_id_chunks = SpotifyApiClient.__split_list_into_chunks(artist_ids, max_ids_per_request)
+        artist_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(artist_ids, max_ids_per_request)
 
         for curr_artist_ids in artist_id_chunks:
             curr_artist_id_to_genres = SpotifyApiClient.__get_artist_id_to_genres_for_one_request(
@@ -262,18 +262,6 @@ class SpotifyApiClient:
             artist_id_to_genres.update(curr_artist_id_to_genres)
 
         return artist_id_to_genres
-
-    # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    @staticmethod
-    def __split_list_into_chunks(list_, chunk_size):
-        chunks = []
-
-        for start_index in range(0, len(list_), chunk_size):
-            end_index = min(start_index + chunk_size, len(list_))
-            chunk = list_[start_index:end_index]
-            chunks.append(chunk)
-
-        return chunks
 
     @staticmethod
     def __get_artist_id_to_genres_for_one_request(artist_ids, url, access_token):
@@ -318,7 +306,7 @@ class SpotifyApiClient:
 
         url = "https://api.spotify.com/v1/audio-features"
         max_ids_per_request = 100
-        track_id_chunks = SpotifyApiClient.__split_list_into_chunks(track_ids, max_ids_per_request)
+        track_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(track_ids, max_ids_per_request)
 
         for track_ids_of_chunk in track_id_chunks:
             response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, track_ids_of_chunk)
@@ -342,7 +330,7 @@ class SpotifyApiClient:
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
 
         max_ids_per_request = 100
-        track_id_chunks = SpotifyApiClient.__split_list_into_chunks(track_ids, max_ids_per_request)
+        track_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(track_ids, max_ids_per_request)
 
         for track_id_chunk in track_id_chunks:
             data = {"uris": [f"spotify:track:{track_id}" for track_id in track_id_chunk]}
