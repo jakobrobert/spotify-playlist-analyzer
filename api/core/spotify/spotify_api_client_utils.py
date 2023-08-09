@@ -54,3 +54,14 @@ class SpotifyApiClientUtils:
         title = "Spotify API Error"
 
         return HttpError(status_code, title, message)
+
+    @staticmethod
+    def split_list_into_chunks(list_, chunk_size):
+        chunks = []
+
+        for start_index in range(0, len(list_), chunk_size):
+            end_index = min(start_index + chunk_size, len(list_))
+            chunk = list_[start_index:end_index]
+            chunks.append(chunk)
+
+        return chunks
