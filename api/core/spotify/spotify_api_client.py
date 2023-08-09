@@ -138,15 +138,21 @@ class SpotifyApiClient:
     # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
     def __get_access_token_by_refresh_token(self):
         url = "https://accounts.spotify.com/api/token"
-        headers = {"Authorization": f"Basic {self.client_id}:{self.client_secret}",
-                   "Content-Type": "application/x-www-form-urlencoded"}
-        data = {"grant_type": "refresh_token", "refresh_token": self.test_refresh_token}
+        headers = {
+            "Authorization": f"Basic {self.client_id}:{self.client_secret}",
+            "Content-Type": "application/x-www-form-urlencoded"
+        }
+        data = {
+            "grant_type": "refresh_token",
+            "refresh_token": self.test_refresh_token
+        }
+
         response = requests.post(url, headers=headers, data=data)
         response_data = response.json()
 
         if "error" in response_data:
             error_title = "Spotify API Error: Failed to get access token by refresh token"
-            # This is different to other endpoints, cannot use __create_http_error_from_response_data here
+            # This is different to other endpoints, cannot use create_http_error_from_response_data here
             error_message = response_data["error"]
             raise HttpError(response.status_code, error_title, error_message)
 
@@ -341,10 +347,6 @@ class SpotifyApiClient:
 
         return audio_features_by_track
 
-    # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    #   Extract helper method __send_post_request.
-    #   Code is duplicated partly for __create_empty_playlist & __add_tracks_to_playlist, and both get response as json
-    #   But for __get_access_token_by_refresh_token, error response is different
     @staticmethod
     def __create_empty_playlist(playlist_name, user_id, access_token):
         url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
@@ -352,21 +354,8 @@ class SpotifyApiClient:
             "name": playlist_name,
             "public": True
         }
-        headers = {
-            "Authorization": f"Bearer {access_token}",
-            "Content-Type": "application/json"
-        }
-        response = requests.post(url, headers=headers, json=data)
 
-        try:
-            response_data = response.json()
-        except Exception:
-            raise HttpError(status_code=response.status_code, title="Spotify API Error", message=response.text)
-
-        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
-        if error:
-            raise error
-
+        response_data = SpotifyApiClientUtils.send_post_request(url, access_token, data)
         return response_data["id"]
 
     @staticmethod
@@ -382,6 +371,7 @@ class SpotifyApiClient:
 
         for track_id_chunk in track_id_chunks:
             data = {"uris": [f"spotify:track:{track_id}" for track_id in track_id_chunk]}
+            # TODONOW use SpotifyApiClientUtils.send_post_request
             response = requests.post(url, headers=headers, json=data)
             response_data = response.json()
 
