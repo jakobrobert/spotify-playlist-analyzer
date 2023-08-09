@@ -3,7 +3,9 @@
         <th>#</th>
         <th>{{ attribute_display_names["artists"] }}</th>
         <th>{{ attribute_display_names["title"] }}</th>
-        <th>{{ attribute_display_names["added_by"] }}</th>
+        {% if should_include_added_by %}
+            <th>{{ attribute_display_names["added_by"] }}</th>
+        {% endif %}
         <th>{{ attribute_display_names["duration_ms"] }}</th>
         <th>{{ attribute_display_names["release_year"] }}</th>
         <th>{{ attribute_display_names["popularity"] }}</th>
@@ -28,7 +30,9 @@
 
         <td>{{ track.get_artists_string() }}</td>
         <td>{{ track.title }}</td>
-        <td>{{ track.added_by }}</td>
+        {% if should_include_added_by %}
+            <td>{{ track.added_by }}</td>
+        {% endif %}
         <td>{{ track.get_duration_string() }}</td>
         <td>{{ track.release_year }}</td>
         <td>{{ track.popularity }}</td>
