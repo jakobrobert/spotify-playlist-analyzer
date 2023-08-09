@@ -91,7 +91,7 @@ class SpotifyApiClient:
         track = SpotifyApiClient.__create_spotify_track(track_data)
         tracks = [track]
         SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
-        SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
+        SpotifyApiClient.__update_audio_features_of_tracks(tracks, access_token)
 
         return track
 
@@ -119,7 +119,7 @@ class SpotifyApiClient:
             tracks.append(track)
 
         SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
-        SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
+        SpotifyApiClient.__update_audio_features_of_tracks(tracks, access_token)
 
         return tracks
 
@@ -138,7 +138,7 @@ class SpotifyApiClient:
 
         SpotifyApiClient.__update_added_by_of_tracks(tracks, access_token)
         SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
-        SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
+        SpotifyApiClient.__update_audio_features_of_tracks(tracks, access_token)
 
         return tracks
 
@@ -286,7 +286,7 @@ class SpotifyApiClient:
         return genres
 
     @staticmethod
-    def __set_audio_features_of_tracks(tracks, access_token):
+    def __update_audio_features_of_tracks(tracks, access_token):
         audio_features_by_track = SpotifyApiClient.__get_audio_features_of_tracks(tracks, access_token)
 
         assert len(audio_features_by_track) == len(tracks)
