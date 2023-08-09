@@ -130,10 +130,13 @@ class SpotifyApiClient:
         track_items = SpotifyApiClient.__get_all_track_items_of_playlist(playlist_data, access_token)
 
         for track_item in track_items:
+            added_by_user_id = track_item["added_by"]["id"]
             track_data = track_item["track"]
             track = SpotifyApiClient.__create_spotify_track(track_data)
+            track.added_by = added_by_user_id
             tracks.append(track)
 
+        # TODONOW update added_by, get the user names of the added_by user ids
         SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
         SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
 
