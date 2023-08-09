@@ -158,6 +158,7 @@ class ApiClient:
         track.title = track_dict["title"]
         track.artist_ids = track_dict["artist_ids"]
         track.artists = track_dict["artists"]
+        track.added_by = track_dict["added_by"]
         track.duration_ms = track_dict["duration_ms"]
         track.release_year = track_dict["release_year"]
         track.popularity = track_dict["popularity"]
