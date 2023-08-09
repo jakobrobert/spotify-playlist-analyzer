@@ -59,6 +59,8 @@ class SpotifyTrack:
         self.artist_ids = []
         self.artists = []
         self.title = None
+        self.added_by_user_id = None
+        self.added_by = None
         self.duration_ms = 0
         self.release_year = 0
         self.popularity = 0
