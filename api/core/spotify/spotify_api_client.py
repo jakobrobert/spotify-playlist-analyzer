@@ -213,16 +213,27 @@ class SpotifyApiClient:
             if track.added_by_user_id not in all_added_by_user_ids:
                 all_added_by_user_ids.append(track.added_by_user_id)
 
-        # TODONOW extract method  SpotifyApiClient.__get_user_id_to_user_name
-        user_id_to_user_name = {}
-        for user_id in all_added_by_user_ids:
-            url = f"https://api.spotify.com/v1/users/{user_id}"
-            user_data = SpotifyApiClientUtils.send_get_request(url, access_token)
-            user_name = user_data["display_name"]
-            user_id_to_user_name[user_id] = user_name
+        user_id_to_user_name = SpotifyApiClient.__get_user_id_to_user_name(access_token, all_added_by_user_ids)
 
         for track in tracks:
             track.added_by = user_id_to_user_name[track.added_by_user_id]
+
+    @staticmethod
+    def __get_user_id_to_user_name(access_token, all_added_by_user_ids):
+        user_id_to_user_name = {}
+
+        for user_id in all_added_by_user_ids:
+            user_id_to_user_name[user_id] = SpotifyApiClient.__get_user_name_for_user_id(access_token, user_id)
+
+        return user_id_to_user_name
+
+    @staticmethod
+    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    def __get_user_name_for_user_id(access_token, user_id):
+        url = f"https://api.spotify.com/v1/users/{user_id}"
+        user_data = SpotifyApiClientUtils.send_get_request(url, access_token)
+        user_name = user_data["display_name"]
+        return user_name
 
     @staticmethod
     def __update_genres_of_tracks(tracks, access_token):
