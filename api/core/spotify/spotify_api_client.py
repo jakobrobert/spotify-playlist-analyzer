@@ -367,4 +367,4 @@ class SpotifyApiClient:
 
         for track_id_chunk in track_id_chunks:
             data = {"uris": [f"spotify:track:{track_id}" for track_id in track_id_chunk]}
-            response_data = SpotifyApiClientUtils.send_post_request(url, access_token, data)
+            SpotifyApiClientUtils.send_post_request(url, access_token, data)
