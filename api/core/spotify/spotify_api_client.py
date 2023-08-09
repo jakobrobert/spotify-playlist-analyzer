@@ -361,20 +361,10 @@ class SpotifyApiClient:
     @staticmethod
     def __add_tracks_to_playlist(playlist_id, track_ids, access_token):
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
-        headers = {
-            "Authorization": f"Bearer {access_token}",
-            "Content-Type": "application/json",
-        }
 
         max_ids_per_request = 100
         track_id_chunks = SpotifyApiClient.__split_list_into_chunks(track_ids, max_ids_per_request)
 
         for track_id_chunk in track_id_chunks:
             data = {"uris": [f"spotify:track:{track_id}" for track_id in track_id_chunk]}
-            # TODONOW use SpotifyApiClientUtils.send_post_request
-            response = requests.post(url, headers=headers, json=data)
-            response_data = response.json()
-
-            error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
-            if error:
-                raise error
+            response_data = SpotifyApiClientUtils.send_post_request(url, access_token, data)
