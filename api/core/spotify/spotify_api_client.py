@@ -218,54 +218,6 @@ class SpotifyApiClient:
 
         return track
 
-    # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    #   Extract helper method __send_post_request.
-    #   Code is duplicated partly for __create_empty_playlist & __add_tracks_to_playlist, and both get response as json
-    #   But for __get_access_token_by_refresh_token, error response is different
-    @staticmethod
-    def __create_empty_playlist(playlist_name, user_id, access_token):
-        url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
-        data = {
-            "name": playlist_name,
-            "public": True
-        }
-        headers = {
-            "Authorization": f"Bearer {access_token}",
-            "Content-Type": "application/json"
-        }
-        response = requests.post(url, headers=headers, json=data)
-
-        try:
-            response_data = response.json()
-        except Exception:
-            raise HttpError(status_code=response.status_code, title="Spotify API Error", message=response.text)
-
-        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
-        if error:
-            raise error
-
-        return response_data["id"]
-
-    @staticmethod
-    def __add_tracks_to_playlist(playlist_id, track_ids, access_token):
-        url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
-        headers = {
-            "Authorization": f"Bearer {access_token}",
-            "Content-Type": "application/json",
-        }
-
-        max_ids_per_request = 100
-        track_id_chunks = SpotifyApiClient.__split_list_into_chunks(track_ids, max_ids_per_request)
-
-        for track_id_chunk in track_id_chunks:
-            data = {"uris": [f"spotify:track:{track_id}" for track_id in track_id_chunk]}
-            response = requests.post(url, headers=headers, json=data)
-            response_data = response.json()
-
-            error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
-            if error:
-                raise error
-
     @staticmethod
     def __get_artists_of_track(track):
         artist_names = []
@@ -388,3 +340,51 @@ class SpotifyApiClient:
             audio_features_by_track.extend(response_data["audio_features"])
 
         return audio_features_by_track
+
+    # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
+    #   Extract helper method __send_post_request.
+    #   Code is duplicated partly for __create_empty_playlist & __add_tracks_to_playlist, and both get response as json
+    #   But for __get_access_token_by_refresh_token, error response is different
+    @staticmethod
+    def __create_empty_playlist(playlist_name, user_id, access_token):
+        url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
+        data = {
+            "name": playlist_name,
+            "public": True
+        }
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json"
+        }
+        response = requests.post(url, headers=headers, json=data)
+
+        try:
+            response_data = response.json()
+        except Exception:
+            raise HttpError(status_code=response.status_code, title="Spotify API Error", message=response.text)
+
+        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
+        if error:
+            raise error
+
+        return response_data["id"]
+
+    @staticmethod
+    def __add_tracks_to_playlist(playlist_id, track_ids, access_token):
+        url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
+        headers = {
+            "Authorization": f"Bearer {access_token}",
+            "Content-Type": "application/json",
+        }
+
+        max_ids_per_request = 100
+        track_id_chunks = SpotifyApiClient.__split_list_into_chunks(track_ids, max_ids_per_request)
+
+        for track_id_chunk in track_id_chunks:
+            data = {"uris": [f"spotify:track:{track_id}" for track_id in track_id_chunk]}
+            response = requests.post(url, headers=headers, json=data)
+            response_data = response.json()
+
+            error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
+            if error:
+                raise error
