@@ -136,10 +136,9 @@ class SpotifyApiClient:
             track.added_by_user_id = added_by_user_id
             tracks.append(track)
 
-        # TODONOW revert. commented out to make testing faster
         SpotifyApiClient.__update_added_by_of_tracks(tracks, access_token)
-        #SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
-        #SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
+        SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
+        SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
 
         return tracks
 
