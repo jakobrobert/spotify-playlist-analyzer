@@ -20,7 +20,6 @@ class SpotifyApiClient:
     @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
     def get_access_and_refresh_token(self, authorization_code):
         token_url = "https://accounts.spotify.com/api/token"
-        # TODOLATER #171 use auth=(client_id, client_secret) instead of adding those to data, is more secure
         data = {
             "grant_type": "authorization_code",
             "code": authorization_code,
@@ -46,7 +45,7 @@ class SpotifyApiClient:
             raise HttpError(400, title="API: get_playlist_by_id failed", message="'playlist_id' is None or empty")
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
-        access_token = self.__get_access_token_by_client_credentials()
+        access_token = self.__get_access_token_by_client_credentials(self.client_id, self.client_secret)
         response_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
@@ -64,9 +63,12 @@ class SpotifyApiClient:
         if not track_ids:
             raise HttpError(400, title="API: create_playlist failed", message="'track_ids' is None or empty")
 
-        # TODOLATER #171 This is a workaround because __get_access_token_by_refresh_token fails
+        # TODOLATER #171 Fix: Get access token by refresh token fails
+        # As current workaround, read access token from ini file.
+        # access token is written to ini file by authorize endpoint which can easily be called by Browser, see
+
         # Important to read it here from file
-        # NOT before initialization of SpotifyApiClient, so it is always up to date
+        # NOT before initialization of SpotifyApiClient, so it is always up-to-date
         test_access_token_config = configparser.ConfigParser()
         test_access_token_config.read("./test_access_token.ini")
         test_access_token = test_access_token_config["SPOTIFY"]["TEST_ACCESS_TOKEN"]
@@ -83,7 +85,7 @@ class SpotifyApiClient:
             raise HttpError(400, "track_id is None!")
 
         url = f"https://api.spotify.com/v1/tracks/{track_id}"
-        access_token = self.__get_access_token_by_client_credentials()
+        access_token = self.__get_access_token_by_client_credentials(self.client_id, self.client_secret)
         track_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         track = SpotifyApiClient.__create_spotify_track(track_data)
@@ -99,7 +101,7 @@ class SpotifyApiClient:
             raise HttpError(400, "query is None!")
 
         url = f"https://api.spotify.com/v1/search"
-        access_token = self.__get_access_token_by_client_credentials()
+        access_token = self.__get_access_token_by_client_credentials(self.client_id, self.client_secret)
         params = {
             "q": query,
             "type": "track",
@@ -122,10 +124,11 @@ class SpotifyApiClient:
         return tracks
 
     # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    def __get_access_token_by_client_credentials(self):
+    @staticmethod
+    def __get_access_token_by_client_credentials(client_id, client_secret):
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
-        auth = (self.client_id, self.client_secret)
+        auth = (client_id, client_secret)
         response = requests.post(url, data=data, auth=auth)
         response_data = response.json()
 
@@ -136,10 +139,12 @@ class SpotifyApiClient:
         return response_data["access_token"]
 
     # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
-    def __get_access_token_by_refresh_token(self):
+    # TODOLATER #171 Fix: Get access token by refresh token fails
+    @staticmethod
+    def __get_access_token_by_refresh_token(self, client_id, client_secret):
         url = "https://accounts.spotify.com/api/token"
         headers = {
-            "Authorization": f"Basic {self.client_id}:{self.client_secret}",
+            "Authorization": f"Basic {client_id}:{client_secret}",
             "Content-Type": "application/x-www-form-urlencoded"
         }
         data = {
