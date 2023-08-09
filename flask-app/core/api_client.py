@@ -155,9 +155,9 @@ class ApiClient:
         track = SpotifyTrack()
 
         track.id = track_dict["id"]
-        track.title = track_dict["title"]
         track.artist_ids = track_dict["artist_ids"]
         track.artists = track_dict["artists"]
+        track.title = track_dict["title"]
         track.added_by = track_dict["added_by"]
         track.duration_ms = track_dict["duration_ms"]
         track.release_year = track_dict["release_year"]
