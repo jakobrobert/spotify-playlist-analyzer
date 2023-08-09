@@ -204,6 +204,20 @@ class SpotifyApiClient:
 
         return track_items
 
+    @staticmethod
+    def __create_spotify_track(track_data):
+        track = SpotifyTrack()
+
+        track.id = track_data["id"]
+        track.title = track_data["name"]
+        track.artist_ids = SpotifyApiClient.__get_artist_ids_of_track(track_data)
+        track.artists = SpotifyApiClient.__get_artists_of_track(track_data)
+        track.duration_ms = track_data["duration_ms"]
+        track.release_year = SpotifyApiClient.__get_release_year_of_track(track_data)
+        track.popularity = track_data["popularity"]
+
+        return track
+
     # TODONOW #169 Refactor: From SpotifyApiClient, extract general helper methods into separate class
     #   Extract helper method __send_post_request.
     #   Code is duplicated partly for __create_empty_playlist & __add_tracks_to_playlist, and both get response as json
@@ -251,20 +265,6 @@ class SpotifyApiClient:
             error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
             if error:
                 raise error
-
-    @staticmethod
-    def __create_spotify_track(track_data):
-        track = SpotifyTrack()
-
-        track.id = track_data["id"]
-        track.title = track_data["name"]
-        track.artist_ids = SpotifyApiClient.__get_artist_ids_of_track(track_data)
-        track.artists = SpotifyApiClient.__get_artists_of_track(track_data)
-        track.duration_ms = track_data["duration_ms"]
-        track.release_year = SpotifyApiClient.__get_release_year_of_track(track_data)
-        track.popularity = track_data["popularity"]
-
-        return track
 
     @staticmethod
     def __get_artists_of_track(track):
