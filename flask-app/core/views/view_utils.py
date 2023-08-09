@@ -15,6 +15,7 @@ class ViewUtils:
 
         "artists": "Artists",
         "title": "Title",
+        "added_by": "Added by",
         "duration_ms": "Duration",
         "release_year": "Release Year",
         "popularity": "Popularity",

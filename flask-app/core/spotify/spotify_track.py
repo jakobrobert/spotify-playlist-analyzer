@@ -7,9 +7,9 @@ class SpotifyTrack:
 
     def __init__(self):
         self.id = "n/a"
-        self.artist_ids = []
         self.artists = []
         self.title = "n/a"
+        self.added_by = "n/a"
         self.duration_ms = 0
         self.release_year = 0
         self.popularity = 0

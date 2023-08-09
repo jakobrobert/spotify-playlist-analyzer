@@ -146,7 +146,8 @@ def get_valid_attributes_for_attribute_distribution():
 def get_valid_attributes_for_sort_option():
     attributes = [
         "none",
-        "artists", "title", "duration_ms", "release_year", "popularity", "genres", "super_genres",
+        "artists", "title", "added_by",
+        "duration_ms", "release_year", "popularity", "genres", "super_genres",
         "tempo", "key", "mode", "key_signature", "loudness",
         "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
     ]

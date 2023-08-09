@@ -91,7 +91,7 @@ class SpotifyApiClient:
         track = SpotifyApiClient.__create_spotify_track(track_data)
         tracks = [track]
         SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
-        SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
+        SpotifyApiClient.__update_audio_features_of_tracks(tracks, access_token)
 
         return track
 
@@ -119,7 +119,7 @@ class SpotifyApiClient:
             tracks.append(track)
 
         SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
-        SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
+        SpotifyApiClient.__update_audio_features_of_tracks(tracks, access_token)
 
         return tracks
 
@@ -130,12 +130,15 @@ class SpotifyApiClient:
         track_items = SpotifyApiClient.__get_all_track_items_of_playlist(playlist_data, access_token)
 
         for track_item in track_items:
+            added_by_user_id = track_item["added_by"]["id"]
             track_data = track_item["track"]
             track = SpotifyApiClient.__create_spotify_track(track_data)
+            track.added_by_user_id = added_by_user_id
             tracks.append(track)
 
+        SpotifyApiClient.__update_added_by_of_tracks(tracks, access_token)
         SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
-        SpotifyApiClient.__set_audio_features_of_tracks(tracks, access_token)
+        SpotifyApiClient.__update_audio_features_of_tracks(tracks, access_token)
 
         return tracks
 
@@ -202,6 +205,36 @@ class SpotifyApiClient:
         return artist_ids
 
     @staticmethod
+    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    def __update_added_by_of_tracks(tracks, access_token):
+        all_added_by_user_ids = []
+        for track in tracks:
+            if track.added_by_user_id not in all_added_by_user_ids:
+                all_added_by_user_ids.append(track.added_by_user_id)
+
+        user_id_to_user_name = SpotifyApiClient.__get_user_id_to_user_name(access_token, all_added_by_user_ids)
+
+        for track in tracks:
+            track.added_by = user_id_to_user_name[track.added_by_user_id]
+
+    @staticmethod
+    def __get_user_id_to_user_name(access_token, all_added_by_user_ids):
+        user_id_to_user_name = {}
+
+        for user_id in all_added_by_user_ids:
+            user_id_to_user_name[user_id] = SpotifyApiClient.__get_user_name_for_user_id(access_token, user_id)
+
+        return user_id_to_user_name
+
+    @staticmethod
+    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    def __get_user_name_for_user_id(access_token, user_id):
+        url = f"https://api.spotify.com/v1/users/{user_id}"
+        user_data = SpotifyApiClientUtils.send_get_request(url, access_token)
+        user_name = user_data["display_name"]
+        return user_name
+
+    @staticmethod
     def __update_genres_of_tracks(tracks, access_token):
         all_artist_ids = []
         for track in tracks:
@@ -253,7 +286,7 @@ class SpotifyApiClient:
         return genres
 
     @staticmethod
-    def __set_audio_features_of_tracks(tracks, access_token):
+    def __update_audio_features_of_tracks(tracks, access_token):
         audio_features_by_track = SpotifyApiClient.__get_audio_features_of_tracks(tracks, access_token)
 
         assert len(audio_features_by_track) == len(tracks)
