@@ -1,9 +1,10 @@
+from urllib.parse import urlencode
+
 import requests
 
 from core.http_error import HttpError
 from core.spotify.spotify_api_client_utils import SpotifyApiClientUtils
 from core.utils import Utils
-
 
 LOG_PREFIX = "SpotifyApiAuthorization."
 
@@ -48,3 +49,22 @@ class SpotifyApiAuthorization:
             raise HttpError(response.status_code, error_title, error_message)
 
         return response_data["access_token"]
+
+    @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
+    def get_authorization_url(client_id, redirect_uri):
+        authorization_base_url = "https://accounts.spotify.com/authorize"
+        # TODOLATER #171 can use url_for, need to set _external=True
+        # First thought that cannot use url_for to get redirect uri because url_for just returned part of the url
+        # Therefore hardcoded it in ini file.
+        params = {
+            "client_id": client_id,
+            "response_type": "code",
+            "redirect_uri": redirect_uri,
+            "scope": "playlist-modify-public"
+        }
+
+        params_encoded = urlencode(params)
+        authorization_url = f"{authorization_base_url}?{params_encoded}"
+
+        return authorization_url

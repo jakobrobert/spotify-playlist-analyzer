@@ -4,6 +4,7 @@ from urllib.parse import urlencode
 from flask import Flask, jsonify, request, redirect
 
 from core.api_utils import ApiUtils
+from core.spotify.spotify_api_authorization import SpotifyApiAuthorization
 from core.spotify.spotify_api_client import SpotifyApiClient
 from core.spotify.spotify_track import SpotifyTrack
 from core.track_filter import TrackFilter
@@ -31,20 +32,7 @@ app = Flask(__name__)
 @Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def authorize():
-    # TODONOW extract method spotify_api_client.get_authorization_url
-    authorization_base_url = "https://accounts.spotify.com/authorize"
-    # Cannot use url_for to get redirect uri because url_for just returns part of the url, but need the full
-    # Therefore hardcoded it in ini file.
-    # TODOLATER #171 can use url_for, need to set _external=True
-    params = {
-        "client_id": SPOTIFY_CLIENT_ID,
-        "response_type": "code",
-        "redirect_uri": SPOTIFY_REDIRECT_URI,
-        "scope": "playlist-modify-public"
-    }
-    params_encoded = urlencode(params)
-    authorization_url = f"{authorization_base_url}?{params_encoded}"
-
+    authorization_url = SpotifyApiAuthorization.get_authorization_url(SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI)
     return redirect(authorization_url)
 
 
