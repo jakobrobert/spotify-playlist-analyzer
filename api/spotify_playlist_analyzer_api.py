@@ -4,6 +4,7 @@ from urllib.parse import urlencode
 from flask import Flask, jsonify, request, redirect
 
 from core.api_utils import ApiUtils
+from core.spotify.spotify_api_authorization import SpotifyApiAuthorization
 from core.spotify.spotify_api_client import SpotifyApiClient
 from core.spotify.spotify_track import SpotifyTrack
 from core.track_filter import TrackFilter
@@ -31,19 +32,7 @@ app = Flask(__name__)
 @Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def authorize():
-    authorization_base_url = "https://accounts.spotify.com/authorize"
-    # Cannot use url_for to get redirect uri because url_for just returns part of the url, but need the full
-    # Therefore hardcoded it in ini file.
-    # TODOLATER #171 can use url_for, need to set _external=True
-    params = {
-        "client_id": SPOTIFY_CLIENT_ID,
-        "response_type": "code",
-        "redirect_uri": SPOTIFY_REDIRECT_URI,
-        "scope": "playlist-modify-public"
-    }
-    params_encoded = urlencode(params)
-    authorization_url = f"{authorization_base_url}?{params_encoded}"
-
+    authorization_url = spotify_api_client.authorization.get_authorization_url()
     return redirect(authorization_url)
 
 
@@ -57,7 +46,8 @@ def authorize_callback():
     authorization_code = request.args.get("code")
     print(f"authorize_callback => authorization_code: {authorization_code}")
 
-    response_data = spotify_api_client.get_access_and_refresh_token(authorization_code)
+    # TODOLATER #171 adjust so method returns tuple (access_token, refresh_token) instead of response_data
+    response_data = spotify_api_client.authorization.get_access_and_refresh_token(authorization_code)
 
     access_token = response_data["access_token"]
     print(f"authorize_callback => access_token: {access_token}")

@@ -3,6 +3,7 @@ import configparser
 import requests
 
 from core.http_error import HttpError
+from core.spotify.spotify_api_authorization import SpotifyApiAuthorization
 from core.spotify.spotify_api_client_utils import SpotifyApiClientUtils
 from core.spotify.spotify_playlist import SpotifyPlaylist
 from core.spotify.spotify_track import SpotifyTrack
@@ -14,33 +15,9 @@ LOG_PREFIX = "SpotifyApiClient."
 
 class SpotifyApiClient:
     def __init__(self, client_id, client_secret, redirect_uri, test_refresh_token, test_user_id):
-        self.client_id = client_id
-        self.client_secret = client_secret
-        self.redirect_uri = redirect_uri
+        self.authorization = SpotifyApiAuthorization(client_id, client_secret, redirect_uri)
         self.test_refresh_token = test_refresh_token
         self.test_user_id = test_user_id
-
-    @Utils.measure_execution_time(LOG_PREFIX)
-    def get_access_and_refresh_token(self, authorization_code):
-        token_url = "https://accounts.spotify.com/api/token"
-        data = {
-            "grant_type": "authorization_code",
-            "code": authorization_code,
-            "client_id": self.client_id,
-            "client_secret": self.client_secret,
-            "redirect_uri": self.redirect_uri,
-        }
-
-        headers = {"Content-Type": "application/x-www-form-urlencoded"}
-        response = requests.post(token_url, data=data, headers=headers)
-        response_data = response.json()
-
-        if "error" in response_data:
-            raise HttpError(
-                status_code=response.status_code,
-                title=response_data["error"], message=response_data["error_description"])
-
-        return response_data
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_playlist_by_id(self, playlist_id):
@@ -48,7 +25,7 @@ class SpotifyApiClient:
             raise HttpError(400, title="API: get_playlist_by_id failed", message="'playlist_id' is None or empty")
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
-        access_token = SpotifyApiClientUtils.get_access_token_by_client_credentials(self.client_id, self.client_secret)
+        access_token = self.authorization.get_access_token_by_client_credentials()
         response_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
@@ -88,7 +65,7 @@ class SpotifyApiClient:
             raise HttpError(400, "track_id is None!")
 
         url = f"https://api.spotify.com/v1/tracks/{track_id}"
-        access_token = SpotifyApiClientUtils.get_access_token_by_client_credentials(self.client_id, self.client_secret)
+        access_token = self.authorization.get_access_token_by_client_credentials()
         track_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         track = SpotifyApiClient.__create_spotify_track(track_data)
@@ -104,7 +81,7 @@ class SpotifyApiClient:
             raise HttpError(400, "query is None!")
 
         url = f"https://api.spotify.com/v1/search"
-        access_token = SpotifyApiClientUtils.get_access_token_by_client_credentials(self.client_id, self.client_secret)
+        access_token = self.authorization.get_access_token_by_client_credentials()
         params = {
             "q": query,
             "type": "track",
