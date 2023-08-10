@@ -5,62 +5,56 @@ from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
 
 
+LOG_PREFIX = "PlaylistStatistics."
+
+
 class PlaylistStatistics:
     def __init__(self, tracks):
         self.tracks = tracks
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    # REMARK NO need to measure performance of get_total_duration_ms, get_average_duration_ms, etc.
+    # Even with a playlist of over 1000 tracks, they took each about 3 ms.
+    # Definitely not significant in relation, given that get_playlist_by_id takes over 15 seconds
     def get_total_duration_ms(self):
         if not self.tracks:
             return 0.0
 
         return sum(track.duration_ms for track in self.tracks)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_duration_ms(self):
         return self.__get_average_of_attribute("duration_ms")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_popularity(self):
         return self.__get_average_of_attribute("popularity")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_release_year(self):
         return self.__get_average_of_attribute("release_year")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_tempo(self):
         return self.__get_average_of_attribute("tempo")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_speechiness(self):
         return self.__get_average_of_attribute("speechiness")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_liveness(self):
         return self.__get_average_of_attribute("liveness")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_acousticness(self):
         return self.__get_average_of_attribute("acousticness")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_instrumentalness(self):
         return self.__get_average_of_attribute("instrumentalness")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_valence(self):
         return self.__get_average_of_attribute("valence")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_energy(self):
         return self.__get_average_of_attribute("energy")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
     def get_average_danceability(self):
         return self.__get_average_of_attribute("danceability")
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_distribution_items(self):
         first_interval_max_duration = 120000  # 120 seconds -> 02:00
         last_interval_min_duration = 300000  # 300 seconds -> 05:00
@@ -73,7 +67,7 @@ class PlaylistStatistics:
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(
             intervals, lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_release_year_distribution_items(self):
         first_interval_max_year = 1979
         last_interval_min_year = 2020
@@ -85,11 +79,11 @@ class PlaylistStatistics:
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_popularity_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.popularity)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_super_genres_distribution_items(self):
         items = []
 
@@ -114,7 +108,7 @@ class PlaylistStatistics:
 
         return items
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_tempo_distribution_items(self):
         first_interval_max_tempo = 89
         last_interval_min_tempo = 180
@@ -126,7 +120,7 @@ class PlaylistStatistics:
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_distribution_items(self):
         # TODOLATER merge loops into one, similar to get_super_genres_distribution_items.
         #  -> maybe can then extract general helper method for categorical values?
@@ -152,7 +146,7 @@ class PlaylistStatistics:
 
         return items
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_mode_distribution_items(self):
         # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
         #  -> maybe can then extract general helper method for categorical values?
@@ -178,7 +172,7 @@ class PlaylistStatistics:
 
         return items
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_signature_distribution_items(self):
         # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
         #  -> maybe can then extract general helper method for categorical values?
@@ -206,7 +200,7 @@ class PlaylistStatistics:
 
         return items
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_loudness_distribution_items(self):
         first_interval_max_loudness = -16
         last_interval_min_loudness = -2
@@ -218,31 +212,31 @@ class PlaylistStatistics:
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_danceability_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.danceability)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_energy_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.energy)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_speechiness_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.speechiness)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_liveness_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.liveness)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_acousticness_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.acousticness)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_instrumentalness_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.instrumentalness)
 
-    @Utils.measure_execution_time(log_prefix="PlaylistStatistics.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_valence_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.valence)
 

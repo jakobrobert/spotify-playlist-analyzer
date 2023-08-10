@@ -3,9 +3,12 @@ from core.track_filter import TrackFilter
 from core.utils import Utils
 
 
+LOG_PREFIX = "FilterParams."
+
+
 class FilterParams:
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="FilterParams.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def extract_filter_params_from_request_params(request_params):
         filter_by = request_params.get("filter_by") or None
         filter_params = {"filter_by": filter_by}
