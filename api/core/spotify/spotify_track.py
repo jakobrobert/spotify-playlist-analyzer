@@ -115,6 +115,7 @@ class SpotifyTrack:
 
         return SuperGenres.Others
 
+    # TODOLATER #234 Refactor: Keep key signature as number in API, convert to string in App
     @staticmethod
     def __get_key_signature_from_key_and_mode(key, mode):
         if (key == Keys.C and mode == Modes.Major) or (key == Keys.A and mode == Modes.Minor):

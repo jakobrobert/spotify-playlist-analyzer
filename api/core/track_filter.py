@@ -1,6 +1,9 @@
 from core.utils import Utils
 
 
+LOG_PREFIX = "TrackFilter."
+
+
 class TrackFilter:
     NUMERICAL_ATTRIBUTES = [
         "release_year", "popularity",
@@ -13,7 +16,7 @@ class TrackFilter:
         self.tracks = tracks
         self.filter_params = filter_params
 
-    @Utils.measure_execution_time(log_prefix="TrackFilter.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def filter_tracks(self):
         filter_by = self.filter_params["filter_by"]
 

@@ -9,6 +9,9 @@ from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
 
 
+LOG_PREFIX = "SpotifyApiClient."
+
+
 class SpotifyApiClient:
     def __init__(self, client_id, client_secret, redirect_uri, test_refresh_token, test_user_id):
         self.client_id = client_id
@@ -17,7 +20,7 @@ class SpotifyApiClient:
         self.test_refresh_token = test_refresh_token
         self.test_user_id = test_user_id
 
-    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_access_and_refresh_token(self, authorization_code):
         token_url = "https://accounts.spotify.com/api/token"
         data = {
@@ -39,7 +42,7 @@ class SpotifyApiClient:
 
         return response_data
 
-    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_playlist_by_id(self, playlist_id):
         if not playlist_id:
             raise HttpError(400, title="API: get_playlist_by_id failed", message="'playlist_id' is None or empty")
@@ -55,7 +58,7 @@ class SpotifyApiClient:
 
         return playlist
 
-    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def create_playlist(self, playlist_name, track_ids):
         if not playlist_name:
             raise HttpError(400, title="API: create_playlist failed", message="'playlist_name' is None or empty")
@@ -79,7 +82,7 @@ class SpotifyApiClient:
 
         return playlist_id
 
-    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_track_by_id(self, track_id):
         if track_id is None:
             raise HttpError(400, "track_id is None!")
@@ -95,7 +98,7 @@ class SpotifyApiClient:
 
         return track
 
-    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def search_tracks(self, query):
         if query is None:
             raise HttpError(400, "query is None!")
@@ -205,7 +208,7 @@ class SpotifyApiClient:
         return artist_ids
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_added_by_of_tracks(tracks, access_token):
         all_added_by_user_ids = []
         for track in tracks:
@@ -227,7 +230,7 @@ class SpotifyApiClient:
         return user_id_to_user_name
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="SpotifyApiClient.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __get_user_name_for_user_id(access_token, user_id):
         url = f"https://api.spotify.com/v1/users/{user_id}"
         user_data = SpotifyApiClientUtils.send_get_request(url, access_token)
