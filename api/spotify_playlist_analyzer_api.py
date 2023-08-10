@@ -31,6 +31,7 @@ app = Flask(__name__)
 @Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def authorize():
+    # TODONOW extract method spotify_api_client.get_authorization_url
     authorization_base_url = "https://accounts.spotify.com/authorize"
     # Cannot use url_for to get redirect uri because url_for just returns part of the url, but need the full
     # Therefore hardcoded it in ini file.
