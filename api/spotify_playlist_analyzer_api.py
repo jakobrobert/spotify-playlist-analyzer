@@ -32,7 +32,7 @@ app = Flask(__name__)
 @Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def authorize():
-    authorization_url = SpotifyApiAuthorization.get_authorization_url(SPOTIFY_CLIENT_ID, SPOTIFY_REDIRECT_URI)
+    authorization_url = spotify_api_client.authorization.get_authorization_url()
     return redirect(authorization_url)
 
 
@@ -46,7 +46,8 @@ def authorize_callback():
     authorization_code = request.args.get("code")
     print(f"authorize_callback => authorization_code: {authorization_code}")
 
-    response_data = SpotifyApiAuthorization.get_access_and_refresh_token(authorization_code)
+    # TODOLATER #171 adjust so method returns tuple (access_token, refresh_token) instead of response_data
+    response_data = spotify_api_client.authorization.get_access_and_refresh_token(authorization_code)
 
     access_token = response_data["access_token"]
     print(f"authorize_callback => access_token: {access_token}")

@@ -15,9 +15,7 @@ LOG_PREFIX = "SpotifyApiClient."
 
 class SpotifyApiClient:
     def __init__(self, client_id, client_secret, redirect_uri, test_refresh_token, test_user_id):
-        self.client_id = client_id
-        self.client_secret = client_secret
-        self.redirect_uri = redirect_uri
+        self.authorization = SpotifyApiAuthorization(client_id, client_secret, redirect_uri)
         self.test_refresh_token = test_refresh_token
         self.test_user_id = test_user_id
 
@@ -27,7 +25,7 @@ class SpotifyApiClient:
             raise HttpError(400, title="API: get_playlist_by_id failed", message="'playlist_id' is None or empty")
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
-        access_token = SpotifyApiAuthorization.get_access_token_by_client_credentials(self.client_id, self.client_secret)
+        access_token = self.authorization.get_access_token_by_client_credentials()
         response_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
@@ -67,7 +65,7 @@ class SpotifyApiClient:
             raise HttpError(400, "track_id is None!")
 
         url = f"https://api.spotify.com/v1/tracks/{track_id}"
-        access_token = SpotifyApiAuthorization.get_access_token_by_client_credentials(self.client_id, self.client_secret)
+        access_token = self.authorization.get_access_token_by_client_credentials()
         track_data = SpotifyApiClientUtils.send_get_request(url, access_token)
 
         track = SpotifyApiClient.__create_spotify_track(track_data)
@@ -83,7 +81,7 @@ class SpotifyApiClient:
             raise HttpError(400, "query is None!")
 
         url = f"https://api.spotify.com/v1/search"
-        access_token = SpotifyApiAuthorization.get_access_token_by_client_credentials(self.client_id, self.client_secret)
+        access_token = self.authorization.get_access_token_by_client_credentials()
         params = {
             "q": query,
             "type": "track",
