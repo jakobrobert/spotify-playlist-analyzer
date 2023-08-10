@@ -46,7 +46,7 @@ def authorize_callback():
     authorization_code = request.args.get("code")
     print(f"authorize_callback => authorization_code: {authorization_code}")
 
-    response_data = spotify_api_client.get_access_and_refresh_token(authorization_code)
+    response_data = SpotifyApiAuthorization.get_access_and_refresh_token(authorization_code)
 
     access_token = response_data["access_token"]
     print(f"authorize_callback => access_token: {access_token}")
