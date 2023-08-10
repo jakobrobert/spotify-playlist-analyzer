@@ -1,7 +1,6 @@
 import requests
 
 from core.http_error import HttpError
-from core.utils import Utils
 
 
 LOG_PREFIX = "SpotifyApiClientUtils."
