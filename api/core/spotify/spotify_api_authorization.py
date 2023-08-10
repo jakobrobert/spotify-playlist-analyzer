@@ -63,8 +63,29 @@ class SpotifyApiAuthorization:
             "redirect_uri": redirect_uri,
             "scope": "playlist-modify-public"
         }
-
         params_encoded = urlencode(params)
         authorization_url = f"{authorization_base_url}?{params_encoded}"
 
         return authorization_url
+
+    @Utils.measure_execution_time(LOG_PREFIX)
+    def get_access_and_refresh_token(self, authorization_code, client_id, client_secret, redirect_uri):
+        token_url = "https://accounts.spotify.com/api/token"
+        data = {
+            "grant_type": "authorization_code",
+            "code": authorization_code,
+            "client_id": client_id,
+            "client_secret": client_secret,
+            "redirect_uri": redirect_uri,
+        }
+
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+        response = requests.post(token_url, data=data, headers=headers)
+        response_data = response.json()
+
+        if "error" in response_data:
+            raise HttpError(
+                status_code=response.status_code,
+                title=response_data["error"], message=response_data["error_description"])
+
+        return response_data
