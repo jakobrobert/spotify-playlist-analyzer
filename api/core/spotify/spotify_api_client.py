@@ -228,7 +228,9 @@ class SpotifyApiClient:
             track.added_by = user_id_to_user_name[track.added_by_user_id]
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __get_user_id_to_user_name(access_token, all_added_by_user_ids):
+        # TODOLATER #271 Can use set to simplify code
         user_id_to_user_name = {}
 
         for user_id in all_added_by_user_ids:
@@ -245,10 +247,14 @@ class SpotifyApiClient:
         return user_name
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_genres_of_tracks(tracks, access_token):
+        # TODOLATER #271 Optimize, and can use set to simplify code
         all_artist_ids = []
         for track in tracks:
             all_artist_ids.extend(track.artist_ids)
+
+        print(f"{LOG_PREFIX}__update_genres_of_tracks => len(all_artist_ids): {len(all_artist_ids)}")
 
         artist_id_to_genres = SpotifyApiClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
@@ -257,24 +263,26 @@ class SpotifyApiClient:
             track.update_genres_and_super_genres(genres)
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __get_artist_id_to_genres(artist_ids, access_token):
         artist_id_to_genres = {}
 
-        url = "https://api.spotify.com/v1/artists"
         max_ids_per_request = 50
         artist_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(artist_ids, max_ids_per_request)
 
         for curr_artist_ids in artist_id_chunks:
             curr_artist_id_to_genres = SpotifyApiClient.__get_artist_id_to_genres_for_one_request(
-                curr_artist_ids, url, access_token)
+                curr_artist_ids, access_token)
             artist_id_to_genres.update(curr_artist_id_to_genres)
 
         return artist_id_to_genres
 
     @staticmethod
-    def __get_artist_id_to_genres_for_one_request(artist_ids, url, access_token):
+    @Utils.measure_execution_time(LOG_PREFIX)
+    def __get_artist_id_to_genres_for_one_request(artist_ids, access_token):
         artist_id_to_genres = {}
 
+        url = "https://api.spotify.com/v1/artists"
         response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, artist_ids)
         artists = response_data["artists"]
 
@@ -296,6 +304,7 @@ class SpotifyApiClient:
         return genres
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_audio_features_of_tracks(tracks, access_token):
         audio_features_by_track = SpotifyApiClient.__get_audio_features_of_tracks(tracks, access_token)
 
@@ -305,6 +314,7 @@ class SpotifyApiClient:
             tracks[i].update_attributes_by_audio_features(audio_features_by_track[i])
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __get_audio_features_of_tracks(tracks, access_token):
         audio_features_by_track = []
 
