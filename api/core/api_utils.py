@@ -97,8 +97,10 @@ class ApiUtils:
         reverse = (order == "descending")
         tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
+    # REMARK NO need to measure performance of create_playlist_statistics_dict.
+    # Even with a playlist of over 1000 tracks, took only about 35 ms.
+    # Definitely not significant in relation, given that get_playlist_by_id takes over 15 seconds
     @staticmethod
-    @Utils.measure_execution_time(LOG_PREFIX)
     def create_playlist_statistics_dict(tracks):
         statistics = PlaylistStatistics(tracks)
 
