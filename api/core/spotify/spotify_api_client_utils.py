@@ -1,6 +1,10 @@
 import requests
 
 from core.http_error import HttpError
+from core.utils import Utils
+
+
+LOG_PREFIX = "SpotifyApiClientUtils."
 
 
 class SpotifyApiClientUtils:
@@ -67,6 +71,7 @@ class SpotifyApiClientUtils:
         return chunks
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_access_token_by_client_credentials(client_id, client_secret):
         url = "https://accounts.spotify.com/api/token"
         data = {"grant_type": "client_credentials"}
@@ -82,6 +87,7 @@ class SpotifyApiClientUtils:
 
     # TODOLATER #171 Fix: Get access token by refresh token fails
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_access_token_by_refresh_token(self, client_id, client_secret):
         url = "https://accounts.spotify.com/api/token"
         headers = {
