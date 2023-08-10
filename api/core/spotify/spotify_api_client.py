@@ -169,7 +169,6 @@ class SpotifyApiClient:
         tracks_data = SpotifyApiClientUtils.send_get_request(next_url, access_token)
         track_items = tracks_data["items"]
         next_url = tracks_data["next"]
-        print(f"next_url: {next_url}")
         return track_items, next_url
 
     @staticmethod
