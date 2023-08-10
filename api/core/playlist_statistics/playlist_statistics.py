@@ -12,54 +12,45 @@ class PlaylistStatistics:
     def __init__(self, tracks):
         self.tracks = tracks
 
-    @Utils.measure_execution_time(LOG_PREFIX)
+    # REMARK NO need to measure performance of get_total_duration_ms, get_average_duration_ms, etc.
+    # Even with a playlist of over 1000 tracks, they took each about 3 ms.
+    # Definitely not significant in relation, given that get_playlist_by_id takes over 15 seconds
     def get_total_duration_ms(self):
         if not self.tracks:
             return 0.0
 
         return sum(track.duration_ms for track in self.tracks)
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_duration_ms(self):
         return self.__get_average_of_attribute("duration_ms")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_popularity(self):
         return self.__get_average_of_attribute("popularity")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_release_year(self):
         return self.__get_average_of_attribute("release_year")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_tempo(self):
         return self.__get_average_of_attribute("tempo")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_speechiness(self):
         return self.__get_average_of_attribute("speechiness")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_liveness(self):
         return self.__get_average_of_attribute("liveness")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_acousticness(self):
         return self.__get_average_of_attribute("acousticness")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_instrumentalness(self):
         return self.__get_average_of_attribute("instrumentalness")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_valence(self):
         return self.__get_average_of_attribute("valence")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_energy(self):
         return self.__get_average_of_attribute("energy")
 
-    @Utils.measure_execution_time(LOG_PREFIX)
     def get_average_danceability(self):
         return self.__get_average_of_attribute("danceability")
 
