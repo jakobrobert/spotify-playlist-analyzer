@@ -127,6 +127,7 @@ class SpotifyApiClient:
         return tracks
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __get_tracks_of_playlist(playlist_data, access_token):
         tracks = []
 
@@ -146,6 +147,7 @@ class SpotifyApiClient:
         return tracks
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __get_all_track_items_of_playlist(playlist_data, access_token):
         tracks_data = playlist_data["tracks"]
         track_items = tracks_data["items"]
@@ -153,12 +155,17 @@ class SpotifyApiClient:
 
         # Get remaining tracks, playlist_data only contains the first 100
         while next_url is not None:
-            tracks_data = SpotifyApiClientUtils.send_get_request(next_url, access_token)
-            new_track_items = tracks_data["items"]
-            track_items.extend(new_track_items)
-            next_url = tracks_data["next"]
+            track_items, next_url = SpotifyApiClient.__get_track_items_for_one_request(next_url, access_token)
 
         return track_items
+
+    @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
+    def __get_track_items_for_one_request(next_url, access_token):
+        tracks_data = SpotifyApiClientUtils.send_get_request(next_url, access_token)
+        track_items = tracks_data["items"]
+        next_url = tracks_data["next"]
+        return track_items, next_url
 
     @staticmethod
     def __create_spotify_track(track_data):
