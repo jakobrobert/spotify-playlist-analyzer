@@ -9,6 +9,9 @@ from core.spotify.spotify_track import SpotifyTrack
 from core.track_filter import TrackFilter
 from core.utils import Utils
 
+
+LOG_PREFIX = "[API Endpoint] "
+
 config = configparser.ConfigParser()
 config.read("config.ini")
 URL_PREFIX = config["DEFAULT"]["URL_PREFIX"]
@@ -25,7 +28,7 @@ app = Flask(__name__)
 
 
 @app.route(URL_PREFIX + "authorize", methods=["GET"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def authorize():
     authorization_base_url = "https://accounts.spotify.com/authorize"
@@ -45,7 +48,7 @@ def authorize():
 
 
 @app.route(URL_PREFIX + "authorize/callback", methods=["GET"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def authorize_callback():
     if "code" not in request.args:
@@ -78,7 +81,7 @@ def authorize_callback():
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>", methods=["GET"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def get_playlist_by_id(playlist_id):
     playlist = spotify_api_client.get_playlist_by_id(playlist_id)
@@ -102,7 +105,7 @@ def get_playlist_by_id(playlist_id):
 
 
 @app.route(URL_PREFIX + "playlist/<playlist_id>/attribute-distribution", methods=["GET"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def get_attribute_distribution_of_playlist(playlist_id):
     attribute = request.args.get("attribute")
@@ -116,7 +119,7 @@ def get_attribute_distribution_of_playlist(playlist_id):
 
 
 @app.route(URL_PREFIX + "playlist", methods=["POST"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def create_playlist():
     request_data = request.json
@@ -128,7 +131,7 @@ def create_playlist():
 
 
 @app.route(URL_PREFIX + "valid-attributes-for-attribute-distribution")
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def get_valid_attributes_for_attribute_distribution():
     attributes = [
@@ -141,7 +144,7 @@ def get_valid_attributes_for_attribute_distribution():
 
 
 @app.route(URL_PREFIX + "valid-attributes-for-sort-option")
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def get_valid_attributes_for_sort_option():
     attributes = [
@@ -156,21 +159,21 @@ def get_valid_attributes_for_sort_option():
 
 
 @app.route(URL_PREFIX + "numerical-attributes-for-filter-option")
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def get_numerical_attributes_for_filter_option():
     return jsonify(TrackFilter.NUMERICAL_ATTRIBUTES)
 
 
 @app.route(URL_PREFIX + "valid-key-signatures", methods=["GET"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def get_valid_key_signatures():
     return jsonify(SpotifyTrack.KEY_SIGNATURE_STRINGS)
 
 
 @app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def get_track_by_id(track_id):
     track = spotify_api_client.get_track_by_id(track_id)
@@ -179,7 +182,7 @@ def get_track_by_id(track_id):
 
 
 @app.route(URL_PREFIX + "search-tracks", methods=["GET"])
-@Utils.measure_execution_time(log_prefix="[API Endpoint] ")
+@Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def search_tracks():
     query = request.args.get("query")

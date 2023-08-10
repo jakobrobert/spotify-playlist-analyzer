@@ -11,6 +11,9 @@ from core.track_filter import TrackFilter
 from core.utils import Utils
 
 
+LOG_PREFIX = "ApiUtils."
+
+
 class ApiUtils:
     @staticmethod
     def handle_exceptions(func):
@@ -27,7 +30,7 @@ class ApiUtils:
         return decorator
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="ApiUtils.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def create_error_response(error):
         # Need to convert traceback_items manually, __dict__ is not supported
         traceback_items_converted = []
@@ -53,14 +56,14 @@ class ApiUtils:
         return response, error.status_code
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="ApiUtils.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def filter_tracks(tracks, request_args):
         filter_params = FilterParams.extract_filter_params_from_request_params(request_args)
         track_filter = TrackFilter(tracks, filter_params)
         return track_filter.filter_tracks()
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="ApiUtils.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def pick_random_tracks(tracks, request_args):
         pick_random_tracks_enabled = request_args.get("pick_random_tracks_enabled") == "on"
         if not pick_random_tracks_enabled:
@@ -83,7 +86,7 @@ class ApiUtils:
         del tracks[pick_random_tracks_count:]
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="ApiUtils.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def sort_tracks(tracks, request_args):
         sort_by = request_args.get("sort_by") or "none"
         order = request_args.get("order") or "ascending"
@@ -95,7 +98,7 @@ class ApiUtils:
         tracks.sort(key=operator.attrgetter(sort_by), reverse=reverse)
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="ApiUtils.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def create_playlist_statistics_dict(tracks):
         statistics = PlaylistStatistics(tracks)
 
@@ -115,7 +118,7 @@ class ApiUtils:
         }
 
     @staticmethod
-    @Utils.measure_execution_time(log_prefix="ApiUtils.")
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_attribute_distribution_items(attribute, tracks):
         statistics = PlaylistStatistics(tracks)
 
