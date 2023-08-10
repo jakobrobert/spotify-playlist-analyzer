@@ -150,14 +150,18 @@ class SpotifyApiClient:
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_all_track_items_of_playlist(playlist_data, access_token):
         tracks_data = playlist_data["tracks"]
-        track_items = tracks_data["items"]
+        curr_track_items = tracks_data["items"]
         next_url = tracks_data["next"]
+
+        all_track_items = []
+        all_track_items.extend(curr_track_items)
 
         # Get remaining tracks, playlist_data only contains the first 100
         while next_url is not None:
-            track_items, next_url = SpotifyApiClient.__get_track_items_for_one_request(next_url, access_token)
+            curr_track_items, next_url = SpotifyApiClient.__get_track_items_for_one_request(next_url, access_token)
+            all_track_items.extend(curr_track_items)
 
-        return track_items
+        return all_track_items
 
     @staticmethod
     @Utils.measure_execution_time(LOG_PREFIX)
@@ -165,6 +169,7 @@ class SpotifyApiClient:
         tracks_data = SpotifyApiClientUtils.send_get_request(next_url, access_token)
         track_items = tracks_data["items"]
         next_url = tracks_data["next"]
+        print(f"next_url: {next_url}")
         return track_items, next_url
 
     @staticmethod
@@ -306,31 +311,39 @@ class SpotifyApiClient:
     @staticmethod
     @Utils.measure_execution_time(LOG_PREFIX)
     def __update_audio_features_of_tracks(tracks, access_token):
-        audio_features_by_track = SpotifyApiClient.__get_audio_features_of_tracks(tracks, access_token)
+        audio_features_by_track_index = SpotifyApiClient.__get_audio_features_of_tracks(tracks, access_token)
 
-        assert len(audio_features_by_track) == len(tracks)
+        assert len(audio_features_by_track_index) == len(tracks)
 
         for i in range(0, len(tracks)):
-            tracks[i].update_attributes_by_audio_features(audio_features_by_track[i])
+            tracks[i].update_attributes_by_audio_features(audio_features_by_track_index[i])
 
     @staticmethod
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_audio_features_of_tracks(tracks, access_token):
-        audio_features_by_track = []
+        audio_features_by_track_index = []
 
         track_ids = []
         for track in tracks:
             track_ids.append(track.id)
 
-        url = "https://api.spotify.com/v1/audio-features"
         max_ids_per_request = 100
         track_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(track_ids, max_ids_per_request)
 
         for track_ids_of_chunk in track_id_chunks:
-            response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, track_ids_of_chunk)
-            audio_features_by_track.extend(response_data["audio_features"])
+            audio_features = SpotifyApiClient.__get_audio_features_for_one_request(
+                access_token, track_ids_of_chunk)
+            audio_features_by_track_index.extend(audio_features)
 
-        return audio_features_by_track
+        return audio_features_by_track_index
+
+    @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
+    def __get_audio_features_for_one_request(access_token, track_ids_of_chunk):
+        url = "https://api.spotify.com/v1/audio-features"
+        response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, track_ids_of_chunk)
+        audio_features = response_data["audio_features"]
+        return audio_features
 
     @staticmethod
     def __create_empty_playlist(playlist_name, user_id, access_token):
