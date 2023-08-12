@@ -4,7 +4,7 @@ import requests
 
 from core.http_error import HttpError
 from core.spotify.spotify_api_authorization import SpotifyApiAuthorization
-from core.spotify.spotify_api_client_utils import SpotifyApiClientUtils
+from core.spotify.spotify_api_utils import SpotifyApiUtils
 from core.spotify.spotify_playlist import SpotifyPlaylist
 from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
@@ -26,7 +26,7 @@ class SpotifyApiClient:
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.authorization.get_access_token_by_client_credentials()
-        response_data = SpotifyApiClientUtils.send_get_request(url, access_token)
+        response_data = SpotifyApiUtils.send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
@@ -66,7 +66,7 @@ class SpotifyApiClient:
 
         url = f"https://api.spotify.com/v1/tracks/{track_id}"
         access_token = self.authorization.get_access_token_by_client_credentials()
-        track_data = SpotifyApiClientUtils.send_get_request(url, access_token)
+        track_data = SpotifyApiUtils.send_get_request(url, access_token)
 
         track = SpotifyApiClient.__create_spotify_track(track_data)
         tracks = [track]
@@ -88,7 +88,7 @@ class SpotifyApiClient:
             "limit": 50
         }
 
-        response_data = SpotifyApiClientUtils.send_get_request(url, access_token, params)
+        response_data = SpotifyApiUtils.send_get_request(url, access_token, params)
         tracks_data = response_data["tracks"]
         track_items = tracks_data["items"]
 
@@ -143,7 +143,7 @@ class SpotifyApiClient:
     @staticmethod
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_track_items_for_one_request(next_url, access_token):
-        tracks_data = SpotifyApiClientUtils.send_get_request(next_url, access_token)
+        tracks_data = SpotifyApiUtils.send_get_request(next_url, access_token)
         track_items = tracks_data["items"]
         next_url = tracks_data["next"]
         return track_items, next_url
@@ -223,7 +223,7 @@ class SpotifyApiClient:
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_user_name_for_user_id(access_token, user_id):
         url = f"https://api.spotify.com/v1/users/{user_id}"
-        user_data = SpotifyApiClientUtils.send_get_request(url, access_token)
+        user_data = SpotifyApiUtils.send_get_request(url, access_token)
         user_name = user_data["display_name"]
         return user_name
 
@@ -249,7 +249,7 @@ class SpotifyApiClient:
         artist_id_to_genres = {}
 
         max_ids_per_request = 50
-        artist_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(artist_ids, max_ids_per_request)
+        artist_id_chunks = SpotifyApiUtils.split_list_into_chunks(artist_ids, max_ids_per_request)
 
         for curr_artist_ids in artist_id_chunks:
             curr_artist_id_to_genres = SpotifyApiClient.__get_artist_id_to_genres_for_one_request(
@@ -264,7 +264,7 @@ class SpotifyApiClient:
         artist_id_to_genres = {}
 
         url = "https://api.spotify.com/v1/artists"
-        response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, artist_ids)
+        response_data = SpotifyApiUtils.send_get_request_with_ids(url, access_token, artist_ids)
         artists = response_data["artists"]
 
         for artist in artists:
@@ -304,7 +304,7 @@ class SpotifyApiClient:
             track_ids.append(track.id)
 
         max_ids_per_request = 100
-        track_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(track_ids, max_ids_per_request)
+        track_id_chunks = SpotifyApiUtils.split_list_into_chunks(track_ids, max_ids_per_request)
 
         for track_ids_of_chunk in track_id_chunks:
             audio_features = SpotifyApiClient.__get_audio_features_for_one_request(
@@ -317,7 +317,7 @@ class SpotifyApiClient:
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_audio_features_for_one_request(access_token, track_ids_of_chunk):
         url = "https://api.spotify.com/v1/audio-features"
-        response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, track_ids_of_chunk)
+        response_data = SpotifyApiUtils.send_get_request_with_ids(url, access_token, track_ids_of_chunk)
         audio_features = response_data["audio_features"]
         return audio_features
 
@@ -329,7 +329,7 @@ class SpotifyApiClient:
             "public": True
         }
 
-        response_data = SpotifyApiClientUtils.send_post_request(url, access_token, data)
+        response_data = SpotifyApiUtils.send_post_request(url, access_token, data)
         return response_data["id"]
 
     @staticmethod
@@ -337,8 +337,8 @@ class SpotifyApiClient:
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
 
         max_ids_per_request = 100
-        track_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(track_ids, max_ids_per_request)
+        track_id_chunks = SpotifyApiUtils.split_list_into_chunks(track_ids, max_ids_per_request)
 
         for track_id_chunk in track_id_chunks:
             data = {"uris": [f"spotify:track:{track_id}" for track_id in track_id_chunk]}
-            SpotifyApiClientUtils.send_post_request(url, access_token, data)
+            SpotifyApiUtils.send_post_request(url, access_token, data)
