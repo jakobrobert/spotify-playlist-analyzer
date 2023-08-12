@@ -1,4 +1,5 @@
 import configparser
+from math import ceil
 
 import requests
 
@@ -127,11 +128,17 @@ class SpotifyApiClient:
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_all_track_items_of_playlist(playlist_data, access_token):
         tracks_data = playlist_data["tracks"]
-        curr_track_items = tracks_data["items"]
-        next_url = tracks_data["next"]
+
+        total_track_count = tracks_data["total"]
+        expected_request_count = ceil(total_track_count / 100)
+        print(f"SpotifyApiClient.__get_all_track_items_of_playlist => "
+              f"total_track_count: {total_track_count}, expected_request_count: {expected_request_count}")
 
         all_track_items = []
+
+        curr_track_items = tracks_data["items"]
         all_track_items.extend(curr_track_items)
+        next_url = tracks_data["next"]
 
         # Get remaining tracks, playlist_data only contains the first 100
         while next_url is not None:
@@ -214,6 +221,9 @@ class SpotifyApiClient:
         # TODOLATER #271 Can use set to simplify code
         user_id_to_user_name = {}
 
+        print(f"SpotifyApiClient.__get_user_id_to_user_name => "
+              f"# all_added_by_user_ids: {len(all_added_by_user_ids)}")
+
         for user_id in all_added_by_user_ids:
             user_id_to_user_name[user_id] = SpotifyApiClient.__get_user_name_for_user_id(access_token, user_id)
 
@@ -235,8 +245,6 @@ class SpotifyApiClient:
         for track in tracks:
             all_artist_ids.extend(track.artist_ids)
 
-        print(f"{LOG_PREFIX}__update_genres_of_tracks => len(all_artist_ids): {len(all_artist_ids)}")
-
         artist_id_to_genres = SpotifyApiClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
         for track in tracks:
@@ -250,6 +258,9 @@ class SpotifyApiClient:
 
         max_ids_per_request = 50
         artist_id_chunks = SpotifyApiUtils.split_list_into_chunks(artist_ids, max_ids_per_request)
+
+        print(f"SpotifyApiClient.__get_artist_id_to_genres => "
+              f"# artist_ids: {len(artist_ids)}, # artist_id_chunks: {len(artist_id_chunks)}")
 
         for curr_artist_ids in artist_id_chunks:
             curr_artist_id_to_genres = SpotifyApiClient.__get_artist_id_to_genres_for_one_request(
@@ -305,6 +316,8 @@ class SpotifyApiClient:
 
         max_ids_per_request = 100
         track_id_chunks = SpotifyApiUtils.split_list_into_chunks(track_ids, max_ids_per_request)
+        len(f"SpotifyApiClient.__get_audio_features_of_tracks => "
+            f"# tracks: {len(tracks)}, # track_id_chunks: {len(track_id_chunks)}")
 
         for track_ids_of_chunk in track_id_chunks:
             audio_features = SpotifyApiClient.__get_audio_features_for_one_request(
