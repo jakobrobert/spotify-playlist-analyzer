@@ -16,7 +16,8 @@ class TrackFilter:
         self.tracks = tracks
         self.filter_params = filter_params
 
-    @Utils.measure_execution_time(LOG_PREFIX)
+    # REMARK NO need to measure performance here, only takes a few ms with hundreds of tracks
+    # -> Not significant in comparison to requests in SpotifyApiClient which take several seconds in total
     def filter_tracks(self):
         filter_by = self.filter_params["filter_by"]
 
