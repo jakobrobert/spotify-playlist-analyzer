@@ -1,8 +1,6 @@
 import configparser
 from math import ceil
 
-import requests
-
 from core.http_error import HttpError
 from core.spotify.spotify_api_authorization import SpotifyApiAuthorization
 from core.spotify.spotify_api_utils import SpotifyApiUtils
@@ -205,6 +203,8 @@ class SpotifyApiClient:
 
         return artist_ids
 
+    # REMARK NO need to measure performance of the update__ methods
+    # -> Most of the time is spent in the called get_ methods
     @staticmethod
     def __update_added_by_of_tracks(tracks, access_token):
         all_added_by_user_ids = []
