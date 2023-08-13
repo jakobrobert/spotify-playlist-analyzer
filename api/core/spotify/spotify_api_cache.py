@@ -1,3 +1,4 @@
+import copy
 from datetime import datetime
 
 
@@ -15,10 +16,15 @@ class SpotifyApiCache:
             return None
 
         cache_item = self.__playlist_by_id_cache[playlist_id]
-        # TODONOW Invalidate cache
-        #   -> check if still up to date, compare timestamp to now. if up to date, return it
-        #   -> else, return None
-        return cache_item.data
+
+        # Important to create copy of playlist.
+        # -> Else, e.g. filtering playlist would cause that cache only contains filtered playlist.
+        playlist = copy.deepcopy(cache_item.data)
+
+        return playlist
 
     def update_playlist(self, playlist_id, playlist):
-        self.__playlist_by_id_cache[playlist_id] = SpotifyApiCache.Item(playlist)
+        # Important to create copy of playlist.
+        # -> Else, e.g. filtering playlist would cause that cache only contains filtered playlist.
+        playlist_copy = copy.deepcopy(playlist)
+        self.__playlist_by_id_cache[playlist_id] = SpotifyApiCache.Item(playlist_copy)
