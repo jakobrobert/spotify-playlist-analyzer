@@ -297,7 +297,6 @@ class SpotifyApiClient:
         return genres
 
     @staticmethod
-    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_audio_features_of_tracks(tracks, access_token):
         audio_features_by_track_index = SpotifyApiClient.__get_audio_features_of_tracks(tracks, access_token)
 
