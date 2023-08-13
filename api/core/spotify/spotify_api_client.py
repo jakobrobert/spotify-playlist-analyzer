@@ -126,7 +126,7 @@ class SpotifyApiClient:
             tracks.append(track)
 
         SpotifyApiClient.__update_added_by_of_tracks(tracks, access_token)
-        # SpotifyApiClient.__update_genres_of_tracks(tracks, access_token) # TODONOW REVERT Skipping genres for measurements
+        SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
         SpotifyApiClient.__update_audio_features_of_tracks(tracks, access_token)
 
         return tracks
