@@ -206,7 +206,6 @@ class SpotifyApiClient:
         return artist_ids
 
     @staticmethod
-    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_added_by_of_tracks(tracks, access_token):
         all_added_by_user_ids = []
         for track in tracks:
@@ -241,7 +240,6 @@ class SpotifyApiClient:
         return user_name
 
     @staticmethod
-    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_genres_of_tracks(tracks, access_token):
         # TODOLATER #271 Optimize, and can use set to simplify code
         all_artist_ids = []
