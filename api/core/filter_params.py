@@ -7,8 +7,9 @@ LOG_PREFIX = "FilterParams."
 
 
 class FilterParams:
+    # REMARK NO need to measure performance here, takes under 1 ms with hundreds of tracks
+    # -> Not significant in comparison to requests in SpotifyApiClient which take several seconds in total
     @staticmethod
-    @Utils.measure_execution_time(LOG_PREFIX)
     def extract_filter_params_from_request_params(request_params):
         filter_by = request_params.get("filter_by") or None
         filter_params = {"filter_by": filter_by}

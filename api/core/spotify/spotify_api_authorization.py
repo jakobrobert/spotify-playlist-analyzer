@@ -3,7 +3,7 @@ from urllib.parse import urlencode
 import requests
 
 from core.http_error import HttpError
-from core.spotify.spotify_api_client_utils import SpotifyApiClientUtils
+from core.spotify.spotify_api_utils import SpotifyApiUtils
 from core.utils import Utils
 
 LOG_PREFIX = "SpotifyApiAuthorization."
@@ -23,7 +23,7 @@ class SpotifyApiAuthorization:
         response = requests.post(url, data=data, auth=auth)
         response_data = response.json()
 
-        error = SpotifyApiClientUtils.create_http_error_from_response_data(response_data)
+        error = SpotifyApiUtils.create_http_error_from_response_data(response_data)
         if error:
             raise error
 
