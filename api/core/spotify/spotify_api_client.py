@@ -3,6 +3,7 @@ from math import ceil
 
 from core.http_error import HttpError
 from core.spotify.spotify_api_authorization import SpotifyApiAuthorization
+from core.spotify.spotify_api_cache import SpotifyApiCache
 from core.spotify.spotify_api_utils import SpotifyApiUtils
 from core.spotify.spotify_playlist import SpotifyPlaylist
 from core.spotify.spotify_track import SpotifyTrack
@@ -15,6 +16,7 @@ LOG_PREFIX = "SpotifyApiClient."
 class SpotifyApiClient:
     def __init__(self, client_id, client_secret, redirect_uri, test_refresh_token, test_user_id):
         self.authorization = SpotifyApiAuthorization(client_id, client_secret, redirect_uri)
+        self.cache = SpotifyApiCache()
         self.test_refresh_token = test_refresh_token
         self.test_user_id = test_user_id
 
@@ -22,6 +24,11 @@ class SpotifyApiClient:
     def get_playlist_by_id(self, playlist_id):
         if not playlist_id:
             raise HttpError(400, title="API: get_playlist_by_id failed", message="'playlist_id' is None or empty")
+
+        playlist_from_cache = self.cache.get_playlist_by_id(playlist_id)
+        if playlist_from_cache:
+            print(f"SpotifyApiClient.get_playlist_by_id => Got playlist from cache")
+            return playlist_from_cache
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.authorization.get_access_token_by_client_credentials()
@@ -32,6 +39,8 @@ class SpotifyApiClient:
         playlist.name = response_data["name"]
         playlist.tracks = SpotifyApiClient.__get_tracks_of_playlist(response_data, access_token)
 
+        self.cache.update_playlist(playlist_id, playlist)
+        print(f"SpotifyApiClient.get_playlist_by_id => Updated playlist in cache")
         return playlist
 
     @Utils.measure_execution_time(LOG_PREFIX)
@@ -117,10 +126,7 @@ class SpotifyApiClient:
             tracks.append(track)
 
         SpotifyApiClient.__update_added_by_of_tracks(tracks, access_token)
-
-        # TODONOW REVERT Skipping genres for measurements
-        # SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
-
+        # SpotifyApiClient.__update_genres_of_tracks(tracks, access_token) # TODONOW REVERT Skipping genres for measurements
         SpotifyApiClient.__update_audio_features_of_tracks(tracks, access_token)
 
         return tracks
