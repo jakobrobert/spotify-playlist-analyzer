@@ -1,6 +1,8 @@
 import copy
 from datetime import datetime
 
+CACHE_INVALIDATION_INTERVAL_IN_SECONDS = 5 * 60
+
 
 class SpotifyApiCache:
     class Item:
@@ -16,6 +18,9 @@ class SpotifyApiCache:
             return None
 
         cache_item = self.__playlist_by_id_cache[playlist_id]
+        elapsed_time_since_last_cache_update = datetime.now() - cache_item.timestamp
+        if elapsed_time_since_last_cache_update.total_seconds() >= CACHE_INVALIDATION_INTERVAL_IN_SECONDS:
+            return None
 
         # Important to create copy of playlist.
         # -> Else, e.g. filtering playlist would cause that cache only contains filtered playlist.
