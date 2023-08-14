@@ -102,10 +102,6 @@ class SpotifyTrack:
 
         for genre in genres:
             super_genre = SpotifyTrack.__get_super_genre_for_genre(genre)
-            # TODONOW remove debug code
-            if genre == "funk metal":
-                print(f"genre = funk metal, super_genre = {super_genre}")
-
             if super_genre not in self.super_genres:
                 self.super_genres.append(super_genre)
 
