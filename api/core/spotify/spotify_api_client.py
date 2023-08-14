@@ -1,10 +1,10 @@
 import configparser
-
-import requests
+from math import ceil
 
 from core.http_error import HttpError
 from core.spotify.spotify_api_authorization import SpotifyApiAuthorization
-from core.spotify.spotify_api_client_utils import SpotifyApiClientUtils
+from core.spotify.spotify_api_cache import SpotifyApiCache
+from core.spotify.spotify_api_utils import SpotifyApiUtils
 from core.spotify.spotify_playlist import SpotifyPlaylist
 from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
@@ -16,6 +16,7 @@ LOG_PREFIX = "SpotifyApiClient."
 class SpotifyApiClient:
     def __init__(self, client_id, client_secret, redirect_uri, test_refresh_token, test_user_id):
         self.authorization = SpotifyApiAuthorization(client_id, client_secret, redirect_uri)
+        self.cache = SpotifyApiCache()
         self.test_refresh_token = test_refresh_token
         self.test_user_id = test_user_id
 
@@ -24,15 +25,22 @@ class SpotifyApiClient:
         if not playlist_id:
             raise HttpError(400, title="API: get_playlist_by_id failed", message="'playlist_id' is None or empty")
 
+        playlist_from_cache = self.cache.get_playlist_by_id(playlist_id)
+        if playlist_from_cache:
+            print(f"SpotifyApiClient.get_playlist_by_id => Got playlist from cache")
+            return playlist_from_cache
+
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
         access_token = self.authorization.get_access_token_by_client_credentials()
-        response_data = SpotifyApiClientUtils.send_get_request(url, access_token)
+        response_data = SpotifyApiUtils.send_get_request(url, access_token)
 
         playlist = SpotifyPlaylist()
         playlist.id = response_data["id"]
         playlist.name = response_data["name"]
         playlist.tracks = SpotifyApiClient.__get_tracks_of_playlist(response_data, access_token)
 
+        self.cache.update_playlist(playlist_id, playlist)
+        print(f"SpotifyApiClient.get_playlist_by_id => Updated playlist in cache")
         return playlist
 
     @Utils.measure_execution_time(LOG_PREFIX)
@@ -66,7 +74,7 @@ class SpotifyApiClient:
 
         url = f"https://api.spotify.com/v1/tracks/{track_id}"
         access_token = self.authorization.get_access_token_by_client_credentials()
-        track_data = SpotifyApiClientUtils.send_get_request(url, access_token)
+        track_data = SpotifyApiUtils.send_get_request(url, access_token)
 
         track = SpotifyApiClient.__create_spotify_track(track_data)
         tracks = [track]
@@ -88,7 +96,7 @@ class SpotifyApiClient:
             "limit": 50
         }
 
-        response_data = SpotifyApiClientUtils.send_get_request(url, access_token, params)
+        response_data = SpotifyApiUtils.send_get_request(url, access_token, params)
         tracks_data = response_data["tracks"]
         track_items = tracks_data["items"]
 
@@ -127,11 +135,17 @@ class SpotifyApiClient:
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_all_track_items_of_playlist(playlist_data, access_token):
         tracks_data = playlist_data["tracks"]
-        curr_track_items = tracks_data["items"]
-        next_url = tracks_data["next"]
+
+        total_track_count = tracks_data["total"]
+        expected_request_count = ceil(total_track_count / 100)
+        print(f"SpotifyApiClient.__get_all_track_items_of_playlist => "
+              f"total_track_count: {total_track_count}, expected_request_count: {expected_request_count}")
 
         all_track_items = []
+
+        curr_track_items = tracks_data["items"]
         all_track_items.extend(curr_track_items)
+        next_url = tracks_data["next"]
 
         # Get remaining tracks, playlist_data only contains the first 100
         while next_url is not None:
@@ -143,7 +157,7 @@ class SpotifyApiClient:
     @staticmethod
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_track_items_for_one_request(next_url, access_token):
-        tracks_data = SpotifyApiClientUtils.send_get_request(next_url, access_token)
+        tracks_data = SpotifyApiUtils.send_get_request(next_url, access_token)
         track_items = tracks_data["items"]
         next_url = tracks_data["next"]
         return track_items, next_url
@@ -195,8 +209,9 @@ class SpotifyApiClient:
 
         return artist_ids
 
+    # REMARK NO need to measure performance of the update__ methods
+    # -> Most of the time is spent in the called get_ methods
     @staticmethod
-    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_added_by_of_tracks(tracks, access_token):
         all_added_by_user_ids = []
         for track in tracks:
@@ -214,6 +229,9 @@ class SpotifyApiClient:
         # TODOLATER #271 Can use set to simplify code
         user_id_to_user_name = {}
 
+        print(f"SpotifyApiClient.__get_user_id_to_user_name => "
+              f"# all_added_by_user_ids: {len(all_added_by_user_ids)}")
+
         for user_id in all_added_by_user_ids:
             user_id_to_user_name[user_id] = SpotifyApiClient.__get_user_name_for_user_id(access_token, user_id)
 
@@ -223,19 +241,16 @@ class SpotifyApiClient:
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_user_name_for_user_id(access_token, user_id):
         url = f"https://api.spotify.com/v1/users/{user_id}"
-        user_data = SpotifyApiClientUtils.send_get_request(url, access_token)
+        user_data = SpotifyApiUtils.send_get_request(url, access_token)
         user_name = user_data["display_name"]
         return user_name
 
     @staticmethod
-    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_genres_of_tracks(tracks, access_token):
         # TODOLATER #271 Optimize, and can use set to simplify code
         all_artist_ids = []
         for track in tracks:
             all_artist_ids.extend(track.artist_ids)
-
-        print(f"{LOG_PREFIX}__update_genres_of_tracks => len(all_artist_ids): {len(all_artist_ids)}")
 
         artist_id_to_genres = SpotifyApiClient.__get_artist_id_to_genres(all_artist_ids, access_token)
 
@@ -249,7 +264,10 @@ class SpotifyApiClient:
         artist_id_to_genres = {}
 
         max_ids_per_request = 50
-        artist_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(artist_ids, max_ids_per_request)
+        artist_id_chunks = SpotifyApiUtils.split_list_into_chunks(artist_ids, max_ids_per_request)
+
+        print(f"SpotifyApiClient.__get_artist_id_to_genres => "
+              f"# artist_ids: {len(artist_ids)}, # artist_id_chunks: {len(artist_id_chunks)}")
 
         for curr_artist_ids in artist_id_chunks:
             curr_artist_id_to_genres = SpotifyApiClient.__get_artist_id_to_genres_for_one_request(
@@ -264,7 +282,7 @@ class SpotifyApiClient:
         artist_id_to_genres = {}
 
         url = "https://api.spotify.com/v1/artists"
-        response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, artist_ids)
+        response_data = SpotifyApiUtils.send_get_request_with_ids(url, access_token, artist_ids)
         artists = response_data["artists"]
 
         for artist in artists:
@@ -285,7 +303,6 @@ class SpotifyApiClient:
         return genres
 
     @staticmethod
-    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_audio_features_of_tracks(tracks, access_token):
         audio_features_by_track_index = SpotifyApiClient.__get_audio_features_of_tracks(tracks, access_token)
 
@@ -304,7 +321,9 @@ class SpotifyApiClient:
             track_ids.append(track.id)
 
         max_ids_per_request = 100
-        track_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(track_ids, max_ids_per_request)
+        track_id_chunks = SpotifyApiUtils.split_list_into_chunks(track_ids, max_ids_per_request)
+        len(f"SpotifyApiClient.__get_audio_features_of_tracks => "
+            f"# tracks: {len(tracks)}, # track_id_chunks: {len(track_id_chunks)}")
 
         for track_ids_of_chunk in track_id_chunks:
             audio_features = SpotifyApiClient.__get_audio_features_for_one_request(
@@ -317,7 +336,7 @@ class SpotifyApiClient:
     @Utils.measure_execution_time(LOG_PREFIX)
     def __get_audio_features_for_one_request(access_token, track_ids_of_chunk):
         url = "https://api.spotify.com/v1/audio-features"
-        response_data = SpotifyApiClientUtils.send_get_request_with_ids(url, access_token, track_ids_of_chunk)
+        response_data = SpotifyApiUtils.send_get_request_with_ids(url, access_token, track_ids_of_chunk)
         audio_features = response_data["audio_features"]
         return audio_features
 
@@ -329,7 +348,7 @@ class SpotifyApiClient:
             "public": True
         }
 
-        response_data = SpotifyApiClientUtils.send_post_request(url, access_token, data)
+        response_data = SpotifyApiUtils.send_post_request(url, access_token, data)
         return response_data["id"]
 
     @staticmethod
@@ -337,8 +356,8 @@ class SpotifyApiClient:
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
 
         max_ids_per_request = 100
-        track_id_chunks = SpotifyApiClientUtils.split_list_into_chunks(track_ids, max_ids_per_request)
+        track_id_chunks = SpotifyApiUtils.split_list_into_chunks(track_ids, max_ids_per_request)
 
         for track_id_chunk in track_id_chunks:
             data = {"uris": [f"spotify:track:{track_id}" for track_id in track_id_chunk]}
-            SpotifyApiClientUtils.send_post_request(url, access_token, data)
+            SpotifyApiUtils.send_post_request(url, access_token, data)

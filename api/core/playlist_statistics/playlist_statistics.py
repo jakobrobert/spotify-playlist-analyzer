@@ -13,8 +13,8 @@ class PlaylistStatistics:
         self.tracks = tracks
 
     # REMARK NO need to measure performance of get_total_duration_ms, get_average_duration_ms, etc.
-    # Even with a playlist of over 1000 tracks, they took each about 3 ms.
-    # Definitely not significant in relation, given that get_playlist_by_id takes over 15 seconds
+    # -> Only take a few ms each with hundreds of tracks
+    # -> Not significant in comparison to requests in SpotifyApiClient which take several seconds in total
     def get_total_duration_ms(self):
         if not self.tracks:
             return 0.0
