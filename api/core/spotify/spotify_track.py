@@ -23,10 +23,10 @@ class SuperGenres:
     Rock = "Rock"
     EDM = "EDM"
     HipHopOrRap = "Hip Hop / Rap"
-    Afro = "Afro"
     Schlager = "Schlager"
     ExtremeMetal = "Extreme Metal"
     Metal = "Metal"
+    Afro = "Afro"
     Others = "Others"
 
 
@@ -36,8 +36,8 @@ class SpotifyTrack:
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
 
     SUPER_GENRES = [
-        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap, SuperGenres.Afro,
-        SuperGenres.Schlager, SuperGenres.ExtremeMetal, SuperGenres.Metal,
+        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap,
+        SuperGenres.Schlager, SuperGenres.ExtremeMetal, SuperGenres.Metal, SuperGenres.Afro,
         SuperGenres.Others
     ]
 
@@ -47,10 +47,10 @@ class SpotifyTrack:
         SuperGenres.EDM: ["edm", "dance", "house", "trance", "techno", "hands up", "hardstyle", "big room",
                           "dubstep", "brostep", "complextro"],
         SuperGenres.HipHopOrRap: ["hip hop", "rap"],
-        SuperGenres.Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
         SuperGenres.Schlager: ["schlager"],
         SuperGenres.ExtremeMetal: ["black metal", "death metal"],
         SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
+        SuperGenres.Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
         SuperGenres.Others: []
     }
 
@@ -102,6 +102,10 @@ class SpotifyTrack:
 
         for genre in genres:
             super_genre = SpotifyTrack.__get_super_genre_for_genre(genre)
+            # TODONOW remove debug code
+            if genre == "funk metal":
+                print(f"genre = funk metal, super_genre = {super_genre}")
+
             if super_genre not in self.super_genres:
                 self.super_genres.append(super_genre)
 
