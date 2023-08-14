@@ -26,7 +26,10 @@ class SuperGenres:
     Schlager = "Schlager"
     ExtremeMetal = "Extreme Metal"
     Metal = "Metal"
+    Classical = "Classical"
+    Country = "Country"
     Afro = "Afro"
+    Latin = "Latin"
     Others = "Others"
 
 
@@ -36,8 +39,9 @@ class SpotifyTrack:
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
 
     SUPER_GENRES = [
-        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap,
-        SuperGenres.Schlager, SuperGenres.ExtremeMetal, SuperGenres.Metal, SuperGenres.Afro,
+        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap, SuperGenres.Schlager,
+        SuperGenres.ExtremeMetal, SuperGenres.Metal, SuperGenres.Classical, SuperGenres.Country,
+        SuperGenres.Afro, SuperGenres.Latin,
         SuperGenres.Others
     ]
 
@@ -53,7 +57,10 @@ class SpotifyTrack:
         SuperGenres.Schlager: ["schlager"],
         SuperGenres.ExtremeMetal: ["black metal", "death metal", "melodeath"],
         SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
+        SuperGenres.Classical: ["classical", "orchestra", "opera"],
+        SuperGenres.Country: ["country"],
         SuperGenres.Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
+        SuperGenres.Latin: ["latin"],
         SuperGenres.Others: []
     }
 
