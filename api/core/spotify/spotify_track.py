@@ -79,6 +79,10 @@ class SpotifyTrack:
         self.liveness = 0
         self.speechiness = 0
 
+    def get_size_in_bytes(self):
+        # TODONOW implement
+        return 0
+
     def update_genres_and_super_genres(self, genres):
         self.genres = genres
         self.__update_super_genres_by_genres(genres)
