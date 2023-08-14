@@ -27,7 +27,6 @@ class SpotifyApiClient:
 
         playlist_from_cache = self.cache.get_playlist_by_id(playlist_id)
         if playlist_from_cache:
-            print(f"SpotifyApiClient.get_playlist_by_id => Got playlist from cache")
             return playlist_from_cache
 
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}"
@@ -39,8 +38,7 @@ class SpotifyApiClient:
         playlist.name = response_data["name"]
         playlist.tracks = SpotifyApiClient.__get_tracks_of_playlist(response_data, access_token)
 
-        self.cache.update_playlist(playlist_id, playlist)
-        print(f"SpotifyApiClient.get_playlist_by_id => Updated playlist in cache")
+        self.cache.put_playlist_by_id(playlist_id, playlist)
         return playlist
 
     @Utils.measure_execution_time(LOG_PREFIX)
