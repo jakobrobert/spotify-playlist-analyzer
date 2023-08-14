@@ -42,13 +42,16 @@ class SpotifyTrack:
     ]
 
     ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE = {
-        SuperGenres.Pop: ["pop", "new romantic", "wave"],
-        SuperGenres.Rock: ["rock", "post-grunge", "punk"],
-        SuperGenres.EDM: ["edm", "dance", "house", "trance", "techno", "hands up", "hardstyle", "big room",
-                          "dubstep", "brostep", "complextro"],
-        SuperGenres.HipHopOrRap: ["hip hop", "rap"],
+        SuperGenres.Pop: ["pop", "new romantic", "wave", "girl group", "boy band"],
+        SuperGenres.Rock: ["rock", "post-grunge", "punk", "mellow gold"],
+        SuperGenres.EDM: [
+            "edm", "dance", "house", "trance", "techno", "hands up", "hardstyle", "big room",
+            "dubstep", "brostep", "complextro", "disco", "hi-nrg", "dancefloor", "drum and bass", "dnb",
+            "jungle", "melbourne bounce"
+        ],
+        SuperGenres.HipHopOrRap: ["hip hop", "rap", "trap", "drill"],
         SuperGenres.Schlager: ["schlager"],
-        SuperGenres.ExtremeMetal: ["black metal", "death metal"],
+        SuperGenres.ExtremeMetal: ["black metal", "death metal", "melodeath"],
         SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
         SuperGenres.Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
         SuperGenres.Others: []
