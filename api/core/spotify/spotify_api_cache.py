@@ -1,4 +1,5 @@
 import copy
+import sys
 from datetime import datetime
 
 CACHE_INVALIDATION_INTERVAL_IN_SECONDS = 5 * 60
@@ -26,10 +27,13 @@ class SpotifyApiCache:
 
         # Important to create copy of playlist.
         # -> Else, e.g. filtering playlist would cause that cache only contains filtered playlist.
-        playlist = copy.deepcopy(cache_item.data)
+        playlist_copy = copy.deepcopy(cache_item.data)
 
-        print(f"SpotifyApiCache.get_playlist_by_id => Got playlist for id: {playlist_id}")
-        return playlist
+        playlist_size_in_bytes = sys.getsizeof(playlist_copy)
+        print(f"SpotifyApiCache.get_playlist_by_id => "
+              f"Got playlist for id: {playlist_id}, size in bytes: {playlist_size_in_bytes}")
+
+        return playlist_copy
 
     def put_playlist_by_id(self, playlist_id, playlist):
         # Important to create copy of playlist.
@@ -37,4 +41,6 @@ class SpotifyApiCache:
         playlist_copy = copy.deepcopy(playlist)
         self.__playlist_by_id_cache[playlist_id] = SpotifyApiCache.Item(playlist_copy)
 
-        print(f"SpotifyApiCache.put_playlist_by_id => Put playlist for id: {playlist_id}")
+        playlist_size_in_bytes = sys.getsizeof(playlist_copy)
+        print(f"SpotifyApiCache.put_playlist_by_id => "
+              f"Put playlist for id: {playlist_id}, size in bytes: {playlist_size_in_bytes}")
