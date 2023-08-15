@@ -319,10 +319,7 @@ class PlaylistStatistics:
         if min_value is None:
             return f"≤ {get_label_for_value(max_value)}"
 
-        if max_value is None:
-            return f"≥ {get_label_for_value(min_value)}"
-
-        return f"{get_label_for_value(min_value)} - {get_label_for_value(max_value)}"
+        return f"≥ {get_label_for_value(min_value)}"
 
     @staticmethod
     def __get_duration_string(duration_ms):
