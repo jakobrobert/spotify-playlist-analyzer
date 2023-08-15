@@ -110,7 +110,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_tempo_distribution_items(self):
-        first_interval_max_tempo = 89
+        first_interval_max_tempo = 69
         last_interval_min_tempo = 180
         interval_size = 10
 
