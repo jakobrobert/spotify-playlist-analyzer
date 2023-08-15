@@ -19,10 +19,12 @@
                 <td># Tracks:&nbsp;</td>
                 <td>{{ playlist.tracks | length }}</td>
             </tr>
-            <tr>
-                <td>Average {{ attribute_display_name }}:&nbsp;</td>
-                <td>{{ average_value }}</td>
-            </tr>
+            {% if average_value %}
+                <tr>
+                    <td>Average {{ attribute_display_name }}:&nbsp;</td>
+                    <td>{{ average_value }}</td>
+                </tr>
+            {% endif %}
         </table>
 
         <img src="data:image/png;base64,{{ histogram_image_base64 }}">
