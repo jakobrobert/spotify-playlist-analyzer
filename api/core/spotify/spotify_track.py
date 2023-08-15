@@ -108,12 +108,18 @@ class SpotifyTrack:
         self.speechiness = SpotifyTrack.__process_audio_feature_value(audio_features["speechiness"])
 
     def __update_super_genres_by_genres(self, genres):
-        self.super_genres = []
-
+        super_genres_for_this_track = []
         for genre in genres:
             super_genre = SpotifyTrack.__get_super_genre_for_genre(genre)
             if super_genre not in self.super_genres:
-                self.super_genres.append(super_genre)
+                super_genres_for_this_track.append(super_genre)
+
+        sorted_super_genres = []
+        for super_genre in SpotifyTrack.SUPER_GENRES:
+            if super_genre in super_genres_for_this_track:
+                sorted_super_genres.append(super_genre)
+
+        self.super_genres = sorted_super_genres
 
     @staticmethod
     def __get_super_genre_for_genre(genre):
