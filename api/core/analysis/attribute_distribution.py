@@ -1,58 +1,13 @@
-import statistics
-
-from core.playlist_statistics.attribute_distribution_interval import AttributeDistributionInterval
+from core.analysis.attribute_distribution_interval import AttributeDistributionInterval
 from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
 
+LOG_PREFIX = "AttributeDistribution"
 
-LOG_PREFIX = "PlaylistStatistics."
 
-
-class PlaylistStatistics:
+class AttributeDistribution:
     def __init__(self, tracks):
         self.tracks = tracks
-
-    # REMARK NO need to measure performance of get_total_duration_ms, get_average_duration_ms, etc.
-    # -> Only take a few ms each with hundreds of tracks
-    # -> Not significant in comparison to requests in SpotifyApiClient which take several seconds in total
-    def get_total_duration_ms(self):
-        if not self.tracks:
-            return 0.0
-
-        return sum(track.duration_ms for track in self.tracks)
-
-    def get_average_duration_ms(self):
-        return self.__get_average_of_attribute("duration_ms")
-
-    def get_average_popularity(self):
-        return self.__get_average_of_attribute("popularity")
-
-    def get_average_release_year(self):
-        return self.__get_average_of_attribute("release_year")
-
-    def get_average_tempo(self):
-        return self.__get_average_of_attribute("tempo")
-
-    def get_average_speechiness(self):
-        return self.__get_average_of_attribute("speechiness")
-
-    def get_average_liveness(self):
-        return self.__get_average_of_attribute("liveness")
-
-    def get_average_acousticness(self):
-        return self.__get_average_of_attribute("acousticness")
-
-    def get_average_instrumentalness(self):
-        return self.__get_average_of_attribute("instrumentalness")
-
-    def get_average_valence(self):
-        return self.__get_average_of_attribute("valence")
-
-    def get_average_energy(self):
-        return self.__get_average_of_attribute("energy")
-
-    def get_average_danceability(self):
-        return self.__get_average_of_attribute("danceability")
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_distribution_items(self):
@@ -65,7 +20,7 @@ class PlaylistStatistics:
             lambda track: track.duration_ms)
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(
-            intervals, lambda duration_ms: PlaylistStatistics.__get_duration_string(duration_ms))
+            intervals, lambda duration_ms: AttributeDistribution.__get_duration_string(duration_ms))
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_release_year_distribution_items(self):
@@ -85,6 +40,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_super_genres_distribution_items(self):
+        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
         items = []
 
         # Calculate count for each super genre
@@ -104,7 +60,7 @@ class PlaylistStatistics:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
+        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
 
         return items
 
@@ -122,8 +78,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_distribution_items(self):
-        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items.
-        #  -> maybe can then extract general helper method for categorical values?
+        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
         items = []
 
         # Add one item for each key
@@ -142,14 +97,13 @@ class PlaylistStatistics:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
+        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
 
         return items
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_mode_distribution_items(self):
-        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
-        #  -> maybe can then extract general helper method for categorical values?
+        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
         items = []
 
         # Add one item for each mode
@@ -168,13 +122,13 @@ class PlaylistStatistics:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
+        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
 
         return items
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_signature_distribution_items(self):
-        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
+        # TODOLATER #259 merge loops into one, similar to get_super_genres_distribution_items
         #  -> maybe can then extract general helper method for categorical values?
         items = []
 
@@ -196,7 +150,7 @@ class PlaylistStatistics:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        PlaylistStatistics.__add_percentages_to_attribute_distribution_items(items, total_count)
+        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
 
         return items
 
@@ -240,21 +194,15 @@ class PlaylistStatistics:
     def get_valence_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.valence)
 
-    def __get_average_of_attribute(self, attribute):
-        if not self.tracks:
-            return None
-
-        return statistics.mean(getattr(track, attribute) for track in self.tracks)
-
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
 
         all_intervals = []
 
-        all_intervals.append(PlaylistStatistics.__create_first_interval(first_interval_max))
+        all_intervals.append(AttributeDistribution.__create_first_interval(first_interval_max))
         all_intervals.extend(
-            PlaylistStatistics.__create_middle_intervals(first_interval_max, last_interval_min, interval_size))
-        all_intervals.append(PlaylistStatistics.__create_last_interval(last_interval_min))
+            AttributeDistribution.__create_middle_intervals(first_interval_max, last_interval_min, interval_size))
+        all_intervals.append(AttributeDistribution.__create_last_interval(last_interval_min))
 
         all_values = [get_attribute_value_of_track(track) for track in self.tracks]
 
@@ -305,7 +253,7 @@ class PlaylistStatistics:
 
         for interval in intervals:
             dict_with_label = {
-                "label": PlaylistStatistics.__get_label_for_interval(
+                "label": AttributeDistribution.__get_label_for_interval(
                     interval.min_value, interval.max_value, get_label_for_value),
                 "count": interval.count,
                 "percentage": interval.percentage
