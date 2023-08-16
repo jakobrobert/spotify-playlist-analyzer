@@ -11,6 +11,19 @@ class TestSuperGenre(unittest.TestCase):
         pass
 
     # TODONOW merge test_Pop, maybe make parametrized test
+    # According to ChatGPT, can adjust in following way. Need to install package parameterized.
+    # Better idea: one parameterized test for each super genre, then can hardcode expected super genre in test
+    """
+    @parameterized.expand([
+        ("pop", "Pop"),
+        ("dance pop", "Pop"),
+        ("new romantic", "Pop"),
+        ("hip house", "EDM")
+    ])
+    def test_get_super_genre_for_genre(self, genre, expected):
+        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
+        self.assertEqual(expected, actual)
+    """
     def test_Pop_1(self):
         genre = "pop"
         expected = "Pop"
