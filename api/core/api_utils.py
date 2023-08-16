@@ -6,7 +6,7 @@ from flask import jsonify
 
 from core.filter_params import FilterParams
 from core.http_error import HttpError
-from core.playlist_statistics.playlist_statistics import PlaylistStatistics
+from core.analysis.playlist_statistics import PlaylistStatistics
 from core.track_filter import TrackFilter
 from core.utils import Utils
 
