@@ -156,7 +156,7 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_loudness_distribution_items(self):
-        first_interval_max_loudness = -16
+        first_interval_max_loudness = -17
         last_interval_min_loudness = -2
         interval_size = 2
 
