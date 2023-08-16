@@ -40,8 +40,6 @@ class TestSmoke(unittest.TestCase):
     def test_playlist(self):
         self.__test_get_request(f"playlist/{PLAYLIST_ID_1}")
 
-    # TODONOW REVERT commented out for testing
-    """"
     # Only testing one attribute because else would take too long and also too many requests to Spotify API
     # For Smoke test this is sufficient, only broad test that basic functionality works
     # For detailed functionality tests, would need proper unit tests and avoid requests to Spotify API
@@ -64,7 +62,6 @@ class TestSmoke(unittest.TestCase):
         query = "Avicii"
         params = {"query": query}
         self.__test_get_request("search-tracks", params)
-    """
 
     def test_attribute_distribution(self):
         params = {"attribute": "release_year"}
