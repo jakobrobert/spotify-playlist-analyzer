@@ -1,10 +1,5 @@
 import statistics
 
-from core.analysis.attribute_distribution_interval import AttributeDistributionInterval
-from core.spotify.spotify_track import SpotifyTrack
-from core.utils import Utils
-
-
 LOG_PREFIX = "PlaylistStatistics."
 
 
