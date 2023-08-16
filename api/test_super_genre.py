@@ -10,8 +10,8 @@ class TestSuperGenre(unittest.TestCase):
     def tearDown(self):
         pass
 
-    # TODONOW merge test_pop, maybe make parametrized test
-    def test_pop_1(self):
+    # TODONOW merge test_Pop, maybe make parametrized test
+    def test_Pop_1(self):
         genre = "pop"
         expected = "Pop"
 
@@ -19,7 +19,7 @@ class TestSuperGenre(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-    def test_pop_2(self):
+    def test_Pop_2(self):
         genre = "dance pop"
         expected = "Pop"
 
@@ -27,7 +27,7 @@ class TestSuperGenre(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-    def test_pop_3(self):
+    def test_Pop_3(self):
         genre = "new romantic"
         expected = "Pop"
 
@@ -35,7 +35,7 @@ class TestSuperGenre(unittest.TestCase):
 
         self.assertEqual(expected, actual)
 
-    def test_edm(self):
+    def test_EDM(self):
         genre = "hip house"
         expected = "EDM"
 
