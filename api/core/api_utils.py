@@ -4,9 +4,10 @@ import random
 
 from flask import jsonify
 
+from core.analysis.attribute_distribution import AttributeDistribution
 from core.filter_params import FilterParams
 from core.http_error import HttpError
-from core.playlist_statistics.playlist_statistics import PlaylistStatistics
+from core.analysis.playlist_statistics import PlaylistStatistics
 from core.track_filter import TrackFilter
 from core.utils import Utils
 
@@ -16,7 +17,7 @@ LOG_PREFIX = "ApiUtils."
 
 # REMARK NO need to measure performance for helper methods in these class currently.
 # -> Currently all take a few ms or even less than a ms even with hundreds of tracks
-# -> Not significant in comparison to requests in SpotifApiClient which take several seconds in total
+# -> Not significant in comparison to requests in SpotifyApiClient which take several seconds in total
 class ApiUtils:
     @staticmethod
     def handle_exceptions(func):
@@ -118,39 +119,28 @@ class ApiUtils:
     @staticmethod
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_attribute_distribution_items(attribute, tracks):
-        statistics = PlaylistStatistics(tracks)
+        attribute_distribution = AttributeDistribution(tracks)
 
-        if attribute == "duration_ms":
-            return statistics.get_duration_distribution_items()
-        if attribute == "release_year":
-            return statistics.get_release_year_distribution_items()
-        if attribute == "popularity":
-            return statistics.get_popularity_distribution_items()
-        if attribute == "super_genres":
-            return statistics.get_super_genres_distribution_items()
-        if attribute == "tempo":
-            return statistics.get_tempo_distribution_items()
-        if attribute == "key":
-            return statistics.get_key_distribution_items()
-        if attribute == "mode":
-            return statistics.get_mode_distribution_items()
-        if attribute == "key_signature":
-            return statistics.get_key_signature_distribution_items()
-        if attribute == "loudness":
-            return statistics.get_loudness_distribution_items()
-        if attribute == "danceability":
-            return statistics.get_danceability_distribution_items()
-        if attribute == "energy":
-            return statistics.get_energy_distribution_items()
-        if attribute == "valence":
-            return statistics.get_valence_distribution_items()
-        if attribute == "instrumentalness":
-            return statistics.get_instrumentalness_distribution_items()
-        if attribute == "acousticness":
-            return statistics.get_acousticness_distribution_items()
-        if attribute == "liveness":
-            return statistics.get_liveness_distribution_items()
-        if attribute == "speechiness":
-            return statistics.get_speechiness_distribution_items()
+        function_by_attribute_dict = {
+            "duration_ms": attribute_distribution.get_duration_distribution_items,
+            "release_year": attribute_distribution.get_release_year_distribution_items,
+            "popularity": attribute_distribution.get_popularity_distribution_items,
+            "super_genres": attribute_distribution.get_super_genres_distribution_items,
+            "tempo": attribute_distribution.get_tempo_distribution_items,
+            "key": attribute_distribution.get_key_distribution_items,
+            "mode": attribute_distribution.get_mode_distribution_items,
+            "key_signature": attribute_distribution.get_key_signature_distribution_items,
+            "loudness": attribute_distribution.get_loudness_distribution_items,
+            "danceability": attribute_distribution.get_danceability_distribution_items,
+            "energy": attribute_distribution.get_energy_distribution_items,
+            "valence": attribute_distribution.get_valence_distribution_items,
+            "instrumentalness": attribute_distribution.get_instrumentalness_distribution_items,
+            "acousticness": attribute_distribution.get_acousticness_distribution_items,
+            "liveness": attribute_distribution.get_liveness_distribution_items,
+            "speechiness": attribute_distribution.get_speechiness_distribution_items
+        }
+
+        if attribute in function_by_attribute_dict:
+            return function_by_attribute_dict[attribute]()
 
         raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")
