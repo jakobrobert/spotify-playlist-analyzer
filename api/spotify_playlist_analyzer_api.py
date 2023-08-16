@@ -1,15 +1,12 @@
 import configparser
-from urllib.parse import urlencode
 
 from flask import Flask, jsonify, request, redirect
 
 from core.api_utils import ApiUtils
-from core.spotify.spotify_api_authorization import SpotifyApiAuthorization
 from core.spotify.spotify_api_client import SpotifyApiClient
 from core.spotify.spotify_track import SpotifyTrack
 from core.track_filter import TrackFilter
 from core.utils import Utils
-
 
 LOG_PREFIX = "[API Endpoint] "
 

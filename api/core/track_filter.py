@@ -1,6 +1,3 @@
-from core.utils import Utils
-
-
 LOG_PREFIX = "TrackFilter."
 
 
