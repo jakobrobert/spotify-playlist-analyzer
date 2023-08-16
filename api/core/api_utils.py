@@ -121,38 +121,26 @@ class ApiUtils:
     def get_attribute_distribution_items(attribute, tracks):
         attribute_distribution = AttributeDistribution(tracks)
 
-        # TODONOW refactor, define dict with key = attribute and value = function
-        if attribute == "duration_ms":
-            return attribute_distribution.get_duration_distribution_items()
-        if attribute == "release_year":
-            return attribute_distribution.get_release_year_distribution_items()
-        if attribute == "popularity":
-            return attribute_distribution.get_popularity_distribution_items()
-        if attribute == "super_genres":
-            return attribute_distribution.get_super_genres_distribution_items()
-        if attribute == "tempo":
-            return attribute_distribution.get_tempo_distribution_items()
-        if attribute == "key":
-            return attribute_distribution.get_key_distribution_items()
-        if attribute == "mode":
-            return attribute_distribution.get_mode_distribution_items()
-        if attribute == "key_signature":
-            return attribute_distribution.get_key_signature_distribution_items()
-        if attribute == "loudness":
-            return attribute_distribution.get_loudness_distribution_items()
-        if attribute == "danceability":
-            return attribute_distribution.get_danceability_distribution_items()
-        if attribute == "energy":
-            return attribute_distribution.get_energy_distribution_items()
-        if attribute == "valence":
-            return attribute_distribution.get_valence_distribution_items()
-        if attribute == "instrumentalness":
-            return attribute_distribution.get_instrumentalness_distribution_items()
-        if attribute == "acousticness":
-            return attribute_distribution.get_acousticness_distribution_items()
-        if attribute == "liveness":
-            return attribute_distribution.get_liveness_distribution_items()
-        if attribute == "speechiness":
-            return attribute_distribution.get_speechiness_distribution_items()
+        function_by_attribute_dict = {
+            "duration_ms": attribute_distribution.get_duration_distribution_items,
+            "release_year": attribute_distribution.get_release_year_distribution_items,
+            "popularity": attribute_distribution.get_popularity_distribution_items,
+            "super_genres": attribute_distribution.get_super_genres_distribution_items,
+            "tempo": attribute_distribution.get_tempo_distribution_items,
+            "key": attribute_distribution.get_key_distribution_items,
+            "mode": attribute_distribution.get_mode_distribution_items,
+            "key_signature": attribute_distribution.get_key_signature_distribution_items,
+            "loudness": attribute_distribution.get_loudness_distribution_items,
+            "danceability": attribute_distribution.get_danceability_distribution_items,
+            "energy": attribute_distribution.get_energy_distribution_items,
+            "valence": attribute_distribution.get_valence_distribution_items,
+            "instrumentalness": attribute_distribution.get_instrumentalness_distribution_items,
+            "acousticness": attribute_distribution.get_acousticness_distribution_items,
+            "liveness": attribute_distribution.get_liveness_distribution_items,
+            "speechiness": attribute_distribution.get_speechiness_distribution_items
+        }
+
+        if attribute in function_by_attribute_dict:
+            return function_by_attribute_dict[attribute]()
 
         raise HttpError(400, "API Error", f"Invalid attribute: '{attribute}'")
