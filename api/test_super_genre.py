@@ -17,3 +17,11 @@ class TestSuperGenre(unittest.TestCase):
         track.update_genres_and_super_genres(genres)
         expected = ["Pop"]
         self.assertEqual(expected, track.super_genres)
+
+    def test_edm(self):
+        # TODONOW refactor: Extract util method so do not need to create track
+        track = SpotifyTrack()
+        genres = ["hip house"]
+        track.update_genres_and_super_genres(genres)
+        expected = ["EDM"]
+        self.assertEqual(expected, track.super_genres)
