@@ -85,6 +85,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_super_genres_distribution_items(self):
+        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
         items = []
 
         # Calculate count for each super genre
@@ -122,8 +123,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_distribution_items(self):
-        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items.
-        #  -> maybe can then extract general helper method for categorical values?
+        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
         items = []
 
         # Add one item for each key
@@ -148,8 +148,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_mode_distribution_items(self):
-        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
-        #  -> maybe can then extract general helper method for categorical values?
+        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
         items = []
 
         # Add one item for each mode
@@ -174,7 +173,7 @@ class PlaylistStatistics:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_signature_distribution_items(self):
-        # TODOLATER merge loops into one, similar to get_super_genres_distribution_items
+        # TODOLATER #259 merge loops into one, similar to get_super_genres_distribution_items
         #  -> maybe can then extract general helper method for categorical values?
         items = []
 
@@ -239,12 +238,6 @@ class PlaylistStatistics:
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_valence_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.valence)
-
-    def __get_average_of_attribute(self, attribute):
-        if not self.tracks:
-            return None
-
-        return statistics.mean(getattr(track, attribute) for track in self.tracks)
 
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
@@ -338,3 +331,9 @@ class PlaylistStatistics:
                 continue
 
             item["percentage"] = 100 * item["count"] / total_count
+
+    def __get_average_of_attribute(self, attribute):
+        if not self.tracks:
+            return None
+
+        return statistics.mean(getattr(track, attribute) for track in self.tracks)
