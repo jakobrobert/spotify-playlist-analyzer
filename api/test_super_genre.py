@@ -1,6 +1,6 @@
 import unittest
 
-from core.spotify.spotify_track import SpotifyTrack
+from core.analysis.super_genre_utils import SuperGenreUtils
 
 
 class TestSuperGenre(unittest.TestCase):
@@ -11,17 +11,17 @@ class TestSuperGenre(unittest.TestCase):
         pass
 
     def test_pop(self):
-        # TODONOW refactor: Extract util method so do not need to create track
-        track = SpotifyTrack()
-        genres = ["dance pop"]
-        track.update_genres_and_super_genres(genres)
-        expected = ["Pop"]
-        self.assertEqual(expected, track.super_genres)
+        genre = "dance pop"
+        expected = "Pop"
+
+        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
+
+        self.assertEqual(expected, actual)
 
     def test_edm(self):
-        # TODONOW refactor: Extract util method so do not need to create track
-        track = SpotifyTrack()
-        genres = ["hip house"]
-        track.update_genres_and_super_genres(genres)
-        expected = ["EDM"]
-        self.assertEqual(expected, track.super_genres)
+        genre = "hip house"
+        expected = "EDM"
+
+        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
+
+        self.assertEqual(expected, actual)
