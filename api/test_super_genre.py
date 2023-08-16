@@ -37,7 +37,15 @@ class TestSuperGenre(unittest.TestCase):
         actual = SuperGenreUtils.get_super_genre_for_genre(genre)
         self.assertEqual(SuperGenreUtils.Schlager, actual)
 
-    # TODOLATER ExtremeMetal, Metal
+    @parameterized.expand(["black metal", "norwegian black metal", "death metal", "melodeath"])
+    def test_ExtremeMetal(self, genre):
+        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
+        self.assertEqual(SuperGenreUtils.ExtremeMetal, actual)
+
+    @parameterized.expand(["metal", "symphonic metal", "neue deutsche harte", "industrial"])
+    def test_Metal(self, genre):
+        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
+        self.assertEqual(SuperGenreUtils.Metal, actual)
 
     @parameterized.expand(["classical", "opera", "french opera"])
     def test_Classical(self, genre):
