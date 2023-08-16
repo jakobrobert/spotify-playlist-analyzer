@@ -1,3 +1,6 @@
+from core.analysis.super_genre_utils import SuperGenreUtils
+
+
 class Keys:
     C = 0
     Cs = Db = 1
@@ -18,51 +21,10 @@ class Modes:
     Major = 1
 
 
-class SuperGenres:
-    Pop = "Pop"
-    Rock = "Rock"
-    EDM = "EDM"
-    HipHopOrRap = "Hip Hop / Rap"
-    Schlager = "Schlager"
-    ExtremeMetal = "Extreme Metal"
-    Metal = "Metal"
-    Classical = "Classical"
-    Country = "Country"
-    Afro = "Afro"
-    Latin = "Latin"
-    Others = "Others"
-
-
 class SpotifyTrack:
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
     MODE_STRINGS = ["Minor", "Major"]
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
-
-    SUPER_GENRES = [
-        SuperGenres.Pop, SuperGenres.Rock, SuperGenres.EDM, SuperGenres.HipHopOrRap, SuperGenres.Schlager,
-        SuperGenres.ExtremeMetal, SuperGenres.Metal, SuperGenres.Classical, SuperGenres.Country,
-        SuperGenres.Afro, SuperGenres.Latin,
-        SuperGenres.Others
-    ]
-
-    ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE = {
-        SuperGenres.Pop: ["pop", "new romantic", "wave", "girl group", "boy band"],
-        SuperGenres.Rock: ["rock", "post-grunge", "punk", "mellow gold"],
-        SuperGenres.EDM: [
-            "edm", "dance", "house", "trance", "techno", "hands up", "hardstyle", "big room",
-            "dubstep", "brostep", "complextro", "disco", "hi-nrg", "dancefloor", "drum and bass", "dnb",
-            "jungle", "melbourne bounce"
-        ],
-        SuperGenres.HipHopOrRap: ["hip hop", "rap", "trap", "drill"],
-        SuperGenres.Schlager: ["schlager"],
-        SuperGenres.ExtremeMetal: ["black metal", "death metal", "melodeath"],
-        SuperGenres.Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
-        SuperGenres.Classical: ["classical", "orchestra", "opera"],
-        SuperGenres.Country: ["country"],
-        SuperGenres.Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
-        SuperGenres.Latin: ["latin"],
-        SuperGenres.Others: []
-    }
 
     def __init__(self):
         self.id = None
@@ -110,26 +72,16 @@ class SpotifyTrack:
     def __update_super_genres_by_genres(self, genres):
         super_genres_for_this_track = []
         for genre in genres:
-            super_genre = SpotifyTrack.__get_super_genre_for_genre(genre)
+            super_genre = SuperGenreUtils.get_super_genre_for_genre(genre)
             if super_genre not in self.super_genres:
                 super_genres_for_this_track.append(super_genre)
 
         sorted_super_genres = []
-        for super_genre in SpotifyTrack.SUPER_GENRES:
+        for super_genre in SuperGenreUtils.SUPER_GENRES:
             if super_genre in super_genres_for_this_track:
                 sorted_super_genres.append(super_genre)
 
         self.super_genres = sorted_super_genres
-
-    @staticmethod
-    def __get_super_genre_for_genre(genre):
-        for super_genre in SpotifyTrack.SUPER_GENRES:
-            accepted_genre_substrings = SpotifyTrack.ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE[super_genre]
-            for accepted_genre_substring in accepted_genre_substrings:
-                if accepted_genre_substring in genre:
-                    return super_genre
-
-        return SuperGenres.Others
 
     # TODOLATER #234 Refactor: Keep key signature as number in API, convert to string in App
     @staticmethod
