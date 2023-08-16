@@ -17,10 +17,7 @@ class TestSuperGenre(unittest.TestCase):
         actual = SuperGenreUtils.get_super_genre_for_genre(genre)
         self.assertEqual("Pop", actual)
 
-    def test_EDM(self):
-        genre = "hip house"
-        expected = "EDM"
-
+    @parameterized.expand(["edm", "dance", "house", "eurodance", "german dance"])
+    def test_EDM(self, genre):
         actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-
-        self.assertEqual(expected, actual)
+        self.assertEqual("EDM", actual)
