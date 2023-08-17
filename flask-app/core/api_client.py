@@ -160,9 +160,7 @@ class ApiClient:
         track.id = track_dict["id"]
         track.artists = track_dict["artists"]
         track.title = track_dict["title"]
-        # TODONOW simplify with track_dict.get
-        if "added_by" in track_dict:
-            track.added_by = track_dict["added_by"]
+        track.added_by = track_dict.get("added_by", None)
         track.duration_ms = track_dict["duration_ms"]
         track.release_year = track_dict["release_year"]
         track.popularity = track_dict["popularity"]
