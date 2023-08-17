@@ -1,4 +1,4 @@
-from core.spotify.spotify_playlist_statistics import SpotifyPlaylistStatistics
+from core.spotify_api.spotify_playlist_statistics import SpotifyPlaylistStatistics
 from core.utils import Utils
 
 

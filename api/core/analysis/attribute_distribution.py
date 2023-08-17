@@ -1,6 +1,6 @@
 from core.analysis.attribute_distribution_interval import AttributeDistributionInterval
 from core.analysis.super_genre_utils import SuperGenreUtils
-from core.spotify.spotify_track import SpotifyTrack
+from core.playlist.spotify_track import SpotifyTrack
 from core.utils import Utils
 
 LOG_PREFIX = "AttributeDistribution"

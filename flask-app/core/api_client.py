@@ -3,9 +3,9 @@ from json import JSONDecodeError
 import requests
 
 from core.http_error import HttpError
-from core.spotify.spotify_playlist import SpotifyPlaylist
-from core.spotify.spotify_playlist_statistics import SpotifyPlaylistStatistics
-from core.spotify.spotify_track import SpotifyTrack
+from core.playlist.spotify_playlist import SpotifyPlaylist
+from core.spotify_api.spotify_playlist_statistics import SpotifyPlaylistStatistics
+from core.playlist.spotify_track import SpotifyTrack
 from core.utils import Utils
 
 
