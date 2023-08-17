@@ -15,6 +15,13 @@ class SuperGenreUtils:
         Others
     ]
 
+    # Special handling because of overlap.
+    # E.g. "dancehall" should be categorized as Afro, but contains "dance" so would be categorized as EDM
+    ACCEPTED_EXACT_GENRES_BY_SUPER_GENRE = {
+        Schlager: ["discofox"],
+        Afro: ["dancehall"]
+    }
+
     ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE = {
         Pop: ["pop", "new romantic", "wave", "girl group", "boy band"],
         Rock: ["rock", "post-grunge", "punk", "mellow gold"],
@@ -37,13 +44,10 @@ class SuperGenreUtils:
 
     @staticmethod
     def get_super_genre_for_genre(genre):
-        # Special handling needed because of overlap with "disco" for EDM
-        if genre == "discofox":
-            return SuperGenreUtils.Schlager
-
-        # Special handling needed because of overlap with "dance" for EDM
-        if genre == "dancehall":
-            return SuperGenreUtils.Afro
+        for super_genre in SuperGenreUtils.ACCEPTED_EXACT_GENRES_BY_SUPER_GENRE:
+            accepted_exact_genres = SuperGenreUtils.ACCEPTED_EXACT_GENRES_BY_SUPER_GENRE[super_genre]
+            if genre in accepted_exact_genres:
+                return super_genre
 
         for super_genre in SuperGenreUtils.SUPER_GENRES:
             accepted_genre_substrings = SuperGenreUtils.ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE[super_genre]
