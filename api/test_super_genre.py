@@ -26,7 +26,7 @@ class TestSuperGenre(unittest.TestCase):
 
     @parameterized.expand(["hip hop", "rap", "german rap"])
     def test_Rap(self, genre):
-        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.HipHopOrRap)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Rap)
 
     @parameterized.expand(["schlager"])
     def test_Schlager(self, genre):

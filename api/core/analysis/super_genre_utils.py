@@ -2,7 +2,7 @@ class SuperGenreUtils:
     Pop = "Pop"
     Rock = "Rock"
     EDM = "EDM"
-    HipHopOrRap = "Hip Hop / Rap"
+    Rap = "Rap"
     Schlager = "Schlager"
     ExtremeMetal = "Extreme Metal"
     Metal = "Metal"
@@ -11,8 +11,7 @@ class SuperGenreUtils:
     Others = "Others"
     
     SUPER_GENRES = [
-        Pop, Rock, EDM, HipHopOrRap, Schlager,
-        ExtremeMetal, Metal, Classical, Afro,
+        Pop, Rock, EDM, Rap, Schlager, ExtremeMetal, Metal, Classical, Afro,
         Others
     ]
 
@@ -24,7 +23,7 @@ class SuperGenreUtils:
             "dubstep", "brostep", "complextro", "disco", "hi-nrg", "dancefloor", "drum and bass", "dnb",
             "jungle", "melbourne bounce"
         ],
-        HipHopOrRap: ["hip hop", "rap", "trap", "drill"],
+        Rap: ["hip hop", "rap", "trap", "drill"],
         Schlager: ["schlager"],
         ExtremeMetal: ["black metal", "death metal", "melodeath"],
         Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
