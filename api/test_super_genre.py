@@ -52,11 +52,6 @@ class TestSuperGenre(unittest.TestCase):
         actual = SuperGenreUtils.get_super_genre_for_genre(genre)
         self.assertEqual(SuperGenreUtils.Classical, actual)
 
-    @parameterized.expand(["classical", "opera", "french opera"])
-    def test_Country(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.Classical, actual)
-
     @parameterized.expand(["afrobeats", "r&b", "soul"])
     def test_Afro(self, genre):
         actual = SuperGenreUtils.get_super_genre_for_genre(genre)
