@@ -7,15 +7,12 @@ class SuperGenreUtils:
     ExtremeMetal = "Extreme Metal"
     Metal = "Metal"
     Classical = "Classical"
-    Country = "Country"
     Afro = "Afro"
-    Latin = "Latin"
     Others = "Others"
     
     SUPER_GENRES = [
         Pop, Rock, EDM, HipHopOrRap, Schlager,
-        ExtremeMetal, Metal, Classical, Country,
-        Afro, Latin,
+        ExtremeMetal, Metal, Classical, Afro,
         Others
     ]
 
@@ -32,9 +29,7 @@ class SuperGenreUtils:
         ExtremeMetal: ["black metal", "death metal", "melodeath"],
         Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
         Classical: ["classical", "orchestra", "opera"],
-        Country: ["country"],
         Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
-        Latin: ["latin"],
         Others: []
     }
 
