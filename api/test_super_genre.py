@@ -14,55 +14,44 @@ class TestSuperGenre(unittest.TestCase):
 
     @parameterized.expand(["pop", "dance pop", "new romantic"])
     def test_Pop(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.Pop, actual)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Pop)
 
     @parameterized.expand(["rock", "hard rock", "mellow gold"])
     def test_Rock(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.Rock, actual)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Rock)
 
     @parameterized.expand(["edm", "dance", "house", "eurodance", "german dance"])
     def test_EDM(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.EDM, actual)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.EDM)
 
     @parameterized.expand(["hip hop", "rap", "german rap"])
     def test_Rap(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.HipHopOrRap, actual)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.HipHopOrRap)
 
     @parameterized.expand(["schlager"])
     def test_Schlager(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.Schlager, actual)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Schlager)
 
     @parameterized.expand(["black metal", "norwegian black metal", "death metal", "melodeath"])
     def test_ExtremeMetal(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.ExtremeMetal, actual)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.ExtremeMetal)
 
-    @parameterized.expand(["metal", "symphonic metal", "neue deutsche harte", "industrial"])
+    @parameterized.expand(["metal", "symphonic metal", "funk metal", "neue deutsche harte", "industrial"])
     def test_Metal(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.Metal, actual)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Metal)
 
     @parameterized.expand(["classical", "opera", "french opera"])
     def test_Classical(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.Classical, actual)
-
-    @parameterized.expand(["classical", "opera", "french opera"])
-    def test_Country(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.Classical, actual)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Classical)
 
     @parameterized.expand(["afrobeats", "r&b", "soul"])
     def test_Afro(self, genre):
-        actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.Afro, actual)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Afro)
 
     @parameterized.expand(["unknown", "garbage", "foobar"])
     def test_Others(self, genre):
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Others)
+
+    def __test_get_super_genre_for_genre(self, genre, expected_super_genre):
         actual = SuperGenreUtils.get_super_genre_for_genre(genre)
-        self.assertEqual(SuperGenreUtils.Others, actual)
+        self.assertEqual(expected_super_genre, actual)
