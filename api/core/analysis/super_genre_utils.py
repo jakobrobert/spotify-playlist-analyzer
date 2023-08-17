@@ -27,7 +27,10 @@ class SuperGenreUtils:
         Schlager: ["schlager", "yodeling", "oktoberfest"],
         ExtremeMetal: ["black metal", "death metal", "melodeath"],
         Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
-        Classical: ["classical", "orchestra", "opera"],
+        Classical: [
+            "classical", "orchestra", "opera", "operetta", "romanticism", "romantic", "baroque",
+            "tenor", "soprano", "orchestra", "early music", "canzone napoletana", "symphony"
+        ],
         Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
         Others: []
     }
