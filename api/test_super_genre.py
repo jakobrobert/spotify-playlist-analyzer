@@ -40,7 +40,7 @@ class TestSuperGenre(unittest.TestCase):
     def test_Metal(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Metal)
 
-    @parameterized.expand(["classical", "opera", "french opera"])
+    @parameterized.expand(["classical", "opera", "french opera", "romanticism", "baroque"])
     def test_Classical(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Classical)
 
