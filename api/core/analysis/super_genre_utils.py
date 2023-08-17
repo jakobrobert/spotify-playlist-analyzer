@@ -24,7 +24,7 @@ class SuperGenreUtils:
             "jungle", "melbourne bounce"
         ],
         Rap: ["hip hop", "rap", "trap", "drill"],
-        Schlager: ["schlager"],
+        Schlager: ["schlager", "yodeling", "oktoberfest"],
         ExtremeMetal: ["black metal", "death metal", "melodeath"],
         Metal: ["metal", "neue deutsche harte", "industrial", "screamo", "emo", "nwobhm"],
         Classical: ["classical", "orchestra", "opera"],
@@ -34,6 +34,10 @@ class SuperGenreUtils:
 
     @staticmethod
     def get_super_genre_for_genre(genre):
+        # Special handling needed because of overlap with "disco" for EDM
+        if genre == "discofox":
+            return SuperGenreUtils.Schlager
+
         for super_genre in SuperGenreUtils.SUPER_GENRES:
             accepted_genre_substrings = SuperGenreUtils.ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE[super_genre]
             for accepted_genre_substring in accepted_genre_substrings:
