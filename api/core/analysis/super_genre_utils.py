@@ -41,6 +41,10 @@ class SuperGenreUtils:
         if genre == "discofox":
             return SuperGenreUtils.Schlager
 
+        # Special handling needed because of overlap with "dance" for EDM
+        if genre == "dancehall":
+            return SuperGenreUtils.Afro
+
         for super_genre in SuperGenreUtils.SUPER_GENRES:
             accepted_genre_substrings = SuperGenreUtils.ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE[super_genre]
             for accepted_genre_substring in accepted_genre_substrings:
