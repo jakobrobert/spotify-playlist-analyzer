@@ -26,9 +26,9 @@ class TestSuperGenre(unittest.TestCase):
 
     @parameterized.expand(["hip hop", "rap", "german rap"])
     def test_Rap(self, genre):
-        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.HipHopOrRap)
+        self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Rap)
 
-    @parameterized.expand(["schlager"])
+    @parameterized.expand(["schlager", "discofox", "yodeling"])
     def test_Schlager(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Schlager)
 
@@ -40,11 +40,11 @@ class TestSuperGenre(unittest.TestCase):
     def test_Metal(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Metal)
 
-    @parameterized.expand(["classical", "opera", "french opera"])
+    @parameterized.expand(["classical", "opera", "french opera", "romanticism", "baroque"])
     def test_Classical(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Classical)
 
-    @parameterized.expand(["afrobeats", "r&b", "soul"])
+    @parameterized.expand(["afrobeats", "r&b", "soul", "reggae", "jazz", "dancehall"])
     def test_Afro(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Afro)
 
