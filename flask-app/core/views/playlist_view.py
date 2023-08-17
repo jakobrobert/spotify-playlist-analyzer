@@ -3,7 +3,7 @@ import configparser
 from flask import Blueprint, render_template, request, redirect, url_for
 
 from core.api_client import ApiClient
-from core.playlist.spotify_track import SpotifyTrack
+from core.playlist.track import Track
 from core.utils import Utils
 from core.views.view_utils import ViewUtils
 
@@ -57,7 +57,7 @@ def get_playlist_by_id(playlist_id):
         filter_params=filter_params,
         numerical_attributes_for_filter_option=numerical_attributes_for_filter_option,
         attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
-        key_strings=SpotifyTrack.KEY_STRINGS, mode_strings=SpotifyTrack.MODE_STRINGS,
+        key_strings=Track.KEY_STRINGS, mode_strings=Track.MODE_STRINGS,
         valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
         valid_attributes_for_sort_option=valid_attributes_for_sort_option,
         valid_key_signatures=valid_key_signatures

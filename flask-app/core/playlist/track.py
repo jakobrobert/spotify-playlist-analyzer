@@ -1,7 +1,7 @@
 from core.utils import Utils
 
 
-class SpotifyTrack:
+class Track:
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
     MODE_STRINGS = ["Minor", "Major"]
 
@@ -44,10 +44,10 @@ class SpotifyTrack:
         return f"{self.tempo:.1f}"
 
     def get_key_string(self):
-        return SpotifyTrack.__get_from_list(SpotifyTrack.KEY_STRINGS, self.key)
+        return Track.__get_from_list(Track.KEY_STRINGS, self.key)
 
     def get_mode_string(self):
-        return SpotifyTrack.__get_from_list(SpotifyTrack.MODE_STRINGS, self.mode)
+        return Track.__get_from_list(Track.MODE_STRINGS, self.mode)
 
     def get_loudness_string(self):
         return f"{self.loudness:.1f}"

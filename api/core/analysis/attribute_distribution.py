@@ -1,6 +1,6 @@
 from core.analysis.attribute_distribution_interval import AttributeDistributionInterval
 from core.analysis.super_genre_utils import SuperGenreUtils
-from core.playlist.spotify_track import SpotifyTrack
+from core.playlist.track import Track
 from core.utils import Utils
 
 LOG_PREFIX = "AttributeDistribution"
@@ -83,7 +83,7 @@ class AttributeDistribution:
         items = []
 
         # Add one item for each key
-        for key_name in SpotifyTrack.KEY_STRINGS:
+        for key_name in Track.KEY_STRINGS:
             item = {
                 "label": key_name,
                 "count": 0
@@ -108,7 +108,7 @@ class AttributeDistribution:
         items = []
 
         # Add one item for each mode
-        for mode_name in SpotifyTrack.MODE_STRINGS:
+        for mode_name in Track.MODE_STRINGS:
             item = {
                 "label": mode_name,
                 "count": 0
@@ -134,7 +134,7 @@ class AttributeDistribution:
         items = []
 
         # Add one item for each key_signature
-        for key_signature_name in SpotifyTrack.KEY_SIGNATURE_STRINGS:
+        for key_signature_name in Track.KEY_SIGNATURE_STRINGS:
             item = {
                 "label": key_signature_name,
                 "count": 0
@@ -145,7 +145,7 @@ class AttributeDistribution:
         # Calculate count for each key_signature
         for track in self.tracks:
             key_signature = track.key_signature
-            key_signature_index = SpotifyTrack.KEY_SIGNATURE_STRINGS.index(key_signature)
+            key_signature_index = Track.KEY_SIGNATURE_STRINGS.index(key_signature)
             item = items[key_signature_index]
             item["count"] += 1
 

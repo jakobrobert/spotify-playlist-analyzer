@@ -21,7 +21,7 @@ class Modes:
     Major = 1
 
 
-class SpotifyTrack:
+class Track:
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
     MODE_STRINGS = ["Minor", "Major"]
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
@@ -59,15 +59,15 @@ class SpotifyTrack:
         self.tempo = audio_features["tempo"]
         self.key = audio_features["key"]
         self.mode = audio_features["mode"]
-        self.key_signature = SpotifyTrack.__get_key_signature_from_key_and_mode(self.key, self.mode)
+        self.key_signature = Track.__get_key_signature_from_key_and_mode(self.key, self.mode)
         self.loudness = audio_features["loudness"]
-        self.danceability = SpotifyTrack.__process_audio_feature_value(audio_features["danceability"])
-        self.energy = SpotifyTrack.__process_audio_feature_value(audio_features["energy"])
-        self.valence = SpotifyTrack.__process_audio_feature_value(audio_features["valence"])
-        self.instrumentalness = SpotifyTrack.__process_audio_feature_value(audio_features["instrumentalness"])
-        self.acousticness = SpotifyTrack.__process_audio_feature_value(audio_features["acousticness"])
-        self.liveness = SpotifyTrack.__process_audio_feature_value(audio_features["liveness"])
-        self.speechiness = SpotifyTrack.__process_audio_feature_value(audio_features["speechiness"])
+        self.danceability = Track.__process_audio_feature_value(audio_features["danceability"])
+        self.energy = Track.__process_audio_feature_value(audio_features["energy"])
+        self.valence = Track.__process_audio_feature_value(audio_features["valence"])
+        self.instrumentalness = Track.__process_audio_feature_value(audio_features["instrumentalness"])
+        self.acousticness = Track.__process_audio_feature_value(audio_features["acousticness"])
+        self.liveness = Track.__process_audio_feature_value(audio_features["liveness"])
+        self.speechiness = Track.__process_audio_feature_value(audio_features["speechiness"])
 
     def __update_super_genres_by_genres(self, genres):
         super_genres_for_this_track = []
