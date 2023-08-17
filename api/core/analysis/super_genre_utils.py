@@ -21,7 +21,7 @@ class SuperGenreUtils:
         EDM: [
             "edm", "dance", "house", "trance", "techno", "hands up", "hardstyle", "big room",
             "dubstep", "brostep", "complextro", "disco", "hi-nrg", "dancefloor", "drum and bass", "dnb",
-            "jungle", "melbourne bounce"
+            "jungle", "melbourne bounce", "indietronica"
         ],
         Rap: ["hip hop", "rap", "trap", "drill"],
         Schlager: ["schlager", "yodeling", "oktoberfest"],
@@ -31,7 +31,7 @@ class SuperGenreUtils:
             "classical", "orchestra", "opera", "operetta", "romanticism", "romantic", "baroque",
             "tenor", "soprano", "orchestra", "early music", "canzone napoletana", "symphony"
         ],
-        Afro: ["afro", "r&b", "soul", "reggae", "funk", "urban", "dancehall"],
+        Afro: ["afro", "r&b", "soul", "reggae", "jazz", "funk", "urban", "dancehall"],
         Others: []
     }
 
