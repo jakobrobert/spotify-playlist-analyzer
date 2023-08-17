@@ -42,7 +42,7 @@ class TestSuperGenre(unittest.TestCase):
         actual = SuperGenreUtils.get_super_genre_for_genre(genre)
         self.assertEqual(SuperGenreUtils.ExtremeMetal, actual)
 
-    @parameterized.expand(["metal", "symphonic metal", "neue deutsche harte", "industrial"])
+    @parameterized.expand(["metal", "symphonic metal", "funk metal", "neue deutsche harte", "industrial"])
     def test_Metal(self, genre):
         actual = SuperGenreUtils.get_super_genre_for_genre(genre)
         self.assertEqual(SuperGenreUtils.Metal, actual)
