@@ -1,12 +1,12 @@
-from core.playlist.spotify_playlist_statistics import SpotifyPlaylistStatistics
+from core.playlist.playlist_statistics import PlaylistStatistics
 from core.utils import Utils
 
 
-class SpotifyPlaylist:
+class Playlist:
     def __init__(self):
         self.id = "n/a"
         self.name = "n/a"
-        self.statistics = SpotifyPlaylistStatistics()
+        self.statistics = PlaylistStatistics()
         self.tracks = []
 
     # Member method as wrapper because did not manage to access static methods in template code

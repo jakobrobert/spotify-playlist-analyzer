@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request, redirect
 
 from core.api_utils import ApiUtils
 from core.spotify_api.spotify_api_client import SpotifyApiClient
-from core.playlist.spotify_track import SpotifyTrack
+from core.playlist.track import Track
 from core.track_filter import TrackFilter
 from core.utils import Utils
 
@@ -156,7 +156,7 @@ def get_numerical_attributes_for_filter_option():
 @Utils.measure_execution_time(LOG_PREFIX)
 @ApiUtils.handle_exceptions
 def get_valid_key_signatures():
-    return jsonify(SpotifyTrack.KEY_SIGNATURE_STRINGS)
+    return jsonify(Track.KEY_SIGNATURE_STRINGS)
 
 
 @app.route(URL_PREFIX + "track/<track_id>", methods=["GET"])

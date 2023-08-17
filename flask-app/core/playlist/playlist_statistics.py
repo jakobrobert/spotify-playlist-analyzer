@@ -1,7 +1,7 @@
 from core.utils import Utils
 
 
-class SpotifyPlaylistStatistics:
+class PlaylistStatistics:
     def __init__(self):
         self.total_duration_ms = 0
         self.average_duration_ms = 0

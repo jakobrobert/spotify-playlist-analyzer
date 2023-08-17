@@ -3,9 +3,9 @@ from json import JSONDecodeError
 import requests
 
 from core.http_error import HttpError
-from core.playlist.spotify_playlist import SpotifyPlaylist
-from core.playlist.spotify_playlist_statistics import SpotifyPlaylistStatistics
-from core.playlist.spotify_track import SpotifyTrack
+from core.playlist.playlist import Playlist
+from core.playlist.playlist_statistics import PlaylistStatistics
+from core.playlist.track import Track
 from core.utils import Utils
 
 
@@ -21,7 +21,7 @@ class ApiClient:
         sub_url = f"playlist/{playlist_id}"
         playlist_dict = self.__send_get_request(sub_url, request_params)
 
-        playlist = SpotifyPlaylist()
+        playlist = Playlist()
         playlist.id = playlist_dict["id"]
         playlist.name = playlist_dict["name"]
         playlist.statistics = ApiClient.__convert_dict_to_playlist_statistics(playlist_dict["statistics"])
@@ -136,7 +136,7 @@ class ApiClient:
 
     @staticmethod
     def __convert_dict_to_playlist_statistics(statistics_dict):
-        playlist_statistics = SpotifyPlaylistStatistics()
+        playlist_statistics = PlaylistStatistics()
 
         playlist_statistics.total_duration_ms = statistics_dict["total_duration_ms"]
         playlist_statistics.average_duration_ms = statistics_dict["average_duration_ms"]
@@ -155,11 +155,12 @@ class ApiClient:
 
     @staticmethod
     def __convert_dict_to_track(track_dict):
-        track = SpotifyTrack()
+        track = Track()
 
         track.id = track_dict["id"]
         track.artists = track_dict["artists"]
         track.title = track_dict["title"]
+        # TODONOW simplify with track_dict.get
         if "added_by" in track_dict:
             track.added_by = track_dict["added_by"]
         track.duration_ms = track_dict["duration_ms"]
