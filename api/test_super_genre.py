@@ -44,7 +44,7 @@ class TestSuperGenre(unittest.TestCase):
     def test_Classical(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Classical)
 
-    @parameterized.expand(["afrobeats", "r&b", "soul", "reggae", "jazz"])
+    @parameterized.expand(["afrobeats", "r&b", "soul", "reggae", "jazz", "dancehall"])
     def test_Afro(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Afro)
 
