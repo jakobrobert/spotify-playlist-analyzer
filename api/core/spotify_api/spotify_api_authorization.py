@@ -3,7 +3,7 @@ from urllib.parse import urlencode
 import requests
 
 from core.http_error import HttpError
-from core.spotify.spotify_api_utils import SpotifyApiUtils
+from core.spotify_api.spotify_api_utils import SpotifyApiUtils
 from core.utils import Utils
 
 LOG_PREFIX = "SpotifyApiAuthorization."
