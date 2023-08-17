@@ -2,13 +2,12 @@ import configparser
 from math import ceil
 
 from core.http_error import HttpError
-from core.spotify.spotify_api_authorization import SpotifyApiAuthorization
-from core.spotify.spotify_api_cache import SpotifyApiCache
-from core.spotify.spotify_api_utils import SpotifyApiUtils
-from core.spotify.spotify_playlist import SpotifyPlaylist
-from core.spotify.spotify_track import SpotifyTrack
+from core.playlist.playlist import Playlist
+from core.playlist.track import Track
+from core.spotify_api.spotify_api_authorization import SpotifyApiAuthorization
+from core.spotify_api.spotify_api_cache import SpotifyApiCache
+from core.spotify_api.spotify_api_utils import SpotifyApiUtils
 from core.utils import Utils
-
 
 LOG_PREFIX = "SpotifyApiClient."
 
@@ -34,7 +33,7 @@ class SpotifyApiClient:
         access_token = self.authorization.get_access_token_by_client_credentials()
         response_data = SpotifyApiUtils.send_get_request(url, access_token)
 
-        playlist = SpotifyPlaylist()
+        playlist = Playlist()
         playlist.id = response_data["id"]
         playlist.name = response_data["name"]
         playlist.tracks = SpotifyApiClient.__get_tracks_of_playlist(response_data, access_token)
@@ -76,7 +75,7 @@ class SpotifyApiClient:
         access_token = self.authorization.get_access_token_by_client_credentials()
         track_data = SpotifyApiUtils.send_get_request(url, access_token)
 
-        track = SpotifyApiClient.__create_spotify_track(track_data)
+        track = SpotifyApiClient.__convert_dict_to_track(track_data)
         tracks = [track]
         SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
         SpotifyApiClient.__update_audio_features_of_tracks(tracks, access_token)
@@ -103,7 +102,7 @@ class SpotifyApiClient:
         tracks = []
 
         for track_item in track_items:
-            track = SpotifyApiClient.__create_spotify_track(track_item)
+            track = SpotifyApiClient.__convert_dict_to_track(track_item)
             tracks.append(track)
 
         SpotifyApiClient.__update_genres_of_tracks(tracks, access_token)
@@ -121,7 +120,7 @@ class SpotifyApiClient:
         for track_item in track_items:
             added_by_user_id = track_item["added_by"]["id"]
             track_data = track_item["track"]
-            track = SpotifyApiClient.__create_spotify_track(track_data)
+            track = SpotifyApiClient.__convert_dict_to_track(track_data)
             track.added_by_user_id = added_by_user_id
             tracks.append(track)
 
@@ -163,16 +162,16 @@ class SpotifyApiClient:
         return track_items, next_url
 
     @staticmethod
-    def __create_spotify_track(track_data):
-        track = SpotifyTrack()
+    def __convert_dict_to_track(track_dict):
+        track = Track()
 
-        track.id = track_data["id"]
-        track.title = track_data["name"]
-        track.artist_ids = SpotifyApiClient.__get_artist_ids_of_track(track_data)
-        track.artists = SpotifyApiClient.__get_artists_of_track(track_data)
-        track.duration_ms = track_data["duration_ms"]
-        track.release_year = SpotifyApiClient.__get_release_year_of_track(track_data)
-        track.popularity = track_data["popularity"]
+        track.id = track_dict["id"]
+        track.title = track_dict["name"]
+        track.artist_ids = SpotifyApiClient.__get_artist_ids_of_track(track_dict)
+        track.artists = SpotifyApiClient.__get_artists_of_track(track_dict)
+        track.duration_ms = track_dict["duration_ms"]
+        track.release_year = SpotifyApiClient.__get_release_year_of_track(track_dict)
+        track.popularity = track_dict["popularity"]
 
         return track
 
