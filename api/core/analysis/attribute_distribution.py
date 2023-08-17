@@ -1,4 +1,5 @@
 from core.analysis.attribute_distribution_interval import AttributeDistributionInterval
+from core.analysis.super_genre_utils import SuperGenreUtils
 from core.spotify.spotify_track import SpotifyTrack
 from core.utils import Utils
 
@@ -44,7 +45,7 @@ class AttributeDistribution:
         items = []
 
         # Calculate count for each super genre
-        for super_genre in SpotifyTrack.SUPER_GENRES:
+        for super_genre in SuperGenreUtils.SUPER_GENRES:
             count = 0
 
             for track in self.tracks:
@@ -194,6 +195,7 @@ class AttributeDistribution:
     def get_valence_distribution_items(self):
         return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.valence)
 
+    # noinspection PyListCreation
     def __get_attribute_distribution_intervals(
             self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
 
