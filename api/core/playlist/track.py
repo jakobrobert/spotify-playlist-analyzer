@@ -23,14 +23,14 @@ class Modes:
 
 class KeyAndModePairs:
     C_MINOR = 0,
-    Db_MINOR = 1,
+    Cs_MINOR = 1,
     D_MINOR = 2,
-    Eb_MINOR = 3,
+    Ds_MINOR = 3,
     E_MINOR = 4,
     F_MINOR = 5,
-    Gb_MINOR = 6,
+    Fs_MINOR = 6,
     G_MINOR = 7,
-    Ab_MINOR = 8,
+    Gs_MINOR = 8,
     A_MINOR = 9,
     Bb_MINOR = 10,
     B_MINOR = 11,
@@ -75,7 +75,7 @@ class Track:
         self.tempo = 0
         self.key = -1
         self.mode = -1
-        # TODONOW add key_and_mode_pair
+        self.key_and_mode_pair = -1
         self.key_signature = None
         self.loudness = 0
         self.danceability = 0
@@ -94,7 +94,7 @@ class Track:
         self.tempo = audio_features["tempo"]
         self.key = audio_features["key"]
         self.mode = audio_features["mode"]
-        # TODONOW update key_and_mode_pair based on key & mode
+        self.key_and_mode_pair = Track.__get_key_and_mode_pair(self.key, self.mode)
         self.key_signature = Track.__get_key_signature_from_key_and_mode(self.key, self.mode)
         self.loudness = audio_features["loudness"]
         self.danceability = Track.__process_audio_feature_value(audio_features["danceability"])
@@ -119,10 +119,17 @@ class Track:
 
         self.super_genres = sorted_super_genres
 
+    @staticmethod
+    def __get_key_and_mode_pair(key, mode):
+        if key == Keys.C and mode == Modes.Minor:
+            return KeyAndModePairs.C_MINOR
+        if key == Keys.Cs and mode == Modes.Minor:
+            return KeyAndModePairs.Cs_MINOR
+        # TODONOW complete
+
     # TODOLATER #234 Refactor: Keep key signature as number in API, convert to string in App
     @staticmethod
     def __get_key_signature_from_key_and_mode(key, mode):
-        # TODONOW can use key_and_mode_pair to make code simpler
         if (key == Keys.C and mode == Modes.Major) or (key == Keys.A and mode == Modes.Minor):
             return "♮"
         if (key == Keys.G and mode == Modes.Major) or (key == Keys.E and mode == Modes.Minor):
