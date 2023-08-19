@@ -28,6 +28,7 @@ def get_track_by_url():
 
 @track_view.route(URL_PREFIX + "track/<track_id>", methods=["GET"])
 @Utils.measure_execution_time(log_prefix="[View Endpoint] ")
+@ViewUtils.handle_exceptions
 def get_track_by_id(track_id):
     track = api_client.get_track_by_id(track_id)
     return render_template("track.html", track=track, attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES)
