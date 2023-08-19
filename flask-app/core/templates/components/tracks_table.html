@@ -13,6 +13,7 @@
         <th>{{ attribute_display_names["super_genres"] }}</th>
         <th>{{ attribute_display_names["tempo"] }}</th>
         <th>{{ attribute_display_names["key"] }}</th>
+        <th>{{ attribute_display_names["key_and_mode_pair"] }}</th>
         <th>{{ attribute_display_names["mode"] }}</th>
         <th>{{ attribute_display_names["key_signature"] }}</th>
         <th>{{ attribute_display_names["loudness"] }}</th>
@@ -41,6 +42,7 @@
         <td>{{ track.get_tempo_string() }}</td>
         <td>{{ track.get_key_string() }}</td>
         <td>{{ track.get_mode_string() }}</td>
+        <td>{{ track.get_key_and_mode_pair_string() }}</td>
         <td>{{ track.key_signature }}</td>
         <td>{{ track.get_loudness_string() }}</td>
         <td>{{ track.danceability }}</td>

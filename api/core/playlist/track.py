@@ -125,7 +125,8 @@ class Track:
             return KeyAndModePairs.C_MINOR
         if key == Keys.Cs and mode == Modes.Minor:
             return KeyAndModePairs.Cs_MINOR
-        # TODONOW complete
+        # TODONOW add mappings for other values
+        return -1
 
     # TODOLATER #234 Refactor: Keep key signature as number in API, convert to string in App
     @staticmethod
