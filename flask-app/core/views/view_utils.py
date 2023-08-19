@@ -24,6 +24,7 @@ class ViewUtils:
         "tempo": "Tempo (BPM)",
         "key": "Key",
         "mode": "Mode",
+        "key_and_mode_pair": "Key & Mode",
         "key_signature": "Key Signature",
         "loudness": "Loudness (dB)",
         "danceability": "Danceablity",
