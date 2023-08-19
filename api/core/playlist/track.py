@@ -22,30 +22,30 @@ class Modes:
 
 
 class KeyAndModePairs:
-    C_MINOR = 0,
-    Cs_MINOR = 1,
-    D_MINOR = 2,
-    Ds_MINOR = 3,
-    E_MINOR = 4,
-    F_MINOR = 5,
-    Fs_MINOR = 6,
-    G_MINOR = 7,
-    Gs_MINOR = 8,
-    A_MINOR = 9,
-    Bb_MINOR = 10,
-    B_MINOR = 11,
+    C_MINOR = 0
+    Cs_MINOR = 1
+    D_MINOR = 2
+    Ds_MINOR = 3
+    E_MINOR = 4
+    F_MINOR = 5
+    Fs_MINOR = 6
+    G_MINOR = 7
+    Gs_MINOR = 8
+    A_MINOR = 9
+    Bb_MINOR = 10
+    B_MINOR = 11
 
-    C_MAJOR = 12,
-    Db_MAJOR = 13,
-    D_MAJOR = 14,
-    Eb_MAJOR = 15,
-    E_MAJOR = 16,
-    F_MAJOR = 17,
-    Gb_MAJOR = 18,
-    G_MAJOR = 19,
-    Ab_MAJOR = 20,
-    A_MAJOR = 21,
-    Bb_MAJOR = 22,
+    C_MAJOR = 12
+    Db_MAJOR = 13
+    D_MAJOR = 14
+    Eb_MAJOR = 15
+    E_MAJOR = 16
+    F_MAJOR = 17
+    Gb_MAJOR = 18
+    G_MAJOR = 19
+    Ab_MAJOR = 20
+    A_MAJOR = 21
+    Bb_MAJOR = 22
     B_MAJOR = 23
 
 
