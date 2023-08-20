@@ -52,12 +52,8 @@
                 <td>{{ track.get_tempo_string() }}</td>
             </tr>
             <tr>
-                <td>{{ attribute_display_names["key"] }}</td>
-                <td>{{ track.get_key_string() }}</td>
-            </tr>
-            <tr>
-                <td>{{ attribute_display_names["mode"] }}</td>
-                <td>{{ track.get_mode_string() }}</td>
+                <td>{{ attribute_display_names["key_and_mode_pair"] }}</td>
+                <td>{{ track.get_key_and_mode_pair_string() }}</td>
             </tr>
             <tr>
                 <td>{{ attribute_display_names["key_signature"] }}</td>
