@@ -121,11 +121,12 @@ class Track:
 
     @staticmethod
     def __get_key_and_mode_pair(key, mode):
-        if key == Keys.C and mode == Modes.Minor:
-            return KeyAndModePairs.C_MINOR
-        if key == Keys.Cs and mode == Modes.Minor:
-            return KeyAndModePairs.Cs_MINOR
-        # TODONOW add mappings for other values
+        if mode == Modes.Minor:
+            return key
+
+        if mode == Modes.Major:
+            return key + 12
+
         return -1
 
     # TODOLATER #234 Refactor: Keep key signature as number in API, convert to string in App
