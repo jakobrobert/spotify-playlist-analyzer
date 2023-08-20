@@ -22,8 +22,9 @@ class ViewUtils:
         "genres": "Genres",
         "super_genres": "Super Genres",
         "tempo": "Tempo (BPM)",
-        "key": "Key",
-        "mode": "Mode",
+        "key": "Key",   # WARNING Removed from tracks table, but still needed for attribute distribution page
+        "mode": "Mode",  # WARNING Removed from tracks table, but still needed for attribute distribution page
+        "key_and_mode_pair": "Key & Mode",
         "key_signature": "Key Signature",
         "loudness": "Loudness (dB)",
         "danceability": "Danceablity",

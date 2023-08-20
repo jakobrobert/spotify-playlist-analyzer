@@ -138,7 +138,7 @@ def get_valid_attributes_for_sort_option():
         "none",
         "artists", "title", "added_by",
         "duration_ms", "release_year", "popularity", "genres", "super_genres",
-        "tempo", "key", "mode", "key_signature", "loudness",
+        "tempo", "key_and_mode_pair", "key_signature", "loudness",
         "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
     ]
 

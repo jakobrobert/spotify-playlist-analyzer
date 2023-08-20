@@ -21,9 +21,43 @@ class Modes:
     Major = 1
 
 
+class KeyAndModePairs:
+    C_MINOR = 0
+    Cs_MINOR = 1
+    D_MINOR = 2
+    Ds_MINOR = 3
+    E_MINOR = 4
+    F_MINOR = 5
+    Fs_MINOR = 6
+    G_MINOR = 7
+    Gs_MINOR = 8
+    A_MINOR = 9
+    Bb_MINOR = 10
+    B_MINOR = 11
+
+    C_MAJOR = 12
+    Db_MAJOR = 13
+    D_MAJOR = 14
+    Eb_MAJOR = 15
+    E_MAJOR = 16
+    F_MAJOR = 17
+    Gb_MAJOR = 18
+    G_MAJOR = 19
+    Ab_MAJOR = 20
+    A_MAJOR = 21
+    Bb_MAJOR = 22
+    B_MAJOR = 23
+
+
 class Track:
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
     MODE_STRINGS = ["Minor", "Major"]
+    KEY_AND_MODE_PAIR_STRINGS = [
+        "C Minor", "C# Minor", "D Minor", "D# Minor", "E Minor", "F Minor",
+        "F# Minor", "G Minor", "G# Minor", "A Minor", "Bb Minor", "B Minor",
+        "C Major", "Db Major", "D Major", "Eb Major", "E Major", "F Major",
+        "Gb Major", "G Major", "Ab Major", "A Major", "Bb Major", "B Major"
+    ]
     KEY_SIGNATURE_STRINGS = ["♮", "1♯", "2♯", "3♯", "4♯", "5♯", "6♯/6♭", "5♭", "4♭", "3♭", "2♭", "1♭"]
 
     def __init__(self):
@@ -41,6 +75,7 @@ class Track:
         self.tempo = 0
         self.key = -1
         self.mode = -1
+        self.key_and_mode_pair = -1
         self.key_signature = None
         self.loudness = 0
         self.danceability = 0
@@ -59,6 +94,7 @@ class Track:
         self.tempo = audio_features["tempo"]
         self.key = audio_features["key"]
         self.mode = audio_features["mode"]
+        self.key_and_mode_pair = Track.__get_key_and_mode_pair(self.key, self.mode)
         self.key_signature = Track.__get_key_signature_from_key_and_mode(self.key, self.mode)
         self.loudness = audio_features["loudness"]
         self.danceability = Track.__process_audio_feature_value(audio_features["danceability"])
@@ -82,6 +118,16 @@ class Track:
                 sorted_super_genres.append(super_genre)
 
         self.super_genres = sorted_super_genres
+
+    @staticmethod
+    def __get_key_and_mode_pair(key, mode):
+        if mode == Modes.Minor:
+            return key
+
+        if mode == Modes.Major:
+            return key + 12
+
+        return -1
 
     # TODOLATER #234 Refactor: Keep key signature as number in API, convert to string in App
     @staticmethod

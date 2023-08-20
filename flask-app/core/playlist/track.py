@@ -2,8 +2,17 @@ from core.utils import Utils
 
 
 class Track:
+    # WARNING Removed methods get_key_string & get_mode_string
+    #   -> but those constants are still needed for filter options, see playlist_view.py
     KEY_STRINGS = ["C", "C♯/D♭", "D", "D♯/E♭", "E", "F", "F♯/G♭", "G", "G♯/A♭", "A", "A♯/B♭", "B"]
     MODE_STRINGS = ["Minor", "Major"]
+
+    KEY_AND_MODE_PAIR_STRINGS = [
+        "C Minor", "C# Minor", "D Minor", "D# Minor", "E Minor", "F Minor",
+        "F# Minor", "G Minor", "G# Minor", "A Minor", "Bb Minor", "B Minor",
+        "C Major", "Db Major", "D Major", "Eb Major", "E Major", "F Major",
+        "Gb Major", "G Major", "Ab Major", "A Major", "Bb Major", "B Major"
+    ]
 
     def __init__(self):
         self.id = "n/a"
@@ -16,8 +25,7 @@ class Track:
         self.genres = []
         self.super_genres = []
         self.tempo = 0
-        self.key = -1
-        self.mode = -1
+        self.key_and_mode_pair = -1
         self.key_signature = "n/a"
         self.loudness = 0
         self.danceability = 0
@@ -43,11 +51,8 @@ class Track:
     def get_tempo_string(self):
         return f"{self.tempo:.1f}"
 
-    def get_key_string(self):
-        return Track.__get_from_list(Track.KEY_STRINGS, self.key)
-
-    def get_mode_string(self):
-        return Track.__get_from_list(Track.MODE_STRINGS, self.mode)
+    def get_key_and_mode_pair_string(self):
+        return Track.__get_from_list(Track.KEY_AND_MODE_PAIR_STRINGS, self.key_and_mode_pair)
 
     def get_loudness_string(self):
         return f"{self.loudness:.1f}"
