@@ -138,7 +138,7 @@ def get_valid_attributes_for_sort_option():
         "none",
         "artists", "title", "added_by",
         "duration_ms", "release_year", "popularity", "genres", "super_genres",
-        "tempo", "key", "mode", "key_signature", "loudness", # TODONOW add "key_and_mode_pair"
+        "tempo", "key", "mode", "key_and_mode_pair", "key_signature", "loudness", # TODONOW Remove separate sort options for key & mode
         "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
     ]
 
