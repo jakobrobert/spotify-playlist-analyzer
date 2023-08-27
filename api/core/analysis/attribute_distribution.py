@@ -267,7 +267,7 @@ class AttributeDistribution:
     @staticmethod
     def __get_label_for_interval(min_value, max_value, get_label_for_value):
         if min_value is None:
-            return f"≤ {get_label_for_value(max_value)}"
+            return f"< {get_label_for_value(max_value)}"
 
         return f"≥ {get_label_for_value(min_value)}"
 
