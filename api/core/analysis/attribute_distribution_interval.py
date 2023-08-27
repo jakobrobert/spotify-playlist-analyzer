@@ -1,7 +1,7 @@
 class AttributeDistributionInterval:
-    def __init__(self, min_value, max_value):
+    def __init__(self, min_value, max_value_exclusive):
         self.min_value = min_value
-        self.max_value_exclusive = max_value
+        self.max_value_exclusive = max_value_exclusive
         self.count = 0
         self.percentage = 0
 
