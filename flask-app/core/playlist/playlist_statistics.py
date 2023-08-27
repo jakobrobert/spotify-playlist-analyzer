@@ -17,6 +17,9 @@ class PlaylistStatistics:
         self.average_speechiness = 0
 
     def get_total_duration_string(self):
+        if not self.total_duration_ms:
+            return "n/a"
+
         total_seconds = self.total_duration_ms // 1000
         total_minutes = total_seconds // 60
         remaining_seconds = total_seconds % 60

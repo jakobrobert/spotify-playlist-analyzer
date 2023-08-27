@@ -6,6 +6,7 @@ from spotify_playlist_analyzer import app
 
 PLAYLIST_ID_1 = "1v1enByYGutAxxH06UW3cf"
 PLAYLIST_ID_2 = "5CgE5f0xzNTTHd6zlYRyzW"
+PLAYLIST_ID_EMPTY = "5HYNylDNFV1bU6WrF1ot5Y"
 TRACK_ID = "4cOdK2wGLETKBW3PvgPWqT"
 
 
@@ -39,6 +40,9 @@ class TestSmoke(unittest.TestCase):
 
     def test_playlist(self):
         self.__test_get_request(f"playlist/{PLAYLIST_ID_1}")
+
+    def test_playlist_empty(self):
+        self.__test_get_request(f"playlist/{PLAYLIST_ID_EMPTY}")
 
     # Only testing one attribute because else would take too long and also too many requests to Spotify API
     # For Smoke test this is sufficient, only broad test that basic functionality works
