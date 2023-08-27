@@ -25,7 +25,7 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_release_year_distribution_items(self):
-        second_interval_min_year = 1979
+        second_interval_min_year = 1980
         last_interval_min_year = 2020
         interval_size = 10
 
@@ -67,7 +67,7 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_tempo_distribution_items(self):
-        second_interval_min_tempo = 69
+        second_interval_min_tempo = 70
         last_interval_min_tempo = 180
         interval_size = 10
 
@@ -157,7 +157,7 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_loudness_distribution_items(self):
-        second_interval_min_loudness = -17
+        second_interval_min_loudness = -16
         last_interval_min_loudness = -2
         interval_size = 2
 
@@ -218,7 +218,7 @@ class AttributeDistribution:
         return all_intervals
 
     def __get_attribute_distribution_items_for_interval_range_0_to_100(self, get_attribute_value_of_track):
-        second_interval_min = 9  # TODONOW rename everywhere to second_interval_min and increment value by 1
+        second_interval_min = 10
         last_interval_min = 90
         interval_size = 10
 
