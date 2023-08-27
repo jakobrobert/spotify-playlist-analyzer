@@ -12,12 +12,12 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_distribution_items(self):
-        first_interval_max_duration = 120000  # 120 seconds -> 02:00
+        second_interval_min_duration = 120000  # 120 seconds -> 02:00
         last_interval_min_duration = 300000  # 300 seconds -> 05:00
         interval_size = 30000  # 30 seconds
 
         intervals = self.__get_attribute_distribution_intervals(
-            first_interval_max_duration, last_interval_min_duration, interval_size,
+            second_interval_min_duration, last_interval_min_duration, interval_size,
             lambda track: track.duration_ms)
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(
@@ -25,12 +25,12 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_release_year_distribution_items(self):
-        first_interval_max_year = 1979
+        second_interval_min_year = 1979
         last_interval_min_year = 2020
         interval_size = 10
 
         intervals = self.__get_attribute_distribution_intervals(
-            first_interval_max_year, last_interval_min_year, interval_size,
+            second_interval_min_year, last_interval_min_year, interval_size,
             lambda track: track.release_year)
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
@@ -67,12 +67,12 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_tempo_distribution_items(self):
-        first_interval_max_tempo = 69
+        second_interval_min_tempo = 69
         last_interval_min_tempo = 180
         interval_size = 10
 
         intervals = self.__get_attribute_distribution_intervals(
-            first_interval_max_tempo, last_interval_min_tempo, interval_size,
+            second_interval_min_tempo, last_interval_min_tempo, interval_size,
             lambda track: track.tempo)
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
@@ -157,12 +157,12 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_loudness_distribution_items(self):
-        first_interval_max_loudness = -17
+        second_interval_min_loudness = -17
         last_interval_min_loudness = -2
         interval_size = 2
 
         intervals = self.__get_attribute_distribution_intervals(
-            first_interval_max_loudness, last_interval_min_loudness, interval_size,
+            second_interval_min_loudness, last_interval_min_loudness, interval_size,
             lambda track: track.loudness)
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
@@ -218,25 +218,25 @@ class AttributeDistribution:
         return all_intervals
 
     def __get_attribute_distribution_items_for_interval_range_0_to_100(self, get_attribute_value_of_track):
-        first_interval_max = 9  # TODONOW rename everywhere to second_interval_min and increment value by 1
+        second_interval_min = 9  # TODONOW rename everywhere to second_interval_min and increment value by 1
         last_interval_min = 90
         interval_size = 10
 
         intervals = self.__get_attribute_distribution_intervals(
-            first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track)
+            second_interval_min, last_interval_min, interval_size, get_attribute_value_of_track)
 
         return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
 
     @staticmethod
-    def __create_first_interval(first_interval_max):
-        return AttributeDistributionInterval(None, first_interval_max)
+    def __create_first_interval(second_interval_min):
+        return AttributeDistributionInterval(None, second_interval_min)
 
     @staticmethod
     def __create_middle_intervals(second_interval_min, last_interval_min, interval_size):
         middle_intervals = []
 
         for min_value in range(second_interval_min, last_interval_min, interval_size):
-            max_value_exclusive = min_value + interval_size - 1
+            max_value_exclusive = min_value + interval_size
             middle_intervals.append(AttributeDistributionInterval(min_value, max_value_exclusive))
 
         return middle_intervals
