@@ -3,6 +3,7 @@ import configparser
 from flask import Flask, jsonify, request, redirect
 
 from core.api_utils import ApiUtils
+from core.spotify_api.spotify_api_authorization import SpotifyApiAuthorization
 from core.spotify_api.spotify_api_client import SpotifyApiClient
 from core.playlist.track import Track
 from core.track_filter import TrackFilter
@@ -19,8 +20,9 @@ SPOTIFY_REDIRECT_URI = config["SPOTIFY"]["REDIRECT_URI"]
 SPOTIFY_TEST_REFRESH_TOKEN = config["SPOTIFY"]["TEST_REFRESH_TOKEN"]
 SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
-spotify_api_client = SpotifyApiClient(
-    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID)
+
+spotify_api_authorization = SpotifyApiAuthorization(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI)
+spotify_api_client = SpotifyApiClient(SPOTIFY_TEST_USER_ID, spotify_api_authorization)
 
 app = Flask(__name__)
 
