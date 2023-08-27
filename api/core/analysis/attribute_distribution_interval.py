@@ -19,8 +19,8 @@ class AttributeDistributionInterval:
         if self.min_value is None and self.max_value is None:
             return True
         if self.min_value is None:
-            return value <= self.max_value
+            return value < self.max_value
         if self.max_value is None:
             return value >= self.min_value
 
-        return self.min_value <= value <= self.max_value
+        return self.min_value <= value < self.max_value
