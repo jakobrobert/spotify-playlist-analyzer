@@ -22,9 +22,7 @@ SPOTIFY_TEST_USER_ID = config["SPOTIFY"]["TEST_USER_ID"]
 
 
 spotify_api_authorization = SpotifyApiAuthorization(SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI)
-spotify_api_client = SpotifyApiClient(
-    SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REDIRECT_URI, SPOTIFY_TEST_REFRESH_TOKEN, SPOTIFY_TEST_USER_ID,
-    spotify_api_authorization)
+spotify_api_client = SpotifyApiClient(SPOTIFY_TEST_USER_ID, spotify_api_authorization)
 
 app = Flask(__name__)
 
