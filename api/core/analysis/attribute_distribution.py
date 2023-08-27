@@ -197,13 +197,13 @@ class AttributeDistribution:
 
     # noinspection PyListCreation
     def __get_attribute_distribution_intervals(
-            self, first_interval_max, last_interval_min, interval_size, get_attribute_value_of_track):
+            self, second_interval_min, last_interval_min, interval_size, get_attribute_value_of_track):
 
         all_intervals = []
 
-        all_intervals.append(AttributeDistribution.__create_first_interval(first_interval_max))
+        all_intervals.append(AttributeDistribution.__create_first_interval(second_interval_min))
         all_intervals.extend(
-            AttributeDistribution.__create_middle_intervals(first_interval_max, last_interval_min, interval_size))
+            AttributeDistribution.__create_middle_intervals(second_interval_min, last_interval_min, interval_size))
         all_intervals.append(AttributeDistribution.__create_last_interval(last_interval_min))
 
         all_values = [get_attribute_value_of_track(track) for track in self.tracks]
@@ -218,7 +218,7 @@ class AttributeDistribution:
         return all_intervals
 
     def __get_attribute_distribution_items_for_interval_range_0_to_100(self, get_attribute_value_of_track):
-        first_interval_max = 9
+        first_interval_max = 9  # TODONOW rename everywhere to second_interval_min and increment value by 1
         last_interval_min = 90
         interval_size = 10
 
@@ -232,12 +232,12 @@ class AttributeDistribution:
         return AttributeDistributionInterval(None, first_interval_max)
 
     @staticmethod
-    def __create_middle_intervals(first_interval_max, last_interval_min, interval_size):
+    def __create_middle_intervals(second_interval_min, last_interval_min, interval_size):
         middle_intervals = []
 
-        for min_value in range(first_interval_max + 1, last_interval_min, interval_size):
-            max_value = min_value + interval_size - 1
-            middle_intervals.append(AttributeDistributionInterval(min_value, max_value))
+        for min_value in range(second_interval_min, last_interval_min, interval_size):
+            max_value_exclusive = min_value + interval_size - 1
+            middle_intervals.append(AttributeDistributionInterval(min_value, max_value_exclusive))
 
         return middle_intervals
 
