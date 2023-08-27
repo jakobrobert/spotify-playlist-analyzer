@@ -13,8 +13,9 @@ LOG_PREFIX = "SpotifyApiClient."
 
 
 class SpotifyApiClient:
-    def __init__(self, client_id, client_secret, redirect_uri, test_refresh_token, test_user_id):
-        self.authorization = SpotifyApiAuthorization(client_id, client_secret, redirect_uri)
+    # TODONOW remove obsolete code
+    def __init__(self, client_id, client_secret, redirect_uri, test_refresh_token, test_user_id, authorization):
+        self.authorization = authorization
         self.cache = SpotifyApiCache()
         self.test_refresh_token = test_refresh_token
         self.test_user_id = test_user_id
