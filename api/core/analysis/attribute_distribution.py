@@ -256,7 +256,7 @@ class AttributeDistribution:
         for interval in intervals:
             dict_with_label = {
                 "label": AttributeDistribution.__get_label_for_interval(
-                    interval.min_value, interval.max_value, get_label_for_value),
+                    interval.min_value, interval.max_value_exclusive, get_label_for_value),
                 "count": interval.count,
                 "percentage": interval.percentage
             }
