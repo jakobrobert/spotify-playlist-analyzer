@@ -23,6 +23,14 @@
            value="{{ filter_params["genres_substring"] }}">
 </div>
 <div>
+    <input type="radio" id="super_genres" name="filter_by" value="super_genres"
+           {% if filter_params["filter_by"] == "super_genres" %} checked {% endif %}>
+    <label for="super_genres">Super Genres</label>
+    <label for="super_genres_substring">contain</label>
+    <input type="text" id="super_genres_substring" name="super_genres_substring"
+           value="{{ filter_params["super_genres_substring"] }}">
+</div>
+<div>
     <input type="radio" id="key" name="filter_by" value="key"
            {% if filter_params["filter_by"] == "key" %} checked {% endif %}>
     <label for="key">Key</label>
