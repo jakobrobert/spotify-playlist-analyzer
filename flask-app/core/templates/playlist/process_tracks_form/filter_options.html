@@ -1,7 +1,7 @@
 <div>
     <input type="radio" id="artists" name="filter_by" value="artists"
            {% if filter_params["filter_by"] == "artists" %} checked {% endif %}>
-    <label for="artists">Artists</label>
+    <label for="artists">{{ attribute_display_names["artists"] }}</label>
     <label for="artists_substring">contain</label>
     <input type="text" id="artists_substring" name="artists_substring"
            value="{{ filter_params["artists_substring"] }}">
@@ -9,7 +9,7 @@
 <div>
     <input type="radio" id="title" name="filter_by" value="title"
            {% if filter_params["filter_by"] == "title" %} checked {% endif %}>
-    <label for="title">Title</label>
+    <label for="title">{{ attribute_display_names["title"] }}</label>
     <label for="title_substring">contains</label>
     <input type="text" id="title_substring" name="title_substring"
            value="{{ filter_params["title_substring"] }}">
@@ -17,15 +17,23 @@
 <div>
     <input type="radio" id="genres" name="filter_by" value="genres"
            {% if filter_params["filter_by"] == "genres" %} checked {% endif %}>
-    <label for="genres">Genres</label>
+    <label for="genres">{{ attribute_display_names["genres"] }}</label>
     <label for="genres_substring">contain</label>
     <input type="text" id="genres_substring" name="genres_substring"
            value="{{ filter_params["genres_substring"] }}">
 </div>
 <div>
+    <input type="radio" id="super_genres" name="filter_by" value="super_genres"
+           {% if filter_params["filter_by"] == "super_genres" %} checked {% endif %}>
+    <label for="super_genres">{{ attribute_display_names["super_genres"] }}</label>
+    <label for="super_genres_substring">contain</label>
+    <input type="text" id="super_genres_substring" name="super_genres_substring"
+           value="{{ filter_params["super_genres_substring"] }}">
+</div>
+<div>
     <input type="radio" id="key" name="filter_by" value="key"
            {% if filter_params["filter_by"] == "key" %} checked {% endif %}>
-    <label for="key">Key</label>
+    <label for="key">{{ attribute_display_names["key"] }}</label>
     <label for="expected_key">is</label>
     <select class="form-control" id="expected_key" name="expected_key">
         {% for key_string in key_strings %}
@@ -39,7 +47,7 @@
 <div>
     <input type="radio" id="mode" name="filter_by" value="mode"
            {% if filter_params["filter_by"] == "mode" %} checked {% endif %}>
-    <label for="mode">Mode</label>
+    <label for="mode">{{ attribute_display_names["mode"] }}</label>
     <label for="expected_mode">is</label>
     <select class="form-control" id="expected_mode" name="expected_mode">
         {% for mode_string in mode_strings %}
@@ -53,7 +61,7 @@
 <div>
     <input type="radio" id="key_signature" name="filter_by" value="key_signature"
            {% if filter_params["filter_by"] == "key_signature" %} checked {% endif %}>
-    <label for="key_signature">Key Signature</label>
+    <label for="key_signature">{{ attribute_display_names["key_signature"] }}</label>
     <label for="expected_key_signature">is</label>
     <select class="form-control" id="expected_key_signature" name="expected_key_signature">
         {% for key_signature in valid_key_signatures %}
