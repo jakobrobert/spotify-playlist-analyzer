@@ -27,11 +27,13 @@
                 <td>{{ playlist_1.tracks | length }}</td>
                 <td>{{ playlist_2.tracks | length }}</td>
             </tr>
+            {% if average_value_1 or average_value_2 %}
             <tr>
                 <th>Average {{ attribute_display_name }}</th>
                 <td>{{ average_value_1 }}</td>
                 <td>{{ average_value_2 }}</td>
             </tr>
+            {% endif %}
         </table>
 
         <img src="data:image/png;base64,{{ chart_image_base64 }}">
