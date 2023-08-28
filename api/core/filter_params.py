@@ -29,6 +29,10 @@ class FilterParams:
             filter_params.update(FilterParams.__extract_params_for_genres(request_params))
             return filter_params
 
+        if filter_by == "super_genres":
+            filter_params.update(FilterParams.__extract_params_for_super_genres(request_params))
+            return filter_params
+
         if filter_by == "key":
             filter_params.update(FilterParams.__extract_params_for_key(request_params))
             return filter_params
@@ -78,6 +82,18 @@ class FilterParams:
             raise FilterParams.__create_http_error_for_required_param("genres", "genres_substring")
 
         filter_params["genres_substring"] = genres_substring
+
+        return filter_params
+
+    @staticmethod
+    def __extract_params_for_super_genres(request_params):
+        filter_params = {}
+
+        super_genres_substring = request_params.get("super_genres_substring")
+        if not super_genres_substring:
+            raise FilterParams.__create_http_error_for_required_param("super_genres", "super_genres_substring")
+
+        filter_params["super_genres_substring"] = super_genres_substring
 
         return filter_params
 
