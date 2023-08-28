@@ -93,7 +93,7 @@ class FilterParams:
         if not super_genres_substring:
             raise FilterParams.__create_http_error_for_required_param("super_genres", "super_genres_substring")
 
-        filter_params["super_genres"] = super_genres_substring
+        filter_params["super_genres_substring"] = super_genres_substring
 
         return filter_params
 

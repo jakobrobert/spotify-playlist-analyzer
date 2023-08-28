@@ -30,7 +30,8 @@ class TrackFilter:
         if filter_by == "genres":
             return self.__filter_by_genres()
 
-        # TODONOW add for super_genres
+        if filter_by == "super_genres":
+            return self.__filter_by_super_genres()
 
         if filter_by == "key":
             return self.__filter_by_key()
@@ -62,6 +63,12 @@ class TrackFilter:
         genres_substring = self.filter_params["genres_substring"]
         return list(filter(
             lambda track: TrackFilter.__any_string_contains_substring(track.genres, genres_substring), self.tracks))
+    
+    def __filter_by_super_genres(self):
+        super_genres_substring = self.filter_params["super_genres_substring"]
+        return list(filter(
+            lambda track: TrackFilter.__any_string_contains_substring(track.super_genres, super_genres_substring),
+            self.tracks))
 
     def __filter_by_key(self):
         expected_key = self.filter_params["expected_key"]
