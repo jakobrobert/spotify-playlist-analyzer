@@ -129,6 +129,7 @@ class ApiUtils:
             "tempo": attribute_distribution.get_tempo_distribution_items,
             "key": attribute_distribution.get_key_distribution_items,
             "mode": attribute_distribution.get_mode_distribution_items,
+            "key_and_mode_pair": attribute_distribution.get_key_and_mode_pair_items,
             "key_signature": attribute_distribution.get_key_signature_distribution_items,
             "loudness": attribute_distribution.get_loudness_distribution_items,
             "danceability": attribute_distribution.get_danceability_distribution_items,

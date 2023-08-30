@@ -10,6 +10,7 @@ class AttributeDistribution:
     def __init__(self, tracks):
         self.tracks = tracks
 
+    # TODOLATER Remove "distribution" from names, already clear from class name
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_distribution_items(self):
         second_interval_min_duration = 120000  # 120 seconds -> 02:00
@@ -119,6 +120,31 @@ class AttributeDistribution:
         # Calculate count for each mode
         for track in self.tracks:
             item = items[track.mode]
+            item["count"] += 1
+
+        # Calculate percentages based on counts
+        total_count = len(self.tracks)
+        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
+
+        return items
+
+    @Utils.measure_execution_time(LOG_PREFIX)
+    def get_key_and_mode_pair_items(self):
+        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
+        items = []
+
+        # Add one item for each key & mode pair
+        for key_and_mode_pair_string in Track.KEY_AND_MODE_PAIR_STRINGS:
+            item = {
+                "label": key_and_mode_pair_string,
+                "count": 0
+            }
+
+            items.append(item)
+
+        # Calculate count for each key & mode pair
+        for track in self.tracks:
+            item = items[track.key_and_mode_pair]
             item["count"] += 1
 
         # Calculate percentages based on counts

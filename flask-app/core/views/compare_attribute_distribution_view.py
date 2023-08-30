@@ -80,7 +80,7 @@ def __get_attribute_comparison_chart_image_base64(
 
     plt.bar(x_labels, y_labels_1, fill=False, linewidth=2, edgecolor="red", label=playlist_name_1)
     plt.bar(x_labels, y_labels_2, fill=False, linewidth=2, edgecolor="blue", label=playlist_name_2)
-    plt.xticks(rotation=15)
+    plt.xticks(rotation=30)
     plt.legend()
     plt.tight_layout()
 
