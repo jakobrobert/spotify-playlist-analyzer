@@ -122,23 +122,23 @@ class ApiUtils:
         attribute_distribution = AttributeDistribution(tracks)
 
         function_by_attribute_dict = {
-            "duration_ms": attribute_distribution.get_duration_distribution_items,
-            "release_year": attribute_distribution.get_release_year_distribution_items,
-            "popularity": attribute_distribution.get_popularity_distribution_items,
-            "super_genres": attribute_distribution.get_super_genres_distribution_items,
-            "tempo": attribute_distribution.get_tempo_distribution_items,
-            "key": attribute_distribution.get_key_distribution_items,
-            "mode": attribute_distribution.get_mode_distribution_items,
+            "duration_ms": attribute_distribution.get_duration_items,
+            "release_year": attribute_distribution.get_release_year_items,
+            "popularity": attribute_distribution.get_popularity_items,
+            "super_genres": attribute_distribution.get_super_genres_items,
+            "tempo": attribute_distribution.get_tempo_items,
+            "key": attribute_distribution.get_key_items,
+            "mode": attribute_distribution.get_mode_items,
             "key_and_mode_pair": attribute_distribution.get_key_and_mode_pair_items,
-            "key_signature": attribute_distribution.get_key_signature_distribution_items,
-            "loudness": attribute_distribution.get_loudness_distribution_items,
-            "danceability": attribute_distribution.get_danceability_distribution_items,
-            "energy": attribute_distribution.get_energy_distribution_items,
-            "valence": attribute_distribution.get_valence_distribution_items,
-            "instrumentalness": attribute_distribution.get_instrumentalness_distribution_items,
-            "acousticness": attribute_distribution.get_acousticness_distribution_items,
-            "liveness": attribute_distribution.get_liveness_distribution_items,
-            "speechiness": attribute_distribution.get_speechiness_distribution_items
+            "key_signature": attribute_distribution.get_key_signature_items,
+            "loudness": attribute_distribution.get_loudness_items,
+            "danceability": attribute_distribution.get_danceability_items,
+            "energy": attribute_distribution.get_energy_items,
+            "valence": attribute_distribution.get_valence_items,
+            "instrumentalness": attribute_distribution.get_instrumentalness_items,
+            "acousticness": attribute_distribution.get_acousticness_items,
+            "liveness": attribute_distribution.get_liveness_items,
+            "speechiness": attribute_distribution.get_speechiness_items
         }
 
         if attribute in function_by_attribute_dict:

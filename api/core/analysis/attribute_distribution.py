@@ -12,37 +12,37 @@ class AttributeDistribution:
 
     # TODOLATER Remove "distribution" from names, already clear from class name
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_duration_distribution_items(self):
+    def get_duration_items(self):
         second_interval_min_duration = 120000  # 120 seconds -> 02:00
         last_interval_min_duration = 300000  # 300 seconds -> 05:00
         interval_size = 30000  # 30 seconds
 
-        intervals = self.__get_attribute_distribution_intervals(
+        intervals = self.__get_intervals(
             second_interval_min_duration, last_interval_min_duration, interval_size,
             lambda track: track.duration_ms)
 
-        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(
+        return self.__convert_intervals_to_dicts_with_label(
             intervals, lambda duration_ms: AttributeDistribution.__get_duration_string(duration_ms))
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_release_year_distribution_items(self):
+    def get_release_year_items(self):
         second_interval_min_year = 1980
         last_interval_min_year = 2020
         interval_size = 10
 
-        intervals = self.__get_attribute_distribution_intervals(
+        intervals = self.__get_intervals(
             second_interval_min_year, last_interval_min_year, interval_size,
             lambda track: track.release_year)
 
-        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
+        return self.__convert_intervals_to_dicts_with_label(intervals)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_popularity_distribution_items(self):
-        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.popularity)
+    def get_popularity_items(self):
+        return self.__get_items_for_range_0_to_100(lambda track: track.popularity)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_super_genres_distribution_items(self):
-        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
+    def get_super_genres_items(self):
+        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
         items = []
 
         # Calculate count for each super genre
@@ -62,25 +62,25 @@ class AttributeDistribution:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
+        AttributeDistribution.__add_percentages_to_items(items, total_count)
 
         return items
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_tempo_distribution_items(self):
+    def get_tempo_items(self):
         second_interval_min_tempo = 70
         last_interval_min_tempo = 180
         interval_size = 10
 
-        intervals = self.__get_attribute_distribution_intervals(
+        intervals = self.__get_intervals(
             second_interval_min_tempo, last_interval_min_tempo, interval_size,
             lambda track: track.tempo)
 
-        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
+        return self.__convert_intervals_to_dicts_with_label(intervals)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_key_distribution_items(self):
-        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
+    def get_key_items(self):
+        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
         items = []
 
         # Add one item for each key
@@ -99,13 +99,13 @@ class AttributeDistribution:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
+        AttributeDistribution.__add_percentages_to_items(items, total_count)
 
         return items
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_mode_distribution_items(self):
-        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
+    def get_mode_items(self):
+        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
         items = []
 
         # Add one item for each mode
@@ -124,13 +124,13 @@ class AttributeDistribution:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
+        AttributeDistribution.__add_percentages_to_items(items, total_count)
 
         return items
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_and_mode_pair_items(self):
-        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
+        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
         items = []
 
         # Add one item for each key & mode pair
@@ -149,13 +149,13 @@ class AttributeDistribution:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
+        AttributeDistribution.__add_percentages_to_items(items, total_count)
 
         return items
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_key_signature_distribution_items(self):
-        # TODOLATER #259 merge loops into one, similar to get_super_genres_distribution_items
+    def get_key_signature_items(self):
+        # TODOLATER #259 merge loops into one, similar to get_super_genres_items
         #  -> maybe can then extract general helper method for categorical values?
         items = []
 
@@ -177,53 +177,52 @@ class AttributeDistribution:
 
         # Calculate percentages based on counts
         total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
+        AttributeDistribution.__add_percentages_to_items(items, total_count)
 
         return items
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_loudness_distribution_items(self):
+    def get_loudness_items(self):
         second_interval_min_loudness = -16
         last_interval_min_loudness = -2
         interval_size = 2
 
-        intervals = self.__get_attribute_distribution_intervals(
+        intervals = self.__get_intervals(
             second_interval_min_loudness, last_interval_min_loudness, interval_size,
             lambda track: track.loudness)
 
-        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
+        return self.__convert_intervals_to_dicts_with_label(intervals)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_danceability_distribution_items(self):
-        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.danceability)
+    def get_danceability_items(self):
+        return self.__get_items_for_range_0_to_100(lambda track: track.danceability)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_energy_distribution_items(self):
-        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.energy)
+    def get_energy_items(self):
+        return self.__get_items_for_range_0_to_100(lambda track: track.energy)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_speechiness_distribution_items(self):
-        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.speechiness)
+    def get_speechiness_items(self):
+        return self.__get_items_for_range_0_to_100(lambda track: track.speechiness)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_liveness_distribution_items(self):
-        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.liveness)
+    def get_liveness_items(self):
+        return self.__get_items_for_range_0_to_100(lambda track: track.liveness)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_acousticness_distribution_items(self):
-        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.acousticness)
+    def get_acousticness_items(self):
+        return self.__get_items_for_range_0_to_100(lambda track: track.acousticness)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_instrumentalness_distribution_items(self):
-        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.instrumentalness)
+    def get_instrumentalness_items(self):
+        return self.__get_items_for_range_0_to_100(lambda track: track.instrumentalness)
 
     @Utils.measure_execution_time(LOG_PREFIX)
-    def get_valence_distribution_items(self):
-        return self.__get_attribute_distribution_items_for_interval_range_0_to_100(lambda track: track.valence)
+    def get_valence_items(self):
+        return self.__get_items_for_range_0_to_100(lambda track: track.valence)
 
     # noinspection PyListCreation
-    def __get_attribute_distribution_intervals(
-            self, second_interval_min, last_interval_min, interval_size, get_attribute_value_of_track):
+    def __get_intervals(self, second_interval_min, last_interval_min, interval_size, get_attribute_value_of_track):
 
         all_intervals = []
 
@@ -243,15 +242,15 @@ class AttributeDistribution:
 
         return all_intervals
 
-    def __get_attribute_distribution_items_for_interval_range_0_to_100(self, get_attribute_value_of_track):
+    def __get_items_for_range_0_to_100(self, get_attribute_value_of_track):
         second_interval_min = 10
         last_interval_min = 90
         interval_size = 10
 
-        intervals = self.__get_attribute_distribution_intervals(
+        intervals = self.__get_intervals(
             second_interval_min, last_interval_min, interval_size, get_attribute_value_of_track)
 
-        return self.__convert_attribute_distribution_intervals_to_dicts_with_label(intervals)
+        return self.__convert_intervals_to_dicts_with_label(intervals)
 
     @staticmethod
     def __create_first_interval(second_interval_min):
@@ -272,7 +271,7 @@ class AttributeDistribution:
         return AttributeDistributionInterval(last_interval_min, None)
 
     @staticmethod
-    def __convert_attribute_distribution_intervals_to_dicts_with_label(intervals, get_label_for_value=None):
+    def __convert_intervals_to_dicts_with_label(intervals, get_label_for_value=None):
         dicts_with_label = []
 
         # By default, for labels just convert the value to string
@@ -307,8 +306,8 @@ class AttributeDistribution:
 
     # This is used for categorical values like key & mode. There, cannot use AttributeDistributionInterval.
     @staticmethod
-    def __add_percentages_to_attribute_distribution_items(attribute_distribution_items, total_count):
-        for item in attribute_distribution_items:
+    def __add_percentages_to_items(items, total_count):
+        for item in items:
             if total_count == 0:
                 item["percentage"] = 0
                 continue
