@@ -10,6 +10,7 @@ class AttributeDistribution:
     def __init__(self, tracks):
         self.tracks = tracks
 
+    # TODOLATER Remove "distribution" from names, already clear from class name
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_distribution_items(self):
         second_interval_min_duration = 120000  # 120 seconds -> 02:00
@@ -126,6 +127,11 @@ class AttributeDistribution:
         AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
 
         return items
+
+    @Utils.measure_execution_time(LOG_PREFIX)
+    def get_key_and_mode_pair_items(self):
+        # TODONOW implement
+        return []
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_signature_distribution_items(self):
