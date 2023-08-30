@@ -38,6 +38,9 @@ class TrackFilter:
 
         if filter_by == "mode":
             return self.__filter_by_mode()
+        
+        if filter_by == "key_and_mode_pair":
+            return self.__filter_by_key_and_mode_pair()
 
         if filter_by == "key_signature":
             return self.__filter_by_key_signature()
@@ -79,6 +82,11 @@ class TrackFilter:
         expected_mode = self.filter_params["expected_mode"]
         return list(filter(
             lambda track: track.mode == expected_mode, self.tracks))
+    
+    def __filter_by_key_and_mode_pair(self):
+        expected_key_and_mode_pair = self.filter_params["expected_key_and_mode_pair"]
+        return list(filter(
+            lambda track: track.key_and_mode_pair == expected_key_and_mode_pair, self.tracks))
 
     def __filter_by_key_signature(self):
         expected_key_signature = self.filter_params["expected_key_signature"]
