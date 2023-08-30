@@ -41,6 +41,10 @@ class FilterParams:
             filter_params.update(FilterParams.__extract_params_for_mode(request_params))
             return filter_params
 
+        if filter_by == "key_and_mode_pair":
+            filter_params.update(FilterParams.__extract_params_for_key_and_mode_pair(request_params))
+            return filter_params
+
         if filter_by == "key_signature":
             filter_params.update(FilterParams.__extract_params_for_key_signature(request_params))
             return filter_params
@@ -117,6 +121,17 @@ class FilterParams:
             raise FilterParams.__create_http_error_for_required_param("mode", "expected_mode")
 
         filter_params["expected_mode"] = expected_mode
+        return filter_params
+
+    @staticmethod
+    def __extract_params_for_key_and_mode_pair(request_params):
+        filter_params = {}
+
+        expected_key_and_mode_pair = Utils.get_request_arg_as_int_or_none(request_params, "expected_key_and_mode_pair")
+        if expected_key_and_mode_pair is None:
+            raise FilterParams.__create_http_error_for_required_param("key_and_mode_pair", "expected_key_and_mode_pair")
+
+        filter_params["expected_key_and_mode_pair"] = expected_key_and_mode_pair
         return filter_params
 
     @staticmethod
