@@ -130,8 +130,28 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_and_mode_pair_items(self):
-        # TODONOW implement
-        return []
+        # TODOLATER #259 compare with get_key_signature_distribution_items, might merge loops & extract helper method
+        items = []
+
+        # Add one item for each key & mode pair
+        for key_and_mode_pair_string in Track.KEY_AND_MODE_PAIR_STRINGS:
+            item = {
+                "label": key_and_mode_pair_string,
+                "count": 0
+            }
+
+            items.append(item)
+
+        # Calculate count for each key & mode pair
+        for track in self.tracks:
+            item = items[track.key_and_mode_pair]
+            item["count"] += 1
+
+        # Calculate percentages based on counts
+        total_count = len(self.tracks)
+        AttributeDistribution.__add_percentages_to_attribute_distribution_items(items, total_count)
+
+        return items
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_signature_distribution_items(self):
