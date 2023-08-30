@@ -58,7 +58,7 @@ def __get_histogram_image_base64(attribute_display_name, attribute_value_to_perc
         y_labels.append(item["percentage"])
 
     plt.bar(x_labels, y_labels, edgecolor="black")
-    plt.xticks(rotation=15)
+    plt.xticks(rotation=30)
     plt.tight_layout()
 
     return ViewUtils.get_image_base64_from_plot()
