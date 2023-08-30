@@ -58,9 +58,10 @@ def get_playlist_by_id(playlist_id):
         numerical_attributes_for_filter_option=numerical_attributes_for_filter_option,
         attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
         key_strings=Track.KEY_STRINGS, mode_strings=Track.MODE_STRINGS,
+        key_and_mode_pair_strings=Track.KEY_AND_MODE_PAIR_STRINGS,
+        valid_key_signatures=valid_key_signatures,
         valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
         valid_attributes_for_sort_option=valid_attributes_for_sort_option,
-        valid_key_signatures=valid_key_signatures
     )
 
 
