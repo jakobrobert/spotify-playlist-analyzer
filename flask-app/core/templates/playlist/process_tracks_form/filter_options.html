@@ -59,6 +59,20 @@
     </select>
 </div>
 <div>
+    <input type="radio" id="key_and_mode_pair" name="filter_by" value="key_and_mode_pair"
+           {% if filter_params["filter_by"] == "key_and_mode_pair" %} checked {% endif %}>
+    <label for="key_and_mode_pair">{{ attribute_display_names["key_and_mode_pair"] }}</label>
+    <label for="expected_key_and_mode_pair">is</label>
+    <select class="form-control" id="expected_key_and_mode_pair" name="expected_key_and_mode_pair">
+        {% for key_and_mode_pair_string in key_and_mode_pair_strings %}
+            <option value="{{ loop.index0 }}"
+                    {% if filter_params["expected_key_and_mode_pair"] == loop.index0 %} selected {% endif %}>
+                {{ key_and_mode_pair_string }}
+            </option>
+        {% endfor %}
+    </select>
+</div>
+<div>
     <input type="radio" id="key_signature" name="filter_by" value="key_signature"
            {% if filter_params["filter_by"] == "key_signature" %} checked {% endif %}>
     <label for="key_signature">{{ attribute_display_names["key_signature"] }}</label>

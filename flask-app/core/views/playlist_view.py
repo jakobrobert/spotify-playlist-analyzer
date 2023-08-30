@@ -58,9 +58,10 @@ def get_playlist_by_id(playlist_id):
         numerical_attributes_for_filter_option=numerical_attributes_for_filter_option,
         attribute_display_names=ViewUtils.ATTRIBUTE_DISPLAY_NAMES,
         key_strings=Track.KEY_STRINGS, mode_strings=Track.MODE_STRINGS,
+        key_and_mode_pair_strings=Track.KEY_AND_MODE_PAIR_STRINGS,
+        valid_key_signatures=valid_key_signatures,
         valid_attributes_for_attribute_distribution=valid_attributes_for_attribute_distribution,
         valid_attributes_for_sort_option=valid_attributes_for_sort_option,
-        valid_key_signatures=valid_key_signatures
     )
 
 
@@ -74,6 +75,7 @@ def __extract_filter_params(request_params, numerical_attributes_for_filter_opti
         "super_genres_substring": request.args.get("super_genres_substring"),
         "expected_key": Utils.get_request_arg_as_int_or_none(request.args, "expected_key"),
         "expected_mode": Utils.get_request_arg_as_int_or_none(request.args, "expected_mode"),
+        "expected_key_and_mode_pair": Utils.get_request_arg_as_int_or_none(request.args, "expected_key_and_mode_pair"),
         "expected_key_signature": request.args.get("expected_key_signature")
     }
 
