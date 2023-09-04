@@ -1,4 +1,7 @@
+import json
+
 from core.playlist.playlist import Playlist
+from core.playlist.track import Track
 
 
 class TestUtils:
@@ -6,14 +9,18 @@ class TestUtils:
     def load_playlist_from_json_string(json_string):
         playlist = Playlist()
 
-        # TODONOW get dict from json
+        # TODONOW FIX fails with JSONDecodeError
+        playlist_dict = json.loads(json_string)
+        playlist.id = playlist_dict["id"]
+        playlist.name = playlist_dict["name"]
 
-        # TODONOW get basic data from dict
+        tracks_dict = playlist_dict["tracks"]
 
-        tracks = []
-        # TODONOW get tracks from dict
-
-        playlist.tracks = tracks
+        playlist.tracks = []
+        for track_dict in tracks_dict:
+            track = Track()
+            # TODONOW get all attribute values for Track from dict
+            playlist.tracks.append(track)
 
         return playlist
 
