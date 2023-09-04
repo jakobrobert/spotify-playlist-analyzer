@@ -14,6 +14,7 @@ class MyTestCase(unittest.TestCase):
         pass
 
     def test_playlist_basic_values(self):
+        self.assertEqual("", self.top_100_playlist.id)
         # TODONOW assert id, name, number of tracks
         pass
 
