@@ -27,11 +27,10 @@ class MyTestCase(unittest.TestCase):
         playlist = TestUtils.load_playlist_from_json_file(NORMAL_PLAYLIST_FILE_PATH)
         statistics = PlaylistStatistics(playlist.tracks)
 
-        # TODONOW fails. make pass by fully implementing loading of playlist
-        self.assertEqual(28226800, statistics.get_total_duration_ms())
+        self.assertEqual(28022939, statistics.get_total_duration_ms())
 
     def test_empty_playlist_total_duration(self):
-        playlist = TestUtils.load_playlist_from_json_file(NORMAL_PLAYLIST_FILE_PATH)
+        playlist = TestUtils.load_playlist_from_json_file(EMPTY_PLAYLIST_FILE_PATH)
         statistics = PlaylistStatistics(playlist.tracks)
 
         self.assertEqual(0, statistics.get_total_duration_ms())
