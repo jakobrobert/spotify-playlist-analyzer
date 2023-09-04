@@ -1,0 +1,4403 @@
+{
+    "id": "6i2Qd6OpeRBAzxfscNXeWp",
+    "name": "Top 100 Greatest Songs of All Time",
+    "tracks": [
+        {
+            "acousticness": 41,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "43ZHCT0cAZBISjO8DG9PnE"
+            ],
+            "artists": [
+                "Elvis Presley"
+            ],
+            "danceability": 65,
+            "duration_ms": 146480,
+            "energy": 58,
+            "genres": [
+                "rock-and-roll",
+                "rockabilly"
+            ],
+            "id": "4gphxUgq0JSFv2BCLhNDiE",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 10,
+            "key_signature": "5\u266d",
+            "liveness": 7,
+            "loudness": -9.538,
+            "mode": 0,
+            "popularity": 69,
+            "release_year": 1958,
+            "speechiness": 8,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 167.396,
+            "title": "Jailhouse Rock",
+            "valence": 92
+        },
+        {
+            "acousticness": 1,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0ECwFtbIWEVNwjlrfc6xoL"
+            ],
+            "artists": [
+                "Eagles"
+            ],
+            "danceability": 58,
+            "duration_ms": 391376,
+            "energy": 51,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "heartland rock",
+                "mellow gold",
+                "rock",
+                "soft rock",
+                "yacht rock"
+            ],
+            "id": "40riOy7x9W7GXjyGp4pjAv",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 6,
+            "loudness": -9.484,
+            "mode": 1,
+            "popularity": 86,
+            "release_year": 1976,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 147.125,
+            "title": "Hotel California - 2013 Remaster",
+            "valence": 61
+        },
+        {
+            "acousticness": 2,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3fMbdgg4jU18AjLCKBhRSm"
+            ],
+            "artists": [
+                "Michael Jackson"
+            ],
+            "danceability": 92,
+            "duration_ms": 293826,
+            "energy": 65,
+            "genres": [
+                "r&b",
+                "soul"
+            ],
+            "id": "5ChkMS8OtdzJeqyybCc9R5",
+            "instrumentalness": 2,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 4,
+            "loudness": -3.051,
+            "mode": 0,
+            "popularity": 83,
+            "release_year": 2008,
+            "speechiness": 4,
+            "super_genres": [
+                "Afro"
+            ],
+            "tempo": 117.046,
+            "title": "Billie Jean",
+            "valence": 85
+        },
+        {
+            "acousticness": 27,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "1dfeR4HaWDbWqFHLkxsg1d"
+            ],
+            "artists": [
+                "Queen"
+            ],
+            "danceability": 41,
+            "duration_ms": 354320,
+            "energy": 40,
+            "genres": [
+                "classic rock",
+                "glam rock",
+                "rock"
+            ],
+            "id": "4u7EnebtmKWzUH433cf5Qv",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 0,
+            "key_signature": "3\u266d",
+            "liveness": 30,
+            "loudness": -9.928,
+            "mode": 0,
+            "popularity": 83,
+            "release_year": 1975,
+            "speechiness": 5,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 71.105,
+            "title": "Bohemian Rhapsody - Remastered 2011",
+            "valence": 22
+        },
+        {
+            "acousticness": 63,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3WrFJ7ztbogyGnTHbHJFl2"
+            ],
+            "artists": [
+                "The Beatles"
+            ],
+            "danceability": 44,
+            "duration_ms": 243026,
+            "energy": 40,
+            "genres": [
+                "beatlesque",
+                "british invasion",
+                "classic rock",
+                "merseybeat",
+                "psychedelic rock",
+                "rock"
+            ],
+            "id": "7iN1s7xHE4ifF5povM6A48",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 11,
+            "loudness": -8.339,
+            "mode": 1,
+            "popularity": 79,
+            "release_year": 1970,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 143.462,
+            "title": "Let It Be - Remastered 2009",
+            "valence": 41
+        },
+        {
+            "acousticness": 4,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "22bE4uQ6baNwSHPVcDxLCe"
+            ],
+            "artists": [
+                "The Rolling Stones"
+            ],
+            "danceability": 72,
+            "duration_ms": 222813,
+            "energy": 86,
+            "genres": [
+                "album rock",
+                "british invasion",
+                "classic rock",
+                "rock"
+            ],
+            "id": "2PzU4IB8Dr6mxV3lHuaG34",
+            "instrumentalness": 3,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 13,
+            "loudness": -7.89,
+            "mode": 1,
+            "popularity": 79,
+            "release_year": 1965,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 136.302,
+            "title": "(I Can't Get No) Satisfaction - Mono Version",
+            "valence": 93
+        },
+        {
+            "acousticness": 26,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0PFtn5NtBbbUNbU9EAmIWF"
+            ],
+            "artists": [
+                "TOTO"
+            ],
+            "danceability": 67,
+            "duration_ms": 295893,
+            "energy": 37,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "hard rock",
+                "mellow gold",
+                "rock",
+                "soft rock",
+                "yacht rock"
+            ],
+            "id": "2374M0fQpWi3dLnB54qaLX",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 5,
+            "loudness": -18.064,
+            "mode": 1,
+            "popularity": 86,
+            "release_year": 1982,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 92.718,
+            "title": "Africa",
+            "valence": 73
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "29kkCKKGXheHuoO829FxWK"
+            ],
+            "artists": [
+                "Boston"
+            ],
+            "danceability": 38,
+            "duration_ms": 285133,
+            "energy": 68,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "glam metal",
+                "hard rock",
+                "mellow gold",
+                "rock",
+                "soft rock"
+            ],
+            "id": "1QEEqeFIZktqIpPI4jSVSF",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 5,
+            "loudness": -8.039,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 1976,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Metal"
+            ],
+            "tempo": 108.789,
+            "title": "More Than a Feeling",
+            "valence": 28
+        },
+        {
+            "acousticness": 3,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "1LZEQNv7sE11VDY3SdxQeN"
+            ],
+            "artists": [
+                "Bee Gees"
+            ],
+            "danceability": 70,
+            "duration_ms": 285373,
+            "energy": 83,
+            "genres": [
+                "disco",
+                "mellow gold",
+                "soft rock"
+            ],
+            "id": "3mRM4NM8iO7UBqrSigCQFH",
+            "instrumentalness": 1,
+            "key": 10,
+            "key_and_mode_pair": 10,
+            "key_signature": "5\u266d",
+            "liveness": 18,
+            "loudness": -7.179,
+            "mode": 0,
+            "popularity": 78,
+            "release_year": 1979,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "EDM"
+            ],
+            "tempo": 103.564,
+            "title": "Stayin' Alive",
+            "valence": 94
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6olE6TJLqED3rqDCT0FyPh"
+            ],
+            "artists": [
+                "Nirvana"
+            ],
+            "danceability": 50,
+            "duration_ms": 301920,
+            "energy": 91,
+            "genres": [
+                "grunge",
+                "permanent wave",
+                "rock"
+            ],
+            "id": "1f3yAtsJtY87CTmM8RLnxf",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 11,
+            "loudness": -4.556,
+            "mode": 1,
+            "popularity": 4,
+            "release_year": 1991,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "Others"
+            ],
+            "tempo": 116.761,
+            "title": "Smells Like Teen Spirit",
+            "valence": 72
+        },
+        {
+            "acousticness": 54,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "5NGO30tJxFlKixkPSgXcFE"
+            ],
+            "artists": [
+                "The Police"
+            ],
+            "danceability": 82,
+            "duration_ms": 253920,
+            "energy": 45,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "permanent wave",
+                "rock"
+            ],
+            "id": "1JSTJqkT5qHq8MDJnJbRE1",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 7,
+            "loudness": -9.796,
+            "mode": 1,
+            "popularity": 89,
+            "release_year": 1983,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 117.401,
+            "title": "Every Breath You Take",
+            "valence": 74
+        },
+        {
+            "acousticness": 57,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3plJVWt88EqjvtuB4ZDRV3"
+            ],
+            "artists": [
+                "Ben E. King"
+            ],
+            "danceability": 65,
+            "duration_ms": 180055,
+            "energy": 31,
+            "genres": [
+                "rock-and-roll",
+                "soul"
+            ],
+            "id": "3SdTKo2uVsxFblQjpScoHy",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 7,
+            "loudness": -9.443,
+            "mode": 1,
+            "popularity": 84,
+            "release_year": 1962,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock",
+                "Afro"
+            ],
+            "tempo": 118.068,
+            "title": "Stand by Me",
+            "valence": 60
+        },
+        {
+            "acousticness": 4,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "4sD9znwiVFx9cgRPZ42aQ1"
+            ],
+            "artists": [
+                "Sin\u00e9ad O'Connor"
+            ],
+            "danceability": 51,
+            "duration_ms": 280040,
+            "energy": 57,
+            "genres": [
+                "lilith",
+                "new wave pop",
+                "singer-songwriter"
+            ],
+            "id": "3nvuPQTw2zuFAVuLsC9IYQ",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 10,
+            "loudness": -7.016,
+            "mode": 1,
+            "popularity": 5,
+            "release_year": 1990,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Others"
+            ],
+            "tempo": 119.917,
+            "title": "Nothing Compares 2 U",
+            "valence": 16
+        },
+        {
+            "acousticness": 13,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0rvjqX7ttXeg3mTy8Xscbt"
+            ],
+            "artists": [
+                "Journey"
+            ],
+            "danceability": 50,
+            "duration_ms": 250986,
+            "energy": 75,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "hard rock",
+                "heartland rock",
+                "mellow gold",
+                "rock",
+                "soft rock"
+            ],
+            "id": "4bHsxqR3GMrXTxEPLuK5ue",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 45,
+            "loudness": -9.072,
+            "mode": 1,
+            "popularity": 85,
+            "release_year": 1981,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 118.852,
+            "title": "Don't Stop Believin'",
+            "valence": 51
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6TSjJlhB2taxea58rCkMkj"
+            ],
+            "artists": [
+                "The Vices"
+            ],
+            "danceability": 44,
+            "duration_ms": 217166,
+            "energy": 80,
+            "genres": [
+                "dutch indie rock"
+            ],
+            "id": "0Qhp2Sd0JuxbFiWoATAcBV",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 5,
+            "key_signature": "4\u266d",
+            "liveness": 24,
+            "loudness": -5.62,
+            "mode": 0,
+            "popularity": 45,
+            "release_year": 2021,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 138.664,
+            "title": "Before Your Birth",
+            "valence": 54
+        },
+        {
+            "acousticness": 91,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "4x1nvY2FN8jxqAFA0DA02H"
+            ],
+            "artists": [
+                "John Lennon"
+            ],
+            "danceability": 55,
+            "duration_ms": 187866,
+            "energy": 26,
+            "genres": [
+                "beatlesque",
+                "classic rock",
+                "rock"
+            ],
+            "id": "7pKfPomDEeI4TPT6EOYjn9",
+            "instrumentalness": 18,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 9,
+            "loudness": -12.358,
+            "mode": 1,
+            "popularity": 79,
+            "release_year": 1971,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 75.752,
+            "title": "Imagine - Remastered 2010",
+            "valence": 17
+        },
+        {
+            "acousticness": 21,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "07XSN3sPlIlB2L2XNcTwJw"
+            ],
+            "artists": [
+                "KISS"
+            ],
+            "danceability": 77,
+            "duration_ms": 271240,
+            "energy": 85,
+            "genres": [
+                "glam rock",
+                "hard rock",
+                "rock"
+            ],
+            "id": "07q0QVgO56EorrSGHC48y3",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 7,
+            "loudness": -6.215,
+            "mode": 1,
+            "popularity": 83,
+            "release_year": 1979,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 128.373,
+            "title": "I Was Made For Lovin' You",
+            "valence": 87
+        },
+        {
+            "acousticness": 5,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3fMbdgg4jU18AjLCKBhRSm"
+            ],
+            "artists": [
+                "Michael Jackson"
+            ],
+            "danceability": 78,
+            "duration_ms": 258040,
+            "energy": 87,
+            "genres": [
+                "r&b",
+                "soul"
+            ],
+            "id": "1OOtq8tRnDM8kG2gqUPjAj",
+            "instrumentalness": 0,
+            "key": 3,
+            "key_and_mode_pair": 3,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 20,
+            "loudness": -3.704,
+            "mode": 0,
+            "popularity": 80,
+            "release_year": 2008,
+            "speechiness": 5,
+            "super_genres": [
+                "Afro"
+            ],
+            "tempo": 138.827,
+            "title": "Beat It",
+            "valence": 92
+        },
+        {
+            "acousticness": 5,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "36QJpDe2go2KgaRleHCDTp"
+            ],
+            "artists": [
+                "Led Zeppelin"
+            ],
+            "danceability": 41,
+            "duration_ms": 333893,
+            "energy": 90,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "hard rock",
+                "rock"
+            ],
+            "id": "0hCB0YR03f6AmQaHbwWDe8",
+            "instrumentalness": 13,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 40,
+            "loudness": -11.6,
+            "mode": 1,
+            "popularity": 78,
+            "release_year": 1969,
+            "speechiness": 40,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 89.74,
+            "title": "Whole Lotta Love - 1990 Remaster",
+            "valence": 42
+        },
+        {
+            "acousticness": 9,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "7uGQClToKVdtWQKKuTlTAN"
+            ],
+            "artists": [
+                "Iris Has Friends"
+            ],
+            "danceability": 55,
+            "duration_ms": 203093,
+            "energy": 68,
+            "genres": [],
+            "id": "4OZRuxuIZK1kUXKxAtcLtp",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 4,
+            "loudness": -7.591,
+            "mode": 1,
+            "popularity": 35,
+            "release_year": 2022,
+            "speechiness": 5,
+            "super_genres": [],
+            "tempo": 144.244,
+            "title": "All That Matters",
+            "valence": 91
+        },
+        {
+            "acousticness": 2,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2jzc5TC5TVFLXQlBNiIUzE"
+            ],
+            "artists": [
+                "a-ha"
+            ],
+            "danceability": 57,
+            "duration_ms": 225280,
+            "energy": 90,
+            "genres": [
+                "new romantic",
+                "new wave",
+                "new wave pop",
+                "permanent wave",
+                "synthpop"
+            ],
+            "id": "2WfaOiMkCvy7F5fcp2zZ8L",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 6,
+            "key_signature": "3\u266f",
+            "liveness": 9,
+            "loudness": -7.638,
+            "mode": 0,
+            "popularity": 88,
+            "release_year": 1985,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 84.412,
+            "title": "Take on Me",
+            "valence": 88
+        },
+        {
+            "acousticness": 6,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0L8ExT028jH3ddEcZwqJJ5"
+            ],
+            "artists": [
+                "Red Hot Chili Peppers"
+            ],
+            "danceability": 56,
+            "duration_ms": 264306,
+            "energy": 34,
+            "genres": [
+                "alternative rock",
+                "funk metal",
+                "funk rock",
+                "permanent wave",
+                "rock"
+            ],
+            "id": "3d9DChrdc6BOeFsbrZ3Is0",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 14,
+            "loudness": -13.496,
+            "mode": 1,
+            "popularity": 84,
+            "release_year": 1991,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "Metal"
+            ],
+            "tempo": 84.581,
+            "title": "Under the Bridge",
+            "valence": 46
+        },
+        {
+            "acousticness": 7,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3y24n3XhZ96wgwRXjvS17T",
+                "2LhsePRtgCo4THVKULQBL7"
+            ],
+            "artists": [
+                "Coolio",
+                "L.V."
+            ],
+            "danceability": 65,
+            "duration_ms": 240693,
+            "energy": 51,
+            "genres": [
+                "g funk",
+                "gangster rap",
+                "hip hop",
+                "west coast rap"
+            ],
+            "id": "7lQWRAjyhTpCWFC0jmclT4",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 40,
+            "loudness": -10.05,
+            "mode": 1,
+            "popularity": 6,
+            "release_year": 1995,
+            "speechiness": 6,
+            "super_genres": [
+                "Rap",
+                "Afro"
+            ],
+            "tempo": 79.974,
+            "title": "Gangsta's Paradise",
+            "valence": 39
+        },
+        {
+            "acousticness": 9,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3qm84nBOXUEQ2vnTfUTTFC"
+            ],
+            "artists": [
+                "Guns N' Roses"
+            ],
+            "danceability": 45,
+            "duration_ms": 354520,
+            "energy": 91,
+            "genres": [
+                "glam metal",
+                "hard rock",
+                "rock"
+            ],
+            "id": "7o2CTH4ctstm8TNelqjb51",
+            "instrumentalness": 10,
+            "key": 6,
+            "key_and_mode_pair": 18,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 12,
+            "loudness": -7.766,
+            "mode": 1,
+            "popularity": 25,
+            "release_year": 1987,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock",
+                "Metal"
+            ],
+            "tempo": 125.116,
+            "title": "Sweet Child O' Mine",
+            "valence": 63
+        },
+        {
+            "acousticness": 84,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6XpaIBNiVzIetEPCWDvAFP"
+            ],
+            "artists": [
+                "Whitney Houston"
+            ],
+            "danceability": 33,
+            "duration_ms": 271093,
+            "energy": 21,
+            "genres": [
+                "dance pop"
+            ],
+            "id": "4eHbdreAnSOrDDsFfc4Fpm",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 8,
+            "loudness": -12.518,
+            "mode": 1,
+            "popularity": 79,
+            "release_year": 1992,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 67.531,
+            "title": "I Will Always Love You",
+            "valence": 11
+        },
+        {
+            "acousticness": 31,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "7oPgCQqMMXEXrNau5vxYZP"
+            ],
+            "artists": [
+                "Tracy Chapman"
+            ],
+            "danceability": 71,
+            "duration_ms": 296800,
+            "energy": 29,
+            "genres": [
+                "folk",
+                "lilith",
+                "singer-songwriter",
+                "women's music"
+            ],
+            "id": "2M9ro2krNb7nr7HSprkEgo",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 4,
+            "key_signature": "1\u266f",
+            "liveness": 13,
+            "loudness": -15.523,
+            "mode": 0,
+            "popularity": 82,
+            "release_year": 1988,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 103.951,
+            "title": "Fast Car",
+            "valence": 19
+        },
+        {
+            "acousticness": 63,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6hnWRPzGGKiapVX1UCdEAC"
+            ],
+            "artists": [
+                "Sam Cooke"
+            ],
+            "danceability": 69,
+            "duration_ms": 125440,
+            "energy": 51,
+            "genres": [
+                "classic soul",
+                "soul",
+                "vocal jazz"
+            ],
+            "id": "2g2GkH3vZHk4lWzBjgQ6nY",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 23,
+            "key_signature": "5\u266f",
+            "liveness": 46,
+            "loudness": -10.23,
+            "mode": 1,
+            "popularity": 69,
+            "release_year": 2000,
+            "speechiness": 3,
+            "super_genres": [
+                "Afro"
+            ],
+            "tempo": 128.518,
+            "title": "(What A) Wonderful World",
+            "valence": 88
+        },
+        {
+            "acousticness": 4,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "5a2EaR3hamoenG9rDuVn8j"
+            ],
+            "artists": [
+                "Prince"
+            ],
+            "danceability": 37,
+            "duration_ms": 520786,
+            "energy": 45,
+            "genres": [
+                "funk",
+                "funk rock",
+                "minneapolis sound",
+                "rock",
+                "synth funk"
+            ],
+            "id": "54X78diSLoUDI3joC2bjMz",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 69,
+            "loudness": -10.422,
+            "mode": 1,
+            "popularity": 76,
+            "release_year": 1984,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Afro",
+                "Others"
+            ],
+            "tempo": 113.066,
+            "title": "Purple Rain",
+            "valence": 19
+        },
+        {
+            "acousticness": 73,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "43ZHCT0cAZBISjO8DG9PnE"
+            ],
+            "artists": [
+                "Elvis Presley"
+            ],
+            "danceability": 49,
+            "duration_ms": 136026,
+            "energy": 76,
+            "genres": [
+                "rock-and-roll",
+                "rockabilly"
+            ],
+            "id": "64Ny7djQ6rNJspquof2KoX",
+            "instrumentalness": 1,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 76,
+            "loudness": -8.492,
+            "mode": 1,
+            "popularity": 66,
+            "release_year": 1958,
+            "speechiness": 5,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 86.895,
+            "title": "Hound Dog",
+            "valence": 95
+        },
+        {
+            "acousticness": 1,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2YsXzsv4hLYed9eGDJeNlm"
+            ],
+            "artists": [
+                "Matt Blais"
+            ],
+            "danceability": 58,
+            "duration_ms": 165731,
+            "energy": 70,
+            "genres": [],
+            "id": "0qQZfjP4TL2ZHmX26EQjpq",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 9,
+            "loudness": -8.415,
+            "mode": 1,
+            "popularity": 36,
+            "release_year": 2023,
+            "speechiness": 8,
+            "super_genres": [],
+            "tempo": 82.046,
+            "title": "Can't Have the Dog",
+            "valence": 72
+        },
+        {
+            "acousticness": 22,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2BTZIqw0ntH9MvilQ3ewNY"
+            ],
+            "artists": [
+                "Cyndi Lauper"
+            ],
+            "danceability": 71,
+            "duration_ms": 238266,
+            "energy": 80,
+            "genres": [
+                "dance pop",
+                "new wave pop",
+                "permanent wave",
+                "soft rock"
+            ],
+            "id": "4y1LsJpmMti1PfRQV9AWWe",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 18,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 35,
+            "loudness": -4.897,
+            "mode": 1,
+            "popularity": 83,
+            "release_year": 1983,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 120.372,
+            "title": "Girls Just Want to Have Fun",
+            "valence": 72
+        },
+        {
+            "acousticness": 1,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3WrFJ7ztbogyGnTHbHJFl2"
+            ],
+            "artists": [
+                "The Beatles"
+            ],
+            "danceability": 39,
+            "duration_ms": 425653,
+            "energy": 61,
+            "genres": [
+                "beatlesque",
+                "british invasion",
+                "classic rock",
+                "merseybeat",
+                "psychedelic rock",
+                "rock"
+            ],
+            "id": "0aym2LBJBk9DAYuHHutrIl",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 9,
+            "loudness": -7.7,
+            "mode": 1,
+            "popularity": 74,
+            "release_year": 2000,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 147.207,
+            "title": "Hey Jude - Remastered 2015",
+            "valence": 53
+        },
+        {
+            "acousticness": 61,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "7mEIug7XUlQHikrFxjTWes"
+            ],
+            "artists": [
+                "Neil Diamond"
+            ],
+            "danceability": 53,
+            "duration_ms": 203573,
+            "energy": 13,
+            "genres": [
+                "adult standards",
+                "brill building pop",
+                "folk rock",
+                "heartland rock",
+                "mellow gold",
+                "singer-songwriter",
+                "soft rock",
+                "yacht rock"
+            ],
+            "id": "62AuGbAkt8Ox2IrFFb8GKV",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 23,
+            "key_signature": "5\u266f",
+            "liveness": 24,
+            "loudness": -16.066,
+            "mode": 1,
+            "popularity": 80,
+            "release_year": 1969,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "Others"
+            ],
+            "tempo": 63.05,
+            "title": "Sweet Caroline",
+            "valence": 58
+        },
+        {
+            "acousticness": 43,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3koiLjNrgRTNbOwViDipeA",
+                "75jNCko3SnEMI5gwGqrbb8"
+            ],
+            "artists": [
+                "Marvin Gaye",
+                "Tammi Terrell"
+            ],
+            "danceability": 66,
+            "duration_ms": 151666,
+            "energy": 60,
+            "genres": [
+                "classic soul",
+                "motown",
+                "neo soul",
+                "northern soul",
+                "quiet storm",
+                "soul",
+                "southern soul"
+            ],
+            "id": "7tqhbajSfrz2F7E1Z75ASX",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 18,
+            "loudness": -10.87,
+            "mode": 1,
+            "popularity": 87,
+            "release_year": 1967,
+            "speechiness": 3,
+            "super_genres": [
+                "Afro",
+                "Others"
+            ],
+            "tempo": 129.991,
+            "title": "Ain't No Mountain High Enough",
+            "valence": 80
+        },
+        {
+            "acousticness": 18,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "4KWTAlx2RvbpseOGMEmROg"
+            ],
+            "artists": [
+                "R.E.M."
+            ],
+            "danceability": 67,
+            "duration_ms": 268426,
+            "energy": 86,
+            "genres": [
+                "alternative rock",
+                "athens indie",
+                "permanent wave",
+                "rock"
+            ],
+            "id": "31AOj9sFz2gM0O3hMARRBx",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 9,
+            "key_signature": "\u266e",
+            "liveness": 10,
+            "loudness": -5.051,
+            "mode": 0,
+            "popularity": 86,
+            "release_year": 1991,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "Others"
+            ],
+            "tempo": 125.639,
+            "title": "Losing My Religion",
+            "valence": 80
+        },
+        {
+            "acousticness": 4,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2fEaF3hDwQhq8vPb6dRR2T"
+            ],
+            "artists": [
+                "CUREPLANET"
+            ],
+            "danceability": 48,
+            "duration_ms": 204413,
+            "energy": 82,
+            "genres": [],
+            "id": "1iR0Rp0zkEO9DXZkv2Bzv5",
+            "instrumentalness": 1,
+            "key": 7,
+            "key_and_mode_pair": 7,
+            "key_signature": "2\u266d",
+            "liveness": 10,
+            "loudness": -7.331,
+            "mode": 0,
+            "popularity": 38,
+            "release_year": 2023,
+            "speechiness": 4,
+            "super_genres": [],
+            "tempo": 144.926,
+            "title": "People Pleaser",
+            "valence": 36
+        },
+        {
+            "acousticness": 16,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "7nwUJBm0HE4ZxD3f5cy5ok"
+            ],
+            "artists": [
+                "Aretha Franklin"
+            ],
+            "danceability": 80,
+            "duration_ms": 147600,
+            "energy": 56,
+            "genres": [
+                "classic soul",
+                "jazz blues",
+                "memphis soul",
+                "neo soul",
+                "soul",
+                "southern soul",
+                "vocal jazz"
+            ],
+            "id": "7s25THrKz86DM225dOYwnr",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 5,
+            "loudness": -5.226,
+            "mode": 1,
+            "popularity": 79,
+            "release_year": 1967,
+            "speechiness": 4,
+            "super_genres": [
+                "Afro"
+            ],
+            "tempo": 114.95,
+            "title": "Respect",
+            "valence": 96
+        },
+        {
+            "acousticness": 3,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3WrFJ7ztbogyGnTHbHJFl2"
+            ],
+            "artists": [
+                "The Beatles"
+            ],
+            "danceability": 56,
+            "duration_ms": 185733,
+            "energy": 54,
+            "genres": [
+                "beatlesque",
+                "british invasion",
+                "classic rock",
+                "merseybeat",
+                "psychedelic rock",
+                "rock"
+            ],
+            "id": "6dGnYIeXmHdcikdzNNDMm2",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 18,
+            "loudness": -10.484,
+            "mode": 1,
+            "popularity": 85,
+            "release_year": 1969,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 129.171,
+            "title": "Here Comes The Sun - Remastered 2009",
+            "valence": 39
+        },
+        {
+            "acousticness": 16,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "4QQgXkCYTt3BlENzhyNETg"
+            ],
+            "artists": [
+                "Earth, Wind & Fire"
+            ],
+            "danceability": 69,
+            "duration_ms": 215080,
+            "energy": 83,
+            "genres": [
+                "disco",
+                "funk",
+                "jazz funk",
+                "soul"
+            ],
+            "id": "7Cuk8jsPPoNYQWXK9XRFvG",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 25,
+            "loudness": -7.288,
+            "mode": 1,
+            "popularity": 68,
+            "release_year": 2018,
+            "speechiness": 3,
+            "super_genres": [
+                "EDM",
+                "Afro"
+            ],
+            "tempo": 125.901,
+            "title": "September",
+            "valence": 98
+        },
+        {
+            "acousticness": 58,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "36QJpDe2go2KgaRleHCDTp"
+            ],
+            "artists": [
+                "Led Zeppelin"
+            ],
+            "danceability": 34,
+            "duration_ms": 482830,
+            "energy": 34,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "hard rock",
+                "rock"
+            ],
+            "id": "5CQ30WqJwcep0pYcV4AMNc",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 9,
+            "key_signature": "\u266e",
+            "liveness": 12,
+            "loudness": -12.049,
+            "mode": 0,
+            "popularity": 80,
+            "release_year": 1971,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 82.433,
+            "title": "Stairway to Heaven - Remaster",
+            "valence": 20
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6TSjJlhB2taxea58rCkMkj"
+            ],
+            "artists": [
+                "The Vices"
+            ],
+            "danceability": 44,
+            "duration_ms": 175293,
+            "energy": 88,
+            "genres": [
+                "dutch indie rock"
+            ],
+            "id": "5R5BwWJepZnwEmRBJIZcm5",
+            "instrumentalness": 4,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 37,
+            "loudness": -5.374,
+            "mode": 0,
+            "popularity": 41,
+            "release_year": 2022,
+            "speechiness": 5,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 154.995,
+            "title": "Strange Again",
+            "valence": 72
+        },
+        {
+            "acousticness": 6,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0WwSkZ7LtFUFjGjMZBMt6T"
+            ],
+            "artists": [
+                "Dire Straits"
+            ],
+            "danceability": 73,
+            "duration_ms": 348400,
+            "energy": 79,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "mellow gold",
+                "rock"
+            ],
+            "id": "37Tmv4NnfQeb0ZgUC4fOJj",
+            "instrumentalness": 4,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 33,
+            "loudness": -10.023,
+            "mode": 1,
+            "popularity": 83,
+            "release_year": 1978,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 148.174,
+            "title": "Sultans Of Swing",
+            "valence": 93
+        },
+        {
+            "acousticness": 13,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "26bcq2nyj5GB7uRr558iQg"
+            ],
+            "artists": [
+                "Survivor"
+            ],
+            "danceability": 82,
+            "duration_ms": 245640,
+            "energy": 60,
+            "genres": [
+                "album rock",
+                "glam metal",
+                "hard rock",
+                "soft rock"
+            ],
+            "id": "2KH16WveTQWT6KOG9Rg6e2",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 0,
+            "key_signature": "3\u266d",
+            "liveness": 9,
+            "loudness": -9.249,
+            "mode": 0,
+            "popularity": 79,
+            "release_year": 1985,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Metal"
+            ],
+            "tempo": 108.873,
+            "title": "Eye of the Tiger",
+            "valence": 55
+        },
+        {
+            "acousticness": 15,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6tbjWDEIzxoDsBA1FuhfPW"
+            ],
+            "artists": [
+                "Madonna"
+            ],
+            "danceability": 77,
+            "duration_ms": 218626,
+            "energy": 66,
+            "genres": [
+                "dance pop",
+                "pop"
+            ],
+            "id": "1ZPlNanZsJSPK5h9YZZFbZ",
+            "instrumentalness": 0,
+            "key": 3,
+            "key_and_mode_pair": 3,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 7,
+            "loudness": -10.842,
+            "mode": 0,
+            "popularity": 75,
+            "release_year": 1984,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 119.747,
+            "title": "Like a Virgin",
+            "valence": 97
+        },
+        {
+            "acousticness": 55,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "4lxfqrEsLX6N1N4OCSkILp"
+            ],
+            "artists": [
+                "Phil Collins"
+            ],
+            "danceability": 45,
+            "duration_ms": 336453,
+            "energy": 24,
+            "genres": [
+                "rock drums",
+                "soft rock"
+            ],
+            "id": "18AXbzPzBS8Y3AkgSxzJPb",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 7,
+            "loudness": -13.945,
+            "mode": 1,
+            "popularity": 79,
+            "release_year": 1981,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 189.507,
+            "title": "In The Air Tonight - 2015 Remastered",
+            "valence": 30
+        },
+        {
+            "acousticness": 4,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "7guDJrEfX3qb6FEbdPA5qi"
+            ],
+            "artists": [
+                "Stevie Wonder"
+            ],
+            "danceability": 63,
+            "duration_ms": 245493,
+            "energy": 63,
+            "genres": [
+                "motown",
+                "soul"
+            ],
+            "id": "1h2xVEoJORqrg71HocgqXd",
+            "instrumentalness": 1,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 4,
+            "loudness": -12.115,
+            "mode": 1,
+            "popularity": 78,
+            "release_year": 2002,
+            "speechiness": 7,
+            "super_genres": [
+                "Afro",
+                "Others"
+            ],
+            "tempo": 100.499,
+            "title": "Superstition - Single Version",
+            "valence": 87
+        },
+        {
+            "acousticness": 5,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "59wfkuBoNyhDMQGCljbUbA",
+                "5NDMothbpdpq2xHqSjrrWn",
+                "7urq0VfqxEYEEiZUkebXT4"
+            ],
+            "artists": [
+                "Diddy",
+                "Faith Evans",
+                "112"
+            ],
+            "danceability": 86,
+            "duration_ms": 301520,
+            "energy": 48,
+            "genres": [
+                "dance pop",
+                "east coast hip hop",
+                "hip hop",
+                "hip pop",
+                "pop rap",
+                "rap",
+                "contemporary r&b",
+                "r&b",
+                "urban contemporary",
+                "atl hip hop",
+                "boy band"
+            ],
+            "id": "3QHONiXGMGU3z68mQInncF",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 59,
+            "loudness": -9.199,
+            "mode": 1,
+            "popularity": 76,
+            "release_year": 2004,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop",
+                "Rap",
+                "Afro"
+            ],
+            "tempo": 109.877,
+            "title": "I'll Be Missing You (feat. Faith Evans, 112)",
+            "valence": 92
+        },
+        {
+            "acousticness": 8,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "58lV9VcRSjABbAbfWS6skp"
+            ],
+            "artists": [
+                "Bon Jovi"
+            ],
+            "danceability": 53,
+            "duration_ms": 249293,
+            "energy": 89,
+            "genres": [
+                "glam metal",
+                "rock"
+            ],
+            "id": "37ZJ0p5Jm13JPevGcx4SkF",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 29,
+            "loudness": -3.757,
+            "mode": 1,
+            "popularity": 87,
+            "release_year": 1986,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Metal"
+            ],
+            "tempo": 122.511,
+            "title": "Livin' On A Prayer",
+            "valence": 80
+        },
+        {
+            "acousticness": 13,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3fMbdgg4jU18AjLCKBhRSm"
+            ],
+            "artists": [
+                "Michael Jackson"
+            ],
+            "danceability": 88,
+            "duration_ms": 365466,
+            "energy": 82,
+            "genres": [
+                "r&b",
+                "soul"
+            ],
+            "id": "46eu3SBuFCXWsPT39Yg3tJ",
+            "instrumentalness": 5,
+            "key": 11,
+            "key_and_mode_pair": 23,
+            "key_signature": "5\u266f",
+            "liveness": 18,
+            "loudness": -9.875,
+            "mode": 1,
+            "popularity": 77,
+            "release_year": 1979,
+            "speechiness": 9,
+            "super_genres": [
+                "Afro"
+            ],
+            "tempo": 118.881,
+            "title": "Don't Stop 'Til You Get Enough",
+            "valence": 95
+        },
+        {
+            "acousticness": 3,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "5YgnEeh7MGKrniTbwUa7SU"
+            ],
+            "artists": [
+                "The Gleeman"
+            ],
+            "danceability": 48,
+            "duration_ms": 174600,
+            "energy": 82,
+            "genres": [],
+            "id": "7psOi3JnnMZ4J9Y1xF1AzB",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 27,
+            "loudness": -6.216,
+            "mode": 1,
+            "popularity": 34,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 99.887,
+            "title": "Marie",
+            "valence": 61
+        },
+        {
+            "acousticness": 6,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "711MCceyCBcFnzjGY4Q7Un"
+            ],
+            "artists": [
+                "AC/DC"
+            ],
+            "danceability": 57,
+            "duration_ms": 208400,
+            "energy": 91,
+            "genres": [
+                "australian rock",
+                "hard rock",
+                "rock"
+            ],
+            "id": "2zYzyRzz6pRmhPzyfMEC8s",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 6,
+            "key_signature": "3\u266f",
+            "liveness": 16,
+            "loudness": -4.793,
+            "mode": 0,
+            "popularity": 86,
+            "release_year": 1979,
+            "speechiness": 13,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 115.728,
+            "title": "Highway to Hell",
+            "valence": 42
+        },
+        {
+            "acousticness": 2,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3Z02hBLubJxuFJfhacLSDc"
+            ],
+            "artists": [
+                "Bryan Adams"
+            ],
+            "danceability": 51,
+            "duration_ms": 216053,
+            "energy": 83,
+            "genres": [
+                "canadian pop",
+                "canadian singer-songwriter",
+                "classic canadian rock",
+                "heartland rock",
+                "mellow gold",
+                "soft rock"
+            ],
+            "id": "0GONea6G2XdnHWjNZd6zt3",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 7,
+            "loudness": -6.205,
+            "mode": 1,
+            "popularity": 85,
+            "release_year": 1984,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "Others"
+            ],
+            "tempo": 139.131,
+            "title": "Summer Of '69",
+            "valence": 77
+        },
+        {
+            "acousticness": 8,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2acqLrAZ1lspWmbpQzdiGE"
+            ],
+            "artists": [
+                "The Hourglass Effect"
+            ],
+            "danceability": 63,
+            "duration_ms": 220750,
+            "energy": 59,
+            "genres": [],
+            "id": "44LxZrjUpbpmVouVe70NF9",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 9,
+            "key_signature": "\u266e",
+            "liveness": 19,
+            "loudness": -8.12,
+            "mode": 0,
+            "popularity": 45,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 117.952,
+            "title": "One More Kiss",
+            "valence": 49
+        },
+        {
+            "acousticness": 39,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3WrFJ7ztbogyGnTHbHJFl2"
+            ],
+            "artists": [
+                "The Beatles"
+            ],
+            "danceability": 49,
+            "duration_ms": 145746,
+            "energy": 72,
+            "genres": [
+                "beatlesque",
+                "british invasion",
+                "classic rock",
+                "merseybeat",
+                "psychedelic rock",
+                "rock"
+            ],
+            "id": "4pbG9SUmWIvsROVLF0zF9s",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 31,
+            "loudness": -5.549,
+            "mode": 1,
+            "popularity": 71,
+            "release_year": 2000,
+            "speechiness": 5,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 130.726,
+            "title": "I Want To Hold Your Hand - Remastered 2015",
+            "valence": 87
+        },
+        {
+            "acousticness": 4,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "5btFsmucKK511Q7H71mjgj"
+            ],
+            "artists": [
+                "SKARS"
+            ],
+            "danceability": 65,
+            "duration_ms": 181909,
+            "energy": 66,
+            "genres": [],
+            "id": "1F9C9BsY71ue6Yb8x7pNIy",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 5,
+            "key_signature": "4\u266d",
+            "liveness": 10,
+            "loudness": -7.102,
+            "mode": 0,
+            "popularity": 53,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 110.053,
+            "title": "SPIRIT",
+            "valence": 48
+        },
+        {
+            "acousticness": 50,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0GbqW5TJr7n4is453VOY4C"
+            ],
+            "artists": [
+                "Procol Harum"
+            ],
+            "danceability": 25,
+            "duration_ms": 248946,
+            "energy": 66,
+            "genres": [
+                "album rock",
+                "art rock",
+                "blues rock",
+                "british blues",
+                "british invasion",
+                "classic rock",
+                "folk rock",
+                "mellow gold",
+                "progressive rock",
+                "psychedelic rock",
+                "singer-songwriter",
+                "symphonic rock"
+            ],
+            "id": "78ZqE2tjAxbqEGGlvGnQfT",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 9,
+            "loudness": -6.905,
+            "mode": 1,
+            "popularity": 25,
+            "release_year": 2019,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 149.813,
+            "title": "A Whiter Shade of Pale - Original Single Version",
+            "valence": 44
+        },
+        {
+            "acousticness": 19,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6IRouO5mvvfcyxtPDKMYFN"
+            ],
+            "artists": [
+                "Foreigner"
+            ],
+            "danceability": 48,
+            "duration_ms": 304786,
+            "energy": 47,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "glam metal",
+                "hard rock",
+                "heartland rock",
+                "mellow gold",
+                "rock",
+                "soft rock"
+            ],
+            "id": "1JLn8RhQzHz3qDqsChcmBl",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 18,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 13,
+            "loudness": -10.036,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 1984,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Metal"
+            ],
+            "tempo": 81.204,
+            "title": "I Want to Know What Love Is - 1999 Remaster",
+            "valence": 42
+        },
+        {
+            "acousticness": 2,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6V6WCgi7waF55bJmylC4H5"
+            ],
+            "artists": [
+                "Gloria Gaynor"
+            ],
+            "danceability": 80,
+            "duration_ms": 198600,
+            "energy": 62,
+            "genres": [
+                "disco",
+                "soft rock"
+            ],
+            "id": "0rwmxAht1fk7QuSiCmIhGV",
+            "instrumentalness": 1,
+            "key": 9,
+            "key_and_mode_pair": 9,
+            "key_signature": "\u266e",
+            "liveness": 32,
+            "loudness": -13.445,
+            "mode": 0,
+            "popularity": 45,
+            "release_year": 1993,
+            "speechiness": 5,
+            "super_genres": [
+                "Rock",
+                "EDM"
+            ],
+            "tempo": 116.426,
+            "title": "I Will Survive - Single Version",
+            "valence": 64
+        },
+        {
+            "acousticness": 46,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "1ThoqLcyIYvZn7iWbj8fsj"
+            ],
+            "artists": [
+                "Bill Withers"
+            ],
+            "danceability": 53,
+            "duration_ms": 125093,
+            "energy": 42,
+            "genres": [
+                "funk",
+                "quiet storm",
+                "soul"
+            ],
+            "id": "1k1Bqnv2R0uJXQN4u6LKYt",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 4,
+            "key_signature": "1\u266f",
+            "liveness": 12,
+            "loudness": -11.451,
+            "mode": 0,
+            "popularity": 84,
+            "release_year": 1971,
+            "speechiness": 12,
+            "super_genres": [
+                "Afro",
+                "Others"
+            ],
+            "tempo": 78.169,
+            "title": "Ain't No Sunshine",
+            "valence": 52
+        },
+        {
+            "acousticness": 13,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "19ra5tSw0tWufvUp8GotLo"
+            ],
+            "artists": [
+                "George Michael"
+            ],
+            "danceability": 57,
+            "duration_ms": 300106,
+            "energy": 63,
+            "genres": [
+                "new wave pop"
+            ],
+            "id": "4jDmJ51x1o9NZB5Nxxc7gY",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 2,
+            "key_signature": "1\u266d",
+            "liveness": 27,
+            "loudness": -8.815,
+            "mode": 0,
+            "popularity": 83,
+            "release_year": 1998,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 153.119,
+            "title": "Careless Whisper",
+            "valence": 80
+        },
+        {
+            "acousticness": 58,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3dkbV4qihUeMsqN4vBGg93"
+            ],
+            "artists": [
+                "Al Green"
+            ],
+            "danceability": 76,
+            "duration_ms": 199396,
+            "energy": 40,
+            "genres": [
+                "classic soul",
+                "funk",
+                "memphis soul",
+                "soul",
+                "soul blues",
+                "southern soul"
+            ],
+            "id": "63xdwScd1Ai1GigAwQxE8y",
+            "instrumentalness": 1,
+            "key": 7,
+            "key_and_mode_pair": 7,
+            "key_signature": "2\u266d",
+            "liveness": 5,
+            "loudness": -10.702,
+            "mode": 0,
+            "popularity": 78,
+            "release_year": 1972,
+            "speechiness": 5,
+            "super_genres": [
+                "Afro"
+            ],
+            "tempo": 101.954,
+            "title": "Let's Stay Together",
+            "valence": 51
+        },
+        {
+            "acousticness": 1,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2frhD5z9g7Cax2GOzT8xHw",
+                "0O7WhgsD8ALr1qy7qhySEq"
+            ],
+            "artists": [
+                "Chris App",
+                "Benjamin Blythe"
+            ],
+            "danceability": 60,
+            "duration_ms": 211347,
+            "energy": 75,
+            "genres": [],
+            "id": "4pS8wiGxy4MpwiF7Ob0z6X",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 20,
+            "loudness": -5.509,
+            "mode": 1,
+            "popularity": 42,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 125.01,
+            "title": "Brighter Skies",
+            "valence": 90
+        },
+        {
+            "acousticness": 5,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "22bE4uQ6baNwSHPVcDxLCe"
+            ],
+            "artists": [
+                "The Rolling Stones"
+            ],
+            "danceability": 46,
+            "duration_ms": 202266,
+            "energy": 80,
+            "genres": [
+                "album rock",
+                "british invasion",
+                "classic rock",
+                "rock"
+            ],
+            "id": "63T7DJ1AFDD6Bn8VzG6JE8",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 40,
+            "loudness": -9.267,
+            "mode": 1,
+            "popularity": 85,
+            "release_year": 1966,
+            "speechiness": 9,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 158.691,
+            "title": "Paint It, Black",
+            "valence": 61
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3oImytUxdIghrpPPvvSNvz"
+            ],
+            "artists": [
+                "The Similar"
+            ],
+            "danceability": 48,
+            "duration_ms": 209354,
+            "energy": 74,
+            "genres": [],
+            "id": "0ThSuEOfOIVh8MoEtAbchw",
+            "instrumentalness": 5,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 10,
+            "loudness": -10.944,
+            "mode": 1,
+            "popularity": 42,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 140.017,
+            "title": "Wake Me",
+            "valence": 55
+        },
+        {
+            "acousticness": 82,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "70cRZdQywnSFp9pnc2WTCE"
+            ],
+            "artists": [
+                "Simon & Garfunkel"
+            ],
+            "danceability": 15,
+            "duration_ms": 293120,
+            "energy": 21,
+            "genres": [
+                "classic rock",
+                "folk",
+                "folk rock",
+                "melancholia",
+                "mellow gold",
+                "rock",
+                "soft rock"
+            ],
+            "id": "6l8EbYRtQMgKOyc1gcDHF9",
+            "instrumentalness": 0,
+            "key": 3,
+            "key_and_mode_pair": 15,
+            "key_signature": "3\u266d",
+            "liveness": 12,
+            "loudness": -13.888,
+            "mode": 1,
+            "popularity": 72,
+            "release_year": 1970,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 79.764,
+            "title": "Bridge Over Troubled Water",
+            "valence": 26
+        },
+        {
+            "acousticness": 24,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0cQbJU1aAzvbEmTuljWLlF"
+            ],
+            "artists": [
+                "No Doubt"
+            ],
+            "danceability": 52,
+            "duration_ms": 263000,
+            "energy": 71,
+            "genres": [
+                "dance pop",
+                "dance rock",
+                "permanent wave",
+                "pop rock",
+                "rock"
+            ],
+            "id": "7H8zey5My6uNdD2TxeCb9F",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 5,
+            "key_signature": "4\u266d",
+            "liveness": 16,
+            "loudness": -7.113,
+            "mode": 0,
+            "popularity": 2,
+            "release_year": 1995,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 76.05,
+            "title": "Don't Speak",
+            "valence": 57
+        },
+        {
+            "acousticness": 3,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2WKdxPFRD7IqZvlIAvhMgY",
+                "2Mu5NfyYm8n5iTomuKAEHl"
+            ],
+            "artists": [
+                "Fugees",
+                "Ms. Lauryn Hill"
+            ],
+            "danceability": 76,
+            "duration_ms": 298773,
+            "energy": 29,
+            "genres": [
+                "east coast hip hop",
+                "hip hop",
+                "neo soul",
+                "new jersey rap",
+                "alternative r&b",
+                "conscious hip hop",
+                "r&b",
+                "soul"
+            ],
+            "id": "0Q0IVlqMV64kNLlwjPj0Hl",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 4,
+            "key_signature": "1\u266f",
+            "liveness": 57,
+            "loudness": -17.117,
+            "mode": 0,
+            "popularity": 80,
+            "release_year": 1996,
+            "speechiness": 14,
+            "super_genres": [
+                "Rap",
+                "Afro"
+            ],
+            "tempo": 92.409,
+            "title": "Killing Me Softly With His Song",
+            "valence": 51
+        },
+        {
+            "acousticness": 74,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "293zczrfYafIItmnmM3coR"
+            ],
+            "artists": [
+                "Chuck Berry"
+            ],
+            "danceability": 53,
+            "duration_ms": 161560,
+            "energy": 80,
+            "genres": [
+                "blues",
+                "blues rock",
+                "classic rock",
+                "rock",
+                "rock-and-roll",
+                "rockabilly",
+                "soul"
+            ],
+            "id": "2QfiRTz5Yc8DdShCxG1tB2",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 31,
+            "loudness": -9.129,
+            "mode": 1,
+            "popularity": 79,
+            "release_year": 1959,
+            "speechiness": 7,
+            "super_genres": [
+                "Rock",
+                "Afro",
+                "Others"
+            ],
+            "tempo": 167.983,
+            "title": "Johnny B. Goode",
+            "valence": 97
+        },
+        {
+            "acousticness": 7,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3IYUhFvPQItj6xySrBmZkd"
+            ],
+            "artists": [
+                "Creedence Clearwater Revival"
+            ],
+            "danceability": 74,
+            "duration_ms": 160133,
+            "energy": 70,
+            "genres": [
+                "classic rock",
+                "country rock",
+                "rock",
+                "southern rock",
+                "swamp rock"
+            ],
+            "id": "2LawezPeJhN4AWuSB0GtAU",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 13,
+            "loudness": -7.028,
+            "mode": 1,
+            "popularity": 88,
+            "release_year": 1970,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 116.109,
+            "title": "Have You Ever Seen The Rain",
+            "valence": 77
+        },
+        {
+            "acousticness": 68,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "60df5JBRRPcnSpsIMxxwQm"
+            ],
+            "artists": [
+                "Otis Redding"
+            ],
+            "danceability": 77,
+            "duration_ms": 163755,
+            "energy": 37,
+            "genres": [
+                "classic soul",
+                "memphis soul",
+                "soul",
+                "soul blues",
+                "southern soul",
+                "vocal jazz"
+            ],
+            "id": "3zBhihYUHBmGd2bcQIobrF",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 8,
+            "loudness": -11.226,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 1968,
+            "speechiness": 3,
+            "super_genres": [
+                "Afro"
+            ],
+            "tempo": 103.621,
+            "title": "(Sittin' On) the Dock of the Bay",
+            "valence": 54
+        },
+        {
+            "acousticness": 3,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "5mtGIGksvgEhjzfSjzeQ9X"
+            ],
+            "artists": [
+                "blossm"
+            ],
+            "danceability": 64,
+            "duration_ms": 220510,
+            "energy": 34,
+            "genres": [],
+            "id": "5mabkIGqdoYytMe8s7FQJU",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 18,
+            "loudness": -6.325,
+            "mode": 1,
+            "popularity": 32,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 147.076,
+            "title": "Faded",
+            "valence": 50
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2DaxqgrOhkeH0fpeiQq2f4"
+            ],
+            "artists": [
+                "Oasis"
+            ],
+            "danceability": 41,
+            "duration_ms": 258906,
+            "energy": 84,
+            "genres": [
+                "beatlesque",
+                "britpop",
+                "madchester",
+                "permanent wave",
+                "rock"
+            ],
+            "id": "2tDz0gabkgCjFE34CWvwrl",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 13,
+            "loudness": -5.612,
+            "mode": 1,
+            "popularity": 0,
+            "release_year": 1995,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "Others"
+            ],
+            "tempo": 174.452,
+            "title": "Wonderwall",
+            "valence": 47
+        },
+        {
+            "acousticness": 1,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "5BnFt7BFXzGzFVAR3KD6K3"
+            ],
+            "artists": [
+                "Holy Colors"
+            ],
+            "danceability": 56,
+            "duration_ms": 175468,
+            "energy": 76,
+            "genres": [],
+            "id": "2EPew61Ku0HXRv40OEd1IP",
+            "instrumentalness": 7,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 34,
+            "loudness": -9.628,
+            "mode": 1,
+            "popularity": 23,
+            "release_year": 2020,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 109.967,
+            "title": "90's Horror",
+            "valence": 81
+        },
+        {
+            "acousticness": 8,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3RGLhK1IP9jnYFH4BRFJBS"
+            ],
+            "artists": [
+                "The Clash"
+            ],
+            "danceability": 74,
+            "duration_ms": 188986,
+            "energy": 84,
+            "genres": [
+                "alternative rock",
+                "permanent wave",
+                "punk",
+                "rock"
+            ],
+            "id": "39shmbIHICJ2Wxnk1fPSdz",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 38,
+            "loudness": -6.465,
+            "mode": 1,
+            "popularity": 81,
+            "release_year": 1982,
+            "speechiness": 12,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 113.375,
+            "title": "Should I Stay or Should I Go - Remastered",
+            "valence": 82
+        },
+        {
+            "acousticness": 79,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "19eLuQmk9aCobbVDHc6eek"
+            ],
+            "artists": [
+                "Louis Armstrong"
+            ],
+            "danceability": 40,
+            "duration_ms": 137520,
+            "energy": 26,
+            "genres": [
+                "adult standards",
+                "dixieland",
+                "harlem renaissance",
+                "jazz trumpet",
+                "new orleans jazz",
+                "soul",
+                "swing",
+                "vocal jazz"
+            ],
+            "id": "1qCQTy0fTXerET4x8VHyr9",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 13,
+            "loudness": -16.028,
+            "mode": 1,
+            "popularity": 6,
+            "release_year": 1968,
+            "speechiness": 3,
+            "super_genres": [
+                "Afro",
+                "Others"
+            ],
+            "tempo": 108.174,
+            "title": "What A Wonderful World",
+            "valence": 19
+        },
+        {
+            "acousticness": 2,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "08GQAI4eElDnROBrJRGE0X"
+            ],
+            "artists": [
+                "Fleetwood Mac"
+            ],
+            "danceability": 58,
+            "duration_ms": 223613,
+            "energy": 95,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "rock",
+                "soft rock",
+                "yacht rock"
+            ],
+            "id": "07GvNcU1WdyZJq3XxP0kZa",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 7,
+            "loudness": -5.12,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 1977,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 135.448,
+            "title": "Go Your Own Way - 2004 Remaster",
+            "valence": 80
+        },
+        {
+            "acousticness": 19,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "1dfeR4HaWDbWqFHLkxsg1d"
+            ],
+            "artists": [
+                "Queen"
+            ],
+            "danceability": 41,
+            "duration_ms": 296480,
+            "energy": 70,
+            "genres": [
+                "classic rock",
+                "glam rock",
+                "rock"
+            ],
+            "id": "4rDbp1vnvEhieiccprPMdI",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 23,
+            "loudness": -7.024,
+            "mode": 1,
+            "popularity": 75,
+            "release_year": 1976,
+            "speechiness": 6,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 109.266,
+            "title": "Somebody To Love - Remastered 2011",
+            "valence": 33
+        },
+        {
+            "acousticness": 22,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "39T6qqI0jDtSWWioX8eGJz"
+            ],
+            "artists": [
+                "The Doobie Brothers"
+            ],
+            "danceability": 64,
+            "duration_ms": 227266,
+            "energy": 60,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "country rock",
+                "folk rock",
+                "heartland rock",
+                "mellow gold",
+                "rock",
+                "singer-songwriter",
+                "soft rock",
+                "yacht rock"
+            ],
+            "id": "7Ar4G7Ci11gpt6sfH9Cgz5",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 1,
+            "key_signature": "4\u266f",
+            "liveness": 7,
+            "loudness": -13.18,
+            "mode": 0,
+            "popularity": 79,
+            "release_year": 1972,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 105.929,
+            "title": "Listen to the Music",
+            "valence": 91
+        },
+        {
+            "acousticness": 64,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3RwQ26hR2tJtA8F9p2n7jG"
+            ],
+            "artists": [
+                "The Temptations"
+            ],
+            "danceability": 57,
+            "duration_ms": 165000,
+            "energy": 42,
+            "genres": [
+                "memphis soul",
+                "motown",
+                "soul"
+            ],
+            "id": "745H5CctFr12Mo7cqa1BMH",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 10,
+            "loudness": -10.738,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 1965,
+            "speechiness": 3,
+            "super_genres": [
+                "Afro",
+                "Others"
+            ],
+            "tempo": 104.566,
+            "title": "My Girl",
+            "valence": 69
+        },
+        {
+            "acousticness": 52,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3Ncucx9RdvKF9nCIB8sNAg"
+            ],
+            "artists": [
+                "Andrew X"
+            ],
+            "danceability": 70,
+            "duration_ms": 215823,
+            "energy": 43,
+            "genres": [],
+            "id": "1FD4YH63eFaG1pzc45JVug",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 8,
+            "loudness": -9.138,
+            "mode": 1,
+            "popularity": 29,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 107.982,
+            "title": "Miracles - Acoustic Version",
+            "valence": 65
+        },
+        {
+            "acousticness": 60,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6zFYqv1mOsgBRQbae3JJ9e"
+            ],
+            "artists": [
+                "Billy Joel"
+            ],
+            "danceability": 33,
+            "duration_ms": 336093,
+            "energy": 47,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "heartland rock",
+                "mellow gold",
+                "piano rock",
+                "rock",
+                "singer-songwriter",
+                "soft rock"
+            ],
+            "id": "3FCto7hnn1shUyZL42YgfO",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 32,
+            "loudness": -8.791,
+            "mode": 1,
+            "popularity": 66,
+            "release_year": 2001,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 179.173,
+            "title": "Piano Man",
+            "valence": 43
+        },
+        {
+            "acousticness": 7,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0k17h0D3J5VfsdmQ1iZtE9"
+            ],
+            "artists": [
+                "Pink Floyd"
+            ],
+            "danceability": 69,
+            "duration_ms": 228586,
+            "energy": 35,
+            "genres": [
+                "album rock",
+                "art rock",
+                "classic rock",
+                "progressive rock",
+                "psychedelic rock",
+                "rock",
+                "symphonic rock"
+            ],
+            "id": "7rPzEczIS574IgPaiPieS3",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 50,
+            "loudness": -17.852,
+            "mode": 1,
+            "popularity": 74,
+            "release_year": 1979,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 104.143,
+            "title": "Another Brick In The Wall, Pt. 2 - 2011 Remastered Version",
+            "valence": 75
+        },
+        {
+            "acousticness": 18,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "4MVyzYMgTwdP7Z49wAZHx0"
+            ],
+            "artists": [
+                "Lynyrd Skynyrd"
+            ],
+            "danceability": 60,
+            "duration_ms": 283800,
+            "energy": 60,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "hard rock",
+                "rock",
+                "southern rock"
+            ],
+            "id": "7e89621JPkKaeDSTQ3avtg",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 9,
+            "loudness": -12.145,
+            "mode": 1,
+            "popularity": 84,
+            "release_year": 1974,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 97.798,
+            "title": "Sweet Home Alabama",
+            "valence": 89
+        },
+        {
+            "acousticness": 59,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "1eYhYunlNJlDoQhtYBvPsi"
+            ],
+            "artists": [
+                "Ray Charles"
+            ],
+            "danceability": 59,
+            "duration_ms": 117492,
+            "energy": 77,
+            "genres": [
+                "classic soul",
+                "jazz blues",
+                "piano blues",
+                "soul",
+                "soul blues",
+                "vocal jazz"
+            ],
+            "id": "0yRbkTprsL0rYr4UId0Ryi",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 8,
+            "key_signature": "5\u266f",
+            "liveness": 67,
+            "loudness": -6.749,
+            "mode": 0,
+            "popularity": 53,
+            "release_year": 2011,
+            "speechiness": 25,
+            "super_genres": [
+                "Afro",
+                "Others"
+            ],
+            "tempo": 173.107,
+            "title": "Hit the Road Jack (Remastered)",
+            "valence": 96
+        },
+        {
+            "acousticness": 47,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "33QmoCkSqADuQEtMCysYLh"
+            ],
+            "artists": [
+                "The Archies"
+            ],
+            "danceability": 74,
+            "duration_ms": 167186,
+            "energy": 87,
+            "genres": [
+                "bubblegum pop",
+                "classic canadian rock",
+                "rock-and-roll"
+            ],
+            "id": "3iSws76HjaU7k49EqJVTfF",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 11,
+            "loudness": -2.786,
+            "mode": 1,
+            "popularity": 67,
+            "release_year": 2007,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 122.395,
+            "title": "Sugar, Sugar",
+            "valence": 97
+        },
+        {
+            "acousticness": 71,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0erHD7VN4kx2WwPg8w53kp"
+            ],
+            "artists": [
+                "Liz Cass"
+            ],
+            "danceability": 36,
+            "duration_ms": 235819,
+            "energy": 48,
+            "genres": [],
+            "id": "1WZgT6TjHQWuzaJ2Vv2y6t",
+            "instrumentalness": 1,
+            "key": 6,
+            "key_and_mode_pair": 6,
+            "key_signature": "3\u266f",
+            "liveness": 10,
+            "loudness": -10.322,
+            "mode": 0,
+            "popularity": 27,
+            "release_year": 2023,
+            "speechiness": 5,
+            "super_genres": [],
+            "tempo": 157.115,
+            "title": "Fade Into You",
+            "valence": 21
+        },
+        {
+            "acousticness": 27,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "5lpH0xAS4fVfLkACg9DAuM"
+            ],
+            "artists": [
+                "Wham!"
+            ],
+            "danceability": 62,
+            "duration_ms": 231333,
+            "energy": 57,
+            "genres": [
+                "new romantic",
+                "new wave",
+                "new wave pop",
+                "soft rock"
+            ],
+            "id": "0ikz6tENMONtK6qGkOrU3c",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 6,
+            "loudness": -11.893,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 1984,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 81.548,
+            "title": "Wake Me Up Before You Go-Go",
+            "valence": 90
+        },
+        {
+            "acousticness": 15,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3PhoLpVuITZKcymswpck5b",
+                "4vjGlQWexbru6aOUCLTVir"
+            ],
+            "artists": [
+                "Elton John",
+                "Kiki Dee"
+            ],
+            "danceability": 73,
+            "duration_ms": 275440,
+            "energy": 84,
+            "genres": [
+                "glam rock",
+                "mellow gold",
+                "piano rock",
+                "rock",
+                "classic uk pop"
+            ],
+            "id": "7HW5WIw7ZgZORCzUxv5gW5",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 6,
+            "loudness": -8.824,
+            "mode": 1,
+            "popularity": 81,
+            "release_year": 1975,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 131.459,
+            "title": "Don't Go Breaking My Heart",
+            "valence": 78
+        },
+        {
+            "acousticness": 48,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3IZrrNonYELubLPJmqOci2"
+            ],
+            "artists": [
+                "Nancy Sinatra"
+            ],
+            "danceability": 74,
+            "duration_ms": 166008,
+            "energy": 39,
+            "genres": [
+                "lounge",
+                "sunshine pop"
+            ],
+            "id": "2nwCO1PqpvyoFIvq3Vrj8N",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 10,
+            "loudness": -11.996,
+            "mode": 1,
+            "popularity": 1,
+            "release_year": 1966,
+            "speechiness": 8,
+            "super_genres": [
+                "Pop",
+                "Others"
+            ],
+            "tempo": 82.742,
+            "title": "These Boots Are Made For Walkin'",
+            "valence": 39
+        },
+        {
+            "acousticness": 30,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2iE18Oxc8YSumAU232n4rW"
+            ],
+            "artists": [
+                "The Jackson 5"
+            ],
+            "danceability": 47,
+            "duration_ms": 176333,
+            "energy": 54,
+            "genres": [
+                "motown",
+                "soul"
+            ],
+            "id": "5LxvwujISqiB8vpRYv887S",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 37,
+            "loudness": -13.559,
+            "mode": 1,
+            "popularity": 80,
+            "release_year": 1969,
+            "speechiness": 6,
+            "super_genres": [
+                "Afro",
+                "Others"
+            ],
+            "tempo": 196.605,
+            "title": "I Want You Back",
+            "valence": 89
+        },
+        {
+            "acousticness": 30,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3ea8Kst45XuY4EdeD6OVFo"
+            ],
+            "artists": [
+                "IORA"
+            ],
+            "danceability": 85,
+            "duration_ms": 208831,
+            "energy": 55,
+            "genres": [
+                "manchester indie"
+            ],
+            "id": "3wRTu2mu7FOIwqJJn6kDbm",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 4,
+            "key_signature": "1\u266f",
+            "liveness": 7,
+            "loudness": -9.81,
+            "mode": 0,
+            "popularity": 30,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 108.963,
+            "title": "Nylon",
+            "valence": 50
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3eqjTLE0HfPfh78zjh6TqT"
+            ],
+            "artists": [
+                "Bruce Springsteen"
+            ],
+            "danceability": 40,
+            "duration_ms": 278680,
+            "energy": 95,
+            "genres": [
+                "heartland rock",
+                "mellow gold",
+                "permanent wave",
+                "rock",
+                "singer-songwriter"
+            ],
+            "id": "0dOg1ySSI7NkpAe89Zo0b9",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 10,
+            "loudness": -6.042,
+            "mode": 1,
+            "popularity": 76,
+            "release_year": 1984,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "Others"
+            ],
+            "tempo": 122.093,
+            "title": "Born in the U.S.A.",
+            "valence": 58
+        },
+        {
+            "acousticness": 18,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "44NX2ffIYHr6D4n7RaZF7A"
+            ],
+            "artists": [
+                "Van Morrison"
+            ],
+            "danceability": 49,
+            "duration_ms": 183306,
+            "energy": 58,
+            "genres": [
+                "classic rock",
+                "folk",
+                "folk rock",
+                "heartland rock",
+                "mellow gold",
+                "rock",
+                "singer-songwriter",
+                "soft rock"
+            ],
+            "id": "3yrSvpt2l1xhsV9Em88Pul",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 41,
+            "loudness": -10.964,
+            "mode": 1,
+            "popularity": 83,
+            "release_year": 1967,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 150.566,
+            "title": "Brown Eyed Girl",
+            "valence": 91
+        },
+        {
+            "acousticness": 45,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "1Mxqyy3pSjf8kZZL4QVxS0",
+                "2jFZlvIea42ZvcCw4OeEdA"
+            ],
+            "artists": [
+                "Frank Sinatra",
+                "Count Basie"
+            ],
+            "danceability": 67,
+            "duration_ms": 147000,
+            "energy": 26,
+            "genres": [
+                "adult standards",
+                "easy listening",
+                "lounge",
+                "big band",
+                "harlem renaissance",
+                "jazz",
+                "jazz piano",
+                "swing",
+                "vocal jazz"
+            ],
+            "id": "5b7OgznPJJr1vHNYGyvxau",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 6,
+            "loudness": -14.256,
+            "mode": 1,
+            "popularity": 74,
+            "release_year": 1962,
+            "speechiness": 5,
+            "super_genres": [
+                "Afro",
+                "Others"
+            ],
+            "tempo": 119.416,
+            "title": "Fly Me To The Moon (In Other Words)",
+            "valence": 37
+        },
+        {
+            "acousticness": 6,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "38g71NZUKyjqmwovTIChc8"
+            ],
+            "artists": [
+                "Subway Rat"
+            ],
+            "danceability": 80,
+            "duration_ms": 184500,
+            "energy": 57,
+            "genres": [],
+            "id": "2ngQ8WL1ds6ezVE5nSjsyK",
+            "instrumentalness": 2,
+            "key": 11,
+            "key_and_mode_pair": 23,
+            "key_signature": "5\u266f",
+            "liveness": 10,
+            "loudness": -5.615,
+            "mode": 1,
+            "popularity": 45,
+            "release_year": 2023,
+            "speechiness": 4,
+            "super_genres": [],
+            "tempo": 97.0,
+            "title": "Rendezvous",
+            "valence": 79
+        },
+        {
+            "acousticness": 1,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2eogQKWWoohI3BSnoG7E2U"
+            ],
+            "artists": [
+                "Donna Summer"
+            ],
+            "danceability": 82,
+            "duration_ms": 314760,
+            "energy": 74,
+            "genres": [
+                "disco",
+                "hi-nrg",
+                "new wave pop",
+                "soft rock"
+            ],
+            "id": "2zMJN9JvDlvGP4jB03l1Bz",
+            "instrumentalness": 3,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 7,
+            "loudness": -13.98,
+            "mode": 1,
+            "popularity": 69,
+            "release_year": 1979,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "EDM"
+            ],
+            "tempo": 120.471,
+            "title": "Hot Stuff",
+            "valence": 97
+        },
+        {
+            "acousticness": 84,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "4ACplpEqD6JIVgKrafauzs"
+            ],
+            "artists": [
+                "The Everly Brothers"
+            ],
+            "danceability": 53,
+            "duration_ms": 143333,
+            "energy": 46,
+            "genres": [
+                "adult standards",
+                "folk rock",
+                "mellow gold",
+                "rock-and-roll",
+                "rockabilly",
+                "sunshine pop"
+            ],
+            "id": "7dblNGnRXEBrVJunazs2U5",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 13,
+            "loudness": -8.172,
+            "mode": 1,
+            "popularity": 70,
+            "release_year": 1964,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "Others"
+            ],
+            "tempo": 96.195,
+            "title": "All I Have to Do Is Dream",
+            "valence": 53
+        },
+        {
+            "acousticness": 71,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0JDkhL4rjiPNEp92jAgJnS"
+            ],
+            "artists": [
+                "Roy Orbison"
+            ],
+            "danceability": 62,
+            "duration_ms": 178933,
+            "energy": 60,
+            "genres": [
+                "adult standards",
+                "classic rock",
+                "folk rock",
+                "mellow gold",
+                "rock-and-roll",
+                "rockabilly",
+                "singer-songwriter"
+            ],
+            "id": "48i055G1OT5KxGGftwFxWy",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 7,
+            "loudness": -9.481,
+            "mode": 1,
+            "popularity": 77,
+            "release_year": 1962,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 127.433,
+            "title": "Oh, Pretty Woman",
+            "valence": 96
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "776Uo845nYHJpNaStv1Ds4"
+            ],
+            "artists": [
+                "Jimi Hendrix"
+            ],
+            "danceability": 44,
+            "duration_ms": 240800,
+            "energy": 80,
+            "genres": [
+                "acid rock",
+                "album rock",
+                "classic rock",
+                "hard rock",
+                "proto-metal",
+                "psychedelic rock",
+                "rock"
+            ],
+            "id": "2aoo2jlRnM3A0NyLQqMN2f",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 8,
+            "loudness": -6.237,
+            "mode": 1,
+            "popularity": 78,
+            "release_year": 1968,
+            "speechiness": 6,
+            "super_genres": [
+                "Rock",
+                "Metal"
+            ],
+            "tempo": 113.253,
+            "title": "All Along the Watchtower",
+            "valence": 56
+        },
+        {
+            "acousticness": 68,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "5GtMEZEeFFsuHY8ad4kOxv"
+            ],
+            "artists": [
+                "Seal"
+            ],
+            "danceability": 58,
+            "duration_ms": 288426,
+            "energy": 53,
+            "genres": [
+                "british soul",
+                "new wave pop"
+            ],
+            "id": "3YKptz29AsOlm7WAVnztBh",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 10,
+            "key_signature": "5\u266d",
+            "liveness": 31,
+            "loudness": -7.11,
+            "mode": 0,
+            "popularity": 76,
+            "release_year": 1994,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Afro"
+            ],
+            "tempo": 131.745,
+            "title": "Kiss from a Rose",
+            "valence": 22
+        },
+        {
+            "acousticness": 43,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3PhoLpVuITZKcymswpck5b"
+            ],
+            "artists": [
+                "Elton John"
+            ],
+            "danceability": 60,
+            "duration_ms": 281613,
+            "energy": 53,
+            "genres": [
+                "glam rock",
+                "mellow gold",
+                "piano rock",
+                "rock"
+            ],
+            "id": "3gdewACMIVMEWVbyb8O9sY",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 9,
+            "loudness": -9.119,
+            "mode": 1,
+            "popularity": 83,
+            "release_year": 1972,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 136.571,
+            "title": "Rocket Man (I Think It's Going To Be A Long, Long Time)",
+            "valence": 34
+        },
+        {
+            "acousticness": 1,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6TSjJlhB2taxea58rCkMkj"
+            ],
+            "artists": [
+                "The Vices"
+            ],
+            "danceability": 56,
+            "duration_ms": 184546,
+            "energy": 74,
+            "genres": [
+                "dutch indie rock"
+            ],
+            "id": "4BAoz0zZwmFR1aihUDcfrl",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 10,
+            "key_signature": "5\u266d",
+            "liveness": 7,
+            "loudness": -6.666,
+            "mode": 0,
+            "popularity": 33,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 94.996,
+            "title": "I Had a Name",
+            "valence": 72
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3ICflSq6ZgYAIrm2CTkfVP"
+            ],
+            "artists": [
+                "The Animals"
+            ],
+            "danceability": 32,
+            "duration_ms": 269906,
+            "energy": 48,
+            "genres": [
+                "album rock",
+                "british invasion",
+                "classic rock",
+                "hard rock",
+                "protopunk",
+                "psychedelic rock",
+                "rock"
+            ],
+            "id": "4mn2kNTqiGLwaUR8JdhJ1l",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 9,
+            "key_signature": "\u266e",
+            "liveness": 9,
+            "loudness": -9.11,
+            "mode": 0,
+            "popularity": 77,
+            "release_year": 1987,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 117.363,
+            "title": "House of the Rising Sun",
+            "valence": 30
+        },
+        {
+            "acousticness": 26,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "2BVYdY4PyfCF9z4NrkhEB2"
+            ],
+            "artists": [
+                "Sam & Dave"
+            ],
+            "danceability": 79,
+            "duration_ms": 159000,
+            "energy": 41,
+            "genres": [
+                "classic soul",
+                "memphis soul",
+                "soul",
+                "southern soul"
+            ],
+            "id": "4eGHlplaq1ME8oetnTuFFf",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 17,
+            "loudness": -13.241,
+            "mode": 1,
+            "popularity": 70,
+            "release_year": 1967,
+            "speechiness": 3,
+            "super_genres": [
+                "Afro"
+            ],
+            "tempo": 112.345,
+            "title": "Soul Man",
+            "valence": 82
+        },
+        {
+            "acousticness": 35,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "4bthk9UfsYUYdcFyqxmSUU"
+            ],
+            "artists": [
+                "Tears For Fears"
+            ],
+            "danceability": 64,
+            "duration_ms": 251488,
+            "energy": 80,
+            "genres": [
+                "new romantic",
+                "new wave",
+                "new wave pop",
+                "permanent wave",
+                "rock",
+                "sophisti-pop",
+                "synthpop"
+            ],
+            "id": "4RvWPyQ5RL0ao9LPZeSouE",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 10,
+            "loudness": -12.095,
+            "mode": 1,
+            "popularity": 90,
+            "release_year": 1985,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 112.067,
+            "title": "Everybody Wants To Rule The World",
+            "valence": 54
+        },
+        {
+            "acousticness": 20,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3MFp4cYuYtTZe3d3xkLLbr"
+            ],
+            "artists": [
+                "Bill Haley & His Comets"
+            ],
+            "danceability": 81,
+            "duration_ms": 129893,
+            "energy": 86,
+            "genres": [
+                "rock-and-roll",
+                "rockabilly"
+            ],
+            "id": "1uRKT2LRANv4baowBWHfDS",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 8,
+            "loudness": -6.317,
+            "mode": 1,
+            "popularity": 66,
+            "release_year": 1955,
+            "speechiness": 17,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 90.686,
+            "title": "(We're Gonna) Rock Around The Clock",
+            "valence": 78
+        },
+        {
+            "acousticness": 9,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6hN9F0iuULZYWXppob22Aj"
+            ],
+            "artists": [
+                "Simple Minds"
+            ],
+            "danceability": 67,
+            "duration_ms": 260773,
+            "energy": 79,
+            "genres": [
+                "album rock",
+                "dance rock",
+                "new romantic",
+                "new wave",
+                "new wave pop",
+                "rock",
+                "scottish new wave",
+                "soft rock"
+            ],
+            "id": "2u96akbqgCRtkjfLMYrgZo",
+            "instrumentalness": 6,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 30,
+            "loudness": -7.02,
+            "mode": 1,
+            "popularity": 78,
+            "release_year": 2013,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 111.257,
+            "title": "Don't You (Forget About Me) - Remastered 2001",
+            "valence": 68
+        },
+        {
+            "acousticness": 6,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "6mcrZQmgzFGRWf7C0SObou"
+            ],
+            "artists": [
+                "Frankie Valli & The Four Seasons"
+            ],
+            "danceability": 73,
+            "duration_ms": 201093,
+            "energy": 59,
+            "genres": [
+                "adult standards",
+                "bubblegum pop",
+                "doo-wop",
+                "lounge",
+                "northern soul",
+                "rock-and-roll",
+                "rockabilly"
+            ],
+            "id": "7ePFDzrnLt3Ynqgy2UFWri",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 4,
+            "loudness": -9.568,
+            "mode": 1,
+            "popularity": 63,
+            "release_year": 2003,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock",
+                "Afro",
+                "Others"
+            ],
+            "tempo": 104.413,
+            "title": "December, 1963 (Oh What a Night!)",
+            "valence": 96
+        },
+        {
+            "acousticness": 76,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "1GAJzApRTMmYZ9EjQ91VOy"
+            ],
+            "artists": [
+                "The Tokens"
+            ],
+            "danceability": 43,
+            "duration_ms": 161200,
+            "energy": 48,
+            "genres": [
+                "doo-wop",
+                "sunshine pop"
+            ],
+            "id": "2QbSGkb3TgghEHpjKCsznm",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 16,
+            "loudness": -9.401,
+            "mode": 1,
+            "popularity": 52,
+            "release_year": 1994,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Others"
+            ],
+            "tempo": 121.946,
+            "title": "The Lion Sleeps Tonight (Wimoweh)",
+            "valence": 75
+        },
+        {
+            "acousticness": 75,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "53QzNeFpzAaXYnrDBbDrIp"
+            ],
+            "artists": [
+                "The Isley Brothers"
+            ],
+            "danceability": 49,
+            "duration_ms": 268560,
+            "energy": 87,
+            "genres": [
+                "classic soul",
+                "funk",
+                "motown",
+                "quiet storm",
+                "soul"
+            ],
+            "id": "2ZNTPtYmAhN9vCwnAgqKn1",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 88,
+            "loudness": -7.433,
+            "mode": 1,
+            "popularity": 61,
+            "release_year": 1959,
+            "speechiness": 9,
+            "super_genres": [
+                "Afro",
+                "Others"
+            ],
+            "tempo": 138.63,
+            "title": "Shout, Pts. 1 & 2",
+            "valence": 42
+        },
+        {
+            "acousticness": 37,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "22WZ7M8sxp5THdruNY3gXt"
+            ],
+            "artists": [
+                "The Doors"
+            ],
+            "danceability": 41,
+            "duration_ms": 429760,
+            "energy": 72,
+            "genres": [
+                "acid rock",
+                "album rock",
+                "classic rock",
+                "hard rock",
+                "psychedelic rock",
+                "rock"
+            ],
+            "id": "5uvosCdMlFdTXhoazkTI5R",
+            "instrumentalness": 0,
+            "key": 3,
+            "key_and_mode_pair": 3,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 9,
+            "loudness": -5.787,
+            "mode": 0,
+            "popularity": 74,
+            "release_year": 1967,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 124.618,
+            "title": "Light My Fire",
+            "valence": 44
+        },
+        {
+            "acousticness": 73,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "74ASZWbe4lXaubB36ztrGX"
+            ],
+            "artists": [
+                "Bob Dylan"
+            ],
+            "danceability": 48,
+            "duration_ms": 369600,
+            "energy": 72,
+            "genres": [
+                "classic rock",
+                "country rock",
+                "folk",
+                "folk rock",
+                "psychedelic rock",
+                "rock",
+                "roots rock",
+                "singer-songwriter"
+            ],
+            "id": "3AhXZa8sUQht0UEdBJgpGc",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 19,
+            "loudness": -6.839,
+            "mode": 1,
+            "popularity": 71,
+            "release_year": 1965,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 95.263,
+            "title": "Like a Rolling Stone",
+            "valence": 56
+        },
+        {
+            "acousticness": 20,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3IYUhFvPQItj6xySrBmZkd"
+            ],
+            "artists": [
+                "Creedence Clearwater Revival"
+            ],
+            "danceability": 64,
+            "duration_ms": 140773,
+            "energy": 66,
+            "genres": [
+                "classic rock",
+                "country rock",
+                "rock",
+                "southern rock",
+                "swamp rock"
+            ],
+            "id": "4BP3uh0hFLFRb5cjsgLqDh",
+            "instrumentalness": 1,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 15,
+            "loudness": -7.516,
+            "mode": 1,
+            "popularity": 86,
+            "release_year": 1969,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 132.77,
+            "title": "Fortunate Son",
+            "valence": 66
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "00nDXmI902QlDjTzsj6XG3",
+                "0xqeR0Mtnu1eAdBOvV4AJA"
+            ],
+            "artists": [
+                "Scott Labbe",
+                "Chris Michaud"
+            ],
+            "danceability": 50,
+            "duration_ms": 305933,
+            "energy": 82,
+            "genres": [],
+            "id": "3FLSH0c48VggaYgAGoBk4P",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 2,
+            "key_signature": "1\u266d",
+            "liveness": 26,
+            "loudness": -5.368,
+            "mode": 0,
+            "popularity": 32,
+            "release_year": 2023,
+            "speechiness": 5,
+            "super_genres": [],
+            "tempo": 91.937,
+            "title": "The Halo Project: Cult of Personality",
+            "valence": 38
+        },
+        {
+            "acousticness": 3,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "3WrFJ7ztbogyGnTHbHJFl2"
+            ],
+            "artists": [
+                "The Beatles"
+            ],
+            "danceability": 53,
+            "duration_ms": 259946,
+            "energy": 38,
+            "genres": [
+                "beatlesque",
+                "british invasion",
+                "classic rock",
+                "merseybeat",
+                "psychedelic rock",
+                "rock"
+            ],
+            "id": "2EqlS6tkEnglzr7tkKAAYD",
+            "instrumentalness": 25,
+            "key": 9,
+            "key_and_mode_pair": 9,
+            "key_signature": "\u266e",
+            "liveness": 9,
+            "loudness": -11.913,
+            "mode": 0,
+            "popularity": 79,
+            "release_year": 1969,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock",
+                "Others"
+            ],
+            "tempo": 165.007,
+            "title": "Come Together - Remastered 2009",
+            "valence": 19
+        },
+        {
+            "acousticness": 79,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "5Y9xEAGW4GwGJgbiI6W85P"
+            ],
+            "artists": [
+                "Ritchie Valens"
+            ],
+            "danceability": 52,
+            "duration_ms": 126960,
+            "energy": 81,
+            "genres": [
+                "rock-and-roll",
+                "rockabilly"
+            ],
+            "id": "2aEeghgUcnu75tzcolFMfs",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 30,
+            "loudness": -6.419,
+            "mode": 1,
+            "popularity": 69,
+            "release_year": 1959,
+            "speechiness": 5,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 75.099,
+            "title": "La Bamba - Single Version",
+            "valence": 94
+        },
+        {
+            "acousticness": 0,
+            "added_by": "IndieMassive Hits",
+            "added_by_user_id": "daanmathijs1999",
+            "artist_ids": [
+                "0oSGxfWSnnOXhD2fKuz2Gy"
+            ],
+            "artists": [
+                "David Bowie"
+            ],
+            "danceability": 49,
+            "duration_ms": 371413,
+            "energy": 76,
+            "genres": [
+                "art rock",
+                "classic rock",
+                "glam rock",
+                "permanent wave",
+                "rock"
+            ],
+            "id": "7Jh1bpe76CNTCgdgAdBw4Z",
+            "instrumentalness": 49,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 9,
+            "loudness": -6.491,
+            "mode": 1,
+            "popularity": 77,
+            "release_year": 1977,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 112.113,
+            "title": "Heroes - 2017 Remaster",
+            "valence": 44
+        }
+    ]
+}
