@@ -7,7 +7,7 @@ NORMAL_PLAYLIST_FILE_PATH = "./test_data/playlist_6i2Qd6OpeRBAzxfscNXeWp_top_100
 EMPTY_PLAYLIST_FILE_PATH = "./test_data/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
 
 
-class MyTestCase(unittest.TestCase):
+class TestPlaylistStatistics(unittest.TestCase):
     def test_normal_playlist_basic_values(self):
         playlist = TestUtils.load_playlist_from_json_file(NORMAL_PLAYLIST_FILE_PATH)
 
