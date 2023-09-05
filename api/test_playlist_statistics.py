@@ -43,4 +43,4 @@ class TestPlaylistStatistics(unittest.TestCase):
     def test_empty_playlist_average_duration(self):
         statistics = PlaylistStatistics(self.empty_playlist.tracks)
 
-        self.assertEqual(None, statistics.get_average_duration_ms())
+        self.assertIsNone(statistics.get_average_duration_ms())
