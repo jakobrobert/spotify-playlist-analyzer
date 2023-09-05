@@ -34,3 +34,13 @@ class TestPlaylistStatistics(unittest.TestCase):
         statistics = PlaylistStatistics(self.empty_playlist.tracks)
 
         self.assertEqual(0, statistics.get_total_duration_ms())
+
+    def test_top_100_playlist_average_duration(self):
+        statistics = PlaylistStatistics(self.top_100_playlist.tracks)
+
+        self.assertAlmostEqual(239512, statistics.get_average_duration_ms(), 0)
+
+    def test_empty_playlist_average_duration(self):
+        statistics = PlaylistStatistics(self.empty_playlist.tracks)
+
+        self.assertEqual(None, statistics.get_average_duration_ms())
