@@ -10,9 +10,12 @@ class TestPlaylistStatistics(unittest.TestCase):
         cls.top_100_playlist = TestUtils.load_playlist_from_json_file(
             "./test_data/playlist_6i2Qd6OpeRBAzxfscNXeWp_top_100_greatest_songs_of_all_time.json"
         )
+        cls.top_100_playlist_statistics = PlaylistStatistics(cls.top_100_playlist.tracks)
+
         cls.empty_playlist = TestUtils.load_playlist_from_json_file(
             "./test_data/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
         )
+        cls.empty_playlist_statistics = PlaylistStatistics(cls.empty_playlist.tracks)
 
     def test_top_100_playlist_basic_values(self):
         self.assertEqual("6i2Qd6OpeRBAzxfscNXeWp", self.top_100_playlist.id)
@@ -26,21 +29,13 @@ class TestPlaylistStatistics(unittest.TestCase):
 
     # TODONOW add 2 tests for each method of PlaylistStatistics. One for top 100 playlist, one for empty one.
     def test_top_100_playlist_total_duration(self):
-        statistics = PlaylistStatistics(self.top_100_playlist.tracks)
-
-        self.assertEqual(28022939, statistics.get_total_duration_ms())
+        self.assertEqual(28022939, self.top_100_playlist_statistics.get_total_duration_ms())
 
     def test_empty_playlist_total_duration(self):
-        statistics = PlaylistStatistics(self.empty_playlist.tracks)
-
-        self.assertEqual(0, statistics.get_total_duration_ms())
+        self.assertEqual(0, self.empty_playlist_statistics.get_total_duration_ms())
 
     def test_top_100_playlist_average_duration(self):
-        statistics = PlaylistStatistics(self.top_100_playlist.tracks)
-
-        self.assertAlmostEqual(239512, statistics.get_average_duration_ms(), 0)
+        self.assertAlmostEqual(239512, self.top_100_playlist_statistics.get_average_duration_ms(), 0)
 
     def test_empty_playlist_average_duration(self):
-        statistics = PlaylistStatistics(self.empty_playlist.tracks)
-
-        self.assertIsNone(statistics.get_average_duration_ms())
+        self.assertIsNone(self.empty_playlist_statistics.get_average_duration_ms())
