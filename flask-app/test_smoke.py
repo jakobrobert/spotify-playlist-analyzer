@@ -6,7 +6,7 @@ from spotify_playlist_analyzer import app
 
 PLAYLIST_ID_1 = "1v1enByYGutAxxH06UW3cf"
 PLAYLIST_ID_2 = "5CgE5f0xzNTTHd6zlYRyzW"
-PLAYLIST_ID_EMPTY = "5HYNylDNFV1bU6WrF1ot5Y"
+PLAYLIST_ID_EMPTY = "40389fDt9evjBgcgIMAlxe"
 TRACK_ID = "4cOdK2wGLETKBW3PvgPWqT"
 
 
