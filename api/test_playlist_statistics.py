@@ -39,3 +39,63 @@ class TestPlaylistStatistics(unittest.TestCase):
 
     def test_empty_playlist_average_duration(self):
         self.assertIsNone(self.empty_playlist_statistics.get_average_duration_ms())
+
+    def test_top_100_playlist_average_popularity(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_popularity(), 0)
+
+    def test_empty_playlist_average_popularity(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_popularity())
+        
+    def test_top_100_playlist_average_release_year(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_release_year(), 0)
+
+    def test_empty_playlist_average_release_year(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_release_year())
+        
+    def test_top_100_playlist_average_tempo(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_tempo(), 0)
+
+    def test_empty_playlist_average_tempo(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_tempo())
+        
+    def test_top_100_playlist_average_speechiness(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_speechiness(), 0)
+
+    def test_empty_playlist_average_speechiness(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_speechiness())
+        
+    def test_top_100_playlist_average_liveness(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_liveness(), 0)
+
+    def test_empty_playlist_average_liveness(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_liveness())
+
+    def test_top_100_playlist_average_acousticness(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_acousticness(), 0)
+
+    def test_empty_playlist_average_acousticness(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_acousticness())
+
+    def test_top_100_playlist_average_instrumentalness(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_instrumentalness(), 0)
+
+    def test_empty_playlist_average_instrumentalness(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_instrumentalness())
+
+    def test_top_100_playlist_average_valence(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_valence(), 0)
+
+    def test_empty_playlist_average_valence(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_valence())
+
+    def test_top_100_playlist_average_energy(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_energy(), 0)
+
+    def test_empty_playlist_average_energy(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_energy())
+
+    def test_top_100_playlist_average_danceability(self):
+        self.assertAlmostEqual(0, self.top_100_playlist_statistics.get_average_danceability(), 0)
+
+    def test_empty_playlist_average_danceability(self):
+        self.assertIsNone(self.empty_playlist_statistics.get_average_danceability())
