@@ -12,6 +12,7 @@ class TestUtils:
 
         return TestUtils.__create_playlist_from_dict(playlist_dict)
 
+    # TODONOW use methods of Playlist & Track instead. -> 1. delegate to them here. 2. inline
     @staticmethod
     def __create_playlist_from_dict(playlist_dict):
         playlist = Playlist()
