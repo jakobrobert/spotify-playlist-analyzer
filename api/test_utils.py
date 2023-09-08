@@ -6,11 +6,11 @@ from core.playlist.track import Track
 
 class TestUtils:
     @staticmethod
-    def load_playlist_from_json_string(json_string):
-        playlist_dict = json.loads(json_string)
-        playlist = TestUtils.__create_playlist_from_dict(playlist_dict)
+    def load_playlist_from_json_file(file_path):
+        with open(file_path, "r", encoding="utf-8") as file:
+            playlist_dict = json.load(file)
 
-        return playlist
+        return TestUtils.__create_playlist_from_dict(playlist_dict)
 
     @staticmethod
     def __create_playlist_from_dict(playlist_dict):
@@ -57,11 +57,3 @@ class TestUtils:
         track.speechiness = track_dict["speechiness"]
 
         return track
-
-    @staticmethod
-    def load_playlist_from_json_file(file_path):
-        with open(file_path, "r", encoding="utf-8") as file:
-            json_string = file.read()
-
-        return TestUtils.load_playlist_from_json_string(json_string)
-
