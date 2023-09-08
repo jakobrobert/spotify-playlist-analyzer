@@ -7,15 +7,15 @@ from core.playlist.track import Track
 class TestUtils:
     @staticmethod
     def load_playlist_from_json_string(json_string):
-        playlist = Playlist()
-
         playlist_dict = json.loads(json_string)
-        TestUtils.__create_playlist_from_dict(playlist, playlist_dict)
+        playlist = TestUtils.__create_playlist_from_dict(playlist_dict)
 
         return playlist
 
     @staticmethod
-    def __create_playlist_from_dict(playlist, playlist_dict):
+    def __create_playlist_from_dict(playlist_dict):
+        playlist = Playlist()
+
         playlist.id = playlist_dict["id"]
         playlist.name = playlist_dict["name"]
         tracks_dict = playlist_dict["tracks"]
@@ -24,6 +24,8 @@ class TestUtils:
         for track_dict in tracks_dict:
             track = TestUtils.__create_track_from_dict(track_dict)
             playlist.tracks.append(track)
+
+        return playlist
 
     @staticmethod
     def __create_track_from_dict(track_dict):
