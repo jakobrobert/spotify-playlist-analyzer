@@ -7,6 +7,19 @@ class Playlist:
         self.name = "n/a"
         self.tracks = []
 
+    def to_dict(self):
+        # Need to explicitly copy the dict, else changing the dict would change the original object
+        playlist_dict = dict(self.__dict__)
+
+        # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
+        playlist_dict["tracks"] = []
+        for track in self.tracks:
+            # Explicitly copy dict for consistency and robustness
+            track_dict = dict(track.__dict__)
+            playlist_dict["tracks"].append(track_dict)
+
+        return playlist_dict
+
     @staticmethod
     def from_dict(playlist_dict):
         playlist = Playlist()
