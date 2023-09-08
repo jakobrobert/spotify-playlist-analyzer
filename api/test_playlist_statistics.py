@@ -27,17 +27,6 @@ class TestPlaylistStatistics(unittest.TestCase):
         
         cls.empty_playlist_statistics = PlaylistStatistics(cls.empty_playlist.tracks)
 
-    # TODONOW remove those tests later
-    def test_top_100_playlist_basic_values(self):
-        self.assertEqual("6i2Qd6OpeRBAzxfscNXeWp", self.top_100_playlist.id)
-        self.assertEqual("Top 100 Greatest Songs of All Time", self.top_100_playlist.name)
-        self.assertEqual(117, len(self.top_100_playlist.tracks))
-
-    def test_empty_playlist_basic_values(self):
-        self.assertEqual("40389fDt9evjBgcgIMAlxe", self.empty_playlist.id)
-        self.assertEqual("Empty Playlist", self.empty_playlist.name)
-        self.assertEqual(0, len(self.empty_playlist.tracks))
-
     def test_top_100_playlist_total_duration(self):
         self.assertEqual(28022939, self.top_100_playlist_statistics.get_total_duration_ms())
 
