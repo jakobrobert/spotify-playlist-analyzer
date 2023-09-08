@@ -7,23 +7,24 @@ from test_utils import TestUtils
 class TestPlaylistStatistics(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        # TODONOW fix assertions, incorrect on purpose to ensure they can fail
         # TODONOW make playlist objects as local var only
         # TODONOW extract methods load_top_100_playlist, load_empty_playlist
         cls.top_100_playlist = TestUtils.load_playlist_from_json_file(
             "./test_data/playlist_6i2Qd6OpeRBAzxfscNXeWp_top_100_greatest_songs_of_all_time.json"
         )
-        cls.assertEqual("6i2Qd6OpeRBAzxfscNXeWp ", cls.top_100_playlist.id)
-        cls.assertEqual("Top 100 Greatest Songs of All Time ", cls.top_100_playlist.name)
-        cls.assertEqual(118, len(cls.top_100_playlist.tracks))
+        assert "6i2Qd6OpeRBAzxfscNXeWp " == cls.top_100_playlist.id
+        assert "Top 100 Greatest Songs of All Time " == cls.top_100_playlist.name
+        assert 118 == len(cls.top_100_playlist.tracks)
 
         cls.top_100_playlist_statistics = PlaylistStatistics(cls.top_100_playlist.tracks)
 
         cls.empty_playlist = TestUtils.load_playlist_from_json_file(
             "./test_data/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
         )
-        cls.assertEqual("40389fDt9evjBgcgIMAlxe ", cls.empty_playlist.id)
-        cls.assertEqual("Empty Playlist ", cls.empty_playlist.name)
-        cls.assertEqual(1, len(cls.empty_playlist.tracks))
+        assert "40389fDt9evjBgcgIMAlxe ", cls.empty_playlist.id
+        assert "Empty Playlist ", cls.empty_playlist.name
+        assert 1, len(cls.empty_playlist.tracks)
         
         cls.empty_playlist_statistics = PlaylistStatistics(cls.empty_playlist.tracks)
 
