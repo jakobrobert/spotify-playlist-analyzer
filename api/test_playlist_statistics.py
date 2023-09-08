@@ -7,25 +7,26 @@ from test_utils import TestUtils
 class TestPlaylistStatistics(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # TODONOW make playlist objects as local var only
         # TODONOW extract methods load_top_100_playlist, load_empty_playlist
-        cls.top_100_playlist = TestUtils.load_playlist_from_json_file(
+        top_100_playlist = TestUtils.load_playlist_from_json_file(
             "./test_data/playlist_6i2Qd6OpeRBAzxfscNXeWp_top_100_greatest_songs_of_all_time.json"
         )
-        assert "6i2Qd6OpeRBAzxfscNXeWp" == cls.top_100_playlist.id
-        assert "Top 100 Greatest Songs of All Time" == cls.top_100_playlist.name
-        assert 117 == len(cls.top_100_playlist.tracks)
+        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
+        assert "6i2Qd6OpeRBAzxfscNXeWp" == top_100_playlist.id
+        assert "Top 100 Greatest Songs of All Time" == top_100_playlist.name
+        assert 117 == len(top_100_playlist.tracks)
 
-        cls.top_100_playlist_statistics = PlaylistStatistics(cls.top_100_playlist.tracks)
+        cls.top_100_playlist_statistics = PlaylistStatistics(top_100_playlist.tracks)
 
-        cls.empty_playlist = TestUtils.load_playlist_from_json_file(
+        empty_playlist = TestUtils.load_playlist_from_json_file(
             "./test_data/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
         )
-        assert "40389fDt9evjBgcgIMAlxe" == cls.empty_playlist.id
-        assert "Empty Playlist" == cls.empty_playlist.name
-        assert 0 == len(cls.empty_playlist.tracks)
+        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
+        assert "40389fDt9evjBgcgIMAlxe" == empty_playlist.id
+        assert "Empty Playlist" == empty_playlist.name
+        assert 0 == len(empty_playlist.tracks)
         
-        cls.empty_playlist_statistics = PlaylistStatistics(cls.empty_playlist.tracks)
+        cls.empty_playlist_statistics = PlaylistStatistics(empty_playlist.tracks)
 
     def test_top_100_playlist_total_duration(self):
         self.assertEqual(28022939, self.top_100_playlist_statistics.get_total_duration_ms())
