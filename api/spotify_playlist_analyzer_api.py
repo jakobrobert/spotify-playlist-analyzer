@@ -88,11 +88,14 @@ def __playlist_to_dict(playlist):
     # Need to explicitly copy the dict, else changing the dict would change the original object
     playlist_dict = dict(playlist.__dict__)
     playlist_dict["statistics"] = ApiUtils.create_playlist_statistics_dict(playlist.tracks)
+
     # Need to convert tracks to dict manually, playlist.__dict__ does not work recursively
     playlist_dict["tracks"] = []
     for track in playlist.tracks:
-        # WARNING If you need to change track_dict, need to explicitly copy so original object will not be changed
-        playlist_dict["tracks"].append(track.__dict__)
+        # Explicitly copy dict for consistency and robustness
+        track_dict = dict(track.__dict__)
+        playlist_dict["tracks"].append(track_dict)
+
     return playlist_dict
 
 
