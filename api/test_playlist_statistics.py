@@ -7,25 +7,10 @@ from test_utils import TestUtils
 class TestPlaylistStatistics(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # TODONOW extract methods load_top_100_playlist, load_empty_playlist
-        top_100_playlist = TestUtils.load_playlist_from_json_file(
-            "./test_data/playlist_6i2Qd6OpeRBAzxfscNXeWp_top_100_greatest_songs_of_all_time.json"
-        )
-        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
-        assert "6i2Qd6OpeRBAzxfscNXeWp" == top_100_playlist.id
-        assert "Top 100 Greatest Songs of All Time" == top_100_playlist.name
-        assert 117 == len(top_100_playlist.tracks)
-
+        top_100_playlist = cls.__load__and_validate_top_100_playlist()
         cls.top_100_playlist_statistics = PlaylistStatistics(top_100_playlist.tracks)
 
-        empty_playlist = TestUtils.load_playlist_from_json_file(
-            "./test_data/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
-        )
-        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
-        assert "40389fDt9evjBgcgIMAlxe" == empty_playlist.id
-        assert "Empty Playlist" == empty_playlist.name
-        assert 0 == len(empty_playlist.tracks)
-        
+        empty_playlist = cls.__load_and_validate_empty_playlist()
         cls.empty_playlist_statistics = PlaylistStatistics(empty_playlist.tracks)
 
     def test_top_100_playlist_total_duration(self):
@@ -99,3 +84,25 @@ class TestPlaylistStatistics(unittest.TestCase):
 
     def test_empty_playlist_average_danceability(self):
         self.assertIsNone(self.empty_playlist_statistics.get_average_danceability())
+
+    @classmethod
+    def __load__and_validate_top_100_playlist(cls):
+        path = "./test_data/playlist_6i2Qd6OpeRBAzxfscNXeWp_top_100_greatest_songs_of_all_time.json"
+        top_100_playlist = TestUtils.load_playlist_from_json_file(path)
+
+        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
+        assert "6i2Qd6OpeRBAzxfscNXeWp" == top_100_playlist.id
+        assert "Top 100 Greatest Songs of All Time" == top_100_playlist.name
+        assert 117 == len(top_100_playlist.tracks)
+        return top_100_playlist
+
+    @classmethod
+    def __load_and_validate_empty_playlist(cls):
+        path = "./test_data/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
+        empty_playlist = TestUtils.load_playlist_from_json_file(path)
+
+        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
+        assert "40389fDt9evjBgcgIMAlxe" == empty_playlist.id
+        assert "Empty Playlist" == empty_playlist.name
+        assert 0 == len(empty_playlist.tracks)
+        return empty_playlist
