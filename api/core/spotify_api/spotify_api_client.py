@@ -1,12 +1,12 @@
 import configparser
 from math import ceil
 
-from core.http_error import HttpError
-from core.playlist.playlist import Playlist
-from core.playlist.track import Track
-from core.spotify_api.spotify_api_cache import SpotifyApiCache
-from core.spotify_api.spotify_api_utils import SpotifyApiUtils
-from core.utils import Utils
+from ..http_error import HttpError
+from ..playlist.playlist import Playlist
+from ..playlist.track import Track
+from .spotify_api_cache import SpotifyApiCache
+from .spotify_api_utils import SpotifyApiUtils
+from ..utils import Utils
 
 LOG_PREFIX = "SpotifyApiClient."
 

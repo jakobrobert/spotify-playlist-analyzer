@@ -1,7 +1,7 @@
-from core.analysis.attribute_distribution_interval import AttributeDistributionInterval
-from core.analysis.super_genre_utils import SuperGenreUtils
-from core.playlist.track import Track
-from core.utils import Utils
+from .attribute_distribution_interval import AttributeDistributionInterval
+from .super_genre_utils import SuperGenreUtils
+from ..playlist.track import Track
+from ..utils import Utils
 
 LOG_PREFIX = "AttributeDistribution"
 

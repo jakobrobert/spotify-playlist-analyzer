@@ -1,6 +1,6 @@
-from core.http_error import HttpError
-from core.track_filter import TrackFilter
-from core.utils import Utils
+from .http_error import HttpError
+from .track_filter import TrackFilter
+from .utils import Utils
 
 
 LOG_PREFIX = "FilterParams."

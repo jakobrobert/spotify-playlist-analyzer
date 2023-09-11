@@ -4,12 +4,12 @@ import random
 
 from flask import jsonify
 
-from core.analysis.attribute_distribution import AttributeDistribution
-from core.filter_params import FilterParams
-from core.http_error import HttpError
-from core.analysis.playlist_statistics import PlaylistStatistics
-from core.track_filter import TrackFilter
-from core.utils import Utils
+from .analysis.attribute_distribution import AttributeDistribution
+from .filter_params import FilterParams
+from .http_error import HttpError
+from .analysis.playlist_statistics import PlaylistStatistics
+from .track_filter import TrackFilter
+from .utils import Utils
 
 
 LOG_PREFIX = "ApiUtils."
