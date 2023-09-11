@@ -1,3 +1,6 @@
+# WARNING Keep tests in root directory. Tried to move into "tests" directory,
+# Got tests & dev working by using relative imports, but this broke uat / uwsgi. See #317
+
 import unittest
 
 from core.analysis.playlist_statistics import PlaylistStatistics
