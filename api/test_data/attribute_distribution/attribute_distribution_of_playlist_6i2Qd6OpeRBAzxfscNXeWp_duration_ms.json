@@ -1,1 +1,42 @@
-[{"count":1,"label":"< 02:00","percentage":0.847457627118644},{"count":13,"label":"\u2265 02:00","percentage":11.016949152542374},{"count":13,"label":"\u2265 02:30","percentage":11.016949152542374},{"count":19,"label":"\u2265 03:00","percentage":16.10169491525424},{"count":16,"label":"\u2265 03:30","percentage":13.559322033898304},{"count":19,"label":"\u2265 04:00","percentage":16.10169491525424},{"count":17,"label":"\u2265 04:30","percentage":14.40677966101695},{"count":20,"label":"\u2265 05:00","percentage":16.949152542372882}]
+[
+    {
+        "count": 1,
+        "label": "< 02:00",
+        "percentage": 0.847457627118644
+    },
+    {
+        "count": 13,
+        "label": "\u2265 02:00",
+        "percentage": 11.016949152542374
+    },
+    {
+        "count": 13,
+        "label": "\u2265 02:30",
+        "percentage": 11.016949152542374
+    },
+    {
+        "count": 19,
+        "label": "\u2265 03:00",
+        "percentage": 16.10169491525424
+    },
+    {
+        "count": 16,
+        "label": "\u2265 03:30",
+        "percentage": 13.559322033898304
+    },
+    {
+        "count": 19,
+        "label": "\u2265 04:00",
+        "percentage": 16.10169491525424
+    },
+    {
+        "count": 17,
+        "label": "\u2265 04:30",
+        "percentage": 14.40677966101695
+    },
+    {
+        "count": 20,
+        "label": "\u2265 05:00",
+        "percentage": 16.949152542372882
+    }
+]
