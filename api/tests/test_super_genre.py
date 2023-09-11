@@ -2,7 +2,7 @@ import unittest
 
 from parameterized import parameterized
 
-from core.analysis.super_genre_utils import SuperGenreUtils
+from ..core.analysis.super_genre_utils import SuperGenreUtils
 
 
 class TestSuperGenre(unittest.TestCase):
