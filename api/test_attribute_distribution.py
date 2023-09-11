@@ -17,6 +17,21 @@ class TestAttributeDistribution(unittest.TestCase):
         cls.empty_playlist_attribute_distribution = AttributeDistribution(empty_playlist.tracks)
 
     # TODONOW Add 2 tests for each method of AttributeDistribution. 1 for top 100, 1 for empty playlist
+    def test_top_100_playlist_duration_distribution(self):
+        duration_distribution_items = self.top_100_playlist_attribute_distribution.get_duration_items()
+
+        self.assertEqual(8, len(duration_distribution_items))
+
+        # TODONOW test "count" for each item
+        # TODONOW test "percentage" for each item
+        self.assertEqual("< 02:00", duration_distribution_items[0]["label"])
+        self.assertEqual("≥ 02:00", duration_distribution_items[1]["label"])
+        self.assertEqual("≥ 02:30", duration_distribution_items[2]["label"])
+        self.assertEqual("≥ 03:00", duration_distribution_items[3]["label"])
+        self.assertEqual("≥ 03:30", duration_distribution_items[4]["label"])
+        self.assertEqual("≥ 04:00", duration_distribution_items[5]["label"])
+        self.assertEqual("≥ 04:30", duration_distribution_items[6]["label"])
+        self.assertEqual("≥ 05:00", duration_distribution_items[7]["label"])
 
     @classmethod
     def __load__and_validate_top_100_playlist(cls):
