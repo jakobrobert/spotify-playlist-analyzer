@@ -1,7 +1,7 @@
 import unittest
 
-from core.analysis.playlist_statistics import PlaylistStatistics
-from test_utils import TestUtils
+from ..core.analysis.playlist_statistics import PlaylistStatistics
+from .test_utils import TestUtils
 
 
 class TestPlaylistStatistics(unittest.TestCase):

@@ -1,4 +1,4 @@
-from core.playlist.track import Track
+from .track import Track
 
 
 class Playlist:

@@ -1,6 +1,6 @@
 import json
 
-from core.playlist.playlist import Playlist
+from ..core.playlist.playlist import Playlist
 
 
 class TestUtils:

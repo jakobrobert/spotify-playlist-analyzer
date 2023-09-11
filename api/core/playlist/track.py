@@ -1,4 +1,4 @@
-from core.analysis.super_genre_utils import SuperGenreUtils
+from ..analysis.super_genre_utils import SuperGenreUtils
 
 
 class Keys:
