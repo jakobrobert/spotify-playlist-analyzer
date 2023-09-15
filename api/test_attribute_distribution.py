@@ -20,14 +20,14 @@ class TestAttributeDistribution(unittest.TestCase):
         # TODONOW extract method to load attribute distribution, pass playlist id & attribute_name, then build file path
         file_path = "test_data/attribute_distribution/attribute_distribution_of_playlist_26LDpXWgS0nYibyLS9X4Wq_duration_ms.json"
         with open(file_path, "r", encoding="utf-8") as file:
-            expected_duration_distribution_items = json.load(file)
+            expected_items = json.load(file)
 
-        actual_duration_distribution_items = self.top_100_playlist_attribute_distribution.get_duration_items()
+        actual_items = self.top_100_playlist_attribute_distribution.get_duration_items()
 
-        # TODONOW extract method, can do it generally, independent of attribute
-        self.assertEqual(len(expected_duration_distribution_items), len(actual_duration_distribution_items))
+        # TODONOW extract method for assertions, can do it generally, independent of attribute
+        self.assertEqual(len(expected_items), len(actual_items))
 
-        for expected_item, actual_item in zip(expected_duration_distribution_items, actual_duration_distribution_items):
+        for expected_item, actual_item in zip(expected_items, actual_items):
             self.assertEqual(expected_item["label"], actual_item["label"])
             self.assertEqual(expected_item["count"], actual_item["count"])
             self.assertEqual(expected_item["percentage"], actual_item["percentage"])
@@ -36,13 +36,14 @@ class TestAttributeDistribution(unittest.TestCase):
         # TODONOW extract method to load attribute distribution, pass playlist id & attribute_name, then build file path
         file_path = "test_data/attribute_distribution/attribute_distribution_of_playlist_40389fDt9evjBgcgIMAlxe_duration_ms.json"
         with open(file_path, "r", encoding="utf-8") as file:
-            expected_duration_distribution_items = json.load(file)
+            expected_items = json.load(file)
 
-        actual_duration_distribution_items = self.empty_playlist_attribute_distribution.get_duration_items()
+        actual_items = self.empty_playlist_attribute_distribution.get_duration_items()
 
-        self.assertEqual(len(expected_duration_distribution_items), len(actual_duration_distribution_items))
+        # TODONOW extract method for assertions, can do it generally, independent of attribute
+        self.assertEqual(len(expected_items), len(actual_items))
 
-        for expected_item, actual_item in zip(expected_duration_distribution_items, actual_duration_distribution_items):
+        for expected_item, actual_item in zip(expected_items, actual_items):
             self.assertEqual(expected_item["label"], actual_item["label"])
             self.assertEqual(expected_item["count"], actual_item["count"])
             self.assertEqual(expected_item["percentage"], actual_item["percentage"])
