@@ -34,8 +34,8 @@ class TestAttributeDistribution(unittest.TestCase):
     # TODONOW Add 2 tests for each method of AttributeDistribution. 1 for top 100, 1 for empty playlist
 
 
-    @classmethod
-    def __load__and_validate_top_100_playlist(cls):
+    @staticmethod
+    def __load__and_validate_top_100_playlist():
         path = "test_data/playlists/playlist_26LDpXWgS0nYibyLS9X4Wq_top_100_greatest_songs_of_all_time.json"
         top_100_playlist = TestUtils.load_playlist_from_json_file(path)
 
@@ -45,8 +45,8 @@ class TestAttributeDistribution(unittest.TestCase):
         assert 117 == len(top_100_playlist.tracks)
         return top_100_playlist
 
-    @classmethod
-    def __load_and_validate_empty_playlist(cls):
+    @staticmethod
+    def __load_and_validate_empty_playlist():
         path = "test_data/playlists/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
         empty_playlist = TestUtils.load_playlist_from_json_file(path)
 
