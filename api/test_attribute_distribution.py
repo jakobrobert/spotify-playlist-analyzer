@@ -16,46 +16,23 @@ class TestAttributeDistribution(unittest.TestCase):
         empty_playlist = cls.__load_and_validate_empty_playlist()
         cls.empty_playlist_attribute_distribution = AttributeDistribution(empty_playlist.tracks)
 
-    # TODONOW Add 2 tests for each method of AttributeDistribution. 1 for top 100, 1 for empty playlist
     def test_top_100_playlist_duration_distribution(self):
+        # TODONOW load expected_duration_distribution_items from json
+
         duration_distribution_items = self.top_100_playlist_attribute_distribution.get_duration_items()
 
-        self.assertEqual(8, len(duration_distribution_items))
+        # TODONOW dynamically add assertions. for each item -> label, count, percentage
 
-        self.assertEqual("< 02:00", duration_distribution_items[0]["label"])
-        self.assertEqual(1, duration_distribution_items[0]["count"])
-        self.assertAlmostEqual(0.9, duration_distribution_items[0]["percentage"], 1)
+    def test_empty_playlist_duration_distribution(self):
+        # TODONOW load expected_duration_distribution_items from json
 
-        self.assertEqual("≥ 02:00", duration_distribution_items[1]["label"])
-        self.assertEqual(12, duration_distribution_items[1]["count"])
-        self.assertAlmostEqual(10.3, duration_distribution_items[1]["percentage"], 1)
+        duration_distribution_items = self.empty_playlist_attribute_distribution.get_duration_items()
 
-        # TODONOW better load expected values from json, would be too much work and not maintainable to hardcode everything
-        """
-        self.assertEqual("≥ 02:30", duration_distribution_items[2]["label"])
-        self.assertEqual(1, duration_distribution_items[2]["count"])
-        self.assertIsNone(duration_distribution_items[2]["percentage"])
+        # TODONOW dynamically add assertions. for each item -> label, count, percentage
 
-        self.assertEqual("≥ 03:00", duration_distribution_items[3]["label"])
-        self.assertEqual(1, duration_distribution_items[3]["count"])
-        self.assertIsNone(duration_distribution_items[3]["percentage"])
 
-        self.assertEqual("≥ 03:30", duration_distribution_items[4]["label"])
-        self.assertEqual(1, duration_distribution_items[4]["count"])
-        self.assertIsNone(duration_distribution_items[4]["percentage"])
+    # TODONOW Add 2 tests for each method of AttributeDistribution. 1 for top 100, 1 for empty playlist
 
-        self.assertEqual("≥ 04:00", duration_distribution_items[5]["label"])
-        self.assertEqual(1, duration_distribution_items[5]["count"])
-        self.assertIsNone(duration_distribution_items[5]["percentage"])
-
-        self.assertEqual("≥ 04:30", duration_distribution_items[6]["label"])
-        self.assertEqual(1, duration_distribution_items[6]["count"])
-        self.assertIsNone(duration_distribution_items[6]["percentage"])
-
-        self.assertEqual("≥ 05:00", duration_distribution_items[7]["label"])
-        self.assertEqual(1, duration_distribution_items[7]["count"])
-        self.assertIsNone(duration_distribution_items[7]["percentage"])
-        """
 
     @classmethod
     def __load__and_validate_top_100_playlist(cls):
