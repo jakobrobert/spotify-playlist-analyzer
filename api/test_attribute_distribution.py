@@ -40,8 +40,8 @@ class TestAttributeDistribution(unittest.TestCase):
         top_100_playlist = TestUtils.load_playlist_from_json_file(path)
 
         # Note: We use assert instead of assertEquals because cannot use it in setUpClass
-        assert "6i2Qd6OpeRBAzxfscNXeWp" == top_100_playlist.id
-        assert "Top 100 Greatest Songs of All Time" == top_100_playlist.name
+        assert "26LDpXWgS0nYibyLS9X4Wq" == top_100_playlist.id
+        assert "Top 100 Greatest Songs of All Time [Backup on 2023-09-15 14:40 UTC]" == top_100_playlist.name
         assert 117 == len(top_100_playlist.tracks)
         return top_100_playlist
 
