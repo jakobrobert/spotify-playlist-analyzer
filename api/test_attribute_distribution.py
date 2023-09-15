@@ -36,7 +36,7 @@ class TestAttributeDistribution(unittest.TestCase):
 
     @classmethod
     def __load__and_validate_top_100_playlist(cls):
-        path = "test_data/playlists/playlist_6i2Qd6OpeRBAzxfscNXeWp_top_100_greatest_songs_of_all_time.json"
+        path = "test_data/playlists/playlist_26LDpXWgS0nYibyLS9X4Wq_top_100_greatest_songs_of_all_time.json"
         top_100_playlist = TestUtils.load_playlist_from_json_file(path)
 
         # Note: We use assert instead of assertEquals because cannot use it in setUpClass

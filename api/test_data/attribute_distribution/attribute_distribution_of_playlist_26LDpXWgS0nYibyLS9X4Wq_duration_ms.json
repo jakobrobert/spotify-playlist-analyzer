@@ -2,41 +2,41 @@
     {
         "count": 1,
         "label": "< 02:00",
-        "percentage": 0.847457627118644
+        "percentage": 0.8547008547008547
     },
     {
-        "count": 13,
+        "count": 14,
         "label": "\u2265 02:00",
-        "percentage": 11.016949152542374
+        "percentage": 11.965811965811966
     },
     {
         "count": 13,
         "label": "\u2265 02:30",
-        "percentage": 11.016949152542374
+        "percentage": 11.11111111111111
     },
     {
-        "count": 19,
+        "count": 18,
         "label": "\u2265 03:00",
-        "percentage": 16.10169491525424
+        "percentage": 15.384615384615385
     },
     {
-        "count": 16,
+        "count": 15,
         "label": "\u2265 03:30",
-        "percentage": 13.559322033898304
+        "percentage": 12.820512820512821
     },
     {
         "count": 19,
         "label": "\u2265 04:00",
-        "percentage": 16.10169491525424
+        "percentage": 16.23931623931624
     },
     {
         "count": 17,
         "label": "\u2265 04:30",
-        "percentage": 14.40677966101695
+        "percentage": 14.52991452991453
     },
     {
         "count": 20,
         "label": "\u2265 05:00",
-        "percentage": 16.949152542372882
+        "percentage": 17.094017094017094
     }
 ]
