@@ -17,19 +17,19 @@ class TestPlaylistStatistics(unittest.TestCase):
         cls.empty_playlist_statistics = PlaylistStatistics(empty_playlist.tracks)
 
     def test_top_100_playlist_total_duration(self):
-        self.assertEqual(28022939, self.top_100_playlist_statistics.get_total_duration_ms())
+        self.assertEqual(28014935, self.top_100_playlist_statistics.get_total_duration_ms())
 
     def test_empty_playlist_total_duration(self):
         self.assertEqual(0, self.empty_playlist_statistics.get_total_duration_ms())
 
     def test_top_100_playlist_average_duration(self):
-        self.assertAlmostEqual(239512, self.top_100_playlist_statistics.get_average_duration_ms(), 0)
+        self.assertAlmostEqual(239444, self.top_100_playlist_statistics.get_average_duration_ms(), 0)
 
     def test_empty_playlist_average_duration(self):
         self.assertIsNone(self.empty_playlist_statistics.get_average_duration_ms())
 
     def test_top_100_playlist_average_popularity(self):
-        self.assertAlmostEqual(66, self.top_100_playlist_statistics.get_average_popularity(), 0)
+        self.assertAlmostEqual(65, self.top_100_playlist_statistics.get_average_popularity(), 0)
 
     def test_empty_playlist_average_popularity(self):
         self.assertIsNone(self.empty_playlist_statistics.get_average_popularity())
@@ -59,7 +59,7 @@ class TestPlaylistStatistics(unittest.TestCase):
         self.assertIsNone(self.empty_playlist_statistics.get_average_liveness())
 
     def test_top_100_playlist_average_acousticness(self):
-        self.assertAlmostEqual(26, self.top_100_playlist_statistics.get_average_acousticness(), 0)
+        self.assertAlmostEqual(27, self.top_100_playlist_statistics.get_average_acousticness(), 0)
 
     def test_empty_playlist_average_acousticness(self):
         self.assertIsNone(self.empty_playlist_statistics.get_average_acousticness())
@@ -71,7 +71,7 @@ class TestPlaylistStatistics(unittest.TestCase):
         self.assertIsNone(self.empty_playlist_statistics.get_average_instrumentalness())
 
     def test_top_100_playlist_average_valence(self):
-        self.assertAlmostEqual(63, self.top_100_playlist_statistics.get_average_valence(), 0)
+        self.assertAlmostEqual(62, self.top_100_playlist_statistics.get_average_valence(), 0)
 
     def test_empty_playlist_average_valence(self):
         self.assertIsNone(self.empty_playlist_statistics.get_average_valence())
@@ -94,8 +94,8 @@ class TestPlaylistStatistics(unittest.TestCase):
         top_100_playlist = TestUtils.load_playlist_from_json_file(path)
 
         # Note: We use assert instead of assertEquals because cannot use it in setUpClass
-        assert "6i2Qd6OpeRBAzxfscNXeWp" == top_100_playlist.id
-        assert "Top 100 Greatest Songs of All Time" == top_100_playlist.name
+        assert "26LDpXWgS0nYibyLS9X4Wq" == top_100_playlist.id
+        assert "Top 100 Greatest Songs of All Time [Backup on 2023-09-15 14:40 UTC]" == top_100_playlist.name
         assert 117 == len(top_100_playlist.tracks)
         return top_100_playlist
 
