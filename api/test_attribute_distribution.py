@@ -19,7 +19,7 @@ class TestAttributeDistribution(unittest.TestCase):
     def test_top_100_playlist_duration_distribution(self):
         # TODONOW extract method to load attribute distribution, pass playlist id & attribute_name, then build file path
         playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
-        attribute_name = "duration__ms" # TODONOW fix, error on purpose
+        attribute_name = "duration_ms"
         file_path = f"test_data/attribute_distribution/attribute_distribution_of_playlist_{playlist_id}_{attribute_name}.json"
         with open(file_path, "r", encoding="utf-8") as file:
             expected_items = json.load(file)
