@@ -19,31 +19,20 @@ class TestAttributeDistribution(unittest.TestCase):
     def test_top_100_playlist_duration_distribution(self):
         playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
         attribute_name = "duration_ms"
-        expected_items = self.__load_expected_attribute_distribution_items(playlist_id, attribute_name)
+        expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
+
         actual_items = self.top_100_playlist_attribute_distribution.get_duration_items()
 
-        # TODONOW extract method for assertions, can do it generally, independent of attribute
-        self.assertEqual(len(expected_items), len(actual_items))
-
-        for expected_item, actual_item in zip(expected_items, actual_items):
-            self.assertEqual(expected_item["label"], actual_item["label"])
-            self.assertEqual(expected_item["count"], actual_item["count"])
-            self.assertEqual(expected_item["percentage"], actual_item["percentage"])
+        self.__assert_distribution_items(actual_items, expected_items)
 
     def test_empty_playlist_duration_distribution(self):
         playlist_id = "40389fDt9evjBgcgIMAlxe"
         attribute_name = "duration_ms"
-        expected_items = self.__load_expected_attribute_distribution_items(playlist_id, attribute_name)
+        expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
+
         actual_items = self.empty_playlist_attribute_distribution.get_duration_items()
 
-        # TODONOW extract method for assertions, can do it generally, independent of attribute
-        self.assertEqual(len(expected_items), len(actual_items))
-
-        for expected_item, actual_item in zip(expected_items, actual_items):
-            self.assertEqual(expected_item["label"], actual_item["label"])
-            self.assertEqual(expected_item["count"], actual_item["count"])
-            self.assertEqual(expected_item["percentage"], actual_item["percentage"])
-
+        self.__assert_distribution_items(actual_items, expected_items)
 
     # TODONOW Add 2 tests for each method of AttributeDistribution. 1 for top 100, 1 for empty playlist
 
@@ -70,7 +59,7 @@ class TestAttributeDistribution(unittest.TestCase):
         return empty_playlist
 
     @staticmethod
-    def __load_expected_attribute_distribution_items(playlist_id, attribute_name):
+    def __load_expected_distribution_items(playlist_id, attribute_name):
         file_path_prefix = "test_data/attribute_distribution/attribute_distribution_of_playlist"
         file_path = f"{file_path_prefix}_{playlist_id}_{attribute_name}.json"
 
@@ -78,3 +67,11 @@ class TestAttributeDistribution(unittest.TestCase):
             expected_items = json.load(file)
 
         return expected_items
+
+    def __assert_distribution_items(self, actual_items, expected_items):
+        self.assertEqual(len(expected_items), len(actual_items))
+
+        for expected_item, actual_item in zip(expected_items, actual_items):
+            self.assertEqual(expected_item["label"], actual_item["label"])
+            self.assertEqual(expected_item["count"], actual_item["count"])
+            self.assertEqual(expected_item["percentage"], actual_item["percentage"])
