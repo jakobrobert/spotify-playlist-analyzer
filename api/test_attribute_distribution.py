@@ -30,7 +30,6 @@ class TestAttributeDistribution(unittest.TestCase):
 
         self.__assert_distribution_items(actual_items, expected_items)
 
-    # TODONOW Add 2 tests for each method of AttributeDistribution. 1 for top 100, 1 for empty playlist
     def test_top_100_playlist_release_year_distribution(self):
         expected_items = self.__load_expected_distribution_items_for_top_100_playlist("release_year")
 
@@ -42,6 +41,216 @@ class TestAttributeDistribution(unittest.TestCase):
         expected_items = self.__load_expected_distribution_items_for_empty_playlist("release_year")
 
         actual_items = self.empty_playlist_attribute_distribution.get_release_year_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_top_100_playlist_popularity_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("popularity")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_popularity_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_popularity_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("popularity")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_popularity_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_top_100_playlist_super_genres_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("super_genres")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_super_genres_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_super_genres_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("super_genres")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_super_genres_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_top_100_playlist_tempo_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("tempo")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_tempo_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_tempo_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("tempo")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_tempo_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_key_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("key")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_key_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_key_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("key")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_key_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_mode_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("mode")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_mode_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_mode_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("mode")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_mode_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_key_and_mode_pair_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("key_and_mode_pair")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_key_and_mode_pair_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_key_and_mode_pair_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("key_and_mode_pair")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_key_and_mode_pair_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_key_signature_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("key_signature")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_key_signature_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_key_signature_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("key_signature")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_key_signature_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_loudness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("loudness")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_loudness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_loudness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("loudness")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_loudness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_danceability_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("danceability")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_danceability_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_danceability_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("danceability")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_danceability_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_energy_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("energy")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_energy_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_energy_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("energy")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_energy_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_speechiness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("speechiness")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_speechiness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_speechiness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("speechiness")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_speechiness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_liveness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("liveness")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_liveness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_liveness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("liveness")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_liveness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_acousticness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("acousticness")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_acousticness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_acousticness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("acousticness")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_acousticness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_instrumentalness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("instrumentalness")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_instrumentalness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_instrumentalness_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("instrumentalness")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_instrumentalness_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+        
+    def test_top_100_playlist_valence_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("valence")
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_valence_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_valence_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("valence")
+
+        actual_items = self.empty_playlist_attribute_distribution.get_valence_items()
 
         self.__assert_distribution_items(actual_items, expected_items)
 
