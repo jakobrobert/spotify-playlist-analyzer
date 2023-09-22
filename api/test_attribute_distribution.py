@@ -17,13 +17,9 @@ class TestAttributeDistribution(unittest.TestCase):
         cls.empty_playlist_attribute_distribution = AttributeDistribution(empty_playlist.tracks)
 
     def test_top_100_playlist_duration_distribution(self):
-        # TODONOW extract method to load attribute distribution, pass playlist id & attribute_name, then build file path
         playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
         attribute_name = "duration_ms"
-        file_path = f"test_data/attribute_distribution/attribute_distribution_of_playlist_{playlist_id}_{attribute_name}.json"
-        with open(file_path, "r", encoding="utf-8") as file:
-            expected_items = json.load(file)
-
+        expected_items = self.__load_expected_attribute_distribution_items(playlist_id, attribute_name)
         actual_items = self.top_100_playlist_attribute_distribution.get_duration_items()
 
         # TODONOW extract method for assertions, can do it generally, independent of attribute
@@ -35,13 +31,9 @@ class TestAttributeDistribution(unittest.TestCase):
             self.assertEqual(expected_item["percentage"], actual_item["percentage"])
 
     def test_empty_playlist_duration_distribution(self):
-        # TODONOW extract method to load attribute distribution, pass playlist id & attribute_name, then build file path
         playlist_id = "40389fDt9evjBgcgIMAlxe"
         attribute_name = "duration_ms"
-        file_path = f"test_data/attribute_distribution/attribute_distribution_of_playlist_{playlist_id}_{attribute_name}.json"
-        with open(file_path, "r", encoding="utf-8") as file:
-            expected_items = json.load(file)
-
+        expected_items = self.__load_expected_attribute_distribution_items(playlist_id, attribute_name)
         actual_items = self.empty_playlist_attribute_distribution.get_duration_items()
 
         # TODONOW extract method for assertions, can do it generally, independent of attribute
@@ -79,5 +71,10 @@ class TestAttributeDistribution(unittest.TestCase):
 
     @staticmethod
     def __load_expected_attribute_distribution_items(playlist_id, attribute_name):
-        # TODONOW implement
-        pass
+        file_path_prefix = "test_data/attribute_distribution/attribute_distribution_of_playlist"
+        file_path = f"{file_path_prefix}_{playlist_id}_{attribute_name}.json"
+
+        with open(file_path, "r", encoding="utf-8") as file:
+            expected_items = json.load(file)
+
+        return expected_items
