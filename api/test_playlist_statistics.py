@@ -90,22 +90,28 @@ class TestPlaylistStatistics(unittest.TestCase):
 
     @classmethod
     def __load__and_validate_top_100_playlist(cls):
-        path = "test_data/playlists/playlist_26LDpXWgS0nYibyLS9X4Wq_top_100_greatest_songs_of_all_time.json"
-        top_100_playlist = TestUtils.load_playlist_from_json_file(path)
+        playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
+        playlist_directory_name = f"{playlist_id}_top_100_greatest_songs_of_all_time"
+        file_path = f"test_data/playlists/{playlist_directory_name}/playlist.json"
+        playlist = TestUtils.load_playlist_from_json_file(file_path)
 
-        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
-        assert "26LDpXWgS0nYibyLS9X4Wq" == top_100_playlist.id
-        assert "Top 100 Greatest Songs of All Time [Backup on 2023-09-15 14:40 UTC]" == top_100_playlist.name
-        assert 117 == len(top_100_playlist.tracks)
-        return top_100_playlist
+        # We use assert instead of assertEquals because cannot use it in setUpClass
+        assert playlist_id == playlist.id
+        assert "Top 100 Greatest Songs of All Time [Backup on 2023-09-15 14:40 UTC]" == playlist.name
+        assert 117 == len(playlist.tracks)
+
+        return playlist
 
     @classmethod
     def __load_and_validate_empty_playlist(cls):
-        path = "test_data/playlists/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
-        empty_playlist = TestUtils.load_playlist_from_json_file(path)
+        playlist_id = "40389fDt9evjBgcgIMAlxe"
+        playlist_directory_name = f"{playlist_id}_empty"
+        file_path = f"test_data/playlists/{playlist_directory_name}/playlist.json"
+        playlist = TestUtils.load_playlist_from_json_file(file_path)
 
-        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
-        assert "40389fDt9evjBgcgIMAlxe" == empty_playlist.id
-        assert "Empty Playlist" == empty_playlist.name
-        assert 0 == len(empty_playlist.tracks)
-        return empty_playlist
+        # We use assert instead of assertEquals because cannot use it in setUpClass
+        assert "40389fDt9evjBgcgIMAlxe" == playlist.id
+        assert "Empty Playlist" == playlist.name
+        assert 0 == len(playlist.tracks)
+
+        return playlist
