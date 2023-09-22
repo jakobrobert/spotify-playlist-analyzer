@@ -36,8 +36,6 @@ class TestAttributeDistribution(unittest.TestCase):
         actual_items = self.empty_playlist_attribute_distribution.get_release_year_items()
         self.__assert_distribution_items(actual_items, expected_items)
 
-# TODONOW add test data for remaining attributes
-    """
     def test_top_100_playlist_popularity_distribution(self):
         expected_items = self.__load_expected_distribution_items_for_top_100_playlist("popularity")
         actual_items = self.top_100_playlist_attribute_distribution.get_popularity_items()
@@ -187,7 +185,6 @@ class TestAttributeDistribution(unittest.TestCase):
         expected_items = self.__load_expected_distribution_items_for_empty_playlist("valence")
         actual_items = self.empty_playlist_attribute_distribution.get_valence_items()
         self.__assert_distribution_items(actual_items, expected_items)
-    """
 
     @staticmethod
     def __load_expected_distribution_items(playlist_directory_name, attribute_name):
