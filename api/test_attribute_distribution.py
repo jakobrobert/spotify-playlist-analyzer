@@ -41,7 +41,7 @@ class TestAttributeDistribution(unittest.TestCase):
         attribute_name = "release_year"
         expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
 
-        actual_items = self.top_100_playlist_attribute_distribution.get_duration_items()
+        actual_items = self.top_100_playlist_attribute_distribution.get_release_year_items()
 
         self.__assert_distribution_items(actual_items, expected_items)
 
@@ -50,7 +50,7 @@ class TestAttributeDistribution(unittest.TestCase):
         attribute_name = "release_year"
         expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
 
-        actual_items = self.empty_playlist_attribute_distribution.get_duration_items()
+        actual_items = self.empty_playlist_attribute_distribution.get_release_year_items()
 
         self.__assert_distribution_items(actual_items, expected_items)
 
