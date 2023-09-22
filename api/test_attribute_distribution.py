@@ -18,7 +18,9 @@ class TestAttributeDistribution(unittest.TestCase):
 
     def test_top_100_playlist_duration_distribution(self):
         # TODONOW extract method to load attribute distribution, pass playlist id & attribute_name, then build file path
-        file_path = "test_data/attribute_distribution/attribute_distribution_of_playlist_26LDpXWgS0nYibyLS9X4Wq_duration_ms.json"
+        playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
+        attribute_name = "duration__ms" # TODONOW fix, error on purpose
+        file_path = f"test_data/attribute_distribution/attribute_distribution_of_playlist_{playlist_id}_{attribute_name}.json"
         with open(file_path, "r", encoding="utf-8") as file:
             expected_items = json.load(file)
 
@@ -34,7 +36,9 @@ class TestAttributeDistribution(unittest.TestCase):
 
     def test_empty_playlist_duration_distribution(self):
         # TODONOW extract method to load attribute distribution, pass playlist id & attribute_name, then build file path
-        file_path = "test_data/attribute_distribution/attribute_distribution_of_playlist_40389fDt9evjBgcgIMAlxe_duration_ms.json"
+        playlist_id = "40389fDt9evjBgcgIMAlxe"
+        attribute_name = "duration_ms"
+        file_path = f"test_data/attribute_distribution/attribute_distribution_of_playlist_{playlist_id}_{attribute_name}.json"
         with open(file_path, "r", encoding="utf-8") as file:
             expected_items = json.load(file)
 
@@ -53,8 +57,8 @@ class TestAttributeDistribution(unittest.TestCase):
 
     @staticmethod
     def __load__and_validate_top_100_playlist():
-        path = "test_data/playlists/playlist_26LDpXWgS0nYibyLS9X4Wq_top_100_greatest_songs_of_all_time.json"
-        top_100_playlist = TestUtils.load_playlist_from_json_file(path)
+        file_path = "test_data/playlists/playlist_26LDpXWgS0nYibyLS9X4Wq_top_100_greatest_songs_of_all_time.json"
+        top_100_playlist = TestUtils.load_playlist_from_json_file(file_path)
 
         # Note: We use assert instead of assertEquals because cannot use it in setUpClass
         assert "26LDpXWgS0nYibyLS9X4Wq" == top_100_playlist.id
@@ -64,11 +68,16 @@ class TestAttributeDistribution(unittest.TestCase):
 
     @staticmethod
     def __load_and_validate_empty_playlist():
-        path = "test_data/playlists/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
-        empty_playlist = TestUtils.load_playlist_from_json_file(path)
+        file_path = "test_data/playlists/playlist_40389fDt9evjBgcgIMAlxe_empty.json"
+        empty_playlist = TestUtils.load_playlist_from_json_file(file_path)
 
         # Note: We use assert instead of assertEquals because cannot use it in setUpClass
         assert "40389fDt9evjBgcgIMAlxe" == empty_playlist.id
         assert "Empty Playlist" == empty_playlist.name
         assert 0 == len(empty_playlist.tracks)
         return empty_playlist
+
+    @staticmethod
+    def __load_expected_attribute_distribution_items(playlist_id, attribute_name):
+        # TODONOW implement
+        pass
