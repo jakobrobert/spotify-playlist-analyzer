@@ -35,6 +35,24 @@ class TestAttributeDistribution(unittest.TestCase):
         self.__assert_distribution_items(actual_items, expected_items)
 
     # TODONOW Add 2 tests for each method of AttributeDistribution. 1 for top 100, 1 for empty playlist
+    def test_top_100_playlist_release_year_distribution(self):
+        # TODONOW extract helper method, playlist id duplicated
+        playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
+        attribute_name = "release_year"
+        expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
+
+        actual_items = self.top_100_playlist_attribute_distribution.get_duration_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
+
+    def test_empty_playlist_release_year_distribution(self):
+        playlist_id = "40389fDt9evjBgcgIMAlxe"
+        attribute_name = "release_year"
+        expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
+
+        actual_items = self.empty_playlist_attribute_distribution.get_duration_items()
+
+        self.__assert_distribution_items(actual_items, expected_items)
 
     @staticmethod
     def __load__and_validate_top_100_playlist():
