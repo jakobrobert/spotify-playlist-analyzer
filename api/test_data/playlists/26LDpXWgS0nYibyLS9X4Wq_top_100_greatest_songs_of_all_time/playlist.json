@@ -1,11 +1,25 @@
 {
-    "id": "6i2Qd6OpeRBAzxfscNXeWp",
-    "name": "Top 100 Greatest Songs of All Time",
+    "id": "26LDpXWgS0nYibyLS9X4Wq",
+    "name": "Top 100 Greatest Songs of All Time [Backup on 2023-09-15 14:40 UTC]",
+    "statistics": {
+        "average_acousticness": 27.384615384615383,
+        "average_danceability": 58.36752136752137,
+        "average_duration_ms": 239443.88888888888,
+        "average_energy": 62.427350427350426,
+        "average_instrumentalness": 1.3418803418803418,
+        "average_liveness": 19.076923076923077,
+        "average_popularity": 65.43589743589743,
+        "average_release_year": 1987.1025641025642,
+        "average_speechiness": 4.905982905982906,
+        "average_tempo": 118.24909401709402,
+        "average_valence": 61.53846153846154,
+        "total_duration_ms": 28014935
+    },
     "tracks": [
         {
             "acousticness": 41,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "43ZHCT0cAZBISjO8DG9PnE"
             ],
@@ -39,8 +53,8 @@
         },
         {
             "acousticness": 1,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0ECwFtbIWEVNwjlrfc6xoL"
             ],
@@ -67,7 +81,7 @@
             "liveness": 6,
             "loudness": -9.484,
             "mode": 1,
-            "popularity": 86,
+            "popularity": 85,
             "release_year": 1976,
             "speechiness": 3,
             "super_genres": [
@@ -79,8 +93,8 @@
         },
         {
             "acousticness": 2,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3fMbdgg4jU18AjLCKBhRSm"
             ],
@@ -114,8 +128,8 @@
         },
         {
             "acousticness": 27,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "1dfeR4HaWDbWqFHLkxsg1d"
             ],
@@ -150,8 +164,8 @@
         },
         {
             "acousticness": 63,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3WrFJ7ztbogyGnTHbHJFl2"
             ],
@@ -190,8 +204,8 @@
         },
         {
             "acousticness": 4,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "22bE4uQ6baNwSHPVcDxLCe"
             ],
@@ -228,8 +242,8 @@
         },
         {
             "acousticness": 26,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0PFtn5NtBbbUNbU9EAmIWF"
             ],
@@ -268,8 +282,8 @@
         },
         {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "29kkCKKGXheHuoO829FxWK"
             ],
@@ -309,8 +323,8 @@
         },
         {
             "acousticness": 3,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "1LZEQNv7sE11VDY3SdxQeN"
             ],
@@ -346,8 +360,8 @@
         },
         {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6olE6TJLqED3rqDCT0FyPh"
             ],
@@ -384,8 +398,8 @@
         },
         {
             "acousticness": 54,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "5NGO30tJxFlKixkPSgXcFE"
             ],
@@ -422,8 +436,8 @@
         },
         {
             "acousticness": 57,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3plJVWt88EqjvtuB4ZDRV3"
             ],
@@ -445,7 +459,7 @@
             "liveness": 7,
             "loudness": -9.443,
             "mode": 1,
-            "popularity": 84,
+            "popularity": 83,
             "release_year": 1962,
             "speechiness": 4,
             "super_genres": [
@@ -458,8 +472,8 @@
         },
         {
             "acousticness": 4,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "4sD9znwiVFx9cgRPZ42aQ1"
             ],
@@ -482,7 +496,7 @@
             "liveness": 10,
             "loudness": -7.016,
             "mode": 1,
-            "popularity": 5,
+            "popularity": 4,
             "release_year": 1990,
             "speechiness": 3,
             "super_genres": [
@@ -495,8 +509,8 @@
         },
         {
             "acousticness": 13,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0rvjqX7ttXeg3mTy8Xscbt"
             ],
@@ -535,8 +549,8 @@
         },
         {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6TSjJlhB2taxea58rCkMkj"
             ],
@@ -557,7 +571,7 @@
             "liveness": 24,
             "loudness": -5.62,
             "mode": 0,
-            "popularity": 45,
+            "popularity": 44,
             "release_year": 2021,
             "speechiness": 4,
             "super_genres": [
@@ -569,8 +583,8 @@
         },
         {
             "acousticness": 91,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "4x1nvY2FN8jxqAFA0DA02H"
             ],
@@ -606,8 +620,8 @@
         },
         {
             "acousticness": 21,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "07XSN3sPlIlB2L2XNcTwJw"
             ],
@@ -642,8 +656,8 @@
         },
         {
             "acousticness": 5,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3fMbdgg4jU18AjLCKBhRSm"
             ],
@@ -665,7 +679,7 @@
             "liveness": 20,
             "loudness": -3.704,
             "mode": 0,
-            "popularity": 80,
+            "popularity": 79,
             "release_year": 2008,
             "speechiness": 5,
             "super_genres": [
@@ -677,8 +691,8 @@
         },
         {
             "acousticness": 5,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "36QJpDe2go2KgaRleHCDTp"
             ],
@@ -702,7 +716,7 @@
             "liveness": 40,
             "loudness": -11.6,
             "mode": 1,
-            "popularity": 78,
+            "popularity": 77,
             "release_year": 1969,
             "speechiness": 40,
             "super_genres": [
@@ -713,39 +727,9 @@
             "valence": 42
         },
         {
-            "acousticness": 9,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
-            "artist_ids": [
-                "7uGQClToKVdtWQKKuTlTAN"
-            ],
-            "artists": [
-                "Iris Has Friends"
-            ],
-            "danceability": 55,
-            "duration_ms": 203093,
-            "energy": 68,
-            "genres": [],
-            "id": "4OZRuxuIZK1kUXKxAtcLtp",
-            "instrumentalness": 0,
-            "key": 8,
-            "key_and_mode_pair": 20,
-            "key_signature": "4\u266d",
-            "liveness": 4,
-            "loudness": -7.591,
-            "mode": 1,
-            "popularity": 35,
-            "release_year": 2022,
-            "speechiness": 5,
-            "super_genres": [],
-            "tempo": 144.244,
-            "title": "All That Matters",
-            "valence": 91
-        },
-        {
             "acousticness": 2,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "2jzc5TC5TVFLXQlBNiIUzE"
             ],
@@ -782,8 +766,8 @@
         },
         {
             "acousticness": 6,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0L8ExT028jH3ddEcZwqJJ5"
             ],
@@ -822,8 +806,8 @@
         },
         {
             "acousticness": 7,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3y24n3XhZ96wgwRXjvS17T",
                 "2LhsePRtgCo4THVKULQBL7"
@@ -862,8 +846,8 @@
         },
         {
             "acousticness": 9,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3qm84nBOXUEQ2vnTfUTTFC"
             ],
@@ -886,7 +870,7 @@
             "liveness": 12,
             "loudness": -7.766,
             "mode": 1,
-            "popularity": 25,
+            "popularity": 23,
             "release_year": 1987,
             "speechiness": 4,
             "super_genres": [
@@ -899,8 +883,8 @@
         },
         {
             "acousticness": 84,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6XpaIBNiVzIetEPCWDvAFP"
             ],
@@ -933,8 +917,8 @@
         },
         {
             "acousticness": 31,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "7oPgCQqMMXEXrNau5vxYZP"
             ],
@@ -970,8 +954,8 @@
         },
         {
             "acousticness": 63,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6hnWRPzGGKiapVX1UCdEAC"
             ],
@@ -1006,8 +990,8 @@
         },
         {
             "acousticness": 4,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "5a2EaR3hamoenG9rDuVn8j"
             ],
@@ -1046,8 +1030,8 @@
         },
         {
             "acousticness": 73,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "43ZHCT0cAZBISjO8DG9PnE"
             ],
@@ -1080,39 +1064,9 @@
             "valence": 95
         },
         {
-            "acousticness": 1,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
-            "artist_ids": [
-                "2YsXzsv4hLYed9eGDJeNlm"
-            ],
-            "artists": [
-                "Matt Blais"
-            ],
-            "danceability": 58,
-            "duration_ms": 165731,
-            "energy": 70,
-            "genres": [],
-            "id": "0qQZfjP4TL2ZHmX26EQjpq",
-            "instrumentalness": 0,
-            "key": 7,
-            "key_and_mode_pair": 19,
-            "key_signature": "1\u266f",
-            "liveness": 9,
-            "loudness": -8.415,
-            "mode": 1,
-            "popularity": 36,
-            "release_year": 2023,
-            "speechiness": 8,
-            "super_genres": [],
-            "tempo": 82.046,
-            "title": "Can't Have the Dog",
-            "valence": 72
-        },
-        {
             "acousticness": 22,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "2BTZIqw0ntH9MvilQ3ewNY"
             ],
@@ -1148,9 +1102,47 @@
             "valence": 72
         },
         {
+            "acousticness": 28,
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
+            "artist_ids": [
+                "1MnItPrB14JFCbVa1bXVHd",
+                "4fFbBXQ3LooiXGHkpX2Xle",
+                "1XOE30vdteGiHtuu3tk1QD"
+            ],
+            "artists": [
+                "Paulo and the Problems",
+                "Bosley",
+                "Saynave"
+            ],
+            "danceability": 84,
+            "duration_ms": 226526,
+            "energy": 84,
+            "genres": [
+                "baltimore indie"
+            ],
+            "id": "0LcBWRN1nc8A59oVjcZzJp",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 8,
+            "key_signature": "5\u266f",
+            "liveness": 14,
+            "loudness": -8.023,
+            "mode": 0,
+            "popularity": 7,
+            "release_year": 2023,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 116.028,
+            "title": "Ain't Nothin' Like a Throwback",
+            "valence": 96
+        },
+        {
             "acousticness": 1,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3WrFJ7ztbogyGnTHbHJFl2"
             ],
@@ -1176,7 +1168,7 @@
             "liveness": 9,
             "loudness": -7.7,
             "mode": 1,
-            "popularity": 74,
+            "popularity": 73,
             "release_year": 2000,
             "speechiness": 3,
             "super_genres": [
@@ -1189,8 +1181,8 @@
         },
         {
             "acousticness": 61,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "7mEIug7XUlQHikrFxjTWes"
             ],
@@ -1232,8 +1224,8 @@
         },
         {
             "acousticness": 43,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3koiLjNrgRTNbOwViDipeA",
                 "75jNCko3SnEMI5gwGqrbb8"
@@ -1275,8 +1267,8 @@
         },
         {
             "acousticness": 18,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "4KWTAlx2RvbpseOGMEmROg"
             ],
@@ -1314,8 +1306,8 @@
         },
         {
             "acousticness": 4,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "2fEaF3hDwQhq8vPb6dRR2T"
             ],
@@ -1334,7 +1326,7 @@
             "liveness": 10,
             "loudness": -7.331,
             "mode": 0,
-            "popularity": 38,
+            "popularity": 37,
             "release_year": 2023,
             "speechiness": 4,
             "super_genres": [],
@@ -1344,8 +1336,8 @@
         },
         {
             "acousticness": 16,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "7nwUJBm0HE4ZxD3f5cy5ok"
             ],
@@ -1372,7 +1364,7 @@
             "liveness": 5,
             "loudness": -5.226,
             "mode": 1,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1967,
             "speechiness": 4,
             "super_genres": [
@@ -1384,8 +1376,8 @@
         },
         {
             "acousticness": 3,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3WrFJ7ztbogyGnTHbHJFl2"
             ],
@@ -1424,8 +1416,8 @@
         },
         {
             "acousticness": 16,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "4QQgXkCYTt3BlENzhyNETg"
             ],
@@ -1462,8 +1454,8 @@
         },
         {
             "acousticness": 58,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "36QJpDe2go2KgaRleHCDTp"
             ],
@@ -1499,8 +1491,8 @@
         },
         {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6TSjJlhB2taxea58rCkMkj"
             ],
@@ -1533,8 +1525,8 @@
         },
         {
             "acousticness": 6,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0WwSkZ7LtFUFjGjMZBMt6T"
             ],
@@ -1570,8 +1562,8 @@
         },
         {
             "acousticness": 13,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "26bcq2nyj5GB7uRr558iQg"
             ],
@@ -1608,8 +1600,8 @@
         },
         {
             "acousticness": 15,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6tbjWDEIzxoDsBA1FuhfPW"
             ],
@@ -1631,7 +1623,7 @@
             "liveness": 7,
             "loudness": -10.842,
             "mode": 0,
-            "popularity": 75,
+            "popularity": 74,
             "release_year": 1984,
             "speechiness": 4,
             "super_genres": [
@@ -1642,9 +1634,39 @@
             "valence": 97
         },
         {
+            "acousticness": 32,
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
+            "artist_ids": [
+                "6XMbGsLE0o6KIoSU3QXZHy"
+            ],
+            "artists": [
+                "John Gallen"
+            ],
+            "danceability": 55,
+            "duration_ms": 203861,
+            "energy": 90,
+            "genres": [],
+            "id": "7Kaki5n5hQhggpwytS4Nmc",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 34,
+            "loudness": -5.652,
+            "mode": 0,
+            "popularity": 40,
+            "release_year": 2023,
+            "speechiness": 4,
+            "super_genres": [],
+            "tempo": 127.982,
+            "title": "Miracle Without Shoes",
+            "valence": 68
+        },
+        {
             "acousticness": 55,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "4lxfqrEsLX6N1N4OCSkILp"
             ],
@@ -1678,8 +1700,8 @@
         },
         {
             "acousticness": 4,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "7guDJrEfX3qb6FEbdPA5qi"
             ],
@@ -1701,7 +1723,7 @@
             "liveness": 4,
             "loudness": -12.115,
             "mode": 1,
-            "popularity": 78,
+            "popularity": 77,
             "release_year": 2002,
             "speechiness": 7,
             "super_genres": [
@@ -1714,8 +1736,8 @@
         },
         {
             "acousticness": 5,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "59wfkuBoNyhDMQGCljbUbA",
                 "5NDMothbpdpq2xHqSjrrWn",
@@ -1750,7 +1772,7 @@
             "liveness": 59,
             "loudness": -9.199,
             "mode": 1,
-            "popularity": 76,
+            "popularity": 75,
             "release_year": 2004,
             "speechiness": 6,
             "super_genres": [
@@ -1764,8 +1786,8 @@
         },
         {
             "acousticness": 8,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "58lV9VcRSjABbAbfWS6skp"
             ],
@@ -1800,8 +1822,8 @@
         },
         {
             "acousticness": 13,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3fMbdgg4jU18AjLCKBhRSm"
             ],
@@ -1834,39 +1856,9 @@
             "valence": 95
         },
         {
-            "acousticness": 3,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
-            "artist_ids": [
-                "5YgnEeh7MGKrniTbwUa7SU"
-            ],
-            "artists": [
-                "The Gleeman"
-            ],
-            "danceability": 48,
-            "duration_ms": 174600,
-            "energy": 82,
-            "genres": [],
-            "id": "7psOi3JnnMZ4J9Y1xF1AzB",
-            "instrumentalness": 0,
-            "key": 10,
-            "key_and_mode_pair": 22,
-            "key_signature": "2\u266d",
-            "liveness": 27,
-            "loudness": -6.216,
-            "mode": 1,
-            "popularity": 34,
-            "release_year": 2023,
-            "speechiness": 3,
-            "super_genres": [],
-            "tempo": 99.887,
-            "title": "Marie",
-            "valence": 61
-        },
-        {
             "acousticness": 6,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "711MCceyCBcFnzjGY4Q7Un"
             ],
@@ -1901,8 +1893,8 @@
         },
         {
             "acousticness": 2,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3Z02hBLubJxuFJfhacLSDc"
             ],
@@ -1942,8 +1934,8 @@
         },
         {
             "acousticness": 8,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "2acqLrAZ1lspWmbpQzdiGE"
             ],
@@ -1962,7 +1954,7 @@
             "liveness": 19,
             "loudness": -8.12,
             "mode": 0,
-            "popularity": 45,
+            "popularity": 44,
             "release_year": 2023,
             "speechiness": 3,
             "super_genres": [],
@@ -1972,8 +1964,8 @@
         },
         {
             "acousticness": 39,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3WrFJ7ztbogyGnTHbHJFl2"
             ],
@@ -1999,7 +1991,7 @@
             "liveness": 31,
             "loudness": -5.549,
             "mode": 1,
-            "popularity": 71,
+            "popularity": 70,
             "release_year": 2000,
             "speechiness": 5,
             "super_genres": [
@@ -2012,8 +2004,8 @@
         },
         {
             "acousticness": 4,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "5btFsmucKK511Q7H71mjgj"
             ],
@@ -2032,7 +2024,7 @@
             "liveness": 10,
             "loudness": -7.102,
             "mode": 0,
-            "popularity": 53,
+            "popularity": 54,
             "release_year": 2023,
             "speechiness": 3,
             "super_genres": [],
@@ -2042,8 +2034,8 @@
         },
         {
             "acousticness": 50,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0GbqW5TJr7n4is453VOY4C"
             ],
@@ -2075,7 +2067,7 @@
             "liveness": 9,
             "loudness": -6.905,
             "mode": 1,
-            "popularity": 25,
+            "popularity": 21,
             "release_year": 2019,
             "speechiness": 3,
             "super_genres": [
@@ -2088,8 +2080,8 @@
         },
         {
             "acousticness": 19,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6IRouO5mvvfcyxtPDKMYFN"
             ],
@@ -2130,8 +2122,8 @@
         },
         {
             "acousticness": 2,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6V6WCgi7waF55bJmylC4H5"
             ],
@@ -2166,8 +2158,8 @@
         },
         {
             "acousticness": 46,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "1ThoqLcyIYvZn7iWbj8fsj"
             ],
@@ -2203,8 +2195,8 @@
         },
         {
             "acousticness": 13,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "19ra5tSw0tWufvUp8GotLo"
             ],
@@ -2237,8 +2229,8 @@
         },
         {
             "acousticness": 58,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3dkbV4qihUeMsqN4vBGg93"
             ],
@@ -2275,41 +2267,9 @@
             "valence": 51
         },
         {
-            "acousticness": 1,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
-            "artist_ids": [
-                "2frhD5z9g7Cax2GOzT8xHw",
-                "0O7WhgsD8ALr1qy7qhySEq"
-            ],
-            "artists": [
-                "Chris App",
-                "Benjamin Blythe"
-            ],
-            "danceability": 60,
-            "duration_ms": 211347,
-            "energy": 75,
-            "genres": [],
-            "id": "4pS8wiGxy4MpwiF7Ob0z6X",
-            "instrumentalness": 0,
-            "key": 9,
-            "key_and_mode_pair": 21,
-            "key_signature": "3\u266f",
-            "liveness": 20,
-            "loudness": -5.509,
-            "mode": 1,
-            "popularity": 42,
-            "release_year": 2023,
-            "speechiness": 3,
-            "super_genres": [],
-            "tempo": 125.01,
-            "title": "Brighter Skies",
-            "valence": 90
-        },
-        {
             "acousticness": 5,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "22bE4uQ6baNwSHPVcDxLCe"
             ],
@@ -2346,8 +2306,8 @@
         },
         {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3oImytUxdIghrpPPvvSNvz"
             ],
@@ -2366,7 +2326,7 @@
             "liveness": 10,
             "loudness": -10.944,
             "mode": 1,
-            "popularity": 42,
+            "popularity": 45,
             "release_year": 2023,
             "speechiness": 3,
             "super_genres": [],
@@ -2376,8 +2336,8 @@
         },
         {
             "acousticness": 82,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "70cRZdQywnSFp9pnc2WTCE"
             ],
@@ -2417,8 +2377,8 @@
         },
         {
             "acousticness": 24,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0cQbJU1aAzvbEmTuljWLlF"
             ],
@@ -2456,8 +2416,8 @@
         },
         {
             "acousticness": 3,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "2WKdxPFRD7IqZvlIAvhMgY",
                 "2Mu5NfyYm8n5iTomuKAEHl"
@@ -2500,8 +2460,8 @@
         },
         {
             "acousticness": 74,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "293zczrfYafIItmnmM3coR"
             ],
@@ -2528,7 +2488,7 @@
             "liveness": 31,
             "loudness": -9.129,
             "mode": 1,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1959,
             "speechiness": 7,
             "super_genres": [
@@ -2542,8 +2502,8 @@
         },
         {
             "acousticness": 7,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3IYUhFvPQItj6xySrBmZkd"
             ],
@@ -2580,8 +2540,8 @@
         },
         {
             "acousticness": 68,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "60df5JBRRPcnSpsIMxxwQm"
             ],
@@ -2618,39 +2578,9 @@
             "valence": 54
         },
         {
-            "acousticness": 3,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
-            "artist_ids": [
-                "5mtGIGksvgEhjzfSjzeQ9X"
-            ],
-            "artists": [
-                "blossm"
-            ],
-            "danceability": 64,
-            "duration_ms": 220510,
-            "energy": 34,
-            "genres": [],
-            "id": "5mabkIGqdoYytMe8s7FQJU",
-            "instrumentalness": 0,
-            "key": 2,
-            "key_and_mode_pair": 14,
-            "key_signature": "2\u266f",
-            "liveness": 18,
-            "loudness": -6.325,
-            "mode": 1,
-            "popularity": 32,
-            "release_year": 2023,
-            "speechiness": 3,
-            "super_genres": [],
-            "tempo": 147.076,
-            "title": "Faded",
-            "valence": 50
-        },
-        {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "2DaxqgrOhkeH0fpeiQq2f4"
             ],
@@ -2675,7 +2605,7 @@
             "liveness": 13,
             "loudness": -5.612,
             "mode": 1,
-            "popularity": 0,
+            "popularity": 1,
             "release_year": 1995,
             "speechiness": 4,
             "super_genres": [
@@ -2688,39 +2618,9 @@
             "valence": 47
         },
         {
-            "acousticness": 1,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
-            "artist_ids": [
-                "5BnFt7BFXzGzFVAR3KD6K3"
-            ],
-            "artists": [
-                "Holy Colors"
-            ],
-            "danceability": 56,
-            "duration_ms": 175468,
-            "energy": 76,
-            "genres": [],
-            "id": "2EPew61Ku0HXRv40OEd1IP",
-            "instrumentalness": 7,
-            "key": 4,
-            "key_and_mode_pair": 16,
-            "key_signature": "4\u266f",
-            "liveness": 34,
-            "loudness": -9.628,
-            "mode": 1,
-            "popularity": 23,
-            "release_year": 2020,
-            "speechiness": 3,
-            "super_genres": [],
-            "tempo": 109.967,
-            "title": "90's Horror",
-            "valence": 81
-        },
-        {
             "acousticness": 8,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3RGLhK1IP9jnYFH4BRFJBS"
             ],
@@ -2756,9 +2656,39 @@
             "valence": 82
         },
         {
+            "acousticness": 9,
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
+            "artist_ids": [
+                "2LO6MZ0w06BnfgIfoJHIe6"
+            ],
+            "artists": [
+                "PETER LAKE"
+            ],
+            "danceability": 73,
+            "duration_ms": 130240,
+            "energy": 85,
+            "genres": [],
+            "id": "4okpS6IiU743qJZALgiDQr",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 1,
+            "key_signature": "4\u266f",
+            "liveness": 9,
+            "loudness": -5.462,
+            "mode": 0,
+            "popularity": 38,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [],
+            "tempo": 127.054,
+            "title": "Figure It Out",
+            "valence": 92
+        },
+        {
             "acousticness": 79,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "19eLuQmk9aCobbVDHc6eek"
             ],
@@ -2799,8 +2729,8 @@
         },
         {
             "acousticness": 2,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "08GQAI4eElDnROBrJRGE0X"
             ],
@@ -2837,8 +2767,8 @@
         },
         {
             "acousticness": 19,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "1dfeR4HaWDbWqFHLkxsg1d"
             ],
@@ -2873,8 +2803,8 @@
         },
         {
             "acousticness": 22,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "39T6qqI0jDtSWWioX8eGJz"
             ],
@@ -2917,8 +2847,8 @@
         },
         {
             "acousticness": 64,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3RwQ26hR2tJtA8F9p2n7jG"
             ],
@@ -2954,8 +2884,8 @@
         },
         {
             "acousticness": 52,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3Ncucx9RdvKF9nCIB8sNAg"
             ],
@@ -2974,7 +2904,7 @@
             "liveness": 8,
             "loudness": -9.138,
             "mode": 1,
-            "popularity": 29,
+            "popularity": 31,
             "release_year": 2023,
             "speechiness": 3,
             "super_genres": [],
@@ -2984,8 +2914,8 @@
         },
         {
             "acousticness": 60,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6zFYqv1mOsgBRQbae3JJ9e"
             ],
@@ -3026,8 +2956,8 @@
         },
         {
             "acousticness": 7,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0k17h0D3J5VfsdmQ1iZtE9"
             ],
@@ -3066,8 +2996,8 @@
         },
         {
             "acousticness": 18,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "4MVyzYMgTwdP7Z49wAZHx0"
             ],
@@ -3104,8 +3034,8 @@
         },
         {
             "acousticness": 59,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "1eYhYunlNJlDoQhtYBvPsi"
             ],
@@ -3131,7 +3061,7 @@
             "liveness": 67,
             "loudness": -6.749,
             "mode": 0,
-            "popularity": 53,
+            "popularity": 52,
             "release_year": 2011,
             "speechiness": 25,
             "super_genres": [
@@ -3143,9 +3073,39 @@
             "valence": 96
         },
         {
+            "acousticness": 8,
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
+            "artist_ids": [
+                "23dxrZjijjzf1EcZXlE4t5"
+            ],
+            "artists": [
+                "Saintair"
+            ],
+            "danceability": 48,
+            "duration_ms": 193772,
+            "energy": 61,
+            "genres": [],
+            "id": "1iwBnn4WQH6PbgH96VVPFw",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 8,
+            "loudness": -7.226,
+            "mode": 1,
+            "popularity": 27,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 146.038,
+            "title": "Apes of Blue",
+            "valence": 44
+        },
+        {
             "acousticness": 47,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "33QmoCkSqADuQEtMCysYLh"
             ],
@@ -3181,8 +3141,8 @@
         },
         {
             "acousticness": 71,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0erHD7VN4kx2WwPg8w53kp"
             ],
@@ -3201,7 +3161,7 @@
             "liveness": 10,
             "loudness": -10.322,
             "mode": 0,
-            "popularity": 27,
+            "popularity": 29,
             "release_year": 2023,
             "speechiness": 5,
             "super_genres": [],
@@ -3211,8 +3171,8 @@
         },
         {
             "acousticness": 27,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "5lpH0xAS4fVfLkACg9DAuM"
             ],
@@ -3249,8 +3209,8 @@
         },
         {
             "acousticness": 15,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3PhoLpVuITZKcymswpck5b",
                 "4vjGlQWexbru6aOUCLTVir"
@@ -3290,8 +3250,8 @@
         },
         {
             "acousticness": 48,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3IZrrNonYELubLPJmqOci2"
             ],
@@ -3325,9 +3285,39 @@
             "valence": 39
         },
         {
+            "acousticness": 1,
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
+            "artist_ids": [
+                "7DICdgIdy3HsAj24n6XQ8L"
+            ],
+            "artists": [
+                "Count Pariah"
+            ],
+            "danceability": 51,
+            "duration_ms": 282053,
+            "energy": 79,
+            "genres": [],
+            "id": "4g3C13anXPlw7ayAgq5Gf6",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 38,
+            "loudness": -6.199,
+            "mode": 0,
+            "popularity": 46,
+            "release_year": 2023,
+            "speechiness": 4,
+            "super_genres": [],
+            "tempo": 127.97,
+            "title": "I'm No Hero",
+            "valence": 17
+        },
+        {
             "acousticness": 30,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "2iE18Oxc8YSumAU232n4rW"
             ],
@@ -3361,43 +3351,9 @@
             "valence": 89
         },
         {
-            "acousticness": 30,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
-            "artist_ids": [
-                "3ea8Kst45XuY4EdeD6OVFo"
-            ],
-            "artists": [
-                "IORA"
-            ],
-            "danceability": 85,
-            "duration_ms": 208831,
-            "energy": 55,
-            "genres": [
-                "manchester indie"
-            ],
-            "id": "3wRTu2mu7FOIwqJJn6kDbm",
-            "instrumentalness": 0,
-            "key": 4,
-            "key_and_mode_pair": 4,
-            "key_signature": "1\u266f",
-            "liveness": 7,
-            "loudness": -9.81,
-            "mode": 0,
-            "popularity": 30,
-            "release_year": 2023,
-            "speechiness": 3,
-            "super_genres": [
-                "Others"
-            ],
-            "tempo": 108.963,
-            "title": "Nylon",
-            "valence": 50
-        },
-        {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3eqjTLE0HfPfh78zjh6TqT"
             ],
@@ -3436,8 +3392,8 @@
         },
         {
             "acousticness": 18,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "44NX2ffIYHr6D4n7RaZF7A"
             ],
@@ -3478,8 +3434,8 @@
         },
         {
             "acousticness": 45,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "1Mxqyy3pSjf8kZZL4QVxS0",
                 "2jFZlvIea42ZvcCw4OeEdA"
@@ -3523,8 +3479,8 @@
         },
         {
             "acousticness": 6,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "38g71NZUKyjqmwovTIChc8"
             ],
@@ -3543,7 +3499,7 @@
             "liveness": 10,
             "loudness": -5.615,
             "mode": 1,
-            "popularity": 45,
+            "popularity": 44,
             "release_year": 2023,
             "speechiness": 4,
             "super_genres": [],
@@ -3553,8 +3509,8 @@
         },
         {
             "acousticness": 1,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "2eogQKWWoohI3BSnoG7E2U"
             ],
@@ -3592,8 +3548,8 @@
         },
         {
             "acousticness": 84,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "4ACplpEqD6JIVgKrafauzs"
             ],
@@ -3633,8 +3589,8 @@
         },
         {
             "acousticness": 71,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0JDkhL4rjiPNEp92jAgJnS"
             ],
@@ -3674,8 +3630,8 @@
         },
         {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "776Uo845nYHJpNaStv1Ds4"
             ],
@@ -3714,9 +3670,73 @@
             "valence": 56
         },
         {
+            "acousticness": 78,
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
+            "artist_ids": [
+                "7nyL025JuLoTQsLQCVbtri"
+            ],
+            "artists": [
+                "Ethan Fiske"
+            ],
+            "danceability": 43,
+            "duration_ms": 143579,
+            "energy": 28,
+            "genres": [],
+            "id": "4emxV70WICSSI0FGWFeRbT",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 9,
+            "loudness": -9.955,
+            "mode": 1,
+            "popularity": 2,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 70.048,
+            "title": "Through The Water",
+            "valence": 8
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
+            "artist_ids": [
+                "6TSjJlhB2taxea58rCkMkj"
+            ],
+            "artists": [
+                "The Vices"
+            ],
+            "danceability": 56,
+            "duration_ms": 184546,
+            "energy": 74,
+            "genres": [
+                "dutch indie rock"
+            ],
+            "id": "4BAoz0zZwmFR1aihUDcfrl",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 10,
+            "key_signature": "5\u266d",
+            "liveness": 7,
+            "loudness": -6.666,
+            "mode": 0,
+            "popularity": 33,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 94.996,
+            "title": "I Had a Name",
+            "valence": 72
+        },
+        {
             "acousticness": 68,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "5GtMEZEeFFsuHY8ad4kOxv"
             ],
@@ -3751,8 +3771,8 @@
         },
         {
             "acousticness": 43,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3PhoLpVuITZKcymswpck5b"
             ],
@@ -3787,43 +3807,9 @@
             "valence": 34
         },
         {
-            "acousticness": 1,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
-            "artist_ids": [
-                "6TSjJlhB2taxea58rCkMkj"
-            ],
-            "artists": [
-                "The Vices"
-            ],
-            "danceability": 56,
-            "duration_ms": 184546,
-            "energy": 74,
-            "genres": [
-                "dutch indie rock"
-            ],
-            "id": "4BAoz0zZwmFR1aihUDcfrl",
-            "instrumentalness": 0,
-            "key": 10,
-            "key_and_mode_pair": 10,
-            "key_signature": "5\u266d",
-            "liveness": 7,
-            "loudness": -6.666,
-            "mode": 0,
-            "popularity": 33,
-            "release_year": 2022,
-            "speechiness": 4,
-            "super_genres": [
-                "Rock"
-            ],
-            "tempo": 94.996,
-            "title": "I Had a Name",
-            "valence": 72
-        },
-        {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3ICflSq6ZgYAIrm2CTkfVP"
             ],
@@ -3863,8 +3849,8 @@
         },
         {
             "acousticness": 26,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "2BVYdY4PyfCF9z4NrkhEB2"
             ],
@@ -3900,8 +3886,8 @@
         },
         {
             "acousticness": 35,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "4bthk9UfsYUYdcFyqxmSUU"
             ],
@@ -3941,8 +3927,8 @@
         },
         {
             "acousticness": 20,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3MFp4cYuYtTZe3d3xkLLbr"
             ],
@@ -3976,8 +3962,8 @@
         },
         {
             "acousticness": 9,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6hN9F0iuULZYWXppob22Aj"
             ],
@@ -4005,7 +3991,7 @@
             "liveness": 30,
             "loudness": -7.02,
             "mode": 1,
-            "popularity": 78,
+            "popularity": 77,
             "release_year": 2013,
             "speechiness": 3,
             "super_genres": [
@@ -4018,8 +4004,8 @@
         },
         {
             "acousticness": 6,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "6mcrZQmgzFGRWf7C0SObou"
             ],
@@ -4061,8 +4047,8 @@
         },
         {
             "acousticness": 76,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "1GAJzApRTMmYZ9EjQ91VOy"
             ],
@@ -4097,8 +4083,8 @@
         },
         {
             "acousticness": 75,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "53QzNeFpzAaXYnrDBbDrIp"
             ],
@@ -4136,8 +4122,8 @@
         },
         {
             "acousticness": 37,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "22WZ7M8sxp5THdruNY3gXt"
             ],
@@ -4163,7 +4149,7 @@
             "liveness": 9,
             "loudness": -5.787,
             "mode": 0,
-            "popularity": 74,
+            "popularity": 73,
             "release_year": 1967,
             "speechiness": 3,
             "super_genres": [
@@ -4175,8 +4161,8 @@
         },
         {
             "acousticness": 73,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "74ASZWbe4lXaubB36ztrGX"
             ],
@@ -4216,9 +4202,39 @@
             "valence": 56
         },
         {
+            "acousticness": 57,
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
+            "artist_ids": [
+                "6ryJHsyrpdDVXcNHJedA1d"
+            ],
+            "artists": [
+                "Northern Sky"
+            ],
+            "danceability": 66,
+            "duration_ms": 171545,
+            "energy": 50,
+            "genres": [],
+            "id": "6pCfWzx0e1ayZNKy0tL4Ai",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 12,
+            "loudness": -8.315,
+            "mode": 1,
+            "popularity": 22,
+            "release_year": 2022,
+            "speechiness": 3,
+            "super_genres": [],
+            "tempo": 109.965,
+            "title": "Magnolia Tree",
+            "valence": 22
+        },
+        {
             "acousticness": 20,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3IYUhFvPQItj6xySrBmZkd"
             ],
@@ -4255,8 +4271,8 @@
         },
         {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "00nDXmI902QlDjTzsj6XG3",
                 "0xqeR0Mtnu1eAdBOvV4AJA"
@@ -4277,7 +4293,7 @@
             "liveness": 26,
             "loudness": -5.368,
             "mode": 0,
-            "popularity": 32,
+            "popularity": 31,
             "release_year": 2023,
             "speechiness": 5,
             "super_genres": [],
@@ -4287,8 +4303,8 @@
         },
         {
             "acousticness": 3,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "3WrFJ7ztbogyGnTHbHJFl2"
             ],
@@ -4327,8 +4343,8 @@
         },
         {
             "acousticness": 79,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "5Y9xEAGW4GwGJgbiI6W85P"
             ],
@@ -4362,8 +4378,8 @@
         },
         {
             "acousticness": 0,
-            "added_by": "IndieMassive Hits",
-            "added_by_user_id": "daanmathijs1999",
+            "added_by": "Spotify-Test",
+            "added_by_user_id": "3165mjtvt7wtiwv4ibfjjt5ui5oe",
             "artist_ids": [
                 "0oSGxfWSnnOXhD2fKuz2Gy"
             ],
@@ -4388,7 +4404,7 @@
             "liveness": 9,
             "loudness": -6.491,
             "mode": 1,
-            "popularity": 77,
+            "popularity": 76,
             "release_year": 1977,
             "speechiness": 3,
             "super_genres": [

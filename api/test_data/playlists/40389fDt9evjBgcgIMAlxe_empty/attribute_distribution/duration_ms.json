@@ -1,0 +1,42 @@
+[
+    {
+        "count": 0,
+        "label": "< 02:00",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "\u2265 02:00",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "\u2265 02:30",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "\u2265 03:00",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "\u2265 03:30",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "\u2265 04:00",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "\u2265 04:30",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "\u2265 05:00",
+        "percentage": 0
+    }
+]

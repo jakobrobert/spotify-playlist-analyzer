@@ -1,0 +1,122 @@
+[
+    {
+        "count": 2,
+        "label": "C Minor",
+        "percentage": 1.7094017094017093
+    },
+    {
+        "count": 2,
+        "label": "C# Minor",
+        "percentage": 1.7094017094017093
+    },
+    {
+        "count": 2,
+        "label": "D Minor",
+        "percentage": 1.7094017094017093
+    },
+    {
+        "count": 3,
+        "label": "D# Minor",
+        "percentage": 2.5641025641025643
+    },
+    {
+        "count": 3,
+        "label": "E Minor",
+        "percentage": 2.5641025641025643
+    },
+    {
+        "count": 3,
+        "label": "F Minor",
+        "percentage": 2.5641025641025643
+    },
+    {
+        "count": 3,
+        "label": "F# Minor",
+        "percentage": 2.5641025641025643
+    },
+    {
+        "count": 2,
+        "label": "G Minor",
+        "percentage": 1.7094017094017093
+    },
+    {
+        "count": 2,
+        "label": "G# Minor",
+        "percentage": 1.7094017094017093
+    },
+    {
+        "count": 6,
+        "label": "A Minor",
+        "percentage": 5.128205128205129
+    },
+    {
+        "count": 4,
+        "label": "Bb Minor",
+        "percentage": 3.4188034188034186
+    },
+    {
+        "count": 4,
+        "label": "B Minor",
+        "percentage": 3.4188034188034186
+    },
+    {
+        "count": 18,
+        "label": "C Major",
+        "percentage": 15.384615384615385
+    },
+    {
+        "count": 6,
+        "label": "Db Major",
+        "percentage": 5.128205128205129
+    },
+    {
+        "count": 9,
+        "label": "D Major",
+        "percentage": 7.6923076923076925
+    },
+    {
+        "count": 1,
+        "label": "Eb Major",
+        "percentage": 0.8547008547008547
+    },
+    {
+        "count": 6,
+        "label": "E Major",
+        "percentage": 5.128205128205129
+    },
+    {
+        "count": 6,
+        "label": "F Major",
+        "percentage": 5.128205128205129
+    },
+    {
+        "count": 3,
+        "label": "Gb Major",
+        "percentage": 2.5641025641025643
+    },
+    {
+        "count": 9,
+        "label": "G Major",
+        "percentage": 7.6923076923076925
+    },
+    {
+        "count": 5,
+        "label": "Ab Major",
+        "percentage": 4.273504273504273
+    },
+    {
+        "count": 9,
+        "label": "A Major",
+        "percentage": 7.6923076923076925
+    },
+    {
+        "count": 5,
+        "label": "Bb Major",
+        "percentage": 4.273504273504273
+    },
+    {
+        "count": 4,
+        "label": "B Major",
+        "percentage": 3.4188034188034186
+    }
+]

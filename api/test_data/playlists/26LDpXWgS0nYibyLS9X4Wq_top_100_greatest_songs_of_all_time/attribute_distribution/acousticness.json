@@ -1,0 +1,52 @@
+[
+    {
+        "count": 50,
+        "label": "< 10",
+        "percentage": 42.73504273504273
+    },
+    {
+        "count": 13,
+        "label": "\u2265 10",
+        "percentage": 11.11111111111111
+    },
+    {
+        "count": 11,
+        "label": "\u2265 20",
+        "percentage": 9.401709401709402
+    },
+    {
+        "count": 6,
+        "label": "\u2265 30",
+        "percentage": 5.128205128205129
+    },
+    {
+        "count": 7,
+        "label": "\u2265 40",
+        "percentage": 5.982905982905983
+    },
+    {
+        "count": 9,
+        "label": "\u2265 50",
+        "percentage": 7.6923076923076925
+    },
+    {
+        "count": 7,
+        "label": "\u2265 60",
+        "percentage": 5.982905982905983
+    },
+    {
+        "count": 10,
+        "label": "\u2265 70",
+        "percentage": 8.547008547008547
+    },
+    {
+        "count": 3,
+        "label": "\u2265 80",
+        "percentage": 2.5641025641025643
+    },
+    {
+        "count": 1,
+        "label": "\u2265 90",
+        "percentage": 0.8547008547008547
+    }
+]
