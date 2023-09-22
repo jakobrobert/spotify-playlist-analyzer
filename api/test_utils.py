@@ -24,7 +24,7 @@ class TestUtils:
 
         # We use assert instead of assertEquals because cannot use it in setUpClass
         assert TestUtils.TOP_100_PLAYLIST_ID == playlist.id
-        assert "Top 100 Greatest Songs of All Time [Backup on 2023-09-22 15:20 UTC]" == playlist.name
+        assert "Top 100 Greatest Songs of All Time [Backup]" == playlist.name
         assert 117 == len(playlist.tracks)
 
         return playlist
