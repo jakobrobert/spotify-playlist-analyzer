@@ -189,10 +189,11 @@ class TestAttributeDistribution(unittest.TestCase):
     @staticmethod
     def __load__and_validate_top_100_playlist():
         playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
-        file_path = f"test_data/playlists/playlist_{playlist_id}_top_100_greatest_songs_of_all_time.json"
+        playlist_directory_name = f"{playlist_id}_top_100_greatest_songs_of_all_time"
+        file_path = f"test_data/playlists/{playlist_directory_name}/playlist.json"
         playlist = TestUtils.load_playlist_from_json_file(file_path)
 
-        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
+        # We use assert instead of assertEquals because cannot use it in setUpClass
         assert "26LDpXWgS0nYibyLS9X4Wq" == playlist.id
         assert "Top 100 Greatest Songs of All Time [Backup on 2023-09-15 14:40 UTC]" == playlist.name
         assert 117 == len(playlist.tracks)
@@ -202,20 +203,20 @@ class TestAttributeDistribution(unittest.TestCase):
     @staticmethod
     def __load_and_validate_empty_playlist():
         playlist_id = "40389fDt9evjBgcgIMAlxe"
-        file_path = f"test_data/playlists/playlist_{playlist_id}_empty.json"
+        playlist_directory_name = f"{playlist_id}_empty"
+        file_path = f"test_data/playlists/{playlist_directory_name}/playlist.json"
         playlist = TestUtils.load_playlist_from_json_file(file_path)
 
-        # Note: We use assert instead of assertEquals because cannot use it in setUpClass
-        assert playlist_id == playlist.id
+        # We use assert instead of assertEquals because cannot use it in setUpClass
+        assert "40389fDt9evjBgcgIMAlxe" == playlist.id
         assert "Empty Playlist" == playlist.name
         assert 0 == len(playlist.tracks)
 
         return playlist
 
     @staticmethod
-    def __load_expected_distribution_items(playlist_id, attribute_name):
-        file_path_prefix = "test_data/attribute_distribution/attribute_distribution_of_playlist"
-        file_path = f"{file_path_prefix}_{playlist_id}_{attribute_name}.json"
+    def __load_expected_distribution_items(playlist_directory_name, attribute_name):
+        file_path = f"test_data/playlists/{playlist_directory_name}/attribute_distribution/{attribute_name}.json"
 
         with open(file_path, "r", encoding="utf-8") as file:
             expected_items = json.load(file)
@@ -224,12 +225,12 @@ class TestAttributeDistribution(unittest.TestCase):
 
     @staticmethod
     def __load_expected_distribution_items_for_top_100_playlist(attribute_name):
-        playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
-        return TestAttributeDistribution.__load_expected_distribution_items(playlist_id, attribute_name)
+        playlist_directory_name = "26LDpXWgS0nYibyLS9X4Wq_top_100_greatest_songs_of_all_time"
+        return TestAttributeDistribution.__load_expected_distribution_items(playlist_directory_name, attribute_name)
 
     @staticmethod
     def __load_expected_distribution_items_for_empty_playlist(attribute_name):
-        playlist_id = "40389fDt9evjBgcgIMAlxe"
+        playlist_id = "40389fDt9evjBgcgIMAlxe_empty"
         return TestAttributeDistribution.__load_expected_distribution_items(playlist_id, attribute_name)
 
     def __assert_distribution_items(self, actual_items, expected_items):
