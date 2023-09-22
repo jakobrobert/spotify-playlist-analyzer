@@ -4,7 +4,7 @@ from core.playlist.playlist import Playlist
 
 
 class TestUtils:
-    TOP_100_PLAYLIST_ID = "26LDpXWgS0nYibyLS9X4Wq"
+    TOP_100_PLAYLIST_ID = "4PEUZYZ3RoKEcZQoGqu5mV"
     TOP_100_PLAYLIST_DIRECTORY_NAME = f"{TOP_100_PLAYLIST_ID}_top_100_greatest_songs_of_all_time"
 
     EMPTY_PLAYLIST_ID = "40389fDt9evjBgcgIMAlxe"
@@ -24,7 +24,7 @@ class TestUtils:
 
         # We use assert instead of assertEquals because cannot use it in setUpClass
         assert TestUtils.TOP_100_PLAYLIST_ID == playlist.id
-        assert "Top 100 Greatest Songs of All Time [Backup on 2023-09-15 14:40 UTC]" == playlist.name
+        assert "Top 100 Greatest Songs of All Time [Backup on 2023-09-22 15:20 UTC]" == playlist.name
         assert 117 == len(playlist.tracks)
 
         return playlist
