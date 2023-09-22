@@ -98,5 +98,3 @@ class TestAttributeDistribution(unittest.TestCase):
             self.assertEqual(expected_item["label"], actual_item["label"])
             self.assertEqual(expected_item["count"], actual_item["count"])
             self.assertEqual(expected_item["percentage"], actual_item["percentage"])
-
-
