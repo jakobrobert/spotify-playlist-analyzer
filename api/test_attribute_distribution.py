@@ -17,18 +17,14 @@ class TestAttributeDistribution(unittest.TestCase):
         cls.empty_playlist_attribute_distribution = AttributeDistribution(empty_playlist.tracks)
 
     def test_top_100_playlist_duration_distribution(self):
-        playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
-        attribute_name = "duration_ms"
-        expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("duration_ms")
 
         actual_items = self.top_100_playlist_attribute_distribution.get_duration_items()
 
         self.__assert_distribution_items(actual_items, expected_items)
 
     def test_empty_playlist_duration_distribution(self):
-        playlist_id = "40389fDt9evjBgcgIMAlxe"
-        attribute_name = "duration_ms"
-        expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("duration_ms")
 
         actual_items = self.empty_playlist_attribute_distribution.get_duration_items()
 
@@ -36,19 +32,14 @@ class TestAttributeDistribution(unittest.TestCase):
 
     # TODONOW Add 2 tests for each method of AttributeDistribution. 1 for top 100, 1 for empty playlist
     def test_top_100_playlist_release_year_distribution(self):
-        # TODONOW extract helper method, playlist id duplicated
-        playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
-        attribute_name = "release_year"
-        expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
+        expected_items = self.__load_expected_distribution_items_for_top_100_playlist("release_year")
 
         actual_items = self.top_100_playlist_attribute_distribution.get_release_year_items()
 
         self.__assert_distribution_items(actual_items, expected_items)
 
     def test_empty_playlist_release_year_distribution(self):
-        playlist_id = "40389fDt9evjBgcgIMAlxe"
-        attribute_name = "release_year"
-        expected_items = self.__load_expected_distribution_items(playlist_id, attribute_name)
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("release_year")
 
         actual_items = self.empty_playlist_attribute_distribution.get_release_year_items()
 
@@ -86,6 +77,16 @@ class TestAttributeDistribution(unittest.TestCase):
 
         return expected_items
 
+    @staticmethod
+    def __load_expected_distribution_items_for_top_100_playlist(attribute_name):
+        playlist_id = "26LDpXWgS0nYibyLS9X4Wq"
+        return TestAttributeDistribution.__load_expected_distribution_items(playlist_id, attribute_name)
+
+    @staticmethod
+    def __load_expected_distribution_items_for_empty_playlist(attribute_name):
+        playlist_id = "40389fDt9evjBgcgIMAlxe"
+        return TestAttributeDistribution.__load_expected_distribution_items(playlist_id, attribute_name)
+
     def __assert_distribution_items(self, actual_items, expected_items):
         self.assertEqual(len(expected_items), len(actual_items))
 
@@ -93,3 +94,5 @@ class TestAttributeDistribution(unittest.TestCase):
             self.assertEqual(expected_item["label"], actual_item["label"])
             self.assertEqual(expected_item["count"], actual_item["count"])
             self.assertEqual(expected_item["percentage"], actual_item["percentage"])
+
+
