@@ -1,1 +1,52 @@
-[{"count":0,"label":"Pop","percentage":0},{"count":0,"label":"Rock","percentage":0},{"count":0,"label":"EDM","percentage":0},{"count":0,"label":"Rap","percentage":0},{"count":0,"label":"Schlager","percentage":0},{"count":0,"label":"Extreme Metal","percentage":0},{"count":0,"label":"Metal","percentage":0},{"count":0,"label":"Classical","percentage":0},{"count":0,"label":"Afro","percentage":0},{"count":0,"label":"Others","percentage":0}]
+[
+    {
+        "count": 0,
+        "label": "Pop",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "Rock",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "EDM",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "Rap",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "Schlager",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "Extreme Metal",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "Metal",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "Classical",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "Afro",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "Others",
+        "percentage": 0
+    }
+]

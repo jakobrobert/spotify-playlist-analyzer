@@ -1,1 +1,12 @@
-[{"count":36,"label":"Minor","percentage":30.76923076923077},{"count":81,"label":"Major","percentage":69.23076923076923}]
+[
+    {
+        "count": 36,
+        "label": "Minor",
+        "percentage": 30.76923076923077
+    },
+    {
+        "count": 81,
+        "label": "Major",
+        "percentage": 69.23076923076923
+    }
+]

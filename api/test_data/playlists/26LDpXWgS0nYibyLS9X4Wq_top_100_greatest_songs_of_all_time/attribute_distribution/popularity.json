@@ -1,1 +1,52 @@
-[{"count":7,"label":"< 10","percentage":5.982905982905983},{"count":1,"label":"\u2265 10","percentage":0.8547008547008547},{"count":6,"label":"\u2265 20","percentage":5.128205128205129},{"count":5,"label":"\u2265 30","percentage":4.273504273504273},{"count":8,"label":"\u2265 40","percentage":6.837606837606837},{"count":3,"label":"\u2265 50","percentage":2.5641025641025643},{"count":14,"label":"\u2265 60","percentage":11.965811965811966},{"count":37,"label":"\u2265 70","percentage":31.623931623931625},{"count":36,"label":"\u2265 80","percentage":30.76923076923077},{"count":0,"label":"\u2265 90","percentage":0.0}]
+[
+    {
+        "count": 7,
+        "label": "< 10",
+        "percentage": 5.982905982905983
+    },
+    {
+        "count": 1,
+        "label": "\u2265 10",
+        "percentage": 0.8547008547008547
+    },
+    {
+        "count": 6,
+        "label": "\u2265 20",
+        "percentage": 5.128205128205129
+    },
+    {
+        "count": 5,
+        "label": "\u2265 30",
+        "percentage": 4.273504273504273
+    },
+    {
+        "count": 8,
+        "label": "\u2265 40",
+        "percentage": 6.837606837606837
+    },
+    {
+        "count": 3,
+        "label": "\u2265 50",
+        "percentage": 2.5641025641025643
+    },
+    {
+        "count": 14,
+        "label": "\u2265 60",
+        "percentage": 11.965811965811966
+    },
+    {
+        "count": 37,
+        "label": "\u2265 70",
+        "percentage": 31.623931623931625
+    },
+    {
+        "count": 36,
+        "label": "\u2265 80",
+        "percentage": 30.76923076923077
+    },
+    {
+        "count": 0,
+        "label": "\u2265 90",
+        "percentage": 0.0
+    }
+]

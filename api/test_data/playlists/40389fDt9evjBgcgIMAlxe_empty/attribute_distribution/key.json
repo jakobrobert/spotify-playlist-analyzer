@@ -1,1 +1,62 @@
-[{"count":0,"label":"C","percentage":0},{"count":0,"label":"C\u266f/D\u266d","percentage":0},{"count":0,"label":"D","percentage":0},{"count":0,"label":"D\u266f/E\u266d","percentage":0},{"count":0,"label":"E","percentage":0},{"count":0,"label":"F","percentage":0},{"count":0,"label":"F\u266f/G\u266d","percentage":0},{"count":0,"label":"G","percentage":0},{"count":0,"label":"G\u266f/A\u266d","percentage":0},{"count":0,"label":"A","percentage":0},{"count":0,"label":"A\u266f/B\u266d","percentage":0},{"count":0,"label":"B","percentage":0}]
+[
+    {
+        "count": 0,
+        "label": "C",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "C\u266f/D\u266d",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "D",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "D\u266f/E\u266d",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "E",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "F",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "F\u266f/G\u266d",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "G",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "G\u266f/A\u266d",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "A",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "A\u266f/B\u266d",
+        "percentage": 0
+    },
+    {
+        "count": 0,
+        "label": "B",
+        "percentage": 0
+    }
+]
