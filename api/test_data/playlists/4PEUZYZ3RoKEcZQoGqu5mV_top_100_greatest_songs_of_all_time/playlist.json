@@ -1,6 +1,6 @@
 {
-    "id": "26LDpXWgS0nYibyLS9X4Wq",
-    "name": "Top 100 Greatest Songs of All Time [Backup on 2023-09-15 14:40 UTC]",
+    "id": "4PEUZYZ3RoKEcZQoGqu5mV",
+    "name": "Top 100 Greatest Songs of All Time [Backup on 2023-09-22 15:20 UTC]",
     "statistics": {
         "average_acousticness": 27.384615384615383,
         "average_danceability": 58.36752136752137,
@@ -8,7 +8,7 @@
         "average_energy": 62.427350427350426,
         "average_instrumentalness": 1.3418803418803418,
         "average_liveness": 19.076923076923077,
-        "average_popularity": 65.43589743589743,
+        "average_popularity": 64.87179487179488,
         "average_release_year": 1987.1025641025642,
         "average_speechiness": 4.905982905982906,
         "average_tempo": 118.24909401709402,
@@ -41,7 +41,7 @@
             "liveness": 7,
             "loudness": -9.538,
             "mode": 0,
-            "popularity": 69,
+            "popularity": 68,
             "release_year": 1958,
             "speechiness": 8,
             "super_genres": [
@@ -81,7 +81,7 @@
             "liveness": 6,
             "loudness": -9.484,
             "mode": 1,
-            "popularity": 85,
+            "popularity": 84,
             "release_year": 1976,
             "speechiness": 3,
             "super_genres": [
@@ -116,7 +116,7 @@
             "liveness": 4,
             "loudness": -3.051,
             "mode": 0,
-            "popularity": 83,
+            "popularity": 82,
             "release_year": 2008,
             "speechiness": 4,
             "super_genres": [
@@ -152,7 +152,7 @@
             "liveness": 30,
             "loudness": -9.928,
             "mode": 0,
-            "popularity": 83,
+            "popularity": 82,
             "release_year": 1975,
             "speechiness": 5,
             "super_genres": [
@@ -191,7 +191,7 @@
             "liveness": 11,
             "loudness": -8.339,
             "mode": 1,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1970,
             "speechiness": 3,
             "super_genres": [
@@ -229,7 +229,7 @@
             "liveness": 13,
             "loudness": -7.89,
             "mode": 1,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1965,
             "speechiness": 3,
             "super_genres": [
@@ -270,7 +270,7 @@
             "liveness": 5,
             "loudness": -18.064,
             "mode": 1,
-            "popularity": 86,
+            "popularity": 85,
             "release_year": 1982,
             "speechiness": 3,
             "super_genres": [
@@ -310,7 +310,7 @@
             "liveness": 5,
             "loudness": -8.039,
             "mode": 1,
-            "popularity": 82,
+            "popularity": 81,
             "release_year": 1976,
             "speechiness": 3,
             "super_genres": [
@@ -347,7 +347,7 @@
             "liveness": 18,
             "loudness": -7.179,
             "mode": 0,
-            "popularity": 78,
+            "popularity": 77,
             "release_year": 1979,
             "speechiness": 3,
             "super_genres": [
@@ -384,7 +384,7 @@
             "liveness": 11,
             "loudness": -4.556,
             "mode": 1,
-            "popularity": 4,
+            "popularity": 3,
             "release_year": 1991,
             "speechiness": 6,
             "super_genres": [
@@ -423,7 +423,7 @@
             "liveness": 7,
             "loudness": -9.796,
             "mode": 1,
-            "popularity": 89,
+            "popularity": 88,
             "release_year": 1983,
             "speechiness": 3,
             "super_genres": [
@@ -459,7 +459,7 @@
             "liveness": 7,
             "loudness": -9.443,
             "mode": 1,
-            "popularity": 83,
+            "popularity": 82,
             "release_year": 1962,
             "speechiness": 4,
             "super_genres": [
@@ -496,7 +496,7 @@
             "liveness": 10,
             "loudness": -7.016,
             "mode": 1,
-            "popularity": 4,
+            "popularity": 3,
             "release_year": 1990,
             "speechiness": 3,
             "super_genres": [
@@ -537,7 +537,7 @@
             "liveness": 45,
             "loudness": -9.072,
             "mode": 1,
-            "popularity": 85,
+            "popularity": 84,
             "release_year": 1981,
             "speechiness": 4,
             "super_genres": [
@@ -571,7 +571,7 @@
             "liveness": 24,
             "loudness": -5.62,
             "mode": 0,
-            "popularity": 44,
+            "popularity": 43,
             "release_year": 2021,
             "speechiness": 4,
             "super_genres": [
@@ -607,7 +607,7 @@
             "liveness": 9,
             "loudness": -12.358,
             "mode": 1,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1971,
             "speechiness": 3,
             "super_genres": [
@@ -644,7 +644,7 @@
             "liveness": 7,
             "loudness": -6.215,
             "mode": 1,
-            "popularity": 83,
+            "popularity": 82,
             "release_year": 1979,
             "speechiness": 4,
             "super_genres": [
@@ -679,7 +679,7 @@
             "liveness": 20,
             "loudness": -3.704,
             "mode": 0,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 2008,
             "speechiness": 5,
             "super_genres": [
@@ -716,7 +716,7 @@
             "liveness": 40,
             "loudness": -11.6,
             "mode": 1,
-            "popularity": 77,
+            "popularity": 76,
             "release_year": 1969,
             "speechiness": 40,
             "super_genres": [
@@ -754,7 +754,7 @@
             "liveness": 9,
             "loudness": -7.638,
             "mode": 0,
-            "popularity": 88,
+            "popularity": 87,
             "release_year": 1985,
             "speechiness": 5,
             "super_genres": [
@@ -792,7 +792,7 @@
             "liveness": 14,
             "loudness": -13.496,
             "mode": 1,
-            "popularity": 84,
+            "popularity": 83,
             "release_year": 1991,
             "speechiness": 5,
             "super_genres": [
@@ -833,7 +833,7 @@
             "liveness": 40,
             "loudness": -10.05,
             "mode": 1,
-            "popularity": 6,
+            "popularity": 5,
             "release_year": 1995,
             "speechiness": 6,
             "super_genres": [
@@ -870,7 +870,7 @@
             "liveness": 12,
             "loudness": -7.766,
             "mode": 1,
-            "popularity": 23,
+            "popularity": 20,
             "release_year": 1987,
             "speechiness": 4,
             "super_genres": [
@@ -905,7 +905,7 @@
             "liveness": 8,
             "loudness": -12.518,
             "mode": 1,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1992,
             "speechiness": 3,
             "super_genres": [
@@ -942,7 +942,7 @@
             "liveness": 13,
             "loudness": -15.523,
             "mode": 0,
-            "popularity": 82,
+            "popularity": 81,
             "release_year": 1988,
             "speechiness": 4,
             "super_genres": [
@@ -978,7 +978,7 @@
             "liveness": 46,
             "loudness": -10.23,
             "mode": 1,
-            "popularity": 69,
+            "popularity": 68,
             "release_year": 2000,
             "speechiness": 3,
             "super_genres": [
@@ -1016,7 +1016,7 @@
             "liveness": 69,
             "loudness": -10.422,
             "mode": 1,
-            "popularity": 76,
+            "popularity": 75,
             "release_year": 1984,
             "speechiness": 3,
             "super_genres": [
@@ -1053,7 +1053,7 @@
             "liveness": 76,
             "loudness": -8.492,
             "mode": 1,
-            "popularity": 66,
+            "popularity": 65,
             "release_year": 1958,
             "speechiness": 5,
             "super_genres": [
@@ -1090,7 +1090,7 @@
             "liveness": 35,
             "loudness": -4.897,
             "mode": 1,
-            "popularity": 83,
+            "popularity": 81,
             "release_year": 1983,
             "speechiness": 3,
             "super_genres": [
@@ -1129,7 +1129,7 @@
             "liveness": 14,
             "loudness": -8.023,
             "mode": 0,
-            "popularity": 7,
+            "popularity": 23,
             "release_year": 2023,
             "speechiness": 4,
             "super_genres": [
@@ -1168,7 +1168,7 @@
             "liveness": 9,
             "loudness": -7.7,
             "mode": 1,
-            "popularity": 73,
+            "popularity": 72,
             "release_year": 2000,
             "speechiness": 3,
             "super_genres": [
@@ -1210,7 +1210,7 @@
             "liveness": 24,
             "loudness": -16.066,
             "mode": 1,
-            "popularity": 80,
+            "popularity": 79,
             "release_year": 1969,
             "speechiness": 3,
             "super_genres": [
@@ -1254,7 +1254,7 @@
             "liveness": 18,
             "loudness": -10.87,
             "mode": 1,
-            "popularity": 87,
+            "popularity": 86,
             "release_year": 1967,
             "speechiness": 3,
             "super_genres": [
@@ -1292,7 +1292,7 @@
             "liveness": 10,
             "loudness": -5.051,
             "mode": 0,
-            "popularity": 86,
+            "popularity": 85,
             "release_year": 1991,
             "speechiness": 3,
             "super_genres": [
@@ -1326,7 +1326,7 @@
             "liveness": 10,
             "loudness": -7.331,
             "mode": 0,
-            "popularity": 37,
+            "popularity": 36,
             "release_year": 2023,
             "speechiness": 4,
             "super_genres": [],
@@ -1364,7 +1364,7 @@
             "liveness": 5,
             "loudness": -5.226,
             "mode": 1,
-            "popularity": 78,
+            "popularity": 77,
             "release_year": 1967,
             "speechiness": 4,
             "super_genres": [
@@ -1403,7 +1403,7 @@
             "liveness": 18,
             "loudness": -10.484,
             "mode": 1,
-            "popularity": 85,
+            "popularity": 84,
             "release_year": 1969,
             "speechiness": 3,
             "super_genres": [
@@ -1441,7 +1441,7 @@
             "liveness": 25,
             "loudness": -7.288,
             "mode": 1,
-            "popularity": 68,
+            "popularity": 67,
             "release_year": 2018,
             "speechiness": 3,
             "super_genres": [
@@ -1479,7 +1479,7 @@
             "liveness": 12,
             "loudness": -12.049,
             "mode": 0,
-            "popularity": 80,
+            "popularity": 79,
             "release_year": 1971,
             "speechiness": 3,
             "super_genres": [
@@ -1550,7 +1550,7 @@
             "liveness": 33,
             "loudness": -10.023,
             "mode": 1,
-            "popularity": 83,
+            "popularity": 82,
             "release_year": 1978,
             "speechiness": 3,
             "super_genres": [
@@ -1587,7 +1587,7 @@
             "liveness": 9,
             "loudness": -9.249,
             "mode": 0,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1985,
             "speechiness": 3,
             "super_genres": [
@@ -1623,7 +1623,7 @@
             "liveness": 7,
             "loudness": -10.842,
             "mode": 0,
-            "popularity": 74,
+            "popularity": 73,
             "release_year": 1984,
             "speechiness": 4,
             "super_genres": [
@@ -1655,7 +1655,7 @@
             "liveness": 34,
             "loudness": -5.652,
             "mode": 0,
-            "popularity": 40,
+            "popularity": 43,
             "release_year": 2023,
             "speechiness": 4,
             "super_genres": [],
@@ -1688,7 +1688,7 @@
             "liveness": 7,
             "loudness": -13.945,
             "mode": 1,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1981,
             "speechiness": 3,
             "super_genres": [
@@ -1723,7 +1723,7 @@
             "liveness": 4,
             "loudness": -12.115,
             "mode": 1,
-            "popularity": 77,
+            "popularity": 76,
             "release_year": 2002,
             "speechiness": 7,
             "super_genres": [
@@ -1809,7 +1809,7 @@
             "liveness": 29,
             "loudness": -3.757,
             "mode": 1,
-            "popularity": 87,
+            "popularity": 86,
             "release_year": 1986,
             "speechiness": 3,
             "super_genres": [
@@ -1845,7 +1845,7 @@
             "liveness": 18,
             "loudness": -9.875,
             "mode": 1,
-            "popularity": 77,
+            "popularity": 76,
             "release_year": 1979,
             "speechiness": 9,
             "super_genres": [
@@ -1881,7 +1881,7 @@
             "liveness": 16,
             "loudness": -4.793,
             "mode": 0,
-            "popularity": 86,
+            "popularity": 85,
             "release_year": 1979,
             "speechiness": 13,
             "super_genres": [
@@ -1920,7 +1920,7 @@
             "liveness": 7,
             "loudness": -6.205,
             "mode": 1,
-            "popularity": 85,
+            "popularity": 83,
             "release_year": 1984,
             "speechiness": 4,
             "super_genres": [
@@ -1954,7 +1954,7 @@
             "liveness": 19,
             "loudness": -8.12,
             "mode": 0,
-            "popularity": 44,
+            "popularity": 43,
             "release_year": 2023,
             "speechiness": 3,
             "super_genres": [],
@@ -1991,7 +1991,7 @@
             "liveness": 31,
             "loudness": -5.549,
             "mode": 1,
-            "popularity": 70,
+            "popularity": 69,
             "release_year": 2000,
             "speechiness": 5,
             "super_genres": [
@@ -2024,7 +2024,7 @@
             "liveness": 10,
             "loudness": -7.102,
             "mode": 0,
-            "popularity": 54,
+            "popularity": 55,
             "release_year": 2023,
             "speechiness": 3,
             "super_genres": [],
@@ -2067,7 +2067,7 @@
             "liveness": 9,
             "loudness": -6.905,
             "mode": 1,
-            "popularity": 21,
+            "popularity": 18,
             "release_year": 2019,
             "speechiness": 3,
             "super_genres": [
@@ -2109,7 +2109,7 @@
             "liveness": 13,
             "loudness": -10.036,
             "mode": 1,
-            "popularity": 82,
+            "popularity": 81,
             "release_year": 1984,
             "speechiness": 3,
             "super_genres": [
@@ -2145,7 +2145,7 @@
             "liveness": 32,
             "loudness": -13.445,
             "mode": 0,
-            "popularity": 45,
+            "popularity": 44,
             "release_year": 1993,
             "speechiness": 5,
             "super_genres": [
@@ -2182,7 +2182,7 @@
             "liveness": 12,
             "loudness": -11.451,
             "mode": 0,
-            "popularity": 84,
+            "popularity": 83,
             "release_year": 1971,
             "speechiness": 12,
             "super_genres": [
@@ -2217,7 +2217,7 @@
             "liveness": 27,
             "loudness": -8.815,
             "mode": 0,
-            "popularity": 83,
+            "popularity": 82,
             "release_year": 1998,
             "speechiness": 4,
             "super_genres": [
@@ -2256,7 +2256,7 @@
             "liveness": 5,
             "loudness": -10.702,
             "mode": 0,
-            "popularity": 78,
+            "popularity": 77,
             "release_year": 1972,
             "speechiness": 5,
             "super_genres": [
@@ -2293,7 +2293,7 @@
             "liveness": 40,
             "loudness": -9.267,
             "mode": 1,
-            "popularity": 85,
+            "popularity": 84,
             "release_year": 1966,
             "speechiness": 9,
             "super_genres": [
@@ -2364,7 +2364,7 @@
             "liveness": 12,
             "loudness": -13.888,
             "mode": 1,
-            "popularity": 72,
+            "popularity": 71,
             "release_year": 1970,
             "speechiness": 3,
             "super_genres": [
@@ -2403,7 +2403,7 @@
             "liveness": 16,
             "loudness": -7.113,
             "mode": 0,
-            "popularity": 2,
+            "popularity": 1,
             "release_year": 1995,
             "speechiness": 4,
             "super_genres": [
@@ -2447,7 +2447,7 @@
             "liveness": 57,
             "loudness": -17.117,
             "mode": 0,
-            "popularity": 80,
+            "popularity": 79,
             "release_year": 1996,
             "speechiness": 14,
             "super_genres": [
@@ -2488,7 +2488,7 @@
             "liveness": 31,
             "loudness": -9.129,
             "mode": 1,
-            "popularity": 78,
+            "popularity": 77,
             "release_year": 1959,
             "speechiness": 7,
             "super_genres": [
@@ -2528,7 +2528,7 @@
             "liveness": 13,
             "loudness": -7.028,
             "mode": 1,
-            "popularity": 88,
+            "popularity": 87,
             "release_year": 1970,
             "speechiness": 3,
             "super_genres": [
@@ -2567,7 +2567,7 @@
             "liveness": 8,
             "loudness": -11.226,
             "mode": 1,
-            "popularity": 82,
+            "popularity": 81,
             "release_year": 1968,
             "speechiness": 3,
             "super_genres": [
@@ -2644,7 +2644,7 @@
             "liveness": 38,
             "loudness": -6.465,
             "mode": 1,
-            "popularity": 81,
+            "popularity": 80,
             "release_year": 1982,
             "speechiness": 12,
             "super_genres": [
@@ -2677,7 +2677,7 @@
             "liveness": 9,
             "loudness": -5.462,
             "mode": 0,
-            "popularity": 38,
+            "popularity": 39,
             "release_year": 2022,
             "speechiness": 4,
             "super_genres": [],
@@ -2755,7 +2755,7 @@
             "liveness": 7,
             "loudness": -5.12,
             "mode": 1,
-            "popularity": 82,
+            "popularity": 81,
             "release_year": 1977,
             "speechiness": 4,
             "super_genres": [
@@ -2791,7 +2791,7 @@
             "liveness": 23,
             "loudness": -7.024,
             "mode": 1,
-            "popularity": 75,
+            "popularity": 74,
             "release_year": 1976,
             "speechiness": 6,
             "super_genres": [
@@ -2834,7 +2834,7 @@
             "liveness": 7,
             "loudness": -13.18,
             "mode": 0,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1972,
             "speechiness": 3,
             "super_genres": [
@@ -2871,7 +2871,7 @@
             "liveness": 10,
             "loudness": -10.738,
             "mode": 1,
-            "popularity": 82,
+            "popularity": 81,
             "release_year": 1965,
             "speechiness": 3,
             "super_genres": [
@@ -2904,7 +2904,7 @@
             "liveness": 8,
             "loudness": -9.138,
             "mode": 1,
-            "popularity": 31,
+            "popularity": 30,
             "release_year": 2023,
             "speechiness": 3,
             "super_genres": [],
@@ -2943,7 +2943,7 @@
             "liveness": 32,
             "loudness": -8.791,
             "mode": 1,
-            "popularity": 66,
+            "popularity": 65,
             "release_year": 2001,
             "speechiness": 3,
             "super_genres": [
@@ -2984,7 +2984,7 @@
             "liveness": 50,
             "loudness": -17.852,
             "mode": 1,
-            "popularity": 74,
+            "popularity": 73,
             "release_year": 1979,
             "speechiness": 4,
             "super_genres": [
@@ -3022,7 +3022,7 @@
             "liveness": 9,
             "loudness": -12.145,
             "mode": 1,
-            "popularity": 84,
+            "popularity": 83,
             "release_year": 1974,
             "speechiness": 3,
             "super_genres": [
@@ -3061,7 +3061,7 @@
             "liveness": 67,
             "loudness": -6.749,
             "mode": 0,
-            "popularity": 52,
+            "popularity": 51,
             "release_year": 2011,
             "speechiness": 25,
             "super_genres": [
@@ -3128,7 +3128,7 @@
             "liveness": 11,
             "loudness": -2.786,
             "mode": 1,
-            "popularity": 67,
+            "popularity": 66,
             "release_year": 2007,
             "speechiness": 3,
             "super_genres": [
@@ -3196,7 +3196,7 @@
             "liveness": 6,
             "loudness": -11.893,
             "mode": 1,
-            "popularity": 82,
+            "popularity": 81,
             "release_year": 1984,
             "speechiness": 4,
             "super_genres": [
@@ -3237,7 +3237,7 @@
             "liveness": 6,
             "loudness": -8.824,
             "mode": 1,
-            "popularity": 81,
+            "popularity": 80,
             "release_year": 1975,
             "speechiness": 3,
             "super_genres": [
@@ -3306,7 +3306,7 @@
             "liveness": 38,
             "loudness": -6.199,
             "mode": 0,
-            "popularity": 46,
+            "popularity": 45,
             "release_year": 2023,
             "speechiness": 4,
             "super_genres": [],
@@ -3339,7 +3339,7 @@
             "liveness": 37,
             "loudness": -13.559,
             "mode": 1,
-            "popularity": 80,
+            "popularity": 79,
             "release_year": 1969,
             "speechiness": 6,
             "super_genres": [
@@ -3378,7 +3378,7 @@
             "liveness": 10,
             "loudness": -6.042,
             "mode": 1,
-            "popularity": 76,
+            "popularity": 75,
             "release_year": 1984,
             "speechiness": 6,
             "super_genres": [
@@ -3421,7 +3421,7 @@
             "liveness": 41,
             "loudness": -10.964,
             "mode": 1,
-            "popularity": 83,
+            "popularity": 82,
             "release_year": 1967,
             "speechiness": 4,
             "super_genres": [
@@ -3466,7 +3466,7 @@
             "liveness": 6,
             "loudness": -14.256,
             "mode": 1,
-            "popularity": 74,
+            "popularity": 73,
             "release_year": 1962,
             "speechiness": 5,
             "super_genres": [
@@ -3499,7 +3499,7 @@
             "liveness": 10,
             "loudness": -5.615,
             "mode": 1,
-            "popularity": 44,
+            "popularity": 43,
             "release_year": 2023,
             "speechiness": 4,
             "super_genres": [],
@@ -3534,7 +3534,7 @@
             "liveness": 7,
             "loudness": -13.98,
             "mode": 1,
-            "popularity": 69,
+            "popularity": 68,
             "release_year": 1979,
             "speechiness": 3,
             "super_genres": [
@@ -3575,7 +3575,7 @@
             "liveness": 13,
             "loudness": -8.172,
             "mode": 1,
-            "popularity": 70,
+            "popularity": 68,
             "release_year": 1964,
             "speechiness": 3,
             "super_genres": [
@@ -3617,7 +3617,7 @@
             "liveness": 7,
             "loudness": -9.481,
             "mode": 1,
-            "popularity": 77,
+            "popularity": 76,
             "release_year": 1962,
             "speechiness": 3,
             "super_genres": [
@@ -3658,7 +3658,7 @@
             "liveness": 8,
             "loudness": -6.237,
             "mode": 1,
-            "popularity": 78,
+            "popularity": 77,
             "release_year": 1968,
             "speechiness": 6,
             "super_genres": [
@@ -3691,7 +3691,7 @@
             "liveness": 9,
             "loudness": -9.955,
             "mode": 1,
-            "popularity": 2,
+            "popularity": 22,
             "release_year": 2023,
             "speechiness": 3,
             "super_genres": [],
@@ -3723,7 +3723,7 @@
             "liveness": 7,
             "loudness": -6.666,
             "mode": 0,
-            "popularity": 33,
+            "popularity": 32,
             "release_year": 2022,
             "speechiness": 4,
             "super_genres": [
@@ -3758,7 +3758,7 @@
             "liveness": 31,
             "loudness": -7.11,
             "mode": 0,
-            "popularity": 76,
+            "popularity": 75,
             "release_year": 1994,
             "speechiness": 3,
             "super_genres": [
@@ -3796,7 +3796,7 @@
             "liveness": 9,
             "loudness": -9.119,
             "mode": 1,
-            "popularity": 83,
+            "popularity": 82,
             "release_year": 1972,
             "speechiness": 3,
             "super_genres": [
@@ -3836,7 +3836,7 @@
             "liveness": 9,
             "loudness": -9.11,
             "mode": 0,
-            "popularity": 77,
+            "popularity": 76,
             "release_year": 1987,
             "speechiness": 3,
             "super_genres": [
@@ -3874,7 +3874,7 @@
             "liveness": 17,
             "loudness": -13.241,
             "mode": 1,
-            "popularity": 70,
+            "popularity": 69,
             "release_year": 1967,
             "speechiness": 3,
             "super_genres": [
@@ -3914,7 +3914,7 @@
             "liveness": 10,
             "loudness": -12.095,
             "mode": 1,
-            "popularity": 90,
+            "popularity": 89,
             "release_year": 1985,
             "speechiness": 5,
             "super_genres": [
@@ -3950,7 +3950,7 @@
             "liveness": 8,
             "loudness": -6.317,
             "mode": 1,
-            "popularity": 66,
+            "popularity": 65,
             "release_year": 1955,
             "speechiness": 17,
             "super_genres": [
@@ -4032,7 +4032,7 @@
             "liveness": 4,
             "loudness": -9.568,
             "mode": 1,
-            "popularity": 63,
+            "popularity": 61,
             "release_year": 2003,
             "speechiness": 3,
             "super_genres": [
@@ -4070,7 +4070,7 @@
             "liveness": 16,
             "loudness": -9.401,
             "mode": 1,
-            "popularity": 52,
+            "popularity": 51,
             "release_year": 1994,
             "speechiness": 3,
             "super_genres": [
@@ -4109,7 +4109,7 @@
             "liveness": 88,
             "loudness": -7.433,
             "mode": 1,
-            "popularity": 61,
+            "popularity": 60,
             "release_year": 1959,
             "speechiness": 9,
             "super_genres": [
@@ -4149,7 +4149,7 @@
             "liveness": 9,
             "loudness": -5.787,
             "mode": 0,
-            "popularity": 73,
+            "popularity": 72,
             "release_year": 1967,
             "speechiness": 3,
             "super_genres": [
@@ -4190,7 +4190,7 @@
             "liveness": 19,
             "loudness": -6.839,
             "mode": 1,
-            "popularity": 71,
+            "popularity": 70,
             "release_year": 1965,
             "speechiness": 3,
             "super_genres": [
@@ -4223,7 +4223,7 @@
             "liveness": 12,
             "loudness": -8.315,
             "mode": 1,
-            "popularity": 22,
+            "popularity": 25,
             "release_year": 2022,
             "speechiness": 3,
             "super_genres": [],
@@ -4259,7 +4259,7 @@
             "liveness": 15,
             "loudness": -7.516,
             "mode": 1,
-            "popularity": 86,
+            "popularity": 85,
             "release_year": 1969,
             "speechiness": 4,
             "super_genres": [
@@ -4293,7 +4293,7 @@
             "liveness": 26,
             "loudness": -5.368,
             "mode": 0,
-            "popularity": 31,
+            "popularity": 30,
             "release_year": 2023,
             "speechiness": 5,
             "super_genres": [],
@@ -4330,7 +4330,7 @@
             "liveness": 9,
             "loudness": -11.913,
             "mode": 0,
-            "popularity": 79,
+            "popularity": 78,
             "release_year": 1969,
             "speechiness": 4,
             "super_genres": [
@@ -4366,7 +4366,7 @@
             "liveness": 30,
             "loudness": -6.419,
             "mode": 1,
-            "popularity": 69,
+            "popularity": 68,
             "release_year": 1959,
             "speechiness": 5,
             "super_genres": [
@@ -4404,7 +4404,7 @@
             "liveness": 9,
             "loudness": -6.491,
             "mode": 1,
-            "popularity": 76,
+            "popularity": 75,
             "release_year": 1977,
             "speechiness": 3,
             "super_genres": [
