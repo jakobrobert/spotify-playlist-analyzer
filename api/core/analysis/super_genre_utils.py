@@ -59,6 +59,9 @@ class SuperGenreUtils:
 
     @staticmethod
     def get_super_genres_for_genres(genres):
+        if not genres:
+            return [SuperGenreUtils.Others]
+
         unsorted_super_genres = []
 
         for genre in genres:
