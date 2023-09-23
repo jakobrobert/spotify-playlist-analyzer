@@ -88,7 +88,7 @@ class Track:
 
     def update_genres_and_super_genres(self, genres):
         self.genres = genres
-        self.__update_super_genres_by_genres(genres)
+        self.super_genres = SuperGenreUtils.get_super_genres_for_genres(genres)
 
     def update_attributes_by_audio_features(self, audio_features):
         self.tempo = audio_features["tempo"]
@@ -135,11 +135,6 @@ class Track:
         track.speechiness = track_dict["speechiness"]
 
         return track
-
-    # TODONOW inline when extracted code & tested
-    def __update_super_genres_by_genres(self, genres):
-        super_genres = SuperGenreUtils.get_super_genres_for_genres(genres)
-        self.super_genres = super_genres
 
     @staticmethod
     def __get_key_and_mode_pair(key, mode):
