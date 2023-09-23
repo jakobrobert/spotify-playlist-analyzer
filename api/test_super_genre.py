@@ -15,6 +15,12 @@ class TestSuperGenre(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_empty_genres(self):
+        genres = []
+        expected_super_genres = [SuperGenreUtils.Others]
+        actual_super_genres = SuperGenreUtils.get_super_genres_for_genres(genres)
+        self.assertEqual(expected_super_genres, actual_super_genres)
+
     @parameterized.expand(["pop", "dance pop", "new romantic"])
     def test_Pop(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Pop)
@@ -54,6 +60,15 @@ class TestSuperGenre(unittest.TestCase):
     @parameterized.expand(["unknown", "garbage", "foobar"])
     def test_Others(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Others)
+
+    def test_MultipleGenres(self):
+        genres = ["pop", "dance pop", "eurodance", "dancehall", "black metal", "classical", "death metal"]
+        expected_super_genres = [
+            SuperGenreUtils.Pop, SuperGenreUtils.EDM, SuperGenreUtils.ExtremeMetal,
+            SuperGenreUtils.Classical, SuperGenreUtils.Afro
+        ]
+        actual_super_genres = SuperGenreUtils.get_super_genres_for_genres(genres)
+        self.assertEqual(expected_super_genres, actual_super_genres)
 
     def __test_get_super_genre_for_genre(self, genre, expected_super_genre):
         actual = SuperGenreUtils.get_super_genre_for_genre(genre)
