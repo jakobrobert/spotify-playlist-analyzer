@@ -23,11 +23,11 @@ class SuperGenreUtils:
     }
 
     ACCEPTED_GENRE_SUBSTRINGS_BY_SUPER_GENRE = {
-        Pop: ["pop", "new romantic", "wave", "girl group", "boy band"],
+        Pop: ["pop", "new romantic", "wave", "girl group", "boy band", "neo mellow"],
         Rock: ["rock", "post-grunge", "punk", "mellow gold"],
         EDM: [
-            "edm", "dance", "house", "trance", "techno", "hands up", "hardstyle", "big room",
-            "dubstep", "brostep", "complextro", "disco", "hi-nrg", "dancefloor", "drum and bass", "dnb",
+            "edm", "electro", "dance", "house", "trance", "techno", "hands up", "hardstyle", "hardcore", "rave",
+            "big room", "dubstep", "brostep", "complextro", "disco", "hi-nrg", "dancefloor", "drum and bass", "dnb",
             "jungle", "melbourne bounce", "indietronica"
         ],
         Rap: ["hip hop", "rap", "trap", "drill"],
