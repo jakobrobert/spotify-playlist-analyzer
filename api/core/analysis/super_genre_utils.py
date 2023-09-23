@@ -56,3 +56,19 @@ class SuperGenreUtils:
                     return super_genre
 
         return SuperGenreUtils.Others
+
+    @staticmethod
+    def get_super_genres_for_genres(genres):
+        unsorted_super_genres = []
+
+        for genre in genres:
+            super_genre = SuperGenreUtils.get_super_genre_for_genre(genre)
+            if super_genre not in unsorted_super_genres:
+                unsorted_super_genres.append(super_genre)
+
+        sorted_super_genres = []
+        for super_genre in SuperGenreUtils.SUPER_GENRES:
+            if super_genre in unsorted_super_genres:
+                sorted_super_genres.append(super_genre)
+
+        return sorted_super_genres
