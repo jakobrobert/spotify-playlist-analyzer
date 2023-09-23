@@ -17,9 +17,9 @@ class TestSuperGenre(unittest.TestCase):
 
     def test_empty_genres(self):
         genres = []
-        # TODONOW move method into SuperGenreUtils
-        #actual_super_genre = SuperGenreUtils.map_genres_to_super_genres(genres)
-        #self.assertEqual(SuperGenreUtils.Others, actual_super_genre)
+        expected_super_genres = [SuperGenreUtils.Others]
+        actual_super_genres = SuperGenreUtils.get_super_genres_for_genres(genres)
+        self.assertEqual(expected_super_genres, actual_super_genres)
 
     @parameterized.expand(["pop", "dance pop", "new romantic"])
     def test_Pop(self, genre):
