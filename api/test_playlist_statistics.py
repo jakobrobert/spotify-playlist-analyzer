@@ -10,7 +10,7 @@ from test_utils import TestUtils
 class TestPlaylistStatistics(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        top_100_playlist = TestUtils.load__and_validate_top_100_playlist()
+        top_100_playlist = TestUtils.load_and_validate_top_100_playlist()
         cls.top_100_playlist_statistics = PlaylistStatistics(top_100_playlist.tracks)
 
         empty_playlist = TestUtils.load_and_validate_empty_playlist()

@@ -18,7 +18,7 @@ class TestUtils:
         return Playlist.from_dict(playlist_dict)
 
     @staticmethod
-    def load__and_validate_top_100_playlist():
+    def load_and_validate_top_100_playlist():
         file_path = f"test_data/playlists/{TestUtils.TOP_100_PLAYLIST_DIRECTORY_NAME}/playlist.json"
         playlist = TestUtils.load_playlist_from_json_file(file_path)
 
