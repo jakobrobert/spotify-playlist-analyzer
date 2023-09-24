@@ -61,12 +61,24 @@ class TestSuperGenre(unittest.TestCase):
     def test_Others(self, genre):
         self.__test_get_super_genre_for_genre(genre, SuperGenreUtils.Others)
 
-    def test_MultipleGenres(self):
+    def test_multiple_genres_all_mapped(self):
         genres = ["pop", "dance pop", "eurodance", "dancehall", "black metal", "classical", "death metal"]
         expected_super_genres = [
             SuperGenreUtils.Pop, SuperGenreUtils.EDM, SuperGenreUtils.ExtremeMetal,
             SuperGenreUtils.Classical, SuperGenreUtils.Afro
         ]
+        actual_super_genres = SuperGenreUtils.get_super_genres_for_genres(genres)
+        self.assertEqual(expected_super_genres, actual_super_genres)
+
+    def test_multiple_genres_all_not_mapped_then_super_genres_should_contain_only_Others(self):
+        genres = ["unknown", "garbage", "foobar"]
+        expected_super_genres = [SuperGenreUtils.Others]
+        actual_super_genres = SuperGenreUtils.get_super_genres_for_genres(genres)
+        self.assertEqual(expected_super_genres, actual_super_genres)
+
+    def test_multiple_genres_some_not_mapped_then_super_genres_should_not_contain_Others(self):
+        genres = ["unknown", "garbage", "foobar", "pop", "rock"]
+        expected_super_genres = [SuperGenreUtils.Pop, SuperGenreUtils.Rock]
         actual_super_genres = SuperGenreUtils.get_super_genres_for_genres(genres)
         self.assertEqual(expected_super_genres, actual_super_genres)
 
