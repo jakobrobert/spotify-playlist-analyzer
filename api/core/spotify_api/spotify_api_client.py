@@ -257,10 +257,10 @@ class SpotifyApiClient:
         for track in tracks:
             all_artist_ids.extend(track.artist_ids)
 
-        artist_id_to_genres = SpotifyApiClient.__get_genres_by_artist_id_mapping(all_artist_ids, access_token)
+        genres_by_artist_id_mapping = SpotifyApiClient.__get_genres_by_artist_id_mapping(all_artist_ids, access_token)
 
         for track in tracks:
-            genres = SpotifyApiClient.__get_genres_of_artists(track.artist_ids, artist_id_to_genres)
+            genres = SpotifyApiClient.__get_genres_of_artists(track.artist_ids, genres_by_artist_id_mapping)
             track.update_genres_and_super_genres(genres)
 
     @staticmethod
