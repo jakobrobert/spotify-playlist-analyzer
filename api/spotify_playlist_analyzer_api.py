@@ -3,6 +3,7 @@ import configparser
 from flask import Flask, jsonify, request, redirect
 
 from core.api_utils import ApiUtils
+from core.http_error import HttpError
 from core.spotify_api.spotify_api_authorization import SpotifyApiAuthorization
 from core.spotify_api.spotify_api_client import SpotifyApiClient
 from core.playlist.track import Track
@@ -40,8 +41,10 @@ def authorize():
 @ApiUtils.handle_exceptions
 def authorize_callback():
     if "code" not in request.args:
-        # TODONOW change to HttpError, code 400
-        raise ValueError("Failed to get authorization code because request arg 'code' is missing")
+        raise HttpError(
+            status_code=400, title="[API Error] Authorization failed",
+            message=f"Missing request argument \"code\""
+        )
 
     authorization_code = request.args.get("code")
     print(f"authorize_callback => authorization_code: {authorization_code}")
