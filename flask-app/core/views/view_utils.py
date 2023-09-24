@@ -53,16 +53,16 @@ class ViewUtils:
     @staticmethod
     @Utils.measure_execution_time(log_prefix="ViewUtils.")
     def get_playlist_id_from_playlist_url(playlist_url):
-        url_prefix = "playlist/"
-        url_prefix_start_index = playlist_url.find(url_prefix)
+        part_before_id = "playlist/"
+        part_before_id_start_index = playlist_url.find(part_before_id)
 
-        if url_prefix_start_index == -1:
+        if part_before_id_start_index == -1:
             raise HttpError(
                 status_code=400, title="Invalid Playlist URL",
-                message=f"Missing \"{url_prefix}\" in \"{playlist_url}\""
+                message=f"Missing \"{part_before_id}\" in \"{playlist_url}\""
             )
 
-        id_start_index = playlist_url.find(url_prefix) + len(url_prefix)
+        id_start_index = playlist_url.find(part_before_id) + len(part_before_id)
         id_end_index = None
 
         si_start_index = playlist_url.find("?si=")
@@ -74,16 +74,16 @@ class ViewUtils:
     @staticmethod
     @Utils.measure_execution_time(log_prefix="ViewUtils.")
     def get_track_id_from_track_url(track_url):
-        url_prefix = "track/"
-        url_prefix_start_index = track_url.find(url_prefix)
+        part_before_id = "track/"
+        part_before_id_start_index = track_url.find(part_before_id)
 
-        if url_prefix_start_index == -1:
+        if part_before_id_start_index == -1:
             raise HttpError(
                 status_code=400, title="Invalid Track URL",
-                message=f"Missing \"{url_prefix}\" in \"{track_url}\""
+                message=f"Missing \"{part_before_id}\" in \"{track_url}\""
             )
 
-        id_start_index = track_url.find(url_prefix) + len(url_prefix)
+        id_start_index = track_url.find(part_before_id) + len(part_before_id)
         id_end_index = None
 
         si_start_index = track_url.find("?si=")
