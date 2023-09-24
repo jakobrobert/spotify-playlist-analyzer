@@ -69,6 +69,12 @@ class SuperGenreUtils:
             if super_genre not in unsorted_super_genres:
                 unsorted_super_genres.append(super_genre)
 
+        if SuperGenreUtils.Others in unsorted_super_genres:
+            if len(unsorted_super_genres) == 1:
+                return unsorted_super_genres
+
+            unsorted_super_genres.remove(SuperGenreUtils.Others)
+
         sorted_super_genres = []
         for super_genre in SuperGenreUtils.SUPER_GENRES:
             if super_genre in unsorted_super_genres:
