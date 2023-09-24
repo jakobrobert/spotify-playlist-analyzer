@@ -215,7 +215,6 @@ class SpotifyApiClient:
     @staticmethod
     @Utils.measure_execution_time(LOG_PREFIX)
     def __update_added_by_of_tracks(tracks, access_token):
-        # TODOLATER #271 Can use set to simplify code
         all_added_by_user_ids = []
         for track in tracks:
             if track.added_by_user_id not in all_added_by_user_ids:
@@ -252,10 +251,12 @@ class SpotifyApiClient:
     @staticmethod
     @Utils.measure_execution_time(LOG_PREFIX)
     def __update_genres_of_tracks(tracks, access_token):
-        # TODOLATER #271 Optimize, and can use set to simplify code
         all_artist_ids = []
+
         for track in tracks:
-            all_artist_ids.extend(track.artist_ids)
+            for artist_id in track.artist_ids:
+                if artist_id not in all_artist_ids:
+                    all_artist_ids.append(artist_id)
 
         genres_by_artist_id_mapping = SpotifyApiClient.__get_genres_by_artist_id_mapping(all_artist_ids, access_token)
 
