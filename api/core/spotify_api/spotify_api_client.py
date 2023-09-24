@@ -40,7 +40,8 @@ class SpotifyApiClient:
         print(f"tracks: {len(playlist.tracks)}")
 
         self.cache.update_playlist(playlist_id, playlist)
-        print(f"SpotifyApiClient.get_playlist_by_id => Updated playlist in cache")
+        print(f"{LOG_PREFIX}.get_playlist_by_id => Updated playlist in cache")
+
         return playlist
 
     @Utils.measure_execution_time(LOG_PREFIX)
@@ -138,6 +139,7 @@ class SpotifyApiClient:
 
         total_track_count = tracks_data["total"]
         expected_request_count = ceil(total_track_count / 100)
+
         print(f"SpotifyApiClient.__get_all_track_items_of_playlist => "
               f"total_track_count: {total_track_count}, expected_request_count: {expected_request_count}")
 
@@ -160,6 +162,7 @@ class SpotifyApiClient:
         tracks_data = SpotifyApiUtils.send_get_request(next_url, access_token)
         track_items = tracks_data["items"]
         next_url = tracks_data["next"]
+
         return track_items, next_url
 
     @staticmethod
