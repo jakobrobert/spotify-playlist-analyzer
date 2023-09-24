@@ -36,6 +36,9 @@ class SpotifyApiClient:
         playlist.name = response_data["name"]
         playlist.tracks = SpotifyApiClient.__get_tracks_of_playlist(response_data, access_token)
 
+        # TODONOW remove
+        print(f"tracks: {len(playlist.tracks)}")
+
         self.cache.update_playlist(playlist_id, playlist)
         print(f"SpotifyApiClient.get_playlist_by_id => Updated playlist in cache")
         return playlist
@@ -206,9 +209,8 @@ class SpotifyApiClient:
 
         return artist_ids
 
-    # REMARK NO need to measure performance of the update__ methods
-    # -> Most of the time is spent in the called get_ methods
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_added_by_of_tracks(tracks, access_token):
         all_added_by_user_ids = []
         for track in tracks:
@@ -243,6 +245,7 @@ class SpotifyApiClient:
         return user_name
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_genres_of_tracks(tracks, access_token):
         # TODOLATER #271 Optimize, and can use set to simplify code
         all_artist_ids = []
@@ -300,6 +303,7 @@ class SpotifyApiClient:
         return genres
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_audio_features_of_tracks(tracks, access_token):
         audio_features_by_track_index = SpotifyApiClient.__get_audio_features_of_tracks(tracks, access_token)
 
@@ -338,6 +342,7 @@ class SpotifyApiClient:
         return audio_features
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __create_empty_playlist(playlist_name, user_id, access_token):
         url = f"https://api.spotify.com/v1/users/{user_id}/playlists"
         data = {
@@ -349,6 +354,7 @@ class SpotifyApiClient:
         return response_data["id"]
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __add_tracks_to_playlist(playlist_id, track_ids, access_token):
         url = f"https://api.spotify.com/v1/playlists/{playlist_id}/tracks"
 
