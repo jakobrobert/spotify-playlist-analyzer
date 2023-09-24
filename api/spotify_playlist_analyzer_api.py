@@ -40,6 +40,7 @@ def authorize():
 @ApiUtils.handle_exceptions
 def authorize_callback():
     if "code" not in request.args:
+        # TODONOW change to HttpError, code 400
         raise ValueError("Failed to get authorization code because request arg 'code' is missing")
 
     authorization_code = request.args.get("code")
