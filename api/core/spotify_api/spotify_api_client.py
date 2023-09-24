@@ -243,6 +243,7 @@ class SpotifyApiClient:
         return user_name
 
     @staticmethod
+    @Utils.measure_execution_time(LOG_PREFIX)
     def __update_genres_of_tracks(tracks, access_token):
         # TODOLATER #271 Optimize, and can use set to simplify code
         all_artist_ids = []
