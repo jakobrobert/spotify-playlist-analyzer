@@ -57,8 +57,10 @@ class ViewUtils:
         url_prefix_start_index = playlist_url.find(url_prefix)
 
         if url_prefix_start_index == -1:
-            # TODONOW change to HttpError, code 400
-            raise ValueError(f"Invalid URL for Spotify Playlist, missing \"{url_prefix}\": {playlist_url}")
+            raise HttpError(
+                status_code=400, title="Invalid Playlist URL",
+                message=f"Missing \"{url_prefix}\" in \"{playlist_url}\""
+            )
 
         id_start_index = playlist_url.find(url_prefix) + len(url_prefix)
         id_end_index = None
