@@ -78,8 +78,10 @@ class ViewUtils:
         url_prefix_start_index = track_url.find(url_prefix)
 
         if url_prefix_start_index == -1:
-            # TODONOW change to HttpError, code 400
-            raise ValueError(f"Invalid URL for Spotify Track, missing \"{url_prefix}\": {track_url}")
+            raise HttpError(
+                status_code=400, title="Invalid Track URL",
+                message=f"Missing \"{url_prefix}\" in \"{track_url}\""
+            )
 
         id_start_index = track_url.find(url_prefix) + len(url_prefix)
         id_end_index = None
