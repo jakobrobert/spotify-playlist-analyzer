@@ -26,7 +26,7 @@ class SuperGenreUtils:
         Pop: ["pop", "new romantic", "wave", "girl group", "boy band", "neo mellow"],
         Rock: ["rock", "post-grunge", "punk", "mellow gold"],
         EDM: [
-            "edm", "electro", "dance", "house", "trance", "techno", "hands up", "hardstyle", "hardcore", "rave",
+            "edm", "electro", "dance", "house", "trance", "techno", "hands up", "hardstyle", "rave",
             "big room", "dubstep", "brostep", "complextro", "disco", "hi-nrg", "dancefloor", "drum and bass", "dnb",
             "jungle", "melbourne bounce", "indietronica"
         ],
