@@ -5,10 +5,10 @@ from core.playlist.playlist import Playlist
 
 class TestUtils:
     TOP_100_PLAYLIST_ID = "4PEUZYZ3RoKEcZQoGqu5mV"
-    TOP_100_PLAYLIST_DIRECTORY_NAME = f"{TOP_100_PLAYLIST_ID}_top_100_greatest_songs_of_all_time"
+    TOP_100_PLAYLIST_DIRECTORY_NAME = f"top_100_{TOP_100_PLAYLIST_ID}"
 
     EMPTY_PLAYLIST_ID = "40389fDt9evjBgcgIMAlxe"
-    EMPTY_PLAYLIST_DIRECTORY_NAME = f"{EMPTY_PLAYLIST_ID}_empty"
+    EMPTY_PLAYLIST_DIRECTORY_NAME = f"empty_{EMPTY_PLAYLIST_ID}"
 
     @staticmethod
     def load_playlist_from_json_file(file_path):
