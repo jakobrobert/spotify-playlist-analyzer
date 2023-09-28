@@ -9,12 +9,6 @@ from core.analysis.super_genre_utils import SuperGenreUtils
 
 
 class TestSuperGenre(unittest.TestCase):
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
     def test_empty_genres(self):
         genres = []
         expected_super_genres = [SuperGenreUtils.Others]
