@@ -27,6 +27,9 @@ class TrackFilter:
         if filter_by == "title":
             return self.__filter_by_title()
 
+        if filter_by == "added_by":
+            return self.__filter_by_added_by()
+
         if filter_by == "genres":
             return self.__filter_by_genres()
 
@@ -61,6 +64,11 @@ class TrackFilter:
         title_substring = self.filter_params["title_substring"]
         return list(filter(
             lambda track: TrackFilter.string_contains_substring(track.title, title_substring), self.tracks))
+
+    def __filter_by_added_by(self):
+        added_by_substring = self.filter_params["added_by_substring"]
+        return list(filter(
+            lambda track: TrackFilter.string_contains_substring(track.added_by, added_by_substring), self.tracks))
 
     def __filter_by_genres(self):
         genres_substring = self.filter_params["genres_substring"]
