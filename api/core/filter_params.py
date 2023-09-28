@@ -25,6 +25,10 @@ class FilterParams:
             filter_params.update(FilterParams.__extract_params_for_title(request_params))
             return filter_params
 
+        if filter_by == "added_by":
+            filter_params.update(FilterParams.__extract_params_for_added_by(request_params))
+            return filter_params
+
         if filter_by == "genres":
             filter_params.update(FilterParams.__extract_params_for_genres(request_params))
             return filter_params
@@ -75,6 +79,17 @@ class FilterParams:
             raise FilterParams.__create_http_error_for_required_param("title", "title_substring")
 
         filter_params["title_substring"] = title_substring
+        return filter_params
+
+    @staticmethod
+    def __extract_params_for_added_by(request_params):
+        filter_params = {}
+
+        added_by_substring = request_params.get("added_by_substring")
+        if not added_by_substring:
+            raise FilterParams.__create_http_error_for_required_param("added_by", "added_by_substring")
+
+        filter_params["added_by_substring"] = added_by_substring
         return filter_params
 
     @staticmethod
