@@ -27,6 +27,9 @@ class TrackFilter:
         if filter_by == "title":
             return self.__filter_by_title()
 
+        if filter_by == "added_by":
+            return self.__filter_by_added_by()
+
         if filter_by == "genres":
             return self.__filter_by_genres()
 
@@ -50,8 +53,10 @@ class TrackFilter:
 
         # Here, ValueError is correct rather than HttpError because it is logic code
         # E.g., the filter_by value might also be hardcoded in a unit test
-        raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
+        raise ValueError(f"TrackFilter => Invalid value for 'filter_by': '{filter_by}'")
 
+    # TODOLATER #334 Refactor duplicated code once have added tests.
+    #  E.g. __filter_where_any_string_contains_substring(track.artists, artists_substring)
     def __filter_by_artists(self):
         artists_substring = self.filter_params["artists_substring"]
         return list(filter(
@@ -60,7 +65,12 @@ class TrackFilter:
     def __filter_by_title(self):
         title_substring = self.filter_params["title_substring"]
         return list(filter(
-            lambda track: TrackFilter.string_contains_substring(track.title, title_substring), self.tracks))
+            lambda track: TrackFilter.__string_contains_substring(track.title, title_substring), self.tracks))
+
+    def __filter_by_added_by(self):
+        added_by_substring = self.filter_params["added_by_substring"]
+        return list(filter(
+            lambda track: TrackFilter.__string_contains_substring(track.added_by, added_by_substring), self.tracks))
 
     def __filter_by_genres(self):
         genres_substring = self.filter_params["genres_substring"]
@@ -107,7 +117,7 @@ class TrackFilter:
         return any(expected_substring_processed in actual_string for actual_string in actual_strings_processed)
 
     @staticmethod
-    def string_contains_substring(actual_title, expected_title_substring):
+    def __string_contains_substring(actual_title, expected_title_substring):
         actual_title_processed = TrackFilter.__process_string_for_filter(actual_title)
         expected_title_substring_processed = TrackFilter.__process_string_for_filter(expected_title_substring)
 
