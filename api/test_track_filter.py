@@ -21,7 +21,7 @@ class TestTrackFilter(unittest.TestCase):
         not_accepted_track_2.id = "not accepted 2"
         not_accepted_track_2.tempo = 130
         tracks = [accepted_track, not_accepted_track_1, not_accepted_track_2]
-        expected_filtered_track_ids = ["accepted", "not accepted 1"] # TODONOW fix, error on purpose
+        expected_filtered_track_ids = ["accepted"]
 
         track_filter = TrackFilter(tracks, filter_params)
         actual_filtered_tracks = track_filter.filter_tracks()
