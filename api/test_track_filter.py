@@ -11,6 +11,10 @@ class TestTrackFilter(unittest.TestCase):
             "min_tempo": 100,
             "max_tempo": 120
         }
+        # TODONOW this is confusing, split test into 3., one track each
+        #  - test_filter_by_tempo_accepted
+        #  - test_filter_by_tempo_not_accepted_because_too_small
+        #  - test_filter_by_tempo_not_accepted_because_too_big
         accepted_track = Track()
         accepted_track.id = "accepted"
         accepted_track.tempo = 110
