@@ -57,7 +57,7 @@ class FilterParams:
             filter_params.update(FilterParams.__extract_params_for_numerical_attribute(request_params, filter_by))
             return filter_params
 
-        raise HttpError(400, "API Error", f"Invalid value for 'filter_by': '{filter_by}'")
+        raise HttpError(400, "API Error", f"FilterParams => Invalid value for 'filter_by': '{filter_by}'")
 
     @staticmethod
     def __extract_params_for_artists(request_params):

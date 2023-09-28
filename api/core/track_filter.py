@@ -50,7 +50,7 @@ class TrackFilter:
 
         # Here, ValueError is correct rather than HttpError because it is logic code
         # E.g., the filter_by value might also be hardcoded in a unit test
-        raise ValueError(f"This attribute is not supported to filter by: {filter_by}")
+        raise ValueError(f"TrackFilter => Invalid value for 'filter_by': '{filter_by}'")
 
     def __filter_by_artists(self):
         artists_substring = self.filter_params["artists_substring"]
