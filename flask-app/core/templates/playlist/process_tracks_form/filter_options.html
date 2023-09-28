@@ -15,6 +15,14 @@
            value="{{ filter_params["title_substring"] }}">
 </div>
 <div>
+    <input type="radio" id="added_by" name="filter_by" value="added_by"
+           {% if filter_params["filter_by"] == "added_by" %} checked {% endif %}>
+    <label for="added_by">{{ attribute_display_names["added_by"] }}</label>
+    <label for="added_by_substring">contains</label>
+    <input type="text" id="added_by_substring" name="added_by_substring"
+           value="{{ filter_params["added_by_substring"] }}">
+</div>
+<div>
     <input type="radio" id="genres" name="filter_by" value="genres"
            {% if filter_params["filter_by"] == "genres" %} checked {% endif %}>
     <label for="genres">{{ attribute_display_names["genres"] }}</label>
