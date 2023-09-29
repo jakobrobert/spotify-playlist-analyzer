@@ -5,30 +5,54 @@ from core.track_filter import TrackFilter
 
 
 class TestTrackFilter(unittest.TestCase):
-    def test_filter_tempo(self):
+    # TODONOW refactor duplicated code
+    def test_filter_by_tempo_accepted(self):
         filter_params = {
             "filter_by": "tempo",
             "min_tempo": 100,
             "max_tempo": 120
         }
-        # TODONOW this is confusing, split test into 3., one track each
-        #  - test_filter_by_tempo_accepted
-        #  - test_filter_by_tempo_not_accepted_because_too_small
-        #  - test_filter_by_tempo_not_accepted_because_too_big
+
         accepted_track = Track()
-        accepted_track.id = "accepted"
         accepted_track.tempo = 110
-        not_accepted_track_1 = Track()
-        not_accepted_track_1.id = "not accepted 1"
-        not_accepted_track_1.tempo = 90
-        not_accepted_track_2 = Track()
-        not_accepted_track_2.id = "not accepted 2"
-        not_accepted_track_2.tempo = 130
-        tracks = [accepted_track, not_accepted_track_1, not_accepted_track_2]
-        expected_filtered_track_ids = ["accepted"]
+        tracks = [accepted_track]
+        expected_filtered_tracks = [accepted_track]
 
         track_filter = TrackFilter(tracks, filter_params)
         actual_filtered_tracks = track_filter.filter_tracks()
-        actual_filtered_track_ids = [track.id for track in actual_filtered_tracks]
 
-        self.assertEqual(expected_filtered_track_ids, actual_filtered_track_ids)
+        self.assertEqual(expected_filtered_tracks, actual_filtered_tracks)
+
+    def test_filter_by_tempo_not_accepted_because_too_small(self):
+        filter_params = {
+            "filter_by": "tempo",
+            "min_tempo": 100,
+            "max_tempo": 120
+        }
+
+        accepted_track = Track()
+        accepted_track.tempo = 90
+        tracks = [accepted_track]
+
+        track_filter = TrackFilter(tracks, filter_params)
+        actual_filtered_tracks = track_filter.filter_tracks()
+        expected_filtered_tracks = []
+
+        self.assertEqual(expected_filtered_tracks, actual_filtered_tracks)
+
+    def test_filter_by_tempo_not_accepted_because_too_big(self):
+        filter_params = {
+            "filter_by": "tempo",
+            "min_tempo": 100,
+            "max_tempo": 120
+        }
+
+        accepted_track = Track()
+        accepted_track.tempo = 130
+        tracks = [accepted_track]
+
+        track_filter = TrackFilter(tracks, filter_params)
+        actual_filtered_tracks = track_filter.filter_tracks()
+        expected_filtered_tracks = []
+
+        self.assertEqual(expected_filtered_tracks, actual_filtered_tracks)
