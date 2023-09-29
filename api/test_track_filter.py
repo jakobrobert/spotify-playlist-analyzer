@@ -23,8 +23,9 @@ class TestTrackFilter(unittest.TestCase):
 
     @parameterized.expand([
         ["david guetta", True],
+        ["foo david guetta bar", True],
         ["David Guetta", True],
-        ["   David  Guetta ", True],
+        ["  David   Guetta  ", True],
         ["dawid guetta", False],
     ])
     def test_filter_by_title(self, title, should_accept):
