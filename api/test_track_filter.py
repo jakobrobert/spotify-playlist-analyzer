@@ -7,6 +7,18 @@ from core.track_filter import TrackFilter
 
 
 class TestTrackFilter(unittest.TestCase):
+    def test_filter_by_invalid(self):
+        filter_params = {
+            "filter_by": "foobar"
+        }
+
+        track = Track()
+
+        track_filter = TrackFilter([track], filter_params)
+
+        with self.assertRaises(Exception):
+            track_filter.filter_tracks()
+
     @parameterized.expand([
         [1985, True],
         [1970, False],
@@ -20,10 +32,9 @@ class TestTrackFilter(unittest.TestCase):
         }
         track = Track()
         track.release_year = release_year
-        tracks = [track]
         expected_filtered_tracks_length = 1 if should_accept else 0
 
-        track_filter = TrackFilter(tracks, filter_params)
+        track_filter = TrackFilter([track], filter_params)
         actual_filtered_tracks_length = len(track_filter.filter_tracks())
 
         self.assertEqual(expected_filtered_tracks_length, actual_filtered_tracks_length)
@@ -41,10 +52,9 @@ class TestTrackFilter(unittest.TestCase):
         }
         track = Track()
         track.tempo = tempo
-        tracks = [track]
         expected_filtered_tracks_length = 1 if should_accept else 0
 
-        track_filter = TrackFilter(tracks, filter_params)
+        track_filter = TrackFilter([track], filter_params)
         actual_filtered_tracks_length = len(track_filter.filter_tracks())
 
         self.assertEqual(expected_filtered_tracks_length, actual_filtered_tracks_length)
