@@ -21,6 +21,7 @@ class TestTrackFilter(unittest.TestCase):
     #   -> might look overkill, especially for numerical attributes because they all use same code,
     #   -> but tests should not make assumptions about the internal structure of the impl.
 
+    # TODONOW also add test other way round, if user e.g. enters "david guetta" for title_substring, then "David Guetta" should be accepted
     @parameterized.expand([
         ["david guetta", True],
         ["foo david guetta bar", True],
