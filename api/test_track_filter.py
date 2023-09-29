@@ -12,7 +12,7 @@ class TestTrackFilter(unittest.TestCase):
         [1970, False],
         [1990, False]
     ])
-    def test_filter_by_release_year(self, release_year, accepted):
+    def test_filter_by_release_year(self, release_year, should_accept):
         filter_params = {
             "filter_by": "release_year",
             "min_release_year": 1980,
@@ -21,20 +21,19 @@ class TestTrackFilter(unittest.TestCase):
         track = Track()
         track.release_year = release_year
         tracks = [track]
-        # TODONOW just assert length, there is only one track anyway.
-        expected_filtered_tracks = [track] if accepted else []
+        expected_filtered_tracks_length = 1 if should_accept else 0
 
         track_filter = TrackFilter(tracks, filter_params)
-        actual_filtered_tracks = track_filter.filter_tracks()
+        actual_filtered_tracks_length = len(track_filter.filter_tracks())
 
-        self.assertEqual(expected_filtered_tracks, actual_filtered_tracks)
+        self.assertEqual(expected_filtered_tracks_length, actual_filtered_tracks_length)
 
     @parameterized.expand([
         [110, True],
         [90, False],
         [130, False]
     ])
-    def test_filter_by_tempo(self, tempo, accepted):
+    def test_filter_by_tempo(self, tempo, should_accept):
         filter_params = {
             "filter_by": "tempo",
             "min_tempo": 100,
@@ -43,9 +42,9 @@ class TestTrackFilter(unittest.TestCase):
         track = Track()
         track.tempo = tempo
         tracks = [track]
-        expected_filtered_tracks = [track] if accepted else []
+        expected_filtered_tracks_length = 1 if should_accept else 0
 
         track_filter = TrackFilter(tracks, filter_params)
-        actual_filtered_tracks = track_filter.filter_tracks()
+        actual_filtered_tracks_length = len(track_filter.filter_tracks())
 
-        self.assertEqual(expected_filtered_tracks, actual_filtered_tracks)
+        self.assertEqual(expected_filtered_tracks_length, actual_filtered_tracks_length)
