@@ -11,9 +11,7 @@ class TestTrackFilter(unittest.TestCase):
         filter_params = {
             "filter_by": "foobar"
         }
-
         track = Track()
-
         track_filter = TrackFilter([track], filter_params)
 
         with self.assertRaises(Exception):
@@ -36,6 +34,7 @@ class TestTrackFilter(unittest.TestCase):
         }
         track = Track()
         track.title = title
+
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
@@ -51,6 +50,7 @@ class TestTrackFilter(unittest.TestCase):
         }
         track = Track()
         track.release_year = release_year
+
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
@@ -66,12 +66,13 @@ class TestTrackFilter(unittest.TestCase):
         }
         track = Track()
         track.tempo = tempo
+
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     def __test_filter_tracks(self, filter_params, should_accept, track):
         expected_filtered_tracks_length = 1 if should_accept else 0
-
         track_filter = TrackFilter([track], filter_params)
+
         actual_filtered_tracks_length = len(track_filter.filter_tracks())
 
         self.assertEqual(expected_filtered_tracks_length, actual_filtered_tracks_length)
