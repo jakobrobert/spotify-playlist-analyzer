@@ -36,13 +36,7 @@ class TestTrackFilter(unittest.TestCase):
         }
         track = Track()
         track.title = title
-        # TODONOW Refactor duplicated code: part from here to end is exactly duplicated for all tests.
-        expected_filtered_tracks_length = 1 if should_accept else 0
-
-        track_filter = TrackFilter([track], filter_params)
-        actual_filtered_tracks_length = len(track_filter.filter_tracks())
-
-        self.assertEqual(expected_filtered_tracks_length, actual_filtered_tracks_length)
+        self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
         [1985, True],
@@ -57,12 +51,7 @@ class TestTrackFilter(unittest.TestCase):
         }
         track = Track()
         track.release_year = release_year
-        expected_filtered_tracks_length = 1 if should_accept else 0
-
-        track_filter = TrackFilter([track], filter_params)
-        actual_filtered_tracks_length = len(track_filter.filter_tracks())
-
-        self.assertEqual(expected_filtered_tracks_length, actual_filtered_tracks_length)
+        self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
         [110, True],
@@ -77,9 +66,10 @@ class TestTrackFilter(unittest.TestCase):
         }
         track = Track()
         track.tempo = tempo
-        expected_filtered_tracks_length = 1 if should_accept else 0
+        self.__test_filter_tracks(filter_params, should_accept, track)
 
+    def __test_filter_tracks(self, filter_params, should_accept, track):
+        expected_filtered_tracks_length = 1 if should_accept else 0
         track_filter = TrackFilter([track], filter_params)
         actual_filtered_tracks_length = len(track_filter.filter_tracks())
-
         self.assertEqual(expected_filtered_tracks_length, actual_filtered_tracks_length)
