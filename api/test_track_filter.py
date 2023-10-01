@@ -58,6 +58,8 @@ class TestTrackFilter(unittest.TestCase):
 
         self.__test_filter_tracks(filter_params, should_accept, track)
 
+    # TODONOW adjust tests. as for artists & title,
+    #  parameterize by the values entered by user, so here it means min & max value
     @parameterized.expand([
         [1985, True],
         [1970, False],
