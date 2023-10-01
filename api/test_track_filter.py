@@ -23,19 +23,19 @@ class TestTrackFilter(unittest.TestCase):
 
     # TODONOW also add test other way round, if user e.g. enters "david guetta" for title_substring, then "David Guetta" should be accepted
     @parameterized.expand([
-        ["david guetta", True],
-        ["foo david guetta bar", True],
-        ["David Guetta", True],
-        ["  David   Guetta  ", True],
-        ["dawid guetta", False],
+        ["Wake Me Up", True],
+        ["Wake Me", True],
+        ["wake me", True],
+        ["  wake   me  ", True],
+        ["waje Me", False],
     ])
-    def test_filter_by_title(self, title, should_accept):
+    def test_filter_by_title(self, title_substring, should_accept):
         filter_params = {
             "filter_by": "title",
-            "title_substring": "david guetta"
+            "title_substring": title_substring
         }
         track = Track()
-        track.title = title
+        track.title = "Wake Me Up"
 
         self.__test_filter_tracks(filter_params, should_accept, track)
 
