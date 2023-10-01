@@ -18,10 +18,29 @@ class TestTrackFilter(unittest.TestCase):
             track_filter.filter_tracks()
 
     # TODONOW add tests for all attributes, see TrackFilter
-    #   -> might look overkill, especially for numerical attributes because they all use same code,
+    #   -> might look like overkill, especially for numerical attributes because they all use same code,
     #   -> but tests should not make assumptions about the internal structure of the impl.
 
-    # TODONOW also add test other way round, if user e.g. enters "david guetta" for title_substring, then "David Guetta" should be accepted
+    @parameterized.expand([
+        ["Avicii", True],
+        ["David Guetta", True],
+        ["Avic", True],
+        ["avicii", True],
+        ["  avicii  ", True],
+        ["  david   guetta  ", True],
+        ["aviciii", False],
+        ["Dawid", False],
+    ])
+    def test_filter_by_artists(self, artists_substring, should_accept):
+        filter_params = {
+            "filter_by": "artists",
+            "artists_substring": artists_substring
+        }
+        track = Track()
+        track.artists = ["Avicii", "David Guetta"]
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
     @parameterized.expand([
         ["Wake Me Up", True],
         ["Wake Me", True],
