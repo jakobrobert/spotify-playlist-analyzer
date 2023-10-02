@@ -59,6 +59,23 @@ class TestTrackFilter(unittest.TestCase):
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
+        ["MaxMustermann42", True],
+        ["MaxMuster", True],
+        ["maxmuster", True],
+        ["  max muster  ", True],
+        ["maymuster", False],
+    ])
+    def test_filter_by_added_by(self, added_by_substring, should_accept):
+        filter_params = {
+            "filter_by": "added_by",
+            "added_by_substring": added_by_substring
+        }
+        track = Track()
+        track.added_by = "MaxMustermann42"
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
         [1980, 1989, True],
         [1985, 1989, True],
         [1986, 1989, False],
