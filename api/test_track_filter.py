@@ -76,6 +76,47 @@ class TestTrackFilter(unittest.TestCase):
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
+        ["dance pop", True],
+        ["soft rock", True],
+        ["pop", True],
+        ["rock", True],
+        ["  dance   pop  ", True],
+        ["  soft   rock  ", True],
+        ["pop rock", False],
+        ["german dance", False],
+    ])
+    def test_filter_by_genres(self, genres_substring, should_accept):
+        filter_params = {
+            "filter_by": "genres",
+            "genres_substring": genres_substring
+        }
+        track = Track()
+        track.genres = ["dance pop", "soft rock"]
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
+        ["Pop", True],
+        ["Classical", True],
+        ["Classic", True],
+        ["pop", True],
+        ["classical", True],
+        ["  pop  ", True],
+        ["  classical  ", True],
+        ["Rock", False],
+        ["Klassik", False],
+    ])
+    def test_filter_by_super_genres(self, super_genres_substring, should_accept):
+        filter_params = {
+            "filter_by": "super_genres",
+            "super_genres_substring": super_genres_substring
+        }
+        track = Track()
+        track.super_genres = ["Pop", "Classical"]
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
         [1980, 1989, True],
         [1985, 1989, True],
         [1986, 1989, False],
