@@ -58,37 +58,39 @@ class TestTrackFilter(unittest.TestCase):
 
         self.__test_filter_tracks(filter_params, should_accept, track)
 
-    # TODONOW adjust tests. as for artists & title,
-    #  parameterize by the values entered by user, so here it means min & max value
     @parameterized.expand([
-        [1985, True],
-        [1970, False],
-        [1990, False]
+        [1980, 1989, True],
+        [1985, 1989, True],
+        [1986, 1989, False],
+        [1980, 1985, True],
+        [1980, 1984, False]
     ])
-    def test_filter_by_release_year(self, release_year, should_accept):
+    def test_filter_by_release_year(self, min_release_year, max_release_year, should_accept):
         filter_params = {
             "filter_by": "release_year",
-            "min_release_year": 1980,
-            "max_release_year": 1989
+            "min_release_year": min_release_year,
+            "max_release_year": max_release_year
         }
         track = Track()
-        track.release_year = release_year
+        track.release_year = 1985
 
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
-        [110, True],
-        [90, False],
-        [130, False]
+        [100, 110, True],
+        [105, 110, True],
+        [106, 110, False],
+        [100, 105, True],
+        [100, 104, False]
     ])
-    def test_filter_by_tempo(self, tempo, should_accept):
+    def test_filter_by_tempo(self, min_tempo, max_tempo, should_accept):
         filter_params = {
             "filter_by": "tempo",
-            "min_tempo": 100,
-            "max_tempo": 120
+            "min_tempo": min_tempo,
+            "max_tempo": max_tempo
         }
         track = Track()
-        track.tempo = tempo
+        track.tempo = 105
 
         self.__test_filter_tracks(filter_params, should_accept, track)
 
