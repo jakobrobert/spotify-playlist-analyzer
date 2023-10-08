@@ -145,6 +145,20 @@ class TestTrackFilter(unittest.TestCase):
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
+        [16, True],
+        [4, False]
+    ])
+    def test_filter_by_key_and_mode_pair(self, expected_key_and_mode_pair, should_accept):
+        filter_params = {
+            "filter_by": "key_and_mode_pair",
+            "expected_key_and_mode_pair": expected_key_and_mode_pair
+        }
+        track = Track()
+        track.key_and_mode_pair = 16
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
         [1980, 1989, True],
         [1985, 1989, True],
         [1986, 1989, False],
