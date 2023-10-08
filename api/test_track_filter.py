@@ -159,6 +159,20 @@ class TestTrackFilter(unittest.TestCase):
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
+        ["4♯", True],
+        ["5♭", False]
+    ])
+    def test_filter_by_key_signature(self, expected_key_signature, should_accept):
+        filter_params = {
+            "filter_by": "key_signature",
+            "expected_key_signature": expected_key_signature
+        }
+        track = Track()
+        track.key_signature = "4♯"
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
         [1980, 1989, True],
         [1985, 1989, True],
         [1986, 1989, False],
