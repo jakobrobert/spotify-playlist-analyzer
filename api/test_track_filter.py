@@ -117,6 +117,34 @@ class TestTrackFilter(unittest.TestCase):
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
+        [4, True],
+        [6, False]
+    ])
+    def test_filter_by_key(self, expected_key, should_accept):
+        filter_params = {
+            "filter_by": "key",
+            "expected_key": expected_key
+        }
+        track = Track()
+        track.key = 4
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
+        [1, True],
+        [0, False]
+    ])
+    def test_filter_by_mode(self, expected_mode, should_accept):
+        filter_params = {
+            "filter_by": "mode",
+            "expected_mode": expected_mode
+        }
+        track = Track()
+        track.mode = 1
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
         [1980, 1989, True],
         [1985, 1989, True],
         [1986, 1989, False],
