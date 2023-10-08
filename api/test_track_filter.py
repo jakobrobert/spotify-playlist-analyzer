@@ -191,6 +191,24 @@ class TestTrackFilter(unittest.TestCase):
         self.__test_filter_tracks(filter_params, should_accept, track)
 
     @parameterized.expand([
+        [50, 60, True],
+        [55, 60, True],
+        [56, 60, False],
+        [50, 55, True],
+        [50, 54, False]
+    ])
+    def test_filter_by_popularity(self, min_popularity, max_popularity, should_accept):
+        filter_params = {
+            "filter_by": "popularity",
+            "min_popularity": min_popularity,
+            "max_popularity": max_popularity
+        }
+        track = Track()
+        track.popularity = 55
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
         [100, 110, True],
         [105, 110, True],
         [106, 110, False],
