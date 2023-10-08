@@ -226,6 +226,150 @@ class TestTrackFilter(unittest.TestCase):
 
         self.__test_filter_tracks(filter_params, should_accept, track)
 
+    @parameterized.expand([
+        [50, 60, True],
+        [55, 60, True],
+        [56, 60, False],
+        [50, 55, True],
+        [50, 54, False]
+    ])
+    def test_filter_by_loudness(self, min_loudness, max_loudness, should_accept):
+        filter_params = {
+            "filter_by": "loudness",
+            "min_loudness": min_loudness,
+            "max_loudness": max_loudness
+        }
+        track = Track()
+        track.loudness = 55
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
+        [50, 60, True],
+        [55, 60, True],
+        [56, 60, False],
+        [50, 55, True],
+        [50, 54, False]
+    ])
+    def test_filter_by_danceability(self, min_danceability, max_danceability, should_accept):
+        filter_params = {
+            "filter_by": "danceability",
+            "min_danceability": min_danceability,
+            "max_danceability": max_danceability
+        }
+        track = Track()
+        track.danceability = 55
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
+        [50, 60, True],
+        [55, 60, True],
+        [56, 60, False],
+        [50, 55, True],
+        [50, 54, False]
+    ])
+    def test_filter_by_energy(self, min_energy, max_energy, should_accept):
+        filter_params = {
+            "filter_by": "energy",
+            "min_energy": min_energy,
+            "max_energy": max_energy
+        }
+        track = Track()
+        track.energy = 55
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
+        [50, 60, True],
+        [55, 60, True],
+        [56, 60, False],
+        [50, 55, True],
+        [50, 54, False]
+    ])
+    def test_filter_by_valence(self, min_valence, max_valence, should_accept):
+        filter_params = {
+            "filter_by": "valence",
+            "min_valence": min_valence,
+            "max_valence": max_valence
+        }
+        track = Track()
+        track.valence = 55
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
+        [50, 60, True],
+        [55, 60, True],
+        [56, 60, False],
+        [50, 55, True],
+        [50, 54, False]
+    ])
+    def test_filter_by_instrumentalness(self, min_instrumentalness, max_instrumentalness, should_accept):
+        filter_params = {
+            "filter_by": "instrumentalness",
+            "min_instrumentalness": min_instrumentalness,
+            "max_instrumentalness": max_instrumentalness
+        }
+        track = Track()
+        track.instrumentalness = 55
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
+        [50, 60, True],
+        [55, 60, True],
+        [56, 60, False],
+        [50, 55, True],
+        [50, 54, False]
+    ])
+    def test_filter_by_acousticness(self, min_acousticness, max_acousticness, should_accept):
+        filter_params = {
+            "filter_by": "acousticness",
+            "min_acousticness": min_acousticness,
+            "max_acousticness": max_acousticness
+        }
+        track = Track()
+        track.acousticness = 55
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
+        [50, 60, True],
+        [55, 60, True],
+        [56, 60, False],
+        [50, 55, True],
+        [50, 54, False]
+    ])
+    def test_filter_by_liveness(self, min_liveness, max_liveness, should_accept):
+        filter_params = {
+            "filter_by": "liveness",
+            "min_liveness": min_liveness,
+            "max_liveness": max_liveness
+        }
+        track = Track()
+        track.liveness = 55
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
+    @parameterized.expand([
+        [50, 60, True],
+        [55, 60, True],
+        [56, 60, False],
+        [50, 55, True],
+        [50, 54, False]
+    ])
+    def test_filter_by_speechiness(self, min_speechiness, max_speechiness, should_accept):
+        filter_params = {
+            "filter_by": "speechiness",
+            "min_speechiness": min_speechiness,
+            "max_speechiness": max_speechiness
+        }
+        track = Track()
+        track.speechiness = 55
+
+        self.__test_filter_tracks(filter_params, should_accept, track)
+
     def __test_filter_tracks(self, filter_params, should_accept, track):
         expected_filtered_tracks_length = 1 if should_accept else 0
         track_filter = TrackFilter([track], filter_params)
