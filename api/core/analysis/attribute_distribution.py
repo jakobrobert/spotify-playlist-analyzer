@@ -44,6 +44,7 @@ class AttributeDistribution:
         items = []
 
         # Calculate count for each super genre
+        # -> Cannot use the helper method here as for other categorical attributes, especially because of "in" check
         for super_genre in SuperGenreUtils.SUPER_GENRES:
             count = 0
 
@@ -75,26 +76,7 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_items(self):
-        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
-        items = []
-
-        # Add one item for each key
-        for key_name in Track.KEY_STRINGS:
-            item = {
-                "label": key_name,
-                "count": 0
-            }
-
-            items.append(item)
-
-        # Calculate count for each key
-        for track in self.tracks:
-            item = items[track.key]
-            item["count"] += 1
-
-        self.__add_percentages_to_items(items)
-
-        return items
+        return self.__get_items_for_categorical_attribute(Track.KEY_STRINGS, lambda track: track.key)
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_mode_items(self):
@@ -237,6 +219,27 @@ class AttributeDistribution:
             second_interval_min, last_interval_min, interval_size, get_attribute_value_of_track)
 
         return self.__convert_intervals_to_dicts_with_label(intervals)
+
+    def __get_items_for_categorical_attribute(self, labels, get_attribute_value_of_track):
+        items = []
+
+        # Add one item for each label
+        for label in labels:
+            item = {
+                "label": label,
+                "count": 0
+            }
+            items.append(item)
+
+        # Calculate count for each label
+        for track in self.tracks:
+            value = get_attribute_value_of_track(track)
+            item = items[value]
+            item["count"] += 1
+
+        self.__add_percentages_to_items(items)
+
+        return items
 
     # This is used for categorical values like key & mode. There, cannot use AttributeDistributionInterval.
     def __add_percentages_to_items(self, items):
