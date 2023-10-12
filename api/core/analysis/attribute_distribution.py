@@ -80,7 +80,7 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_mode_items(self):
-        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
+        # TODONOW Use __get_items_for_categorical_attribute
         items = []
 
         # Add one item for each mode
@@ -103,7 +103,7 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_and_mode_pair_items(self):
-        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
+        # TODONOW Use __get_items_for_categorical_attribute
         items = []
 
         # Add one item for each key & mode pair
@@ -126,6 +126,7 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_signature_items(self):
+        # TODONOW Use __get_items_for_categorical_attribute
         items = []
 
         # Add one item for each key_signature
@@ -139,7 +140,7 @@ class AttributeDistribution:
 
         # Calculate count for each key_signature
         for track in self.tracks:
-            # TODOLATER #234 Simplify, do as e.g. in get_key_items once key signature is stored as number instead of string
+            # TODONOW the lambda also needs to convert to index
             key_signature = track.key_signature
             key_signature_index = Track.KEY_SIGNATURE_STRINGS.index(key_signature)
             item = items[key_signature_index]
