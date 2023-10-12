@@ -10,7 +10,6 @@ class AttributeDistribution:
     def __init__(self, tracks):
         self.tracks = tracks
 
-    # TODOLATER Remove "distribution" from names, already clear from class name
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_items(self):
         second_interval_min_duration = 120000  # 120 seconds -> 02:00
@@ -155,8 +154,6 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_signature_items(self):
-        # TODOLATER #259 merge loops into one, similar to get_super_genres_items
-        #  -> maybe can then extract general helper method for categorical values?
         items = []
 
         # Add one item for each key_signature
@@ -170,6 +167,7 @@ class AttributeDistribution:
 
         # Calculate count for each key_signature
         for track in self.tracks:
+            # TODOLATER #234 Simplify, do as e.g. in get_key_items once key signature is stored as number instead of string
             key_signature = track.key_signature
             key_signature_index = Track.KEY_SIGNATURE_STRINGS.index(key_signature)
             item = items[key_signature_index]
