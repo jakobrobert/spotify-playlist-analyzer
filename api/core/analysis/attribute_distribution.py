@@ -80,49 +80,12 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_mode_items(self):
-        # TODONOW Use __get_items_for_categorical_attribute
-        items = []
-
-        # Add one item for each mode
-        for mode_name in Track.MODE_STRINGS:
-            item = {
-                "label": mode_name,
-                "count": 0
-            }
-
-            items.append(item)
-
-        # Calculate count for each mode
-        for track in self.tracks:
-            item = items[track.mode]
-            item["count"] += 1
-
-        self.__add_percentages_to_items(items)
-
-        return items
+        return self.__get_items_for_categorical_attribute(Track.MODE_STRINGS, lambda track: track.mode)
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_and_mode_pair_items(self):
-        # TODONOW Use __get_items_for_categorical_attribute
-        items = []
-
-        # Add one item for each key & mode pair
-        for key_and_mode_pair_string in Track.KEY_AND_MODE_PAIR_STRINGS:
-            item = {
-                "label": key_and_mode_pair_string,
-                "count": 0
-            }
-
-            items.append(item)
-
-        # Calculate count for each key & mode pair
-        for track in self.tracks:
-            item = items[track.key_and_mode_pair]
-            item["count"] += 1
-
-        self.__add_percentages_to_items(items)
-
-        return items
+        return self.__get_items_for_categorical_attribute(
+            Track.KEY_AND_MODE_PAIR_STRINGS, lambda track: track.key_and_mode_pair)
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_signature_items(self):
