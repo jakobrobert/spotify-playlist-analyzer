@@ -11,6 +11,11 @@ class AttributeDistribution:
         self.tracks = tracks
 
     @Utils.measure_execution_time(LOG_PREFIX)
+    def get_added_by_items(self):
+        # TODONOW implement
+        return []
+
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_items(self):
         second_interval_min_duration = 120000  # 120 seconds -> 02:00
         last_interval_min_duration = 300000  # 300 seconds -> 05:00
