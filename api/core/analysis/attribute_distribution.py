@@ -12,8 +12,14 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_added_by_items(self):
-        # TODONOW implement
-        return []
+        added_by_labels = []
+
+        for track in self.tracks:
+            if track.added_by not in added_by_labels:
+                added_by_labels.append(track.added_by)
+
+        return self.__get_items_for_categorical_attribute(
+            added_by_labels, lambda _track: added_by_labels.index(_track.added_by))
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_items(self):
