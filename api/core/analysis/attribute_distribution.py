@@ -10,7 +10,6 @@ class AttributeDistribution:
     def __init__(self, tracks):
         self.tracks = tracks
 
-    # TODOLATER Remove "distribution" from names, already clear from class name
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_items(self):
         second_interval_min_duration = 120000  # 120 seconds -> 02:00
@@ -42,10 +41,10 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_super_genres_items(self):
-        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
         items = []
 
         # Calculate count for each super genre
+        # -> Cannot use the helper method here as for other categorical attributes, especially because of "in" check
         for super_genre in SuperGenreUtils.SUPER_GENRES:
             count = 0
 
@@ -57,12 +56,9 @@ class AttributeDistribution:
                 "label": super_genre,
                 "count": count
             }
-
             items.append(item)
 
-        # Calculate percentages based on counts
-        total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_items(items, total_count)
+        self.__add_percentages_to_items(items)
 
         return items
 
@@ -80,106 +76,21 @@ class AttributeDistribution:
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_items(self):
-        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
-        items = []
-
-        # Add one item for each key
-        for key_name in Track.KEY_STRINGS:
-            item = {
-                "label": key_name,
-                "count": 0
-            }
-
-            items.append(item)
-
-        # Calculate count for each key
-        for track in self.tracks:
-            item = items[track.key]
-            item["count"] += 1
-
-        # Calculate percentages based on counts
-        total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_items(items, total_count)
-
-        return items
+        return self.__get_items_for_categorical_attribute(Track.KEY_STRINGS, lambda track: track.key)
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_mode_items(self):
-        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
-        items = []
-
-        # Add one item for each mode
-        for mode_name in Track.MODE_STRINGS:
-            item = {
-                "label": mode_name,
-                "count": 0
-            }
-
-            items.append(item)
-
-        # Calculate count for each mode
-        for track in self.tracks:
-            item = items[track.mode]
-            item["count"] += 1
-
-        # Calculate percentages based on counts
-        total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_items(items, total_count)
-
-        return items
+        return self.__get_items_for_categorical_attribute(Track.MODE_STRINGS, lambda track: track.mode)
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_and_mode_pair_items(self):
-        # TODOLATER #259 compare with get_key_signature_items, might merge loops & extract helper method
-        items = []
-
-        # Add one item for each key & mode pair
-        for key_and_mode_pair_string in Track.KEY_AND_MODE_PAIR_STRINGS:
-            item = {
-                "label": key_and_mode_pair_string,
-                "count": 0
-            }
-
-            items.append(item)
-
-        # Calculate count for each key & mode pair
-        for track in self.tracks:
-            item = items[track.key_and_mode_pair]
-            item["count"] += 1
-
-        # Calculate percentages based on counts
-        total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_items(items, total_count)
-
-        return items
+        return self.__get_items_for_categorical_attribute(
+            Track.KEY_AND_MODE_PAIR_STRINGS, lambda track: track.key_and_mode_pair)
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_key_signature_items(self):
-        # TODOLATER #259 merge loops into one, similar to get_super_genres_items
-        #  -> maybe can then extract general helper method for categorical values?
-        items = []
-
-        # Add one item for each key_signature
-        for key_signature_name in Track.KEY_SIGNATURE_STRINGS:
-            item = {
-                "label": key_signature_name,
-                "count": 0
-            }
-
-            items.append(item)
-
-        # Calculate count for each key_signature
-        for track in self.tracks:
-            key_signature = track.key_signature
-            key_signature_index = Track.KEY_SIGNATURE_STRINGS.index(key_signature)
-            item = items[key_signature_index]
-            item["count"] += 1
-
-        # Calculate percentages based on counts
-        total_count = len(self.tracks)
-        AttributeDistribution.__add_percentages_to_items(items, total_count)
-
-        return items
+        return self.__get_items_for_categorical_attribute(
+            Track.KEY_SIGNATURE_STRINGS, lambda track: Track.KEY_SIGNATURE_STRINGS.index(track.key_signature))
 
     @Utils.measure_execution_time(LOG_PREFIX)
     def get_loudness_items(self):
@@ -252,6 +163,36 @@ class AttributeDistribution:
 
         return self.__convert_intervals_to_dicts_with_label(intervals)
 
+    def __get_items_for_categorical_attribute(self, labels, get_attribute_value_of_track):
+        items = []
+
+        # Add one item for each label
+        for label in labels:
+            item = {
+                "label": label,
+                "count": 0
+            }
+            items.append(item)
+
+        # Calculate count for each label
+        for track in self.tracks:
+            value = get_attribute_value_of_track(track)
+            item = items[value]
+            item["count"] += 1
+
+        self.__add_percentages_to_items(items)
+
+        return items
+
+    # This is used for categorical values like key & mode. There, cannot use AttributeDistributionInterval.
+    def __add_percentages_to_items(self, items):
+        for item in items:
+            if len(self.tracks) == 0:
+                item["percentage"] = 0
+                continue
+
+            item["percentage"] = 100 * item["count"] / len(self.tracks)
+
     @staticmethod
     def __create_first_interval(second_interval_min):
         return AttributeDistributionInterval(None, second_interval_min)
@@ -303,13 +244,3 @@ class AttributeDistribution:
         remaining_seconds = total_seconds % 60
 
         return f"{total_minutes:02d}:{remaining_seconds:02d}"
-
-    # This is used for categorical values like key & mode. There, cannot use AttributeDistributionInterval.
-    @staticmethod
-    def __add_percentages_to_items(items, total_count):
-        for item in items:
-            if total_count == 0:
-                item["percentage"] = 0
-                continue
-
-            item["percentage"] = 100 * item["count"] / total_count
