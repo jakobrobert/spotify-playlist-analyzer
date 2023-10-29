@@ -11,6 +11,17 @@ class AttributeDistribution:
         self.tracks = tracks
 
     @Utils.measure_execution_time(LOG_PREFIX)
+    def get_added_by_items(self):
+        added_by_labels = []
+
+        for track in self.tracks:
+            if track.added_by not in added_by_labels:
+                added_by_labels.append(track.added_by)
+
+        return self.__get_items_for_categorical_attribute(
+            added_by_labels, lambda _track: added_by_labels.index(_track.added_by))
+
+    @Utils.measure_execution_time(LOG_PREFIX)
     def get_duration_items(self):
         second_interval_min_duration = 120000  # 120 seconds -> 02:00
         last_interval_min_duration = 300000  # 300 seconds -> 05:00
