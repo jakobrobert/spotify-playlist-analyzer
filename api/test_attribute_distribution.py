@@ -16,6 +16,13 @@ class TestAttributeDistribution(unittest.TestCase):
         empty_playlist = TestUtils.load_and_validate_empty_playlist()
         cls.empty_playlist_attribute_distribution = AttributeDistribution(empty_playlist.tracks)
 
+    # TODONOW complete tests
+    def test_collaboration_playlist_added_by_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_collaboration_playlist("added_by")
+
+    def test_empty_playlist_added_by_distribution(self):
+        expected_items = self.__load_expected_distribution_items_for_empty_playlist("added_by")
+
     def test_top_100_playlist_duration_distribution(self):
         expected_items = self.__load_expected_distribution_items_for_top_100_playlist("duration_ms")
         actual_items = self.top_100_playlist_attribute_distribution.get_duration_items()
@@ -194,6 +201,11 @@ class TestAttributeDistribution(unittest.TestCase):
             expected_items = json.load(file)
 
         return expected_items
+
+    @staticmethod
+    def __load_expected_distribution_items_for_collaboration_playlist(attribute_name):
+        return TestAttributeDistribution.__load_expected_distribution_items(
+            TestUtils.COLLABORATION_PLAYLIST_DIRECTORY_NAME, attribute_name)
 
     @staticmethod
     def __load_expected_distribution_items_for_top_100_playlist(attribute_name):
