@@ -10,6 +10,9 @@ class TestUtils:
     EMPTY_PLAYLIST_ID = "40389fDt9evjBgcgIMAlxe"
     EMPTY_PLAYLIST_DIRECTORY_NAME = f"empty_{EMPTY_PLAYLIST_ID}"
 
+    COLLABORATION_PLAYLIST_ID = "6YQzuoXWpiSNa1qqXnCTUg"
+    COLLABORATION_PLAYLIST_DIRECTORY_NAME = f"collaboration_{COLLABORATION_PLAYLIST_ID}"
+
     @staticmethod
     def load_playlist_from_json_file(file_path):
         with open(file_path, "r", encoding="utf-8") as file:
@@ -37,6 +40,18 @@ class TestUtils:
         # We use assert instead of assertEquals because cannot use it in setUpClass
         assert TestUtils.EMPTY_PLAYLIST_ID == playlist.id
         assert "Empty Playlist" == playlist.name
+        assert 0 == len(playlist.tracks)
+
+        return playlist
+
+    @staticmethod
+    def load_and_validate_collaboration_playlist():
+        file_path = f"test_data/playlists/{TestUtils.COLLABORATION_PLAYLIST_DIRECTORY_NAME}/playlist.json"
+        playlist = TestUtils.load_playlist_from_json_file(file_path)
+
+        # We use assert instead of assertEquals because cannot use it in setUpClass
+        assert TestUtils.COLLABORATION_PLAYLIST_ID == playlist.id
+        assert "Collaboration:)" == playlist.name
         assert 0 == len(playlist.tracks)
 
         return playlist
