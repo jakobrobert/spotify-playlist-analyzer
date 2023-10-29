@@ -52,6 +52,6 @@ class TestUtils:
         # We use assert instead of assertEquals because cannot use it in setUpClass
         assert TestUtils.COLLABORATION_PLAYLIST_ID == playlist.id
         assert "Collaboration:)" == playlist.name
-        assert 0 == len(playlist.tracks)
+        assert 129 == len(playlist.tracks)
 
         return playlist

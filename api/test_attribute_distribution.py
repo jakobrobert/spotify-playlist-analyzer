@@ -16,12 +16,17 @@ class TestAttributeDistribution(unittest.TestCase):
         empty_playlist = TestUtils.load_and_validate_empty_playlist()
         cls.empty_playlist_attribute_distribution = AttributeDistribution(empty_playlist.tracks)
 
-    # TODONOW complete tests
     def test_collaboration_playlist_added_by_distribution(self):
         expected_items = self.__load_expected_distribution_items_for_collaboration_playlist("added_by")
+        playlist = TestUtils.load_and_validate_collaboration_playlist()
+        attribute_distribution = AttributeDistribution(playlist.tracks)
+        actual_items = attribute_distribution.get_added_by_items()
+        self.__assert_distribution_items(actual_items, expected_items)
 
     def test_empty_playlist_added_by_distribution(self):
         expected_items = self.__load_expected_distribution_items_for_empty_playlist("added_by")
+        actual_items = self.empty_playlist_attribute_distribution.get_added_by_items()
+        self.__assert_distribution_items(actual_items, expected_items)
 
     def test_top_100_playlist_duration_distribution(self):
         expected_items = self.__load_expected_distribution_items_for_top_100_playlist("duration_ms")
