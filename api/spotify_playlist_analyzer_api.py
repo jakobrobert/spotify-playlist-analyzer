@@ -120,7 +120,7 @@ def create_playlist():
 @ApiUtils.handle_exceptions
 def get_valid_attributes_for_attribute_distribution():
     attributes = [
-        "duration_ms", "release_year", "popularity", "super_genres",
+        "added_by", "duration_ms", "release_year", "popularity", "super_genres",
         "tempo", "key", "mode", "key_and_mode_pair", "key_signature", "loudness",
         "danceability", "energy", "valence", "instrumentalness", "acousticness", "liveness", "speechiness"
     ]

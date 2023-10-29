@@ -1,0 +1,4693 @@
+{
+    "id": "6YQzuoXWpiSNa1qqXnCTUg",
+    "name": "Collaboration:)",
+    "statistics": {
+        "average_acousticness": 25.7984496124031,
+        "average_danceability": 62.093023255813954,
+        "average_duration_ms": 201508.4573643411,
+        "average_energy": 65.04651162790698,
+        "average_instrumentalness": 3.953488372093023,
+        "average_liveness": 16.07751937984496,
+        "average_popularity": 63.74418604651163,
+        "average_release_year": 2017.2635658914728,
+        "average_speechiness": 9,
+        "average_tempo": 123.54429457364341,
+        "average_valence": 47.55813953488372,
+        "total_duration_ms": 25994591
+    },
+    "tracks": [
+        {
+            "acousticness": 30,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2yLzlEFtIS0Q9UkyBZdQA7"
+            ],
+            "artists": [
+                "Jessie Murph"
+            ],
+            "danceability": 64,
+            "duration_ms": 127293,
+            "energy": 42,
+            "genres": [
+                "alt z",
+                "modern country pop",
+                "singer-songwriter pop"
+            ],
+            "id": "0hfHF0FsMNyLoaqsvJmqfq",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 18,
+            "loudness": -6.99,
+            "mode": 1,
+            "popularity": 0,
+            "release_year": 2022,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 141.995,
+            "title": "While You're At It",
+            "valence": 14
+        },
+        {
+            "acousticness": 65,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2yLzlEFtIS0Q9UkyBZdQA7"
+            ],
+            "artists": [
+                "Jessie Murph"
+            ],
+            "danceability": 37,
+            "duration_ms": 170808,
+            "energy": 30,
+            "genres": [
+                "alt z",
+                "modern country pop",
+                "singer-songwriter pop"
+            ],
+            "id": "3lXEoPxZMDiMNeE4ea5nct",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 11,
+            "loudness": -10.836,
+            "mode": 1,
+            "popularity": 65,
+            "release_year": 2023,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 173.467,
+            "title": "Where Do You Go",
+            "valence": 7
+        },
+        {
+            "acousticness": 38,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "46pWGuE3dSwY3bMMXGBvVS",
+                "0C8ZW7ezQVs4URX5aX7Kqx"
+            ],
+            "artists": [
+                "Rema",
+                "Selena Gomez"
+            ],
+            "danceability": 80,
+            "duration_ms": 239317,
+            "energy": 81,
+            "genres": [
+                "afrobeats",
+                "nigerian pop",
+                "pop",
+                "post-teen pop"
+            ],
+            "id": "0WtM2NBVQNNJLh6scP13H8",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 23,
+            "key_signature": "5\u266f",
+            "liveness": 11,
+            "loudness": -5.206,
+            "mode": 1,
+            "popularity": 91,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "Afro"
+            ],
+            "tempo": 106.999,
+            "title": "Calm Down (with Selena Gomez)",
+            "valence": 80
+        },
+        {
+            "acousticness": 0,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "5F1aoppMtU3OMiltO8ymJ2",
+                "6U1dBXJhC8gXFjamvFTmHg"
+            ],
+            "artists": [
+                "Hugh Jackman",
+                "Zac Efron"
+            ],
+            "danceability": 64,
+            "duration_ms": 214373,
+            "energy": 80,
+            "genres": [
+                "hollywood",
+                "show tunes",
+                "movie tunes",
+                "post-teen pop"
+            ],
+            "id": "2cKovq3l6OJjhVVDbVKOsr",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 15,
+            "loudness": -8.45,
+            "mode": 1,
+            "popularity": 75,
+            "release_year": 2017,
+            "speechiness": 30,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 153.99,
+            "title": "The Other Side",
+            "valence": 31
+        },
+        {
+            "acousticness": 38,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "49jTY62Cpw3RYo4dLuG43W"
+            ],
+            "artists": [
+                "Cian Ducrot"
+            ],
+            "danceability": 51,
+            "duration_ms": 172547,
+            "energy": 64,
+            "genres": [
+                "irish pop",
+                "singer-songwriter pop"
+            ],
+            "id": "2nRaAETFbe39JVCFSVDkcc",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 8,
+            "loudness": -4.119,
+            "mode": 1,
+            "popularity": 65,
+            "release_year": 2023,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 155.829,
+            "title": "I'll Be Waiting",
+            "valence": 53
+        },
+        {
+            "acousticness": 7,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "06HL4z0CvFAxyc27GXpf02"
+            ],
+            "artists": [
+                "Taylor Swift"
+            ],
+            "danceability": 64,
+            "duration_ms": 204852,
+            "energy": 62,
+            "genres": [
+                "pop"
+            ],
+            "id": "7KokYm8cMIXCsGVmUvKtqf",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 48,
+            "loudness": -7.091,
+            "mode": 1,
+            "popularity": 90,
+            "release_year": 2022,
+            "speechiness": 7,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 90.02,
+            "title": "Karma",
+            "valence": 10
+        },
+        {
+            "acousticness": 5,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "7tYKF4w9nC0nq9CsPZTHyP"
+            ],
+            "artists": [
+                "SZA"
+            ],
+            "danceability": 64,
+            "duration_ms": 153946,
+            "energy": 74,
+            "genres": [
+                "pop",
+                "r&b",
+                "rap"
+            ],
+            "id": "1Qrg8KqiBpW07V7PNxwwwL",
+            "instrumentalness": 14,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 16,
+            "loudness": -5.747,
+            "mode": 1,
+            "popularity": 92,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "Rap",
+                "Afro"
+            ],
+            "tempo": 88.98,
+            "title": "Kill Bill",
+            "valence": 42
+        },
+        {
+            "acousticness": 6,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "06HL4z0CvFAxyc27GXpf02"
+            ],
+            "artists": [
+                "Taylor Swift"
+            ],
+            "danceability": 70,
+            "duration_ms": 194165,
+            "energy": 56,
+            "genres": [
+                "pop"
+            ],
+            "id": "3qoftcUZaUOncvIYjFSPdE",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 9,
+            "loudness": -9.19,
+            "mode": 1,
+            "popularity": 84,
+            "release_year": 2022,
+            "speechiness": 7,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 163.999,
+            "title": "Bejeweled",
+            "valence": 43
+        },
+        {
+            "acousticness": 15,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "0du5cEVh5yTK9QJze8zA0C"
+            ],
+            "artists": [
+                "Bruno Mars"
+            ],
+            "danceability": 70,
+            "duration_ms": 222091,
+            "energy": 56,
+            "genres": [
+                "dance pop",
+                "pop"
+            ],
+            "id": "2tJulUYLDKOg9XrtVkMgcJ",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 2,
+            "key_signature": "1\u266d",
+            "liveness": 11,
+            "loudness": -7.273,
+            "mode": 0,
+            "popularity": 80,
+            "release_year": 2010,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 110.444,
+            "title": "Grenade",
+            "valence": 24
+        },
+        {
+            "acousticness": 5,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "4Ly0KABsxlx4fNj63zJTrF",
+                "2FRfJyV85zb19tO6uiXBGl"
+            ],
+            "artists": [
+                "Seafret",
+                "sped up + slowed"
+            ],
+            "danceability": 47,
+            "duration_ms": 190758,
+            "energy": 56,
+            "genres": [
+                "folk-pop",
+                "sped up"
+            ],
+            "id": "3u6PxWema1snbjLbFEyjkJ",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 12,
+            "loudness": -7.068,
+            "mode": 0,
+            "popularity": 72,
+            "release_year": 2016,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 99.808,
+            "title": "Atlantis - Extra Sped Up Version",
+            "valence": 22
+        },
+        {
+            "acousticness": 75,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "0KYOBAf6Zky4CFQne2JPTX"
+            ],
+            "artists": [
+                "Hiko"
+            ],
+            "danceability": 43,
+            "duration_ms": 226800,
+            "energy": 62,
+            "genres": [
+                "sped up"
+            ],
+            "id": "46JlkFNwCwU1XE3CG15ltr",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 10,
+            "loudness": -3.775,
+            "mode": 1,
+            "popularity": 33,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 200.036,
+            "title": "Wings (Sped Up) - They Made Me Think of You, Oh Lights Go Down",
+            "valence": 28
+        },
+        {
+            "acousticness": 59,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "6P5NO5hzJbuOqSdyPB7SJM"
+            ],
+            "artists": [
+                "Ashe"
+            ],
+            "danceability": 57,
+            "duration_ms": 201083,
+            "energy": 41,
+            "genres": [
+                "alt z"
+            ],
+            "id": "2nC3QhMI9reBIOWutbU3Tj",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 10,
+            "loudness": -8.624,
+            "mode": 1,
+            "popularity": 75,
+            "release_year": 2019,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 119.812,
+            "title": "Moral of the Story",
+            "valence": 26
+        },
+        {
+            "acousticness": 5,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "1VbWMsap5Ex2erHPlmndr0"
+            ],
+            "artists": [
+                "SIX"
+            ],
+            "danceability": 70,
+            "duration_ms": 350218,
+            "energy": 44,
+            "genres": [
+                "broadway"
+            ],
+            "id": "03GBiorLGTk7T4IScIl4jj",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 0,
+            "key_signature": "3\u266d",
+            "liveness": 34,
+            "loudness": -9.601,
+            "mode": 0,
+            "popularity": 66,
+            "release_year": 2018,
+            "speechiness": 9,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 136.647,
+            "title": "Ex-Wives",
+            "valence": 37
+        },
+        {
+            "acousticness": 23,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "5onPvDEAa0Gjg298xIdttY",
+                "7kHspWK2R6G8P3lWVMjNpi",
+                "2Mp1YP6GjokS0SgdyffYyD",
+                "4WK6ZRLcS2beZfrDoNvjK7"
+            ],
+            "artists": [
+                "Jodie Steele",
+                "Sophie Isaacs",
+                "T'Shan Williams",
+                "Original West End Cast of Heathers"
+            ],
+            "danceability": 56,
+            "duration_ms": 176560,
+            "energy": 59,
+            "genres": [],
+            "id": "55sGZ6khmMO0GWb9QzZnXM",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 16,
+            "loudness": -5.526,
+            "mode": 1,
+            "popularity": 52,
+            "release_year": 2019,
+            "speechiness": 15,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 141.217,
+            "title": "Candy Store",
+            "valence": 61
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2WzaAvm2bBCf4pEhyuDgCY"
+            ],
+            "artists": [
+                "Ruth B."
+            ],
+            "danceability": 61,
+            "duration_ms": 233720,
+            "energy": 69,
+            "genres": [
+                "alt z",
+                "canadian contemporary r&b",
+                "canadian pop",
+                "pop"
+            ],
+            "id": "2eAvDnpXP5W0cVtiI0PUxV",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 9,
+            "loudness": -2.958,
+            "mode": 1,
+            "popularity": 90,
+            "release_year": 2017,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Afro"
+            ],
+            "tempo": 116.959,
+            "title": "Dandelions",
+            "valence": 45
+        },
+        {
+            "acousticness": 62,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2y9j8qUwBMGPYPQJJxmYzD"
+            ],
+            "artists": [
+                "Anna Clendening"
+            ],
+            "danceability": 46,
+            "duration_ms": 178793,
+            "energy": 69,
+            "genres": [
+                "alt z"
+            ],
+            "id": "1JKdljaM2nvyMxcEQqEoLv",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 20,
+            "loudness": -4.242,
+            "mode": 1,
+            "popularity": 44,
+            "release_year": 2022,
+            "speechiness": 17,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 173.538,
+            "title": "I Don't Even Like You Anymore",
+            "valence": 43
+        },
+        {
+            "acousticness": 5,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "6eUKZXaKkcviH0Ku9w2n3V"
+            ],
+            "artists": [
+                "Ed Sheeran"
+            ],
+            "danceability": 81,
+            "duration_ms": 230746,
+            "energy": 89,
+            "genres": [
+                "pop",
+                "singer-songwriter pop",
+                "uk pop"
+            ],
+            "id": "3rmo8F54jFF8OgYsqTxm5d",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 37,
+            "loudness": -3.745,
+            "mode": 0,
+            "popularity": 85,
+            "release_year": 2021,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 126.011,
+            "title": "Bad Habits",
+            "valence": 54
+        },
+        {
+            "acousticness": 17,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "06HL4z0CvFAxyc27GXpf02"
+            ],
+            "artists": [
+                "Taylor Swift"
+            ],
+            "danceability": 62,
+            "duration_ms": 235266,
+            "energy": 74,
+            "genres": [
+                "pop"
+            ],
+            "id": "1vrd6UOGamcKNGnSHJQlSt",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 8,
+            "loudness": -3.95,
+            "mode": 1,
+            "popularity": 71,
+            "release_year": 2008,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 118.984,
+            "title": "Love Story",
+            "valence": 30
+        },
+        {
+            "acousticness": 3,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "6psCCMHymYfQy6VvYRr6cs"
+            ],
+            "artists": [
+                "Loving Caliber"
+            ],
+            "danceability": 66,
+            "duration_ms": 190557,
+            "energy": 72,
+            "genres": [
+                "scandipop"
+            ],
+            "id": "6t2J8WQZv1bl0GN1bsMB66",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 10,
+            "key_signature": "5\u266d",
+            "liveness": 6,
+            "loudness": -7.641,
+            "mode": 0,
+            "popularity": 57,
+            "release_year": 2018,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 172.079,
+            "title": "I Am Falling For You",
+            "valence": 92
+        },
+        {
+            "acousticness": 5,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "06HL4z0CvFAxyc27GXpf02"
+            ],
+            "artists": [
+                "Taylor Swift"
+            ],
+            "danceability": 61,
+            "duration_ms": 208186,
+            "energy": 76,
+            "genres": [
+                "pop"
+            ],
+            "id": "2yLa0QULdQr0qAIvVwN6B5",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 20,
+            "loudness": -6.509,
+            "mode": 1,
+            "popularity": 85,
+            "release_year": 2017,
+            "speechiness": 14,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 160.015,
+            "title": "...Ready For It?",
+            "valence": 42
+        },
+        {
+            "acousticness": 3,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "1l8Fu6IkuTP0U5QetQJ5Xt",
+                "638CPU1xRHUo6AmfZe3F2c"
+            ],
+            "artists": [
+                "Fifth Harmony",
+                "Eva Shaw"
+            ],
+            "danceability": 76,
+            "duration_ms": 193533,
+            "energy": 89,
+            "genres": [
+                "girl group",
+                "pop",
+                "talent show"
+            ],
+            "id": "6ysEPZlnEh20JQUuMaOFes",
+            "instrumentalness": 1,
+            "key": 5,
+            "key_and_mode_pair": 5,
+            "key_signature": "4\u266d",
+            "liveness": 37,
+            "loudness": -4.091,
+            "mode": 0,
+            "popularity": 30,
+            "release_year": 2016,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 108.024,
+            "title": "That's My Girl - Eva Shaw Remix",
+            "valence": 63
+        },
+        {
+            "acousticness": 31,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "1vCWHaC5f2uS3yhpwWbIA6"
+            ],
+            "artists": [
+                "Avicii"
+            ],
+            "danceability": 58,
+            "duration_ms": 230613,
+            "energy": 74,
+            "genres": [
+                "dance pop",
+                "edm",
+                "pop",
+                "pop dance"
+            ],
+            "id": "2P4OICZRVAQcYAV2JReRfj",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 6,
+            "key_signature": "3\u266f",
+            "liveness": 20,
+            "loudness": -3.863,
+            "mode": 0,
+            "popularity": 84,
+            "release_year": 2015,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop",
+                "EDM"
+            ],
+            "tempo": 127.999,
+            "title": "Waiting For Love",
+            "valence": 61
+        },
+        {
+            "acousticness": 33,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "7o2ZQYM7nTsaVdkXY38UAA"
+            ],
+            "artists": [
+                "Em Beihold"
+            ],
+            "danceability": 74,
+            "duration_ms": 169237,
+            "energy": 53,
+            "genres": [
+                "alt z",
+                "gen z singer-songwriter"
+            ],
+            "id": "1KQc37jezhunxnOPhvdwSG",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 8,
+            "key_signature": "5\u266f",
+            "liveness": 25,
+            "loudness": -6.892,
+            "mode": 0,
+            "popularity": 74,
+            "release_year": 2022,
+            "speechiness": 8,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 84.974,
+            "title": "Numb Little Bug",
+            "valence": 64
+        },
+        {
+            "acousticness": 29,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "7o2ZQYM7nTsaVdkXY38UAA"
+            ],
+            "artists": [
+                "Em Beihold"
+            ],
+            "danceability": 80,
+            "duration_ms": 169850,
+            "energy": 56,
+            "genres": [
+                "alt z",
+                "gen z singer-songwriter"
+            ],
+            "id": "6fE3wA5brWaKWadgaGJWMw",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 14,
+            "loudness": -4.74,
+            "mode": 1,
+            "popularity": 57,
+            "release_year": 2022,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 118.039,
+            "title": "Too Precious",
+            "valence": 45
+        },
+        {
+            "acousticness": 26,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "2bFguwibp03RkAAuC9oYrP"
+            ],
+            "artists": [
+                "Melina KB"
+            ],
+            "danceability": 74,
+            "duration_ms": 210828,
+            "energy": 61,
+            "genres": [
+                "alt z"
+            ],
+            "id": "534P1wgOzlgSogu8At0B6b",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 10,
+            "key_signature": "5\u266d",
+            "liveness": 9,
+            "loudness": -5.744,
+            "mode": 0,
+            "popularity": 62,
+            "release_year": 2021,
+            "speechiness": 7,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 170.055,
+            "title": "I've Had Enough",
+            "valence": 67
+        },
+        {
+            "acousticness": 33,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "0du5cEVh5yTK9QJze8zA0C"
+            ],
+            "artists": [
+                "Bruno Mars"
+            ],
+            "danceability": 62,
+            "duration_ms": 230192,
+            "energy": 82,
+            "genres": [
+                "dance pop",
+                "pop"
+            ],
+            "id": "22PMfvdz35fFKYnJyMn077",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 10,
+            "loudness": -4.865,
+            "mode": 1,
+            "popularity": 78,
+            "release_year": 2010,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 144.905,
+            "title": "Marry You",
+            "valence": 45
+        },
+        {
+            "acousticness": 65,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2yLzlEFtIS0Q9UkyBZdQA7"
+            ],
+            "artists": [
+                "Jessie Murph"
+            ],
+            "danceability": 66,
+            "duration_ms": 131824,
+            "energy": 57,
+            "genres": [
+                "alt z",
+                "modern country pop",
+                "singer-songwriter pop"
+            ],
+            "id": "53UMRr4KOgZP5Ins0aGlhs",
+            "instrumentalness": 0,
+            "key": 3,
+            "key_and_mode_pair": 3,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 8,
+            "loudness": -7.666,
+            "mode": 0,
+            "popularity": 75,
+            "release_year": 2023,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 137.12,
+            "title": "Always Been You",
+            "valence": 40
+        },
+        {
+            "acousticness": 96,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2S054G7qnCK45KY0XzpX30"
+            ],
+            "artists": [
+                "Dylan Conrique"
+            ],
+            "danceability": 44,
+            "duration_ms": 205280,
+            "energy": 26,
+            "genres": [
+                "alt z",
+                "singer-songwriter pop",
+                "social media pop"
+            ],
+            "id": "7dDrR6vMK1JAwZZ5MIWgme",
+            "instrumentalness": 0,
+            "key": 3,
+            "key_and_mode_pair": 15,
+            "key_signature": "3\u266d",
+            "liveness": 11,
+            "loudness": -8.623,
+            "mode": 1,
+            "popularity": 74,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 113.265,
+            "title": "birthday cake",
+            "valence": 15
+        },
+        {
+            "acousticness": 87,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "79AyR6ATpj2LTPxfb6FX50"
+            ],
+            "artists": [
+                "Lauren Spencer Smith"
+            ],
+            "danceability": 68,
+            "duration_ms": 157373,
+            "energy": 45,
+            "genres": [
+                "alt z",
+                "gen z singer-songwriter"
+            ],
+            "id": "6Z165JvPnS8PYvGW8oLGLc",
+            "instrumentalness": 0,
+            "key": 3,
+            "key_and_mode_pair": 15,
+            "key_signature": "3\u266d",
+            "liveness": 9,
+            "loudness": -9.738,
+            "mode": 1,
+            "popularity": 74,
+            "release_year": 2022,
+            "speechiness": 61,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 66.165,
+            "title": "Flowers",
+            "valence": 34
+        },
+        {
+            "acousticness": 0,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "7CajNmpbOovFoOoasH2HaY"
+            ],
+            "artists": [
+                "Calvin Harris"
+            ],
+            "danceability": 70,
+            "duration_ms": 207880,
+            "energy": 92,
+            "genres": [
+                "dance pop",
+                "edm",
+                "electro house",
+                "house",
+                "pop",
+                "pop dance",
+                "progressive house",
+                "uk dance"
+            ],
+            "id": "7HN5gAm39wfAJI1k2Kd2Qo",
+            "instrumentalness": 1,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 9,
+            "loudness": -2.85,
+            "mode": 1,
+            "popularity": 0,
+            "release_year": 2011,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "EDM"
+            ],
+            "tempo": 127.949,
+            "title": "Feel So Close - Radio Edit",
+            "valence": 90
+        },
+        {
+            "acousticness": 51,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "0KYOBAf6Zky4CFQne2JPTX"
+            ],
+            "artists": [
+                "Hiko"
+            ],
+            "danceability": 74,
+            "duration_ms": 190413,
+            "energy": 65,
+            "genres": [
+                "sped up"
+            ],
+            "id": "67Zv78PfCLmNPOOWW3k01Q",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 10,
+            "loudness": -7.054,
+            "mode": 0,
+            "popularity": 52,
+            "release_year": 2022,
+            "speechiness": 16,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 144.577,
+            "title": "Rather Be (Sped Up) - If You Gave Me a Chance I Would Take It",
+            "valence": 45
+        },
+        {
+            "acousticness": 8,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "7bfMpDDy8DCZ0a3zU9p4X0"
+            ],
+            "artists": [
+                "DJ Fronteo"
+            ],
+            "danceability": 70,
+            "duration_ms": 174336,
+            "energy": 82,
+            "genres": [
+                "sped up"
+            ],
+            "id": "4HUnpOeGALOg5NalzNJyiX",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 17,
+            "loudness": -4.943,
+            "mode": 1,
+            "popularity": 2,
+            "release_year": 2022,
+            "speechiness": 20,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 148.842,
+            "title": "One Kiss (Sped Up) - Remix",
+            "valence": 65
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "0spHbv2fw49lDMkbOAdaqX",
+                "4vlqLg5ZE0VPW7RAi5JXfg"
+            ],
+            "artists": [
+                "WWE",
+                "def rebel"
+            ],
+            "danceability": 52,
+            "duration_ms": 171434,
+            "energy": 86,
+            "genres": [
+                "wrestling"
+            ],
+            "id": "6t0AdN4c1dhbAGQ0PM0w3D",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 34,
+            "loudness": -4.409,
+            "mode": 0,
+            "popularity": 0,
+            "release_year": 2021,
+            "speechiness": 31,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 157.351,
+            "title": "WWE: The Greatest (Carmelo Hayes)",
+            "valence": 64
+        },
+        {
+            "acousticness": 8,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "3YJDqtTSjydvUpTvU1fJ6O"
+            ],
+            "artists": [
+                "CG5"
+            ],
+            "danceability": 78,
+            "duration_ms": 178753,
+            "energy": 93,
+            "genres": [
+                "otacore",
+                "pixel",
+                "rhythm game"
+            ],
+            "id": "20rqmGVLuQx85j0tTJSul6",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 1,
+            "key_signature": "4\u266f",
+            "liveness": 14,
+            "loudness": -1.41,
+            "mode": 0,
+            "popularity": 42,
+            "release_year": 2017,
+            "speechiness": 22,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 94.962,
+            "title": "The Final Straw",
+            "valence": 54
+        },
+        {
+            "acousticness": 37,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "4oUHIQIBe0LHzYfvXNW4QM"
+            ],
+            "artists": [
+                "Morgan Wallen"
+            ],
+            "danceability": 61,
+            "duration_ms": 234346,
+            "energy": 68,
+            "genres": [
+                "contemporary country"
+            ],
+            "id": "6foY66mWZN0pSRjZ408c00",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 18,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 12,
+            "loudness": -4.58,
+            "mode": 1,
+            "popularity": 84,
+            "release_year": 2018,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 149.959,
+            "title": "Whiskey Glasses",
+            "valence": 71
+        },
+        {
+            "acousticness": 9,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "2kucQ9jQwuD8jWdtR9Ef38"
+            ],
+            "artists": [
+                "Sam Hunt"
+            ],
+            "danceability": 57,
+            "duration_ms": 181933,
+            "energy": 81,
+            "genres": [
+                "contemporary country",
+                "country",
+                "country pop",
+                "modern country rock"
+            ],
+            "id": "52lGuLAkIVbm4LZkSf9nj0",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 16,
+            "loudness": -4.584,
+            "mode": 1,
+            "popularity": 65,
+            "release_year": 2020,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 76.011,
+            "title": "Kinfolks",
+            "valence": 88
+        },
+        {
+            "acousticness": 52,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "3cR4rhS2hBWqI7rJEBacvN",
+                "3twuAojvYNrlWZpMkxLm3P",
+                "6G3sPhnj4JBCsBVBGvZnkk",
+                "4aXXDj9aZnlshx7mzj3W1N",
+                "2OEGI2wrCVmvavKEOMlccy",
+                "6sLwRSXSUF5JTUnQaFenyj",
+                "3UUJfRbrA2nTbcg4i0MOwu",
+                "660YptcR0hNHJ8iEr1qcse"
+            ],
+            "artists": [
+                "Leslie Odom Jr.",
+                "Daveed Diggs",
+                "Okieriete Onaodowan",
+                "Lin-Manuel Miranda",
+                "Phillipa Soo",
+                "Christopher Jackson",
+                "Original Broadway Cast of Hamilton",
+                "Anthony Ramos"
+            ],
+            "danceability": 61,
+            "duration_ms": 236737,
+            "energy": 44,
+            "genres": [
+                "broadway",
+                "show tunes",
+                "vocal jazz",
+                "alternative hip hop",
+                "movie tunes"
+            ],
+            "id": "4TTV7EcfroSLWzXRY6gLv6",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 12,
+            "loudness": -7.861,
+            "mode": 0,
+            "popularity": 73,
+            "release_year": 2015,
+            "speechiness": 28,
+            "super_genres": [
+                "Rap",
+                "Afro"
+            ],
+            "tempo": 131.995,
+            "title": "Alexander Hamilton",
+            "valence": 55
+        },
+        {
+            "acousticness": 0,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "0spHbv2fw49lDMkbOAdaqX",
+                "4vlqLg5ZE0VPW7RAi5JXfg"
+            ],
+            "artists": [
+                "WWE",
+                "def rebel"
+            ],
+            "danceability": 51,
+            "duration_ms": 144436,
+            "energy": 98,
+            "genres": [
+                "wrestling"
+            ],
+            "id": "179pZIEqVbW4dwzWp4s1nj",
+            "instrumentalness": 72,
+            "key": 2,
+            "key_and_mode_pair": 2,
+            "key_signature": "1\u266d",
+            "liveness": 36,
+            "loudness": -5.242,
+            "mode": 0,
+            "popularity": 56,
+            "release_year": 2021,
+            "speechiness": 6,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 112.073,
+            "title": "WWE: Visionary (Seth Rollins)",
+            "valence": 32
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "0spHbv2fw49lDMkbOAdaqX",
+                "4vlqLg5ZE0VPW7RAi5JXfg"
+            ],
+            "artists": [
+                "WWE",
+                "def rebel"
+            ],
+            "danceability": 57,
+            "duration_ms": 163793,
+            "energy": 69,
+            "genres": [
+                "wrestling"
+            ],
+            "id": "6lesegd3YAWmulm5oxZKME",
+            "instrumentalness": 76,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 28,
+            "loudness": -5.107,
+            "mode": 1,
+            "popularity": 0,
+            "release_year": 2021,
+            "speechiness": 3,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 84.978,
+            "title": "WWE: Titan (Bobby Lashley)",
+            "valence": 41
+        },
+        {
+            "acousticness": 0,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "1vCWHaC5f2uS3yhpwWbIA6"
+            ],
+            "artists": [
+                "Avicii"
+            ],
+            "danceability": 53,
+            "duration_ms": 247426,
+            "energy": 78,
+            "genres": [
+                "dance pop",
+                "edm",
+                "pop",
+                "pop dance"
+            ],
+            "id": "0nrRP2bk19rLc0orkWPQk2",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 16,
+            "loudness": -5.697,
+            "mode": 1,
+            "popularity": 88,
+            "release_year": 2013,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop",
+                "EDM"
+            ],
+            "tempo": 124.08,
+            "title": "Wake Me Up",
+            "valence": 64
+        },
+        {
+            "acousticness": 21,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "2BuSNpxpMGJGiAAWJYJT2t"
+            ],
+            "artists": [
+                "Noisestorm"
+            ],
+            "danceability": 77,
+            "duration_ms": 161280,
+            "energy": 93,
+            "genres": [
+                "dancefloor dnb",
+                "gaming edm",
+                "speedrun"
+            ],
+            "id": "4qDHt2ClApBBzDAvhNGWFd",
+            "instrumentalness": 92,
+            "key": 2,
+            "key_and_mode_pair": 2,
+            "key_signature": "1\u266d",
+            "liveness": 8,
+            "loudness": -2.95,
+            "mode": 0,
+            "popularity": 67,
+            "release_year": 2018,
+            "speechiness": 4,
+            "super_genres": [
+                "EDM"
+            ],
+            "tempo": 124.996,
+            "title": "Crab Rave",
+            "valence": 24
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "6eUKZXaKkcviH0Ku9w2n3V"
+            ],
+            "artists": [
+                "Ed Sheeran"
+            ],
+            "danceability": 46,
+            "duration_ms": 261153,
+            "energy": 83,
+            "genres": [
+                "pop",
+                "singer-songwriter pop",
+                "uk pop"
+            ],
+            "id": "6PCUP3dWmTjcTtXY02oFdT",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 14,
+            "loudness": -4.868,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 2017,
+            "speechiness": 10,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 135.007,
+            "title": "Castle on the Hill",
+            "valence": 47
+        },
+        {
+            "acousticness": 15,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "3XKtycltpy1gaeny0Bdzcs"
+            ],
+            "artists": [
+                "Rhett and Link"
+            ],
+            "danceability": 82,
+            "duration_ms": 145769,
+            "energy": 43,
+            "genres": [
+                "antiviral pop"
+            ],
+            "id": "4PqUG6BJSX6APKeELFpcyf",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 20,
+            "loudness": -8.053,
+            "mode": 1,
+            "popularity": 48,
+            "release_year": 2014,
+            "speechiness": 8,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 77.986,
+            "title": "My OCD",
+            "valence": 58
+        },
+        {
+            "acousticness": 15,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "3XKtycltpy1gaeny0Bdzcs"
+            ],
+            "artists": [
+                "Rhett and Link"
+            ],
+            "danceability": 75,
+            "duration_ms": 160439,
+            "energy": 83,
+            "genres": [
+                "antiviral pop"
+            ],
+            "id": "6q93GJWPotW7ssUNGhz6Oj",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 14,
+            "loudness": -7.459,
+            "mode": 1,
+            "popularity": 41,
+            "release_year": 2012,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 120.028,
+            "title": "Rub Some Bacon on It",
+            "valence": 53
+        },
+        {
+            "acousticness": 26,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "3XKtycltpy1gaeny0Bdzcs"
+            ],
+            "artists": [
+                "Rhett and Link"
+            ],
+            "danceability": 93,
+            "duration_ms": 144000,
+            "energy": 84,
+            "genres": [
+                "antiviral pop"
+            ],
+            "id": "0OC6kRjvDZIEG7fMcEVBpb",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 0,
+            "key_signature": "3\u266d",
+            "liveness": 22,
+            "loudness": -6.789,
+            "mode": 0,
+            "popularity": 39,
+            "release_year": 2014,
+            "speechiness": 13,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 100.014,
+            "title": "It's My Belly Button",
+            "valence": 85
+        },
+        {
+            "acousticness": 7,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "18KIg6ST1nUjVUvAlEB6ak"
+            ],
+            "artists": [
+                "Vo Williams"
+            ],
+            "danceability": 47,
+            "duration_ms": 180532,
+            "energy": 85,
+            "genres": [
+                "bossbeat"
+            ],
+            "id": "4pFSSLGq7ljNyM0ZtgdDrL",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 22,
+            "loudness": -6.425,
+            "mode": 1,
+            "popularity": 44,
+            "release_year": 2021,
+            "speechiness": 32,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 174.851,
+            "title": "Greatness",
+            "valence": 61
+        },
+        {
+            "acousticness": 15,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "3BEV5FcxOtkQJ7lLRKMh3V"
+            ],
+            "artists": [
+                "Tyler Hubbard"
+            ],
+            "danceability": 60,
+            "duration_ms": 189780,
+            "energy": 80,
+            "genres": [
+                "contemporary country",
+                "modern country pop"
+            ],
+            "id": "6AqwH2Y9FJwhUE2dCSkw1u",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 12,
+            "loudness": -5.609,
+            "mode": 1,
+            "popularity": 71,
+            "release_year": 2022,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 106.005,
+            "title": "5 Foot 9",
+            "valence": 53
+        },
+        {
+            "acousticness": 5,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "69GGBxA162lTqCwzJG5jLp",
+                "4gzpq5DPGxSnKTe4SA8HAU"
+            ],
+            "artists": [
+                "The Chainsmokers",
+                "Coldplay"
+            ],
+            "danceability": 62,
+            "duration_ms": 247160,
+            "energy": 64,
+            "genres": [
+                "pop",
+                "permanent wave"
+            ],
+            "id": "6RUKPb4LETWmmr3iAEQktW",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 16,
+            "loudness": -6.769,
+            "mode": 0,
+            "popularity": 88,
+            "release_year": 2017,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 103.019,
+            "title": "Something Just Like This",
+            "valence": 45
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "24eDfi2MSYo3A87hCcgpIL"
+            ],
+            "artists": [
+                "Ludwig G\u00f6ransson"
+            ],
+            "danceability": 75,
+            "duration_ms": 170800,
+            "energy": 55,
+            "genres": [
+                "nordic soundtrack",
+                "orchestral soundtrack",
+                "soundtrack"
+            ],
+            "id": "0PKkhjNbKn4ZjMdKHYQ6uf",
+            "instrumentalness": 79,
+            "key": 4,
+            "key_and_mode_pair": 4,
+            "key_signature": "1\u266f",
+            "liveness": 9,
+            "loudness": -5.843,
+            "mode": 0,
+            "popularity": 42,
+            "release_year": 2020,
+            "speechiness": 4,
+            "super_genres": [
+                "Classical"
+            ],
+            "tempo": 127.994,
+            "title": "Yodel Beat",
+            "valence": 36
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "3jK9MiCrA42lLAdMGUZpwa",
+                "31TPClRtHm23RisEBtV3X7",
+                "1XkoF8ryArs86LZvFOkbyr",
+                "2GVBp7QyHckoOg7rYkLvrA"
+            ],
+            "artists": [
+                "Anderson .Paak",
+                "Justin Timberlake",
+                "Mary J. Blige",
+                "George Clinton"
+            ],
+            "danceability": 68,
+            "duration_ms": 215333,
+            "energy": 66,
+            "genres": [
+                "escape room",
+                "hip hop",
+                "indie soul",
+                "neo soul",
+                "dance pop",
+                "pop",
+                "hip pop",
+                "r&b",
+                "urban contemporary",
+                "funk",
+                "p funk",
+                "soul"
+            ],
+            "id": "62xFtXfi1MpX9Mqyv4rZzl",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 42,
+            "loudness": -7.004,
+            "mode": 1,
+            "popularity": 47,
+            "release_year": 2020,
+            "speechiness": 14,
+            "super_genres": [
+                "Pop",
+                "Rap",
+                "Afro"
+            ],
+            "tempo": 91.524,
+            "title": "It's All Love",
+            "valence": 49
+        },
+        {
+            "acousticness": 28,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "6s22t5Y3prQHyaHWUN1R1C",
+                "4LAz9VRX8Nat9kvIzgkg2v"
+            ],
+            "artists": [
+                "AJR",
+                "Rivers Cuomo"
+            ],
+            "danceability": 65,
+            "duration_ms": 218763,
+            "energy": 62,
+            "genres": [
+                "pov: indie",
+                "alternative rock"
+            ],
+            "id": "5jiYx70OBzEI99jx1Gn3FN",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 8,
+            "loudness": -4.938,
+            "mode": 1,
+            "popularity": 67,
+            "release_year": 2017,
+            "speechiness": 3,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 93.011,
+            "title": "Sober Up (feat. Rivers Cuomo)",
+            "valence": 77
+        },
+        {
+            "acousticness": 21,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "087ZBrJyDhTGPwPsOFXXqj"
+            ],
+            "artists": [
+                "ONY9RMX"
+            ],
+            "danceability": 63,
+            "duration_ms": 149333,
+            "energy": 82,
+            "genres": [],
+            "id": "5v6nXpDkmcxknevV6NMrEk",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 23,
+            "key_signature": "5\u266f",
+            "liveness": 14,
+            "loudness": -5.653,
+            "mode": 1,
+            "popularity": 6,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 90.017,
+            "title": "I Ain't Worried (Theme from \"Top Gun: Maverick\") [Cover Remix]",
+            "valence": 64
+        },
+        {
+            "acousticness": 10,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "4gzpq5DPGxSnKTe4SA8HAU"
+            ],
+            "artists": [
+                "Coldplay"
+            ],
+            "danceability": 49,
+            "duration_ms": 242373,
+            "energy": 62,
+            "genres": [
+                "permanent wave",
+                "pop"
+            ],
+            "id": "1mea3bSkSGXuIRvnydlB5b",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 5,
+            "key_signature": "4\u266d",
+            "liveness": 11,
+            "loudness": -7.115,
+            "mode": 0,
+            "popularity": 89,
+            "release_year": 2008,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 138.015,
+            "title": "Viva La Vida",
+            "valence": 42
+        },
+        {
+            "acousticness": 12,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "06HL4z0CvFAxyc27GXpf02"
+            ],
+            "artists": [
+                "Taylor Swift"
+            ],
+            "danceability": 55,
+            "duration_ms": 178426,
+            "energy": 70,
+            "genres": [
+                "pop"
+            ],
+            "id": "1BxfuPKGuaTgP7aM0Bbdwr",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 10,
+            "loudness": -5.707,
+            "mode": 1,
+            "popularity": 100,
+            "release_year": 2019,
+            "speechiness": 16,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 169.994,
+            "title": "Cruel Summer",
+            "valence": 56
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "06HL4z0CvFAxyc27GXpf02"
+            ],
+            "artists": [
+                "Taylor Swift"
+            ],
+            "danceability": 70,
+            "duration_ms": 190240,
+            "energy": 71,
+            "genres": [
+                "pop"
+            ],
+            "id": "1LLXZFeAHK9R4xUramtUKw",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 13,
+            "loudness": -6.639,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 2019,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 157.925,
+            "title": "London Boy",
+            "valence": 56
+        },
+        {
+            "acousticness": 16,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "1VbWMsap5Ex2erHPlmndr0"
+            ],
+            "artists": [
+                "SIX"
+            ],
+            "danceability": 73,
+            "duration_ms": 239795,
+            "energy": 67,
+            "genres": [
+                "broadway"
+            ],
+            "id": "3jnntYfllN05QxplcXtpaS",
+            "instrumentalness": 0,
+            "key": 3,
+            "key_and_mode_pair": 15,
+            "key_signature": "3\u266d",
+            "liveness": 10,
+            "loudness": -6.249,
+            "mode": 1,
+            "popularity": 64,
+            "release_year": 2018,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 135.026,
+            "title": "Six",
+            "valence": 64
+        },
+        {
+            "acousticness": 8,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "5yCkSShz4MTqE4Lp6fVZMz",
+                "6B1foTh2pK3K4MKQzYaKRu"
+            ],
+            "artists": [
+                "Barrett Wilbert Weed",
+                "Original Broadway Cast of Mean Girls"
+            ],
+            "danceability": 67,
+            "duration_ms": 170639,
+            "energy": 79,
+            "genres": [
+                "broadway",
+                "show tunes"
+            ],
+            "id": "2UNt0aiJNNXbbtSN5Aag0x",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 20,
+            "loudness": -3.326,
+            "mode": 1,
+            "popularity": 56,
+            "release_year": 2018,
+            "speechiness": 12,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 139.94,
+            "title": "I'd Rather Be Me",
+            "valence": 81
+        },
+        {
+            "acousticness": 34,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "1McMsnEElThX1knmY4oliG"
+            ],
+            "artists": [
+                "Olivia Rodrigo"
+            ],
+            "danceability": 56,
+            "duration_ms": 178146,
+            "energy": 66,
+            "genres": [
+                "pop"
+            ],
+            "id": "4ZtFanR9U6ndgddUvNcjcG",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 8,
+            "loudness": -5.044,
+            "mode": 1,
+            "popularity": 87,
+            "release_year": 2021,
+            "speechiness": 15,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 166.928,
+            "title": "good 4 u",
+            "valence": 69
+        },
+        {
+            "acousticness": 35,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "7qmpXeNz2ojlMl2EEfkeLs",
+                "38PzLQE4GW8o7A18oGhi0x"
+            ],
+            "artists": [
+                "Nicky Youre",
+                "dazy"
+            ],
+            "danceability": 77,
+            "duration_ms": 163025,
+            "energy": 71,
+            "genres": [
+                "singer-songwriter pop"
+            ],
+            "id": "4h4QlmocP3IuwYEj2j14p8",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 15,
+            "loudness": -5.11,
+            "mode": 1,
+            "popularity": 54,
+            "release_year": 2021,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 131.443,
+            "title": "Sunroof",
+            "valence": 84
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "2ozPCkyHfA8kLDghkVwGrq",
+                "4EdUsCGAVQWUtLwVMnwKru"
+            ],
+            "artists": [
+                "Mondays",
+                "Lucy"
+            ],
+            "danceability": 74,
+            "duration_ms": 195821,
+            "energy": 62,
+            "genres": [],
+            "id": "62a0gOi6Far1aNL15p63XZ",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 8,
+            "loudness": -6.209,
+            "mode": 1,
+            "popularity": 55,
+            "release_year": 2017,
+            "speechiness": 3,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 100.952,
+            "title": "If I Was Your Girlfriend",
+            "valence": 79
+        },
+        {
+            "acousticness": 25,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "1VbWMsap5Ex2erHPlmndr0",
+                "21uejta558No7qYG1Nmwn7"
+            ],
+            "artists": [
+                "SIX",
+                "Christina Modestou"
+            ],
+            "danceability": 86,
+            "duration_ms": 245303,
+            "energy": 60,
+            "genres": [
+                "broadway"
+            ],
+            "id": "6sUQqRmOcRyAG5M3EWXzr3",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 7,
+            "key_signature": "2\u266d",
+            "liveness": 13,
+            "loudness": -7.635,
+            "mode": 0,
+            "popularity": 68,
+            "release_year": 2018,
+            "speechiness": 36,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 82.91,
+            "title": "Don't Lose Ur Head",
+            "valence": 72
+        },
+        {
+            "acousticness": 95,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "6gK1Uct5FEdaUWRWpU4Cl2"
+            ],
+            "artists": [
+                "Petit Biscuit"
+            ],
+            "danceability": 57,
+            "duration_ms": 231131,
+            "energy": 34,
+            "genres": [
+                "new french touch"
+            ],
+            "id": "4gRuC34ZpRcpVXxMXM1csQ",
+            "instrumentalness": 92,
+            "key": 9,
+            "key_and_mode_pair": 9,
+            "key_signature": "\u266e",
+            "liveness": 10,
+            "loudness": -13.549,
+            "mode": 0,
+            "popularity": 57,
+            "release_year": 2015,
+            "speechiness": 6,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 162.387,
+            "title": "You",
+            "valence": 49
+        },
+        {
+            "acousticness": 34,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2y9j8qUwBMGPYPQJJxmYzD"
+            ],
+            "artists": [
+                "Anna Clendening"
+            ],
+            "danceability": 66,
+            "duration_ms": 242572,
+            "energy": 67,
+            "genres": [
+                "alt z"
+            ],
+            "id": "3Dd8kupwJQDLPzcExJY16q",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 10,
+            "loudness": -5.094,
+            "mode": 1,
+            "popularity": 55,
+            "release_year": 2016,
+            "speechiness": 10,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 85.955,
+            "title": "To My Parents",
+            "valence": 30
+        },
+        {
+            "acousticness": 42,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2y9j8qUwBMGPYPQJJxmYzD"
+            ],
+            "artists": [
+                "Anna Clendening"
+            ],
+            "danceability": 58,
+            "duration_ms": 181046,
+            "energy": 67,
+            "genres": [
+                "alt z"
+            ],
+            "id": "6B5aJ0NIiCVpYmsgSJj9F0",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 1,
+            "key_signature": "4\u266f",
+            "liveness": 16,
+            "loudness": -7.325,
+            "mode": 0,
+            "popularity": 28,
+            "release_year": 2022,
+            "speechiness": 8,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 185.891,
+            "title": "Girls Like You",
+            "valence": 38
+        },
+        {
+            "acousticness": 37,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "3aHe9rMa5HFTjXHw8tEz0A"
+            ],
+            "artists": [
+                "Jenna Raine"
+            ],
+            "danceability": 58,
+            "duration_ms": 189636,
+            "energy": 50,
+            "genres": [
+                "alt z",
+                "singer-songwriter pop"
+            ],
+            "id": "4hOEcvPoY9WYdvZk5T5O1T",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 11,
+            "loudness": -6.843,
+            "mode": 1,
+            "popularity": 50,
+            "release_year": 2022,
+            "speechiness": 11,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 174.094,
+            "title": "Fumbled the Bag",
+            "valence": 37
+        },
+        {
+            "acousticness": 34,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "3aHe9rMa5HFTjXHw8tEz0A"
+            ],
+            "artists": [
+                "Jenna Raine"
+            ],
+            "danceability": 65,
+            "duration_ms": 207740,
+            "energy": 54,
+            "genres": [
+                "alt z",
+                "singer-songwriter pop"
+            ],
+            "id": "4fV8zuE5GmRCjzl8b3JUgg",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 7,
+            "loudness": -5.338,
+            "mode": 1,
+            "popularity": 53,
+            "release_year": 2022,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 106.08,
+            "title": "2%",
+            "valence": 36
+        },
+        {
+            "acousticness": 49,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "3aHe9rMa5HFTjXHw8tEz0A"
+            ],
+            "artists": [
+                "Jenna Raine"
+            ],
+            "danceability": 39,
+            "duration_ms": 145673,
+            "energy": 60,
+            "genres": [
+                "alt z",
+                "singer-songwriter pop"
+            ],
+            "id": "6G9bbTeoVpPPt02fraZhnZ",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 1,
+            "key_signature": "4\u266f",
+            "liveness": 16,
+            "loudness": -7.363,
+            "mode": 0,
+            "popularity": 41,
+            "release_year": 2022,
+            "speechiness": 43,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 193.571,
+            "title": "rent free",
+            "valence": 16
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "0fTSzq9jAh4c36UVb4V7CB"
+            ],
+            "artists": [
+                "Alex Warren"
+            ],
+            "danceability": 64,
+            "duration_ms": 173213,
+            "energy": 56,
+            "genres": [
+                "gen z singer-songwriter"
+            ],
+            "id": "0mzeEr7kHYzVPWF6iTIuwE",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 34,
+            "loudness": -7.087,
+            "mode": 1,
+            "popularity": 56,
+            "release_year": 2022,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 144.822,
+            "title": "Headlights",
+            "valence": 45
+        },
+        {
+            "acousticness": 26,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "3win9vGIxFfBRag9S63wwf"
+            ],
+            "artists": [
+                "Bailey Zimmerman"
+            ],
+            "danceability": 43,
+            "duration_ms": 179294,
+            "energy": 84,
+            "genres": [
+                "contemporary country",
+                "modern country pop"
+            ],
+            "id": "7lNezbnIXBbgNmFOa9dt1c",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 9,
+            "loudness": -5.067,
+            "mode": 1,
+            "popularity": 65,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 170.041,
+            "title": "Where It Ends",
+            "valence": 65
+        },
+        {
+            "acousticness": 70,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "79AyR6ATpj2LTPxfb6FX50"
+            ],
+            "artists": [
+                "Lauren Spencer Smith"
+            ],
+            "danceability": 58,
+            "duration_ms": 172878,
+            "energy": 48,
+            "genres": [
+                "alt z",
+                "gen z singer-songwriter"
+            ],
+            "id": "23oYG6HAbahMQEtjk0M7GK",
+            "instrumentalness": 0,
+            "key": 3,
+            "key_and_mode_pair": 15,
+            "key_signature": "3\u266d",
+            "liveness": 10,
+            "loudness": -5.438,
+            "mode": 1,
+            "popularity": 65,
+            "release_year": 2022,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 113.797,
+            "title": "Narcissist",
+            "valence": 16
+        },
+        {
+            "acousticness": 23,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "5rjz63sgMaAUAyBMyCUK5D"
+            ],
+            "artists": [
+                "Avery Anna"
+            ],
+            "danceability": 53,
+            "duration_ms": 191493,
+            "energy": 47,
+            "genres": [
+                "alt z",
+                "modern country pop",
+                "singer-songwriter pop"
+            ],
+            "id": "70mrIsFkdsc58aBJJWSNTO",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 9,
+            "loudness": -4.663,
+            "mode": 1,
+            "popularity": 45,
+            "release_year": 2022,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 132.09,
+            "title": "Critic",
+            "valence": 24
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "4dpARuHxo51G3z768sgnrY"
+            ],
+            "artists": [
+                "Adele"
+            ],
+            "danceability": 59,
+            "duration_ms": 240439,
+            "energy": 83,
+            "genres": [
+                "british soul",
+                "pop",
+                "pop soul",
+                "uk pop"
+            ],
+            "id": "4jL6WWKFDqCOPo2hC3VhSS",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 5,
+            "key_signature": "4\u266d",
+            "liveness": 10,
+            "loudness": -6.503,
+            "mode": 0,
+            "popularity": 74,
+            "release_year": 2015,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop",
+                "Afro"
+            ],
+            "tempo": 94.963,
+            "title": "Water Under the Bridge",
+            "valence": 54
+        },
+        {
+            "acousticness": 71,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "1Hsdzj7Dlq2I7tHP7501T4"
+            ],
+            "artists": [
+                "Niall Horan"
+            ],
+            "danceability": 68,
+            "duration_ms": 232852,
+            "energy": 40,
+            "genres": [
+                "pop"
+            ],
+            "id": "0qvzXomUDJVaUboy2wMfiS",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 12,
+            "loudness": -8.467,
+            "mode": 1,
+            "popularity": 83,
+            "release_year": 2017,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 111.825,
+            "title": "This Town",
+            "valence": 20
+        },
+        {
+            "acousticness": 40,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "7n2wHs1TKAczGzO7Dd2rGr"
+            ],
+            "artists": [
+                "Shawn Mendes"
+            ],
+            "danceability": 61,
+            "duration_ms": 232200,
+            "energy": 49,
+            "genres": [
+                "canadian pop",
+                "pop",
+                "viral pop"
+            ],
+            "id": "4uzUuDjoufcBXYZ27CsLIF",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 12,
+            "loudness": -6.771,
+            "mode": 1,
+            "popularity": 59,
+            "release_year": 2017,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 78.145,
+            "title": "Roses",
+            "valence": 27
+        },
+        {
+            "acousticness": 91,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "6eUKZXaKkcviH0Ku9w2n3V"
+            ],
+            "artists": [
+                "Ed Sheeran"
+            ],
+            "danceability": 58,
+            "duration_ms": 221106,
+            "energy": 24,
+            "genres": [
+                "pop",
+                "singer-songwriter pop",
+                "uk pop"
+            ],
+            "id": "0J2gy5j3Fr1rGpIYwH7evJ",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 18,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 9,
+            "loudness": -10.517,
+            "mode": 1,
+            "popularity": 5,
+            "release_year": 2023,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 89.865,
+            "title": "Supermarket Flowers",
+            "valence": 25
+        },
+        {
+            "acousticness": 16,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "6eUKZXaKkcviH0Ku9w2n3V"
+            ],
+            "artists": [
+                "Ed Sheeran"
+            ],
+            "danceability": 60,
+            "duration_ms": 263400,
+            "energy": 45,
+            "genres": [
+                "pop",
+                "singer-songwriter pop",
+                "uk pop"
+            ],
+            "id": "0tgVpDi06FyKpA1z0VMD4v",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 11,
+            "loudness": -6.312,
+            "mode": 1,
+            "popularity": 90,
+            "release_year": 2017,
+            "speechiness": 2,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 95.05,
+            "title": "Perfect",
+            "valence": 17
+        },
+        {
+            "acousticness": 92,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "5y2Xq6xcjJb2jVM54GHK3t"
+            ],
+            "artists": [
+                "John Legend"
+            ],
+            "danceability": 42,
+            "duration_ms": 269560,
+            "energy": 26,
+            "genres": [
+                "neo soul",
+                "pop",
+                "pop soul",
+                "urban contemporary"
+            ],
+            "id": "3U4isOIWM3VvDubwSI3y7a",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 13,
+            "loudness": -7.064,
+            "mode": 1,
+            "popularity": 87,
+            "release_year": 2013,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Afro"
+            ],
+            "tempo": 119.93,
+            "title": "All of Me",
+            "valence": 33
+        },
+        {
+            "acousticness": 3,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "3TVXtAsR1Inumwj472S9r4"
+            ],
+            "artists": [
+                "Drake"
+            ],
+            "danceability": 76,
+            "duration_ms": 198973,
+            "energy": 45,
+            "genres": [
+                "canadian hip hop",
+                "canadian pop",
+                "hip hop",
+                "pop rap",
+                "rap"
+            ],
+            "id": "5t9KtCfnu8wQui1G6IqqBR",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 58,
+            "loudness": -9.21,
+            "mode": 1,
+            "popularity": 61,
+            "release_year": 2018,
+            "speechiness": 11,
+            "super_genres": [
+                "Pop",
+                "Rap"
+            ],
+            "tempo": 77.168,
+            "title": "God's Plan",
+            "valence": 35
+        },
+        {
+            "acousticness": 10,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "4fwuXg6XQHfdlOdmw36OHa"
+            ],
+            "artists": [
+                "Paloma Faith"
+            ],
+            "danceability": 57,
+            "duration_ms": 232893,
+            "energy": 88,
+            "genres": [
+                "british soul",
+                "talent show",
+                "uk pop"
+            ],
+            "id": "62ke5zFUJN6RvtXZgVH0F8",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 33,
+            "loudness": -4.528,
+            "mode": 1,
+            "popularity": 84,
+            "release_year": 2014,
+            "speechiness": 8,
+            "super_genres": [
+                "Pop",
+                "Afro"
+            ],
+            "tempo": 90.99,
+            "title": "Only Love Can Hurt Like This",
+            "valence": 30
+        },
+        {
+            "acousticness": 0,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "1Xylc3o4UrD53lo9CvFvVg",
+                "7uMh23xWiuR7zsNkuNcm2G"
+            ],
+            "artists": [
+                "Zara Larsson",
+                "MNEK"
+            ],
+            "danceability": 58,
+            "duration_ms": 213427,
+            "energy": 73,
+            "genres": [
+                "pop",
+                "scandipop",
+                "swedish electropop",
+                "swedish pop",
+                "house",
+                "pop dance",
+                "uk contemporary r&b",
+                "uk dance",
+                "uk pop"
+            ],
+            "id": "6hmhG1b4LEyNuashVvuIAo",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 27,
+            "loudness": -5.728,
+            "mode": 0,
+            "popularity": 76,
+            "release_year": 2017,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop",
+                "EDM",
+                "Afro"
+            ],
+            "tempo": 145.992,
+            "title": "Never Forget You",
+            "valence": 28
+        },
+        {
+            "acousticness": 73,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "5XKFrudbV4IiuE5WuTPRmT"
+            ],
+            "artists": [
+                "Stephen Sanchez"
+            ],
+            "danceability": 54,
+            "duration_ms": 177720,
+            "energy": 51,
+            "genres": [
+                "gen z singer-songwriter"
+            ],
+            "id": "0T5iIrXA4p5GsubkhuBIKV",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 17,
+            "loudness": -6.05,
+            "mode": 1,
+            "popularity": 84,
+            "release_year": 2021,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 101.358,
+            "title": "Until I Found You",
+            "valence": 23
+        },
+        {
+            "acousticness": 69,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "3iri9nBFs9e4wN7PLIetAw",
+                "1QRj3hoop9Mv5VvHQkwPEp"
+            ],
+            "artists": [
+                "gnash",
+                "Olivia O'Brien"
+            ],
+            "danceability": 49,
+            "duration_ms": 251033,
+            "energy": 28,
+            "genres": [
+                "pop",
+                "alt z"
+            ],
+            "id": "7vRriwrloYVaoAe3a9wJHe",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 6,
+            "key_signature": "3\u266f",
+            "liveness": 10,
+            "loudness": -13.4,
+            "mode": 0,
+            "popularity": 79,
+            "release_year": 2016,
+            "speechiness": 30,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 92.6,
+            "title": "i hate u, i love u (feat. olivia o'brien)",
+            "valence": 18
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "4AVFqumd2ogHFlRbKIjp1t",
+                "1Xylc3o4UrD53lo9CvFvVg"
+            ],
+            "artists": [
+                "Alesso",
+                "Zara Larsson"
+            ],
+            "danceability": 74,
+            "duration_ms": 142677,
+            "energy": 59,
+            "genres": [
+                "dance pop",
+                "edm",
+                "pop",
+                "pop dance",
+                "progressive electro house",
+                "scandipop",
+                "swedish electropop",
+                "swedish pop"
+            ],
+            "id": "1bgKMxPQU7JIZEhNsM1vFs",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 10,
+            "key_signature": "5\u266d",
+            "liveness": 31,
+            "loudness": -5.079,
+            "mode": 0,
+            "popularity": 82,
+            "release_year": 2022,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop",
+                "EDM"
+            ],
+            "tempo": 124.026,
+            "title": "Words (feat. Zara Larsson)",
+            "valence": 44
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "7n2wHs1TKAczGzO7Dd2rGr"
+            ],
+            "artists": [
+                "Shawn Mendes"
+            ],
+            "danceability": 59,
+            "duration_ms": 206880,
+            "energy": 75,
+            "genres": [
+                "canadian pop",
+                "pop",
+                "viral pop"
+            ],
+            "id": "5t4B1kAlCD13YY9poph0Mg",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 5,
+            "loudness": -6.684,
+            "mode": 1,
+            "popularity": 53,
+            "release_year": 2015,
+            "speechiness": 11,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 73.184,
+            "title": "Stitches",
+            "valence": 74
+        },
+        {
+            "acousticness": 6,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "3AQRLZ9PuTAozP28Skbq8V",
+                "085pc2PYOi8bGKj0PNjekA"
+            ],
+            "artists": [
+                "The Script",
+                "will.i.am"
+            ],
+            "danceability": 45,
+            "duration_ms": 202520,
+            "energy": 86,
+            "genres": [
+                "celtic rock",
+                "pop",
+                "dance pop"
+            ],
+            "id": "3Q5fjWsoBQWn43kzNWEGM2",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 12,
+            "loudness": -4.326,
+            "mode": 1,
+            "popularity": 40,
+            "release_year": 2012,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 169.776,
+            "title": "Hall of Fame (feat. will.i.am)",
+            "valence": 61
+        },
+        {
+            "acousticness": 23,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "66Fb5gJ9SX2WGlqDLUpjux",
+                "74ZHOTPP0eWWe9kLt8jHbP",
+                "2BHswvFd8tMBizVWGcAMLm"
+            ],
+            "artists": [
+                "Alex Goot",
+                "ATC",
+                "Kurt Hugo Schneider"
+            ],
+            "danceability": 66,
+            "duration_ms": 203000,
+            "energy": 73,
+            "genres": [
+                "viral pop"
+            ],
+            "id": "59z6KzkGfy3XCBOQX45CU5",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 1,
+            "key_signature": "4\u266f",
+            "liveness": 33,
+            "loudness": -4.222,
+            "mode": 0,
+            "popularity": 53,
+            "release_year": 2014,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 121.902,
+            "title": "Counting Stars",
+            "valence": 65
+        },
+        {
+            "acousticness": 51,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "0du5cEVh5yTK9QJze8zA0C"
+            ],
+            "artists": [
+                "Bruno Mars"
+            ],
+            "danceability": 50,
+            "duration_ms": 217866,
+            "energy": 59,
+            "genres": [
+                "dance pop",
+                "pop"
+            ],
+            "id": "161DnLWsx1i3u1JT05lzqU",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 1,
+            "key_signature": "4\u266f",
+            "liveness": 11,
+            "loudness": -4.721,
+            "mode": 0,
+            "popularity": 84,
+            "release_year": 2010,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 145.867,
+            "title": "Talking to the Moon",
+            "valence": 8
+        },
+        {
+            "acousticness": 15,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "0du5cEVh5yTK9QJze8zA0C"
+            ],
+            "artists": [
+                "Bruno Mars"
+            ],
+            "danceability": 70,
+            "duration_ms": 222091,
+            "energy": 56,
+            "genres": [
+                "dance pop",
+                "pop"
+            ],
+            "id": "1WWR7F24UbFi06sfvcnvD8",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 2,
+            "key_signature": "1\u266d",
+            "liveness": 11,
+            "loudness": -7.273,
+            "mode": 0,
+            "popularity": 57,
+            "release_year": 2011,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 110.444,
+            "title": "Grenade",
+            "valence": 24
+        },
+        {
+            "acousticness": 10,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2ysnwxxNtSgbb9t1m2Ur4j"
+            ],
+            "artists": [
+                "George Ezra"
+            ],
+            "danceability": 60,
+            "duration_ms": 128776,
+            "energy": 90,
+            "genres": [
+                "folk-pop",
+                "neo-singer-songwriter",
+                "talent show"
+            ],
+            "id": "1gGeEcwqBNxVqjzjAWvS4N",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 30,
+            "loudness": -4.157,
+            "mode": 1,
+            "popularity": 66,
+            "release_year": 2022,
+            "speechiness": 19,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 146.994,
+            "title": "Green Green Grass - Sped-Up",
+            "valence": 82
+        },
+        {
+            "acousticness": 35,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "4BxCuXFJrSWGi1KHcVqaU4"
+            ],
+            "artists": [
+                "Kodaline"
+            ],
+            "danceability": 52,
+            "duration_ms": 203186,
+            "energy": 62,
+            "genres": [
+                "irish pop",
+                "modern rock"
+            ],
+            "id": "65gLJGey4u4KFFqoC5fzFJ",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 12,
+            "loudness": -5.909,
+            "mode": 1,
+            "popularity": 76,
+            "release_year": 2018,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 120.103,
+            "title": "Brother",
+            "valence": 21
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "4AK6F7OLvEQ5QYCBNiQWHq"
+            ],
+            "artists": [
+                "One Direction"
+            ],
+            "danceability": 73,
+            "duration_ms": 199986,
+            "energy": 79,
+            "genres": [
+                "boy band",
+                "pop",
+                "post-teen pop",
+                "talent show"
+            ],
+            "id": "4cluDES4hQEUhmXj6TXkSo",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 6,
+            "loudness": -2.494,
+            "mode": 1,
+            "popularity": 86,
+            "release_year": 2012,
+            "speechiness": 7,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 124.99,
+            "title": "What Makes You Beautiful",
+            "valence": 89
+        },
+        {
+            "acousticness": 13,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "06HL4z0CvFAxyc27GXpf02"
+            ],
+            "artists": [
+                "Taylor Swift"
+            ],
+            "danceability": 64,
+            "duration_ms": 200690,
+            "energy": 64,
+            "genres": [
+                "pop"
+            ],
+            "id": "0V3wPSX9ygBnCm8psDIegu",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 14,
+            "loudness": -6.571,
+            "mode": 1,
+            "popularity": 93,
+            "release_year": 2022,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 97.008,
+            "title": "Anti-Hero",
+            "valence": 53
+        },
+        {
+            "acousticness": 24,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "2cQr2KbzdRtIFlfbHGnNsL",
+                "5F1aoppMtU3OMiltO8ymJ2",
+                "2LAqcqAQ8KPTsl1HBgBrqM"
+            ],
+            "artists": [
+                "Ziv Zaifman",
+                "Hugh Jackman",
+                "Michelle Williams"
+            ],
+            "danceability": 26,
+            "duration_ms": 269453,
+            "energy": 31,
+            "genres": [
+                "show tunes",
+                "hollywood"
+            ],
+            "id": "0RoA7ObU6phWpqhlC9zH4Z",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 9,
+            "loudness": -11.689,
+            "mode": 1,
+            "popularity": 75,
+            "release_year": 2017,
+            "speechiness": 6,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 54.747,
+            "title": "A Million Dreams",
+            "valence": 10
+        },
+        {
+            "acousticness": 0,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "6jJ0s89eD6GaHleKKya26X"
+            ],
+            "artists": [
+                "Katy Perry"
+            ],
+            "danceability": 69,
+            "duration_ms": 227333,
+            "energy": 80,
+            "genres": [
+                "pop"
+            ],
+            "id": "6hkOqJ5mE093AQf2lbZnsG",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 1,
+            "key_signature": "4\u266f",
+            "liveness": 16,
+            "loudness": -4.021,
+            "mode": 0,
+            "popularity": 75,
+            "release_year": 2010,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 133.971,
+            "title": "The One That Got Away",
+            "valence": 88
+        },
+        {
+            "acousticness": 65,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "164Uj4eKjl6zTBKfJLFKKK"
+            ],
+            "artists": [
+                "JVKE"
+            ],
+            "danceability": 52,
+            "duration_ms": 209259,
+            "energy": 59,
+            "genres": [
+                "modern indie pop",
+                "pov: indie",
+                "singer-songwriter pop"
+            ],
+            "id": "5odlY52u43F5BjByhxg7wg",
+            "instrumentalness": 16,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 25,
+            "loudness": -4.801,
+            "mode": 1,
+            "popularity": 86,
+            "release_year": 2022,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 94.467,
+            "title": "golden hour",
+            "valence": 15
+        },
+        {
+            "acousticness": 34,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "1z6xb7fWEynx9m92JVA8ZR",
+                "2ylgnsIpbjX8ucLRpg9Vir"
+            ],
+            "artists": [
+                "Annapantsu",
+                "Cristina Vee"
+            ],
+            "danceability": 87,
+            "duration_ms": 99726,
+            "energy": 78,
+            "genres": [
+                "otacore",
+                "pixel"
+            ],
+            "id": "2yL4Re3jrDB0qau2tvYTnP",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 0,
+            "key_signature": "3\u266d",
+            "liveness": 7,
+            "loudness": -6.141,
+            "mode": 0,
+            "popularity": 32,
+            "release_year": 2020,
+            "speechiness": 28,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 101.927,
+            "title": "Busted",
+            "valence": 94
+        },
+        {
+            "acousticness": 36,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "3PhoLpVuITZKcymswpck5b"
+            ],
+            "artists": [
+                "Elton John"
+            ],
+            "danceability": 50,
+            "duration_ms": 183440,
+            "energy": 90,
+            "genres": [
+                "glam rock",
+                "mellow gold",
+                "piano rock",
+                "rock"
+            ],
+            "id": "1jDJFeK9x3OZboIAHsY9k2",
+            "instrumentalness": 12,
+            "key": 6,
+            "key_and_mode_pair": 18,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 14,
+            "loudness": -6.863,
+            "mode": 1,
+            "popularity": 86,
+            "release_year": 1983,
+            "speechiness": 18,
+            "super_genres": [
+                "Rock"
+            ],
+            "tempo": 176.808,
+            "title": "I'm Still Standing",
+            "valence": 77
+        },
+        {
+            "acousticness": 24,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "0gBvuNzrFCOVaiyKexoYMH",
+                "1JCICbWuMrkpKihhaZLpb4",
+                "6OlhAPlp2jBJJOOR3pl7on"
+            ],
+            "artists": [
+                "Todrick Hall",
+                "Mack Z",
+                "the ALDC"
+            ],
+            "danceability": 76,
+            "duration_ms": 199411,
+            "energy": 82,
+            "genres": [
+                "strut"
+            ],
+            "id": "5usaGJvTT7VvdmYXIFwFmv",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 17,
+            "loudness": -3.743,
+            "mode": 1,
+            "popularity": 38,
+            "release_year": 2014,
+            "speechiness": 17,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 136.013,
+            "title": "Freaks Like Me",
+            "valence": 67
+        },
+        {
+            "acousticness": 13,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "7H55rcKCfwqkyDFH9wpKM6"
+            ],
+            "artists": [
+                "Christina Perri"
+            ],
+            "danceability": 44,
+            "duration_ms": 250706,
+            "energy": 49,
+            "genres": [
+                "pop"
+            ],
+            "id": "1x80xTzSL7pok3M5JC3oJz",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 11,
+            "loudness": -6.286,
+            "mode": 1,
+            "popularity": 63,
+            "release_year": 2014,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 143.808,
+            "title": "human",
+            "valence": 25
+        },
+        {
+            "acousticness": 66,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "1QRj3hoop9Mv5VvHQkwPEp"
+            ],
+            "artists": [
+                "Olivia O'Brien"
+            ],
+            "danceability": 41,
+            "duration_ms": 175466,
+            "energy": 42,
+            "genres": [
+                "alt z",
+                "pop"
+            ],
+            "id": "6ATgDc6e4sPn84hvJsAmPt",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 6,
+            "key_signature": "3\u266f",
+            "liveness": 10,
+            "loudness": -8.915,
+            "mode": 0,
+            "popularity": 73,
+            "release_year": 2016,
+            "speechiness": 17,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 176.947,
+            "title": "hate u love u",
+            "valence": 25
+        },
+        {
+            "acousticness": 76,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "5ZTJEC2UH1RXQT9K1mDCJ3"
+            ],
+            "artists": [
+                "Jordi"
+            ],
+            "danceability": 64,
+            "duration_ms": 176540,
+            "energy": 47,
+            "genres": [],
+            "id": "4TgyIbBZCW0UIwS8eua06z",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 15,
+            "loudness": -8.311,
+            "mode": 1,
+            "popularity": 60,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 87.034,
+            "title": "Hate You",
+            "valence": 40
+        },
+        {
+            "acousticness": 33,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "246dkjvS1zLTtiykXe5h60"
+            ],
+            "artists": [
+                "Post Malone"
+            ],
+            "danceability": 40,
+            "duration_ms": 156266,
+            "energy": 65,
+            "genres": [
+                "dfw rap",
+                "melodic rap",
+                "pop",
+                "rap"
+            ],
+            "id": "7sWRlDoTDX8geTR8zzr2vt",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 4,
+            "key_signature": "1\u266f",
+            "liveness": 10,
+            "loudness": -3.206,
+            "mode": 0,
+            "popularity": 79,
+            "release_year": 2019,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop",
+                "Rap"
+            ],
+            "tempo": 130.218,
+            "title": "Hollywood's Bleeding",
+            "valence": 17
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "1vCWHaC5f2uS3yhpwWbIA6"
+            ],
+            "artists": [
+                "Avicii"
+            ],
+            "danceability": 53,
+            "duration_ms": 176658,
+            "energy": 84,
+            "genres": [
+                "dance pop",
+                "edm",
+                "pop",
+                "pop dance"
+            ],
+            "id": "0ct6r3EGTcMLPtrXHDvVjc",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 18,
+            "key_signature": "6\u266f/6\u266d",
+            "liveness": 25,
+            "loudness": -5.298,
+            "mode": 1,
+            "popularity": 88,
+            "release_year": 2014,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "EDM"
+            ],
+            "tempo": 125.983,
+            "title": "The Nights",
+            "valence": 65
+        },
+        {
+            "acousticness": 3,
+            "added_by": "Ethanski Austinski azenski",
+            "added_by_user_id": "31zfdam27c6unqf6w2wpgzchch2u",
+            "artist_ids": [
+                "1vCWHaC5f2uS3yhpwWbIA6"
+            ],
+            "artists": [
+                "Avicii"
+            ],
+            "danceability": 55,
+            "duration_ms": 255093,
+            "energy": 78,
+            "genres": [
+                "dance pop",
+                "edm",
+                "pop",
+                "pop dance"
+            ],
+            "id": "4lhqb6JvbHId48OUJGwymk",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 7,
+            "key_signature": "2\u266d",
+            "liveness": 8,
+            "loudness": -4.867,
+            "mode": 0,
+            "popularity": 81,
+            "release_year": 2013,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "EDM"
+            ],
+            "tempo": 125.014,
+            "title": "Hey Brother",
+            "valence": 46
+        },
+        {
+            "acousticness": 77,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "1lIG8lqWxus7LqThGUXMa1",
+                "7vgw2PRsF1Ouh9i7r8bTJu"
+            ],
+            "artists": [
+                "Bernadette Peters",
+                "Tom Wopat"
+            ],
+            "danceability": 56,
+            "duration_ms": 197973,
+            "energy": 56,
+            "genres": [
+                "broadway",
+                "hollywood",
+                "show tunes",
+                "vintage broadway"
+            ],
+            "id": "1sOoOXwA5QftTmj6V0fqlJ",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 34,
+            "loudness": -6.026,
+            "mode": 1,
+            "popularity": 49,
+            "release_year": 1999,
+            "speechiness": 17,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 81.535,
+            "title": "Anything You Can Do",
+            "valence": 50
+        },
+        {
+            "acousticness": 6,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "6JL8zeS1NmiOftqZTRgdTz"
+            ],
+            "artists": [
+                "Meghan Trainor"
+            ],
+            "danceability": 81,
+            "duration_ms": 187920,
+            "energy": 89,
+            "genres": [
+                "hip pop",
+                "pop"
+            ],
+            "id": "5jE48hhRu8E6zBDPRSkEq7",
+            "instrumentalness": 0,
+            "key": 9,
+            "key_and_mode_pair": 21,
+            "key_signature": "3\u266f",
+            "liveness": 12,
+            "loudness": -3.726,
+            "mode": 1,
+            "popularity": 75,
+            "release_year": 2015,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 134.052,
+            "title": "All About That Bass",
+            "valence": 96
+        },
+        {
+            "acousticness": 3,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "3QlQ9aAQmN8T0X6Ib0LubP",
+                "2Q2Z74Il8tZHMtfFcmz5fh"
+            ],
+            "artists": [
+                "Original StarKid Cast of Nightmare Time",
+                "Mariah Rose Faith"
+            ],
+            "danceability": 71,
+            "duration_ms": 259273,
+            "energy": 76,
+            "genres": [],
+            "id": "5o70li5XusW49M2Uxu5ZKd",
+            "instrumentalness": 1,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 11,
+            "loudness": -7.773,
+            "mode": 1,
+            "popularity": 28,
+            "release_year": 2021,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 99.978,
+            "title": "The Web I Spin for You",
+            "valence": 62
+        },
+        {
+            "acousticness": 45,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "1VbWMsap5Ex2erHPlmndr0",
+                "4rNKsg7PLOeJY6EFH2sW2u"
+            ],
+            "artists": [
+                "SIX",
+                "Natalie Paris"
+            ],
+            "danceability": 51,
+            "duration_ms": 311301,
+            "energy": 43,
+            "genres": [
+                "broadway"
+            ],
+            "id": "3akeuMy9bqJbqDlfYevbwN",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 12,
+            "loudness": -8.14,
+            "mode": 1,
+            "popularity": 62,
+            "release_year": 2018,
+            "speechiness": 3,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 115.196,
+            "title": "Heart of Stone",
+            "valence": 10
+        },
+        {
+            "acousticness": 75,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "2OEGI2wrCVmvavKEOMlccy"
+            ],
+            "artists": [
+                "Phillipa Soo"
+            ],
+            "danceability": 58,
+            "duration_ms": 225240,
+            "energy": 43,
+            "genres": [
+                "broadway",
+                "show tunes"
+            ],
+            "id": "4B3qvzOMzLQXLeYgPsG3KA",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 10,
+            "loudness": -9.13,
+            "mode": 1,
+            "popularity": 71,
+            "release_year": 2015,
+            "speechiness": 5,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 99.608,
+            "title": "Burn",
+            "valence": 26
+        },
+        {
+            "acousticness": 3,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "3TVXtAsR1Inumwj472S9r4"
+            ],
+            "artists": [
+                "Drake"
+            ],
+            "danceability": 75,
+            "duration_ms": 198973,
+            "energy": 45,
+            "genres": [
+                "canadian hip hop",
+                "canadian pop",
+                "hip hop",
+                "pop rap",
+                "rap"
+            ],
+            "id": "6DCZcSspjsKoFjzjrWoCdn",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 55,
+            "loudness": -9.211,
+            "mode": 1,
+            "popularity": 87,
+            "release_year": 2018,
+            "speechiness": 11,
+            "super_genres": [
+                "Pop",
+                "Rap"
+            ],
+            "tempo": 77.169,
+            "title": "God's Plan",
+            "valence": 36
+        },
+        {
+            "acousticness": 49,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "3yl0l9RiUjxClgtME1F4tD"
+            ],
+            "artists": [
+                "To Your Doom"
+            ],
+            "danceability": 56,
+            "duration_ms": 153415,
+            "energy": 65,
+            "genres": [],
+            "id": "2n6X3MueJi8djtfH81tYLv",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 16,
+            "loudness": -5.598,
+            "mode": 1,
+            "popularity": 47,
+            "release_year": 2013,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 79.985,
+            "title": "You're My Sweetheart (I Belong With You - You Belong With Me)",
+            "valence": 19
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "74XFHRwlV6OrjEM0A2NCMF"
+            ],
+            "artists": [
+                "Paramore"
+            ],
+            "danceability": 60,
+            "duration_ms": 216013,
+            "energy": 92,
+            "genres": [
+                "candy pop",
+                "modern rock",
+                "pixie",
+                "pop",
+                "pop emo",
+                "pop punk",
+                "rock"
+            ],
+            "id": "1yjY7rpaAQvKwpdUliHx0d",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 17,
+            "key_signature": "1\u266d",
+            "liveness": 6,
+            "loudness": -3.763,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 2013,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 136.01,
+            "title": "Still into You",
+            "valence": 76
+        },
+        {
+            "acousticness": 7,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "6U1dBXJhC8gXFjamvFTmHg",
+                "6sCbFbEjbYepqswM1vWjjs"
+            ],
+            "artists": [
+                "Zac Efron",
+                "Zendaya"
+            ],
+            "danceability": 68,
+            "duration_ms": 217440,
+            "energy": 62,
+            "genres": [
+                "hollywood",
+                "movie tunes",
+                "post-teen pop",
+                "pop"
+            ],
+            "id": "630sXRhIcfwr2e4RdNtjKN",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 12,
+            "loudness": -7.005,
+            "mode": 1,
+            "popularity": 77,
+            "release_year": 2017,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 125.046,
+            "title": "Rewrite The Stars",
+            "valence": 28
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "6DIS6PRrLS3wbnZsf7vYic"
+            ],
+            "artists": [
+                "WALK THE MOON"
+            ],
+            "danceability": 58,
+            "duration_ms": 199080,
+            "energy": 87,
+            "genres": [
+                "dance rock",
+                "modern alternative rock",
+                "modern rock",
+                "neo mellow",
+                "pop rock"
+            ],
+            "id": "4kbj5MwxO1bq9wjT5g9HaA",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 26,
+            "loudness": -3.804,
+            "mode": 1,
+            "popularity": 86,
+            "release_year": 2014,
+            "speechiness": 6,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 128.038,
+            "title": "Shut Up and Dance",
+            "valence": 62
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "3hv9jJF3adDNsBSIQDqcjp",
+                "0du5cEVh5yTK9QJze8zA0C"
+            ],
+            "artists": [
+                "Mark Ronson",
+                "Bruno Mars"
+            ],
+            "danceability": 86,
+            "duration_ms": 269666,
+            "energy": 61,
+            "genres": [
+                "pop soul",
+                "dance pop",
+                "pop"
+            ],
+            "id": "32OlwWuMpZ6b0aN2RZOeMS",
+            "instrumentalness": 0,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 3,
+            "loudness": -7.223,
+            "mode": 1,
+            "popularity": 86,
+            "release_year": 2015,
+            "speechiness": 8,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 114.988,
+            "title": "Uptown Funk (feat. Bruno Mars)",
+            "valence": 93
+        },
+        {
+            "acousticness": 14,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "6jJ0s89eD6GaHleKKya26X"
+            ],
+            "artists": [
+                "Katy Perry"
+            ],
+            "danceability": 64,
+            "duration_ms": 227893,
+            "energy": 83,
+            "genres": [
+                "pop"
+            ],
+            "id": "4r6eNCsrZnQWJzzvFh4nlg",
+            "instrumentalness": 0,
+            "key": 8,
+            "key_and_mode_pair": 20,
+            "key_signature": "4\u266d",
+            "liveness": 11,
+            "loudness": -5.039,
+            "mode": 1,
+            "popularity": 74,
+            "release_year": 2010,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 124.071,
+            "title": "Firework",
+            "valence": 65
+        },
+        {
+            "acousticness": 5,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "3QLIkT4rD2FMusaqmkepbq"
+            ],
+            "artists": [
+                "Rachel Platten"
+            ],
+            "danceability": 56,
+            "duration_ms": 204013,
+            "energy": 71,
+            "genres": [
+                "post-teen pop",
+                "viral pop"
+            ],
+            "id": "37f4ITSlgPX81ad2EvmVQr",
+            "instrumentalness": 0,
+            "key": 7,
+            "key_and_mode_pair": 19,
+            "key_signature": "1\u266f",
+            "liveness": 16,
+            "loudness": -4.987,
+            "mode": 1,
+            "popularity": 79,
+            "release_year": 2016,
+            "speechiness": 13,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 175.924,
+            "title": "Fight Song",
+            "valence": 33
+        },
+        {
+            "acousticness": 10,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "1N9n8MSxrr4Emhb566493b"
+            ],
+            "artists": [
+                "Morgan Page"
+            ],
+            "danceability": 68,
+            "duration_ms": 213500,
+            "energy": 69,
+            "genres": [
+                "edm",
+                "electro house",
+                "pop dance",
+                "progressive house"
+            ],
+            "id": "0cKXTbv3dHLcB95EL7VoLU",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 30,
+            "loudness": -4.913,
+            "mode": 1,
+            "popularity": 36,
+            "release_year": 2019,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop",
+                "EDM"
+            ],
+            "tempo": 127.931,
+            "title": "Reason For Living",
+            "valence": 31
+        },
+        {
+            "acousticness": 74,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "2yLzlEFtIS0Q9UkyBZdQA7"
+            ],
+            "artists": [
+                "Jessie Murph"
+            ],
+            "danceability": 50,
+            "duration_ms": 155591,
+            "energy": 44,
+            "genres": [
+                "alt z",
+                "modern country pop",
+                "singer-songwriter pop"
+            ],
+            "id": "0UYNa7reQKIbADXr8iN28w",
+            "instrumentalness": 0,
+            "key": 4,
+            "key_and_mode_pair": 16,
+            "key_signature": "4\u266f",
+            "liveness": 9,
+            "loudness": -7.494,
+            "mode": 1,
+            "popularity": 60,
+            "release_year": 2023,
+            "speechiness": 7,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 80.65,
+            "title": "What Happened to Ryan",
+            "valence": 19
+        },
+        {
+            "acousticness": 6,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "5BcAKTbp20cv7tC5VqPFoC",
+                "3JhNCzhSMTxs9WLGJJxWOY",
+                "4myTppRgh0rojLxx8RycOp",
+                "56xTxG4nQMAs1GW9kvn0uA"
+            ],
+            "artists": [
+                "Macklemore & Ryan Lewis",
+                "Macklemore",
+                "Ryan Lewis",
+                "Wanz"
+            ],
+            "danceability": 78,
+            "duration_ms": 235613,
+            "energy": 53,
+            "genres": [
+                "pop rap",
+                "seattle hip hop"
+            ],
+            "id": "6CjtS2JZH9RkDz5UVInsa9",
+            "instrumentalness": 0,
+            "key": 6,
+            "key_and_mode_pair": 6,
+            "key_signature": "3\u266f",
+            "liveness": 5,
+            "loudness": -6.986,
+            "mode": 0,
+            "popularity": 82,
+            "release_year": 2012,
+            "speechiness": 29,
+            "super_genres": [
+                "Pop",
+                "Rap"
+            ],
+            "tempo": 94.993,
+            "title": "Thrift Shop (feat. Wanz)",
+            "valence": 66
+        },
+        {
+            "acousticness": 42,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "6MB38cbBCtoUoLWf8U22Ub"
+            ],
+            "artists": [
+                "Kiran + Nivi"
+            ],
+            "danceability": 56,
+            "duration_ms": 217973,
+            "energy": 41,
+            "genres": [],
+            "id": "1nXc4gIA8LCIJDnwEUBV80",
+            "instrumentalness": 0,
+            "key": 5,
+            "key_and_mode_pair": 5,
+            "key_signature": "4\u266d",
+            "liveness": 9,
+            "loudness": -6.546,
+            "mode": 0,
+            "popularity": 60,
+            "release_year": 2022,
+            "speechiness": 4,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 126.375,
+            "title": "8 billion people",
+            "valence": 8
+        },
+        {
+            "acousticness": 66,
+            "added_by": "Claire\ud83c\udfd0\ud83e\ude70\ud83e\udea9",
+            "added_by_user_id": "31enu343srsbjxqdoabwh76xjg6a",
+            "artist_ids": [
+                "6zFYqv1mOsgBRQbae3JJ9e"
+            ],
+            "artists": [
+                "Billy Joel"
+            ],
+            "danceability": 53,
+            "duration_ms": 214240,
+            "energy": 50,
+            "genres": [
+                "album rock",
+                "classic rock",
+                "heartland rock",
+                "mellow gold",
+                "piano rock",
+                "rock",
+                "singer-songwriter",
+                "soft rock"
+            ],
+            "id": "4U45aEWtQhrm8A5mxPaFZ7",
+            "instrumentalness": 0,
+            "key": 10,
+            "key_and_mode_pair": 22,
+            "key_signature": "2\u266d",
+            "liveness": 8,
+            "loudness": -6.662,
+            "mode": 1,
+            "popularity": 82,
+            "release_year": 1977,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop",
+                "Rock"
+            ],
+            "tempo": 124.936,
+            "title": "Vienna",
+            "valence": 31
+        },
+        {
+            "acousticness": 66,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "4GJ6xDCF5jaUqD6avOuQT6"
+            ],
+            "artists": [
+                "FIFTY FIFTY"
+            ],
+            "danceability": 77,
+            "duration_ms": 174253,
+            "energy": 66,
+            "genres": [
+                "k-pop girl group"
+            ],
+            "id": "5mg3VB3Qh7jcR5kAAC4DSV",
+            "instrumentalness": 0,
+            "key": 2,
+            "key_and_mode_pair": 14,
+            "key_signature": "2\u266f",
+            "liveness": 40,
+            "loudness": -8.2,
+            "mode": 1,
+            "popularity": 76,
+            "release_year": 2023,
+            "speechiness": 3,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 120.023,
+            "title": "Cupid",
+            "valence": 96
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "0ZRBa9pTfhhCsJW95F1ugg",
+                "69YKwunlA0xl2yMS12cyMu"
+            ],
+            "artists": [
+                "Yall",
+                "Gabriela Richardson"
+            ],
+            "danceability": 48,
+            "duration_ms": 172414,
+            "energy": 71,
+            "genres": [],
+            "id": "38muRUB5vaK3pW0Iu4A0iZ",
+            "instrumentalness": 2,
+            "key": 7,
+            "key_and_mode_pair": 7,
+            "key_signature": "2\u266d",
+            "liveness": 20,
+            "loudness": -3.776,
+            "mode": 0,
+            "popularity": 69,
+            "release_year": 2015,
+            "speechiness": 11,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 98.236,
+            "title": "Hundred Miles",
+            "valence": 49
+        },
+        {
+            "acousticness": 2,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "7DQYAz99eM3Y5PkP9WtUew"
+            ],
+            "artists": [
+                "Jax"
+            ],
+            "danceability": 75,
+            "duration_ms": 173103,
+            "energy": 52,
+            "genres": [
+                "gen z singer-songwriter"
+            ],
+            "id": "3udCid1W2whR6CQrVpsKUh",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 10,
+            "loudness": -5.993,
+            "mode": 1,
+            "popularity": 63,
+            "release_year": 2023,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 139.936,
+            "title": "Cinderella Snapped",
+            "valence": 65
+        },
+        {
+            "acousticness": 8,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "2bFguwibp03RkAAuC9oYrP"
+            ],
+            "artists": [
+                "Melina KB"
+            ],
+            "danceability": 74,
+            "duration_ms": 143601,
+            "energy": 78,
+            "genres": [
+                "alt z"
+            ],
+            "id": "5ULZl3hedO1I4zMEjpZL3i",
+            "instrumentalness": 0,
+            "key": 1,
+            "key_and_mode_pair": 13,
+            "key_signature": "5\u266d",
+            "liveness": 4,
+            "loudness": -6.607,
+            "mode": 1,
+            "popularity": 51,
+            "release_year": 2022,
+            "speechiness": 16,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 155.04,
+            "title": "Friends to Lovers",
+            "valence": 96
+        },
+        {
+            "acousticness": 1,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "4XU1w0lxvHVRYKFQbMOTss"
+            ],
+            "artists": [
+                "Piper Rockelle"
+            ],
+            "danceability": 80,
+            "duration_ms": 166859,
+            "energy": 63,
+            "genres": [
+                "social media pop"
+            ],
+            "id": "2EArp0IN3fXZkwNAv8c0Al",
+            "instrumentalness": 4,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 7,
+            "loudness": -4.974,
+            "mode": 0,
+            "popularity": 51,
+            "release_year": 2021,
+            "speechiness": 4,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 100.955,
+            "title": "Butterflies",
+            "valence": 33
+        },
+        {
+            "acousticness": 16,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "06HL4z0CvFAxyc27GXpf02"
+            ],
+            "artists": [
+                "Taylor Swift"
+            ],
+            "danceability": 66,
+            "duration_ms": 277591,
+            "energy": 82,
+            "genres": [
+                "pop"
+            ],
+            "id": "2CYVETnhM9aytqrazYYwrK",
+            "instrumentalness": 0,
+            "key": 11,
+            "key_and_mode_pair": 11,
+            "key_signature": "2\u266f",
+            "liveness": 7,
+            "loudness": -6.269,
+            "mode": 0,
+            "popularity": 78,
+            "release_year": 2021,
+            "speechiness": 5,
+            "super_genres": [
+                "Pop"
+            ],
+            "tempo": 135.942,
+            "title": "Mr. Perfectly Fine (Taylor\u2019s Version) (From The Vault)",
+            "valence": 71
+        },
+        {
+            "acousticness": 0,
+            "added_by": "Narwall36",
+            "added_by_user_id": "0kg7r94lnk8b70rs8xibz2rto",
+            "artist_ids": [
+                "4bwIf0yXJf0F9AmOl2J78M"
+            ],
+            "artists": [
+                "Camellia"
+            ],
+            "danceability": 52,
+            "duration_ms": 225945,
+            "energy": 99,
+            "genres": [
+                "denpa-kei",
+                "rhythm game"
+            ],
+            "id": "1eXjWnz7I5y7Cek7bro07s",
+            "instrumentalness": 48,
+            "key": 0,
+            "key_and_mode_pair": 12,
+            "key_signature": "\u266e",
+            "liveness": 40,
+            "loudness": -0.568,
+            "mode": 1,
+            "popularity": 50,
+            "release_year": 2021,
+            "speechiness": 19,
+            "super_genres": [
+                "Others"
+            ],
+            "tempo": 111.015,
+            "title": "Spin Eternally",
+            "valence": 16
+        }
+    ]
+}

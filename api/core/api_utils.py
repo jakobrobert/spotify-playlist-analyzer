@@ -122,6 +122,7 @@ class ApiUtils:
         attribute_distribution = AttributeDistribution(tracks)
 
         function_by_attribute_dict = {
+            "added_by": attribute_distribution.get_added_by_items,
             "duration_ms": attribute_distribution.get_duration_items,
             "release_year": attribute_distribution.get_release_year_items,
             "popularity": attribute_distribution.get_popularity_items,
