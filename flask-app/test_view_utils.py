@@ -22,3 +22,11 @@ class TestSmoke(unittest.TestCase):
     def test_get_playlist_id_from_playlist_url_valid(self, playlist_url, expected_playlist_id):
         actual_playlist_id = ViewUtils.get_playlist_id_from_playlist_url(playlist_url)
         self.assertEqual(expected_playlist_id, actual_playlist_id)
+
+    @parameterized.expand([
+        ["https://open.spotify.com/intl-de/track/5XcZRgJv3zMhTqCyESjQrF?si=0815a93806cd484b"],
+        ["foo"]
+    ])
+    def test_get_playlist_id_from_playlist_url_invalid(self, playlist_url):
+        with self.assertRaises(Exception):
+            ViewUtils.get_playlist_id_from_playlist_url(playlist_url)
