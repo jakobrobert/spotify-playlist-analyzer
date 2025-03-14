@@ -2,3 +2,6 @@
 __pycache__/
 
 config.ini
+
+/api/test_data/playlists/
+/test_links.txt
